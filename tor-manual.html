@@ -1,7 +1,7 @@
+Content-type: text/html
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML><HEAD>
-<TITLE>Man page of TOR</TITLE> 
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"> 
+<HTML><HEAD><TITLE>Man page of TOR</TITLE>
 </HEAD><BODY>
 <H1>TOR</H1>
 Section: User Commands  (1)<BR>Updated: November 2004<BR><A HREF="#index">Index</A>
@@ -42,7 +42,7 @@ Display a short help message and exit.
 <DL COMPACT>
 <DT><B>-f </B><I>FILE</I><DD>
 FILE contains further &quot;option value&quot; pairs. (Default: @CONFDIR@/torrc)
-<DT>Other options can be specified either on the command-line (<I>--option
+<DT>Other options can be specified either on the command-line (<I>--option<DD>
 value</I>), or in the configuration file (<I>option value</I>).
 Options are case-insensitive.
 <DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>stderr</B>|<B>stdout</B>|<B>syslog</B><DD>
@@ -167,6 +167,9 @@ node will go down before the stream is finished.
 When a request for address arrives to Tor, it will rewrite it to newaddress before processing it. For example, if you always want connections to <A HREF="http://www.indymedia.org">www.indymedia.org</A> to exit via yourtorserver, use &quot;MapAddress <A HREF="http://www.indymedia.org">www.indymedia.org</A> <A HREF="http://www.indymedia.org.yourtorserver.exit">www.indymedia.org.yourtorserver.exit</A>&quot;.
 <DT><B>NewCircuitPeriod </B><I>NUM</I><DD>
 Every NUM seconds consider whether to build a new circuit. (Default: 60)
+<DT><B>MaxCircuitDirtiness </B><I>NUM</I><DD>
+Feel free to reuse a circuit that was first used at most NUM seconds
+ago, but never attach a new stream to a circuit that is too old.
 <DT><B>NodeFamily </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
 The named Tor servers constitute a &quot;family&quot; of similar or co-administered
 servers, so never use any two of them in the same circuit. Defining a
@@ -246,22 +249,16 @@ either a reject *:* or an accept *:*. Otherwise, you're _augmenting_
 <DT>reject 192.168.0.0/16<DD>
 <DT>reject 10.0.0.0/8<DD>
 <DT>reject 172.16.0.0/12<DD>
-<DT>accept *:20-22<DD>
-<DT>accept *:53<DD>
-<DT>accept *:79-81<DD>
-<DT>accept *:110<DD>
-<DT>accept *:143<DD>
-<DT>accept *:443<DD>
-<DT>accept *:706<DD>
-<DT>accept *:873<DD>
-<DT>accept *:993<DD>
-<DT>accept *:995<DD>
+<DT>reject *:25<DD>
+<DT>reject *:119<DD>
+<DT>reject *:135-139<DD>
+<DT>reject *:445<DD>
 <DT>reject *:1214<DD>
 <DT>reject *:4661-4666<DD>
 <DT>reject *:6346-6429<DD>
+<DT>reject *:6699<DD>
 <DT>reject *:6881-6999<DD>
-<DT>accept *:1024-65535<DD>
-<DT>reject *:*<DD>
+<DT>accept *:*<DD>
 </DL>
 </DL>
 
@@ -272,8 +269,8 @@ If you have more than this number of onionskins queued for decrypt, reject new o
 Declare that this Tor server is controlled or administered by a group
 or organization identical or similar to that of the other named servers.
 When two servers both declare that they are in the same 'family', Tor clients
-will not use them in the same circuit.  (Each server only need to list the
-other servers in its family; it doesn't need to list itself.)
+will not use them in the same circuit.  (Each server only needs to list the
+other servers in its family; it doesn't need to list itself, but it won't hurt.)
 <DT><B>Nickname </B><I>name</I><DD>
 Set the server's nickname to 'name'.
 <DT><B>NumCPUs </B><I>num</I><DD>
@@ -293,6 +290,11 @@ successfully, no subsequent rules are considered.  You can specify that no
 redirection is to be performed on a given set of addresses by using the
 special target string &quot;pass&quot;, which prevents subsequent rules from being
 considered.
+<DT><B>ShutdownWaitLength</B><I>NUM</I><DD>
+When we get a SIGINT and we're a server, we begin shutting down: we close
+listeners and start refusing new circuits. After <B>NUM</B> seconds,
+we exit. If we get a second SIGINT, we exit immediately.  (Default:
+30 seconds)
 <DT><B>DirPostPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
 Every time the specified period elapses, Tor uploads its server
 descriptors to the directory servers.  This information is also
@@ -474,6 +476,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 19:22:21 GMT, March 10, 2005
+Time: 14:17:19 GMT, March 16, 2005
 </BODY>
 </HTML>
