@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Tor: Overview</title>
+  <meta name="Author" content="Roger Dingledine">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+  <link rel="stylesheet" type="text/css" href="default.css" />
+</head>
+
+<body>
+  <div class="menu" id="side">
+<!--    <img id="logo" src="tor.jpg" alt="cute tor gate" /> -->
+      <a href="index.html">Home</a> <br>
+      <a class="current">Overview</a> <br>
+      <a href="download.html">Download</a> <br>
+      <a href="documentation.html">Documentation</a><br>
+      <a href="contribute.html">Contribute</a> <br>
+      <a href="design.html">Design</a> <br>
+      <a href="developers.html">Developers</a> <br>
+      <a href="research.html">Research</a> <br>
+      <a href="people.html">People</a> <br>
+  </div><!-- #side -->
+  <div class="main" id="main">
+
+<h2>Tor: an anonymizing overlay network for TCP</h2>
+
+<p>
+Traffic analysis can be used to infer who is talking to whom over a
+public network. For example, Internet packets have a header used for
+routing, and a payload that carries the data. The header, which must be
+visible to the network (and to observers of the network), reveals the
+source and destination of the packet. Even if the header were obscured
+in some way, the packet could still be tracked as it moves through the
+network. Encrypting the payload is similarly ineffective, because the
+routing information is all an observer needs.
+</p>
+
+<p>
+Knowing the source and destination of your Internet traffic allows
+somebody to track your behavior and interests, impacting your checkbook or
+even threatening your job or physical safety.
+</p>
+
+<p>
+Individuals, corporations, and governments all have an interest in
+traffic analysis protection. Individuals want to protect themselves and
+their family members from remote websites, or connect to resources such
+as news sites or instant messaging services that are blocked locally.
+User groups such as the German "Diabetes People" organization recommend
+Tor for their members' online privacy and security.  Activist groups such
+as the Electronic Frontier Foundation are publicizing Tor as a mechanism
+for maintaining civil liberties online.  Corporations such as Google and
+Wal-Mart are investigating Tor as a safe avenue for competitive analysis
+or to try out new experimental projects without associating their name
+with the project.  A branch of the U.S. Navy uses Tor for open source
+intelligence gathering at its headquarters, and one of their teams used
+Tor while deployed in the Middle East recently.
+</p>
+
+<p>
+Tor helps to reduce the traffic analysis risk by distributing your
+transactions over several places on the Internet, so no single point can
+link you to your destination. To make private connections in Tor, users
+incrementally build a path or <em>circuit</em> of encrypted connections
+through servers on the network, extending it one step at a time so that
+each server in the circuit only learns which server extended to it and
+which server it has been asked to extend to.  The client negotiates a
+separate set of encryption keys for each step along the circuit.
+</p>
+
+<p>
+[Insert snazzy onion diagram here.]
+</p>
+
+<p>
+Once a circuit has been established, the client software waits for
+applications to request TCP connections, and directs these application
+streams along the circuit.  Many streams can be multiplexed along a single
+circuit, so applications don't need to wait for keys to be negotiated
+every time they open a connection.  Because each server sees no
+more than one end of the connection, a local eavesdropper or a compromised
+server cannot use traffic analysis to link the connection's source and
+destination.  The Tor client software rotates circuits periodically
+to prevent long-term linkability between different actions by a
+single user.
+</p>
+
+<!--
+<p>
+Many protocols, not just web.
+</p>
+-->
+
+<p>
+Tor also makes it possible for the clients to be hidden. Using Tor
+"rendezvous points," other Tor clients can connect to these hidden
+services, each without knowing the other's network identity. These hidden
+websites let users publish material without worrying about censorship.
+</p>
+
+<p>
+Of course, Tor can't solve all privacy problems itself. Tor focuses on
+protecting the <em>transport</em>. You need to use other protocol-specific
+software, such as Privoxy for web browsing, to clean identifying
+information such as browser type and characteristics, and you need
+to use other common sense such as not providing your name or other
+revealing information in web forms. Also, like all anonymizing networks
+that are fast enough for web browsing, Tor does not provide protection
+against end-to-end timing attacks: if your attacker can watch the traffic
+coming out of your computer, and also the traffic arriving at your chosen
+destination, he can use simple statistics to discover that they are part
+of the same circuit.
+</p>
+
+<p>
+Providing a usable anonymizing network on the Internet today is hard,
+both in terms of providing usable software that meets users' needs,
+and also in terms of solving the research challenges. But we're making
+progress at finding a good balance to provide both usability and security.
+Our goal is to supplement laws by giving people the power to make their
+own decisions about their privacy.
+</p>
+
+  </div><!-- #main -->
+</body>
+</html>

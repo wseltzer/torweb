@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Tor: Download</title>
+  <meta name="Author" content="Roger Dingledine">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+  <link rel="stylesheet" type="text/css" href="default.css" />
+</head>
+
+<body>
+  <div class="menu" id="side">
+<!--    <img id="logo" src="tor.jpg" alt="cute tor gate" /> -->
+      <a href="index.html">Home</a> <br>
+      <a href="overview.html">Overview</a> <br>
+      <a class="current">Download</a> <br>
+      <a href="documentation.html">Documentation</a><br>
+      <a href="contribute.html">Contribute</a> <br>
+      <a href="design.html">Design</a> <br>
+      <a href="developers.html">Developers</a> <br>
+      <a href="research.html">Research</a> <br>
+      <a href="people.html">People</a> <br>
+  </div><!-- #side -->
+  <div class="main" id="main">
+
+<h2>Tor: Packages and source</h2>
+
+<p>You can get the <b>latest release</b> from the <a href="dist/">download
+directory</a>. It should run on Linux, BSD, OS X, Win32, Solaris,
+and more.<br>
+<ul>
+<li>Latest experimental: <a href="dist/tor-0.0.9pre5.tar.gz">0.0.9pre5</a>
+(<a href="dist/tor-0.0.9pre5.tar.gz.asc">sig</a>)
+<li>Latest stable: <a href="dist/tor-0.0.8.1.tar.gz">0.0.8.1</a>
+(<a href="dist/tor-0.0.8.1.tar.gz.asc">sig</a>)
+<li>Win32 executable (experimental, contributed):
+<a href="dist/tor-009pre5.exe">0.0.9pre5</a> (<a
+href="dist/tor-009pre5.exe.asc">sig</a>)  Be sure to read the <a
+href="doc/tor-doc.html #installing">instructions</a> -- you'll need <a
+href="http://www.slproweb.com/products/Win32OpenSSL.html">OpenSSL</a>,
+and don't forget <a href="http://www.privoxy.org/">privoxy</a>)
+</ul>
+</p>
+
+<p>See the <a href="developers.html">developers page</a> for instructions
+on fetching Tor CVS. Old releases are <a href="dist/obsolete/">here</a>.
+</p>
+
+<p><b>Windows packages</b>:
+<ul>
+<li>Nick's contributed <a href="http://www.wangafu.net/~nickm/tor-0.0.9pre6-cvs-win32.exe">installer</a> for pre6-cvs.
+<li><b>Outside link:</b> Aphex's contributed <a href="http://www.iamaphex.net/modules.php?op=modload&name=Downloads&file=index&req=getit&lid=66">Tor zip file for Win32</a> includes Tor, Openssl, Privoxy, SocksCap.
+<li><b>Outside link:</b> Hideki Saito's contributed <a href="http://www.anime.net/~sasami/pub/tor/">tor setup exe</a> might work for you, especially if you speak Japanese.
+</ul>
+</p>
+
+<p><b>Red Hat packages</b> are not available yet. We have a <a
+href=cvs/tor.spec">spec file</a> but we're not sure if it's any
+good. Please help.
+</p>
+
+<p><b>Debian packages</b> have been uploaded to unstable,
+so you can just <code>apt-get install tor</code> if you are running sid.<br>
+
+For stable (woody) or testing add these lines to your
+<code>/etc/apt/sources.list</code> file:
+<blockquote><code>deb     http://mirror.noreply.org/pub/tor stable main<br>
+deb-src http://mirror.noreply.org/pub/tor stable main</code></blockquote>
+and then run <code>apt-get update; apt-get install tor</code>.
+Packages for architectures other than i386 can be added on <a
+href="mailto:weasel@debian.org">demand</a>.
+</p>
+
+<p><b>Other packages</b> are available for Gentoo Linux, FreeBSD, NetBSD,
+and OpenBSD. If somebody sends me details for these I'll put them here.
+</p>
+
+<h2>Development releases</h2>
+
+<p class="date">2004-11-09</p>
+<p class="news">
+Tor 0.0.9pre5 adds <a
+href="http://archives.seul.org/or/dev/Nov-2004/msg00001.html">a saner
+log config format, hibernation, and a remote control interface</a>.
+[<a href="dist/tor-0.0.9pre5.tar.gz.asc">signature</a>] </p>
+
+<p class="date">2004-10-17</p>
+<p class="news">
+Tor 0.0.9pre4 fixes <a
+href="http://archives.seul.org/or/dev/Oct-2004/msg00006.html">a bug
+with default exit policies for servers, adds config options to specify
+that a family of nodes are in the same trust domain, and allows better
+exit integration with Squid</a>. [<a
+href="dist/tor-0.0.9pre4.tar.gz.asc">signature</a>] </p>
+
+<p class="date">2004-10-14</p>
+<p class="news">
+Tor 0.0.9pre3 fixes <a
+href="http://archives.seul.org/or/dev/Oct-2004/msg00002.html">more
+bugs, makes configuring dirservers easier, and introduces an HttpProxy
+config option</a>. [<a
+href="dist/tor-0.0.9pre3.tar.gz.asc">signature</a>] </p>
+
+<p class="date">2004-10-03</p>
+<p class="news">
+Tor 0.0.9pre2 makes <a
+href="http://archives.seul.org/or/dev/Oct-2004/msg00001.html">pre1
+work again on amd64 and other 64-bit systems</a>. [<a
+href="dist/obsolete/tor-0.0.9pre2.tar.gz.asc">signature</a>] </p>
+
+<p class="date">2004-10-01</p>
+<p class="news">
+Tor 0.0.9pre1 fixes <a
+href="http://archives.seul.org/or/dev/Oct-2004/msg00000.html">more
+bugs in 0.0.8, and adds compression for directories,
+and client-side directory caching</a>. [<a
+href="dist/obsolete/tor-0.0.9pre1.tar.gz.asc">signature</a>] </p>
+
+<h2>Stable releases</h2>
+
+<p class="date">2004-10-14</p>
+<p class="news">
+Tor 0.0.8.1 fixes <a
+href="http://archives.seul.org/or/announce/Oct-2004/msg00000.html">a
+remotely triggerable crash bug, and has several other stability
+improvements</a>. [<a href="dist/tor-0.0.8.1.tar.gz.asc">signature</a>]
+</p>
+
+<p class="date">2004-08-25</p>
+<p class="news">
+Tor 0.0.8 adds <a
+href="http://archives.seul.org/or/announce/Aug-2004/msg00001.html">directory
+caching, on-demand connecting from ORs to ORs, bandwidth tracking, picks
+routers by bandwidth, handles firewalls better, handles dynamic IPs for
+servers, makes use of unverified servers in some path positions, and fixes
+many bugs</a>. [<a href="dist/obsolete/tor-0.0.8.tar.gz.asc">signature</a>] </p>
+
+<p>You can read the <a href="cvs/ChangeLog">ChangeLog</a> for more
+details.</p>
+
+  </div><!-- #main -->
+</body>
+</html>
