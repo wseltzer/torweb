@@ -1,0 +1,460 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of TOR</TITLE>
+</HEAD><BODY>
+<H1>TOR</H1>
+Section: Maintenance Commands (8)<BR>Updated: November 2004<BR><A HREF="#index">Index</A>
+<A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+tor - The second-generation onion router
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>tor</B>
+
+[<I>OPTION value</I>]...
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<I>tor</I>
+
+is a connection-oriented anonymizing communication
+service. Users choose a source-routed path through a set of nodes, and
+negotiate a &quot;virtual circuit&quot; through the network, in which each node
+knows its predecessor and successor, but no others. Traffic flowing down
+the circuit is unwrapped by a symmetric key at each node, which reveals
+the downstream node.
+<P>
+
+Basically <I>tor</I> provides a distributed network of servers (&quot;onion
+routers&quot;). Users bounce their TCP streams -- web traffic, ftp, ssh, etc --
+around the routers, and recipients, observers, and even the routers
+themselves have difficulty tracking the source of the stream.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<B>-h, -help</B>
+Display a short help message and exit.
+<DL COMPACT>
+<DT><B>-f </B><I>FILE</I><DD>
+FILE contains further &quot;option value&quot; pairs. (Default: /etc/tor/torrc)
+<DT>Other options can be specified either on the command-line (<I>--option<DD>
+value</I>), or in the configuration file (<I>option value</I>).
+Options are case-insensitive.
+<DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>stderr</B>|<B>stdout</B>|<B>syslog</B><DD>
+Send all messages between <I>minSeverity</I> and <I>maxSeverity</I> to
+the standard output stream, the standard error stream, or to the system
+log. (The &quot;syslog&quot; value is only supported on Unix.)  Recognized
+severity levels are debug, info, notice, warn, and err.  If only one
+severity level is given, all messages of that level or higher will be
+sent to the listed destination.
+<DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>file</B> <I>FILENAME</I><DD>
+As above, but send log messages to the listed filename.  The &quot;Log&quot;
+option may appear more than once in a configuration file.  Messages
+are sent to all the logs that match their severity level.
+<DT><B>BandwidthRate </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
+A token bucket limits the average incoming bandwidth on this node to
+the specified number of bytes per second. (Default: 780 KB)
+<DT><B>BandwidthBurst </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
+Limit the maximum token bucket size (also known as the burst) to the given number of bytes. (Default: 48 MB)
+<DT><B>DataDirectory </B><I>DIR</I><DD>
+Store working data in DIR (Default: /var/lib/tor)
+<DT><B>DirServer </B><I>address:port fingerprint</I><DD>
+Use a nonstandard authoritative directory server at the provided
+address and port, with the specified key fingerprint.  This option can
+be repeated many times, for multiple authoritative directory
+servers. If no <B>dirserver</B> line is given, Tor will use the default
+directory servers: moria1, moria2, and tor26.
+<DT><B>Group </B><I>GID</I><DD>
+On startup, setgid to this user.
+<DT><B>HttpProxy</B> <I>host</I>[:<I>port</I>]<DD>
+If set, Tor will make all its directory requests through this host:port,
+rather than connecting directly to any directory servers.
+<DT><B>KeepalivePeriod </B><I>NUM</I><DD>
+To keep firewalls from expiring connections, send a padding keepalive
+cell on open connections every NUM seconds. (Default: 5 minutes.)
+<DT><B>MaxConn </B><I>NUM</I><DD>
+Maximum number of simultaneous sockets allowed.  You probably don't need
+to adjust this. (Default: 1024)
+<DT><B>OutboundBindAddress </B><I>IP</I><DD>
+Make all outbound connections originate from the IP address specified.  This
+is only useful when you have multiple network interfaces, and you want all
+of Tor's outgoing connections to use a single one.
+<DT><B>PIDFile </B><I>FILE</I><DD>
+On startup, write our PID to FILE. On clean shutdown, remove FILE.
+<DT><B>RunAsDaemon </B><B>0</B>|<B>1</B><DD>
+If 1, Tor forks and daemonizes to the background. (Default: 0)
+<DT><B>User </B><I>UID</I><DD>
+On startup, setuid to this user.
+<DT><B>ControlPort </B><I>Port</I><DD>
+If set, Tor will accept connections from the same machine (localhost only) on
+this port, and allow those connections to control the Tor process using the
+Tor Control Protocol (described in control-spec.txt).  Note: unless you also
+specify one of <B>HashedControlPassword</B> or <B>CookieAuthentication</B>,
+setting this option will cause Tor to allow any process on the local host to
+control it.
+<DT><B>HashedControlPassword </B><I>hashed_password</I><DD>
+Don't allow any connections on the control port except when the other process
+knows the password whose one-way hash is <I>hashed_password</I>.  You can
+compute the hash of a password by running &quot;tor --hash-password
+<I>password</I>&quot;.
+<DT><B>CookieAuthentication </B><B>0</B>|<B>1</B><DD>
+If this option is set to 1, don't allow any connections on the control port
+except when the connecting process knows the contents of a file named
+&quot;control_auth_cookie&quot;, which Tor will create in its data directory.  This
+authentication methods should only be used on systems with good filesystem
+security.
+<B>DirFetchPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B>
+Every time the specified period elapses, Tor downloads a directory.
+A directory contains a signed list of all known servers as well as
+their current liveness status.  (Default: 1 hour)
+<DT><B>StatusFetchPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
+Every time the specified period elapses, Tor downloads signed status
+information about the current state of known servers.  (Default: 20 minutes.)
+<DT><B>RendPostPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
+Every time the specified period elapses, Tor uploads any rendezvous
+service descriptors to the directory servers.  This information is also
+uploaded whenever it changes.  (Default: 20 minutes.)
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>CLIENT OPTIONS</H2>
+
+<P>
+
+The following options are useful only for clients (that is, if <B>SOCKSPort</B> is non-zero):
+<DL COMPACT>
+<DT><B>AllowUnverifiedNodes</B> <B>entry</B>|<B>exit</B>|<B>middle</B>|<B>introduction</B>|<B>rendezvous</B>|...<DD>
+Where on our circuits should we allow Tor servers that the directory
+servers haven't authenticated as &quot;verified&quot;?  (Default: middle,rendezvous.)
+<DT><B>ClientOnly </B><B>0</B>|<B>1</B><DD>
+If set to 1, Tor will under no circumstances run as a server.  (Usually,
+you don't need to set this; Tor is pretty smart at figuring out whether
+you are reliable and high-bandwidth enough to be a good server.)
+<DT><B>EntryNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+A list of preferred nodes to use for the first hop in the circuit, if possible.
+<DT><B>ExitNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+A list of preferred nodes to use for the last hop in the circuit, if possible.
+<DT><B>ExcludeNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+A list of nodes to never use when building a circuit.
+<DT><B>StrictExitNodes </B><B>0</B>|<B>1</B><DD>
+If 1, Tor will never use any nodes besides those listed in &quot;exitnodes&quot; for
+the last hop of a circuit.
+<DT><B>StrictEntryNodes </B><B>0</B>|<B>1</B><DD>
+If 1, Tor will never use any nodes besides those listed in &quot;entrynodes&quot; for
+the first hop of a circuit.
+<DT><B>FascistFirewall </B><B>0</B>|<B>1</B><DD>
+If 1, Tor will only create outgoing connections to ORs running on ports that
+your firewall allows (defaults to 80 and 443; see <B>FirewallPorts</B>).  This will
+allow you to run Tor as a client behind a firewall with restrictive policies,
+but will not allow you to run as a server behind such a firewall.
+<DT><B>FirewallPorts </B><I>PORTS</I><DD>
+A list of ports that your firewall allows you to connect to.  Only used when
+<B>FascistFirewall</B> is set. (Default: 80, 443.)
+<DT><B><DD>
+NewCircuitPeriod </B><I>NUM</I>
+Every NUM seconds consider whether to build a new circuit. (Default: 60)
+<DT><B>NodeFamily </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+The named Tor servers constitute a &quot;family&quot; of similar or co-administered
+servers, so never use any two of them in the same circuit. Defining a
+NodeFamily is only needed when a server doesn't list the family itself
+(with MyFamily). This option can be used multiple times.
+<DT>
+<DD>
+
+
+<B>RendNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I>
+A list of preferred nodes to use for the rendezvous point, if possible.
+<DT><B>RendExcludeNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+A list of nodes to never use when choosing a rendezvous point.
+<DT><B>SOCKSPort </B><I>PORT</I><DD>
+Bind to this port to listen for connections from SOCKS-speaking applications.
+Set this to 0 if you don't want to allow application connections. (Default:
+9050)
+<DT><B>SOCKSBindAddress </B><I>IP</I><DD>
+Bind to this address to listen for connections from socks-speaking applications. (Default: 127.0.0.1) You can also specify a port (e.g. 192.168.0.1:9100). This directive can be specified multiple times to bind to multiple addresses/ports.
+<DT><B>SOCKSPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
+Set an entrance policy for this server, to limit who can connect to the socks ports. The policies have the same form as exit policies below.
+<P>
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>SERVER OPTIONS</H2>
+
+<P>
+
+The following options are useful only for servers (that is, if <B>ORPort</B> is non-zero):
+<DL COMPACT>
+<DT><B>Address </B><I>address</I><DD>
+The IP or fqdn of this server (e.g. moria.mit.edu). You can leave this
+unset, and Tor will guess your IP.
+<DT><B>ContactInfo </B><I>email_address</I><DD>
+Administrative contact information for server.
+<DT><B>ExitPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
+Set an exit policy for this server. Each policy is of the form
+&quot;<B>accept</B>|<B>reject</B> <I>ADDR</I>[<B>/</B><I>MASK</I>]<B>:</B><I>PORT</I>&quot;.
+If <B>/</B><I>MASK</I> is omitted then this policy just applies to the host
+given.  Instead of giving a host or network you can also use &quot;<B>*</B>&quot; to
+denote the universe (0.0.0.0/0).  <I>PORT</I> can be a single port number,
+an interval of ports &quot;<I>FROM_PORT</I><B>-</B><I>TO_PORT</I>&quot;, or &quot;<B>*</B>&quot;.
+<P>
+For example, &quot;reject 127.0.0.1:*,reject 192.168.1.0/24:*,accept *:*&quot; would
+reject any traffic destined for localhost and any 192.168.1.* address, but
+accept anything else.
+<P>
+This directive can be specified multiple times so you don't have to put
+it all on one line.
+<P>
+See RFC 3330 for more details about internal and reserved IP address
+space. Policies are considered first to last, and the first match wins. If
+you want to _replace_ the default exit policy, end your exit policy with
+either a reject *:* or an accept *:*. Otherwise, you're _augmenting_
+(prepending to) the default exit policy. The default exit policy is:
+
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>reject 0.0.0.0/8<DD>
+<DT>reject 169.254.0.0/16<DD>
+<DT>reject 127.0.0.0/8<DD>
+<DT>reject 192.168.0.0/16<DD>
+<DT>reject 10.0.0.0/8<DD>
+<DT>reject 172.16.0.0/12<DD>
+<DT>accept *:20-22<DD>
+<DT>accept *:53<DD>
+<DT>accept *:79-81<DD>
+<DT>accept *:110<DD>
+<DT>accept *:143<DD>
+<DT>accept *:443<DD>
+<DT>accept *:706<DD>
+<DT>accept *:873<DD>
+<DT>accept *:993<DD>
+<DT>accept *:995<DD>
+<DT>reject *:4661-4662<DD>
+<DT>reject *:1214<DD>
+<DT>reject *:6346<DD>
+<DT>accept *:1024-65535<DD>
+<DT>reject *:*<DD>
+</DL>
+</DL>
+
+
+<DT><B>MaxOnionsPending </B><I>NUM</I><DD>
+If you have more than this number of onionskins queued for decrypt, reject new ones. (Default: 100)
+<DT><B>MyFamily </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+Declare that this Tor server is controlled or administered by a group
+or organization identical or similar to that of the other named servers.
+When two servers both declare that they are in the same 'family', Tor clients
+will not use them in the same circuit.  (Each server only need to list the
+other servers in its family; it doesn't need to list itself.)
+<DT><B>Nickname </B><I>name</I><DD>
+Set the server's nickname to 'name'.
+<DT><B>NumCPUs </B><I>num</I><DD>
+How many processes to use at once for decrypting onionskins. (Default: 1)
+<DT><B>ORPort </B><I>PORT</I><DD>
+Bind to this port to listen for connections from Tor clients and servers.
+<DT><B>ORBindAddress </B><I>IP</I><DD>
+Bind to this address to listen for connections from Tor clients and servers. (Default: 0.0.0.0)
+<DT><B>RedirectExit </B><I>pattern target</I><DD>
+Whenever an outgoing connection tries to connect to one of a given set
+of addresses, connect to <I>target</I> (an <I>address:port</I> pair) instead.
+The address
+pattern is given in the same format as for an exit policy.  The
+address translation applies after exit policies are applied.  Multiple
+<B>RedirectExit</B> options can be used: once any one has matched
+successfully, no subsequent rules are considered.  You can specify that no
+redirection is to be performed on a given set of addresses by using the
+special target string &quot;pass&quot;, which prevents subsequent rules from being
+considered.
+<DT><B>DirPostPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
+Every time the specified period elapses, Tor uploads its server
+descriptors to the directory servers.  This information is also
+uploaded whenever it changes.  (Default: 20 minutes.)
+<DT><B>AccountingMax </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
+Never send more than the specified number of bytes in a given
+accounting period, or receive more than that number in the period.
+When the number of bytes is exhausted, Tor will hibernate until some
+time in the next accounting period.  To prevent all servers from
+waking at the same time, Tor will also wait until a random point in
+each period before waking up.  If you have bandwidth cost issues,
+using this option is preferable to setting a low bandwidth, since it
+provides users with a collection of fast servers that are up some of
+the time, which is more useful than a set of slow servers that are
+always &quot;available&quot;.
+<DT><B>AccountingStart </B><B>day</B>|<B>week</B>|<B>month</B> [<I>day</I>] <I>HH:MM</I><DD>
+Specify how long accounting periods last.  If <B>month</B> is given,
+each accounting period runs from the time <I>HH:MM</I> on the
+<I>day</I>th day of one month to the same day and time of the next.
+(The day must be between 1 and 28.)  If <B>week</B> is given, each
+accounting period runs from the time <I>HH:MM</I> of the <I>day</I>th
+day of one week to the same day and time of the next week, with Monday
+as day 1 and Sunday as day 7.  If <B>day</B> is given, each accounting
+period runs from the time <I>HH:MM</I> each day to the same time on the
+next day.  All times are local, and given in 24-hour time.  (Defaults to
+&quot;month 1 0:00&quot;.)
+<P>
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>DIRECTORY SERVER OPTIONS</H2>
+
+<P>
+
+The following options are useful only for directory servers (that is, if <B>DirPort</B> is non-zero):
+<DL COMPACT>
+<DT><B>AuthoritativeDirectory </B><B>0</B>|<B>1</B><DD>
+When this option is set to 1, Tor operates as an authoritative
+directory server.  Instead of caching the directory, it generates its
+own list of good servers, signs it, and sends that to the clients.
+Unless the clients already have you listed as a trusted directory, you
+probably do not want to set this option.  Please coordinate with the other
+admins at <A HREF="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</A> if you think you should be a directory.
+<DT><B>DirPort </B><I>PORT</I><DD>
+Bind the directory service to this port.
+<DT><B>DirBindAddress </B><I>IP</I><DD>
+Bind the directory service to this address. (Default: 0.0.0.0)
+<DT><B>DirPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
+Set an entrance policy for this server, to limit who can connect to the directory ports. The policies have the same form as exit policies above.
+<DT><B>RecommendedVersions </B><I>STRING</I><DD>
+STRING is a command-separated list of Tor versions currently believed
+to be safe. The list is included in each directory, and nodes which
+pull down the directory learn whether they need to upgrade.  This
+option can appear multiple times: the values from multiple lines are
+spliced together.
+<DT><B>RunTesting </B><B>0</B>|<B>1</B><DD>
+If set to 1, Tor tries to build circuits through all of the servers it
+knows about, so it can tell which are up and which are down.  This
+option is only useful for authoritative directories, so you probably
+don't want to use it.
+<P>
+</DL>
+<A NAME="lbAI">&nbsp;</A>
+<H2>HIDDEN SERVICE OPTIONS</H2>
+
+<P>
+
+The following options are used to configure a hidden service.
+<DL COMPACT>
+<DT><B>HiddenServiceDir </B><I>DIRECTORY</I><DD>
+Store data files for a hidden service in DIRECTORY.  Every hidden
+service must have a separate directory.  You may use this option multiple
+times to specify multiple services.
+<DT><B>HiddenServicePort </B><I>VIRTPORT </I>[<I>TARGET</I>]<DD>
+Configure a virtual port VIRTPORT for a hidden service.  You may use this
+option multiple times; each time applies to the service using the most recent
+hiddenservicedir.  By default, this option maps the virtual port to the
+same port on 127.0.0.1.  You may override the target port, address, or both
+by specifying a target of addr, port, or addr:port.
+<DT><B>HiddenServiceNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+If possible, use the specified nodes as introduction points for the hidden
+service.
+<DT><B>HiddenServiceExcludeNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+Do not use the specified nodes as introduction points for the hidden
+service.
+<P>
+
+
+<P>
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>SIGNALS</H2>
+
+Tor catches the following signals:
+<DL COMPACT>
+<DT><B>SIGTERM</B><DD>
+Tor will catch this, clean up and sync to disk if necessary, and exit.
+<DT><B>SIGINT</B><DD>
+Tor clients behave as with SIGTERM; but Tor servers will do a controlled
+slow shutdown, closing listeners and waiting 30 seconds before exiting.
+<DT><B>SIGHUP</B><DD>
+The signal instructs Tor to reload its configuration, fetch a new
+directory, and kill and restart its helper processes if applicable.
+<DT><B>SIGUSR1</B><DD>
+Log statistics about current connections, past connections, and
+throughput.
+<DT><B>SIGUSR2</B><DD>
+Switch all logs to loglevel debug. You can go back to the old loglevels
+by sending a SIGHUP.
+<DT><B>SIGCHLD</B><DD>
+Tor receives this signal when one of its helper processes has exited,
+so it can clean up.
+<DT><B>SIGPIPE</B><DD>
+Tor catches this signal and ignores it.
+<DT><B>SIGXFSZ</B><DD>
+If this signal exists on your platform, Tor catches and ignores it.
+<P>
+</DL>
+<A NAME="lbAK">&nbsp;</A>
+<H2>FILES</H2>
+
+<DL COMPACT>
+<DT><I>/etc/tor/torrc</I>
+
+<DD>
+The configuration file, which contains &quot;option value&quot; pairs.
+<DT><I>/etc/tor/dirservers</I>
+
+<DD>
+A list of directory servers, to bootstrap into the network.
+<DT><I>/var/lib/tor/</I>
+
+<DD>
+The tor process stores keys and other data here.
+<DT><I>/var/log/tor/</I>
+
+<DD>
+The tor server logs to this directory.
+<DT><I>/var/run/tor/tor.pid</I>
+
+<DD>
+The PID of the tor (master) process is stored in this file.
+<P>
+</DL>
+<A NAME="lbAL">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="/cgi-bin/man/man2html?1+privoxy">privoxy</A></B>(1),
+
+<B><A HREF="/cgi-bin/man/man2html?1+tsocks">tsocks</A></B>(1),
+
+<B><A HREF="/cgi-bin/man/man2html?1+torify">torify</A></B>(1)
+
+<P>
+<B><A HREF="http://freehaven.net/tor/">http://freehaven.net/tor/</A></B>
+
+<P>
+<A NAME="lbAM">&nbsp;</A>
+<H2>BUGS</H2>
+
+Plenty, probably. It's still in alpha. Please report them.
+<A NAME="lbAN">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Mathewson &lt;<A HREF="mailto:nickm@alum.mit.edu">nickm@alum.mit.edu</A>&gt;.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">CLIENT OPTIONS</A><DD>
+<DT><A HREF="#lbAG">SERVER OPTIONS</A><DD>
+<DT><A HREF="#lbAH">DIRECTORY SERVER OPTIONS</A><DD>
+<DT><A HREF="#lbAI">HIDDEN SERVICE OPTIONS</A><DD>
+<DT><A HREF="#lbAJ">SIGNALS</A><DD>
+<DT><A HREF="#lbAK">FILES</A><DD>
+<DT><A HREF="#lbAL">SEE ALSO</A><DD>
+<DT><A HREF="#lbAM">BUGS</A><DD>
+<DT><A HREF="#lbAN">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 21:47:46 GMT, February 15, 2005
+</BODY>
+</HTML>
