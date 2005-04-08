@@ -100,22 +100,44 @@ on fetching Tor from CVS.
 Old releases are <a href="dist/obsolete/">here</a>.
 </p>
 
-<p><b>Debian packages</b> have been uploaded to unstable,
-so you can just <code>apt-get install tor</code> if you are running sid.<br />
-For stable (woody) or testing add these lines to your
-<code>/etc/apt/sources.list</code> file:
-</p>
+<hr>
 
-<p>
-<code>deb http://mirror.noreply.org/pub/tor stable main<br />
-deb-src http://mirror.noreply.org/pub/tor stable main</code>
-</p>
+<p><b>Debian packages</b> have been uploaded to the set of official unstable
+Debian packages.  If you are running stable (woody) or testing (sarge), you
+must first add these lines to <code>/etc/apt/sources.list</code>:</p>
 
-<p>
-and then run <code>apt-get update; apt-get install tor</code>.
-Packages for architectures other than i386 can be added on <a
-href="mailto:weasel@debian.org">demand</a>.
-</p>
+<p><code>
+deb http://mirror.noreply.org/pub/tor stable main<br>
+deb-src http://mirror.noreply.org/pub/tor stable main
+</code></p>
+
+<p>To install the packages, issue the following commands:</p>
+
+<p><code>
+$ apt-get install update<br>
+$ apt-get install tor
+</code></p>
+
+<p>Packages for the <b>development</b> version of Tor are available as well.  To install these,
+add the following lines to <code>/etc/apt/sources.list</code>:</p>
+
+<p><code>
+deb http://mirror.noreply.org/pub/tor experimental main<br>
+deb-src http://mirror.noreply.org/pub/tor experimental main
+</code></p>
+
+<p>Then issue the following commands:</p>
+
+<p><code>
+$ apt-get install update<br>
+$ apt-get install -t experimental tor
+</code></p>
+
+<p>Packages
+for architectures other than i386 can be added on <a
+href="mailto:weasel@debian.org">demand</a>.</p>
+
+<hr>
 
 <p><b>FreeBSD</b>: <tt>portinstall -s security/tor</tt></p>
 
