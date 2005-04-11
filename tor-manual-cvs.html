@@ -5,7 +5,7 @@ Content-type: text/html
 </HEAD><BODY>
 <H1>TOR</H1>
 Section: User Commands  (1)<BR>Updated: March 2005<BR><A HREF="#index">Index</A>
-<A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+<A HREF="../">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
@@ -61,6 +61,12 @@ A token bucket limits the average incoming bandwidth on this node to
 the specified number of bytes per second. (Default: 780 KB)
 <DT><B>BandwidthBurst </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
 Limit the maximum token bucket size (also known as the burst) to the given number of bytes. (Default: 48 MB)
+<DT><B>MaxAdvertisedBandwidth </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
+If set, we will not advertise more than this amount of bandwidth for our
+BandwidthRate. Server operators who want to reduce the number of clients
+who ask to build circuits through them (since this is proportional to
+advertised bandwidth rate) can thus reduce the CPU demands on their
+server without impacting network performance.
 <DT><B>DataDirectory </B><I>DIR</I><DD>
 Store working data in DIR (Default: @LOCALSTATEDIR@/lib/tor)
 <DT><B>DirServer </B><I>address:port fingerprint</I><DD>
@@ -309,7 +315,7 @@ When the number of bytes is exhausted, Tor will hibernate until some
 time in the next accounting period.  To prevent all servers from
 waking at the same time, Tor will also wait until a random point in
 each period before waking up.  If you have bandwidth cost issues,
-using this option is preferable to setting a low bandwidth, since it
+enabling hibernation is preferable to setting a low bandwidth, since it
 provides users with a collection of fast servers that are up some of
 the time, which is more useful than a set of slow servers that are
 always &quot;available&quot;.
@@ -438,11 +444,11 @@ The tor process stores keys and other data here.
 <A NAME="lbAL">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="/cgi-bin/man/man2html?1+privoxy">privoxy</A></B>(1),
+<B><A HREF="../?1+privoxy">privoxy</A></B>(1),
 
-<B><A HREF="/cgi-bin/man/man2html?1+tsocks">tsocks</A></B>(1),
+<B><A HREF="../?1+tsocks">tsocks</A></B>(1),
 
-<B><A HREF="/cgi-bin/man/man2html?1+torify">torify</A></B>(1)
+<B><A HREF="../?1+torify">torify</A></B>(1)
 
 <P>
 <B><A HREF="http://tor.eff.org/">http://tor.eff.org/</A></B>
@@ -477,8 +483,8 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/man2html">man2html</A>,
+<A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 01:13:16 GMT, March 18, 2005
+Time: 14:59:36 GMT, April 11, 2005
 </BODY>
 </HTML>
