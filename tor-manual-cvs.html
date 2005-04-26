@@ -83,6 +83,13 @@ rather than connecting directly to any directory servers.
 <DT><B>HttpsProxy</B> <I>host</I>[:<I>port</I>]<DD>
 If set, Tor will make all its OR (SSL) connections through this host:port,
 via HTTP CONNECT, rather than connecting directly to servers.
+<DT><B>HttpsProxyAuthenticator</B> <I>username:password</I><DD>
+If defined, Tor will use this username:password for Basic Https proxy
+authentication, as in RFC 2617. This is currently the only form of
+Https proxy authentication that Tor supports; feel free to submit a
+patch if you want it to support others. You may want to set FascistFirewall
+to restrict the set of ports you might try to connect to, if your Https
+proxy only allows connecting to certain ports.
 <DT><B>KeepalivePeriod </B><I>NUM</I><DD>
 To keep firewalls from expiring connections, send a padding keepalive
 cell on open connections every NUM seconds. (Default: 5 minutes.)
@@ -408,6 +415,7 @@ Tor will catch this, clean up and sync to disk if necessary, and exit.
 <DT><B>SIGINT</B><DD>
 Tor clients behave as with SIGTERM; but Tor servers will do a controlled
 slow shutdown, closing listeners and waiting 30 seconds before exiting.
+(The delay can be configured with the ShutdownWaitLength config option.)
 <DT><B>SIGHUP</B><DD>
 The signal instructs Tor to reload its configuration (including closing
 and reopening logs), fetch a new directory, and kill and restart its
@@ -485,6 +493,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 16:44:18 GMT, April 11, 2005
+Time: 23:16:48 GMT, April 26, 2005
 </BODY>
 </HTML>
