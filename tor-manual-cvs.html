@@ -4,7 +4,7 @@ Content-type: text/html
 <HTML><HEAD><TITLE>Man page of TOR</TITLE>
 </HEAD><BODY>
 <H1>TOR</H1>
-Section: User Commands  (1)<BR>Updated: March 2005<BR><A HREF="#index">Index</A>
+Section: User Commands  (1)<BR>Updated: April 2005<BR><A HREF="#index">Index</A>
 <A HREF="../">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -58,9 +58,9 @@ option may appear more than once in a configuration file.  Messages
 are sent to all the logs that match their severity level.
 <DT><B>BandwidthRate </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
 A token bucket limits the average incoming bandwidth on this node to
-the specified number of bytes per second. (Default: 780 KB)
+the specified number of bytes per second. (Default: 2 MB)
 <DT><B>BandwidthBurst </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
-Limit the maximum token bucket size (also known as the burst) to the given number of bytes. (Default: 48 MB)
+Limit the maximum token bucket size (also known as the burst) to the given number of bytes. (Default: 5 MB)
 <DT><B>MaxAdvertisedBandwidth </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
 If set, we will not advertise more than this amount of bandwidth for our
 BandwidthRate. Server operators who want to reduce the number of clients
@@ -207,7 +207,7 @@ Set this to 0 if you don't want to allow application connections. (Default:
 Bind to this address to listen for connections from SOCKS-speaking applications. (Default: 127.0.0.1) You can also specify a port (e.g. 192.168.0.1:9100). This directive can be specified multiple times to bind to multiple addresses/ports.
 <DT><B>SOCKSPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
 Set an entrance policy for this server, to limit who can connect to the SOCKS ports. The policies have the same form as exit policies below.
-<DT><B>TrackHostExits </B><I>host1</I>,<I>.domain1</I>|<I>.</I><DD>
+<DT><B>TrackHostExits </B><I>host</I>,<I>.domain</I>,<I>...</I><DD>
 For each value in the comma separated list, Tor will track recent connections
 to hosts that match this value and attempt to
 reuse the same exit node for each. If the value is prepended with a '.', it is
@@ -493,6 +493,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 23:16:48 GMT, April 26, 2005
+Time: 00:03:53 GMT, April 28, 2005
 </BODY>
 </HTML>
