@@ -183,10 +183,10 @@ node will go down before the stream is finished.
 <DT><B>MapAddress</B> <I>address</I> <I>newaddress</I><DD>
 When a request for address arrives to Tor, it will rewrite it to newaddress before processing it. For example, if you always want connections to <A HREF="http://www.indymedia.org">www.indymedia.org</A> to exit via <I>torserver</I> (where <I>torserver</I> is the nickname of the server), use &quot;MapAddress <A HREF="http://www.indymedia.org">www.indymedia.org</A> <A HREF="http://www.indymedia.org.torserver.exit">www.indymedia.org.torserver.exit</A>&quot;.
 <DT><B>NewCircuitPeriod </B><I>NUM</I><DD>
-Every NUM seconds consider whether to build a new circuit. (Default: 60)
+Every NUM seconds consider whether to build a new circuit. (Default: 30 seconds)
 <DT><B>MaxCircuitDirtiness </B><I>NUM</I><DD>
 Feel free to reuse a circuit that was first used at most NUM seconds
-ago, but never attach a new stream to a circuit that is too old.
+ago, but never attach a new stream to a circuit that is too old. (Default: 10 minutes)
 <DT><B>NodeFamily </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
 The named Tor servers constitute a &quot;family&quot; of similar or co-administered
 servers, so never use any two of them in the same circuit. Defining a
@@ -503,6 +503,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 01:23:43 GMT, May 15, 2005
+Time: 01:40:02 GMT, May 15, 2005
 </BODY>
 </HTML>
