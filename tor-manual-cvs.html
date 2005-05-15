@@ -124,7 +124,7 @@ except when the connecting process knows the contents of a file named
 &quot;control_auth_cookie&quot;, which Tor will create in its data directory.  This
 authentication methods should only be used on systems with good filesystem
 security.
-<B>DirFetchPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B>
+<DT><B>DirFetchPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
 Every time the specified period elapses, Tor downloads a directory.
 A directory contains a signed list of all known servers as well as
 their current liveness status. A value of &quot;0 seconds&quot; tells Tor to choose an
@@ -151,9 +151,10 @@ The following options are useful only for clients (that is, if <B>SOCKSPort</B> 
 Where on our circuits should we allow Tor servers that the directory
 servers haven't authenticated as &quot;verified&quot;?  (Default: middle,rendezvous.)
 <DT><B>ClientOnly </B><B>0</B>|<B>1</B><DD>
-If set to 1, Tor will under no circumstances run as a server.  (Usually,
+If set to 1, Tor will under no circumstances run as a server. The default
+is to run as a client unless ORPort is configured.  (Usually,
 you don't need to set this; Tor is pretty smart at figuring out whether
-you are reliable and high-bandwidth enough to be a good server.)
+you are reliable and high-bandwidth enough to be a useful server.)
 <DT><B>EntryNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
 A list of preferred nodes to use for the first hop in the circuit, if possible.
 <DT><B>ExitNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
@@ -200,11 +201,14 @@ A list of preferred nodes to use for the rendezvous point, if possible.
 <DT><B>RendExcludeNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
 A list of nodes to never use when choosing a rendezvous point.
 <DT><B>SOCKSPort </B><I>PORT</I><DD>
-Bind to this port to listen for connections from SOCKS-speaking applications.
-Set this to 0 if you don't want to allow application connections. (Default:
-9050)
-<DT><B>SOCKSBindAddress </B><I>IP</I><DD>
-Bind to this address to listen for connections from SOCKS-speaking applications. (Default: 127.0.0.1) You can also specify a port (e.g. 192.168.0.1:9100). This directive can be specified multiple times to bind to multiple addresses/ports.
+Advertise this port to listen for connections from SOCKS-speaking
+applications.  Set this to 0 if you don't want to allow application
+connections. (Default: 9050)
+<DT><B>SOCKSBindAddress </B><I>IP</I>[:<I>PORT</I>]<DD>
+Bind to this address to listen for connections from SOCKS-speaking
+applications. (Default: 127.0.0.1) You can also specify a port
+(e.g. 192.168.0.1:9100). This directive can be specified multiple times
+to bind to multiple addresses/ports.
 <DT><B>SOCKSPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
 Set an entrance policy for this server, to limit who can connect to the SOCKS ports. The policies have the same form as exit policies below.
 <DT><B>TrackHostExits </B><I>host</I>,<I>.domain</I>,<I>...</I><DD>
@@ -292,9 +296,11 @@ Set the server's nickname to 'name'.
 <DT><B>NumCPUs </B><I>num</I><DD>
 How many processes to use at once for decrypting onionskins. (Default: 1)
 <DT><B>ORPort </B><I>PORT</I><DD>
-Bind to this port to listen for connections from Tor clients and servers.
-<DT><B>ORBindAddress </B><I>IP</I><DD>
-Bind to this address to listen for connections from Tor clients and servers. (Default: 0.0.0.0)
+Advertise this port to listen for connections from Tor clients and servers.
+<DT><B>ORBindAddress </B><I>IP</I>[:<I>PORT</I>]<DD>
+Bind to this IP address to listen for connections from Tor clients and
+servers. If you specify a port, bind to this port rather than the one
+specified in ORPort. (Default: 0.0.0.0)
 <DT><B>RedirectExit </B><I>pattern target</I><DD>
 Whenever an outgoing connection tries to connect to one of a given set
 of addresses, connect to <I>target</I> (an <I>address:port</I> pair) instead.
@@ -357,9 +363,10 @@ Unless the clients already have you listed as a trusted directory, you
 probably do not want to set this option.  Please coordinate with the other
 admins at <A HREF="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</A> if you think you should be a directory.
 <DT><B>DirPort </B><I>PORT</I><DD>
-Bind the directory service to this port.
-<DT><B>DirBindAddress </B><I>IP</I><DD>
-Bind the directory service to this address. (Default: 0.0.0.0)
+Advertise the directory service on this port.
+<DT><B>DirBindAddress </B><I>IP</I>[:<I>PORT</I>]<DD>
+Bind the directory service to this address. If you specify a port, bind
+to this port rather than the one specified in DirPort. (Default: 0.0.0.0)
 <DT><B>DirPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
 Set an entrance policy for this server, to limit who can connect to the directory ports. The policies have the same form as exit policies above.
 <DT><B>RecommendedVersions </B><I>STRING</I><DD>
@@ -496,6 +503,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 22:12:47 GMT, May 01, 2005
+Time: 01:23:43 GMT, May 15, 2005
 </BODY>
 </HTML>
