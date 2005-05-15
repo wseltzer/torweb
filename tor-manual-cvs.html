@@ -45,17 +45,6 @@ FILE contains further &quot;option value&quot; pairs. (Default: @CONFDIR@/torrc)
 <DT>Other options can be specified either on the command-line (<I>--option<DD>
 value</I>), or in the configuration file (<I>option value</I>).
 Options are case-insensitive.
-<DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>stderr</B>|<B>stdout</B>|<B>syslog</B><DD>
-Send all messages between <I>minSeverity</I> and <I>maxSeverity</I> to
-the standard output stream, the standard error stream, or to the system
-log. (The &quot;syslog&quot; value is only supported on Unix.)  Recognized
-severity levels are debug, info, notice, warn, and err.  If only one
-severity level is given, all messages of that level or higher will be
-sent to the listed destination.
-<DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>file</B> <I>FILENAME</I><DD>
-As above, but send log messages to the listed filename.  The &quot;Log&quot;
-option may appear more than once in a configuration file.  Messages
-are sent to all the logs that match their severity level.
 <DT><B>BandwidthRate </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
 A token bucket limits the average incoming bandwidth on this node to
 the specified number of bytes per second. (Default: 2 MB)
@@ -67,8 +56,31 @@ BandwidthRate. Server operators who want to reduce the number of clients
 who ask to build circuits through them (since this is proportional to
 advertised bandwidth rate) can thus reduce the CPU demands on their
 server without impacting network performance.
+<DT><B>ControlPort </B><I>Port</I><DD>
+If set, Tor will accept connections from the same machine (localhost only) on
+this port, and allow those connections to control the Tor process using the
+Tor Control Protocol (described in control-spec.txt).  Note: unless you also
+specify one of <B>HashedControlPassword</B> or <B>CookieAuthentication</B>,
+setting this option will cause Tor to allow any process on the local host to
+control it.
+<DT><B>HashedControlPassword </B><I>hashed_password</I><DD>
+Don't allow any connections on the control port except when the other process
+knows the password whose one-way hash is <I>hashed_password</I>.  You can
+compute the hash of a password by running &quot;tor --hash-password
+<I>password</I>&quot;.
+<DT><B>CookieAuthentication </B><B>0</B>|<B>1</B><DD>
+If this option is set to 1, don't allow any connections on the control port
+except when the connecting process knows the contents of a file named
+&quot;control_auth_cookie&quot;, which Tor will create in its data directory.  This
+authentication methods should only be used on systems with good filesystem
+security. (Default: 0)
 <DT><B>DataDirectory </B><I>DIR</I><DD>
 Store working data in DIR (Default: @LOCALSTATEDIR@/lib/tor)
+<DT><B>DirFetchPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
+Every time the specified period elapses, Tor downloads a directory.
+A directory contains a signed list of all known servers as well as
+their current liveness status. A value of &quot;0 seconds&quot; tells Tor to choose an
+appropriate default. (Default: 1 hour for clients, 20 minutes for servers.)
 <DT><B>DirServer </B><I>address:port fingerprint</I><DD>
 Use a nonstandard authoritative directory server at the provided
 address and port, with the specified key fingerprint.  This option can
@@ -93,6 +105,17 @@ proxy only allows connecting to certain ports.
 <DT><B>KeepalivePeriod </B><I>NUM</I><DD>
 To keep firewalls from expiring connections, send a padding keepalive
 cell on open connections every NUM seconds. (Default: 5 minutes.)
+<DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>stderr</B>|<B>stdout</B>|<B>syslog</B><DD>
+Send all messages between <I>minSeverity</I> and <I>maxSeverity</I> to
+the standard output stream, the standard error stream, or to the system
+log. (The &quot;syslog&quot; value is only supported on Unix.)  Recognized
+severity levels are debug, info, notice, warn, and err.  If only one
+severity level is given, all messages of that level or higher will be
+sent to the listed destination.
+<DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>file</B> <I>FILENAME</I><DD>
+As above, but send log messages to the listed filename.  The &quot;Log&quot;
+option may appear more than once in a configuration file.  Messages
+are sent to all the logs that match their severity level.
 <DT><B>MaxConn </B><I>NUM</I><DD>
 Maximum number of simultaneous sockets allowed.  You probably don't need
 to adjust this. (Default: 1024)
@@ -104,40 +127,18 @@ of Tor's outgoing connections to use a single one.
 On startup, write our PID to FILE. On clean shutdown, remove FILE.
 <DT><B>RunAsDaemon </B><B>0</B>|<B>1</B><DD>
 If 1, Tor forks and daemonizes to the background. (Default: 0)
+<DT><B>SafeLogging </B><B>0</B>|<B>1</B><DD>
+If 1, Tor replaces potentially sensitive strings in the logs
+(e.g. addresses) with the string [scrubbed]. This way logs can still be
+useful, but they don't leave behind personally identifying information
+about what sites a user might have visited. (Default: 1)
+<DT><B>StatusFetchPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
+Every time the specified period elapses, Tor downloads signed status
+information about the current state of known servers.  A value of
+&quot;0 seconds&quot; tells Tor to choose an appropriate default. (Default: 30
+minutes for clients, 15 minutes for servers.)
 <DT><B>User </B><I>UID</I><DD>
 On startup, setuid to this user.
-<DT><B>ControlPort </B><I>Port</I><DD>
-If set, Tor will accept connections from the same machine (localhost only) on
-this port, and allow those connections to control the Tor process using the
-Tor Control Protocol (described in control-spec.txt).  Note: unless you also
-specify one of <B>HashedControlPassword</B> or <B>CookieAuthentication</B>,
-setting this option will cause Tor to allow any process on the local host to
-control it.
-<DT><B>HashedControlPassword </B><I>hashed_password</I><DD>
-Don't allow any connections on the control port except when the other process
-knows the password whose one-way hash is <I>hashed_password</I>.  You can
-compute the hash of a password by running &quot;tor --hash-password
-<I>password</I>&quot;.
-<DT><B>CookieAuthentication </B><B>0</B>|<B>1</B><DD>
-If this option is set to 1, don't allow any connections on the control port
-except when the connecting process knows the contents of a file named
-&quot;control_auth_cookie&quot;, which Tor will create in its data directory.  This
-authentication methods should only be used on systems with good filesystem
-security.
-<DT><B>DirFetchPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
-Every time the specified period elapses, Tor downloads a directory.
-A directory contains a signed list of all known servers as well as
-their current liveness status. A value of &quot;0 seconds&quot; tells Tor to choose an
-appropriate default. (Default: 1 hour for clients, 20 minutes for servers.)
-<DT><B>StatusFetchPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B> Every time the<DD>
-specified period elapses, Tor downloads signed status information about the
-current state of known servers.  A value of &quot;0 seconds&quot; tells Tor to choose
-an appropriate default. (Default: 30 minutes for clients, 15 minutes for
-servers.)  (Default: 20 minutes.)
-<DT><B>RendPostPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
-Every time the specified period elapses, Tor uploads any rendezvous
-service descriptors to the directory servers.  This information is also
-uploaded whenever it changes.  (Default: 20 minutes.)
 <P>
 </DL>
 <A NAME="lbAF">&nbsp;</A>
@@ -410,6 +411,10 @@ ones; most people can leave this unset.
 <DT><B>HiddenServiceExcludeNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
 Do not use the specified nodes as introduction points for the hidden
 service. In normal use there is no reason to set this.
+<DT><B>RendPostPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
+Every time the specified period elapses, Tor uploads any rendezvous
+service descriptors to the directory servers.  This information is also
+uploaded whenever it changes.  (Default: 20 minutes.)
 <P>
 
 
@@ -475,7 +480,7 @@ The tor process stores keys and other data here.
 <A NAME="lbAM">&nbsp;</A>
 <H2>BUGS</H2>
 
-Plenty, probably. It's still in alpha. Please report them.
+Plenty, probably. Tor is still in development. Please report them.
 <A NAME="lbAN">&nbsp;</A>
 <H2>AUTHORS</H2>
 
@@ -503,6 +508,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 01:40:02 GMT, May 15, 2005
+Time: 10:38:23 GMT, May 15, 2005
 </BODY>
 </HTML>
