@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Tor GUI Contest</title>
+  <meta name="Author" content="Roger Dingledine" />
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+
+<body>
+
+<!-- TITLE BAR & NAVIGATION -->
+
+<table class="banner" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="banner-left"></td>
+        <td class="banner-middle">
+            <a href="index.html">Home</a>
+          | <a href="howitworks.html">How It Works</a>
+          | <a href="download.html">Download</a>
+          | <a href="documentation.html">Docs</a>
+          | <a href="users.html">Users</a>
+          | <a href="faq.html">FAQs</a>
+          | <a href="contribute.html">Contribute</a>
+          | <a href="developers.html">Developers</a>
+          | <a href="research.html">Research</a>
+          | <a href="people.html">People</a>
+        </td>
+        <td class="banner-right"></td>
+    </tr>
+</table>
+
+<!-- END TITLE BAR & NAVIGATION -->
+
+<div class="center">
+
+<div class="main-column">
+
+<h2>Tor GUI Contest</h2>
+<hr />
+<p>DRAFT IN PROGRESS -- ALL OF THIS STUFF IS IN FLUX AND SHOULD BE
+CONSIDERED WRONG.</p>
+<hr />
+<h3>Overview</h3>
+
+<p>
+Tor is a decentralized network of computers on the Internet that increases
+privacy in Web browsing, instant messaging, and other applications. We
+estimate there are some 20,000 Tor users currently, routing their traffic
+through about 150 volunteer Tor servers on five continents. However, Tor's
+current user interface approach --- running as a daemon in the background
+--- does a poor job of communicating network status and security levels
+to the user. The Tor project, affiliated with the Electronic Frontier
+Foundation, is running a UI contest to develop a vision of how Tor can
+work in a user's everyday anonymous browsing experience. Some of the
+challenges include how to make alerts and error conditions visible on
+screen; how to let the user configure Tor to use certain paths or avoid
+certain paths; how to learn about the current state of a Tor connection,
+including which servers it uses; and how to find out whether (and which)
+applications are using Tor safely.
+</p>
+
+<hr />
+<h3>Goals</h3>
+
+<p>Contestants will produce a work of Free software that will
+provide a user interface to the Tor system by way of the <a
+href="http://tor.eff.org/cvs/tor/doc/control-spec.txt">Tor Controller
+Protocol</a>.</p>
+
+<p>We are looking for a vision of how Tor can work in a user's everyday
+anonymous browsing experience.</p>
+
+<p>Successful entries will:</p>
+<ul>
+<li>Allow the user to fully configure Tor without directly editing
+configuration files.</li>
+<li>Learn about the current state of their Tor connection (including
+which servers they are connected to, and how many of them), and find
+out whether and how any of their applications are using it.</li>
+<li>Make alerts and error conditions visible on screen.</li>
+<li>Run on at least one of Windows, Linux, and OS/X, on a
+not-unusually-configured consumer-level machine.</li>
+</ul>
+
+<p>In addition, entries may a) Provide detailed information about which
+applications, ports, or packets are (or are not!) passing through Tor,
+including accounting for both Tor- and non-Tor traffic; and b) Provide
+additional statistics about the Tor connection.</p>
+
+<p>Examples include:</p>
+<ul>
+<li>How much bandwidth am I using?</li>
+<li>What servers do I know about on the network? Where are they? How
+available are they?</li>
+<li>Provide an interface for controlling Tor connections: "show me
+the network from Africa by way of Asia". Think of the global satellite
+map from the movie <i>Sneakers</i>.</li>
+<li>Configure other running applications to use Tor (for example,
+by modifying or working through the network stack, and/or by altering
+application configurations).</li>
+<li>Provide an elegant installer for both Tor and the application.</li>
+<li>Provide meaningful defaults for a good Tor experience.</li>
+<li>Implement Privoxy-like functionality -- that is, not just paying
+attention to transport anonymity on the level of Tor, but also paying
+attention to the anonymity of the http headers, cookies, etc.</li>
+</ul>
+
+<hr />
+<h3>Contest categories</h3>
+
+<p>Three categories of interface will be awarded:</p>
+<ul>
+<li><b>Most featureful interface</b> will be awarded to the application that
+provides usable, clear access to the most aspects of the Tor system,
+covering many or most of the goals above.</li>
+<li><b>Best usability</b> will be awarded to the application
+that provides the most unobtrusive Tor experience while still covering
+all criteria (working, perhaps, on the "no news is good news" theory).</li>
+<li><b>Most flexible</b> will be awarded to the best system that runs smoothly
+on all three of Windows, Linux, and Mac OS X; extra points will be awarded
+for additional systems.</li>
+</ul>
+
+<p>We may decide to award other awards as the entries deserve.</p>
+
+<hr />
+<h3>Judging criteria</h3>
+
+<p>Awards will be granted on the basis of (in rough preference order):</p>
+
+<ul>
+<li>Usability (<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/ContestFAQ#DefineUsable">what
+does this mean?</a>)</li>
+<li>Informativeness: can the user learn what they need to know?</li>
+<li>Total user experience</li>
+<li>Aesthetics</li>
+<li>Responsiveness</li>
+<li>Stability and robustness</li>
+<li>Installation experience</li>
+</ul>
+
+<hr />
+<h3>Testing criteria</h3>
+
+<p>To check for basic acceptability, the contest will be judged
+with several major tests. For example, the system designer should expect:</p>
+
+<ul>
+<li>A minimal test: does it work?</li>
+<li>Several parameters, both obscure and obvious, will be configured. Is
+it possible and easy to do so?</li>
+<li>A network will be connected once the system is running. Can the
+user tell that the network is now live?</li>
+<li>The network will be disconnected or interrupted. Can the user tell
+that the network has an error?</li>
+</ul>
+
+<hr />
+<h3>Submissions</h3>
+
+<p>Submissions should come as:</p>
+
+<ul>
+<li>Source code, with appropriate makefiles or documentation explaining
+how to build it. Must be licensed under a free/open source license, as
+defined by <a href="http://www.opensource.org/licenses/">OSI</a> or <a
+href="http://www.debian.org/social_contract#guidelines">DFSG</a>.  See <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/ContestFAQ#DefineFree">this
+FAQ entry</a> for clarification.</li>
+<li>Compiled binaries or bytecodes for at least one platform of choice.</li>
+<li>A design document providing an overview of what major functions
+to look for and what functions were implemented.</li>
+</ul>
+
+<hr />
+<h3>Judges</h3>
+
+<p>Judging will be led by a panel of five prominent specialists in usability
+and security (to be announced).</p>
+
+<hr />
+<h3>Prizes</h3>
+
+<p>TBA, hopefully including a <a
+href="http://slimdevices.com/">Squeezebox</a> for top winners.</p>
+
+<hr />
+<h3>Timeline</h3>
+
+<p>The contest will be announced on or around June 1, 2005. We expect
+the contest deadline to be on or around January 15, 2006, with judging
+complete by March 15, 2006.</p>
+
+<hr />
+<h3>Technical notes</h3>
+
+<p>Shortly before the contest begins, Tor will release a canonical code
+version. This is the version that will be used for judging the contest;
+please ensure that you use this version. Bugfixes to this version will
+be announced to the contest web site.</p>
+
+<p>Tor will also release test rigs in both Java and Python that demonstrate
+Tor's controller protocol. It is acceptable to build entrants using this
+code as a skeleton.</p>
+
+<p>The test rig will show all of the basic functionality that is necessary
+for the minimal features of the contest.</p>
+
+<hr />
+<h3>Questions and clarifications</h3>
+
+<p>We will have a public website and wiki up shortly for FAQ entries,
+clarifications, etc.</p>
+
+  </div><!-- #main -->
+</div>
+  <div class="bottom" id="bottom">
+     <i><a href="mailto:tor-webmaster@freehaven.net" class="smalllink">Webmaster</a></i> -
+     $Id$
+  </div>
+</body>
+</html>
+
