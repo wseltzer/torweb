@@ -111,6 +111,14 @@ Python control script</a>. No, we don't know what the interface should look
 like.  You can use any license you want, but we'd recommend 3-clause BSD or
 maybe GPL; and we can only help out if your license conforms to the
 <a href="http://www.debian.org/social_contract.html#guidelines">DFSG</a>.</li>
+<li>Periodically people running servers tells us they want to have one
+BandwidthRate during some part of the day, and a different BandwidthRate
+at other parts of the day. Rather than coding this inside Tor, we should
+have a little script that speaks via the Tor Controller Interface, and does
+a setconf to change the bandwidth rate. Perhaps it would run out of cron,
+or perhaps it would sleep until appropriate times and then do its tweak
+(that's probably more portable). Can somebody write one for us and we'll
+put it inside <a href="cvs/tor/contrib/">tor/contrib/</a>?</li>
 <li>Does somebody want to do up a patch so we can be an NT service? Or
 so we can go in the system tray?</li>
 <li>A good (portable, fast, clean, BSD-free) asynchronous DNS library
