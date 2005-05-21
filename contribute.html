@@ -45,8 +45,8 @@
 
 <p>Ongoing needs:</p>
 <ul>
-<li>Try Tor out, and let the Tor developers know about bugs you find or
-features you don't find.</li>
+<li>We need users like you to try Tor out, and let the Tor developers
+know about bugs you find or features you don't find.</li>
 <li>Please consider <a
 href="cvs/tor/doc/tor-doc.html#server">running a
 server</a> to help the Tor network grow.</li>
@@ -70,6 +70,8 @@ focusing on Tor.</p>
 <ul>
 <li>Does somebody want to help maintain this website, or help with
 documentation, or help with managing our TODO and handling bug reports?</li>
+<li>We may have too <i>much</i> documentation. It's spread out too far
+and duplicates itself in places. Can you help us consolidate?</li>
 <li>Please help translate the web page and documentation
 into other languages. See the <a href="translation.html">translation guidelines</a> 
 if you want to help out. (Examples:
@@ -142,12 +144,6 @@ defenses.</p>
 href="http://en.wikipedia.org/wiki/Fuzz_testing">fuzz</a> Tor. Are there
 good libraries out there for what we want? What are the first steps? Win
 fame by getting credit when we put out a new release because of you!</li>
-<li>Server CPU load is high because clients keep asking to make new
-circuits, which uses public key crypto. Possible defenses include:
-using helper nodes (fixed entry nodes); rate limiting the number of
-create cells handled per second; having clients retry failed extensions
-a few times; implementing ssl sessions; and using hardware crypto when
-available.</li>
 <li>Website volume fingerprinting attacks (<a
 href="http://freehaven.net/anonbib/#back01">Back et al</a>, <a
 href="http://freehaven.net/anonbib/#hintz02">Hintz</a>).
@@ -166,6 +162,20 @@ better?</li>
 
 <p>Designer project-lets:</p>
 <ul>
+<li>Server CPU load is high because clients keep asking to make new
+circuits, which uses public key crypto. Possible defenses include:
+using helper nodes (fixed entry nodes); rate limiting the number of
+create cells handled per second; having clients retry failed extensions
+a few times; implementing ssl sessions; and using hardware crypto when
+available.</li>
+<li>We fear we might not work very well when servers have asymmetric
+bandwidth. Because Tor has separate TCP connections between each hop,
+if the incoming bytes are arriving just fine and the outgoing bytes
+are all getting dropped on the floor, the TCP push-back mechanisms
+don't really transmit this information back to the incoming streams.
+Perhaps Tor should detect when it's dropping a lot of outgoing packets,
+and rate-limit incoming streams to regulate this itself? We need somebody
+who's good with networks to simulate this and help design solutions.</li>
 <li>Right now the hidden service descriptors are being stored on the
 dirservers, but any reliable distributed storage system would do (for
 example, a DHT that allows authenticated updates). Can somebody figure
