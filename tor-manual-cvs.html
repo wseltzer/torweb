@@ -80,7 +80,7 @@ Store working data in DIR (Default: @LOCALSTATEDIR@/lib/tor)
 Every time the specified period elapses, Tor downloads a directory.
 A directory contains a signed list of all known servers as well as
 their current liveness status. A value of &quot;0 seconds&quot; tells Tor to choose an
-appropriate default. (Default: 1 hour for clients, 20 minutes for servers.)
+appropriate default. (Default: 1 hour for clients, 20 minutes for servers)
 <DT><B>DirServer </B><I>address:port fingerprint</I><DD>
 Use a nonstandard authoritative directory server at the provided
 address and port, with the specified key fingerprint.  This option can
@@ -95,16 +95,17 @@ rather than connecting directly to any directory servers.
 <DT><B>HttpsProxy</B> <I>host</I>[:<I>port</I>]<DD>
 If set, Tor will make all its OR (SSL) connections through this host:port,
 via HTTP CONNECT, rather than connecting directly to servers.
+You may want to set <B>FascistFirewall</B> to restrict the set of ports you
+might try to connect to, if your Https proxy only allows connecting to certain
+ports.
 <DT><B>HttpsProxyAuthenticator</B> <I>username:password</I><DD>
 If defined, Tor will use this username:password for Basic Https proxy
 authentication, as in RFC 2617. This is currently the only form of
 Https proxy authentication that Tor supports; feel free to submit a
-patch if you want it to support others. You may want to set FascistFirewall
-to restrict the set of ports you might try to connect to, if your Https
-proxy only allows connecting to certain ports.
+patch if you want it to support others.
 <DT><B>KeepalivePeriod </B><I>NUM</I><DD>
 To keep firewalls from expiring connections, send a padding keepalive
-cell on open connections every NUM seconds. (Default: 5 minutes.)
+cell on open connections every NUM seconds. (Default: 5 minutes)
 <DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>stderr</B>|<B>stdout</B>|<B>syslog</B><DD>
 Send all messages between <I>minSeverity</I> and <I>maxSeverity</I> to
 the standard output stream, the standard error stream, or to the system
@@ -136,7 +137,7 @@ about what sites a user might have visited. (Default: 1)
 Every time the specified period elapses, Tor downloads signed status
 information about the current state of known servers.  A value of
 &quot;0 seconds&quot; tells Tor to choose an appropriate default. (Default: 30
-minutes for clients, 15 minutes for servers.)
+minutes for clients, 15 minutes for servers)
 <DT><B>User </B><I>UID</I><DD>
 On startup, setuid to this user.
 <P>
@@ -150,7 +151,7 @@ The following options are useful only for clients (that is, if <B>SOCKSPort</B> 
 <DL COMPACT>
 <DT><B>AllowUnverifiedNodes</B> <B>entry</B>|<B>exit</B>|<B>middle</B>|<B>introduction</B>|<B>rendezvous</B>|...<DD>
 Where on our circuits should we allow Tor servers that the directory
-servers haven't authenticated as &quot;verified&quot;?  (Default: middle,rendezvous.)
+servers haven't authenticated as &quot;verified&quot;?  (Default: middle,rendezvous)
 <DT><B>ClientOnly </B><B>0</B>|<B>1</B><DD>
 If set to 1, Tor will under no circumstances run as a server. The default
 is to run as a client unless ORPort is configured.  (Usually,
@@ -175,14 +176,18 @@ allow you to run Tor as a client behind a firewall with restrictive policies,
 but will not allow you to run as a server behind such a firewall.
 <DT><B>FirewallPorts </B><I>PORTS</I><DD>
 A list of ports that your firewall allows you to connect to.  Only used when
-<B>FascistFirewall</B> is set. (Default: 80, 443.)
+<B>FascistFirewall</B> is set. (Default: 80, 443)
 <DT><B>LongLivedPorts </B><I>PORTS</I><DD>
 A list of ports for services that tend to have long-running connections
 (e.g. chat and interactive shells). Circuits for streams that use these
 ports will contain only high-uptime nodes, to reduce the chance that a
-node will go down before the stream is finished.
+node will go down before the stream is finished. (Default: 21, 22, 706, 1863, 5050, 
+5190, 5222, 5223, 6667, 8300, 8888)
 <DT><B>MapAddress</B> <I>address</I> <I>newaddress</I><DD>
-When a request for address arrives to Tor, it will rewrite it to newaddress before processing it. For example, if you always want connections to <A HREF="http://www.indymedia.org">www.indymedia.org</A> to exit via <I>torserver</I> (where <I>torserver</I> is the nickname of the server), use &quot;MapAddress <A HREF="http://www.indymedia.org">www.indymedia.org</A> <A HREF="http://www.indymedia.org.torserver.exit">www.indymedia.org.torserver.exit</A>&quot;.
+When a request for address arrives to Tor, it will rewrite it to newaddress before 
+processing it. For example, if you always want connections to <A HREF="http://www.indymedia.org">www.indymedia.org</A> to 
+exit via <I>torserver</I> (where <I>torserver</I> is the nickname of the server), 
+use &quot;MapAddress <A HREF="http://www.indymedia.org">www.indymedia.org</A> <A HREF="http://www.indymedia.org.torserver.exit">www.indymedia.org.torserver.exit</A>&quot;.
 <DT><B>NewCircuitPeriod </B><I>NUM</I><DD>
 Every NUM seconds consider whether to build a new circuit. (Default: 30 seconds)
 <DT><B>MaxCircuitDirtiness </B><I>NUM</I><DD>
@@ -195,6 +200,7 @@ NodeFamily is only needed when a server doesn't list the family itself
 (with MyFamily). This option can be used multiple times.
 <DT>
 <DD>
+
 
 
 <B>RendNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I>
@@ -211,7 +217,8 @@ applications. (Default: 127.0.0.1) You can also specify a port
 (e.g. 192.168.0.1:9100). This directive can be specified multiple times
 to bind to multiple addresses/ports.
 <DT><B>SOCKSPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
-Set an entrance policy for this server, to limit who can connect to the SOCKS ports. The policies have the same form as exit policies below.
+Set an entrance policy for this server, to limit who can connect to the SOCKS ports. 
+The policies have the same form as exit policies below.
 <DT><B>TrackHostExits </B><I>host</I>,<I>.domain</I>,<I>...</I><DD>
 For each value in the comma separated list, Tor will track recent connections
 to hosts that match this value and attempt to
@@ -321,7 +328,7 @@ we exit. If we get a second SIGINT, we exit immediately.  (Default:
 <DT><B>DirPostPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
 Every time the specified period elapses, Tor uploads its server
 descriptors to the directory servers.  This information is also
-uploaded whenever it changes.  (Default: 20 minutes.)
+uploaded whenever it changes.  (Default: 20 minutes)
 <DT><B>AccountingMax </B><I>N</I> <B>bytes</B>|<B>KB</B>|<B>MB</B>|<B>GB</B>|<B>TB</B><DD>
 Never send more than the specified number of bytes in a given
 accounting period, or receive more than that number in the period.
@@ -369,7 +376,8 @@ Advertise the directory service on this port.
 Bind the directory service to this address. If you specify a port, bind
 to this port rather than the one specified in DirPort. (Default: 0.0.0.0)
 <DT><B>DirPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
-Set an entrance policy for this server, to limit who can connect to the directory ports. The policies have the same form as exit policies above.
+Set an entrance policy for this server, to limit who can connect to the directory ports. 
+The policies have the same form as exit policies above.
 <DT><B>RecommendedVersions </B><I>STRING</I><DD>
 STRING is a command-separated list of Tor versions currently believed
 to be safe. The list is included in each directory, and nodes which
@@ -414,7 +422,7 @@ service. In normal use there is no reason to set this.
 <DT><B>RendPostPeriod </B><I>N</I> <B>seconds</B>|<B>minutes</B>|<B>hours</B>|<B>days</B>|<B>weeks</B><DD>
 Every time the specified period elapses, Tor uploads any rendezvous
 service descriptors to the directory servers.  This information is also
-uploaded whenever it changes.  (Default: 20 minutes.)
+uploaded whenever it changes.  (Default: 20 minutes)
 <P>
 
 
@@ -508,6 +516,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 10:38:23 GMT, May 15, 2005
+Time: 14:06:07 GMT, May 23, 2005
 </BODY>
 </HTML>
