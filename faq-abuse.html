@@ -94,7 +94,7 @@ all IP packets, you cannot send UDP packets over Tor. (You can't do
 specialized forms of this attack like SYN flooding either.) So ordinary
 DDoS attacks are not possible over Tor. Tor also doesn't allow bandwidth
 amplification attacks against external sites: you need to send in a byte
-for every byte which the Tor network will send to your destination. So
+for every byte that the Tor network will send to your destination. So
 in general, attackers who control enough bandwidth to launch an effective
 DDoS attack can do it just fine without Tor. </p>
 
@@ -107,13 +107,14 @@ if you're still worried. </p>
 
 <p>The simple answer: The default Tor exit policy rejects all outgoing
 port 25 (SMTP) traffic. So sending spam mail through Tor isn't going to
-work. It's possible that some server operators will enable port 25 on
-their particular exit node, in which case only that computer will allow
-outgoing mails; but that individual could just set up an open mail relay
-too, independent of Tor. In short, Tor isn't useful for spammers, because
-nearly all Tor servers refuse to deliver it. </p>
+work by default. It's possible that some server operators will enable
+port 25 on their particular exit node, in which case that computer will
+allow outgoing mails; but that individual could just set up an open mail
+relay too, independent of Tor. In short, Tor isn't useful for spammers,
+because nearly all Tor servers refuse to deliver their mail. </p>
 
-<p>The complex answer: Spammers are already doing great without Tor. They
+<p>The complex answer: Even if the above were not true, spammers are
+already doing great without Tor. They
 have armies of compromised computers that do their spamming. The added
 complexity of getting new software installed and configured, and doing
 Tor's public key operations, etc, makes it not economically worthwhile
@@ -159,7 +160,7 @@ main ones so far have taken the following form: </p>
 FBI sends you a polite email, you explain that you run a Tor server,
 and they say 'oh well' and leave you alone. [Port 80]</li>
 <li>Somebody tries to get you shut down by using Tor to connect to google
-groups and posting spam to usenet, and then sending an angry mail to
+groups and post spam to usenet, and then sending an angry mail to
 your ISP about how you're destroying the world. [Port 80]</li>
 <li>Somebody connects to an irc network and makes a nuisance of
 himself. Your ISP gets polite mail about how your computer has been
@@ -237,13 +238,14 @@ Tor at all, or they may not be aware that the hostnames they're klining
 are Tor exit nodes.  If you explain the problem, and they conclude that
 Tor ought to be blocked, you may want to consider moving to a network that
 is more open to free speech.  Maybe inviting them to #tor on irc.oftc.net
-helps them show that we are not all evil people. </p>
+will help show them that we are not all evil people. </p>
 
-<p>Finally, if you become aware of an IRC network which seems to be
+<p>Finally, if you become aware of an IRC network that seems to be
 blocking Tor, or a single Tor exit node, please put that information on <a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/BlockingIrc">BlockingIrc</a>
+href="http://wiki.noreply.org/wiki/TheOnionRouter/BlockingIrc">The Tor
+IRC block tracker</a>
 so that others can share.  At least one IRC network consults that page
-to unblock exit nodes which have been blocked inadvertently. </p>
+to unblock exit nodes that have been blocked inadvertently. </p>
 
 <a name="SMTPBans"></a>
 <h3>Your nodes are banned from the mail server I want to use.</h3>
@@ -273,9 +275,14 @@ to your service right now to carry on normal activities. You need to
 decide whether banning the Tor network is worth losing the contributions
 of these users, as well as potential future such users. </p>
 
+<p>At this point, you should also ask yourself what you do about other
+services that aggregate many users behind a few IP addresses. Tor is
+not so different from AOL in this respect.</p>
+
 <p>Lastly, please remember that Tor servers have individual exit
 policies. Many Tor servers do not allow exiting connections at
-all. Many of those that do, probably already disallow connections to
+all. Many of those that do allow some exit connections probably already
+disallow connections to
 your service. When you go about banning nodes, you should parse the
 exit policies and only block the ones that allow these connections;
 and you should keep in mind that exit policies can change (as well as
@@ -293,7 +300,7 @@ we're not the ones to talk to about legal questions or concerns. </p>
 
 <p>Please take a look at the <a
 href="http://tor.eff.org//eff/tor-legal-faq.html">Tor Legal FAQ</a>,
-and contact EFF directly if you have any further questions. </p>
+and contact EFF directly if you have any further legal questions. </p>
 
   </div><!-- #main -->
   </div>
