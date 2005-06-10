@@ -1,4 +1,4 @@
-<!-- revision 0.02 -->
+<!-- revision 0.04 -->
 <!-- jens@kubieziel.de -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -20,7 +20,7 @@
     <tr>
         <td class="banner-left"></td>
         <td class="banner-middle">
-        <a href="index.de.html">Startseite</a>
+        <a class="index.de.html">Startseite</a>
         | <a href="howitworks.de.html">Wie es funktioniert</a>
         | <a class="current">Download</a>
         | <a href="documentation.de.html">Dokumente</a>
@@ -50,35 +50,36 @@ href="cvs/tor/LICENSE">3-clause BSD license</a> verteilt.</p>
 
 <p>Die letzte Version kannst du aus dem <a href="dist/">Downloadverzeichnis</a>
 beziehen. Die letzte stabile Version ist <b>0.0.9.9</b> und die letzte
-Testversion ist <b>0.1.0.8-rc</b>. Tor sollte auf Linux, BSD, OS X, Win32,
+Testversion ist <b>0.1.0.9-rc</b>. Tor sollte auf Linux, BSD, OS X, Win32,
 Solaris und anderen Systemen laufen.</p>
 
 <ul>
 <li><b>Win32</b> Installationsprogramm (experimentell):
-<a href="dist/win32/tor-0.1.0.8-rc-win32.exe">0.1.0.8-rc</a> (<a
-href="dist/win32/tor-0.1.0.8-rc-win32.exe.asc">sig</a>) 
 <a href="dist/win32/tor-0.0.9.9-win32.exe">0.0.9.9</a> (<a
 href="dist/win32/tor-0.0.9.9-win32.exe.asc">sig</a>)
+<a href="dist/win32/tor-0.1.0.9-rc-win32.exe">0.1.0.9-rc</a> (<a
+href="dist/win32/tor-0.1.0.9-rc-win32.exe.asc">sig</a>)
 Lies die <a
 href="cvs/tor/doc/tor-doc-win32.html">Win32-spezifischen Anweisungen</a>.</li>
 <li><b>Mac OS X</b> Installationsprogramm (experimentell):
 <a href="dist/osx/Tor 0.0.9.9 Bundle.dmg">0.0.9.9</a> (<a
 href="dist/osx/Tor 0.0.9.9 Bundle.dmg.asc">sig</a>)
-<a href="dist/osx/Tor 0.1.0.8-rc Bundle.dmg">0.1.0.8-rc</a> (<a
-href="dist/osx/Tor 0.1.0.8-rc Bundle.dmg.asc">sig</a>)
+<a href="dist/osx/Tor 0.1.0.9-rc Bundle.dmg">0.1.0.9-rc</a> (<a
+href="dist/osx/Tor 0.1.0.9-rc Bundle.dmg.asc">sig</a>)
 Lies die <a
 href="cvs/tor/doc/tor-doc-osx.html">OS X spezifischen Anweisungen</a>.</li>
 <li><b>RPM</b> Paket (experimentell):
-<a href="dist/rpm/tor-0.1.0.8.rc-tor.1.fc1.i386.rpm">0.1.0.8.rc RPM</a>,
-<a href="dist/rpm/tor-0.1.0.8.rc-tor.1.fc1.src.rpm">0.1.0.8.rc SRPM</a>,
 <a href="dist/rpm/tor-0.0.9.9-tor.0.fc1.i386.rpm">0.0.9.9 RPM</a>,
-<a href="dist/rpm/tor-0.0.9.9-tor.0.fc1.src.rpm">0.0.9.9 SRPM</a>
+<a href="dist/rpm/tor-0.0.9.9-tor.0.fc1.src.rpm">0.0.9.9 SRPM</a>,
+<a href="dist/rpm/tor-0.1.0.9.rc-tor.1.fc1.i386.rpm">0.1.0.9.rc RPM</a>,
+<a href="dist/rpm/tor-0.1.0.9.rc-tor.1.fc1.src.rpm">0.1.0.9.rc SRPM</a>
+
 </li>
 <li>Letzte stabile Version: <a href="dist/tor-0.0.9.9.tar.gz">0.0.9.9</a>
 (<a href="dist/tor-0.0.9.9.tar.gz.asc">sig</a>)</li>
-<li>Letzte Testversion: <a href="dist/tor-0.1.0.8-rc.tar.gz">0.1.0.8-rc</a>
-(<a href="dist/tor-0.1.0.8-rc.tar.gz.asc">sig</a>).
-Weiterhin wirst du <a href="cvs/tor/doc/tor-doc.html#installing">libevent</a>
+<li>Letzte Testversion: <a href="dist/tor-0.1.0.9-rc.tar.gz">0.1.0.9-rc</a>
+(<a href="dist/tor-0.1.0.9-rc.tar.gz.asc">sig</a>).
+Weiterhin wirst du  <a href="http://www.monkey.org/~provos/libevent/">libevent</a>
 benötigen. Wenn du mutig genug bist, um die Quellen auf Windows zu bauen, wirst
 du libevent 1.0c oder höher brauchen.
 </li>
@@ -99,8 +100,8 @@ Anweisungen zu erhalten, wie man Tor aus dem CVS-Verzeichnis erhält.
 <hr  />
 
 <p><b>Debianpakete</b> sind zu den offiziellen Quellen in der
-Unstable-Distribution hochgeladen worden. Wenn du stable (sarge) oder testing
-(sid) nutzt, musst du folgende Zeilen zur <code>/etc/apt/sources.list</code>
+Unstable-Distribution hochgeladen worden. Wenn du stable (woody) oder testing
+(sarge) nutzt, musst du folgende Zeilen zur <code>/etc/apt/sources.list</code>
 hinzufügen:</p>
 
 <p><code>
@@ -134,6 +135,11 @@ $ apt-get install -t experimental tor
 <p>Pakete für andere Architekturen als i386 können auf <a
 href="mailto:weasel@debian.org">Nachfrage</a> hinzugefügt werden.</p>
 
+<p>Eine Anleitung für chroot ist im <a
+  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorInChroot">Wiki (Tor in
+  chroot)</a> erhältlich.</p>
+ 
+
 <hr  />
 
 <p><b>FreeBSD</b>: <tt>portinstall -s security/tor</tt></p>
@@ -164,18 +170,22 @@ wir werden den ihn Liste hinzufügen.
 
 <p>
 Swedish Linux Society	(<a href="ftp://ftp.se.linux.org/pub/crypto/tor/">ftp</a>
- | <a href="http://ftp.se.linux.org/crypto/tor/">http</a>)
+ | <a href="http://ftp.se.linux.org/crypto/tor/">http</a>)<br />
+Meulie.net (<a href="http://tor.meulie.net/">http</a>) 
 </p>
 
 <hr  />
 
 <h2>Testversionen</h2>
 
+<p>2005-06-09: Tor 0.1.0.9-rc <a
+  href="http://archives.seul.org/or/talk/Jun-2005/msg000xx.html">behebt eine
+  Speicherfresser, deaktiviert Threads unter Solaris und schliesst einige
+  wichtige Sicherheitsfixes für Win32 ein</a>.
 <p>2005-05-23: Tor 0.1.0.8-rc <a
-href="http://archives.seul.org/or/talk/May-2005/msg00095.html">bekommt keine
-Kernalpaniken mehr auf OS X 10.3.9, schaltet Threading bei OpenBSD ab und
-behebt andere Kleinigkeiten</a>.
-</p>
+  href="http://archives.seul.org/or/talk/May-2005/msg00095.html">bekommt keine
+  Kernalpaniken mehr auf OS X 10.3.9, schaltet Threading bei OpenBSD ab und
+  behebt andere Kleinigkeiten</a>.</p>
 
 <p>2005-05-17: Tor 0.1.0.7-rc <a
 href="http://archives.seul.org/or/talk/May-2005/msg00056.html">behebt ein
