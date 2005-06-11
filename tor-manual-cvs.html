@@ -4,7 +4,7 @@ Content-type: text/html
 <HTML><HEAD><TITLE>Man page of TOR</TITLE>
 </HEAD><BODY>
 <H1>TOR</H1>
-Section: User Commands  (1)<BR>Updated: May 2005<BR><A HREF="#index">Index</A>
+Section: User Commands  (1)<BR>Updated: June 2005<BR><A HREF="#index">Index</A>
 <A HREF="../">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -90,14 +90,20 @@ directory servers: moria1, moria2, and tor26.
 <DT><B>Group </B><I>GID</I><DD>
 On startup, setgid to this user.
 <DT><B>HttpProxy</B> <I>host</I>[:<I>port</I>]<DD>
-If set, Tor will make all its directory requests through this host:port,
+Tor will make all its directory requests through this host:port
+(or host:80 if port is not specified),
 rather than connecting directly to any directory servers.
+<DT><B>HttpProxyAuthenticator</B> <I>username:password</I><DD>
+If defined, Tor will use this username:password for Basic Http proxy
+authentication, as in RFC 2617. This is currently the only form of
+Http proxy authentication that Tor supports; feel free to submit a
+patch if you want it to support others.
 <DT><B>HttpsProxy</B> <I>host</I>[:<I>port</I>]<DD>
-If set, Tor will make all its OR (SSL) connections through this host:port,
-via HTTP CONNECT, rather than connecting directly to servers.
-You may want to set <B>FascistFirewall</B> to restrict the set of ports you
-might try to connect to, if your Https proxy only allows connecting to certain
-ports.
+Tor will make all its OR (SSL) connections through this host:port
+(or host:443 if port is not specified), via HTTP CONNECT rather than
+connecting directly to servers.  You may want to set <B>FascistFirewall</B>
+to restrict the set of ports you might try to connect to, if your Https
+proxy only allows connecting to certain ports.
 <DT><B>HttpsProxyAuthenticator</B> <I>username:password</I><DD>
 If defined, Tor will use this username:password for Basic Https proxy
 authentication, as in RFC 2617. This is currently the only form of
@@ -105,7 +111,9 @@ Https proxy authentication that Tor supports; feel free to submit a
 patch if you want it to support others.
 <DT><B>KeepalivePeriod </B><I>NUM</I><DD>
 To keep firewalls from expiring connections, send a padding keepalive
-cell on open connections every NUM seconds. (Default: 5 minutes)
+cell every NUM seconds on open connections that are in use. If the
+connection has no open circuits, it will instead be closed after NUM
+seconds of idleness. (Default: 5 minutes)
 <DT><B>Log </B><I>minSeverity</I>[-<I>maxSeverity</I>] <B>stderr</B>|<B>stdout</B>|<B>syslog</B><DD>
 Send all messages between <I>minSeverity</I> and <I>maxSeverity</I> to
 the standard output stream, the standard error stream, or to the system
@@ -157,6 +165,9 @@ If set to 1, Tor will under no circumstances run as a server. The default
 is to run as a client unless ORPort is configured.  (Usually,
 you don't need to set this; Tor is pretty smart at figuring out whether
 you are reliable and high-bandwidth enough to be a useful server.)
+<P>
+This option will likely be deprecated in the future; see the NoPublish
+option below. (Default: 0)
 <DT><B>EntryNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
 A list of preferred nodes to use for the first hop in the circuit, if possible.
 <DT><B>ExitNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
@@ -250,11 +261,12 @@ unset, and Tor will guess your IP.
 Administrative contact information for server.
 <DT><B>ExitPolicy </B><I>policy</I>,<I>policy</I>,<I>...</I><DD>
 Set an exit policy for this server. Each policy is of the form
-&quot;<B>accept</B>|<B>reject</B> <I>ADDR</I>[<B>/</B><I>MASK</I>]<B>:</B><I>PORT</I>&quot;.
+&quot;<B>accept</B>|<B>reject</B> <I>ADDR</I>[<B>/</B><I>MASK</I>]<B>[:</B><I>PORT</I>]&quot;.
 If <B>/</B><I>MASK</I> is omitted then this policy just applies to the host
 given.  Instead of giving a host or network you can also use &quot;<B>*</B>&quot; to
 denote the universe (0.0.0.0/0).  <I>PORT</I> can be a single port number,
 an interval of ports &quot;<I>FROM_PORT</I><B>-</B><I>TO_PORT</I>&quot;, or &quot;<B>*</B>&quot;.
+If PORT is omitted, that means &quot;<B>*</B>&quot;.
 <P>
 For example, &quot;reject 127.0.0.1:*,reject 192.168.1.0/24:*,accept *:*&quot; would
 reject any traffic destined for localhost and any 192.168.1.* address, but
@@ -301,6 +313,12 @@ will not use them in the same circuit.  (Each server only needs to list the
 other servers in its family; it doesn't need to list itself, but it won't hurt.)
 <DT><B>Nickname </B><I>name</I><DD>
 Set the server's nickname to 'name'.
+<DT><B>NoPublish </B><B>0</B>|<B>1</B><DD>
+If you set NoPublish 1, Tor will act as a server if you have an ORPort
+defined, but it will not publish its descriptor to the dirservers. This
+option is useful if you're testing out your server, or if you're using
+alternate dirservers (e.g. for other Tor networks such as Blossom).
+(Default: 0)
 <DT><B>NumCPUs </B><I>num</I><DD>
 How many processes to use at once for decrypting onionskins. (Default: 1)
 <DT><B>ORPort </B><I>PORT</I><DD>
@@ -516,6 +534,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 14:06:07 GMT, May 23, 2005
+Time: 12:23:16 GMT, June 11, 2005
 </BODY>
 </HTML>
