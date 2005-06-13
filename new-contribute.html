@@ -40,59 +40,90 @@
 
 <!-- PUT CONTENT AFTER THIS TAG -->
 <pre>
-new stuff I don't have a plan for yet:
+    Six Easy Pieces:
+    - We need users like you to try Tor out, and let the Tor developers know about bugs you find or features you don't find.
+    - Please consider running a server to help the Tor network grow.
+    - We especially need people with Windows programming skills to run an exit server on Windows, to help us debug.
+    - Run a Tor hidden service and put interesting content on it.
+    - Tell your friends! Get them to run servers. Get them to run hidden services. Get them to tell their friends.
+    - Consider joining the Electronic Frontier Foundation. More EFF donations means more freedom in the world, including more Tor development.
 
- - use openssl aes when available
+****coding challenges****
+	**easy**
+	**medium**
+	**hard**
+  - use openssl aes when available
   - do the kernel buffer style design
-  - Server instructions for OSX and Windows operators.
-  - Improve and clarify the wiki entry on port forwarding.
-  - how do ulimits work on win32, anyway?  (We should handle WSAENOBUFS as
-    needed, look at the MaxConnections registry entry, look at the
-    MaxUserPort entry, and look at the TcpTimedWaitDelay entry. We may also
-    want to provide a way to set them as needed. See bug 98.)
+  - how do ulimits work on win32, anyway?  (We should handle WSAENOBUFS as needed, look at the MaxConnections registry entry, look at the MaxUserPort entry, and look at the TcpTimedWaitDelay entry. We may also want to provide a way to set them as needed. See bug 98.)
   - Implement reverse DNS (already specified)
-  - It would be nice to have a FirewalledIPs thing that works like
-    FirewallPorts.
+  - It would be nice to have a FirewalledIPs thing that works like FirewallPorts.
   - Make configure.in handle cross-compilation
     - Have NULL_REP_IS_ZERO_BYTES default to 1.
     - Make with-ssl-dir disable search for ssl.
-  - Packaging, docs, etc:
-   - Exit node caching: tie into squid or other caching web proxy.
-  - Have clients and dirservers preserve reputation info over
-    reboots.
+  - Have clients and dirservers preserve reputation info over reboots.
   - Support egd or other non-OS-integrated strong entropy sources
   - password protection for on-disk identity key
   - Possible to get autoconf to easily install things into ~/.tor?
-  - server descriptor declares min log level, clients avoid servers
-     that are too loggy.
+  - server descriptor declares min log level, clients avoid servers that are too loggy.
   - Separate node discovery from routing to allow neat extensions. [Goodell?]
-    - Add SetServerStatus control event to adjust verified/running status of
-      nodes.
-    - Add NoDownload config option to prevent regular directory downloads
-      from happening.
+    - Add SetServerStatus control event to adjust verified/running status of nodes.
+    - Add NoDownload config option to prevent regular directory downloads from happening.
   - Choosing exit node by meta-data, e.g. country.
-  - What info squeaks by Privoxy? Are other scrubbers better?
-  - web proxy gateways to let normal people browse hidden services.
-    (This has been done a few times, but nobody has sent us code.)
   - Use cpuworker for more heavy lifting.
     - Signing (and verifying) hidserv descriptors
     - Signing (and verifying) intro/rend requests
     - Signing (and verifying) router descriptors
     - Signing (and verifying) directories
     - Doing TLS handshake (this is very hard to separate out, though)
-  - Buffer size pool: allocate a maximum size for all buffers, not a maximum
-    size for each buffer. So we don't have to give up as quickly (and kill
-    the thickpipe!) when there's congestion.
-  - Congestion control. Is our current design sufficient once we have heavy
-    use? Need to measure and tweak, or maybe overhaul.
-  - Add alternative versions of crypto.c and tortls.c to use libnss or
-    libgcrypt+gnutls.
-  - If we have a trusted directory on port 80, optionally stop falling back
-    to forbidden ports when fascistfirewall blocks all good dirservers.
+  - Buffer size pool: allocate a maximum size for all buffers, not a maximum size for each buffer. So we don't have to give up as quickly (and kill the thickpipe!) when there's congestion.
+  - Congestion control. Is our current design sufficient once we have heavy use? Need to measure and tweak, or maybe overhaul.
+  - Add alternative versions of crypto.c and tortls.c to use libnss or libgcrypt+gnutls.
+  - If we have a trusted directory on port 80, optionally stop falling back to forbidden ports when fascistfirewall blocks all good dirservers.
+  - We're always looking for better Windows installers. Specifically, it would be great if somebody were to extend our NSIS-based windows installer to include FreeCap and Privoxy.
+    - Our OS X installer can't be uninstalled. Are there non-sucky OS X packagers that have uninstall capabilities? This is becoming an increasing bother.
+    - We need somebody to code up a GUI or other controller program, to do configuration, etc. See our control specification for details, and the rudimentary demonstration Python control script. No, we don't know what the interface should look like. You can use any license you want, but we'd recommend 3-clause BSD or maybe GPL; and we can only help out if your license conforms to the DFSG.
+    - Periodically people running servers tells us they want to have one BandwidthRate during some part of the day, and a different BandwidthRate at other parts of the day. Rather than coding this inside Tor, we should have a little script that speaks via the Tor Controller Interface, and does a setconf to change the bandwidth rate. Perhaps it would run out of cron, or perhaps it would sleep until appropriate times and then do its tweak (that's probably more portable). Can somebody write one for us and we'll put it inside tor/contrib/?
+    - Does somebody want to do up a patch so we can be an NT service? Or so we can go in the system tray?
+    - A good (portable, fast, clean, BSD-free) asynchronous DNS library would be really handy, so we don't have to keep forking DNS worker threads to do gethostbyname.
+    - We're always looking for better Windows installers. Specifically, it would be great if somebody were to extend our NSIS-based windows installer to include FreeCap and Privoxy.
+    - Our OS X installer can't be uninstalled. Are there non-sucky OS X packagers that have uninstall capabilities? This is becoming an increasing bother.
+    - We need somebody to code up a GUI or other controller program, to do configuration, etc. See our control specification for details, and the rudimentary demonstration Python control script. No, we don't know what the interface should look like. You can use any license you want, but we'd recommend 3-clause BSD or maybe GPL; and we can only help out if your license conforms to the DFSG.
+    - Periodically people running servers tells us they want to have one BandwidthRate during some part of the day, and a different BandwidthRate at other parts of the day. Rather than coding this inside Tor, we should have a little script that speaks via the Tor Controller Interface, and does a setconf to change the bandwidth rate. Perhaps it would run out of cron, or perhaps it would sleep until appropriate times and then do its tweak (that's probably more portable). Can somebody write one for us and we'll put it inside tor/contrib/?
+    - Does somebody want to do up a patch so we can be an NT service? Or so we can go in the system tray?
+    - A good (portable, fast, clean, BSD-free) asynchronous DNS library would be really handy, so we don't have to keep forking DNS worker threads to do gethostbyname.
+
+****documentation challenges****
+	**easy**
+	**medium**
+	**hard**
+
+  - Server instructions for OSX and Windows operators.
+  - Improve and clarify the wiki entry on port forwarding.
+   - Exit node caching: tie into squid or other caching web proxy.
+    - Does somebody want to help maintain this website, or help with documentation, or help with managing our TODO and handling bug reports?
+    - We may have too much documentation. It's spread out too far and duplicates itself in places. Can you help us consolidate?
+    - Please help translate the web page and documentation into other languages. See the translation guidelines if you want to help out. (Examples: French , Persian and Vietnamese.)
+    - Please fix up the FAQ Wiki, and if you know the answer to a question in the "unanswered FAQs" list, please answer it.
+    - Can somebody take a look at Martin's Squid and Tor page, and update it to reflect Tor's RedirectExit config option?
+
+****testing challenges****
+	**easy**
+	**medium**
+	**hard**
+
+  - web proxy gateways to let normal people browse hidden services.  (This has been done a few times, but nobody has sent us code.)
   - investigate privoxy vs. freecap for win32 clients
+    - We've got a list of potentially useful programs you might run with Tor here. We also have the Torify howto. Can somebody try them out, simplify the explanations, expand them where they need it, document them better, and make them all-around more useful?
+    - We need somebody to fuzz Tor. Are there good libraries out there for what we want? What are the first steps? Win fame by getting credit when we put out a new release because of you!
+    - Website volume fingerprinting attacks (Back et al, Hintz). Defenses include a large cell size, defensive dropping, etc. How well does each approach work?
+    - The end-to-end traffic confirmation attack. We need to study long-range dummies more, along with traffic shaping. How much traffic of what sort of distribution is needed before the adversary is confident he has won?
+    - What sensitive info squeaks by privoxy? Are other html scrubbers better?
 
+****research challenges****
+	**easy**
+	**medium**
+	**hard**
 
-Research projects: [Phobos moves these to contribute.html]
   - Arranging membership management for independence.
     Sybil defenses without having a human bottleneck.
     How to gather random sample of nodes.
@@ -130,59 +161,12 @@ Research projects: [Phobos moves these to contribute.html]
   - store hidden service information to disk: dirservers forget service
     descriptors when they restart; nodes offering hidden services forget
     their chosen intro points when they restart.
-
-Ongoing needs:
-
-    * We need users like you to try Tor out, and let the Tor developers know about bugs you find or features you don't find.
-    * Please consider running a server to help the Tor network grow.
-    * We especially need people with Windows programming skills to run an exit server on Windows, to help us debug.
-    * Run a Tor hidden service and put interesting content on it.
-    * Tell your friends! Get them to run servers. Get them to run hidden services. Get them to tell their friends.
-    * What else needs to be documented? What is mis-documented?
-    * Consider joining the Electronic Frontier Foundation. More EFF donations means more freedom in the world, including more Tor development.
-
-We also have many project-lets: short-term or self-contained tasks that would be really helpful for somebody to tackle so we can keep focusing on Tor.
-
-Writing project-lets:
-
-    * Does somebody want to help maintain this website, or help with documentation, or help with managing our TODO and handling bug reports?
-    * We may have too much documentation. It's spread out too far and duplicates itself in places. Can you help us consolidate?
-    * Please help translate the web page and documentation into other languages. See the translation guidelines if you want to help out. (Examples: French , Persian and Vietnamese.)
-    * Please fix up the FAQ Wiki, and if you know the answer to a question in the "unanswered FAQs" list, please answer it.
-
-Packaging project-lets:
-
-    * We're always looking for better Windows installers. Specifically, it would be great if somebody were to extend our NSIS-based windows installer to include FreeCap and Privoxy.
-    * Our OS X installer can't be uninstalled. Are there non-sucky OS X packagers that have uninstall capabilities? This is becoming an increasing bother.
-
-Organizational and application testing project-lets:
-
-    * We've got a list of potentially useful programs you might run with Tor here. We also have the Torify howto. Can somebody try them out, simplify the explanations, expand them where they need it, document them better, and make them all-around more useful?
-
-Programmer and developer project-lets:
-
-    * We need somebody to code up a GUI or other controller program, to do configuration, etc. See our control specification for details, and the rudimentary demonstration Python control script. No, we don't know what the interface should look like. You can use any license you want, but we'd recommend 3-clause BSD or maybe GPL; and we can only help out if your license conforms to the DFSG.
-    * Periodically people running servers tells us they want to have one BandwidthRate during some part of the day, and a different BandwidthRate at other parts of the day. Rather than coding this inside Tor, we should have a little script that speaks via the Tor Controller Interface, and does a setconf to change the bandwidth rate. Perhaps it would run out of cron, or perhaps it would sleep until appropriate times and then do its tweak (that's probably more portable). Can somebody write one for us and we'll put it inside tor/contrib/?
-    * Does somebody want to do up a patch so we can be an NT service? Or so we can go in the system tray?
-    * A good (portable, fast, clean, BSD-free) asynchronous DNS library would be really handy, so we don't have to keep forking DNS worker threads to do gethostbyname.
-    * Can somebody take a look at Martin's Squid and Tor page, and update it to reflect Tor's RedirectExit config option?
-    * See the TODO and HACKING files in the Tor distribution for more ideas.
-
-Security project-lets: We need people to attack the implementation and clean it up, and also to attack the design and experiment with defenses.
-
-    * We need somebody to fuzz Tor. Are there good libraries out there for what we want? What are the first steps? Win fame by getting credit when we put out a new release because of you!
-    * Website volume fingerprinting attacks (Back et al, Hintz). Defenses include a large cell size, defensive dropping, etc. How well does each approach work?
-    * The end-to-end traffic confirmation attack. We need to study long-range dummies more, along with traffic shaping. How much traffic of what sort of distribution is needed before the adversary is confident he has won?
-    * It's not that hard to DoS Tor servers or dirservers. Are puzzles the right answer? What other practical approaches are there?
-    * What sensitive info squeaks by privoxy? Are other html scrubbers better?
-
-Designer project-lets:
-
-    * Server CPU load is high because clients keep asking to make new circuits, which uses public key crypto. Possible defenses include: using helper nodes (fixed entry nodes); rate limiting the number of create cells handled per second; having clients retry failed extensions a few times; implementing ssl sessions; and using hardware crypto when available.
-    * We fear we might not work very well when servers have asymmetric bandwidth. Because Tor has separate TCP connections between each hop, if the incoming bytes are arriving just fine and the outgoing bytes are all getting dropped on the floor, the TCP push-back mechanisms don't really transmit this information back to the incoming streams. Perhaps Tor should detect when it's dropping a lot of outgoing packets, and rate-limit incoming streams to regulate this itself? We need somebody who's good with networks to simulate this and help design solutions.
-    * Right now the hidden service descriptors are being stored on the dirservers, but any reliable distributed storage system would do (for example, a DHT that allows authenticated updates). Can somebody figure out our best options and decide if they're good enough?
-    * How hard is it to patch bind or a DNS proxy to redirect requests to Tor via our tor-resolve socks extension? What about to convert UDP DNS requests to TCP requests and send them through Tor?
-    * Tor provides anonymous connections, but if you want to keep multiple pseudonyms in practice (say, in case you frequently go to two websites and if anybody knew about both of them they would conclude it's you), we don't support that well yet. We should find a good approach and interface for handling pseudonymous profiles in Tor. See this post and followup for details.
+  - It's not that hard to DoS Tor servers or dirservers. Are puzzles the right answer? What other practical approaches are there?
+    - Server CPU load is high because clients keep asking to make new circuits, which uses public key crypto. Possible defenses include: using helper nodes (fixed entry nodes); rate limiting the number of create cells handled per second; having clients retry failed extensions a few times; implementing ssl sessions; and using hardware crypto when available.
+    - We fear we might not work very well when servers have asymmetric bandwidth. Because Tor has separate TCP connections between each hop, if the incoming bytes are arriving just fine and the outgoing bytes are all getting dropped on the floor, the TCP push-back mechanisms don't really transmit this information back to the incoming streams. Perhaps Tor should detect when it's dropping a lot of outgoing packets, and rate-limit incoming streams to regulate this itself? We need somebody who's good with networks to simulate this and help design solutions.
+    - Right now the hidden service descriptors are being stored on the dirservers, but any reliable distributed storage system would do (for example, a DHT that allows authenticated updates). Can somebody figure out our best options and decide if they're good enough?
+    - How hard is it to patch bind or a DNS proxy to redirect requests to Tor via our tor-resolve socks extension? What about to convert UDP DNS requests to TCP requests and send them through Tor?
+    - Tor provides anonymous connections, but if you want to keep multiple pseudonyms in practice (say, in case you frequently go to two websites and if anybody knew about both of them they would conclude it's you), we don't support that well yet. We should find a good approach and interface for handling pseudonymous profiles in Tor. See this post and followup for details.
 
 Drop by the #tor IRC channel at irc.oftc.net or email tor-volunteer@freehaven.net if you want to help out!
 
