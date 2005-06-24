@@ -1,0 +1,210 @@
+<!-- revision 0.00 -->
+<!-- biofa@circolab.net -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Tor: Contribuisci</title>
+  <meta name="Author" content="Roger Dingledine" />
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+<body>
+
+<!-- TITLE BAR & NAVIGATION -->
+<table class="banner" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="banner-left"></td>
+        <td class="banner-middle">
+            <a href="index.it.html">Home</a>
+          | <a href="howitworks.it.html">Come Funziona</a>
+          | <a href="download.it.html">Scarica</a>
+          | <a href="documentation.it.html">Docs</a>
+          | <a href="users.it.html">Utenti</a>
+          | <a href="faq.it.html">Faq</a>
+          | <a class="current">Contribuisci</a>
+          | <a href="developers.it.html">Sviluppatori</a>
+          | <a href="research.it.html">Ricerca</a>
+          | <a href="people.it.html">Persone</a>
+        </td>
+        <td class="banner-right"></td>
+    </tr>
+</table>
+<!-- END TITLE BAR & NAVIGATION -->
+
+<div class="center">
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>Tor: Contribuisci</h2>
+<hr />
+<p>Questa traduzione non &egrave; stata controllata dagli sviluppatori di Tor 
+e da EFF. Pu&ograve; risultare non attuale o sbagliata. Il sito ufficiale di
+Tor &egrave; in Inglese, all'indirizzo http://tor.eff.org/</p>  
+<p>Necessit&agrave; presenti:</p>
+<ul>
+<li>Utenti come te per testare Tor, e permettere agli sviluppatori di 
+malfunzionamenti o nuovi modi di .</li>
+<li>Ti invitiamo a<a href="cvs/tor/doc/tor-doc.html#server">
+creare un server</a> per contribuire alla crescita della rete Tor.</li> 
+<li>Uno speciale bisogno di programmatori Windows per il debug della 
+piattaforma Windows.</li>
+<li>Avvia un <a href="cvs/tor/doc/tor-doc.html#hidden-service">Tor hidden
+service</a> e mettici dei contenuti interessanti all'interno..</li>
+<li>Informa i tuoi amici! Invitali a installare servers. Invitali a offrire
+hidden service. Invitali a passar parola ai loro amici.</li>
+<li>Cosa va documentato? Che cosa &egrave; mal documentato?</li>
+<li>Ti invitiamo a far parte dell'<a href="http://secure.eff.org/tor">Electronic
+Frontier Foundation</a>. Maggior numero di donazioni a EFF equivalgono a un 
+maggior grado di libert&agrave; nel mondo e incluso un ulteriore sviluppo 
+della rete Tor.</li>
+</ul>
+
+<p>We also have many project-lets: short-term or self-contained tasks
+that would be really helpful for somebody to tackle so we can keep
+focusing on Tor.</p>
+
+<p>Writing project-lets:</p>
+<ul>
+<li>Does somebody want to help maintain this website, or help with
+documentation, or help with managing our TODO and handling bug reports?</li>
+<li>We may have too <i>much</i> documentation. It's spread out too far
+and duplicates itself in places. Can you help us consolidate?</li>
+<li>Please help translate the web page and documentation
+into other languages. See the <a href="translation.html">translation guidelines</a> 
+if you want to help out. (Examples:
+<a href="http://membres.lycos.fr/geolemalin/anonymat_garantit.htm">French</a>
+, <a href="http://tor.freesuperhost.com/">Persian</a> and 
+<a href="http://www.gamevn.com/forum/showthread.php?t=103346">Vietnamese</a>.)</li>
+<li>Sistemare <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ">le FAQ Wiki</a>,
+e se conosci la risposta di qualche "FAQ senza risposta" non esitare a rispondere.</li>
+</ul>
+
+<p>Packaging project-lets:</p>
+<ul>
+<li>We're always looking for better Windows installers. Specifically,
+it would be great if somebody were to extend our NSIS-based windows
+installer to include FreeCap and Privoxy.</li>
+<li>Our OS X installer can't be uninstalled. Are there non-sucky OS X
+packagers that have uninstall capabilities? This is becoming an
+increasing bother.</li>
+</ul>
+
+<p>Organizational and application testing project-lets:</p>
+<ul>
+<li>We've got a list of potentially useful programs you might
+run with Tor <a href="users.html">here</a>. We also have the <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">Torify
+howto</a>. Can somebody try them out, simplify the explanations, expand
+them where they need it, document them better, and make them all-around
+more useful?</li>
+</ul>
+
+<p>Programmer and developer project-lets:</p>
+<ul>
+<li>We need somebody to code up a GUI or other
+controller program, to do configuration, etc. See our <a
+href="cvs/tor/doc/control-spec.txt">control specification</a> for details,
+and the <a href="cvs/tor/contrib/TorControl.py">rudimentary demonstration
+Python control script</a>. No, we don't know what the interface should look
+like.  You can use any license you want, but we'd recommend 3-clause BSD or
+maybe GPL; and we can only help out if your license conforms to the
+<a href="http://www.debian.org/social_contract.html#guidelines">DFSG</a>.</li>
+<li>Periodically people running servers tells us they want to have one
+BandwidthRate during some part of the day, and a different BandwidthRate
+at other parts of the day. Rather than coding this inside Tor, we should
+have a little script that speaks via the Tor Controller Interface, and does
+a setconf to change the bandwidth rate. Perhaps it would run out of cron,
+or perhaps it would sleep until appropriate times and then do its tweak
+(that's probably more portable). Can somebody write one for us and we'll
+put it inside <a href="cvs/tor/contrib/">tor/contrib/</a>?</li>
+<li>Does somebody want to do up a patch so we can be an NT service? Or
+so we can go in the system tray?</li>
+<li>A good (portable, fast, clean, BSD-free) asynchronous DNS library
+would be really handy, so we don't have to keep forking DNS worker
+threads to do gethostbyname.</li>
+<li>Can somebody take a look at Martin's <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/SquidProxy">Squid
+and Tor</a> page, and update it to reflect Tor's
+<a href="http://tor.eff.org/tor-manual.html">RedirectExit</a> config
+option?</li>
+<li>See the <a href="cvs/tor/doc/TODO">TODO</a> and
+<a href="cvs/tor/doc/HACKING">HACKING</a> files in the Tor distribution
+for more ideas.</li>
+</ul>
+
+<p>Security project-lets: We need people to attack the implementation
+and clean it up, and also to attack the design and experiment with
+defenses.</p>
+<ul>
+<li>We need somebody to <a
+href="http://en.wikipedia.org/wiki/Fuzz_testing">fuzz</a> Tor. Are there
+good libraries out there for what we want? What are the first steps? Win
+fame by getting credit when we put out a new release because of you!</li>
+<li>Website volume fingerprinting attacks (<a
+href="http://freehaven.net/anonbib/#back01">Back et al</a>, <a
+href="http://freehaven.net/anonbib/#hintz02">Hintz</a>).
+Defenses include a large cell size, <a
+href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>,
+etc. How well does each approach work?</li>
+<li>The end-to-end traffic confirmation attack. We need to study
+long-range dummies more, along with traffic shaping. How much traffic
+of what sort of distribution is needed before the adversary is confident
+he has won?</li>
+<li>It's not that hard to DoS Tor servers or dirservers. Are puzzles
+the right answer? What other practical approaches are there?</li>
+<li>What sensitive info squeaks by privoxy? Are other html scrubbers
+better?</li>
+</ul>
+
+<p>Designer project-lets:</p>
+<ul>
+<li>Server CPU load is high because clients keep asking to make new
+circuits, which uses public key crypto. Possible defenses include:
+using helper nodes (fixed entry nodes); rate limiting the number of
+create cells handled per second; having clients retry failed extensions
+a few times; implementing ssl sessions; and using hardware crypto when
+available.</li>
+<li>We fear we might not work very well when servers have asymmetric
+bandwidth. Because Tor has separate TCP connections between each hop,
+if the incoming bytes are arriving just fine and the outgoing bytes
+are all getting dropped on the floor, the TCP push-back mechanisms
+don't really transmit this information back to the incoming streams.
+Perhaps Tor should detect when it's dropping a lot of outgoing packets,
+and rate-limit incoming streams to regulate this itself? We need somebody
+who's good with networks to simulate this and help design solutions.</li>
+<li>Right now the hidden service descriptors are being stored on the
+dirservers, but any reliable distributed storage system would do (for
+example, a DHT that allows authenticated updates). Can somebody figure
+out our best options and decide if they're good enough?</li>
+<li>How hard is it to patch bind or a DNS proxy to redirect requests
+to Tor via our tor-resolve socks extension? What about to convert UDP
+DNS requests to TCP requests and send them through Tor?</li>
+<li>Tor provides anonymous connections, but if you want to keep multiple
+pseudonyms in practice (say, in case you frequently go to two websites
+and if anybody knew about both of them they would conclude it's you),
+we don't support that well yet. We should find a good approach and
+interface for handling pseudonymous profiles in Tor. See <a
+href="http://archives.seul.org/or/talk/Dec-2004/msg00086.html">this
+post</a> and <a
+href="http://archives.seul.org/or/talk/Jan-2005/msg00007.html">followup</a>
+for details.</li>
+</ul>
+
+<p>Drop by <a href="irc://irc.oftc.net/tor">the #tor IRC channel at irc.oftc.net</a> or
+<a href="mailto:tor-volunteer@freehaven.net">email
+tor-volunteer@freehaven.net</a> if you want to help out!</p>
+
+</div><!-- #main -->
+</div>
+  <div class="bottom" id="bottom">
+     <i><a href="mailto:tor-webmaster@freehaven.net" class="smalllink">Webmaster</a></i> -
+     $Id$
+  </div>
+</body>
+</html>
