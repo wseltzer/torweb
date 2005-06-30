@@ -65,26 +65,26 @@
 <li>Change server descriptors to declare log level.</li>
 <li>Add in support for clients to avoid servers that are too loggy based upon user configuration of acceptable log level.</li>
 <li>Separate node discovery from routing to allow neat extensions.  [Goodell?]</li>
-<li><ul>
+<ul>
 <li>Add SetServerStatus control event to adjust verified/running status of nodes.</li>
 <li>Add NoDownload config option to prevent regular directory downloads from happening.</li>
-</ul></li>
+</ul>
 <li>Choosing exit node by meta-data, e.g. country.</li>
 <li>Use cpuworker for more heavy lifting.</li>
-<li><ul>
+<ul>
 <li>Signing (and verifying) hidserv descriptors</li>
 <li>Signing (and verifying) intro/rend requests</li>
 <li>Signing (and verifying) router descriptors</li>
 <li>Signing (and verifying) directories</li>
 <li>Doing TLS handshake (this is very hard to separate out, though)</li>
-</ul></li>
+</ul>
 <li>Buffer size pool: allocate a maximum size for all buffers, not a maximum size for each buffer. So we don't have to give up as quickly (and kill the thickpipe!) when there's congestion.</li>
 <li>Add alternative versions of crypto.c and tortls.c to use libnss or libgcrypt+gnutls.</li>
 <li>Implement a way to stop falling back to forbidden ports when FascistFirewall blocks all good dirservers, if there is already a good, cached directory locally.</li>
 <li>Extend our NSIS-based windows installer to include FreeCap and/or Privoxy.</li>
 <li>Develop a way to handle OS X installation and uninstallation.</li>
 <li>Develop a GUI or other controller program, to do configuration, etc.  See our <a href="cvs/tor/doc/control-spec.txt">control specification</a> for details, and the rudimentary demonstration <a href="cvs/tor/contrib/TorControl.py">Python control script</a>. </li>
-<li><ul>
+<ul>
 <li>Design an interface for the control program. You can use any license you want, but we'd recommend 3-clause BSD or maybe GPL; and we can only help out if your license conforms to the <a href="http://www.debian.org/social_contract.html#guidelines">DFSG</a>.</li>
 <li>Periodically people running servers tells us they want to have one
     BandwidthRate during some part of the day, and a different
@@ -95,7 +95,7 @@
     until appropriate times and then do its tweak (that's probably more
     portable). Can somebody write one for us and we'll put it inside
     <a href="cvs/tor/contrib/">tor/contrib/</a>?</li>
-</ul></li>
+</ul>
 <li>Develop a way to become a Windows NT service.  </li>
 <li>Develop a systray app for Tor under MS Windows (all versions).  </li>
 <li>Integrate a good (portable, fast, clean, BSD-free) asynchronous DNS library so we don't have to keep forking DNS worker threads to do gethostbyname.</li>
@@ -104,40 +104,39 @@
 <h2>Documentation Challenges</h2>
 <ul>
 <li>Write server instructions for OSX and Windows operators.</li>
-<li>Improve and clarify the wiki entry on port forwarding. url?</li>
+<li>Improve and clarify the wiki entry on <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">port forwarding</a>.</li>
 <li>Document how to do exit node caching: tie into squid or other caching web proxy.</li>
 <li>Help maintain this website; code, content, css, overall layout,</li>
 <li>Help with documentation </li>
 <li>Help consolidate documentation.  We may have too much documentation.  It's spread out too far and duplicates itself in places. </li>
 <li>Help translate the web page and documentation into other languages.  See the <a href="translation.html">translation guidelines</a> if you want to help out. (Examples: <a href="http://membres.lycos.fr/geolemalin/anonymat_garantit.htm">French</a> , <a href="http://tor.freesuperhost.com/">Persian</a> and <a href="http://www.gamevn.com/forum/showthread.php?t=103346">Vietnamese</a>.)</li>
+<li>If you know a question that should go on <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ">the FAQ Wiki</a>, please
+add it and answer it.</li>
 <li>If you know the answer to a <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ">Wiki question</a> in the "unanswered FAQs" list, please answer it. </li>
 <li>Take a look at <a
 href="http://wiki.noreply.org/wiki/TheOnionRouter/SquidProxy">Martin's
 Squid and Tor page</a>, and update it to reflect Tor's <a
 href="http://tor.eff.org/tor-manual.html">RedirectExit</a> config option. </li>
 <li>Help translate the web page and documentation into other languages.  See the translation guidelines if you want to help out. (Examples: French , Persian and Vietnamese.)</li>
-<li>If you know a question that should go on <a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ">the FAQ Wiki</a>, please
-add it and answer it.</li>
 <li>Update website to include the country flags for each language into which the website has been translated.</li>
-<li>Replace the old tor-manual.html and replace it with the new tor stable manual.</li>
 </ul>
 
 <h2>Testing Challenges</h2>
 <ul>
 <li>Test out why some of our tor servers have dns resolvers that resolve
 unknown addresses to 127.0.0.1.</li>
-<li><ul>
+<ul>
 <li>Identify the servers that experience this issue. </li>
 <li>Identify how to cause and repair the issue in BIND, DJBDNS, or
 whatever daemon the misconfigured servers use.</li>
-</ul></li>
+</ul>
 <li>Figure out how to setup web proxy gateways to let normal people
 browse hidden services.  (This has been done a few times, but nobody has
 sent us code.)</li>
 <li>Investigate privoxy vs. freecap for win32 clients</li>
 <li>Evaluate, create, and <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">document a list of programs</a> that work with Tor.  </li>
-<li>Perform a security analysis of Tor with <a href="http://en.wikipedia.org/wiki/Fuzz_testing">fuzz</a>"fuzz"</a>. Determine if there good libraries out there for what we want. Win fame by getting credit when we put out a new release because of you!</li>
+<li>Perform a security analysis of Tor with <a href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>". Determine if there good libraries out there for what we want. Win fame by getting credit when we put out a new release because of you!</li>
 <li>Website volume fingerprinting attacks (<a href="http://freehaven.net/anonbib/#back01">Back et al</a>, <a href="http://freehaven.net/anonbib/#hintz02">Hintz</a>). Defenses include a large cell size, <a href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>, etc. How well does each approach work?</li>
 <li>The end-to-end traffic confirmation attack. We need to study
 long-range dummies more, along with traffic shaping. How much traffic of
@@ -151,14 +150,14 @@ privoxy.</li>
 <h2>Research Challenges</h2>
 <ul>
 <li>Arranging membership management for independence.</li>
-<li><ul>
+<ul>
 <li>Sybil defenses without having a human bottleneck.</li>
 <li>How to gather random sample of nodes.</li>
 <li>How to handle nodelist recommendations.</li>
 <li>Consider incremental switches: a p2p tor with only 50 users has
 different anonymity properties than one with 10k users, and should be
 treated differently.</li>
-</ul></li>
+</ul>
 <li>Incentives to relay; incentives to exit.</li>
 <li>Allowing dissidents to relay through Tor clients.</li>
 <li>Experiment with mid-latency systems. How do they impact usability,
@@ -171,7 +170,7 @@ treated differently.</li>
 <li>Attacking freenet-gnunet/timing-delay-randomness-arguments.</li>
 <li>Is exiting from the middle of the circuit always a bad idea?</li>
 <li>IPv6 support (For exit addresses)</li>
-<li><ul>
+<ul>
 <li>Spec issue: if a resolve returns an IP4 and an IP6 address,
       which to use?</li>
 <li>Add to exit policy code</li>
@@ -180,7 +179,7 @@ treated differently.</li>
       a generalize address struct.</li>
 <li>Change relay cell types to accept new addresses.</li>
 <li>Add flag to serverdescs to tell whether IPv6 is supported.</li>
-</ul></li>
+</ul>
 <li>patch tsocks with our current patches + gethostbyname, getpeername,
 etc.</li>
 <li>make freecap (or whichever) do what we want.</li>
