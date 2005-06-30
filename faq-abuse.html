@@ -51,22 +51,15 @@ break laws, they already have lots of options available that provide
 <em>better</em> privacy than Tor provides. They can steal cell phones,
 use them, and throw them in a ditch; they can crack into computers
 in Korea or Brazil and use them to launch abusive activities; they
-can spread viruses that take control of literally millions of Windows
-machines around the world. </p>
+can use spyware, viruses, and other techniques to take control of
+literally millions of Windows machines around the world. </p>
 
 <p>Tor aims to provide protection for ordinary people who want to follow
 the law. Only criminals have privacy right now; we need to fix that. </p>
 
-<a id="Tradeoff"></a>
-<h3><a class="anchor" href="#Tradeoff">Isn't it just a tradeoff: accepting the bad uses for the good ones?</a></h3>
-
-<p>No, we don't think that's how it works in the case of Tor. </p>
-
-<p>There are lots of ways to get anonymity on the net, some legal and
-some illegal. As we explained above, many of the illegal approaches
-can provide stronger anonymity than Tor can provide, because they can
-control literally millions of computers via spyware, viruses, and other
-techniques. </p>
+<p>Some advocates of anonymity explain that it's just a tradeoff ---
+accepting the bad uses for the good ones --- but we don't think that's
+how it works in the case of Tor. </p>
 
 <p>Criminals and other bad people have the motivation to learn how to
 get good anonymity, and many have the motivation to pay well to achieve
@@ -98,10 +91,6 @@ for every byte that the Tor network will send to your destination. So
 in general, attackers who control enough bandwidth to launch an effective
 DDoS attack can do it just fine without Tor. </p>
 
-<p>And if this argument doesn't convince you, go try Tor and see how
-much aggregate throughput you can eke out of it, then come back to us
-if you're still worried. </p>
-
 <a id="WhatAboutSpammers"></a>
 <h3><a class="anchor" href="#WhatAboutSpammers">What about spammers?</a></h3>
 
@@ -113,8 +102,13 @@ allow outgoing mails; but that individual could just set up an open mail
 relay too, independent of Tor. In short, Tor isn't useful for spammers,
 because nearly all Tor servers refuse to deliver their mail. </p>
 
-<p>The complex answer: Even if the above were not true, spammers are
-already doing great without Tor. They
+<p>Of course, it's not all about delivering the mail. Spammers can use
+Tor to connect to open HTTP proxies (and from there to SMTP servers),
+to connect to badly written mail-sending CGI scripts, and to control
+their botnets.
+</p>
+
+<p>The better answer: Spammers are already doing great without Tor. They
 have armies of compromised computers that do their spamming. The added
 complexity of getting new software installed and configured, and doing
 Tor's public key operations, etc, makes it not economically worthwhile
@@ -129,8 +123,9 @@ policies are propagated to the client via the directory, so clients
 will automatically avoid picking exit nodes that would refuse to exit
 to their intended destination. </p>
 
-<p>This way each server can decide the services he wants to allow
-connections to, based on abuse potential and his own situation. </p>
+<p>This way each server can decide the services, hosts, and networks
+he wants to allow connections to, based on abuse potential and his own
+situation. </p>
 
 <a id="HowMuchAbuse"></a>
 <h3><a class="anchor" href="#HowMuchAbuse">Does Tor get much abuse?</a></h3>
@@ -153,10 +148,11 @@ currently. </p>
 
 <p>If you run a Tor server that allows exit connections (such as the
 default exit policy), it's probably safe to say that you will eventually
-hear from somebody. Abuse complaints can come in a variety of forms. The
-main ones so far have taken the following form: </p>
+hear from somebody. Abuse complaints can come in a variety of forms. Abuse
+complaints may come in a variety of forms. For example: </p>
 <ul>
-<li>Somebody connects to hotmail, and sends a criminal mail somewhere. The
+<li>Somebody connects to hotmail, and sends a ransom note to a
+company. The
 FBI sends you a polite email, you explain that you run a Tor server,
 and they say 'oh well' and leave you alone. [Port 80]</li>
 <li>Somebody tries to get you shut down by using Tor to connect to google
@@ -166,11 +162,10 @@ your ISP about how you're destroying the world. [Port 80]</li>
 himself. Your ISP gets polite mail about how your computer has been
 compromised; and/or your computer gets ddosed. [Port 6667]</li>
 <li>Somebody uses Tor to download a Vin Diesel movie, and
-your ISP gets a DMCA takedown notice. According to our lawyers
-(and this convinced the Harvard general counsel), your ISP can
-totally ignore this notice with no liability problems. See EFF's <a
-href="http://tor.eff.org/eff/tor-dmca-response.html">Tor DMCA
-Response Template</a>. [Arbitrary ports]</li>
+your ISP gets a DMCA takedown notice. See EFF's <a
+href="http://tor.eff.org/eff/tor-dmca-response.html">Tor DMCA Response
+Template</a>, which explains to your ISP why they can probably ignore
+the notice without any liability. [Arbitrary ports]</li>
 </ul>
 
 <p>You might also find that your Tor server's IP is blocked from accessing
@@ -180,12 +175,15 @@ exit policies. (If you have a spare IP not used for other activities,
 you might consider running your Tor server on it.) For example, </p>
 
 <ul>
-<li>Wikipedia is currently blocking many Tor server IPs from writing
-(reading still works), because they haven't figured out internally how
-to deal with the fact that they want to provide open access but they
-also have no ways to control abuse to their website. We're working with
-them to resolve this.</li>
-<li>It seems that SORBS is putting some Tor server IPs on their email
+<li>Because of a few cases of anonymous jerks messing with its web
+pages, Wikipedia is currently blocking many Tor server IPs from writing
+(reading still works). We're talking to Wikipedia about how they might
+control abuse while still providing access to anonymous contributors,
+who often have hot news or inside info on a topic but don't want to risk
+revealing their identities when publishing it (or don't want to reveal
+to local observers that they're accessing Wikipedia). Slashdot is also
+in the same boat.</li>
+<li>SORBS is putting some Tor server IPs on their email
 blacklist as well. They do this because they passively detect whether your
 server connects to certain IRC networks, and they conclude from this that
 your server is capable of spamming. We're working with them to teach them
@@ -252,11 +250,13 @@ to unblock exit nodes that have been blocked inadvertently. </p>
 
 <p>Even though <a href="#WhatAboutSpammers">Tor isn't useful for
 spamming</a>, some over-zealous blacklisters seem to think that all
-open networks like Tor should be boycotted. They don't understand how
-Tor works (e.g. that it has exit policies), and don't seem to care to
-understand it. If your server administrators decide to make use of these
+open networks like Tor are evil --- they attempt to strong-arm network
+administrators on policy, service and routing issues, and then extract
+ransoms from victims. </p>
+
+<p>If your server administrators decide to make use of these
 blacklists to refuse incoming mail, you should have a conversation with
-them and explain how Tor works. </p>
+them and explain about Tor and Tor's exit policies. </p>
 
 <a id="Bans"></a>
 <h3><a class="anchor" href="#Bans">I want to ban the Tor network from my service.</a></h3>
