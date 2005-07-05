@@ -1,4 +1,4 @@
-<!-- revision 0.01 -->
+<!-- revision 0.02 -->
 <!-- biofa@circolab.net -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -46,31 +46,44 @@ Tor &egrave; in Inglese, all'indirizzo http://tor.eff.org/</p>
 <p>Tor viene distribuito come <a href="http://www.fsf.org/">Free Software</a>
 sotto le <a href="cvs/tor/LICENSE">3-clausole della licenza BSD</a>.</p>
 
-<p>L'ultima release la trovi disponibile per il <a href="dist/">download
-directory</a>. L'ultima release stablie &egrave; la <b>0.1.0.11</b>.
+<p>L'ultima release la trovi disponibile per il download <a href="dist/">
+qui</a>. L'ultima release stablie &egrave; la <b>0.1.0.11</b>, e quella in
+sviluppo &egrave; la <b>0.1.1.1-alpha</b>.
 Tor gira su Linux, BSD, OS X, Windows, Solaris, e altri ancora.</p>
 <ul>
 <li><b>Windows</b> installer:
 <a href="dist/win32/tor-0.1.0.11-win32.exe">0.1.0.11</a> (<a
-href="dist/win32/tor-0.1.0.11-win32.exe.asc">sig</a>)
-Assicurati di leggere le <a
+href="dist/win32/tor-0.1.0.11-win32.exe.asc">sig</a>),
+<!--<a href="dist/win32/tor-0.1.1.1-alpha-win32.exe">0.1.1.1-alpha</a> (<a
+href="dist/win32/tor-0.1.1.1-alpha-win32.exe.asc">sig</a>). -->
+Si raccomanda la lettura delle <a
 href="cvs/tor/doc/tor-doc-win32.html">istruzioni per Win32</a>.</li>
 <li><b>Mac OS X</b> installer:
 <a href="dist/osx/Tor 0.1.0.11 Bundle.dmg">0.1.0.11</a> (<a
-href="dist/osx/Tor 0.1.0.11 Bundle.dmg.asc">sig</a>)
-Assicurati di leggere le <a
+href="dist/osx/Tor 0.1.0.11 Bundle.dmg.asc">sig</a>),
+<!--<a href="dist/osx/Tor 0.1.1.1-alpha Bundle.dmg">0.1.1.1-alpha</a> (<a
+href="dist/osx/Tor 0.1.1.1-alpha Bundle.dmg.asc">sig</a>).-->
+Si raccomanda la lettura delle <a
 href="cvs/tor/doc/tor-doc-osx.html">istruzioni per OS X</a>.</li>
-<li><b>Red Hat Linux</b> package:
+<li>pacchetto <b>Red Hat Linux</b>:
 <a href="dist/rpm/tor-0.1.0.11-tor.0.fc1.i386.rpm">0.1.0.11 RPM</a> (<a
 href="dist/rpm/tor-0.1.0.11-tor.0.fc1.i386.rpm.asc">sig</a>),
 <a href="dist/rpm/tor-0.1.0.11-tor.0.fc1.src.rpm">0.1.0.11 SRPM</a> (<a
-href="dist/rpm/tor-0.1.0.11-tor.0.fc1.src.rpm">sig</a>)
+href="dist/rpm/tor-0.1.0.11-tor.0.fc1.src.rpm.asc">sig</a>),
+<!--
+<a href="dist/rpm/tor-0.1.1.1.alpha-tor.0.fc1.i386.rpm">0.1.1.1-alpha RPM</a> (<a
+href="dist/rpm/tor-0.1.1.1.alpha-tor.0.fc1.i386.rpm.asc">sig</a>),
+<a href="dist/rpm/tor-0.1.1.1.alpha-tor.0.fc1.src.rpm">0.1.1.1-alpha SRPM</a> (<a
+href="dist/rpm/tor-0.1.1.1.alpha-tor.0.fc1.src.rpm.asc">sig</a>)-->
 </li>
-<li>Ultimi sorgenti stabili: <a href="dist/tor-0.1.0.11.tar.gz">0.1.0.11</a>
-(<a href="dist/tor-0.1.0.11.tar.gz.asc">sig</a>).
-You will <a href="http://www.monkey.org/~provos/libevent/">need
-libevent</a>. Se ti senti coraggioso puoi provare a compilarlo da sorgente su 
-Windows, ma ricordati che necessita di libevent 1.0c o successivi.</li>
+<li>Ultima sorgente tarballs: <a href="dist/tor-0.1.0.11.tar.gz">0.1.0.11</a>
+(<a href="dist/tor-0.1.0.11.tar.gz.asc">sig</a>),
+<!--<a href="dist/tor-0.1.1.1-alpha.tar.gz">0.1.1.1-alpha</a>
+(<a href="dist/tor-0.1.1.1-alpha.tar.gz.asc">sig</a>).-->
+Ti servir&agrave; la <a href="http://www.monkey.org/~provos/libevent/">
+libevent</a>. Se sei cos&igrave; coraggioso da provare la compilazione dai 
+sorgenti con Windows, avrai bisogno di libevent 1.0c o successiva. 
+</li>
 </ul>
 
 <p>Le istruzioni generali per installare e configurare Tor le trovi <a
@@ -87,76 +100,11 @@ entry</a> spiega come verificare l'autenticit&agrave; del pacchetto che scaricat
 
 <hr />
 
-<p>I <b>Pacchetti Debian</b> sono stati aggiunti al set di pacchetti 
-della unstable (sid) e della testing (etch) <a 
-href="http://packages.debian.org/tor">Debian package</a>.
-Se stai usando la stable (sarge) o la oldstable (woody), devi prima 
-aggiungere queste linee al tuo <code>/etc/apt/sources.list</code>:</p>
+<p><b>Pacchetti Debian</b>: <tt>apt-get install tor</tt> (<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorOnDebian">guida per Sarge alla versione sperimentale di Tor</a>)
 
-<ul>
-<li><p>per sarge (stable):</p>
-<p><code>
-deb http://mirror.noreply.org/pub/tor sarge main<br />
-deb-src http://mirror.noreply.org/pub/tor sarge main
-</code></p></li>
-<li><p>o per woody (oldstable):</p>
-<p><code>
-deb http://mirror.noreply.org/pub/tor woody main<br />
-deb-src http://mirror.noreply.org/pub/tor woody main
-</code></p></li>
-</ul>
-
-<p>Per installare il pacchetto, usa i seguenti comandi:</p>
-
-<p><code>
-$ apt-get update<br />
-$ apt-get install tor
-</code></p>
-
-<p>I Pacchetti per la versione Tor di <b>sviluppo</b> sono tuttavia disponibili. Per installarli,
-iaggiungi le seguenti righe a <code>/etc/apt/sources.list</code>:</p>
-
-<ul>
-<li><p>Per la sid</p>
-<p><code>
-deb http://mirror.noreply.org/pub/tor experimental main<br />
-deb-src http://mirror.noreply.org/pub/tor experimental main
-</code></p></li>
-<li><p>o per la sarge (stable)</p>
-<p><code>
-deb http://mirror.noreply.org/pub/tor experimental-sarge main<br />
-deb-src http://mirror.noreply.org/pub/tor experimental-sarge main
-</code></p></li>
-<li><p>e nel caso tu stia ancora in woody (oldstable) aggiungi queste righe:</p>
-<p><code>
-deb http://mirror.noreply.org/pub/tor experimental-woody main<br />
-deb-src http://mirror.noreply.org/pub/tor experimental-woody main
-</code></p></li>
-</ul>
-
-<p>Quindi dai questa sequenza di comandi:</p>
-
-<p><code>
-$ apt-get update<br />
-$ apt-get install -t experimental tor
-</code></p>
-<p>o semplicemente</p>
-<p><code>
-$ apt-get update<br />
-$ apt-get install tor
-</code></p>
-<p>dipende da quali righe hai aggiunto.</p>
-
-<p>I Paccchetti per architetture diverse dalla i386 possono essere 
-compilati dai sorgenti abbastanza facilmente.
-Prendetevela con <a href="mailto:weasel@debian.org">weasel</a> se manca la 
-documentazione a riguardo.</p>
-<p>
-Puoi rovare una guida per il chroot di Tor sul <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorInChroot">Wiki</a>. </p>
 <hr />
 
 <p><b>FreeBSD</b>: <!--<tt>portinstall -s security/tor</tt> -->
-La versione dei ports &egrave; obsoleta, installa da sorgente.
 </p>
 
 <p><b>OpenBSD</b>: <tt>cd /usr/ports/net/tor &amp;&amp; make &amp;&amp; make install</tt> (<a href="http://wiki.noreply.org/noreply/TheOnionRouter/OpenbsdChrootedTor">guida al chroot</a>)</p>
@@ -186,8 +134,24 @@ Meulie.net (<a href="http://tor.meulie.net/">http</a>)
 </p>
 
 <hr />
+<h2>Releases per Testing</h2>
+
+<p>2005-06-28:
+Tor 0.1.1.1-alpha has a <a
+href="http://archives.seul.org/or/talk/Jun-2005/msg00252.html">revised
+controller protocol (version 1) that uses ascii rather than binary</a>.
+</p>
+
+<hr />
 
 <h2>Releases Stabili</h2>
+
+<p>2005-06-30:
+Tor 0.1.0.11 fixes a <a
+href="http://archives.seul.org/or/announce/Jun-2005/msg00001.html">security
+problem where servers would disregard their exit policies in some
+circumstances</a>.
+</p>
 
 <p>2005-06-12:
 Tor 0.1.0.10 features <a
