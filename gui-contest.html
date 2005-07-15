@@ -49,11 +49,13 @@ CONSIDERED WRONG.</p>
 <p>
 Tor is a decentralized network of computers on the Internet that increases
 privacy in Web browsing, instant messaging, and other applications. We
-estimate there are some 20,000 Tor users currently, routing their traffic
-through about 150 volunteer Tor servers on five continents. However, Tor's
+estimate there are some 50,000 Tor users currently, routing their traffic
+through about 250 volunteer Tor servers on five continents. However, Tor's
 current user interface approach --- running as a daemon in the background
 --- does a poor job of communicating network status and security levels
-to the user. The Tor project, affiliated with the
+to the user.
+
+The Tor project, affiliated with the
 <a href="http://www.eff.org/">Electronic Frontier Foundation</a>, is
 running a UI contest to develop a vision of how Tor can
 work in a user's everyday anonymous browsing experience. Some of the
@@ -68,7 +70,7 @@ applications are using Tor safely.
 <h3>Goals</h3>
 
 <p>Contestants will produce a work of <a
-href="http://www.fsf.org/licensing/essays/free-sw.html">Free software</a>
+href="http://www.fsf.org/licensing/essays/free-sw.html">Free Software</a>
 that will
 provide a user interface to the Tor system by way of the <a
 href="http://tor.eff.org/cvs/tor/doc/control-spec.txt">Tor Controller
@@ -79,27 +81,31 @@ anonymous browsing experience.</p>
 
 <p>Successful entries will:</p>
 <ul>
-<li>Allow the user to fully configure Tor without directly editing
-configuration files.</li>
+<li>Allow the user to fully configure Tor without directly searching
+for and opening text files.</li>
 <li>Learn about the current state of their Tor connection (including
 which servers they are connected to, and how many of them), and find
-out whether and how any of their applications are using it.</li>
+out whether any of their applications are using it.</li>
 <li>Make alerts and error conditions visible on screen.</li>
-<li>Run on at least one of Windows, Linux, and OS/X, on a
+<li>Run on at least one of Windows, Linux, and OS X, on a
 not-unusually-configured consumer-level machine.</li>
 </ul>
 
-<p>In addition, entries may a) Provide detailed information about which
+<p>In addition, it may:</p>
+<ul>
+<li>Provide detailed information about which
 applications, ports, or packets are (or are not!) passing through Tor,
-including accounting for both Tor- and non-Tor traffic; and b) Provide
-additional statistics about the Tor connection.</p>
+including accounting for both Tor- and non-Tor traffic</li>
+<li>Provide
+additional statistics about the Tor connection.</li>
+</ul>
 
-<p>Examples include:</p>
+<p>including:</p>
 <ul>
 <li>How much bandwidth am I using?</li>
 <li>What servers do I know about on the network? Where are they? How
 available are they?</li>
-<li>Provide an interface for controlling Tor connections: "show me
+<li>Provide an interface for controlling Tor paths: "show me
 the network from Africa by way of Asia". Think of the global satellite
 map from the movie <i>Sneakers</i>.</li>
 <li>Configure other running applications to use Tor (for example,
@@ -108,7 +114,7 @@ application configurations).</li>
 <li>Provide an elegant installer for Tor, the GUI application, and
 other supporting applications.</li>
 <li>Provide meaningful defaults for a good Tor experience.</li>
-<li>Implement Privoxy-like functionality -- that is, not just paying
+<li>Provide application-level anonymity -- that is, not just paying
 attention to transport anonymity on the level of Tor, but also paying
 attention to the anonymity of the http headers, cookies, etc.</li>
 </ul>
@@ -116,23 +122,96 @@ attention to the anonymity of the http headers, cookies, etc.</li>
 <hr />
 <h3>Contest categories</h3>
 
-<p>Three categories of interface will be awarded:</p>
+<p>
+The design contest will proceed in two stages: first sketches and
+then code. For each stage, our panel of judges will recognize the best
+submissions. All qualifying entries will receive an EFF Tor t-shirt,
+subject to availability. The best functional implementations will be
+published on the Tor website.
+</p>
+
+<p><b>Sketches:</b>
+the goal of this stage is to produce a mock-up of a functioning interface,
+with graphical elements that can be used by programmers and design
+documents describing how the interface should function.</p>
+
+<p>
+A qualifying sketch will present an informal specification for a
+design. That is, it will present with some degree of thoroughness all
+of the major interfaces that we might expect to encounter, all of the
+major functionality for the interface, and a reasonable story about
+how it would be integrated into currently-existing tools (if, indeed,
+it would be). An example, with more detail than we would require, is
+<a href="http://ui.netbeans.org/docs/ui/junits/promo_f.html">the NetBeans
+UI for JUnit</a>. Note that it walks through multiple interfaces,
+highlighting the features and functions of the various buttons.
+</p>
+
 <ul>
-<li><b>Best usability</b> will be awarded to the application
-that provides the most unobtrusive Tor experience while still covering
-all criteria (working, perhaps, on the "no news is good news" theory).</li>
-<li><b>Most featureful interface</b> will be awarded to the application that
-provides usable, clear access to the most aspects of the Tor system,
-covering many or most of the goals above.</li>
-<li><b>Most flexible</b> will be awarded to the best system that runs smoothly
-on all three of Windows, Linux, and Mac OS X; extra points will be awarded
-for additional systems.</li>
+<li><b>Most featureful interface</b> will be awarded to the graphic design
+that would provide usable, clear access to the most aspects of the Tor
+system, covering many or most of the categories on the "additional"
+list.</li>
+<li><b>Most usable experience</b> will be awarded to the graphic
+design that would provide the most unobtrusive Tor experience while still
+covering all criteria (working, perhaps, on the "no news is good news"
+theory).</li>
+<li><b>Clearest implementation guidance</b> will be awarded to the
+graphic design that provides the cleanest package of graphic elements
+and design documentation to aid would-be implementers.</li>
 </ul>
 
-<p>We may decide to award other awards as the entries deserve.</p>
+<p><b>Code:</b> the goal of this stage is to produce a working
+implementation. You may use any of the sketches, graphics, or ideas from
+the first stage.</p>
+
+<p>
+An acceptable entry will be a package of free software that builds and
+runs. It can be a standalone application, or it can act as an extension
+or plugin to other broadly-available free software. The entry will
+demonstrate the points in the judging section: that is, it will be able
+to control, display, and maintain awareness as discussed above.
+</p>
+
+<ul>
+<li><b>Most featureful interface</b> will be awarded to the application
+that provides usable, clear access to the most aspects of the Tor system,
+covering many or most of the categories on the "additional" list.</li>
+<li><b>Most usable experience</b> will be awarded to the
+application that provides the most unobtrusive Tor experience while
+still covering all criteria (working, perhaps, on the "no news is good
+news" theory).</li>
+<li><b>Most flexible</b> will be awarded to the best system that runs
+smoothly on all three of Windows, Linux, and OS X; extra points will be
+awarded for additional systems.</li>
+</ul>
+
+<p>We reserve the right to award other awards as the entries deserve.</p>
 
 <hr />
-<h3>Judging criteria</h3>
+<h3>How to Submit</h3>
+
+<p>Submissions for phase one (sketches) should come as:</p>
+<ul>
+<li>foo<li>
+</ul>
+
+<p>Submissions for phase two (code) should come as:</p>
+
+<ul>
+<li>Source code, with appropriate makefiles or documentation explaining
+how to build it. Must be licensed under a free/open source license, as
+defined by <a href="http://www.opensource.org/licenses/">OSI</a> or <a
+href="http://www.debian.org/social_contract#guidelines">DFSG</a>.  See <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/ContestFAQ#DefineFree">this
+FAQ entry</a> for clarification.</li>
+<li>Compiled binaries or bytecodes for at least one platform of choice.</li>
+<li>A design document providing an overview of what major functions
+to look for and what functions were implemented.</li>
+</ul>
+
+<hr />
+<h3>Criteria</h3>
 
 <p>Awards will be granted on the basis of (in rough preference order):</p>
 
@@ -150,6 +229,33 @@ of using the network and also in terms of security decisions?</li>
 <li>Installation experience</li>
 </ul>
 
+<hr />
+<h3>Judges</h3>
+
+<p>Judging will be led by a panel of N prominent specialists in usability
+and security (to be announced).</p>
+
+<hr />
+<h3>Timeline</h3>
+
+<ul>
+<li>Stage 1 deadline (sketches): October 31.</li>
+<li>Stage 1 judging: November 31.</li>
+<li>Stage 2 deadline (code): January 31, 2006.</li>
+
+<p>Winners will be announced at the SOUPS 2006 conference.</p>
+
+<hr />
+<h3>Questions and clarifications</h3>
+
+<p>We will have a public website and wiki up shortly for FAQ entries,
+clarifications, etc.</p>
+
+
+
+
+
+<hr />
 <hr />
 <h3>Testing criteria</h3>
 
@@ -169,59 +275,18 @@ that the network has an error?</li>
 <hr />
 <h3>Submissions</h3>
 
-<p>Submissions should come as:</p>
-
-<ul>
-<li>Source code, with appropriate makefiles or documentation explaining
-how to build it. Must be licensed under a free/open source license, as
-defined by <a href="http://www.opensource.org/licenses/">OSI</a> or <a
-href="http://www.debian.org/social_contract#guidelines">DFSG</a>.  See <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/ContestFAQ#DefineFree">this
-FAQ entry</a> for clarification.</li>
-<li>Compiled binaries or bytecodes for at least one platform of choice.</li>
-<li>A design document providing an overview of what major functions
-to look for and what functions were implemented.</li>
-</ul>
-
 <hr />
-<h3>Judges</h3>
+<h3>Technical Notes</h3>
 
-<p>Judging will be led by a panel of five prominent specialists in usability
-and security (to be announced).</p>
+<p>Shortly before phase two begins, the Tor developers will release
+a canonical code version. This is the version that will be used for
+judging the contest; please ensure that you use this version. Bugfixes
+to this version will be announced to the contest web site.</p>
 
-<hr />
-<h3>Prizes</h3>
+<p>The Tor developers will also release test rigs (libraries) in both Java
+and Python that demonstrate Tor's controller protocol. Code submissions
+may be able to save a lot of time by using this code as a skeleton.</p>
 
-<p>TBA, hopefully including a <a
-href="http://slimdevices.com/">Squeezebox</a> for top winners.</p>
-
-<hr />
-<h3>Timeline</h3>
-
-<p>The contest will be announced on or around June 1, 2005. We expect
-the contest deadline to be on or around January 15, 2006, with judging
-complete by March 15, 2006.</p>
-
-<hr />
-<h3>Technical notes</h3>
-
-<p>Shortly before the contest begins, Tor will release a canonical code
-version. This is the version that will be used for judging the contest;
-please ensure that you use this version. Bugfixes to this version will
-be announced to the contest web site.</p>
-
-<p>Tor will also release test rigs in both Java and Python that demonstrate
-Tor's controller protocol. It is acceptable to build entrants using this
-code as a skeleton.</p>
-
-<p>The test rig will show all of the basic functionality that is necessary
-for the minimal features of the contest.</p>
-
-<hr />
-<h3>Questions and clarifications</h3>
-
-<p>We will have a public website and wiki up shortly for FAQ entries,
-clarifications, etc.</p>
 
   </div><!-- #main -->
 </div>
