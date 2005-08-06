@@ -57,8 +57,8 @@ literally millions of Windows machines around the world. </p>
 <p>Tor aims to provide protection for ordinary people who want to follow
 the law. Only criminals have privacy right now; we need to fix that. </p>
 
-<p>Some advocates of anonymity explain that it's just a tradeoff ---
-accepting the bad uses for the good ones --- but we don't think that's
+<p>Some advocates of anonymity explain that it's just a tradeoff &mdash;
+accepting the bad uses for the good ones &mdash; but we don't think that's
 how it works in the case of Tor.
 Criminals and other bad people have the motivation to learn how to
 get good anonymity, and many have the motivation to pay well to achieve
@@ -93,25 +93,27 @@ DDoS attack can do it just fine without Tor. </p>
 <a id="WhatAboutSpammers"></a>
 <h3><a class="anchor" href="#WhatAboutSpammers">What about spammers?</a></h3>
 
-<p>The simple answer: The default Tor exit policy rejects all outgoing
+<p>First of all, the default Tor exit policy rejects all outgoing
 port 25 (SMTP) traffic. So sending spam mail through Tor isn't going to
 work by default. It's possible that some server operators will enable
 port 25 on their particular exit node, in which case that computer will
 allow outgoing mails; but that individual could just set up an open mail
-relay too, independent of Tor. In short, Tor isn't useful for spammers,
-because nearly all Tor servers refuse to deliver their mail. </p>
+relay too, independent of Tor. In short, Tor isn't useful for spamming,
+because nearly all Tor servers refuse to deliver the mail. </p>
 
 <p>Of course, it's not all about delivering the mail. Spammers can use
-Tor to connect to open HTTP proxies (and from there to SMTP servers),
-to connect to badly written mail-sending CGI scripts, and to control
-their botnets.
+Tor to connect to open HTTP proxies (and from there to SMTP servers); to
+connect to badly written mail-sending CGI scripts; and to control their
+botnets &mdash; that is, to covertly communicate with armies of
+compromised computers that deliver the spam.
 </p>
 
-<p>The better answer: Spammers are already doing great without Tor. They
-have armies of compromised computers that do their spamming. The added
-complexity of getting new software installed and configured, and doing
-Tor's public key operations, etc, makes it not economically worthwhile
-for them to use Tor. </p>
+<p>
+This is a shame, but notice that spammers are already doing great
+without Tor. Also, remember that many of their more subtle communication
+mechanisms (like spoofed UDP packets) can't be used over Tor, because
+it only transports correctly-formed TCP connections.
+</p>
 
 <a id="ExitPolicies"></a>
 <h3><a class="anchor" href="#ExitPolicies">How do Tor exit policies work?</a></h3>
@@ -199,7 +201,7 @@ network operators try to keep the troll off of their network. </p>
 
 <p>This response underscores a fundamental flaw in IRC's security model:
 they assume that IP addresses equate to humans, and by banning the
-IP address they can ban the human. In reality this is not the case --
+IP address they can ban the human. In reality this is not the case &mdash;
 many such trolls routinely make use of the literally millions of open
 proxies and compromised computers around the Internet. The IRC networks
 are fighting a losing battle of trying to block all these nodes,
@@ -249,7 +251,7 @@ to unblock exit nodes that have been blocked inadvertently. </p>
 
 <p>Even though <a href="#WhatAboutSpammers">Tor isn't useful for
 spamming</a>, some over-zealous blacklisters seem to think that all
-open networks like Tor are evil --- they attempt to strong-arm network
+open networks like Tor are evil &mdash; they attempt to strong-arm network
 administrators on policy, service, and routing issues, and then extract
 ransoms from victims. </p>
 
@@ -272,7 +274,7 @@ against data-gathering corporations like Doubleclick while going about
 their normal  activities. Some Tor users may be legitimately connecting
 to your service right now to carry on normal activities. You need to
 decide whether banning the Tor network is worth losing the contributions
-of these users, as well as potential future such users. </p>
+of these users, as well as potential future legitimate users. </p>
 
 <p>At this point, you should also ask yourself what you do about other
 services that aggregate many users behind a few IP addresses. Tor is
@@ -280,16 +282,17 @@ not so different from AOL in this respect.</p>
 
 <p>Lastly, please remember that Tor servers have individual exit
 policies. Many Tor servers do not allow exiting connections at
-all. Many of those that do allow some exit connections probably already
+all. Many of those that do allow some exit connections might already
 disallow connections to
 your service. When you go about banning nodes, you should parse the
 exit policies and only block the ones that allow these connections;
 and you should keep in mind that exit policies can change (as well as
 the overall list of nodes in the network). </p>
 
-<p>If you really want to do this, there is a
-python script to parse the Tor directory <a
-href="/cvs/tor/contrib/exitlist">here</a>. </p>
+<p>If you really want to do this, we provide a
+<a href="/cvs/tor/contrib/exitlist">Python script to parse the Tor
+directory</a>.
+</p>
 
 <a id="TracingUsers"></a>
 <h3><a class="anchor" href="#TracingUsers">I have a compelling reason to trace a Tor user. Can you help?</a></h3>
