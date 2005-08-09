@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Tor: GUI Contest</title>
+  <meta name="Author" content="Roger Dingledine, Elly Millican" />
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+  <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+
+<body>
+
+<!-- TITLE BAR & NAVIGATION -->
+<div class="center">
+
+<table class="banner" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="banner-left"></td>
+        <td class="banner-middle">
+            <a href="/index.html">Home</a>
+          | <a href="/howitworks.html">How It Works</a>
+          | <a href="/download.html">Download</a>
+          | <a href="/documentation.html">Docs</a>
+          | <a href="/users.html">Users</a>
+          | <a href="/faq.html">FAQs</a>
+          | <a href="/volunteer.html">Volunteer</a>
+          | <a href="/developers.html" class="current">Developers</a>
+          | <a href="/research.html">Research</a>
+          | <a href="/people.html">People</a>
+        </td>
+        <td class="banner-right"></td>
+    </tr>
+</table>
+
+<!-- END TITLE BAR & NAVIGATION -->
+
+
+
+<div class="main-column">
+
+<!-- LEFT HAND MENU FOR GUI CONTEST PAGES -->
+<div class="guileft">
+<div class="guimenu">
+  
+  <div class="curveleft">
+  <div class="curveright">
+  &nbsp;
+  </div>
+  </div>
+
+<div class="guimenuinner">
+<h1>Tor GUI Contest</h1>
+
+
+<a class="on" href="index.html">Overview & Goals</a>
+<a href="categories.html">Contest Categories</a>
+<a href="submit.html">How to Submit</a>
+<a href="criteria.html">Criteria</a>
+<a href="technotes.html">Technical Notes</a>
+<a href="legal.html">Legal Notes</a>
+<h1>&nbsp;</h1>
+<a class="wiki" href="http://wiki.noreply.org/noreply/TheOnionRouter/ContestFAQ">Wiki/FAQ</a>
+</div>
+
+  <div class="curvebottomleft">
+  <div class="curvebottomright">
+  &nbsp;
+  </div>
+  </div>
+
+</div>
+</div>
+
+<h2>Tor: GUI Contest Overview</h2>
+
+
+<p>
+Tor is a decentralized network of computers on the Internet that increases
+privacy in Web browsing, instant messaging, and other applications. We
+estimate there are some 50,000 Tor users currently, routing their traffic
+through about 250 volunteer Tor servers on five continents. However, Tor's
+current user interface approach &mdash; running as a service in the background
+&mdash; does a poor job of communicating network status and security levels
+to the user.
+</p>
+
+<p>
+The Tor project, affiliated with the
+<a href="http://www.eff.org/">Electronic Frontier Foundation</a>, is
+running a <b>UI contest</b> to develop a vision of how Tor can
+work in a user's everyday anonymous browsing experience. Some of the
+challenges include how to make alerts and error conditions visible on
+screen; how to let the user configure Tor to use or avoid certain routes
+or nodes; how to learn about the current state of a Tor connection,
+including which servers it uses; and how to find out whether (and which)
+applications are using Tor safely.
+</p>
+<br clear="all">
+
+<h2>Goals</h2>
+ <p>Contestants will produce a work of <a
+href="http://www.opensource.org/">Open Source Software</a>
+that will provide a user interface to the Tor system by way of the 
+<a href="/cvs/control/doc/howto.txt">Tor Controller Protocol</a>.</p>
+
+<p>We are looking for a vision of how Tor can work in a user's everyday
+anonymous browsing experience.</p>
+
+<p>Entries will:</p>
+<ul>
+<li>Allow the user to fully configure Tor rather than manually searching
+for and opening text files.</li>
+<li>Let users learn about the current state of their Tor connection
+(including which servers they are connected to, and how many connections
+they have), and find out whether any of their applications are using
+it.</li>
+<li>Make alerts and error conditions visible to the user.</li>
+<li>Run on at least one of Windows, Linux, and OS&nbsp;X, on a
+not-unusually-configured consumer-level machine.</li>
+</ul>
+
+<p>In addition, they may:</p>
+<ul>
+<li>Provide detailed information about which
+applications, ports, or packets are (or are not!) passing through Tor,
+including accounting for both Tor- and non-Tor traffic.</li>
+<li>Provide
+additional statistics about the Tor connection.</li>
+<li>Give users more control over how their Tor behaves at certain times
+of day or in other contexts (like operating as a server).</li>
+</ul>
+
+<p>Some examples of useful features include:</p>
+<ul>
+<li>How much bandwidth is Tor using? How does this compare
+to the overall network traffic to/from the computer?</li>
+<li>Is there network traffic from ports or applications that the user
+intended to be anonymized?</li>
+<li>What Tor servers does the user know about on the network? Where are
+they? How available are they?</li>
+<li>An interface for displaying or controlling Tor paths:
+"show me the network from Africa by way of Asia". Think of the global
+satellite map from the movie <i>Sneakers</i>.</li>
+<li>Configure other running applications to use Tor (for example,
+by modifying or working through the network stack, and/or by altering
+application configurations).</li>
+<li>Provide an elegant installer for Tor, your GUI submission, and
+other supporting applications.</li>
+<li>Make your GUI manage the Tor process and other supporting applications
+-- start them, stop them, realize when they've died.</li>
+<li>Provide meaningful defaults for a good Tor experience.</li>
+<li>Provide application-level anonymity -- that is, not just paying
+attention to transport anonymity on the level of Tor, but also paying
+attention to the anonymity of the http headers, cookies, etc.</li>
+<li>Let the user specify different Tor config option sets depending on
+time of day (e.g. daytime vs. nighttime).</li>
+<li>Provide useful controller functions for Tor servers too --
+for example, walk the user through recommended bandwidth configurations
+and exit policies.</li>
+<li>Have a "minimized view" of your GUI for common use, and then a more
+detailed view or set of windows when the user wants more detail.</li>
+<li>Provide a button or some automatically updating interface to let
+the user learn whether Tor is working currently, perhaps by accessing an
+external what's-my-IP site and seeing if it thinks you're a Tor server;
+and give useful messages and recommendations if it doesn't seem to
+be working.</li>
+<li>Provide a way to automatically configure local firewalls (ipchains,
+Windows firewalls, etc) to let Tor traffic out (and in, for Tor
+servers). As a bonus, configure it to prevent non-Tor traffic from
+leaving (and notify when it tries).</li>
+</ul>
+
+ </div><!-- #main -->
+</div>
+  <div class="bottom" id="bottom">
+     <i><a href="mailto:tor-webmaster@freehaven.net"
+     class="smalllink">Webmaster</a></i>
+  </div>
+</body>
+</html>
