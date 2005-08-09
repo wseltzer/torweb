@@ -4,7 +4,7 @@ Content-type: text/html
 <HTML><HEAD><TITLE>Man page of TOR</TITLE>
 </HEAD><BODY>
 <H1>TOR</H1>
-Section: User Commands  (1)<BR>Updated: June 2005<BR><A HREF="#index">Index</A>
+Section: User Commands  (1)<BR>Updated: August 2005<BR><A HREF="#index">Index</A>
 <A HREF="../">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -324,13 +324,29 @@ If 1, Tor will only create outgoing connections to ORs running on ports that
 your firewall allows (defaults to 80 and 443; see <B>FirewallPorts</B>).  This will
 allow you to run Tor as a client behind a firewall with restrictive policies,
 but will not allow you to run as a server behind such a firewall.
+This option is deprecated; use
+ReachableAddresses instead.
 </DL>
 <P>
 
 <DL COMPACT>
 <DT><B>FirewallPorts </B><I>PORTS</I><DD>
-A list of ports that your firewall allows you to connect to.  Only used when
-<B>FascistFirewall</B> is set. (Default: 80, 443)
+A list of ports that your firewall allows you to connect to.  Only
+used when <B>FascistFirewall</B> is set. This option is deprecated; use
+ReachableAddresses instead. (Default: 80, 443)
+</DL>
+<P>
+
+<DL COMPACT>
+<DT><B>ReachableAddresses </B><I>ADDR</I>[<B>/</B><I>MASK</I>][:<I>PORT</I>]...<DD>
+A comma-separated list of IPs that your firewall allows you to connect
+to.  Only used when <B>FascistFirewall</B> is set.  The format is as
+for the addresses in ExitPolicy, except that &quot;accept&quot; is understood
+unless &quot;reject&quot; is explicitly provided.  For example, 'FirewallIPs
+99.0.0.0/8, reject 18.0.0.0/8:80, accept *:80' means that your
+firewall allows connections to everything inside net 99, rejects port
+80 connections to net 18, and accepts connections to port 80 otherwise.
+(Default: 'accept *:*'.)
 </DL>
 <P>
 
@@ -376,7 +392,12 @@ NodeFamily is only needed when a server doesn't list the family itself
 <P>
 
 <DL COMPACT>
-<DT><B>RendNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I><DD>
+<DT>
+<DD>
+
+
+
+<B>RendNodes </B><I>nickname</I>,<I>nickname</I>,<I>...</I>
 A list of preferred nodes to use for the rendezvous point, if possible.
 </DL>
 <P>
@@ -429,8 +450,26 @@ this will observe it through cookies or other protocol-specific means anyhow.
 <DL COMPACT>
 <DT><B>TrackHostExitsExpire </B><I>NUM</I><DD>
 Since exit servers go up and down, it is desirable to expire the association
-between host and exit server after NUM seconds of inactivity. The default
+between host and exit server after NUM seconds. The default
 is 1800 seconds (30 minutes).
+</DL>
+<P>
+
+<DL COMPACT>
+<DT><B>UseHelperNodes </B><I>0|1</I><DD>
+If this option is set to 1, we pick a few entry servers as our &quot;helpers&quot;, and
+try to use only those fixed entry servers.  This is desirable, because
+constantly changing servers increases the odds that an adversary who owns
+some servers will observe a fraction of your paths.
+(Defaults to 0; will eventually default to 1.)
+</DL>
+<P>
+
+<DL COMPACT>
+<DT><B>NumHelperNodes </B><I>NUM</I><DD>
+If UseHelperNodes is set to 1, we will try to pick a total of NUM helper
+nodes as entries for our circuits.
+(Defaults to 3.)
 <P>
 </DL>
 <A NAME="lbAG">&nbsp;</A>
@@ -570,7 +609,7 @@ considered.
 <P>
 
 <DL COMPACT>
-<DT><B>ShutdownWaitLength</B><I>NUM</I><DD>
+<DT><B>ShutdownWaitLength</B> <I>NUM</I><DD>
 When we get a SIGINT and we're a server, we begin shutting down: we close
 listeners and start refusing new circuits. After <B>NUM</B> seconds,
 we exit. If we get a second SIGINT, we exit immediately.  (Default:
@@ -858,6 +897,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 22:36:14 GMT, June 26, 2005
+Time: 10:32:48 GMT, August 09, 2005
 </BODY>
 </HTML>
