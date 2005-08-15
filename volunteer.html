@@ -54,17 +54,33 @@
 
 <h2>Coding Challenges</h2>
 <ul>
-<li>Update crypto usage to use openssl aes when available.</li>
-<li>Implement a buffer design modelled after the linux kernel buffer design.</li>
-<li>how do ulimits work on win32, anyway?  (We should handle WSAENOBUFS as needed, look at the MaxConnections registry entry, look at the MaxUserPort entry, and look at the TcpTimedWaitDelay entry. We may also want to provide a way to set them as needed. See bug 98.)</li>
+<li>Currently Tor ships with its own AES, since when we started OpenSSL
+had missing/broken AES support. But now that it's gotten more mainstream,
+we should change things so we only use our bundled AES if OpenSSL doesn't
+support it natively.</li>
+<li>Because Tor servers need to store-and-forward each cell they handle,
+high-bandwidth Tor servers end up using dozens of megabytes of memory
+just for buffers. We need better heuristics for when to shrink/expand
+buffers. Maybe this should be modelled after the Linux kernel buffer
+design, where you have many smaller buffers that link to each other,
+rather than monolithic buffers?</li>
+<li>How do ulimits work on Win32, anyway? We're having problems
+especially on older Windowses with people running out of file
+descriptors, connection buffer space, etc. (We should handle
+WSAENOBUFS as needed, look at the MaxConnections registry entry,
+look at the MaxUserPort entry, and look at the TcpTimedWaitDelay
+entry. We may also want to provide a way to set them as needed. See <a
+href="http://bugs.noreply.org/flyspray/index.php?do=details&id=98">bug
+98</a>.)</li>
+<li>Encrypt identity keys on disk, and implement passphrase protection
+for them. Right now they're just stored in plaintext.</li>
+
 <li>Implement reverse DNS (already specified)</li>
-<li>Implement a FirewalledIPs config option that works like FirewallPorts.</li>
 <li>Make configure.in handle cross-compilation</li>
 <li>Have NULL_REP_IS_ZERO_BYTES default to 1.</li>
 <li>Make with-ssl-dir disable search for ssl.</li>
 <li>Implement preservation of reputation through reboots for clients and dirservers. </li>
 <li>Add in support egd or other non-OS-integrated strong entropy sources.</li>
-<li>Implement password protection for on-disk identity key</li>
 <li>Implement a way to get autoconf to install things into ~/.tor.</li>
 <li>Change server descriptors to declare log level.</li>
 <li>Add in support for clients to avoid servers that are too loggy based upon user configuration of acceptable log level.</li>
@@ -84,24 +100,21 @@
 </ul>
 <li>Buffer size pool: allocate a maximum size for all buffers, not a maximum size for each buffer. So we don't have to give up as quickly (and kill the thickpipe!) when there's congestion.</li>
 <li>Add alternative versions of crypto.c and tortls.c to use libnss or libgcrypt+gnutls.</li>
-<li>Implement a way to stop falling back to forbidden ports when FascistFirewall blocks all good dirservers, if there is already a good, cached directory locally.</li>
 <li>Extend our NSIS-based windows installer to include FreeCap and/or Privoxy.</li>
 <li>Develop a way to handle OS X installation and uninstallation.</li>
 <li>Develop a GUI or other controller program, to do configuration, etc.  See our <a href="/cvs/tor/doc/control-spec.txt">control specification</a> for details, and the rudimentary demonstration <a href="/cvs/tor/contrib/TorControl.py">Python control script</a>. </li>
 <ul>
 <li>Design an interface for the control program. You can use any license you want, but we'd recommend 3-clause BSD or maybe GPL; and we can only help out if your license conforms to the <a href="http://www.debian.org/social_contract.html#guidelines">DFSG</a>.</li>
-<li>Periodically people running servers tells us they want to have one
+<li>Periodically people running servers tell us they want to have one
     BandwidthRate during some part of the day, and a different
     BandwidthRate at other parts of the day. Rather than coding this
     inside Tor, we should have a little script that speaks via the Tor
     Controller Interface, and does a setconf to change the bandwidth
     rate. Perhaps it would run out of cron, or perhaps it would sleep
     until appropriate times and then do its tweak (that's probably more
-    portable). Can somebody write one for us and we'll put it inside
+    portable). Can somebody write one for us and we'll put it into
     <a href="/cvs/tor/contrib/">tor/contrib/</a>?</li>
 </ul>
-<li>Develop a way to become a Windows NT service.  </li>
-<li>Develop a systray app for Tor under MS Windows (all versions).  </li>
 <li>Integrate a good (portable, fast, clean, BSD-free) asynchronous DNS library so we don't have to keep forking DNS worker threads to do gethostbyname.</li>
 </ul>
 
