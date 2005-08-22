@@ -1,4 +1,4 @@
-<!-- revision 0.11 -->
+<!-- revision 0.12 -->
 <!-- jens@kubieziel.de -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -37,7 +37,7 @@
 	<td class="banner-right">
 		<a href="/"><img src="/images/en.png" alt="English" /></a>
 		<a href="/index.it.html"><img src="/images/it.png" alt="Italiano" /></a>
-		<a href="/index.de.html"><img src="/images/de.png" alt="Deutsch" /></a> 
+		<a href="/index.de.html"><img src="/images/de.png" alt="Deutsch" /></a>
 	</td>
     </tr>
 </table>
@@ -58,20 +58,49 @@
   ist <b>0.1.0.14</b>.  Die letzte Test Version ist <b>0.1.1.5-alpha</b>. Tor
   sollte auf Linux, BSD, OS X, Win32, Solaris und anderen Systemen laufen.</p>
 
+  <p>Im CVS findest du <a href="/cvs/tor/doc/tor-doc.html">Anweisungen
+    zur Installation und
+    Konfiguration</a>. Der <a
+    href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DistSignatures">Eintrag
+    in der FAQ</a> beschreibt, wie die Signaturen der Pakete zu
+    verifizieren sind.</p>
+
+<p>Sicherheitshinweise und neue stabile Versionen werden auf der
+  Mailingliste <a
+  name="http://archives.seul.org/or/announce/">or-announce</a>
+  bekannt gegeben. Wenn du Tor nutzt, solltest du ein Auge auf das
+  Archiv werfen oder dich hier einzutragen: (Du erhälst eine
+  Rückbestätigung per E-Mail.)</p>
+
+<form action="http://freehaven.net/cgi-bin/majordomo.cgi">
+<input type="hidden" name="mlist" value="or-announce" >
+<input type="hidden" name="subscribe" value="1" >
+<input type="hidden" name="host" value="freehaven.net" >
+<input name="email" size="15" >
+<input type="submit" value="subscribe" >
+</form>
+
+<p>Tor sollte auf Linux, BSD, OS X, Windows, Solaris und anderen
+  Systemen laufen.</p>
+
   <ul>
-   <li><b>Windows</b> Installationsprogramm: <a
-     href="dist/win32/tor-0.1.0.14-win32.exe">0.1.0.14</a> (<a
+   <li><b>Windows</b>
+     Installationsprogramm: <a
+     href="dist/win32/tor-0.1.0.14-win32.exe">0.1.0.14</a>
+     (<a
      href="dist/win32/tor-0.1.0.14-win32.exe.asc">sig</a>), <a
-     href="dist/win32/tor-0.1.1.5-alpha-win32.exe">0.1.1.5-alpha</a> (<a
-     href="dist/win32/tor-0.1.1.5-alpha-win32.exe.asc">sig</a>). Stelle sicher,
-   dass du die <a href="/cvs/tor/doc/tor-doc-win32.html">Win32-spezifischen
-     Anweisungen</a> gelesen hast.</li>
+     href="dist/win32/tor-0.1.1.5-alpha-win32.exe">0.1.1.5-alpha</a>
+     (<a
+     href="dist/win32/tor-0.1.1.5-alpha-win32.exe.asc">sig</a>). Stelle
+     sicher, dass du
+     die <a href="/cvs/tor/doc/tor-doc-win32.html">Anweisungen für
+     Windows</a> gelesen hast.</li>
    <li><b>Mac OS X</b> Installationsprogramm: <a href="dist/osx/Tor 0.1.0.14
      Bundle.dmg">0.1.0.14</a> (<a href="dist/osx/Tor 0.1.0.14
      Bundle.dmg.asc">sig</a>), <a href="dist/osx/Tor 0.1.1.5-alpha
      Bundle.dmg">0.1.1.5-alpha</a> (<a href="dist/osx/Tor 0.1.1.5-alpha
-     Bundle.dmg.asc">sig</a>). Lies die <a href="/cvs/tor/doc/tor-doc-osx.html">OS
-     X spezifischen Anweisungen</a>.</li>
+     Bundle.dmg.asc">sig</a>). Lies
+     die <a href="/cvs/tor/doc/tor-doc-osx.html">Anweisungen für OS X</a>.</li>
    <li><b>Red Hat Linux</b> Paket: <a
      href="dist/rpm/tor-0.1.0.14-tor.0.fc1.i386.rpm">0.1.0.14 RPM</a> (<a
      href="dist/rpm/tor-0.1.0.14-tor.0.fc1.i386.rpm.asc">sig</a>), <a
@@ -81,47 +110,22 @@
      href="dist/rpm/tor-0.1.1.5.alpha-tor.0.fc1.i386.rpm.asc">sig</a>), <a
      href="dist/rpm/tor-0.1.1.5.alpha-tor.0.fc1.src.rpm">0.1.1.5-alpha SRPM</a> (<a
      href="dist/rpm/tor-0.1.1.5.alpha-tor.0.fc1.src.rpm.asc">sig</a>)</li>
+   <li><b>Gentoo</b>: <tt>emerge tor</tt>
+   (<a
+   name="http://gentoo-wiki.com/HOWTO_Anonymity_with_Tor_and_Privoxy">Anweisungen</a>)</li>
+   <li><b>FreeBSD</b>: <tt>portinstall -s security/tor</tt></li>
+   <li><b>OpenBSD</b>: <tt>cd /usr/ports/net/tor &amp;&amp; make
+   &amp;&amp; make install</tt>
+   (<a
+   name="http://wiki.noreply.org/noreply/TheOnionRouter/OpenbsdChrootedTor">Anweisung
+   für chroot</a>)</li>
+   <li><b>NetBSD</b>: <tt>cd /usr/pkgsrc/net/tor &amp;&amp; make
+   install</tt></li>
    <li>Letzte Quellpaket: <a href="dist/tor-0.1.0.14.tar.gz">0.1.0.14</a> (<a
      href="dist/tor-0.1.0.14.tar.gz.asc">sig</a>), <a
      href="dist/tor-0.1.1.5-alpha.tar.gz">0.1.1.5-alpha</a> (<a
-     href="dist/tor-0.1.1.5-alpha.tar.gz.asc">sig</a>). Weiterhin wirst du <a
-     href="http://www.monkey.org/~provos/libevent/">libevent</a> benötigen. Wenn
-   du mutig genug bist, um die Quellen auf Windows zu bauen, wirst du libevent
-   1.0c oder höher brauchen.</li>
+     href="dist/tor-0.1.1.5-alpha.tar.gz.asc">sig</a>).</li>
   </ul>
-
-  <p>Im CVS findest du <a href="/cvs/tor/doc/tor-doc.html#installing">Allgemeine
-    Anweisungen zur Installation und Konfiguration</a>. Der <a
-    href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DistSignatures">Eintrag
-    in der FAQ</a> beschreibt, wie die Signaturen der Pakete zu verifizieren
-  sind.</p>
-
-<p>Schaue dir die <a href="/developers.de.html">Entwicklerseite</a> an, um
-Anweisungen zu erhalten, wie man Tor aus dem CVS-Verzeichnis erhält.</p>
-
-<p>Ältere Versionen sind <a href="/dist/obsolete/">hier</a>.</p>
-
-<hr />
-
-<p><b>Debianpakete</b> <tt>apt-get install tor</tt> (<a
-  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorOnDebian">Hinweise zu
-  Sarge und experimentellen Torversionen</a>)
-
-<p><b>FreeBSD</b>: <tt>portinstall -s security/tor</tt></p>
-
-<p><b>OpenBSD</b>: <tt>cd /usr/ports/net/tor &amp;&amp; make &amp;&amp; make
-install</tt> (<a
-    href="http://pestilenz.org/~bauerm/tor-openbsd-howto.html">Anleitung für
-    chroot</a>)</p>
-
-<p><b>NetBSD</b>: <tt>cd /usr/pkgsrc/net/tor &amp;&amp; make install</tt></p>
-
-<p><b>Gentoo</b>: <tt>emerge tor</tt> (<a
-    href="http://gentoo-wiki.com/HOWTO_Anonymity_with_Tor_and_Privoxy">Anleitung</a>)</p>
-
-<p>Es gibt Gerüchte, dass <b>andere Pakete</b> für andere Plattformen
-existieren. Wenn jemand Details schickt, werden wir hier Links veröffentlichen.
-</p>
 
 <hr  />
 
@@ -129,8 +133,9 @@ existieren. Wenn jemand Details schickt, werden wir hier Links veröffentlichen.
 
 <p>
 Wenn du einen Spiegel (mirror) betreibst, schicke bitte eine E-Mail an
-<a href="mailto:tor-webmaster@freehaven.net">tor-webmaster@freehaven.net</a> und
-wir werden den ihn Liste hinzufügen.
+<a
+href="mailto:tor-webmaster@freehaven.net">tor-webmaster@freehaven.net</a>
+und wir werden den der Liste hinzufügen.
 </p>
 
 <p>

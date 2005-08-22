@@ -1,4 +1,4 @@
-<!-- revision 0.04 -->
+<!-- revision 0.05 -->
 <!-- jens@kubieziel.de -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -56,7 +56,7 @@
   <li>Wir brauchen Nutzer wie dich, um Tor zu probieren und lass die Entwickler
   über jeden Bug wissen, den du findest.</li>
   <li>Bitte überlege dir, einen <a
-    href="/cvs/tor/doc/tor-doc.html#server">Server zu betreiben</a>, damit das
+    href="/cvs/tor/doc/tor-doc-server.html">Server zu betreiben</a>, damit das
   Netzwerk weiter wächst.</li>
   <li>Wir benötigen Leute mit Programmiererfahrung unter Windows. Sie sollen
   einen Exitknoten unter Windows betreiben und uns beim Debuggen helfen.</li>
@@ -73,16 +73,31 @@
 <h2>Aufgaben beim Programmieren</h2>
 
 <ul>
-  <li>Die Kryptobenutzung so erneuern, dass OpenSSL wann immer möglich AES
-  nutzt</li>
-  <li>Ein Bufferdesign implemetieren, dass dem des Linuxkernel nachempfunden
-  ist</li>
-  <li>Wie funtkionieren ulimits auf Win32? (Wir sollten mit WSAENOBUFS umgehen
-  können. Schaue dir die Einträge MaxConnections, MaxUserPort und
-  TcpTimedWaitDelay und wirf auch einen Blick auf Bug 98.)</li>
+  <li>Derzeit hat Tor eine eingebaute Unterstützung für AES. Denn als
+    wir mit dem Projekt starteten hatte OpenSSL keine/kaputte
+    Unterstützung. Nunmehr hat sich die Situation verbessert und wir
+    sollten die Dinge so ändern, dass wir nur das eingebaute AES
+    nutzen, wenn OpenSSL das nicht unterstützt.</li>
+  <li>Weil die Torserver jede Zelle speichern und weitergeben müssen,
+    brauchen die Torserver mit hoher Bandbreite Dutzende Megabyte an
+    Speicher. Wir benötigen bessere Heuristiken, wenn die Buffer zu
+    verkleinern/vergrößern sind. Wahrscheinlich sollte dies nach dem
+    Bufferdesign des Linuxkernels modelliert werden. Dort gibt es
+    kleinere Buffer, die sich gegenseitig verbinden.</li>
+  <li>Wie funktionieren die ulimits auf Win32? Wir haben speziell bei
+    älteren Versionen Probleme, dass die Leute keine Dateideskriptoren,
+    Verbindung zum Buffer, etc. mehr haben. (Wir sollten WSAENOBUFS
+    nutzen, wie es gebraucht wird, einen Blick auf den
+    Registryeinträge MaxConnections, MaxUserPort und TcpTimedWaitDelay
+    werfen. Weiterhin sollten wir einen Weg bieten, diese Einstellung
+    nach Wunsch zu treffen. Schaue dir
+    auch <a
+    name="http://bugs.noreply.org/flyspray/index.php?do=details&id=9">Bug
+    98</a> an.)</li>
+  <li>Identitätsschlüssel auf der Platte verschlüsseln und einen
+    Schutz per Passphrase für diese implementieren. Derzeit werden
+    diese nur als Klartext gespeichert.</li>
   <li>Reverse DNS implementieren (schon spezifiziert)</li>
-  <li>Eine Option FirewalledIPs implementieren, die wie FirewallPorts
-  funktioniert</li>
   <li>configure.in sollte mit Kompilieren für andere Architekturen umgehen
   können</li>
   <li>NULL_REP_IS_ZERO_BYTES auf 1 setzen</li>
@@ -116,9 +131,6 @@
   aufgeben, wenn das Netz überlastet ist.</li>
   <li>Alternative Versionen von crypto.c und tortls.c hinzufügen, um libnss und
   libgcrypt+gnutls zu nutzen.</li>
-  <li>Ein Weg implementieren, dass man nicht verbotene Ports nutzt, wenn
-  restriktive Firewallregeln alle guten Verzeichnisserver blockieren, wenn es
-  ein gutes lokal gespeichertes Verzeichnis gibt</li>
   <li>Das Installationsprogramm auf Windows so erweitern, dass es Freecap
   und/oder Privoxy mit einschliesst</li>
   <li>Mit der Mac OSX Installation und Deinstallation umgehen</li>
@@ -143,8 +155,6 @@
     eine bestimmte Zeit und macht dann die Änderungen. Kann das jemand für uns
     schreiben und wir packen das dann nach <a
       href="/cvs/tor/contrib/">tor/contrib</a>?</li></ul></li>
-  <li>Einen Weg entwickeln, um ein NT-Service zu werden</li>
-  <li>Ein Icon für den Systray entwickeln</li>
   <li>Eine gute (portable, schnelle, saubere, BSD-freie) asynchrone
   DNS-Bibliothek entwickeln, so dass wir nicht DNS-Workerthreads forken müssen
   um gethostbyname() zu machen</li>
