@@ -218,7 +218,7 @@ of Tor's outgoing connections to use a single one.
 <P>
 
 <DL COMPACT>
-<DT><B>PIDFile </B><I>FILE</I><DD>
+<DT><B>PidFile </B><I>FILE</I><DD>
 On startup, write our PID to FILE. On clean shutdown, remove FILE.
 </DL>
 <P>
@@ -342,7 +342,7 @@ ReachableAddresses instead. (Default: 80, 443)
 A comma-separated list of IPs that your firewall allows you to connect
 to.  Only used when <B>FascistFirewall</B> is set.  The format is as
 for the addresses in ExitPolicy, except that &quot;accept&quot; is understood
-unless &quot;reject&quot; is explicitly provided.  For example, 'FirewallIPs
+unless &quot;reject&quot; is explicitly provided.  For example, 'ReachableAddresses
 99.0.0.0/8, reject 18.0.0.0/8:80, accept *:80' means that your
 firewall allows connections to everything inside net 99, rejects port
 80 connections to net 18, and accepts connections to port 80 otherwise.
@@ -484,6 +484,16 @@ The following options are useful only for servers (that is, if <B>ORPort</B> is 
 <DT><B>Address </B><I>address</I><DD>
 The IP or fqdn of this server (e.g. moria.mit.edu). You can leave this
 unset, and Tor will guess your IP.
+</DL>
+<P>
+
+<DL COMPACT>
+<DT><B>AssumeReachable </B><B>0</B>|<B>1</B><DD>
+This option is used when bootstrapping a new Tor network. If set to 1,
+don't do self-reachability testing; just upload your server descriptor
+immediately. If <B>AuthoritativeDirectory</B> is also set, this option
+instructs the dirserver to bypass remote reachability testing too and
+list all connected servers as running.
 </DL>
 <P>
 
@@ -897,6 +907,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 10:32:48 GMT, August 09, 2005
+Time: 15:08:07 GMT, August 27, 2005
 </BODY>
 </HTML>
