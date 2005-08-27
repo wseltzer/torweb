@@ -30,9 +30,9 @@
           | <a href="people.html">People</a>
         </td>
 	<td class="banner-right">
-		<a href="/"><img src="/images/en.png" border="0" alt="English"></a>
-		<a href="/index.it.html"><img src="/images/it.png" border="0" alt="Italiano"></a>
-		<a href="/index.de.html"><img src="/images/de.png" border="0" alt="Deutsch"></a> 
+		<a href="/"><img src="/images/en.png" alt="English" /></a>
+		<a href="/index.it.html"><img src="/images/it.png" alt="Italiano" /></a>
+		<a href="/index.de.html"><img src="/images/de.png" alt="Deutsch" /></a> 
 	</td>
     </tr>
 </table>
@@ -70,11 +70,10 @@ descriptors, connection buffer space, etc. (We should handle
 WSAENOBUFS as needed, look at the MaxConnections registry entry,
 look at the MaxUserPort entry, and look at the TcpTimedWaitDelay
 entry. We may also want to provide a way to set them as needed. See <a
-href="http://bugs.noreply.org/flyspray/index.php?do=details&id=98">bug
+href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=98">bug
 98</a>.)</li>
 <li>Encrypt identity keys on disk, and implement passphrase protection
 for them. Right now they're just stored in plaintext.</li>
-
 <li>Implement reverse DNS (already specified)</li>
 <li>Make configure.in handle cross-compilation</li>
 <li>Have NULL_REP_IS_ZERO_BYTES default to 1.</li>
@@ -84,25 +83,31 @@ for them. Right now they're just stored in plaintext.</li>
 <li>Implement a way to get autoconf to install things into ~/.tor.</li>
 <li>Change server descriptors to declare log level.</li>
 <li>Add in support for clients to avoid servers that are too loggy based upon user configuration of acceptable log level.</li>
-<li>Separate node discovery from routing to allow neat extensions.  [Goodell?]</li>
+<li>Separate node discovery from routing to allow neat extensions.  [Goodell?]
+
 <ul>
 <li>Add SetServerStatus control event to adjust verified/running status of nodes.</li>
 <li>Add NoDownload config option to prevent regular directory downloads from happening.</li>
 </ul>
+</li>
+
 <li>Choosing exit node by meta-data, e.g. country.</li>
-<li>Use cpuworker for more heavy lifting.</li>
+<li>Use cpuworker for more heavy lifting.
+
 <ul>
 <li>Signing (and verifying) hidserv descriptors</li>
 <li>Signing (and verifying) intro/rend requests</li>
 <li>Signing (and verifying) router descriptors</li>
 <li>Signing (and verifying) directories</li>
 <li>Doing TLS handshake (this is very hard to separate out, though)</li>
-</ul>
+</ul></li>
+
 <li>Buffer size pool: allocate a maximum size for all buffers, not a maximum size for each buffer. So we don't have to give up as quickly (and kill the thickpipe!) when there's congestion.</li>
 <li>Add alternative versions of crypto.c and tortls.c to use libnss or libgcrypt+gnutls.</li>
 <li>Extend our NSIS-based windows installer to include FreeCap and/or Privoxy.</li>
 <li>Develop a way to handle OS X installation and uninstallation.</li>
-<li>Develop a GUI or other controller program, to do configuration, etc.  See our <a href="/cvs/tor/doc/control-spec.txt">control specification</a> for details, and the rudimentary demonstration <a href="/cvs/tor/contrib/TorControl.py">Python control script</a>. </li>
+<li>Develop a GUI or other controller program, to do configuration, etc.  See our <a href="/cvs/tor/doc/control-spec.txt">control specification</a> for details, and the rudimentary demonstration <a href="/cvs/tor/contrib/TorControl.py">Python control script</a>. 
+
 <ul>
 <li>Design an interface for the control program. You can use any license you want, but we'd recommend 3-clause BSD or maybe GPL; and we can only help out if your license conforms to the <a href="http://www.debian.org/social_contract.html#guidelines">DFSG</a>.</li>
 <li>Periodically people running servers tell us they want to have one
@@ -114,7 +119,8 @@ for them. Right now they're just stored in plaintext.</li>
     until appropriate times and then do its tweak (that's probably more
     portable). Can somebody write one for us and we'll put it into
     <a href="/cvs/tor/contrib/">tor/contrib/</a>?</li>
-</ul>
+</ul></li>
+
 <li>Integrate a good (portable, fast, clean, BSD-free) asynchronous DNS library so we don't have to keep forking DNS worker threads to do gethostbyname.</li>
 </ul>
 
@@ -141,12 +147,14 @@ href="http://tor.eff.org/tor-manual.html">RedirectExit</a> config option. </li>
 <h2>Testing Challenges</h2>
 <ul>
 <li>Test out why some of our tor servers have dns resolvers that resolve
-unknown addresses to 127.0.0.1.</li>
+unknown addresses to 127.0.0.1.
+
 <ul>
 <li>Identify the servers that experience this issue. </li>
 <li>Identify how to cause and repair the issue in BIND, DJBDNS, or
 whatever daemon the misconfigured servers use.</li>
-</ul>
+</ul></li>
+
 <li>Figure out how to setup web proxy gateways to let normal people
 browse hidden services.  (This has been done a few times, but nobody has
 sent us code.)</li>
@@ -165,7 +173,8 @@ privoxy.</li>
 
 <h2>Research Challenges</h2>
 <ul>
-<li>Arranging membership management for independence.</li>
+<li>Arranging membership management for independence.
+
 <ul>
 <li>Sybil defenses without having a human bottleneck.</li>
 <li>How to gather random sample of nodes.</li>
@@ -173,7 +182,8 @@ privoxy.</li>
 <li>Consider incremental switches: a p2p tor with only 50 users has
 different anonymity properties than one with 10k users, and should be
 treated differently.</li>
-</ul>
+</ul></li>
+
 <li>Incentives to relay; incentives to exit.</li>
 <li>Allowing dissidents to relay through Tor clients.</li>
 <li>Experiment with mid-latency systems. How do they impact usability,
@@ -185,7 +195,8 @@ treated differently.</li>
 <li>Find ideal churn rate for helper nodes; how safe is it?</li>
 <li>Attacking freenet-gnunet/timing-delay-randomness-arguments.</li>
 <li>Is exiting from the middle of the circuit always a bad idea?</li>
-<li>IPv6 support (For exit addresses)</li>
+<li>IPv6 support (For exit addresses)
+
 <ul>
 <li>Spec issue: if a resolve returns an IP4 and an IP6 address,
       which to use?</li>
@@ -195,7 +206,8 @@ treated differently.</li>
       a generalize address struct.</li>
 <li>Change relay cell types to accept new addresses.</li>
 <li>Add flag to serverdescs to tell whether IPv6 is supported.</li>
-</ul>
+</ul></li>
+
 <li>patch tsocks with our current patches + gethostbyname, getpeername,
 etc.</li>
 <li>make freecap (or whichever) do what we want.</li>
