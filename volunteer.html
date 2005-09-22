@@ -42,18 +42,81 @@
 <div class="main-column">
 
 <!-- PUT CONTENT AFTER THIS TAG -->
-    <h2>Six things everyone can do now:</h2>
-    <ol>
-    <li> We need users like you to try Tor out, and let the Tor developers know about bugs you find or features you don't find.</li>
-    <li> Please consider <a href="/cvs/tor/doc/tor-doc-server.html">running a server</a> to help the Tor network grow.</li>
-    <li> We especially need people with Windows programming skills to run an exit server on Windows, to help us debug.</li>
-    <li> Run a <a href="/cvs/tor/doc/tor-hidden-service.html">Tor hidden service</a> and put interesting content on it.</li>
-    <li> Tell your friends! Get them to run servers. Get them to run hidden services. Get them to tell their friends.</li>
-    <li> Consider joining the <a href="http://secure.eff.org/tor">Electronic Frontier Foundation</a>. More EFF donations means more freedom in the world, including more Tor development.</li>
-    </ol>
+<h2>Seven things everyone can do now:</h2>
+<ol>
+<li> We need users like you to try Tor out, and let the Tor developers know about bugs you find or features you don't find.</li>
+<li> Please consider <a href="/cvs/tor/doc/tor-doc-server.html">running a server</a> to help the Tor network grow.</li>
+<li> We especially need people with Windows programming skills to run an exit server on Windows, to help us debug.</li>
+<li> Run a <a href="/cvs/tor/doc/tor-hidden-service.html">Tor hidden service</a> and put interesting content on it.</li>
+<li> Take a look at the <a href="/gui/">Tor GUI Competition</a>, and come up with ideas or designs to contribute to making the Tor interface better. Free T-shirt for each submission!</li>
+<li> Tell your friends! Get them to run servers. Get them to run hidden services. Get them to tell their friends.</li>
+<li> Consider joining the <a href="http://secure.eff.org/tor">Electronic Frontier Foundation</a>. More EFF donations means more freedom in the world, including more Tor development.</li>
+</ol>
 
-<h2>Coding Challenges</h2>
-<ul>
+<h2>Usability and Installers</h2>
+<ol>
+<li>Make an entry to the <a href="/gui/">GUI competition</a>. This
+requires looking at how Tor interacts with the operating system and
+other applications, deciding where the critical usability issues are,
+and trying to make an application (or applet or plugin) that helps the
+user experience.</li>
+<li>Extend our NSIS-based windows installer to include FreeCap and/or
+Privoxy. When we ship Privoxy, include a config file that's preconfigured
+to work well with Tor.</li>
+<li>Develop a way to handle OS X installation and uninstallation.</li>
+<li>Choosing exit node by meta-data, e.g. country.</li>
+<li>Tor provides anonymous connections, but if you want to keep multiple
+pseudonyms in practice (say, in case you frequently go to two websites
+and if anybody knew about both of them they would conclude it's you), we
+don't support that well yet. We should find a good approach and
+interface for handling pseudonymous profiles in Tor. See <a
+href="http://archives.seul.org/or/talk/Dec-2004/msg00086.html">this
+post</a> and <a href="http://archives.seul.org/or/talk/Jan-2005/msg00007.html">followup</a> for details.</li>
+</ol>
+
+<h2>Coding, Design, and Software Development</h2>
+<ol>
+<li>We need a better option for a scrubbing web proxy than
+just Privoxy, since it's unmaintained and still has bugs, especially
+on Windows. While we're at it, what sensitive information is not
+kept safe by Privoxy? Are there other scrubbing web proxies that are
+more secure?</li>
+<li>We need better applications for dynamically intercepting
+connections and sending them through Tor. tsocks (Linux) and freecap
+(Windows) seem to be good candidates, and there are a variety of other
+possibilities listed at the bottom of <a href="/support.html">our support
+page</a>.</li>
+<li>Speaking of tsocks, it appears to be unmaintained: we have submitted
+several patches with no response. Can somebody volunteer to start
+maintaining a new tsocks branch? We'll help.</li>
+<li>We need a way to intercept DNS requests so they don't "leak" while
+we're trying to be anonymous. One option is to use Tor's built-in
+support for doing DNS resolves; but you need to ask via our new socks
+extension for that, and so no applications do this yet. Another option
+is to use Tor's controller interface: the application connects to Tor,
+hands it the DNS query, and Tor replies with a dummy IP address. Then
+the application makes a connection through Tor to that dummy IP address,
+and Tor automatically maps it back to the original query.</li>
+<li>Right now the hidden service descriptors are being stored on just a few
+directory servers. This is bad for privacy and bad for robustness. To get
+more robustness, we're going to need to make hidden service descriptors
+even less private because we're going to have to mirror them onto many
+places. Ideally we'd like to separate the storage/lookup system from the
+Tor directory servers entirely. Any reliable distributed storage system
+will do, as long as it allows authenticated updates. As far as we know,
+no implemented DHT code supports authenticated updates. What's the right
+next step?</li>
+<li>Tor exit servers need to do many DNS resolves in parallel. But
+gethostbyname() is poorly designed --- it blocks until it has finished
+resolving a query --- so it requires its own thread or process. So
+Tor is forced to spawn many separate DNS "worker" threads. There are
+some asynchronous DNS libraries out there, but traditionally they are
+buggy and abandoned. There are rumors that some of them are becoming
+better. Are any of them stable, fast, clean, and free software? If
+so (or if we can make that so), we should integrate them into Tor
+so we don't need to spawn dozens of dns resolver threads. See <a
+href="http://archives.seul.org/or/talk/Sep-2005/msg00001.html">Agl's
+post</a> for a potential start.</li>
 <li>Currently Tor ships with its own AES, since when we started OpenSSL
 had missing/broken AES support. But now that it's gotten more mainstream,
 we should change things so we only use our bundled AES if OpenSSL doesn't
@@ -74,11 +137,126 @@ href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=98">bug
 98</a>.)</li>
 <li>Encrypt identity keys on disk, and implement passphrase protection
 for them. Right now they're just stored in plaintext.</li>
-<li>Implement reverse DNS (already specified)</li>
-<li>Make configure.in handle cross-compilation</li>
+<li>Periodically people running servers tell us they want to have one
+BandwidthRate during some part of the day, and a different BandwidthRate
+at other parts of the day. Rather than coding this inside Tor, we
+should have a little script that speaks via the <a href="/gui/">Tor
+Controller Interface</a>, and does a setconf to change the bandwidth
+rate. Perhaps it would run out of cron, or perhaps it would sleep
+until appropriate times and then do its tweak (that's probably more
+portable). Can somebody write one for us and we'll put it into <a
+href="/cvs/tor/contrib/">tor/contrib/</a>?</li>
+<li>Patches to Tor's autoconf scripts. First, we'd like our configure.in
+to handle cross-compilation, e.g. so we can build Tor for obscure
+platforms like the Linksys WRTG54. Second, we'd like to make with-ssl-dir
+disable the search for ssl's libraries.</li>
+<li>Implement reverse DNS requests inside Tor (already specified in
+Section 5.4 of <a href="/cvs/tor/doc/tor-spec.txt">tor-spec.txt</a>).</li>
+<li>Perform a security analysis of Tor with <a
+href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determine
+if there good fuzzing libraries out there for what we want. Win fame by
+getting credit when we put out a new release because of you!</li>
+<li>How hard is it to patch bind or a DNS proxy to redirect requests to
+Tor via our tor-resolve socks extension? What about to convert UDP DNS
+requests to TCP requests and send them through Tor?</li>
+</ol>
+
+<h2>Documentation</h2>
+<ol>
+<li>Volunteer to help maintain this website: code, content, css,
+layout.</li>
+<li>We have too much documentation --- it's spread out too much and
+duplicates itself in places.</li>
+<li>Help translate the web page and documentation into other
+languages.  See the <a href="translation.html">translation
+guidelines</a> if you want to help out.</li>
+<li>Investigate privoxy vs. freecap vs. sockscap for win32 clients. Are
+there usability or stability issues that we can track down and
+resolve?</li>
+<li>Evaluate, create, and <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">document
+a list of programs</a> that can be routed through Tor.</li>
+<li>We have a huge list of <a href="/support.html"> potentially useful
+programs to interface to Tor</a>. Which ones are useful in which
+situations? Please help us test them out and document your results.</li>
+</ol>
+
+<h2>Research</h2>
+<ol>
+<li>To let dissidents in remote countries use Tor without being blocked
+at their country's firewall, we need a way to get tens of thousands of
+relays, not just a few hundred. We can imagine a Tor client GUI that
+has a "help China" button at the top that opens a port and relays a
+few KB/s of traffic into the Tor network. (A few KB/s shouldn't be too
+much hassle, and there are few abuse issues since they're not being exit
+nodes.) But how do we distribute a list of these volunteer clients to the
+good dissidents in an automated way that doesn't let the country-level
+firewalls intercept and enumerate them? Probably needs to work on a
+human-trust level.</li>
+<li>Tor doesn't work very well when servers have asymmetric bandwidth
+(e.g. cable or DSL). Because Tor has separate TCP connections between
+each hop, if the incoming bytes are arriving just fine and the outgoing
+bytes are all getting dropped on the floor, the TCP push-back mechanisms
+don't really transmit this information back to the incoming streams.
+Perhaps Tor should detect when it's dropping a lot of outgoing packets,
+and rate-limit incoming streams to regulate this itself? I can imagine
+a build-up and drop-off scheme where we pick a conservative rate-limit,
+slowly increase it until we get lost packets, back off, repeat. We
+need somebody who's good with networks to simulate this and help design
+solutions; and/or we need to understand the extent of the performance
+degradation, and use this as motivation to reconsider UDP transport.</li>
+<li>A related topic is congestion control. Is our
+current design sufficient once we have heavy use? Maybe
+we should experiment with variable-sized windows rather
+than fixed-size windows? That seemed to go well in an <a
+href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh
+throughput experiment</a>. We'll need to measure and tweak, and maybe
+overhaul if the results are good.</li>
+<li>The "website fingerprinting attack": make a list of a few
+hundred popular websites, download their pages, and make a set of
+"signatures" for each site. Then observe a Tor client's traffic. As
+you watch him receive data, you quickly approach a guess about
+which (if any) of those sites he is visiting. Do this attack on the
+deployed Tor network, and find out how effective it is. Then start
+exploring defenses: for example, we could change Tor's cell size from
+512 bytes to 1024 bytes, we could employ padding techniques like <a
+href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>,
+or we could add traffic delays. How much of an impact do these have,
+and how much usability impact (using some suitable metric) is there from
+a successful defense in each case?</li>
+<li>The "end-to-end traffic confirmation attack": by watching traffic at
+Alice and at Bob, we can compare traffic signatures and become convinced
+that we're watching the same stream. So far Tor accepts this as a fact
+of life and assumes this attack is trivial in all cases. First of all,
+is that actually true? How much traffic of what sort of distribution is
+needed before the adversary is confident he has won? Are there scenarios
+(e.g. not transmitting much) that slow down the attack? Do some traffic
+padding or traffic shaping schemes work better than others?
+</li>
+
+<li>Come up with practical approximations to picking entry and exit in
+    different routing zones.</li>
+<li>Find ideal churn rate for helper nodes; how safe is it?</li>
+<li>Is exiting from the middle of the circuit always a bad idea?</li>
+<li>IPv6 support (For exit addresses)
+<li>It's not that hard to DoS Tor servers or dirservers. Are puzzles the
+right answer? What other practical approaches are there?</li>
+</ol>
+
+Drop by the #tor IRC channel at irc.oftc.net or email tor-volunteer@freehaven.net if you want to help out!
+
+</div><!-- #main -->
+</div>
+  <div class="bottom" id="bottom">
+     <i><a href="mailto:tor-webmaster@freehaven.net" class="smalllink">Webmaster</a></i> -
+     $Id$
+  </div>
+</body>
+</html>
+
 <li>Have NULL_REP_IS_ZERO_BYTES default to 1.</li>
-<li>Make with-ssl-dir disable search for ssl.</li>
-<li>Implement preservation of reputation through reboots for clients and dirservers. </li>
+<li>Implement preservation of reputation through reboots for clients
+and dirservers.</li>
 <li>Add in support egd or other non-OS-integrated strong entropy sources.</li>
 <li>Implement a way to get autoconf to install things into ~/.tor.</li>
 <li>Change server descriptors to declare log level.</li>
@@ -91,57 +269,32 @@ for them. Right now they're just stored in plaintext.</li>
 </ul>
 </li>
 
-<li>Choosing exit node by meta-data, e.g. country.</li>
-<li>Use cpuworker for more heavy lifting.
-
+<li>Use cpuworker for more heavy lifting.</li>
 <ul>
 <li>Signing (and verifying) hidserv descriptors</li>
 <li>Signing (and verifying) intro/rend requests</li>
 <li>Signing (and verifying) router descriptors</li>
 <li>Signing (and verifying) directories</li>
 <li>Doing TLS handshake (this is very hard to separate out, though)</li>
-</ul></li>
+</ul>
 
 <li>Buffer size pool: allocate a maximum size for all buffers, not a maximum size for each buffer. So we don't have to give up as quickly (and kill the thickpipe!) when there's congestion.</li>
 <li>Add alternative versions of crypto.c and tortls.c to use libnss or libgcrypt+gnutls.</li>
-<li>Extend our NSIS-based windows installer to include FreeCap and/or Privoxy.</li>
-<li>Develop a way to handle OS X installation and uninstallation.</li>
-<li>Develop a GUI or other controller program, to do configuration, etc.  See our <a href="/cvs/tor/doc/control-spec.txt">control specification</a> for details, and the rudimentary demonstration <a href="/cvs/tor/contrib/TorControl.py">Python control script</a>. 
 
-<ul>
-<li>Design an interface for the control program. You can use any license you want, but we'd recommend 3-clause BSD or maybe GPL; and we can only help out if your license conforms to the <a href="http://www.debian.org/social_contract.html#guidelines">DFSG</a>.</li>
-<li>Periodically people running servers tell us they want to have one
-    BandwidthRate during some part of the day, and a different
-    BandwidthRate at other parts of the day. Rather than coding this
-    inside Tor, we should have a little script that speaks via the Tor
-    Controller Interface, and does a setconf to change the bandwidth
-    rate. Perhaps it would run out of cron, or perhaps it would sleep
-    until appropriate times and then do its tweak (that's probably more
-    portable). Can somebody write one for us and we'll put it into
-    <a href="/cvs/tor/contrib/">tor/contrib/</a>?</li>
-</ul></li>
-
-<li>Integrate a good (portable, fast, clean, BSD-free) asynchronous DNS library so we don't have to keep forking DNS worker threads to do gethostbyname.</li>
-</ul>
-
-<h2>Documentation Challenges</h2>
-<ul>
-<li>Write server instructions for OSX and Windows operators.</li>
-<li>Improve and clarify the wiki entry on <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">port forwarding</a>.</li>
-<li>Document how to do exit node caching: tie into squid or other caching web proxy.</li>
-<li>Help maintain this website; code, content, css, overall layout,</li>
-<li>Help with documentation </li>
-<li>Help consolidate documentation.  We may have too much documentation.  It's spread out too far and duplicates itself in places. </li>
-<li>Help translate the web page and documentation into other languages.  See the <a href="translation.html">translation guidelines</a> if you want to help out. (Examples: <a href="http://membres.lycos.fr/geolemalin/anonymat_garantit.htm">French</a> , <a href="http://tor.freesuperhost.com/">Persian</a> and <a href="http://www.gamevn.com/forum/showthread.php?t=103346">Vietnamese</a>.)</li>
+Translation Examples: <a
+href="http://membres.lycos.fr/geolemalin/anonymat_garantit.htm">French</a>,
+<a href="http://tor.freesuperhost.com/">Persian</a>, and <a
+href="http://www.gamevn.com/forum/showthread.php?t=103346">Vietnamese</a>.)</li>
 <li>If you know a question that should go on <a
 href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ">the FAQ Wiki</a>, please
 add it and answer it.</li>
-<li>If you know the answer to a <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ">Wiki question</a> in the "unanswered FAQs" list, please answer it. </li>
+<li>Document how to do exit node caching: tie into squid or other caching
+web proxy.</li>
 <li>Take a look at <a
 href="http://wiki.noreply.org/wiki/TheOnionRouter/SquidProxy">Martin's
 Squid and Tor page</a>, and update it to reflect Tor's <a
 href="http://tor.eff.org/tor-manual.html">RedirectExit</a> config option. </li>
-<li>Update website to include the country flags for each language into which the website has been translated.</li>
+<li>Improve and clarify the wiki entry on <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">port forwarding</a>.</li>
 </ul>
 
 <h2>Testing Challenges</h2>
@@ -158,18 +311,13 @@ whatever daemon the misconfigured servers use.</li>
 <li>Figure out how to setup web proxy gateways to let normal people
 browse hidden services.  (This has been done a few times, but nobody has
 sent us code.)</li>
-<li>Investigate privoxy vs. freecap for win32 clients</li>
-<li>Evaluate, create, and <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">document a list of programs</a> that work with Tor.  </li>
-<li>Perform a security analysis of Tor with <a href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>". Determine if there good libraries out there for what we want. Win fame by getting credit when we put out a new release because of you!</li>
-<li>Website volume fingerprinting attacks (<a href="http://freehaven.net/anonbib/#back01">Back et al</a>, <a href="http://freehaven.net/anonbib/#hintz02">Hintz</a>). Defenses include a large cell size, <a href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>, etc. How well does each approach work?</li>
-<li>The end-to-end traffic confirmation attack. We need to study
-long-range dummies more, along with traffic shaping. How much traffic of
-what sort of distribution is needed before the adversary is confident he
-has won?</li>
-<li>Determine what sensitive info squeaks by privoxy. </li>
-<li>Deteremine if there are other html scrubbers that are better than
-privoxy.</li>
+
+<h2>Misc</h2>
+<ul>
+<li>  </li>
 </ul>
+
+
 
 <h2>Research Challenges</h2>
 <ul>
@@ -190,12 +338,7 @@ treated differently.</li>
     how do they impact safety?</li>
 <li>Understand how powerful fingerprinting attacks are, and experiment
     with ways to foil them (long-range padding?).</li>
-<li>Come up with practical approximations to picking entry and exit in
-    different routing zones.</li>
-<li>Find ideal churn rate for helper nodes; how safe is it?</li>
 <li>Attacking freenet-gnunet/timing-delay-randomness-arguments.</li>
-<li>Is exiting from the middle of the circuit always a bad idea?</li>
-<li>IPv6 support (For exit addresses)
 
 <ul>
 <li>Spec issue: if a resolve returns an IP4 and an IP6 address,
@@ -208,8 +351,6 @@ treated differently.</li>
 <li>Add flag to serverdescs to tell whether IPv6 is supported.</li>
 </ul></li>
 
-<li>patch tsocks with our current patches + gethostbyname, getpeername,
-etc.</li>
 <li>make freecap (or whichever) do what we want.</li>
 <li>scrubbing proxies for protocols other than http.</li>
 <li>We need better default privoxy configs to ship.</li>
@@ -221,8 +362,6 @@ well.</li>
 <li>store hidden service information to disk: dirservers forget service
 descriptors when they restart; nodes offering hidden services forget
 their chosen intro points when they restart.</li>
-<li>It's not that hard to DoS Tor servers or dirservers. Are puzzles the
-right answer? What other practical approaches are there?</li>
 <li>Server CPU load is high because clients keep asking to make new
 circuits, which uses public key crypto. Possible defenses include: using
 helper nodes (fixed entry nodes); rate limiting the number of create
@@ -242,27 +381,7 @@ solutions.</li>
 dirservers, but any reliable distributed storage system would do (for
 example, a DHT that allows authenticated updates). Can somebody figure
 out our best options and decide if they're good enough?</li>
-<li>How hard is it to patch bind or a DNS proxy to redirect requests to
-Tor via our tor-resolve socks extension? What about to convert UDP DNS
-requests to TCP requests and send them through Tor?</li>
-<li>Tor provides anonymous connections, but if you want to keep multiple
-pseudonyms in practice (say, in case you frequently go to two websites
-and if anybody knew about both of them they would conclude it's you), we
-don't support that well yet. We should find a good approach and
-interface for handling pseudonymous profiles in Tor. See <a
-href="http://archives.seul.org/or/talk/Dec-2004/msg00086.html">this
-post</a> and <a href="http://archives.seul.org/or/talk/Jan-2005/msg00007.html">followup</a> for details.</li>
-<li>Congestion control. Is our current design sufficient once we have
-heavy use? Need to measure and tweak, or maybe overhaul.</li>
+
 </ul>
 
-Drop by the #tor IRC channel at irc.oftc.net or email tor-volunteer@freehaven.net if you want to help out!
 
-</div><!-- #main -->
-</div>
-  <div class="bottom" id="bottom">
-     <i><a href="mailto:tor-webmaster@freehaven.net" class="smalllink">Webmaster</a></i> -
-     $Id$
-  </div>
-</body>
-</html>
