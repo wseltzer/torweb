@@ -252,6 +252,16 @@ much traffic of what sort of distribution is needed before the adversary
 is confident he has won? Are there scenarios (e.g. not transmitting much)
 that slow down the attack? Do some traffic padding or traffic shaping
 schemes work better than others?</li>
+<li>The "run two servers and wait attack": Tor clients pick a new path
+periodically. If the adversary runs an entry and an exit, eventually some
+Alice will build a circuit that begins and ends with his nodes. The
+current Tor threat model assumes the end-to-end traffic confirmation attack
+is trivial, and instead aims to limit the chance that the adversary will
+be able to see both sides of a circuit. One way to help this is 
+<a href="http://freehaven.net/anonbib/#wright03">helper
+nodes</a> -- Alice picks a small set of entry nodes and uses them always.
+But in reality, Tor nodes disappear sometimes. So it would seem that the
+attack continues, albeit slower than before. How much slower?</li>
 <li>The "routing zones attack": most of the literature thinks of
 the network path between Alice and her entry node (and between the
 exit node and Bob) as a single link on some graph. In practice,
@@ -262,7 +272,6 @@ Unfortunately, to accurately predict whether a given Alice, entry,
 exit, Bob quad will be dangerous, we need to download an entire Internet
 routing zone and perform expensive operations on it. Are there practical
 approximations, such as avoiding IP addresses in the same /8 network?</li>
-<!--<li>Find ideal churn rate for helper nodes; how safe is it?</li> -->
 <li>Tor doesn't work very well when servers have asymmetric bandwidth
 (e.g. cable or DSL). Because Tor has separate TCP connections between
 each hop, if the incoming bytes are arriving just fine and the outgoing
@@ -292,9 +301,16 @@ nodes.) But how do we distribute a list of these volunteer clients to the
 good dissidents in an automated way that doesn't let the country-level
 firewalls intercept and enumerate them? Probably needs to work on a
 human-trust level.</li>
-<!-- <li>Is exiting from the middle of the circuit always a bad idea?</li>
-<li>It's not that hard to DoS Tor servers or dirservers. Are puzzles the
-right answer? What other practical approaches are there?</li> -->
+<li>Tor circuits are built one hop at a time, so in theory we have the
+ability to make some streams exit from the second hop, some from the
+third, and so on. This seems nice because it breaks up the set of exiting
+streams that a given server can see. But if we want each stream to be safe,
+the "shortest" path should be at least 3 hops long by our current logic, so
+the rest will be even longer. We need to examine this performance / security
+tradeoff.</li>
+<li>It's not that hard to DoS Tor servers or dirservers. Are client
+puzzles the right answer? What other practical approaches are there? Bonus
+if they're backward-compatible with the current Tor protocol.</li>
 </ol>
 
 Drop by the #tor IRC channel at irc.oftc.net or email tor-volunteer@freehaven.net if you want to help out!
