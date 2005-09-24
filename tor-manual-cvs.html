@@ -123,12 +123,17 @@ appropriate default. (Default: 1 hour for clients, 20 minutes for servers)
 <P>
 
 <DL COMPACT>
-<DT><B>DirServer </B><I>address:port fingerprint</I><DD>
+<DT><B>DirServer </B>[v1] <I>address:port fingerprint</I><DD>
 Use a nonstandard authoritative directory server at the provided
 address and port, with the specified key fingerprint.  This option can
 be repeated many times, for multiple authoritative directory
-servers. If no <B>dirserver</B> line is given, Tor will use the default
-directory servers: moria1, moria2, and tor26.
+servers.  If the &quot;v1&quot; option is provided, Tor will use this server as an
+authority for old-style (v1) directories as well.  (Only directory mirrors
+care about this.) If no <B>dirserver</B> line is given, Tor will use the default
+directory servers: moria1, moria2, and tor26.  NOTE: this option is intended
+for setting up a private Tor network with its own directory authorities.  If
+you use it, you will be distinguishable from other users, because you won't
+believe the same authorities they do.
 </DL>
 <P>
 
@@ -909,6 +914,6 @@ Roger Dingledine &lt;<A HREF="mailto:arma@mit.edu">arma@mit.edu</A>&gt;, Nick Ma
 This document was created by
 <A HREF="../">man2html</A>,
 using the manual pages.<BR>
-Time: 22:34:22 GMT, September 14, 2005
+Time: 23:34:21 GMT, September 24, 2005
 </BODY>
 </HTML>
