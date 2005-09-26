@@ -1,4 +1,4 @@
-<!-- revision 0.05 -->
+<!-- revision 0.06 -->
 <!-- jens@kubieziel.de -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -219,11 +219,6 @@
     dir <a
     href="http://archives.seul.org/or/talk/Sep-2005/msg00001.html">Agls
     Posting</a> für einen potentiellen Ansatz an.</li>
-  <li>Derzeit hat Tor eine eingebaute Unterstützung für AES. Denn als
-    wir mit dem Projekt starteten hatte OpenSSL keine/kaputte
-    Unterstützung. Nunmehr hat sich die Situation verbessert und wir
-    sollten die Dinge so ändern, dass wir nur das eingebaute AES
-    nutzen, wenn OpenSSL das nicht unterstützt.</li>
   <li>Torversionen ab 0.1.1.x unterstützen Cryptohardwarebeschleuniger
     via OpenSSL. Bisher hat das niemand getestet. Möchte jemand gern
     eine Karte haben und schauen, ob das funktioniert?</li>
@@ -246,6 +241,12 @@
   <li>Identitätsschlüssel auf der Platte verschlüsseln und einen
     Schutz per Passphrase für diese implementieren. Derzeit werden
     diese nur als Klartext gespeichert.</li>
+  <li>Patches für autoconf-Skripte von Tor. Zuerst würden wir gern
+    unser <var>autoconfigure.in</var> dazu bringen, Crosskomilierung
+    zu handhaben. So dass wir beispielsweise Tor auf obskuren
+    Plattformen, wie dem Linksys WRTG54 bauen können. Zweitens mögen
+    wir die Option <var>with-ssl-dir</var>, um die suche nach
+    SSL-Bibliotheken zu deaktivieren.</li>
   <li>Reverse DNS implementieren (schon spezifiziert)</li>
   <li>Eine Sicherheitsanalyse mit
     "<a href="http://en.wikipedia.org/wiki/Fuzz_testing">Fuzz</a>"
@@ -297,6 +298,19 @@
     wahr? Wieviel Verkehr von welcher Sorte braucht man, um sicher zu
     sicher, dass es funktioniert? Gibt es Szenarien, die die Attacke
     ausbremsen? Funktioniert Padding besser als anderes?</li>
+  <li>Betreibe zwei Server und warte. Torclienten suchen sich in
+    periodischen Zeiträumen einen neuen Pfad. Wenn der Angreifer
+    einen Eingangs- und Exitknoten betreibt, wird Alice eventuell
+    eine Verbindung aufbauen, die mit diesen Knoten beginnt und
+    endet. Das derzeitige Angriffsmodell geht davon aus, dass die
+    end-to-end traffic confirmation attack trivial ist und zielt
+    stattdessen darauf ab, die Möglichkeiten des Angreifers, beide
+    Seiten der Verbindung zu sehen, zu limitieren. Ein Weg dazu sind
+    <a href="http://freehaven.net/anonbib/#wright03">Helferknoten</a>
+    -- Alice sucht sich eine kleine Anzahl von Eingangsknoten aus und
+    nutzt nur diese. Doch in der Realität verschwinden manchmal
+    Knoten. Daher wird sich diese Attacke fortsetzen, nur mit einer
+    verminderten Geschwindigkeit? Um wieviel langsamer ist das?</li>
   <li>Die Attacke auf die Routingzonen ist der Netzpfad zwischen
     Alice und dem Eingangsknoten (bzw. zwischen dem Exitknoten und
     Bob). In der Literatur wird dies als einfache Verbindung auf
