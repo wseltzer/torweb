@@ -180,11 +180,15 @@ gethostbyname() is poorly designed --- it blocks until it has finished
 resolving a query --- so it requires its own thread or process. So Tor
 is forced to spawn many separate DNS "worker" threads. There are some
 asynchronous DNS libraries out there, but historically they are buggy and
-abandoned. Are any of them stable, fast, clean, and free software? (To
-be clear, it needs to be more free than GPL.) If so
+abandoned. Are any of them stable, fast, clean, and free software? (Remember,
+Tor uses OpenSSL, and OpenSSL is (probably) not compatible with the GPL, so
+any GPL libraries are out of the running.) If so
 (or if we can make that so), we should integrate them into Tor. See <a
 href="http://archives.seul.org/or/talk/Sep-2005/msg00001.html">Agl's
-post</a> for one potential approach.</li>
+post</a> for one potential approach. Also see
+<a href="http://daniel.haxx.se/projects/c-ares/">c-ares</a> and
+<a href="http://www.monkey.org/~provos/libdnsres/">libdnsres</a>.
+</li>
 <li>Tor 0.1.1.x includes support for hardware crypto accelerators via
 OpenSSL. Nobody has ever tested it, though. Does somebody want to get
 a card and let us know how it goes?</li>
