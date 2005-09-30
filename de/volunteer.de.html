@@ -214,14 +214,25 @@
     viele DNS-"Arbeiter"-Threads hervorbringen. Es gibt einige
     asynchrone DNS-Bibliotheken da draußen. Aber aus historischen
     Gründen sind diese voller fehler. Gibt es welche, die stabil,
-    schnell, sauber und Frei Software sind? Falls ja, könnten wir
-    diese in Tor integrieren. Schaue
-    dir <a
+    schnell, sauber und Frei Software sind? (Tor nutzt OpenSSL und das
+    ist wahrscheinlich nicht mit der GPL kompatibel. Somit sind
+    GPL-Bibliotheken außen vor.)
+    Falls ja, könnten wir diese in Tor integrieren. Schaue dir <a
     href="http://archives.seul.org/or/talk/Sep-2005/msg00001.html">Agls
-    Posting</a> für einen potentiellen Ansatz an.</li>
+    Posting</a> für einen potentiellen Ansatz an. Wirf weiterhin
+    einen Blick
+    auf <a href="http://daniel.haxx.se/projects/c-ares/">c-ares</a>
+    und <a
+    href="http://www.monkey.org/~provos/libdnsres/">libdnsres</a>.</li>
   <li>Torversionen ab 0.1.1.x unterstützen Cryptohardwarebeschleuniger
     via OpenSSL. Bisher hat das niemand getestet. Möchte jemand gern
     eine Karte haben und schauen, ob das funktioniert?</li>
+  <li>Vor einiger Zeit haben wir Unterstützung
+    für <code>dmalloc</code> hinzugefügt, um Leaks zu finden. Leider
+    haben wir es nie geschafft, das zum Laufen zu
+    bekommen. Ist <code>dmalloc</code> nicht das richtige hierfür?
+    Schaue dir die Konfigurationsoption <var>--with-dmalloc</var> an
+    und test damit herum.</li>
   <li>Weil die Torserver jede Zelle speichern und weitergeben müssen,
     brauchen die Torserver mit hoher Bandbreite Dutzende Megabyte an
     Speicher. Wir benötigen bessere Heuristiken, wenn die Buffer zu
