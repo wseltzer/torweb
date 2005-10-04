@@ -1,0 +1,67 @@
+#! /usr/bin/wml
+#include "links.wmi"
+#include "versions.wmi"
+#include "navigation.wmi"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Tor: $(TITLE)</title>
+  <meta name="Author" content="Roger Dingledine" />
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <ifneq "$(REDIRECT)" "" "<meta http-equiv="refresh" content="0;url=$(REDIRECT).html" />">
+</head>
+
+<body>
+
+<:
+	%languages = (
+		'en' => "English",
+		'de' => "Deutsch",
+		'it' => "Italiano"
+		);
+:>
+
+<div class="center">
+<table class="banner" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="banner-left"></td>
+        <td class="banner-middle">
+	<:
+	    while (@navigation) {
+	      $key = shift @navigation;
+	      $val = shift @navigation;
+	      push @keys, $key;
+	      $navigation{$key} = $val;
+	    }
+
+	    for $key (@keys) {
+	      $page = $WML_SRC_FILENAME;
+	      $page =~ s/\.wml//;
+	      if ($page ne $key) {
+	        printf '<a href="%s.$(LANG).html">%s</a>'."\n", $key, $navigation{$key};
+	       } else {
+	        printf '<a class="current">%s</a>'."\n", $navigation{$key};
+	       }
+	     }
+	:>
+        </td>
+        <td class="banner-right">
+	<:
+	  opendir(DIR, ".") || die ("Cannot open directory .: $!\n");
+	  my @subdirs = grep { $_ ne '.' && $_ ne '..' && -d $_ && $_ ne "$(LANG)" && exists $languages{$_}} readdir(DIR);
+	  closedir(DIR);
+
+	  $page = $WML_SRC_FILENAME;
+	  $page =~ s/\.wml//;
+	  for my $dir (sort {$languages{$a} cmp $languages{$b}} @subdirs) {
+	    printf('<a href="%s.%s.html"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $languages{$dir}) if (-e "$dir/$WML_SRC_FILENAME");
+	  };
+	:>
+        </td>
+    </tr>
+</table>
+
+<ifneq "$(REDIRECT)" "" "Redirecting to <a href="$(REDIRECT).html">$(REDIRECT).html</a>.">

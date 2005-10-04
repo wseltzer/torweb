@@ -1,0 +1,20 @@
+## translation metadata
+# Revision: $Rev$
+
+#include "head.wmi" TITLE="Volunteer"
+
+<div class="main-column">
+
+<:
+	$man = `man2html -M '' $(TORCVSHEAD)/doc/tor.1.in`;
+	die "No manpage" unless $man;
+
+	$man =~ s,.*<body>,,is;
+	$man =~ s,</body>.*,,is;
+
+	print $man;
+:>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
