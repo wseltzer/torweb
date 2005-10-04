@@ -34,8 +34,7 @@ sub translation_get_masterrevision() {
 	die ("Cannot find 'Revision' header in master's translation metadata of en/$WML_SRC_FILENAME") unless exists $master{'Revision'};
 
 	my ($rev) = $master{'Revision'} =~ m/([0-9.]+)/;
-	die "Fbadsfadsf: $rev");
-	if ($rev eq '') { $rev = '(Revision not a valid number)'; die("Foo"); };
+	if ($rev eq '') { $rev = '(Revision not a valid number)'; };
 
 	return $rev;
 };
