@@ -46,6 +46,7 @@
 	  $page = $WML_SRC_FILENAME;
 	  $page =~ s/\.wml//;
 	  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
+	    next if $dir eq '$(LANG)';
 	    printf('<a href="%s.%s.html"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $LANGUAGES{$dir}) if (-e "$dir/$WML_SRC_FILENAME");
 	  };
 	:>
