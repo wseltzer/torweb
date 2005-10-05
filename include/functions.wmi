@@ -27,28 +27,34 @@ sub getMetadata($) {
 	return %data;
 };
 
-sub translation_get_masterrevision() {
-	my $page = $WML_SRC_FILENAME;
-	%master = getMetadata("en/$WML_SRC_FILENAME");
+sub translation_get_masterrevision_file($) {
+	my ($page) = @_;
+	%master = getMetadata("en/$page");
 
-	die ("Cannot find 'Revision' header in master's translation metadata of en/$WML_SRC_FILENAME") unless exists $master{'Revision'};
+	die ("Cannot find 'Revision' header in master's translation metadata of en/$page") unless exists $master{'Revision'};
 
 	my ($rev) = $master{'Revision'} =~ m/([0-9.]+)/;
 	if ($rev eq '') { $rev = '(Revision not a valid number)'; };
 
 	return $rev;
 };
+sub translation_get_masterrevision() {
+	translation_get_masterrevision_file($WML_SRC_FILENAME);
+};
 
-sub translation_get_basedonrevision() {
-	my $page = $WML_SRC_FILENAME;
-	%translation = getMetadata("$(LANG)/$WML_SRC_FILENAME");
+sub translation_get_basedonrevision_langfile($$) {
+	my ($lang, $page) = @_;
+	%translation = getMetadata("$lang/$page");
 
-	die ("Cannot find 'Based-On-Revision' header in translations's translation metadata of $(LANG)/$WML_SRC_FILENAME") unless exists $translation{'Based-On-Revision'};
+	die ("Cannot find 'Based-On-Revision' header in translations's translation metadata of $lang/$page") unless exists $translation{'Based-On-Revision'};
 
 	my ($rev) = $translation{'Based-On-Revision'};
 	if ($rev eq '') { $rev = '(unknown)'; };
 
 	return $rev
+};
+sub translation_get_basedonrevision() {
+	translation_get_basedonrevision_langfile($(LANG), $WML_SRC_FILENAME);
 };
 
 

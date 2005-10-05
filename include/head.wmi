@@ -1,4 +1,5 @@
 #! /usr/bin/wml
+#include "perl-globals.wmi"
 #include "links.wmi"
 #include "versions.wmi"
 #include "navigation.wmi"
@@ -15,14 +16,6 @@
 </head>
 
 <body>
-
-<:
-	%languages = (
-		'en' => "English",
-		'de' => "Deutsch",
-		'it' => "Italiano"
-		);
-:>
 
 <div class="center">
 <table class="banner" border="0" cellpadding="0" cellspacing="0">
@@ -50,14 +43,10 @@
         </td>
         <td class="banner-right">
 	<:
-	  opendir(DIR, ".") || die ("Cannot open directory .: $!\n");
-	  my @subdirs = grep { $_ ne '.' && $_ ne '..' && -d $_ && $_ ne "$(LANG)" && exists $languages{$_}} readdir(DIR);
-	  closedir(DIR);
-
 	  $page = $WML_SRC_FILENAME;
 	  $page =~ s/\.wml//;
-	  for my $dir (sort {$languages{$a} cmp $languages{$b}} @subdirs) {
-	    printf('<a href="%s.%s.html"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $languages{$dir}) if (-e "$dir/$WML_SRC_FILENAME");
+	  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
+	    printf('<a href="%s.%s.html"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $LANGUAGES{$dir}) if (-e "$dir/$WML_SRC_FILENAME");
 	  };
 	:>
         </td>

@@ -13,11 +13,11 @@ WMLFILES=$(wildcard en/*.wml \
                     de/*.wml \
                     it/*.wml \
           )
-#WMIFILES=$(wildcard include/*.wmi \
-#                    en/*.wmi      \
-#                    de/*.wmi      \
-#                    it/*.wmi      \
-#          )
+WMIFILES=$(wildcard include/*.wmi \
+                    en/*.wmi      \
+                    de/*.wmi      \
+                    it/*.wmi      \
+          )
 HTMLFILES = $(patsubst de/%.wml, %.de.html, \
             $(patsubst en/%.wml, %.en.html, \
             $(patsubst it/%.wml, %.it.html, \
@@ -71,6 +71,7 @@ all: $(HTMLFILES)
 tor-manual-cvs.en.html: $(TORCVSHEAD)/doc/tor.1.in
 tor-manual.en.html: $(TORCVSSTABLE)/doc/tor.1.in
 
+translation-status.en.html: $(LANGS) $(WMIFILES) $(WMLFILES)
 
 dep: $(DEPFILES)
 

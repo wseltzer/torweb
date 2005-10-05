@@ -1,0 +1,76 @@
+## translation metadata
+# Revision: $Revision$
+
+#include "head.wmi" TITLE="Translation status"
+
+<div class="main-column">
+
+<h2>Tor: Translation status</h2>
+<hr />
+
+<:
+	my %files;
+	for my $lang (@LANGUAGES) {
+		opendir(DIR, $lang) or die ("Cannot opendir $lang: $!\n");
+		my @files = grep { $_ ne '.' && $_ ne '..' && $_ =~ m/^[^.]/ && -f $lang.'/'.$_} readdir(DIR);
+		closedir DIR;
+
+		for my $file (@files) {
+			if ($lang eq 'en') {
+				$files{$lang}->{$file} = translation_get_masterrevision_file($file);
+			} else {
+				$files{$lang}->{$file} = translation_get_basedonrevision_langfile($lang, $file);
+			};
+		};
+	};
+
+	print "<table border=1>\n";
+	print "<tr>\n";
+	print "<th>File</th>\n";
+	printf("<th>%s</th>\n", $LANGUAGES{$_}) for (@LANGUAGES);
+	print "</tr>\n";
+	for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
+		print "<tr>";
+		printf "<th>%s</th>", $file;
+		printf "<td>%s</td>", $files{'en'}->{$file};
+		for my $lang (@LANGUAGES) {
+			next if $lang eq 'en';
+			if (exists $files{$lang}->{$file}) {
+				if ($files{$lang}->{$file}  eq  $files{'en'}->{$file}) {
+					printf '<td bgcolor="green">current</td>';
+				} else {
+					printf '<td bgcolor="yellow">%s</td>', $files{$lang}->{$file};
+				};
+				delete $files{$lang}->{$file};
+			} else {
+				printf '<td bgcolor="red">missing</td>'
+			};
+		};
+		print "</tr>";
+	};
+	print "</table>\n";
+
+	for my $lang (@LANGUAGES) {
+		next if $lang eq 'en';
+		if (keys %{$files{$lang}} > 0) {
+			printf "<h2>Additional files in %s</h2>\n", $LANGUAGES{$lang};
+
+			print "<table border=1>\n";
+			print "<tr>\n";
+			print "<th>File</th>\n";
+			print "<th>Based on Revision</th>\n";
+			print "</tr>\n";
+			for my $file (sort {$a cmp $b} keys %{$files{$lang}}) {
+				print "<tr>";
+				printf "<th>%s</th>", $file;
+				printf "<td>%s</td>", $files{$lang}->{$file};
+				delete $files{$lang}->{$file};
+			};
+			print "</table>\n";
+		};
+	};
+:>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
