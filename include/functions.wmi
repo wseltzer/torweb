@@ -62,4 +62,10 @@ sub translation_current() {
 	return (translation_get_masterrevision() eq translation_get_basedonrevision());
 };
 
+sub file_is_obsolete($$) {
+	my ($lang, $page) = @_;
+	%translation = getMetadata("$lang/$page");
+	return (exists $translation{'Status'} && ($translation{'Status'} eq 'obsolete'))
+};
+
 :>

@@ -30,20 +30,21 @@
 	printf("<th>%s</th>\n", $LANGUAGES{$_}) for (@LANGUAGES);
 	print "</tr>\n";
 	for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
+		my $obs = file_is_obsolete('en', $file);
 		print "<tr>";
 		printf "<th>%s</th>", $file;
-		printf "<td>%s</td>", $files{'en'}->{$file};
+		printf "<td%s>%s%s</td>", ($obs ? ' bgcolor="grey"' : ''), $files{'en'}->{$file}, ($obs ? ' (obsolete)' :'');
 		for my $lang (@LANGUAGES) {
 			next if $lang eq 'en';
 			if (exists $files{$lang}->{$file}) {
 				if ($files{$lang}->{$file}  eq  $files{'en'}->{$file}) {
-					printf '<td bgcolor="green">current</td>';
+					printf '<td bgcolor="lightgreen">current</td>';
 				} else {
 					printf '<td bgcolor="yellow">%s</td>', $files{$lang}->{$file};
 				};
 				delete $files{$lang}->{$file};
 			} else {
-				printf '<td bgcolor="red">missing</td>'
+				printf '<td bgcolor="%s">missing</td>', ($obs ? 'lightgreen' : 'red')
 			};
 		};
 		print "</tr>";
