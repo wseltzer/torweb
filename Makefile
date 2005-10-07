@@ -18,13 +18,13 @@ WMIFILES=$(wildcard include/*.wmi \
                     de/*.wmi      \
                     it/*.wmi      \
           )
-HTMLFILES = $(patsubst de/%.wml, %.de.html, \
-            $(patsubst en/%.wml, %.en.html, \
-            $(patsubst it/%.wml, %.it.html, \
+HTMLFILES = $(patsubst de/%.wml, %.html.de, \
+            $(patsubst en/%.wml, %.html.en, \
+            $(patsubst it/%.wml, %.html.it, \
             $(WMLFILES))))
-DEPFILES =  $(patsubst de/%.wml,.deps/%.de.html.d,   \
-            $(patsubst en/%.wml,.deps/%.en.html.d,   \
-            $(patsubst it/%.wml,.deps/%.it.html.d,   \
+DEPFILES =  $(patsubst de/%.wml,.deps/%.html.de.d,   \
+            $(patsubst en/%.wml,.deps/%.html.en.d,   \
+            $(patsubst it/%.wml,.deps/%.html.it.d,   \
             $(WMLFILES))))
 
 LANGS=de en it
@@ -33,45 +33,45 @@ all: $(HTMLFILES)
 
 
 
-%.en.html: en/%.wml
+%.html.en: en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
 
-%.de.html: de/%.wml en/%.wml
+%.html.de: de/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
 
-%.it.html: it/%.wml en/%.wml
+%.html.it: it/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
 
 
-.deps/%.en.html.d: en/%.wml
+.deps/%.html.en.d: en/%.wml
 	@[ -d .deps ] || mkdir .deps
 	tmpfile=`tempfile` \
-	lang=`echo $@ | sed -e 's,\.html\.d$$,,' -e 's,.*\.,,'` && \
+	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
 	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.de.html.d: de/%.wml
+.deps/%.html.de.d: de/%.wml
 	@[ -d .deps ] || mkdir .deps
 	tmpfile=`tempfile` \
-	lang=`echo $@ | sed -e 's,\.html\.d$$,,' -e 's,.*\.,,'` && \
+	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
 	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.it.html.d: it/%.wml
+.deps/%.html.it.d: it/%.wml
 	@[ -d .deps ] || mkdir .deps
 	tmpfile=`tempfile` \
-	lang=`echo $@ | sed -e 's,\.html\.d$$,,' -e 's,.*\.,,'` && \
+	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
 	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
 
-tor-manual-cvs.en.html: $(TORCVSHEAD)/doc/tor.1.in
-tor-manual.en.html: $(TORCVSSTABLE)/doc/tor.1.in
+tor-manual-cvs.html.en: $(TORCVSHEAD)/doc/tor.1.in
+tor-manual.html.en: $(TORCVSSTABLE)/doc/tor.1.in
 
-translation-status.en.html: $(LANGS) $(WMIFILES) $(WMLFILES)
+translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
 
 dep: $(DEPFILES)
 

@@ -34,7 +34,7 @@
 	      $page = $WML_SRC_FILENAME;
 	      $page =~ s/\.wml//;
 	      if ($page ne $key) {
-	        printf '<a href="%s.$(LANG).html">%s</a>'."\n", $key, $navigation{$key};
+	        printf '<a href="%s.html.$(LANG)">%s</a>'."\n", $key, $navigation{$key};
 	       } else {
 	        printf '<a class="current">%s</a>'."\n", $navigation{$key};
 	       }
@@ -47,7 +47,7 @@
 	  $page =~ s/\.wml//;
 	  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
 	    next if $dir eq '$(LANG)';
-	    printf('<a href="%s.%s.html"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $LANGUAGES{$dir}) if (-e "$dir/$WML_SRC_FILENAME");
+	    printf('<a href="%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $LANGUAGES{$dir}) if (-e "$dir/$WML_SRC_FILENAME");
 	  };
 	:>
         </td>
