@@ -6,7 +6,7 @@
 <div class="main-column">
 
 <:
-	$man = `man2html -M '' $(TORCVSSTABLE)/doc/tor.1.in`;
+	my $man = `man2html -M '' $(TORCVSSTABLE)/doc/tor.1.in`;
 	die "No manpage" unless $man;
 
 	$man =~ s,.*<body>,,is;

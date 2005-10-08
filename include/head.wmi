@@ -1,4 +1,5 @@
 #! /usr/bin/wml
+<: use strict; :>
 #include "perl-globals.wmi"
 #include "links.wmi"
 #include "versions.wmi"
@@ -23,15 +24,17 @@
         <td class="banner-left"></td>
         <td class="banner-middle">
 	<:
+	    my %navigation;
+	    my @keys;
 	    while (@navigation) {
-	      $key = shift @navigation;
-	      $val = shift @navigation;
+	      my $key = shift @navigation;
+	      my $val = shift @navigation;
 	      push @keys, $key;
 	      $navigation{$key} = $val;
 	    }
 
-	    for $key (@keys) {
-	      $page = $WML_SRC_FILENAME;
+	    for my $key (@keys) {
+	      my $page = $WML_SRC_FILENAME;
 	      $page =~ s/\.wml//;
 	      if ($page ne $key) {
 	        printf '<a href="%s.html.$(LANG)">%s</a>'."\n", $key, $navigation{$key};
@@ -43,7 +46,7 @@
         </td>
         <td class="banner-right">
 	<:
-	  $page = $WML_SRC_FILENAME;
+	  my $page = $WML_SRC_FILENAME;
 	  $page =~ s/\.wml//;
 	  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
 	    next if $dir eq '$(LANG)';

@@ -10,16 +10,18 @@
 
 <:
 	my %files;
+	my @warnings;
 	for my $lang (@LANGUAGES) {
 		opendir(DIR, $lang) or die ("Cannot opendir $lang: $!\n");
 		my @files = grep { $_ ne '.' && $_ ne '..' && $_ =~ m/^[^.]/ && -f $lang.'/'.$_} readdir(DIR);
 		closedir DIR;
 
 		for my $file (@files) {
+			$files{$lang}->{$file}->{'all'} = getMetadata($lang.'/'.$file);
 			if ($lang eq 'en') {
-				$files{$lang}->{$file} = translation_get_masterrevision_file($file);
+				$files{$lang}->{$file}->{'rev'} = translation_get_masterrevision_file($file);
 			} else {
-				$files{$lang}->{$file} = translation_get_basedonrevision_langfile($lang, $file);
+				$files{$lang}->{$file}->{'based'} = translation_get_basedonrevision_langfile($lang, $file);
 			};
 		};
 	};
@@ -27,25 +29,56 @@
 	print "<table border=1>\n";
 	print "<tr>\n";
 	print "<th>File</th>\n";
-	printf("<th>%s</th>\n", $LANGUAGES{$_}) for (@LANGUAGES);
+	printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for (@LANGUAGES);
 	print "</tr>\n";
 	for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
 		my $obs = file_is_obsolete('en', $file);
 		print "<tr>";
 		printf "<th>%s</th>", $file;
-		printf "<td%s>%s%s</td>", ($obs ? ' bgcolor="grey"' : ''), $files{'en'}->{$file}, ($obs ? ' (obsolete)' :'');
+		printf '<td%s>Revision %s%s<br>
+		        <a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/en/%s?root=tor&view=markup">HEAD</a></td>',
+			($obs ? ' bgcolor="lightgrey"' : ''),
+			$files{'en'}->{$file}->{'rev'},
+			($obs ? ' (obsolete)' :''),
+			$file;
 		for my $lang (@LANGUAGES) {
 			next if $lang eq 'en';
+			my $color;
+			my $status;
 			if (exists $files{$lang}->{$file}) {
-				if ($files{$lang}->{$file}  eq  $files{'en'}->{$file}) {
-					printf '<td bgcolor="lightgreen">current</td>';
-				} else {
-					printf '<td bgcolor="yellow">%s</td>', $files{$lang}->{$file};
+				my $all_info = '';
+				for my $key (sort {$a cmp $b} keys %{$files{$lang}->{$file}->{'all'}}) {
+					$all_info .= sprintf "%s: %s<br>", $key, $files{$lang}->{$file}->{'all'}->{$key};
 				};
-				delete $files{$lang}->{$file};
+
+				my $difflink;
+				if ($files{$lang}->{$file}->{'based'}  eq  $files{'en'}->{$file}->{'rev'}) {
+					$color='lightgreen';
+					$status='current';
+					$difflink='';
+				} else {
+					$color='yellow';
+					$status='not current';
+					if ($files{$lang}->{$file} ne 'unknown') {
+						$difflink=sprintf '<br><a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/en/%s?root=tor&r1=%s&r2=%s">changes in original</a>',
+							$file, $files{$lang}->{$file}->{'based'}, $files{'en'}->{$file}->{'rev'};
+					};
+				};
+				printf '<td bgcolor="%s">%s<br>
+					<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/%s/%s?root=tor&view=markup">HEAD</a><br>
+					%s
+					%s</td>',
+					$color,
+					$status,
+					$lang, $file,
+					$all_info,
+					$difflink;
 			} else {
-				printf '<td bgcolor="%s">missing</td>', ($obs ? 'lightgreen' : 'red')
+				$color=($obs ? 'lightgreen' : 'red');
+				$status='missing';
+				printf '<td bgcolor="%s">%s</td>', $color, $status;
 			};
+			delete $files{$lang}->{$file};
 		};
 		print "</tr>";
 	};
@@ -54,7 +87,8 @@
 	for my $lang (@LANGUAGES) {
 		next if $lang eq 'en';
 		if (keys %{$files{$lang}} > 0) {
-			printf "<h2>Additional files in %s</h2>\n", $LANGUAGES{$lang};
+			print "<p>";
+			printf "<h2>Additional files in %s (%s)</h2>\n", $lang, $LANGUAGES{$lang};
 
 			print "<table border=1>\n";
 			print "<tr>\n";
@@ -63,8 +97,11 @@
 			print "</tr>\n";
 			for my $file (sort {$a cmp $b} keys %{$files{$lang}}) {
 				print "<tr>";
-				printf "<th>%s</th>", $file;
-				printf "<td>%s</td>", $files{$lang}->{$file};
+				printf "<th>%s</th><td>", $file;
+				for my $key (sort {$a cmp $b} keys %{$files{$lang}->{$file}->{'all'}}) {
+					printf "%s: %s<br>", $key, $files{$lang}->{$file}->{'all'}->{$key};
+				};
+				printf "</td>";
 				delete $files{$lang}->{$file};
 			};
 			print "</table>\n";
