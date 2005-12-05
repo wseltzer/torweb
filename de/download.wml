@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.8
+# Based-On-Revision: 1.9
 # Last-Translator: jens@kubieziel.de
 
 #include "head.wmi" TITLE="Download"
@@ -12,17 +12,13 @@
 <p>Tor wird als <a href="http://www.fsf.org/">Freie Software</a> unter der
 <a href="<cvssandbox>tor/LICENSE">3-clause BSD license</a> verteilt.</p>
 
-<p>Die aktuelle Version k&ouml;nnen Sie aus dem <a href="dist/">Downloadverzeichnis</a> herunterladen.
+<p>Die aktuelle stabile Version ist <b><version-stable></b>, und die
+aktuelle Entwicklungsversion <b><version-alpha></b>.</p>
 
-Die aktuelle stabile Version ist <b><version-stable></b>, und die aktuelle
-Testversion <b><version-alpha></b>.</p>
-
-<p>
-Um &uuml;ber neue Versionen und eventuelle Sicherheitsaktualisierungen zu
-erfahren, k&ouml;nnen Sie sich auf der
-<a href="http://archives.seul.org/or/announce/">or-announce</a> Mailingliste
-eintragen: (Sie werden die Eintratung per E-Mail best&auml;tigen m&uuml;ssen)
-</p>
+<p><b>Abonniere</b> die Mailingliste <a
+href="http://archives.seul.org/or/announce/">or-announce</a>, um über
+Sicherheitswarnungen und neue stabile Versionen informiert zu werden
+(Du wirst eine Bestätigungsmail erhalten.).</p>	
 
 <form action="http://freehaven.net/cgi-bin/majordomo.cgi">
 <input type="hidden" name="mlist" value="or-announce">
@@ -32,50 +28,107 @@ eintragen: (Sie werden die Eintratung per E-Mail best&auml;tigen m&uuml;ssen)
 <input type="submit" value="Auf der Liste eintragen">
 </form>
 
-<p>Tor sollte auf Linux, BSD, OS X, Win32, Solaris und anderen Systemen laufen</p>
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<thead>Plattform</thead>
+<thead>Paket</thead>
+<thead>Informationen zum Setup</thead>
+</tr>
+
+<tr>
+<td>Windows</td>
+<td><a href="<package-win32-stable>"><version-win32-stable></a> (<a href="<package-win32-stable-sig>">sig</a>),
+<a href="<package-win32-alpha>"><version-win32-alpha></a> (<a href="<package-win32-alpha-sig>">sig</a>).</td>
+<td><a href="<cvssandbox>tor/doc/tor-doc-win32.html">Installationsanweisungen f&uuml;r Tor unter Windows</a></td>
+</tr>
+
+<tr>
+<td>Mac OS X Tiger</td>
+<td><a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>),
+<a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>).</td>
+<td><a href="<cvssandbox>tor/doc/tor-doc-osx.html">Installationsanweisungen f&uuml;r Tor unter OSX</a></td>
+</tr>
+
+<tr>
+<td>Mac OS X Panther/Jaguar</td>
+<td><a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a href="<package-oldosx-stable-sig>">sig</a>).</td>
+<td><a href="<cvssandbox>tor/doc/tor-doc-osx.html">Installationsanweisungen f&uuml;r Tor unter OSX</a></td>
+</tr>
+
+<tr>
+<td>Debian</td>
+<td><kbd>apt-get install tor</kbd></td>
+<td><ul>
+<li><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Anweisungen für UNIX/Linux/BSD</a></li>
+<li><a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorOnDebian">Backports für Woody und Sarge, Pakete für Ubuntu und experimentelle Torversionen</li>
+</ul></td>
+</tr>
+
+<tr>
+<td>Gentoo</td>
+<td><kbd>emerge tor</kbd></td>
+<td><ul>
+<li><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Anweisungen für UNIX/Linux/BSD</a></li>
+<li><a href="http://gentoo-wiki.com/HOWTO_Anonymity_with_Tor_and_Privoxy">Guide des Gentoowiki</a></li>
+</ul></td>
+</tr>
+
+<tr>
+<td>Red Hat Linux</td>
+<td><a href="<package-rpm-stable>"><version-rpm-stable> RPM</a> (<a href="<package-rpm-stable-sig>">sig</a>)<br />
+<a href="<package-srpm-stable>"><version-rpm-stable> SRPM</a> (<a href="<package-srpm-stable-sig>">sig</a>)<br />
+<a href="<package-rpm-alpha>"><version-rpm-alpha> RPM</a> (<a href="<package-rpm-alpha-sig>">sig</a>)<br />
+<a href="<package-srpm-alpha>"><version-rpm-alpha> SRPM</a> (<a href="<package-srpm-alpha-sig>">sig</a>)</td>
+<td><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Anweisungen für UNIX/Linux/BSD</a></td>
+</tr>
+
+<tr>
+<td>FreeBSD</td>
+<td><kbd>portinstall -s security/tor</kbd></td>
+<td><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Anweisungen für UNIX/Linux/BSD</a></td>
+</tr>
+
+<tr>
+<td>OpenBSD</td>
+<td><kbd>cd /usr/ports/net/tor &amp;&amp; make &amp;&amp; make install</kbd></td>
+<td><ul>
+<li><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Anweisungen für UNIX/Linux/BSD</a></li>
+<li><a href="http://wiki.noreply.org/noreply/TheOnionRouter/OpenbsdChrootedTor">Anweisungen für Tor innerhalb eines Chroot</a></li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>NetBSD</td>
+<td><kbd>cd /usr/pkgsrc/net/tor &amp;&amp; make install</kbd></td>
+<td><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Anweisungen für UNIX/Linux/BSD</a></td>
+</tr>
+
+<tr>
+<td>Quellcode</td>
+<td><a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>), <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)</td>
+<td>n/a</td>
+</tr>
+</table>
+
+<hr />
+
+<h2>Weitere Informationen</h2>
 
 <ul>
-<li><b>Windows</b> Installationsprogramm::
-<a href="<package-win32-stable>"><version-win32-stable></a> (<a href="<package-win32-stable-sig>">sig</a>),
-<a href="<package-win32-alpha>"><version-win32-alpha></a> (<a href="<package-win32-alpha-sig>">sig</a>).
-Lesen Sie auch die <a href="<cvssandbox>tor/doc/tor-doc-win32.html">Installationsanweisungen f&uuml;r Tor unter Windows</a>.</li>
-
-<li><b>Mac OS X Tiger</b> Installationsprogramm:
-<a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>),
-<a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>).
-Lesen Sie auch die <a href="<cvssandbox>tor/doc/tor-doc-osx.html">Installationsanweisungen f&uuml;r Tor unter OSX</a>.
-</li>
-
-<li><b>Mac OS X Panther/Jaguar</b> Installationsprogramm:
-<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a href="<package-oldosx-stable-sig>">sig</a>).
-Lesen Sie auch die <a href="<cvssandbox>tor/doc/tor-doc-osx.html">Installationsanweisungen f&uuml;r Tor unter OSX</a>.
-</li>
-<li><b>Debianpakete</b>: <kbd>apt-get install tor</kbd> (<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorOnDebian">Anweisungen f&uuml;r Tor auf Woody und Sarge und f&uuml;r Testversionen</a>)
-</li>
-
-<li><b>Red-Hat-Linux</b>-Pakete:
-<a href="<package-rpm-stable>"><version-rpm-stable> RPM</a> (<a href="<package-rpm-stable-sig>">sig</a>),
-<a href="<package-srpm-stable>"><version-rpm-stable> SRPM</a> (<a href="<package-srpm-stable-sig>">sig</a>),
-<a href="<package-rpm-alpha>"><version-rpm-alpha> RPM</a> (<a href="<package-rpm-alpha-sig>">sig</a>),
-<a href="<package-srpm-alpha>"><version-rpm-alpha> SRPM</a> (<a href="<package-srpm-alpha-sig>">sig</a>)
-</li>
-
-<li><b>Gentoo</b>: <kbd>emerge tor</kbd> (<a href="http://gentoo-wiki.com/HOWTO_Anonymity_with_Tor_and_Privoxy">guide</a>)</li>
-<li><b>FreeBSD</b>: <kbd>portinstall -s security/tor</kbd></li>
-<li><b>OpenBSD</b>: <kbd>cd /usr/ports/net/tor &amp;&amp; make &amp;&amp; make install</kbd> (<a href="http://wiki.noreply.org/noreply/TheOnionRouter/OpenbsdChrootedTor">guide to chrooting</a>)</li>
-<li><b>NetBSD</b>: <kbd>cd /usr/pkgsrc/net/tor &amp;&amp; make install</kbd></li>
-<li>Aktuelle Quellen:
-<a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>),
-<a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)
-</li>
+<li>Wirf einen Blick auf die <a href="<page
+documentation>">">Dokumentationsseite</a>. Dort findest du
+Anweisungen, um Tor für deine PLattform zu installieren.</li>
+<li>Schaue dir diesen <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DistSignatures">Eintrag
+in der FAQ</a>, um Anweisungen zum Verifizieren der Paketsignaturen zu
+erhalten. Dies stellt sicher, dass du wirklich das herunterlädst, was
+du erwartest.</li>
+<li>Schaue dir die <a href="<page developers>">Entwicklerseite</a> an,
+um Anweisungen zu erhalten, wie du die letzte Version aus dem
+CVS-Archiv erhälst. Denke daran, dass diese Version nicht
+funktionieren oder noch nicht einmal kompilieren könnte!</li>
 </ul>
-
-<p>Im CVS finden Sie
-<a href="<cvssandbox>tor/doc/tor-doc.html">Anweisungen zur Installation und Konfiguration</a>. Der
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DistSignatures">Eintrag in der FAQ</a>
-beschreibt, wie die Signaturen der Pakete zu verifizieren sind.</p>
-
-<p>Wie man Tor aus dem CVS bekommt, wird auf der <a href="<page developers>">Entwicklerseite</a> beschrieben.  </p>
 
 <p>Schaue dir die <a href="<page mirrors>">Liste der Spiegelserver</a> für eine
 Übersicht an.</p>
