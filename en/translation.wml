@@ -12,7 +12,8 @@
 If you want to help translate the Tor website and documentation into
 other languages, here are some basic guidelines to help you do this
 as efficiently as possible.<br />
-At this time, German, Danish and Swedish translations are under way.
+At this time, we have an actively maintained German translation, and we
+have an old Italian translation and we're looking for a maintainer.
 </p>
 
 <p>
@@ -21,24 +22,31 @@ for each language, but even a few pages will still be helpful.
 </p>
 
 <ol>
-<li>File names should be changed from index.html to index.xx.html, where xx
-is your <a href="http://www.w3.org/WAI/ER/IG/ert/iso639.htm">ISO 639</a>
-two letter language code.</li>
+<li>Look in <a
+href="http://tor.eff.org/cvs/website/en/">http://tor.eff.org/cvs/website/en/</a>
+for a set of ".wml" files. The most important ones to
+translate are index.wml, overview.wml, download.wml,
+documentation.wml, and foot.wml. You are welcome to translate
+more pages than this if you would like. You can look at <a
+href="http://tor.eff.org/cvs/website/de/">http://tor.eff.org/cvs/website/de/</a>
+for examples of the desired translation formats.</li>
+#<li>File names should be changed from index.html to index.xx.html, where xx
+#is your <a href="http://www.w3.org/WAI/ER/IG/ert/iso639.htm">ISO 639</a>
+#two letter language code.</li>
 <li>The first line in the translated file should be<br />
-&lt;!-- revision 0.00 --&gt;<br />
-where 0.00 is the revision number of the original page translated, to
+\# Based-On-Revision: 1.4<br />
+where 1.4 is the revision number of the original page translated, to
 easily spot when a page gets out of date. The revision number is found at
-the bottom on each page -- it is created by CVS so be sure to
+the top on each page -- it is created by CVS so be sure to
 <a href="<page developers>">checkout</a> the latest version of the website.</li>
-
 <li>The second line in the translated file should be the email address of
 the translator:<br />
-&lt;!-- abc@example.com --&gt;<br />
+\# Last-Translator: abc@example.com<br />
 so we can get ahold of you if the pages needs to be corrected or updated.</li>
 
 <li>Translated pages should link to the other translated pages.</li>
 
-<li>Translated pages should include a note at the top, translated to the
+<li>Translated pages should include a note in foot.wml, translated to the
 appropriate language: "Neither the Tor developers nor EFF have reviewed
 this translation for accuracy and correctness. It may be out of date
 or wrong. The official Tor web site is the English version, available
