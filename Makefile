@@ -29,16 +29,24 @@ WMIFILES=$(wildcard include/*.wmi \
                     it/*.wmi      \
                     fr/*.wmi      \
           )
-HTMLFILES = $(patsubst de/%.wml, %.html.de, \
-            $(patsubst en/%.wml, %.html.en, \
-            $(patsubst it/%.wml, %.html.it, \
-            $(patsubst fr/%.wml, %.html.fr, \
-            $(WMLFILES)))))
+HTMLFILES = $(patsubst de/%.wml, %.html.de,          \
+             $(patsubst en/%.wml, %.html.en,         \
+              $(patsubst it/%.wml, %.html.it,        \
+               $(patsubst fr/%.wml, %.html.fr,       \
+            $(WMLFILES)                              \
+                )                                    \
+               )                                     \
+              )                                      \
+             )
 DEPFILES =  $(patsubst de/%.wml,.deps/%.html.de.d,   \
-            $(patsubst en/%.wml,.deps/%.html.en.d,   \
-            $(patsubst it/%.wml,.deps/%.html.it.d,   \
-            $(patsubst fr/%.wml,.deps/%.html.fr.d,   \
-            $(WMLFILES)))))
+             $(patsubst en/%.wml,.deps/%.html.en.d,  \
+              $(patsubst it/%.wml,.deps/%.html.it.d, \
+               $(patsubst fr/%.wml,.deps/%.html.fr.d,\
+            $(WMLFILES)                              \
+                )                                    \
+               )                                     \
+              )                                      \
+             )
 
 LANGS=de en it fr
 
