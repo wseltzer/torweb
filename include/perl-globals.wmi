@@ -1,11 +1,21 @@
 #!wml
 <:
+	# Change both.  The array is ordered (for pages like translation status).
+	# The order of flasg in head is based on sort order of language name.
 	my @LANGUAGES = qw{en de it fr};
 	my %LANGUAGES = (
 		'en' => "English",
 		'de' => "Deutsch",
 		'it' => "Italiano",
-		'fr' => "Fran&ccedil;ais"
+		'fr' => "Fran&ccedil;ais",
 		);
 	our $WML_SRC_FILENAME;
+
+	# sanity check.
+	for my $lang (@LANGUAGES) {
+		die "Language $lang defined in \@LANGUAGES but not in \%LANGUAGES in perl-globals"
+			unless exists $LANGUAGES{$lang};
+	};
+	die "\@LANGUAGES and \%LANGUAGES have a different number of elements in perl-globals"
+		unless (scalar @LANGUAGES == scalar keys %LANGUAGES);
 :>
