@@ -21,22 +21,26 @@ WMLOPT  = \
 WMLFILES=$(wildcard en/*.wml \
                     de/*.wml \
                     it/*.wml \
+                    fr/*.wml \
           )
 WMIFILES=$(wildcard include/*.wmi \
                     en/*.wmi      \
                     de/*.wmi      \
                     it/*.wmi      \
+                    fr/*.wmi      \
           )
 HTMLFILES = $(patsubst de/%.wml, %.html.de, \
             $(patsubst en/%.wml, %.html.en, \
             $(patsubst it/%.wml, %.html.it, \
-            $(WMLFILES))))
+            $(patsubst fr/%.wml, %.html.fr, \
+            $(WMLFILES)))))
 DEPFILES =  $(patsubst de/%.wml,.deps/%.html.de.d,   \
             $(patsubst en/%.wml,.deps/%.html.en.d,   \
             $(patsubst it/%.wml,.deps/%.html.it.d,   \
-            $(WMLFILES))))
+            $(patsubst fr/%.wml,.deps/%.html.fr.d,   \
+            $(WMLFILES)))))
 
-LANGS=de en it
+LANGS=de en it fr
 
 all: $(HTMLFILES)
 
@@ -51,6 +55,8 @@ all: $(HTMLFILES)
 %.html.it: it/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
 
+%.html.fr: fr/%.wml en/%.wml
+	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
 
 .deps/%.html.en.d: en/%.wml
 	@[ -d .deps ] || mkdir .deps
@@ -69,6 +75,14 @@ all: $(HTMLFILES)
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
 .deps/%.html.it.d: it/%.wml
+	@[ -d .deps ] || mkdir .deps
+	tmpfile=`tempfile` \
+	lang=`dirname $<` && \
+	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
+	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
+	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
+	rm -f $$tmpfile
+.deps/%.html.fr.d: fr/%.wml
 	@[ -d .deps ] || mkdir .deps
 	tmpfile=`tempfile` \
 	lang=`dirname $<` && \
