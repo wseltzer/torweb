@@ -3,7 +3,7 @@
 # 2. edit the two lines below to point to them.
 # 3. (edit include/versions.wmi or others if you like)
 # 4. make
-# 5. scp *.html.* arma@tor.eff.org:/var/www/fhaven/htdocs/
+# 5. scp *.html.* arma@tor.eff.org:/www/tor.eff.org/docs/
 
 TORCVSSTABLE = ../tor.0.1.0-branch
 TORCVSHEAD = ../tor-head
