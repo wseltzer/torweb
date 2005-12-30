@@ -38,11 +38,17 @@
 	      my $page = $WML_SRC_FILENAME;
 	      $page =~ s/\.wml//;
 	      if ($page ne $key) {
-	        printf '<a href="%s.html.$(LANG)">%s</a>'."\n", $key, $navigation{$key};
-	       } else {
-	        printf '<a class="current">%s</a>'."\n", $navigation{$key};
-	       }
-	     }
+	        if (-e "$(LANG)/$key.wml") {
+	          printf '<a href="%s.html.$(LANG)">%s</a>'."\n",
+	                 $key, $navigation{$key};
+	        } else {
+	          printf '<a href="%s.html">%s</a>'."\n",
+	                 $key, $navigation{$key};
+	        }
+	      } else {
+	       printf '<a class="current">%s</a>'."\n", $navigation{$key};
+	      }
+	    }
 	}:>
         </td>
         <td class="banner-right">
