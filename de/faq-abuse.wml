@@ -1,0 +1,319 @@
+# Based-On-Revision: 1.3
+# Last-Translator: jo@durchholz.org
+## translation metadata
+
+#include "head.wmi" TITLE="Abuse-FAQ für Betreiber von Torservern"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>Häufige Fragen von Torbetreibern über den Missbrauch von Tor</h2>
+<hr />
+
+<a id="WhatAboutCriminals"></a>
+<h3><a class="anchor" href="#WhatAboutCriminals">Können Kriminelle nicht
+Tor für üble Dinge missbrauchen?</a></h3>
+
+<p>Kriminelle können bereits üble Dinge tun.  Da sie ohnehin außerhalb des
+Gesetzes operieren, haben sie bereits jetzt viele Möglichkeiten, die ihnen eine
+<em>bessere</em> Anonymität bieten als Tor.  Sie können Handys stehlen, sie
+verwenden und in einen Graben werfen.  Sie können Computer in Korea und
+Brasilien knacken und von dort aus missbräuchliche Aktivitäten starten.  Sie
+können mit Trojanern, Viren und anderen Techniken Millionen von Windows-Rechnern
+auf der ganzen Welt übernehmen.</p>
+
+<p>Tor dient dazu, den Normalbürger zu schützen, der das Gesetz befolgen will.
+Im Moment haben nur Kriminelle eine Privatsphäre. Das muss korrigiert
+werden.</p>
+
+<p>Manche Anonymitätsbefürworter sagen, dass man halt den Missbrauch akzeptieren
+muss, wenn man die erwünschten Effekte haben will; wir meinen, dass das im Fall
+von Tor nicht gilt.  Kriminelle und andere Missbraucher haben Motive, wie man
+sich eine gute Anonymität sichert, und viele sind motiviert genug, dafür auch
+ordentlich zu bezahlen.  Wenn man die Identität unschuldiger Opfer stehlen und
+missbrauchen kann, ist es noch einfacher.  Andererseits hat ein typischer
+Normalbürger weder die Zeit noch das Geld, um herauszufinden, wie man online
+eine Privatsphäre erschafft.  Das ist die Schlechteste aller Welten.</p>
+
+<p>Fazit: Ja, theoretisch könnten Kriminelle Tor nutzen, aber sie haben bereits
+bessere Möglichkeiten, und es sieht nicht so aus, als würden sie ihre
+Aktivitäten einstellen, wenn man Tor aus der Welt entfernen würde.  Andererseits
+können Tor und andere Massnahmen zur Sicherung der Privatsphäre helfen, den
+Identitätsdiebstahl und physische Taten wie Stalking usw. zu
+<em>bekämpfen</em>.</p>
+
+<a id="DDoS"></a>
+<h3><a class="anchor" href="#DDoS">Was ist mit verteilten 
+Denial-of-Service-Angriffen?</a></h3>
+
+<p>Verteilte Denial-of-Service-Angriffe (<abbr title="Distributed Denial of
+Service">DDoS</abbr>) sind typischerweise so aufgebaut, dass Tausende von
+Computern das Opfer im Internet mit Daten überschwemmen.  Da man üblicherweise
+den Internetzugang des Opfers lahmlegen will, werden typischerweise UDP-Pakete
+gesendet, für die deine Rückmeldungen und keine Koordination nötig sind.</p>
+
+<p>Tor transportiert nur korrekte geformte TCP-Ströme, keine beliebigen
+IP-Pakete.  Deshalb kann man auch keine UDP-Pakete über Tor versenden.
+(Spezialisierte Angriffe wie das Fluten mit SYN-Pakten sind daher ebenfalls
+nicht möglich.) Die normalen DDoS-Angriffe sind über Tor also nicht möglich.
+Tor lässt auch keine bandbreitenverstärkenden Angriffe gegen externe Server zu:
+Für jedes Byte, das man an den Zielrechner übermitteln will, muss man ein Byte
+an das Tor-Netz schicken.  Wenn ein Angreifer also über genügend Bandbreite
+verfügt, um einen wirkungsvollen DDoS-Angriff zu starten, kann er das problemlos
+auch ohne Tor machen.</p>
+
+<a id="WhatAboutSpammers"></a>
+<h3><a class="anchor" href="#WhatAboutSpammers">Was ist mit Spam?</a></h3>
+
+<p>Zunächst einmal ist die Standardpolicy, ausgehende SMTP-Verbindungen (auf
+Port 25) abzulehnen.  In den Standardeinstellungen funktioniert der Versand von
+Spammails über Tor also nicht.  Es ist möglich, dass ein Serveradministrator auf
+seinem spezifischen Exitserver ausgehende Mails zulässt, aber dieser
+Administrator könnte genausogut ein offenes Mailrelay installieren.  Kurz
+gesagt, ist Tor für das Spammen ungeeignet, weil nahezu alle Torserver die
+Auslieferung der Mail ablehnen.</p>
+
+<p>Es geht natürlich nicht nur um die direkte Mailauslieferung.  Spammer können
+mit Tor auf HTTP-Proxies gehen (und von dort auf SMTP-Server). Sie können
+schlecht abgesicherte CGI-Skripts mit Mailfunktion missbrauchen.  Sie können
+ihre Botnetze einsetzen &mdash; das heißt, sie können im geheimen ihre Armeen
+kompromittierter, ferngesteuerter Computer anweisen, den Spam zu
+verschicken.</p>
+
+<p>Das ist schade, aber die Spammer sind auch ohne Tor wunderbar ausgekommen.
+Bedenke auch, dass viele ihrer subtileren Kommunikationsmechanismen (wie
+gefälschte UDP-Pakete) über Tor nicht verwendbar sind, weil Tor nur korrekte
+TCP-Verbindungen transportiert.</p>
+
+<a id="ExitPolicies"></a>
+<h3><a class="anchor" href="#ExitPolicies">Wie funktionieren die 
+Exitpolicies von Tor?</a></h3>
+
+<p>Jeder Torserver hat eine Exitpolicy, in der festgelegt ist, welche
+ausgehenden Verbindungen er zulässt oder abweist.  Diese Richtlinien werden dem
+Client über den Verzeichnisserver mitgeteilt, so dass Clients nicht aus Versehen
+einen Exitserver verwenden, der die Daten gar nicht ausliefern würde.</p>
+
+<p>Auf diese Weise kann jeder Server selbst festlegen, zu welchen Dienste,
+Rechnern und Netzen er Verbindungen zulassen will, je nach Missbrauchspotenzial
+und eigener Situation.</p>
+
+<a id="HowMuchAbuse"></a>
+<h3><a class="anchor" href="#HowMuchAbuse">Wird Tor viel 
+missbraucht?</a></h3>
+
+<p>Nicht viel, wenn man das Gesamtbild betrachtet.  Wir betreiben das Netz seit
+Oktober 2003 und es ist nur eine Handvoll Beschwerden eingegangen.  Natürlich
+haben wir &mdash; wie alle Netze, die sich auf den Schutz der Privatsphäre im
+Internet konzentrieren &mdash; unseren Anteil an Idioten.  Die
+Ausgangsrichtlinien erlauben es, die Rollen "ich bin bereit, dem Netzwerk
+Bandbreite zukommen lassen" und "ich bin bereit, mich mit Missbrauchsbeschwerden
+auseinandersetzen" zu trennen.  Das begründet unsere Hoffnung, dass unser Netz
+nachhaltiger funktioniert als die bisherigen Versuche mit Anonymitätsnetzen.</p>
+
+<p>Weil es für Tor auch <a href="<page overview>">viele gute Nutzungen gibt</a>,
+denken wir, dass wir im Moment ein gutes Gleichgewicht haben.</p>
+
+<a id="TypicalAbuses"></a>
+<h3><a class="anchor" href="#TypicalAbuses">Was habe ich zu erwarten, 
+wenn ich einen Server betreibe?</a></h3>
+
+<p>Wenn Sie einen Torserver betreiben, der Ausgangsverbindungen zulässt (was die
+Standardrichtlinie ist), können Sie wohl davon ausgehen, dass Sie irgendwann von
+jemandem hören werden.  Missbrauchsbeschwerden gibt es in verschiedenen Formen.
+Zum Beispiel:</p>
+
+<ul>
+<li>Jemand verbindet sich mit Hotmail und schickt eine Lösegeldforderung an eine
+Firma. Die Exekutivorgane (BKA, FBI, etc.) schicken eine höfliche Anfrage an
+dich. Du erklärst, dass du einen Torserver betreibst und nicht weißt, wessen
+Daten über deinen Server gehen. Der Anfrager sagt dann "Schade" und lässt dich
+in Ruhe. [Port 80]</li>
+<li>Jemand versucht, deine Internetverbindung abschalten zu lassen, indem er
+über deinen Torserver Spam in die Newsgroups schickt und dann einen bitterbösen
+Beschwerdebrief an Ihren Internetprovider schickt. [Port 80]</li>
+<li>Jemand verwendet Ihren Torserver, um sich im Chat schwer danebenzubenehmen.
+Dein Internetprovider erhält eine höfliche Mail, dass dein Computer kompromittiert
+sei und/oder dein Computer wird mit DDoS angegriffen. [Port 6667]</li>
+<li>Jemand verwendet Tor, um das neueste Computerspiel herunterzuladen. Dein
+Internetprovider wird von der Staatsanwaltschaft aufgefordert, die Zugangsdaten
+herauszurücken und man klagt dich  wegen Urheberrechtsverletzung an. Da du es
+gar nicht bist, der das Urheberrecht verletzt, kann man dich nicht verurteilen.
+[Alle Ports]</li>
+</ul>
+
+<p>Du wirst eventuell feststellen, dass die IP-Adresse des Torservers von
+manchen Internetdiensten gesperrt wurde.  Das kann unabhängig von den
+Richtlinien des Torservers geschehen, weil manche Gruppen nicht wissen oder
+ignorieren, dass Tor Exitpolicies hat.  (Wenn du eine IP übrig hast, die du
+sonst nicht verwendest, kannst du den Torserver darüber laufen lassen.)
+Beispiele:</p>
+
+<ul>
+<li>Weil einige anonyme Idioten auf Seiten der Wikipedia als Vandalen
+aufgetreten sind, blockiert die Wikipedia zur Zeit das Bearbeiten von vielen IPs
+der Torserver (Lesen funktioniert trotzdem). Wir verhandeln mit Wikipedia, wie
+sie den Missbrauch unter Kontrolle kriegen, ohne anonyme Beiträge zu verhindern.
+Anonyme Autoren haben oft wichtige Neuigkeiten oder Insider-Informationen über
+ein Thema, wollen aber ihre Identitäten nicht preisgeben (oder wollen nicht,
+dass man an ihrem Standort erfährt, dass sie auf Wikipedia zugreifen). Slashdot
+ist im gleichen Boot.</li>
+<li>SORBS (ein Dienst, der "Spamschleudern" im Internet identifiziert) hat
+einige Torserver-IPs auf seinen Blacklisten für Email. Auf dieser Liste landet
+man, wenn SORBS feststellt, dass dein Server Verbindung mit bestimmten
+IRC-Netzen aufnimmt, weil das für manche spamversendenden Server typisch ist.
+Wir bearbeiten sie, damit sie lernen, dass nicht alle Software so funktioniert.
+Bis dahin empfehlen wir dir, SORBS zu meiden und diese Empfehlung an deine
+Freunde weiterzugeben (soweit sie SORBS nutzen).</li>
+</ul>
+
+<a id="IrcBans"></a>
+<h3><a class="anchor" href="#IrcBans">Tor ist von dem IRC-Netz verbannt, 
+das ich verwenden möchte.</a></h3>
+
+<p>Manchmal nutzen Idioten Tor, um auf IRC-Kanälen Unfug zu stiften.
+Dieser Missbrauch endet damit, dass die Administratoren des IRC-Kanals
+die verwendete IP zeitweilig sperren, um den Troll loszuwerden.</p>
+
+<p>Diese Reaktion unterstreicht ein fundamendales Problem im Sicherheitsmodell
+von IRC: Sie nehmen an, dass IP-Adressen Menschen identifizieren, und dass sie
+mit der IP-Adresse auch den Menschen aussperren können.  Das stimmt nicht: viele
+dieser Idioten nutzen routinemäßig Millionen offener Proxies und
+kompromittierter Computer im Internet.  Die IRC-Administratoren kämpfen eine
+verlorene Schlacht, wenn sie alle diese Netzknoten blockieren wollen, und auf
+der Basis dieses fehlerhaften Sicherheitsmodells ist eine ganze
+Hinterhofindustrie von Blacklisten und Antitrollen entstanden (mit großer
+Ähnlichkeit zur Antivirusindustrie).  Das Tornetz ist einfach nur ein Tropfen in
+einem Ozean.</p>
+
+<p>Andererseits ist Sicherheit für einen IRC-Administrator keine
+Alles-oder-Nichts-Angelegenheit.  Wenn sie einen Troll oder einen anderen
+sozialen Angriff mit einer schnellen Sperre beantworten, machen sie dem
+Angreifer das Leben schwer.  Und die meisten IP-Adressen identifizieren
+gleichzeitig auch nur einen Menschen (Ausnahmen sind NAT-Router). Es mag eine
+verlorene Schlacht sein, die Verwendung offener Proxies zu verhindern, aber es
+ist im allgemeinen keine verlorene Schlacht, einen einzelnen unsozialen
+IRC-Nutzer zu blockieren, bis er die Lust verliert und geht.</p>
+
+<p>Die wirkliche Antwort ist natürlich,
+eine Benutzeranmeldung zu implementieren,
+so dass man die Netten reinlassen und die Bösen aussperren kann.
+Das muss auf einer Eigenschaft des Menschen beruhen (z.B. einem
+Passwort, das er kennt), nicht auf einer Eigenschaft der
+übermittelten Datenpakete.</p>
+
+<p>Natürlich versuchen nicht alle IRC-Netze, Torserver zu sperren.  Schließlich
+verwendet ein Haufen Leute Tor, um legitim zu kommunizieren, ohne das mit ihrer
+realen Identität zu verbinden.  Jedes IRC-Netz muss selbst entscheiden, ob es
+Sinn macht, ein paar weitere der Millionen IPs zu sperren, die für Missbrauch
+anfällig sind, wenn man damit auch die Beiträge der Tornutzer sperrt, die sich
+benehmen.</p>
+
+<p>Wenn Sie blockiert werden, sprechen Sie mit den Administratoren und erklären
+Sie ihnen die Angelegenheit.  Sie wissen womöglich nichts über Tor, oder sie
+wissen nicht, dass die gesperrten Server Torexitserver sind.  Wenn sie Bescheid
+wissen und Tor immer noch sperren wollen, können Sie zu einem Netz wechseln, das
+der freien Rede offener gegenübersteht.  Vielleicht hilft es auch, sie nach #tor
+auf irc.oftc.net einzuladen, um zu zeigen, was wir nicht alle böse Buben
+sind.</p>
+
+<p>Wenn Sie ein IRC-Netz bemerken, das Tor zu blockieren scheint, tragen Sie
+diese Information bitte auf dem <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/BlockingIrc">Tor IRC block
+tracker</a> ein, so dass andere Bescheid wissen.  Mindestens ein IRC-Netz
+besucht diese Seite regelmäßig, um Ausgangsserver zu entsperren, die
+versehentlich gesperrt wurden.</p>
+
+<a id="SMTPBans"></a>
+<h3><a class="anchor" href="#SMTPBans">Ihre Server werden vom Mailserver 
+gesperrt, den ich nutzen möchte.</a></h3>
+
+<p>Obgleich <a href="#WhatAboutSpammers">Tor für das Spammen nutzlos ist</a>,
+glauben offenbar einige übereifrige Organisationen mit Blacklisten, dass alle
+offenen Netze böse sind &mdash; sie versuchen, den Netzadministratoren
+Richtlinien, Dienste und Routing vorzuschreiben und den Opfern dann Lösegelder
+abzufordern.</p>
+
+<p>Wenn Ihr Serveradministrator so eine Blacklist nutzt, um eingehende Mails zu
+filtern, sollten Sie mit ihm reden und ihm Tor und seine Exitpolicies
+erklären.</p>
+
+<a id="Bans"></a>
+<h3><a class="anchor" href="#Bans">Ich möchte das Tornetz von meinen 
+Diensten aussperren.</a></h3>
+
+<p>Bitte frage dich zunächst, ob es eine Möglichkeit gibt, auf
+Anwendungsebene zwischen legitimen Nutzern und Idioten zu unterscheiden. Du
+kannst beispielsweise bestimmte Bereiche Ihrer Website oder das Recht zum
+Schreiben registrierten Benutzern vorbehalten. Du kannst diese Richtlinie nur
+gegenüber bestimmten IPs (wie denen von Torservern) einsetzen. Auf diese Weise
+kannst du einen abgestuften Zugang gewähren, ohne gleich alles zu sperren.</p>
+
+<p>Bedenke bitte, dass jeden Tag Tausende Menschen Tor verwenden, um sich
+vor Datensammlern wie Doubleclick zu schützen, während sie ihren normalen
+Aktivitäten nachgehen.  Andere nutzen Tor, weil es die einzige Möglichkeit ist,
+durch die restriktiven Firewalls ihrer Organisation oder Schule zu kommen.
+Wahrscheinlich sind gerade jetzt, in diesem Moment, einige Nutzer über Tor mit
+deinen Diensten verbunden und führen ihre normalen Aktivitäten aus. Du musst
+abwägen, ob du mit der Aussperrung des Tornetzes auch die Beiträge der
+legitimen Benutzer verlieren möchtest, zusammen mit zukünftigen legitimen
+Benutzern.</p>
+
+<p>Weiterhin solltest du überlegen, was du mit anderen Diensten machen willst,
+die viele Benutzer hinter wenigen IP-Adressen verstecken. Tor unterscheidet
+sich in dieser Hinsicht nicht sehr von AOL.</p>
+
+<p>Und zuletzt bedenke, dass Torserver individuelle Exitpolicies haben.  Viele
+Torserver haben gar keinen Ausgang aus dem Tornetz.  Die, die es erlauben,
+erlauben das möglicherweise gar nicht zu deinen Diensten.  Wenn du Torserver
+sperrst, lese die Exitpolicies und sperre nur die, die unerwünschte Verbindungen
+erlauben.  Bedenke auch, dass die Policies sich ändern können (und dass ständig
+Torserver hinzukommen und verschwinden).</p>
+
+<p>Wenn du das wirklich willst, kannst du das <a
+href="<cvssandbox>tor/contrib/exitlist">Python-Skript zum Auswerten des
+Torverzeichnisses</a> verwenden.  </p>
+
+<a id="TracingUsers"></a>
+<h3><a class="anchor" href="#TracingUsers">Ich habe einen stichhaltigen 
+Grund, einen Tornutzer zu finden. Können Sie helfen?</a></h3>
+
+<p>Wir als Torentwickler haben keinerlei Möglichkeit, Tornutzer ausfindig zu
+machen.  Die gleichen Maßnahmen, mit denen wir böse Buben daran hindern, die
+Anonymität von Tor zu untergraben, hindern uns selbst daran, herauszufinden, was
+los ist.</p>
+
+<p> Einige Fans haben vorgeschlagen, in das Design von Tor eine <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Backdoor">Hintertür</a>
+einzubauen.  Es gibt damit zwei Schwierigkeiten Erstens schwächt es das System
+zu sehr.  Ein zentraler Punkt, an dem Nutzer mit ihren Aktivitäten in Verbindung
+gebracht werden, ist eine offene Einladung für alle möglichen Angreifer.  Wie
+wir das technisch abwehren wollen, ist eine äußerst schwierige und ungelöste
+Frage.  Zweitens <a href="#WhatAboutCriminals">fängt man damit die bösen Jungs
+ohnehin nicht</a>, weil sie ihre Anonymität auf andere Weise verschleiern
+(Identitätsdiebstahl, Verwendung kompromittierter Computer als tote Briefkästen,
+usw.).</p>
+
+<p>Das heißt nicht, dass Tor unverwundbar ist.
+Traditionelle Polizeitechniken wie die Befragung Verdächtiger,
+Abhören und Tastaturüberwachung, stilistische Analyse, V-Leute usw.
+funktionieren auch gegen Tornutzer.</p>
+
+<a id="LegalQuestions"></a>
+<h3><a class="anchor" href="#LegalQuestions">Ich habe eine rechtliche 
+Frage zum Tormissbrauch.</a></h3>
+
+<p>Wir sind nur die Entwickler.  Wir können technische Fragen beantworten, aber
+wir sind nicht die richtigen Ansprechpartner bei rechtlichen Fragen und
+Bedenken.</p>
+
+<p>Wenn du rechtliche Fragen hast, schaue auf die <a
+href="eff/tor-legal-faq.html">häufigen rechtlichen Fragen zu Tor</a>, oder wende
+dich direkt an die EFF.</p>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
+
+
