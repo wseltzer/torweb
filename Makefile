@@ -75,46 +75,44 @@ all: $(HTMLFILES)
 %.html.se: se/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
 
-.deps/%.html.en.d: en/%.wml
-	@[ -d .deps ] || mkdir .deps
+.deps/%.html.en.d: en/%.wml .deps/.stamp
 	tmpfile=`tempfile` \
 	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
 	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.html.de.d: de/%.wml
-	@[ -d .deps ] || mkdir .deps
+.deps/%.html.de.d: de/%.wml .deps/.stamp
 	tmpfile=`tempfile` \
 	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
 	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.html.it.d: it/%.wml
-	@[ -d .deps ] || mkdir .deps
+.deps/%.html.it.d: it/%.wml .deps/.stamp
 	tmpfile=`tempfile` \
 	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
 	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.html.fr.d: fr/%.wml
-	@[ -d .deps ] || mkdir .deps
+.deps/%.html.fr.d: fr/%.wml .deps/.stamp
 	tmpfile=`tempfile` \
 	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
 	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.html.se.d: se/%.wml
-	@[ -d .deps ] || mkdir .deps
+.deps/%.html.se.d: se/%.wml .deps/.stamp
 	tmpfile=`tempfile` \
 	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
 	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
+.deps/.stamp:
+	[ -d .deps ] || mkdir .deps
+	touch "$@"
 
 tor-manual-cvs.html.en: $(TORCVSHEAD)/doc/tor.1.in
 tor-manual.html.en: $(TORCVSSTABLE)/doc/tor.1.in
