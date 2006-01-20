@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 1.14
-# Last-Translator: lasse_ahv@yahoo.se
+# Based-On-Revision: 1.30
+# Last-Translator: thomass@seul.org 
 
 #include "head.wmi" TITLE="Download"
 
@@ -11,15 +11,16 @@
 
 
 <p>Tor distribueras som <a href="http://www.fsf.org/">Free Software</a>
-under <a href="<cvssandbox>tor/LICENSE">3-clause BSD license</a>.</p>
+under <a href="<cvssandbox>tor/LICENSE">BSD-licensen</a>.</p>
 
 <p>Den senaste stabila versionen &auml;r <b><version-stable></b>, och den
 senaste utvecklingsversionen &auml;r <b><version-alpha></b>.</p>
 
 <p><b>Prenumerera</b> p&aring;
 <a href="http://archives.seul.org/or/announce/">e-postlistan or-announce</a>
-f&ouml;r att vara uppdaterad med vad som g&auml;ller s&auml;kerhet och nya 
-stabila releaser (du kommer att beh&ouml;va bekr&auml;fta via e-post):
+f&ouml;r att vara uppdaterad med vad som g&auml;ller ang&aring;ende 
+s&auml;kerhet och nya stabila releaser (du kommer att beh&ouml;va 
+bekr&auml;fta via e-post):
 <form action="http://freehaven.net/cgi-bin/majordomo.cgi">
 <input type="hidden" name="mlist" value="or-announce">
 <input type="hidden" name="subscribe" value="1">
@@ -30,19 +31,30 @@ stabila releaser (du kommer att beh&ouml;va bekr&auml;fta via e-post):
 </p>
 
 <table border="1" cellspacing="0" cellpadding="2">
+<thead>
 <tr>
 <td><strong>Plattform</strong></td>
 <td><strong>Paketering</strong></td>
 <td><strong>Installation</strong></td>
 </tr>
+</thead>
 
 <tr>
-<td>Windows</td>
+<td>Windows: Tor &amp; Privoxy &amp; TorCP-paket</td>
+<td>
+<a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a>,
+<a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a>.
+</td>
+<td><a href="<cvssandbox>tor/doc/tor-doc-win32.html">Win32 instruktioner</a></td>
+</tr>
+
+<tr>
+<td>Windows: enbart Tor (för experter)</td>
 <td>
 <a href="<package-win32-stable>"><version-win32-stable></a> (<a href="<package-win32-stable-sig>">sig</a>),
 <a href="<package-win32-alpha>"><version-win32-alpha></a> (<a href="<package-win32-stable-sig>">sig</a>)
 </td>
-<td><a href="<cvssandbox>tor/doc/tor-doc-win32.html">Win32 instruktioner</a></td>
+<td>likvärdigt med <a href="<cvssandbox>tor/doc/tor-doc-unix.html#privoxy">Unix instruktionerna</a></td>
 </tr>
 
 <tr>
@@ -67,9 +79,9 @@ stabila releaser (du kommer att beh&ouml;va bekr&auml;fta via e-post):
 <td><kbd>apt-get install tor</kbd></td>
 <td>
 <ul>
-<li><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Linux/BSD/Unix instructions</a></li>
-<li><a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorOnDebian">Back&aring;tportar till Woody and Sarge, paket f&ouml;r Ubuntu 
-och packet f&ouml;r den experimentella versionen av Tor</a></li>
+<li><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Linux/BSD/Unix instruktioner</a></li>
+<li><a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorOnDebian">Bak&aring;tportningar
+f&ouml;r Woody och Sarge, paket f&ouml;r Ubuntu och packet f&ouml;r den experimentella versionen av Tor</a></li>
 </ul>
 </td>
 </tr>
@@ -96,7 +108,12 @@ och packet f&ouml;r den experimentella versionen av Tor</a></li>
 <br>
 <a href="<package-srpm-alpha>"><version-rpm-alpha> SRPM</a> (<a href="<package-srpm-alpha-sig>">sig</a>)
 </td>
-<td><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Linux/BSD/Unix instruktioner</a></td>
+<td>
+<ul>
+<li><a href="<cvssandbox>tor/doc/tor-doc-unix.html">Linux/BSD/Unix instruktioner</a></li>
+<li><a href="http://mirror.noreply.org/pub/devil.homelinux.org/Tor/">Externa RPM-paket inklusive CVS-versioner</a></li>
+</ul>
+</td>
 </tr>
 
 <tr>
@@ -138,18 +155,36 @@ och packet f&ouml;r den experimentella versionen av Tor</a></li>
 <h2>Mer information</h2>
 
 <ul>
-<li>L&auml;s detta <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DistSignatures">FAQ till&auml;gg</a> f&ouml;r instruktioner hur du verifierar 
-paketsignaturer, s&aring; att du kan vara s&auml;ker p&aring; att laddat filen du vill ha.</li>
-<li>L&auml;s  <a href="<page developers>">developers page</a> f&ouml;r instruktioner f&ouml;r att h&auml;mta Tor fr&aring;n CVS f&ouml;r den senaste utvecklingsversionen. T&auml;nk p&aring; att den versionen kanske inte fungerar eller ens g&aring;t att kompilera!</li>
+<li>L&auml;s detta <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DistSignatures">FAQ till&auml;gg</a> 
+f&ouml;r instruktioner hur du verifierar paketsignaturer, s&aring; att du kan vara s&auml;ker p&aring; att laddat filen du vill ha.</li>
+<li>L&auml;s  <a href="<page developers>">developers page</a> f&ouml;r instruktioner f&ouml;r att h&auml;mta 
+Tor fr&aring;n CVS f&ouml;r den senaste utvecklingsversionen. T&auml;nk p&aring; att den versionen kanske inte fungerar 
+eller ens g&aring;t att kompilera!</li>
 </ul>
 
-<p>F&ouml;r en lista p&aring; siter som speglar Tor<a href="<page mirrors>">h&auml;r</a>.
+<p>F&ouml;r en lista p&aring; siter som speglar Tor <a href="<page mirrors>">h&auml;r</a>.
 </p>
 
 
 <hr />
 
 <h2>Testreleaser</h2>
+<p>
+Tor 0.1.1.12-alpha: <a
+href="http://archives.seul.org/or/talk/Jan-2006/msg00026.html">fixes
+a bug that prevented Tor servers from accepting connections from
+non-servers</a>.
+</p>
+
+<p>2006-01-10:
+Tor 0.1.1.11-alpha: <a
+href="http://archives.seul.org/or/talk/Jan-2006/msg00024.html">implements
+entry guard nodes: it automatically chooses a handful of entry nodes and
+sticks with them for all circuits. It also reduces directory bandwidth
+overhead substantially, makes Tor servers with dynamic IP addresses
+useful again, and makes IRC and IM connections over Tor more reliable</a>.
+<strong>Everybody who runs a hidden service should upgrade.</strong>
+</p>
 
 <p>2005-12-11:
 Tor 0.1.1.10-alpha: <a
@@ -222,6 +257,13 @@ controller protocol (version 1) that uses ascii rather than binary</a>.
 <hr />
 
 <h2>Stable releases</h2>
+
+<p>2006-01-02:
+Tor 0.1.0.16 <a
+href="http://archives.seul.org/or/announce/Jan-2006/msg00000.html">fixes
+nine rare crash bugs, and includes backports from the 0.1.1.x tree to
+be more aggressive about retrying failed streams</a>.
+</p>
 
 <p>2005-09-23:
 Tor 0.1.0.15 fixes <a
