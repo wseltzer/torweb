@@ -57,11 +57,15 @@
 	  my $numlangs = 0;
 	  $page =~ s/\.wml//;
 	  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
-	    next if $dir eq '$(LANG)';
 	    if (-e "$dir/$WML_SRC_FILENAME") {
-	      printf('<a href="%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $LANGUAGES{$dir});
-	      last if ++$numlangs >= 3;
-	    }
+	      if ($dir eq '$(LANG)') {
+	        printf('<img src="$(IMGROOT)/%s.png" alt="%s" /> ', $dir, $LANGUAGES{$dir});
+	      } else {
+	        printf('<a href="%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a> ', $page, $dir, $dir, $LANGUAGES{$dir});
+	      };
+	    } else {
+	      printf('<img src="$(IMGROOT)/green-flagspace.png"/> ');
+	    };
 	  };
 	}:>
         </td>

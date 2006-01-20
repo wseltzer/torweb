@@ -1,27 +1,38 @@
 #!/usr/bin/wml
 
 ## translation metadata
-# Based-On-Revision: 1.4
+# Based-On-Revision: 1.5
 # Last-Translator: thomass@seul.org
 
 #use "functions.wmi"
 
 </div>
   <div class="bottom" id="bottom">
+     <p>
      <i><a href="mailto:tor-webmaster@freehaven.net" class="smalllink">Webmaster</a></i> -
 #     Id: developers.html,v 1.41 2005/08/31 20:19:16 thomass Exp 
-      Last modified: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      Senast uppdaterad: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
-      Last compiled: <: print scalar localtime(); :>
+      Senast kompilerad: <: print scalar localtime(); :>
+     </p>
 
 # Uncomment this in your translation:  (and translate it)
 #####################################
-      <: unless (translation_current()) { :>
-      <p>
+   <: unless (translation_current()) { :>
+     <p>
       Varning: Denna översättning kan vara gammal.  Det engelska originalet är revision
       <:= translation_get_masterrevision() :> och denna översättning är baserad på
       <:= translation_get_basedonrevision() :>.
-      <: } :>
+     </p>
+   <: } :>
+
+   <: if (has_translations()) {  :>
+     <p>
+       Denna sida finns även på följande språk:
+       <: print list_translations() :>.<br>
+       Så ställer du in <a href="http://www.debian.org/intro/cn">standardspråkval för dokument</a>.
+     </p>
+   <: }; :>
   </div>
 </body>
 </html>

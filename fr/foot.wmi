@@ -1,25 +1,36 @@
 #!/usr/bin/wml
 
 ## translation metadata
-# Based-On-Revision: 1.4
+# Based-On-Revision: 1.5
 # Last-Translator: ultra.high.temperature@gmail.com
 
 #use "functions.wmi"
 
 </div>
   <div class="bottom" id="bottom">
+     <p>
      <i><a href="mailto:tor-webmaster@freehaven.net" class="smalllink">Webmaster</a></i> -
 #     Id: developers.html,v 1.41 2005/08/31 20:19:16 thomass Exp 
-      Letzte &auml;nderung: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      Dernière modification&nbsp;: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
-      Zuletzt kompiliert: <: print scalar localtime(); :>
+      Dernière compilation&nbsp;: <: print scalar localtime(); :>
+     </p>
 
-<: unless (translation_current()) { :>
-<p>
-Attention: Cette tradcution peut &ecirc;tre obsol&egrave;te. La version anglaise originale est la
-<:= translation_get_masterrevision() :> alors que la version traduite est bas&eacute;e sur la
-<:= translation_get_basedonrevision() :>.
-<: } :>
+   <: unless (translation_current()) { :>
+     <p>
+      Attention: Cette tradcution peut &ecirc;tre obsol&egrave;te. La version anglaise originale est la
+      <:= translation_get_masterrevision() :> alors que la version traduite est bas&eacute;e sur la
+      <:= translation_get_basedonrevision() :>.
+     </p>
+   <: } :>
+
+   <: if (has_translations()) {  :>
+     <p>
+       Cette page est aussi disponible dans les langues suivantes&nbsp;:
+       <: print list_translations() :>.<br>
+       Comment configurer la <a href="http://www.debian.org/intro/cn">langue par d&eacute;faut du document</a>.
+     </p>
+   <: }; :>
   </div>
 </body>
 </html>

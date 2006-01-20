@@ -70,4 +70,23 @@ sub file_is_obsolete($$) {
 	return (exists $translation->{'Status'} && ($translation->{'Status'} eq 'obsolete'))
 };
 
+sub list_translations() {
+  my @links = ();
+  my $page = $WML_SRC_FILENAME;
+  my $numlangs = 0;
+  $page =~ s/\.wml//;
+  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
+    if (-e "$dir/$WML_SRC_FILENAME") {
+      if ($dir ne '$(LANG)') {
+        push @links, sprintf('<a href="%s.html.%s">%s</a>', $page, $dir, $LANGUAGES{$dir});
+      };
+    };
+  };
+  return join(', ', @links);
+};
+
+sub has_translations() {
+  return list_translations() ne '';
+};
+
 :>

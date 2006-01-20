@@ -7,20 +7,31 @@
 
 </div>
   <div class="bottom" id="bottom">
+     <p>
      <i><a href="mailto:tor-webmaster@freehaven.net" class="smalllink">Webmaster</a></i> -
 #     Id: developers.html,v 1.41 2005/08/31 20:19:16 thomass Exp 
+# please also translate "last modified" and "last compiled"
       Last modified: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
       Last compiled: <: print scalar localtime(); :>
-
+     </p>
 # Uncomment this in your translation:  (and translate it)
 #####################################
-#      <: unless (translation_current()) { :>
-#      <p>
+#   <: unless (translation_current()) { :>
+#     <p>
 #      Warning:  This translation might be obsolete.  The English original is at Revision
 #      <:= translation_get_masterrevision() :> while this translation is based on
 #      <:= translation_get_basedonrevision() :>.
-#      <: } :>
+#     </p>
+#   <: } :>
+
+   <: if (has_translations()) {  :>
+     <p>
+       This page is also available in the following languages:
+       <: print list_translations() :>.<br>
+       How to set <a href="http://www.debian.org/intro/cn">the default document language</a>.
+     </p>
+   <: }; :>
   </div>
 </body>
 </html>

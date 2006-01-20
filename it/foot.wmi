@@ -1,32 +1,42 @@
 #!/usr/bin/wml
 
 ## translation metadata
-# Based-On-Revision: unknown
+# Based-On-Revision: 1.5
 # Last-Translator: unknown
 
 #use "functions.wmi"
 
 </div>
   <div class="bottom" id="bottom">
+     <p>
      <i><a href="mailto:tor-webmaster@freehaven.net" class="smalllink">Webmaster</a></i> -
 #     Id: developers.html,v 1.41 2005/08/31 20:19:16 thomass Exp 
-      Last modified: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      Ultima modifica: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
-      Last compiled: <: print scalar localtime(); :>
+      Ultimo moltiplicato: <: print scalar localtime(); :>
+     </p>
 
-# Uncomment this in your translation:  (and translate it)
-#####################################
-      <: unless (translation_current()) { :>
-      <p>
-      Warning:  This translation might be obsolete.  The English original is at Revision
-      <:= translation_get_masterrevision() :> while this translation is based on
+   <: unless (translation_current()) { :>
+     <p>
+      Attenzione:  Questo traduzione puo essere antiquato.  L'originale Inglese si puo trovare
+      <:= translation_get_masterrevision() :> dunque questo traduzione basa su
       <:= translation_get_basedonrevision() :>.
-      <: } :>
+     </p>
+   <: } :>
 
-      <p>Questa traduzione non &egrave; stata controllata dagli sviluppatori di
+   <: if (has_translations()) {  :>
+     <p>
+       Questa pagina &egrave; disponibile anche nelle lingue seguenti:
+       <: print list_translations() :>.<br>
+       Come configurare <a href="http://www.debian.org/intro/cn">la lingua predefinita per i documenti</a>.
+     </p>
+   <: }; :>
+
+     <p>Questa traduzione non &egrave; stata controllata dagli sviluppatori di
       Tor e da EFF. Pu&ograve; risultare non attuale o sbagliata. Il sito
       ufficiale di Tor &egrave; in Inglese, all'indirizzo
-      http://tor.eff.org/</p>
+      http://tor.eff.org/
+     </p>
   </div>
 </body>
 </html>
