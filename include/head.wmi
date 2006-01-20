@@ -54,10 +54,14 @@
         <td class="banner-right">
 	<:{
 	  my $page = $WML_SRC_FILENAME;
+	  my $numlangs = 0;
 	  $page =~ s/\.wml//;
 	  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
 	    next if $dir eq '$(LANG)';
-	    printf('<a href="%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $LANGUAGES{$dir}) if (-e "$dir/$WML_SRC_FILENAME");
+	    if (-e "$dir/$WML_SRC_FILENAME") {
+	      printf('<a href="%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a>', $page, $dir, $dir, $LANGUAGES{$dir});
+	      last if ++$numlangs >= 3;
+	    }
 	  };
 	}:>
         </td>
