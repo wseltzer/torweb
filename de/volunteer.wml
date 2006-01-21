@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.7
+# Based-On-Revision: 1.10
 # Last-Translator: jens@kubieziel.de
 
 #include "head.wmi" TITLE="Mithelfen"
@@ -12,13 +12,14 @@
 
 <ol>
   <li>Wir brauchen Nutzer wie dich, um Tor zu probieren und lass die
-    Entwickler über jeden Bug wissen, den du findest.</li>
+    Entwickler über jeden Bug wissen, den du findest, oder jedes
+    Feature, das du vermisst.</li>
   <li>Bitte überlege dir,
     einen <a href="<cvssandbox>tor/doc/tor-doc-server.html">Server zu
     betreiben</a>, damit das Netzwerk weiter wächst.</li>
   <li>Betreibe
       einen <a href="<cvssandbox>tor/doc/tor-hidden-service.html">versteckten
-      Service</a> und fülle ihn mit interessanten Inhalten.</li>
+      Dienst</a> und fülle ihn mit interessanten Inhalten.</li>
   <li>Schaue dir den <a href="gui/">GUI-Wettbewerb</a> an und bringe
     deine Ideen zur Verbesserung der Benutzbarkeit der
     Torschnittstelle ein. Du erhälst ein kostenloses T-Shirt für jeden
@@ -36,7 +37,8 @@
   Sicherheit in ihrer Kommunikation benötigen, kennst, lasse sie über
   uns wissen.</li> </ol>
 
-<h2>Installationsprogramme</h2>
+<a id="Installers"></a>
+<h2><a class="anchor" href="#Installers">Installationsprogramme</a></h2>
 
 <ol>
   <li>Erweitere unser NSIS-basiertes Installationsprogramm, um den
@@ -54,7 +56,8 @@
     hilf uns aus.</li>
   </ol>
 
-<h2>Benutzbarkeit und Schnittstellen</h2>
+<a id="Usability"></a>
+<h2><a class="anchor" href="#Usability">Benutzbarkeit und Schnittstellen</a></h2>
 
 <ol>
   <li>Wir brauchen einen Weg, um DNS-Abfragen abzufangen, damit diese
@@ -108,7 +111,8 @@
     für mehr Details an.</li>
 </ol>
 
-<h2>Dokumentation</h2>
+<a id="Documentation"></a>
+<h2><a class="anchor" href="#Documentation">Dokumentation</a></h2>
 
 <ol>
   <li>Mithilfe bei der Betreuung der Webseite: Code, Inhalte, CSS und
@@ -143,7 +147,8 @@
     die Eregbnisse.</li>
   </ol>
 
-<h2>Programmierung und Design</h2>
+<a id="Coding"></a>
+<h2><a class="anchor" href="#Coding">Programmierung und Design</a></h2>
 
 <ol>
   <li>Wir brauchen eine bessere Option für einen Webproxy als nur
@@ -154,6 +159,15 @@
   <li>tsocks scheint derzeit ohne Maintainer zu sein. Wir haben einige
     Patches hingeschickt und keine Antwort erhalten. Könnte jemand einen
     neuen Entwicklungszweig starten? Wir bieten Hilfe.</li>
+  <li><a href="http://gaim.sourceforge.net/">Gaim</a> und <a
+    href="http://www.xchat.org/">xchat</a> werden häufig mit Tor
+    eingesetzt.  Diese Programme unterstützen Socks, aber sie
+    unterstützen nicht <a
+    href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS"
+    >socks4a oder socks5 mit DNS am Server</a>.  Bitte schreibe einen
+    Patch für diese Programme und schicke ihn an die richtigen Leute.
+    Lass uns wissen, wenn du einen Patch hast, aber Probleme hast,
+    ihn angenommen zu bekommen.</li>
   <li>Derzeit werden die Deskriptoren für versteckte Services auf
     einigen wenigen Verzeichnisservern gespeichert. Das ist schlecht
     für die Privatsphäre und schlecht für die Robustheit. Für mehr
@@ -240,7 +254,8 @@
     das wahrscheinlich der Platz, um zu starten.</li>
 </ol>
 
-<h2>Forschung</h2>
+<a id="Research"></a>
+<h2><a class="anchor" href="#Research">Forschung</a></h2>
 
 <ol>
   <li>Die Fingerprintattacken gegen Webseiten machen eine Liste von
@@ -322,7 +337,26 @@
     dieser Freiwilligen in einer automatischen Art und Weise? Dies
     muss so passieren, dass die Firewalls auf Landesebene diese nicht
     erkennen. Wahrscheinlich muss das auf einem Niveau persönlichen
-    Vertrauens funktionieren.</li>
+    Vertrauens funktionieren.  Siehe unseren <a
+    href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China"
+    >Eintrag in der FAQ</a> und lies dann <a
+    href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship"
+    >die Zunsurwiderstandssektion der AnonBib</a>.
+    </li>
+  <li>Tor-Verbindungen werden schrittweise aufgebaut, ein Knoten nach
+    dem anderen.  Also haben wir theoretisch die Möglichkeit, manche
+    Ströme schon nach dem zweiten Knoten die Tor-Wolke verlassen zu
+    lassen, andere nach dem dritten Knoten, und so weiter.  Dies erscheint
+    nett, weil es die Menge der austretenden Ströme, welcher ein bestimmter
+    Server sieht, begrenzt.  Wenn wir diesen Strom jedoch sicher haben wollen,
+    dann, laut unserer aktuellen Logik,  sollte der kürzeste Pfad mindestens 3
+    Knoten lang sein.  Das heisst, die anderen Ströme wären noch länger.  Wir
+    müssen diese Performance/Sicherheitsabwägung untersuchen.</li>
+   <li>Es ist nicht schwer, DoS Angriffe auf Tor-Server oder
+    Tor-Verzeischnisserver erfolgreich durchzuführen.  Sind Client-Puzzles die
+    richtige Anwort?  Welche anderen praktischen Herangehensweisen gibt es?
+    Bonuspunkte, wenn diese mit dem aktuellen Tor-Protokoll abwärtskompatibel
+    sind.</li>
   </ol>
 
 <p>Schaue mal im <a href="irc://irc.oftc.net/tor">#tor IRC-Kanal auf
