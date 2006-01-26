@@ -18,19 +18,10 @@ WMLOPT  = \
           -D TORCVSSTABLE=$(TORCVSSTABLE) \
           -D TORCVSHEAD=$(TORCVSHEAD)
 
-WMLFILES=$(wildcard en/*.wml \
-                    de/*.wml \
-                    it/*.wml \
-                    fr/*.wml \
-                    se/*.wml \
-          )
-WMIFILES=$(wildcard include/*.wmi \
-                    en/*.wmi      \
-                    de/*.wmi      \
-                    it/*.wmi      \
-                    fr/*.wmi      \
-                    se/*.wmi      \
-          )
+LANGS=de en it fr se
+WMLFILES=$(wildcard $(patsubst %, %/*.wml, $(LANGS)))
+WMIFILES=$(wildcard $(patsubst %, %/*.wmi, $(LANGS)) $(WMLBASE)/include/*.wmi )
+
 HTMLFILES = $(patsubst de/%.wml, %.html.de,          \
              $(patsubst en/%.wml, %.html.en,         \
               $(patsubst it/%.wml, %.html.it,        \
@@ -54,7 +45,6 @@ DEPFILES =  $(patsubst de/%.wml,.deps/%.html.de.d,   \
               )                                      \
              )
 
-LANGS=de en it fr se
 
 all: $(HTMLFILES)
 
