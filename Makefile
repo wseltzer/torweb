@@ -11,12 +11,14 @@ TORCVSHEAD = ../tor-head
 #TORCVSHEAD = /home/arma/work/onion/cvs/tor
 
 WMLBASE = .
-SUBDIRS=eff
+SUBDIRS=eff gui
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
 
 eff:
 	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
+gui:
+	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
 
-.PHONY: eff
+.PHONY: eff gui

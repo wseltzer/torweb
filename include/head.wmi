@@ -38,7 +38,7 @@
 	      my $page = $WML_SRC_FILENAME;
 	      $page =~ s/\.wml//;
 	      if ($page ne $key) {
-	        if (-e "$(LANG)/$key.wml") {
+	        if (-e "$(DOCROOT)/$(LANG)/$key.wml") {
 	          printf '<a href="$(DOCROOT)/%s.html.$(LANG)">%s</a>'."\n",
 	                 $key, $navigation{$key};
 	        } else {
@@ -61,7 +61,7 @@
 	      if ($dir eq '$(LANG)') {
 	        printf('<img src="$(IMGROOT)/%s.png" alt="%s" /> ', $dir, $LANGUAGES{$dir});
 	      } else {
-	        printf('<a href="$(DOCROOT)/%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a> ', $page, $dir, $dir, $LANGUAGES{$dir});
+	        printf('<a href="%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a> ', $page, $dir, $dir, $LANGUAGES{$dir});
 	      };
 	    } else {
 	      printf('<img src="$(IMGROOT)/green-flagspace.png"/> ');
