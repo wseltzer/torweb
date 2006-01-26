@@ -11,11 +11,12 @@ TORCVSHEAD = ../tor-head
 #TORCVSHEAD = /home/arma/work/onion/cvs/tor
 
 WMLBASE = .
-WMLOPT  = \
-          -I include \
-          -D DOCROOT=$(WMLBASE) \
-          -D IMGROOT=$(WMLBASE)/images \
-          -D TORCVSSTABLE=$(TORCVSSTABLE) \
-          -D TORCVSHEAD=$(TORCVSHEAD)
+SUBDIRS=eff
 
 include $(WMLBASE)/Makefile.common
+all: $(SUBDIRS)
+
+eff:
+	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
+
+.PHONY: eff

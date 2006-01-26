@@ -12,9 +12,9 @@
   <title>Tor: $(TITLE)</title>
   <meta name="Author" content="Roger Dingledine" />
   <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
-  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  <link rel="stylesheet" type="text/css" href="$(DOCROOT)/stylesheet.css" />
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <ifneq "$(REDIRECT)" "" "<meta http-equiv="refresh" content="0;url=$(REDIRECT).html" />">
+  <ifneq "$(REDIRECT)" "" "<meta http-equiv="refresh" content="0;url=$(DOCROOT)/$(REDIRECT).html" />">
 </head>
 
 <body>
@@ -39,10 +39,10 @@
 	      $page =~ s/\.wml//;
 	      if ($page ne $key) {
 	        if (-e "$(LANG)/$key.wml") {
-	          printf '<a href="%s.html.$(LANG)">%s</a>'."\n",
+	          printf '<a href="$(DOCROOT)/%s.html.$(LANG)">%s</a>'."\n",
 	                 $key, $navigation{$key};
 	        } else {
-	          printf '<a href="%s.html">%s</a>'."\n",
+	          printf '<a href="$(DOCROOT)/%s.html">%s</a>'."\n",
 	                 $key, $navigation{$key};
 	        }
 	      } else {
@@ -61,7 +61,7 @@
 	      if ($dir eq '$(LANG)') {
 	        printf('<img src="$(IMGROOT)/%s.png" alt="%s" /> ', $dir, $LANGUAGES{$dir});
 	      } else {
-	        printf('<a href="%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a> ', $page, $dir, $dir, $LANGUAGES{$dir});
+	        printf('<a href="$(DOCROOT)/%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a> ', $page, $dir, $dir, $LANGUAGES{$dir});
 	      };
 	    } else {
 	      printf('<img src="$(IMGROOT)/green-flagspace.png"/> ');
@@ -72,4 +72,4 @@
     </tr>
 </table>
 
-<ifneq "$(REDIRECT)" "" "Redirecting to <a href="$(REDIRECT).html">$(REDIRECT).html</a>.">
+<ifneq "$(REDIRECT)" "" "Redirecting to <a href="$(DOCROOT)/$(REDIRECT).html">$(DOCROOT)/$(REDIRECT).html</a>.">

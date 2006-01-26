@@ -9,11 +9,13 @@
 <define-tag page whitespace=delete><:{
 	my $page="%0";
 	my $lang="$(LANG)";
-	if (-e "$lang/$page.wml") {
-		print "%0.html.$lang";
-	} elsif (-e "en/$page.wml") {
-		print "%0.html";
+	my ($dir, $base) = $page =~ m,^(?:(.*)/)?(.*?)$,;
+	$dir = '.' unless defined $dir;
+	if (-e "$(DOCROOT)/$dir/$lang/$base.wml") {
+		print "$(DOCROOT)/$dir/$base.html.$lang";
+	} elsif (-e "$(DOCROOT)/$dir/en/$base.wml") {
+		print "$(DOCROOT)/$dir/$base.html";
 	} else {
-		warn "$WML_SRC_FILENAME has a [page $page], but that doesn't exist.";
+		warn "$WML_SRC_FILENAME has a [page $page] (parses to docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$dir/$lang/$base.wml), but that doesn't exist.";
 	};
 }:></define-tag>
