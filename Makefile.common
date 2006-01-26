@@ -1,0 +1,92 @@
+
+LANGS=de en it fr se
+WMLFILES=$(wildcard $(patsubst %, %/*.wml, $(LANGS)))
+WMIFILES=$(wildcard $(patsubst %, %/*.wmi, $(LANGS)) $(WMLBASE)/include/*.wmi )
+
+HTMLFILES = $(patsubst de/%.wml, %.html.de,          \
+             $(patsubst en/%.wml, %.html.en,         \
+              $(patsubst it/%.wml, %.html.it,        \
+               $(patsubst fr/%.wml, %.html.fr,       \
+                $(patsubst se/%.wml, %.html.se,      \
+            $(WMLFILES)                              \
+                 )                                   \
+                )                                    \
+               )                                     \
+              )                                      \
+             )
+DEPFILES =  $(patsubst de/%.wml,.deps/%.html.de.d,   \
+             $(patsubst en/%.wml,.deps/%.html.en.d,  \
+              $(patsubst it/%.wml,.deps/%.html.it.d, \
+               $(patsubst fr/%.wml,.deps/%.html.fr.d,\
+                $(patsubst se/%.wml,.deps/%.html.se.d,\
+            $(WMLFILES)                              \
+                 )                                   \
+                )                                    \
+               )                                     \
+              )                                      \
+             )
+
+
+all: $(HTMLFILES)
+
+
+
+%.html.en: en/%.wml
+	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
+
+%.html.de: de/%.wml en/%.wml
+	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
+
+%.html.it: it/%.wml en/%.wml
+	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
+
+%.html.fr: fr/%.wml en/%.wml
+	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
+
+%.html.se: se/%.wml en/%.wml
+	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $@
+
+.deps/%.html.en.d: en/%.wml .deps/.stamp
+	tmpfile=`tempfile` \
+	lang=`dirname $<` && \
+	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
+	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
+	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
+	rm -f $$tmpfile
+.deps/%.html.de.d: de/%.wml .deps/.stamp
+	tmpfile=`tempfile` \
+	lang=`dirname $<` && \
+	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
+	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
+	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
+	rm -f $$tmpfile
+.deps/%.html.it.d: it/%.wml .deps/.stamp
+	tmpfile=`tempfile` \
+	lang=`dirname $<` && \
+	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
+	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
+	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
+	rm -f $$tmpfile
+.deps/%.html.fr.d: fr/%.wml .deps/.stamp
+	tmpfile=`tempfile` \
+	lang=`dirname $<` && \
+	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
+	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
+	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
+	rm -f $$tmpfile
+.deps/%.html.se.d: se/%.wml .deps/.stamp
+	tmpfile=`tempfile` \
+	lang=`dirname $<` && \
+	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
+	wml $(WMLOPT) -I $$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
+	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
+	rm -f $$tmpfile
+.deps/.stamp:
+	[ -d .deps ] || mkdir .deps
+	touch "$@"
+
+dep: $(DEPFILES)
+clean:
+	rm -f $(HTMLFILES) $(DEPFILES)
+
+include $(DEPFILES)
