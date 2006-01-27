@@ -64,11 +64,14 @@ sub do_status($$) {
 					$status='current';
 					$difflink='';
 				} else {
-					$color='yellow';
 					$status='not current';
-					if ($files{$lang}->{$file} ne 'unknown') {
+					if ($files{$lang}->{$file}->{'based'} ne 'unknown') {
 						$difflink=sprintf '<br><a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/en/%s?root=tor&r1=%s&r2=%s">changes in original</a>',
 							$file, $files{$lang}->{$file}->{'based'}, $files{'en'}->{$file}->{'rev'};
+						$color='yellow';
+					} else {
+						$difflink='';
+						$color='orange'
 					};
 				};
 				printf '<td bgcolor="%s">%s<br>
@@ -87,9 +90,9 @@ sub do_status($$) {
 			};
 			delete $files{$lang}->{$file};
 		};
-		print "</tr>";
+		print "</tr>\n\n";
 	};
-	print "</table>\n";
+	print "</table>\n\n\n";
 
 	for my $lang (@LANGUAGES) {
 		next if $lang eq 'en';
@@ -110,8 +113,9 @@ sub do_status($$) {
 				};
 				printf "</td>";
 				delete $files{$lang}->{$file};
+				print "</tr>\n";
 			};
-			print "</table>\n";
+			print "</table>\n\n";
 		};
 	};
 };

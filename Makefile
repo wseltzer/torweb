@@ -21,4 +21,7 @@ eff:
 gui:
 	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
 
+# XXX: this also depends on all subs' wmlfiles.  How to fix?
+translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
+
 .PHONY: eff gui
