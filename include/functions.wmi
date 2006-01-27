@@ -29,9 +29,9 @@ sub getMetadata($) {
 	return \%data;
 };
 
-sub translation_get_masterrevision_file($) {
-	my ($page) = @_;
-	my $master = getMetadata("en/$page");
+sub translation_get_masterrevision_file($$) {
+	my ($dir, $page) = @_;
+	my $master = getMetadata("$dir/en/$page");
 
 	die ("Cannot find 'Revision' header in master's translation metadata of en/$page") unless exists $master->{'Revision'};
 
@@ -41,12 +41,12 @@ sub translation_get_masterrevision_file($) {
 	return $rev;
 };
 sub translation_get_masterrevision() {
-	translation_get_masterrevision_file($WML_SRC_FILENAME);
+	translation_get_masterrevision_file('.', $WML_SRC_FILENAME);
 };
 
-sub translation_get_basedonrevision_langfile($$) {
-	my ($lang, $page) = @_;
-	my $translation = getMetadata("$lang/$page");
+sub translation_get_basedonrevision_langfile($$$) {
+	my ($dir, $lang, $page) = @_;
+	my $translation = getMetadata("$dir/$lang/$page");
 
 	die ("Cannot find 'Based-On-Revision' header in translations's translation metadata of $lang/$page") unless exists $translation->{'Based-On-Revision'};
 
@@ -56,7 +56,7 @@ sub translation_get_basedonrevision_langfile($$) {
 	return $rev
 };
 sub translation_get_basedonrevision() {
-	translation_get_basedonrevision_langfile("$(LANG)", $WML_SRC_FILENAME);
+	translation_get_basedonrevision_langfile(".", "$(LANG)", $WML_SRC_FILENAME);
 };
 
 
@@ -64,9 +64,9 @@ sub translation_current() {
 	return (translation_get_masterrevision() eq translation_get_basedonrevision());
 };
 
-sub file_is_obsolete($$) {
-	my ($lang, $page) = @_;
-	my $translation = getMetadata("$lang/$page");
+sub file_is_obsolete($$$) {
+	my ($dir, $lang, $page) = @_;
+	my $translation = getMetadata("$dir/$lang/$page");
 	return (exists $translation->{'Status'} && ($translation->{'Status'} eq 'obsolete'))
 };
 

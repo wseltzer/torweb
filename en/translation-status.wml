@@ -10,22 +10,28 @@
 <hr />
 
 <:
+sub do_status($$) {
+	my ($dir, $may_miss_dir) = @_;
+
 	my %files;
 	my @warnings;
 	for my $lang (@LANGUAGES) {
-		opendir(DIR, $lang) or die ("Cannot opendir $lang: $!\n");
-		my @files = grep { $_ ne '.' && $_ ne '..' && $_ =~ m/^[^.]/ && -f $lang.'/'.$_} readdir(DIR);
+		opendir(DIR, "$dir/$lang") or
+			$may_miss_dir or die ("Cannot opendir $dir/$lang: $!\n");
+		my @files = grep { $_ ne '.' && $_ ne '..' && $_ =~ m/^[^.]/ && -f "$dir/$lang/$_"} readdir(DIR);
 		closedir DIR;
 
 		for my $file (@files) {
-			$files{$lang}->{$file}->{'all'} = getMetadata($lang.'/'.$file);
+			$files{$lang}->{$file}->{'all'} = getMetadata("$dir/$lang/$file");
 			if ($lang eq 'en') {
-				$files{$lang}->{$file}->{'rev'} = translation_get_masterrevision_file($file);
+				$files{$lang}->{$file}->{'rev'} = translation_get_masterrevision_file($dir, $file);
 			} else {
-				$files{$lang}->{$file}->{'based'} = translation_get_basedonrevision_langfile($lang, $file);
+				$files{$lang}->{$file}->{'based'} = translation_get_basedonrevision_langfile($dir, $lang, $file);
 			};
 		};
 	};
+
+	print "<h1>$dir</h1>\n";
 
 	print "<table border=1>\n";
 	print "<tr>\n";
@@ -33,7 +39,7 @@
 	printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for (@LANGUAGES);
 	print "</tr>\n";
 	for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
-		my $obs = file_is_obsolete('en', $file);
+		my $obs = file_is_obsolete($dir, 'en', $file);
 		print "<tr>";
 		printf "<th>%s</th>", $file;
 		printf '<td%s>Revision %s%s<br>
@@ -108,6 +114,12 @@
 			print "</table>\n";
 		};
 	};
+};
+
+do_status('.', 0);
+do_status('eff', 1);
+do_status('gui', 1);
+
 :>
 
 </div><!-- #main -->
