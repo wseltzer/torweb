@@ -6,14 +6,10 @@
 <div class="main-column">
 
 <!-- PUT CONTENT AFTER THIS TAG -->
-<h2>Six things everyone can do now:</h2>
+<h2>Four things everyone can do now:</h2>
 <ol>
-<li> We need users like you to try Tor out, and let the Tor developers
-know about bugs you find or features you don't find.</li>
 <li> Please consider <a href="<cvssandbox>tor/doc/tor-doc-server.html">running
 a server</a> to help the Tor network grow.</li>
-<li> Run a <a href="<cvssandbox>tor/doc/tor-hidden-service.html">Tor hidden
-service</a> and put interesting content on it.</li>
 <li> Take a look at the <a href="<page gui/index>">Tor GUI Competition</a>, and
 come up with ideas or designs to contribute to making Tor's interface
 and usability better. Free T-shirt for each submission!</li>
@@ -29,14 +25,16 @@ services. Get them to tell their friends.</li>
 <a id="Installers"></a>
 <h2><a class="anchor" href="#Installers">Installers</a></h2>
 <ol>
-<li>Extend our NSIS-based Windows installer to include Privoxy. Include
-a preconfigured config file to work well with Tor. We might also want
-to include FreeCap -- is it stable enough and useful enough to be
-worthwhile?</li>
+<li>Matt Edman has written a <a
+href="http://freehaven.net/~edmanm/torcp/download.html">NSIS-based
+Windows installer bundle that
+includes Privoxy and TorCP</a>. Can you help make it more stable and
+featureful?
+</li>
 <li>Develop a way to handle OS X uninstallation
 that is more automated than telling people to
 <a href="<cvssandbox>tor/doc/tor-doc-osx.html#uninstall">manually remove
-each file</a>.</li>
+each file</a>. It needs to have a way to click it into action.</li>
 <li>Our <a href="<cvssandbox>tor/tor.spec.in">RPM spec file</a>
 needs a maintainer, so we can get back to the business of writing Tor. If
 you have RPM fu, please help out.</li>
@@ -98,7 +96,7 @@ confusions about the documentation so we can clean it up.</li>
 <li>Help translate the web page and documentation into other
 languages. See the <a href="<page translation>">translation
 guidelines</a> if you want to help out. We also need people to help
-maintain the existing (Italian and German) translations.</li>
+maintain the existing Italian, French, and Swedish translations.</li>
 <li>Investigate privoxy vs. freecap vs. sockscap for win32 clients. Are
 there usability or stability issues that we can track down and
 resolve, or at least inform people about?</li>
@@ -109,8 +107,8 @@ Controller</a>?</li>
 href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">document
 a list of programs</a> that can be routed through Tor.</li>
 <li>We need better documentation for dynamically intercepting
-connections and sending them through Tor. tsocks (Linux) and freecap
-(Windows) seem to be good candidates.</li>
+connections and sending them through Tor. tsocks (Linux), dsocks (BSD),
+and freecap (Windows) seem to be good candidates.</li>
 <li>We have a huge list of <a href="<page support>">potentially useful
 programs that interface to Tor</a>. Which ones are useful in which
 situations? Please help us test them out and document your results.</li>
@@ -126,14 +124,6 @@ other scrubbing web proxies that are more secure?</li>
 <li>tsocks appears to be unmaintained: we have submitted several patches
 with no response. Can somebody volunteer to start maintaining a new
 tsocks branch? We'll help.</li>
-<li>Some popular clients that people use with Tor
-include <a href="http://gaim.sourceforge.net/">Gaim</a>
-and <a href="http://www.xchat.org/">xchat</a>. These
-programs support socks, but they don't support <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">socks4a
-or socks5-with-remote-dns</a>. Please write a patch for them and submit
-it to the appropriate people. Let us know if you've written the patch
-but you're having trouble getting it accepted.</li>
 <li>Right now the hidden service descriptors are being stored on just a few
 directory servers. This is bad for privacy and bad for robustness. To get
 more robustness, we're going to need to make hidden service descriptors
@@ -177,8 +167,6 @@ look at the MaxUserPort entry, and look at the TcpTimedWaitDelay
 entry. We may also want to provide a way to set them as needed. See <a
 href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=98">bug
 98</a>.)</li>
-<li>Encrypt identity keys on disk, and implement passphrase protection
-for them. Right now they're just stored in plaintext.</li>
 <li>Patches to Tor's autoconf scripts. First, we'd like our configure.in
 to handle cross-compilation, e.g. so we can build Tor for obscure
 platforms like the Linksys WRTG54. Second, we'd like the with-ssl-dir
@@ -229,16 +217,6 @@ much traffic of what sort of distribution is needed before the adversary
 is confident he has won? Are there scenarios (e.g. not transmitting much)
 that slow down the attack? Do some traffic padding or traffic shaping
 schemes work better than others?</li>
-<li>The "run two servers and wait attack": Tor clients pick a new path
-periodically. If the adversary runs an entry and an exit, eventually some
-Alice will build a circuit that begins and ends with his nodes. The
-current Tor threat model assumes the end-to-end traffic confirmation attack
-is trivial, and instead aims to limit the chance that the adversary will
-be able to see both sides of a circuit. One way to help this is 
-<a href="http://freehaven.net/anonbib/#wright03">helper
-nodes</a> -- Alice picks a small set of entry nodes and uses them always.
-But in reality, Tor nodes disappear sometimes. So it would seem that the
-attack continues, albeit slower than before. How much slower?</li>
 <li>The "routing zones attack": most of the literature thinks of
 the network path between Alice and her entry node (and between the
 exit node and Bob) as a single link on some graph. In practice,
