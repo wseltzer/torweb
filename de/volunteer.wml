@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 1.11
-# Last-Translator: jens@kubieziel.de
+# Based-On-Revision: 1.12
+# Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
 #include "head.wmi" TITLE="Mithelfen"
 
@@ -8,18 +8,12 @@
 
 <!-- PUT CONTENT AFTER THIS TAG -->
 
-<h2>Sechs Sachen, die jeder tun kann</h2>
+<h2>Vier Sachen, die jeder tun kann</h2>
 
 <ol>
-  <li>Wir brauchen Nutzer wie dich, um Tor zu probieren und lass die
-    Entwickler über jeden Bug wissen, den du findest, oder jedes
-    Feature, das du vermisst.</li>
   <li>Bitte überlege dir,
     einen <a href="<cvssandbox>tor/doc/tor-doc-server.html">Server zu
     betreiben</a>, damit das Netzwerk weiter wächst.</li>
-  <li>Betreibe
-      einen <a href="<cvssandbox>tor/doc/tor-hidden-service.html">versteckten
-      Dienst</a> und fülle ihn mit interessanten Inhalten.</li>
   <li>Schaue dir den <a href="<page gui/index>">GUI-Wettbewerb</a> an und bringe
     deine Ideen zur Verbesserung der Benutzbarkeit der
     Torschnittstelle ein. Du erhälst ein kostenloses T-Shirt für jeden
@@ -41,10 +35,10 @@
 <h2><a class="anchor" href="#Installers">Installationsprogramme</a></h2>
 
 <ol>
-  <li>Erweitere unser NSIS-basiertes Installationsprogramm, um den
-    Privoxy mit einzubinden. Binde eine gut eingestellte
-    Konfigurationsdatei mit ein. Wir möchten auch Freecap mit einbinden
-    -- ist das stabil und benutzbar genug, um wertvoll zu sein?</li>
+  <li>Matt Edman hat ein <a href="http://freehaven.net/~edmanm/torcp/download.html">
+    NSIS-basiertes Installationsprogramm</a> geschrieben,
+    welches auch Privoxy und TorCP enthält.  Kannst du helfen, es stabiler und
+    funktionaler zu machen?
   <li>Entwickle einen Weg für die Deinstallation auf OS X, der mehr
     automatisiert ist, als den Leuten
     mitzuteilen, <a
@@ -124,8 +118,8 @@
   <li>Hilf die Webseite und die Dokumentation in andere Sprachen zu
     übersetzen. Wenn du gern helfen möchtest, schaue dir die <a
     href="<page translation>">Richtlinien zur Übersetzung</a>
-    an. Wir brauchen auch Leute, die helfen, die aktuellen deutschen
-    und italienischen Versionen betreuen.</li>
+    an. Wir brauchen auch Leute, die helfen, die aktuelle
+    italienische, französiche und schwedische Versione zu betreuen.</li>
   <li>Nachforschungen zu Privoxy vs. Freecap vs. Sockscap für
     Windowsclients. Gibt es Benutzbarkeits- oder Stabilitätsprobleme,
     die wir suchen und finden können bzw. die Leute darüber
@@ -139,7 +133,7 @@
     und evaluieren</li>
   <li>Wir brauchen bessere Dokumentation für Programme, die dynamisch
     in Verbindungen eingreifen und diese durch Tor schicken. Für Linux
-    und Windows sind tsocks bzw. freecap gute Kandidaten.</li>
+    und Windows scheinen tsocks (Linux), dsocks (BSD), und freecap gute Kandidaten.</li>
   <li>Wir haben eine riesige
     Liste <a href="<page support>">potentiell nützlicher Programme,
     die eine Schnittstelle zu Tor haben</a>. Welche sind in welchen
@@ -159,15 +153,6 @@
   <li>tsocks scheint derzeit ohne Maintainer zu sein. Wir haben einige
     Patches hingeschickt und keine Antwort erhalten. Könnte jemand einen
     neuen Entwicklungszweig starten? Wir bieten Hilfe.</li>
-  <li><a href="http://gaim.sourceforge.net/">Gaim</a> und <a
-    href="http://www.xchat.org/">xchat</a> werden häufig mit Tor
-    eingesetzt.  Diese Programme unterstützen Socks, aber sie
-    unterstützen nicht <a
-    href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS"
-    >socks4a oder socks5 mit DNS am Server</a>.  Bitte schreibe einen
-    Patch für diese Programme und schicke ihn an die richtigen Leute.
-    Lass uns wissen, wenn du einen Patch hast, aber Probleme hast,
-    ihn angenommen zu bekommen.</li>
   <li>Derzeit werden die Deskriptoren für versteckte Services auf
     einigen wenigen Verzeichnisservern gespeichert. Das ist schlecht
     für die Privatsphäre und schlecht für die Robustheit. Für mehr
@@ -221,9 +206,6 @@
     auch <a
     href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=98">Bug
     98</a> an.)</li>
-  <li>Identitätsschlüssel auf der Platte verschlüsseln und einen
-    Schutz per Passphrase für diese implementieren. Derzeit werden
-    diese nur als Klartext gespeichert.</li>
   <li>Patches für autoconf-Skripte von Tor. Zuerst würden wir gern
     unser <var>autoconfigure.in</var> dazu bringen, Crosskomilierung
     zu handhaben. So dass wir beispielsweise Tor auf obskuren
@@ -282,19 +264,6 @@
     wahr? Wieviel Verkehr von welcher Sorte braucht man, um sicher zu
     sicher, dass es funktioniert? Gibt es Szenarien, die die Attacke
     ausbremsen? Funktioniert Padding besser als anderes?</li>
-  <li>Betreibe zwei Server und warte. Torclienten suchen sich in
-    periodischen Zeiträumen einen neuen Pfad. Wenn der Angreifer
-    einen Eingangs- und Exitknoten betreibt, wird Alice eventuell
-    eine Verbindung aufbauen, die mit diesen Knoten beginnt und
-    endet. Das derzeitige Angriffsmodell geht davon aus, dass die
-    end-to-end traffic confirmation attack trivial ist und zielt
-    stattdessen darauf ab, die Möglichkeiten des Angreifers, beide
-    Seiten der Verbindung zu sehen, zu limitieren. Ein Weg dazu sind
-    <a href="http://freehaven.net/anonbib/#wright03">Helferknoten</a>
-    -- Alice sucht sich eine kleine Anzahl von Eingangsknoten aus und
-    nutzt nur diese. Doch in der Realität verschwinden manchmal
-    Knoten. Daher wird sich diese Attacke fortsetzen, nur mit einer
-    verminderten Geschwindigkeit? Um wieviel langsamer ist das?</li>
   <li>Die Attacke auf die Routingzonen ist der Netzpfad zwischen
     Alice und dem Eingangsknoten (bzw. zwischen dem Exitknoten und
     Bob). In der Literatur wird dies als einfache Verbindung auf
