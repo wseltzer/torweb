@@ -22,6 +22,17 @@ services. Get them to tell their friends.</li>
   security, let them know about us.</li>
 </ol>
 
+<a id="Bugs"></a>
+<h2><a class="anchor" href="#Bugs">Critical bugs</a></h2>
+<ol>
+<li>Tor servers are not stable on Windows XP currently,
+because we try to use hundreds of sockets, and the
+Windows kernel doesn't seem capable of handling this. <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Please
+help us solve this!</a> It is the number one problem with growing
+the Tor network currently.</li>
+</ol>
+
 <a id="Installers"></a>
 <h2><a class="anchor" href="#Installers">Installers</a></h2>
 <ol>
@@ -152,9 +163,6 @@ post</a> for one potential approach. Also see
 <li>Tor 0.1.1.x includes support for hardware crypto accelerators via
 OpenSSL. Nobody has ever tested it, though. Does somebody want to get
 a card and let us know how it goes?</li>
-<li>Long ago, we added dmalloc support to Tor, to track leaks. But we
-never quite got it working. Is dmalloc unfit for the job? Look at the
---with-dmalloc configure option and go from there.</li>
 <li>Because Tor servers need to store-and-forward each cell they handle,
 high-bandwidth Tor servers end up using dozens of megabytes of memory
 just for buffers. We need better heuristics for when to shrink/expand
