@@ -11,6 +11,7 @@ sub getMetadata($) {
 	my $found_metadata = 0;
 	while (<F>) {
 		chomp;
+		s/\r$//;
 		if ($_ eq '## translation metadata') {
 			$found_metadata = 1;
 			last;
@@ -20,6 +21,7 @@ sub getMetadata($) {
 	my %data;
 	while (<F>) {
 		chomp;
+		s/\r$//;
 		if (/^#\s*(\S*):\s*(.*?)\s*$/) {
 			$data{$1} = $2;
 		} else {
