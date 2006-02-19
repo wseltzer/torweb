@@ -77,7 +77,7 @@ sub list_translations() {
   my $page = $WML_SRC_FILENAME;
   my $numlangs = 0;
   $page =~ s/\.wml//;
-  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
+  for my $dir (@LANGUAGES) {
     if (-e "$dir/$WML_SRC_FILENAME") {
       if ($dir ne '$(LANG)') {
         push @links, sprintf('<a href="%s.html.%s">%s</a>', $page, $dir, $LANGUAGES{$dir});

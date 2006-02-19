@@ -13,7 +13,8 @@
 <head>
   <title>Tor: $(TITLE)</title>
   <meta name="Author" content="Roger Dingledine" />
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+  <ifneq "$(CHARSET)" "" "<meta http-equiv="content-type" content="text/html; charset=$(CHARSET)" />">
+  <ifeq "$(CHARSET)" "" "<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />">
   <link rel="stylesheet" type="text/css" href="$(DOCROOT)/stylesheet.css" />
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <ifneq "$(REDIRECT)" "" "<meta http-equiv="refresh" content="0;url=$(DOCROOT)/$(REDIRECT).html" />">
@@ -58,7 +59,7 @@
 	  my $page = $WML_SRC_FILENAME;
 	  my $numlangs = 0;
 	  $page =~ s/\.wml//;
-	  for my $dir (sort {$LANGUAGES{$a} cmp $LANGUAGES{$b}} @LANGUAGES) {
+	  for my $dir (@LANGUAGES) {
 	    if (-e "$dir/$WML_SRC_FILENAME") {
 	      if ($dir eq '$(LANG)') {
 	        printf('<img src="$(IMGROOT)/%s.png" alt="%s" /> ', $dir, $LANGUAGES{$dir});
