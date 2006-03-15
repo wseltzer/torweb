@@ -11,11 +11,13 @@ TORCVSHEAD = ../tor-head
 #TORCVSHEAD = /home/arma/work/onion/cvs/tor
 
 WMLBASE = .
-SUBDIRS=eff gui
+SUBDIRS=docs eff gui
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
 
+docs:
+	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
 eff:
 	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
 gui:
@@ -24,4 +26,4 @@ gui:
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
 
-.PHONY: eff gui
+.PHONY: docs eff gui
