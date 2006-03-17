@@ -1,0 +1,318 @@
+## translation metadata
+# Based-On-Revision: 1.6
+# Last-Translator: jan.reister@unimi.it
+
+#include "head.wmi" TITLE="FAQ sugli abusi per operatori di server"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>FAQ sugli abusi per gli operatori di server Tor</h2>
+<hr />
+
+<a id="WhatAboutCriminals"></a>
+<h3><a class="anchor" href="#WhatAboutCriminals">Tor pu&ograve; aiutare un criminale a violare la legge?</a></h3>
+
+<p>I criminali possono commettere reati gi&agrave; ora. Dato che sono disposti a infrangere
+la legge, hanno gi&agrave; a disposizione molti sistemi che forniscono
+una privacy <em>migliore</em> di quella offerta da Tor. Possono rubare telefoni cellulari,
+usarli e gettarli via; possono penetrare in un computer
+in Corea o in Brasile e usarlo per delle attivit&agrave; illegali; possono 
+usare gli spyware, i virus e molte altre tecniche per prendere il controllo 
+di milioni di computer Windows in tutto il mondo. </p>
+
+<p>Lo scopo di Tor &egrave; dare protezione alle persone normali che rispettano
+la legge. Per adesso la privacy ce l'hanno soltanto i criminali, e non va bene. </p>
+
+<p>Per alcuni sostenitori dell'anonimato si tratta solo di un compromesso, &mdash;
+accettare gli abusi insieme agli usi legittimi &mdash; ma secondo noi c'&egrave; molto
+di pi&ugrave;.
+Criminali e malintenzionati sono <em>motivati</em> ad ottenere
+l'anonimato, e possono anche esser disposti a pagare bene per essere anonimi.
+La possibilit&agrave; di rubare e utilizzare le identit&agrave; di vittime innocenti
+(il furto di identit&agrave;) rende le cose ancor pi&ugrave; facili. Le persone normali, invece,
+spesso non hanno tempo o soldi da spendere per capire come avere pi&ugrave;
+privacy online. Questo &egrave; il peggiore dei mondi possibili. </p>
+
+<p>Quindi un criminale potrebbe, in teoria, usare Tor, ma ha gi&agrave;
+delle alternative migliori e non &egrave; probabile che, se non potesse usare Tor,
+cesserebbe di commettere reati. Allo stesso tempo, Tor
+e altri strumenti per la privacy possono <em>combattere</em> il furto di identit&agrave; e i crimini
+veri, come le minacce, le intimidazioni e cos&igrave; via. </p>
+
+<!--
+<a id="Pervasive"></a>
+<h3><a class="anchor" href="#Pervasive">Se tutti usassero
+Tor, crollerebbero le civilt&agrave;?</a></h3>
+-->
+
+<a id="DDoS"></a>
+<h3><a class="anchor" href="#DDoS">E gli attacchi distributed denial of service (DDoS)?</a></h3>
+
+<p>Gli attacchi distributed denial of service (DDoS) usano solitamente 
+migliaia di computer che inviano contemporaneamente fiumi di traffico verso una vittima. Dato che
+hanno lo scopo di saturare la banda della vittima, in genere inviano pacchetti
+UDP che non richiedono handshake o coordinamento. </p>
+
+<p>Visto che Tor trasporta solo flussi TCP correttamente formati, e non
+tutti i pacchetti IP, non si possono inviare pacchetti UDP via Tor. (Non si possono
+nemmeno eseguire varianti speciali di questo tipo di attacco, come il SYN flooding.) Quindi i comuni
+attacchi DDoS non sono possibili con Tor. Tor inoltre non permette nemmeno attacchi basati sull'amplificazione
+di banda contro siti esterni: per ogni byte inviato a destinazione
+bisogna immetere un byte nella rete Tor. Per questo, generalmente,
+un attaccante che controlli abbastanza banda per lanciare un attacco
+DDoS efficace pu&ograve; tranquillamente fare a meno di Tor. </p>
+
+<a id="WhatAboutSpammers"></a>
+<h3><a class="anchor" href="#WhatAboutSpammers">E l'invio di spam?</a></h3>
+
+<p>Per prima cosa, l'exit policy di default in Tor blocca tutto il
+traffico verso la porta 25 (SMTP). Perci&ograve; l'invio di spam via Tor non
+funziona di default. Alcuni operatori di server potrebbero permettere la
+porta 25 sul loro specifico exit node, e in quel caso quel computer
+permetter&agrave; la posta in uscita; per&ograve; costoro potrebbero pure
+realizzarsi un open mail relay a prescindere da Tor. In breve, Tor non serve a spedire spam
+perch&eacute; quasi tutti i server Tor si rifiutano di inviare posta. </p>
+
+<p>Naturalmente l'invio di posta non &egrave; tutto. Uno spammer potrebbe usare
+Tor per collegarsi a un open HTTP proxy (e da l&igrave; a dei server SMTP); per
+connettersi a script CGI bacati; per controlare delle
+botnet &mdash; in pratica, per comunicare segretamente con orde di
+computer compromessi usati per spedire lo spam.
+</p>
+
+<p>
+Questa &egrave; una vergogna, ma gli spammer lo stanno gi&agrave; facendo adesso,
+senza Tor. Inoltre molti dei loro sistemi di comunicazione pi&ugrave; subdoli,
+(come l'uso di pacchetti UDP falsificati) non si possono usare su Tor, perch&eacute;
+Tor trasporta solo connessioni TCP formate correttamente.
+</p>
+
+<a id="ExitPolicies"></a>
+<h3><a class="anchor" href="#ExitPolicies">Come funzionano le exit policy?</a></h3>
+
+<p>Ogni server Tor ha una exit policy che stabilisce quali
+connessioni sono permesse o vietate da quel server verso l'esterno. Le exit
+policy vengono notificate ai client attraverso la directory, in modo che i client
+evitino automaticamente di scegliere degli exit node che rifiutino il collegamento
+verso la destinazione finale. </p>
+
+<p>In questo modo ogni server pu&ograve; decidere a quali servizi, host e reti
+vuole permettere di collegarsi, in base alla possibilit&agrave; di abusi e
+alla propria situazione contingente. </p>
+
+<a id="HowMuchAbuse"></a>
+<h3><a class="anchor" href="#HowMuchAbuse">Quanti abusi avvengono su Tor?</a></h3>
+
+<p>Non molti, complessivamente. La rete Tor esiste dall'ottobre
+2003 ed ha generato solo una manciata di lamentele. Naturalmente,
+come tutte le reti orientate alla privacy, ci sono anche da noi dei
+cretini. Per questo le exit policy di Tor offrono dei ruoli separati e su misura per coloro che vogliono
+"donare risorse alla rete" o che sono disponibili a "gestire lamentele
+sugli abusi in uscita". In questo modo speriamo che la nostra rete sia pi&ugrave; sostenibile
+degli altri tentativi di costruire reti anonime nel passato. </p>
+
+<p>Visto che Tor ha
+<a href="<page overview>">anche molti ottimi usi
+</a>, pensiamo di essere riusciti a trovare un buon compromesso,
+per ora. </p>
+
+<a id="TypicalAbuses"></a>
+<h3><a class="anchor" href="#TypicalAbuses">Cosa posso aspettarmi se gestisco un server?</a></h3>
+
+<p>Se gestisci un server Tor che permette connessioni in uscita (come nella
+default exit policy), &egrave; probabile che alla fine qualcuno ti contatti
+segnalando un abuso. Le segnalazioni
+possono essere molto varie. Ad esempio: </p>
+<ul>
+<li>Qualcuno si collega a Hotmail per spedire una lettera di estorsione
+a un'azienda. L'FBI
+ti scrive una email molto gentile, tu spieghi che hai un server Tor e
+loro dicono "oh, va bene" e ti lasciano in pace. [Port 80] </li>
+<li>Qualcuno cerca di farti chiudere collegandosi con Tor a Google
+Groups per inviare spam su Usenet, e poi scrivendo al tuo 
+ISP per denunciare le tue malefatte. [Port 80]</li>
+<li>Qualcuno si collega a una rete IRC e rompe le scatole a tutti.
+Il tuo ISP riceve una cortese email che segnala come il tuo computer sia stato
+compromesso; oppure il tuo computer riceve un DDoS. [Port 6667]</li>
+<li>Qualcuno usa Tor per scaricare un film di Vin Diesel e il tuo
+ISP riceve una diffida DMCA . Vedi il
+<a href="<page eff/tor-dmca-response>">modello di risposta DMCA per Tor
+</a> a cura della EFF, che spiega al tuo ISP perch&eacute; pu&ograve; probabilmente ignorare
+la diffida senza alcun rischio. [Arbitrary ports]</li>
+</ul>
+
+<p>Potrebbe capitarti che l'IP del tuo Tor server venga bloccato
+da alcuni siti o servizi internet. Potrebbe succedere a prescindere dalla tua exit
+policy, perch&eacute; per alcuni non fa differenza che Tor abbia o applichi delle
+exit policy. (Se hai degli IP liberi che non usi per altre attivit&agrave;,
+potresti riservarli al tuo server Tor.) Ad esempio, </p>
+
+<ul>
+<li>per colpa di pochi cretini anonimi che pasticciano con le sue pagine web,
+Wikipedia attualmente blocca diversi server Tor dalla scrittura
+(la lettura invece funziona). Stiamo discutendo con Wikipedia per trovare un modo
+di controllare gli abusi mantenendo l'accesso agli utenti anonimi,
+che spesso hanno notizie di prima mano su un argomento, ma non voglion rischiare di
+svelare la loro identità quando le pubblicano (o non vogliono far sapere
+a un osservatore locale che stanno usando Wikipedia). Anche per Slashdot la situazione
+&egrave; simile.</li>
+
+<li>anche SORBS ha messo alcuni IP di Tor server nella sua blacklist
+email. Lo fanno perch&eacute; rilevano se il tuo server si
+collega a certe reti IRC e ne deducono che
+il tuo server pu&ograve; inviare spam. Abbiamo tentato di lavorare con
+loro per mostrargli che non tutto il software funziona cos&igrave;,
+ma abbiamo dovuto rinunciare. Ti raccomandiamo di evitarli e <a
+href="http://paulgraham.com/spamhausblacklist.html">di dire ai tuoi amici
+di evitare le blacklist mal gestite (se le usano)</a>.</li>
+
+</ul>
+
+<a id="IrcBans"></a>
+<h3><a class="anchor" href="#IrcBans">Tor &egrave; bandito da una rete IRC che voglio usare.</a></h3>
+
+<p>Ci sono talvolta dei cretini che usano Tor per fare i troll sui canali IRC. Da questi abusi
+derivano bandi temporanei sugli IP ("klines" nel gergo IRC), che gli
+operatori usano per tener fuori i troll dalla loro rete. </p>
+
+<p>Questa contromisura mette in evidenza un difetto fondamentale nel modello di sicurezza di IRC:
+gli operatori ritengono che gli indirizzi IP equivalgano a persone e che bandendo
+l'IP si possa bandire la persona. In realt&agrave; non &egrave; cos&igrave; &mdash;
+molti di questi troll usano regolarmente milioni di open
+proxy e di computer compromessi in tutta Internet. Le reti IRC
+combattono una battaglia persa cercando di bloccare tutti questi nodi
+ed hanno fatto nascere una industria parallela di blacklist e contro-troll
+in base a un modello di sicurezza carente (non dissimile dall'industria degli
+antivirus). La rete Tor &egrave; qui solo una goccia nel mare. </p>
+
+<p>D'altro canto per gli operatori IRC la sicurezza non &egrave;
+una categoria assoluta. Reagendo velocemente ai troll o
+ad altri attacchi di natura sociale, possono cercare di scoraggiare
+gli attaccanti. In fondo, su ogni rete IRC in ogni momento,
+gran parte degli indirizzi IP equivale a delle persone.
+Fanno eccezione dei gateway NAT a cui viene dato accesso
+in casi particolari. Cercare di fermare l'uso degli open
+proxy &egrave; una battaglia persa, ma spesso &egrave; comunque utile continuare a mettere in "kline"
+un utente IRC maleducato finch&eacute; non si stufa e se ne va da un'altra parte. </p>
+
+<p>La soluzione definitiva &egrave; l'uso di sistemi di autenticazione a livello applicativo,
+per consentire l'accesso agli utenti corretti e tenere fuori i maleducati. Questo sistema
+si deve basare su delle caratteristiche fornite dalla persona (come una password che solo la persona
+conosce), non su delle caratteristiche dipendenti dal modo in cui i suoi suoi pacchetti vengono trasportati. </p>
+
+<p>Naturalmente, non tutte le reti IRC bandiscono i nodi Tor. Ci sono persone
+che si servono di Tor e IRC per conversare legittimamente
+in tutta riservatezza, senza riferimenti alle loro identit&agrave; reali.
+Ogni rete IRC deve decidere autonomamente se valga la pena di chiudere qualcuno
+dei milioni di indirizzi IP usati dai maleducati, al costo di perdere il contributo
+degli utenti Tor corretti e ben educati. </p>
+
+<p>Se sei stato bloccato, parlane con gli operatori della rete
+e spiega loro questi problemi. Potrebbero non sapere dell'esistenza di
+Tor, o che gli host messi in "kline"
+sono exit node Tor.  Se spieghi loro il problema e questi decidono di
+bloccare Tor, puoi considerare di spostarti su un'altra rete
+pi&ugrave; aperta alla libert&agrave; di pensiero ed espressione. Forse invitandoli in  #tor su irc.oftc.net
+capirebbero che non siamo persone malvage. </p>
+
+<p>Se infine vieni a sapere di reti IRC che sembrano
+bloccare Tor, o un singolo exit node Tor, per favore inseriscine i dati in <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/BlockingIrc">The Tor
+IRC block tracker</a>
+per condividerlo con tutti. Qualche rete IRC consulta questa pagina
+per sbloccare exit node che sono stati inavvertitamente chiusi. </p>
+
+<a id="SMTPBans"></a>
+<h3><a class="anchor" href="#SMTPBans">I nodi Tor sono banditi dal server di posta che voglio usare.</a></h3>
+
+<p>Anche se <a href="#WhatAboutSpammers">Tor non serve agli
+spammer</a>, qualche zelante amante delle blacklist pensa che tutte
+le reti aperte come Tor siano un male &mdash; c'&egrave; chi cerca di forzare gli operatori di rete
+in materia di regole, servizi e questioni di routing, per poi estorcere
+soldi alle vittime. </p>
+
+<p>Se gli amministratori del tuo server usano queste blacklist
+per bloccare posta in arrivo, dovresti parlare con loro e spiegargli
+cosa sono Tor e le exit policy. </p>
+
+<a id="Bans"></a>
+<h3><a class="anchor" href="#Bans">Voglio impedire alla rete Tor di accedere al mio servizio.</a></h3>
+
+<p>Per prima cosa, c'&egrave; un modo per decidere, a livello applicativo,
+come separare gli utenti legittimi dai cretini? Ad esempio, si potrebbero
+rendere accessibili certe aree del sito o certi privilegi, come la scrittura di post,
+solo a utenti registrati. Si potrebbe mettere in atto questa
+distinzione solo per certi indirizzi IP, come i Tor exit node. Cos&igrave;
+potresti avere un accesso a pi&ugrave; livelli senza dover bloccare tutti.</p>
+
+<p>Secondo, pensa che ogni giorno migliaia di persone usano Tor per proteggersi
+dalle grandi aziende di raccolta dati, come ad esempio Doubleclick, mentre svolgono
+le loro normali attivit&agrave;. Altri usano Tor perch&eacute; l'unico
+modo che hanno per aggirare firewall restrittivi a scuola o
+altrove. Alcuni utenti Tor potrebbero collegarsi legittimamente
+al tuo servizio per attivit&agrave; normalissime. Devi decidere se
+bandire la rete Tor valga la perdita del contributo
+di questi utenti e di futuri utenti regolari. </p>
+
+<p>A questo punto bisognerebbe pensare cosa fare di altri
+servizi che aggregano numerosi utenti dietro pochi indirizzi IP. Tor non
+&egrave; poi cos&igrave; diverso da AOL, sotto questo aspetto.</p>
+
+<p>Infine, considera che ogni exit node Tor ha una sua exit
+policy individuale. Molt server Tor non permettono connessioni in uscita.
+Molti di quelli che le permettono potrebbero gi&agrave; inibire i collegamenti
+al tuo servizio.
+Se bandisci dei nodi, esaminane le
+exit policy e blocca solo quelli che consentono di collegarsi a te;
+tieni presente che le exit policy possono cambiare (come pure la lista dei nodi
+della rete Tor). </p>
+
+<p>Se vuoi davvero farlo, abbiamo uno
+<a href="<cvssandbox>tor/contrib/exitlist">script Python per il parsing della Tor
+directory</a>.
+</p>
+
+<a id="TracingUsers"></a>
+<h3><a class="anchor" href="#TracingUsers">Devo assolutamente rintracciare un utente. Potete aiutarmi?</a></h3>
+
+<p>
+Gli sviluppatori di Tor non possono fare nulla per rintracciare gli utenti della rete Tor. Le
+stesse protezioni che impediscono ai malintenzionati di violare l'anonimato di Tor, ci
+rendono impossibile effettuare intercettazioni.
+</p>
+
+<p>
+Qualcuno ha suggerito di ridisegnare Tor includendo una <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Backdoor">backdoor</a>.
+Questa idea ha due difetti. Per prima cosa, indebolisce troppo il sistema
+dal punto di vista tecnico. Un metodo centralizzato per collegare gli utenti alle loro attivit&agrave;
+sarebbe esposto a ogni sorta di attacchi; inoltre le politiche e le regole
+necessarie alla corretta gestione di questa responsabilit&agrave; sono enormi
+e irrisolti. In secondo luogo, <a href="#WhatAboutCriminals">in questo modo i malintenzionati
+non verranno comunque presi</a>, dato che useranno altri modi
+per proteggere il proprio anonimato (furto di identit&agrave;, intrusioni in computer usati
+come sponda, etc).
+</p>
+
+<p>
+Ricorda per&ograve; che Tor non &egrave; invulnerabile. Le normali tecniche
+investigative di polizia possono sempre essere molto efficaci contro Tor, ad esempio,
+gli interrogatori dei sospetti, le intercettazioni, le cimici nella tastiera, l'analisi dello stile
+stile di scrittura, le operazioni sotto copertura e tutti gli altri metodi di investigazione fisica.
+</p>
+
+<a id="LegalQuestions"></a>
+<h3><a class="anchor" href="#LegalQuestions">Ho una domanda di tipo legale sull'abuso di Tor.</a></h3>
+
+<p>Siamo solo gli sviluppatori. Possiamo rispondere a domande tecniche,
+ma non a domande o questioni di natura legale. </p>
+
+<p>Per favore leggi le
+<a href="<page eff/tor-legal-faq>">FAQ legali Tor</a>,
+e mettiti direttamente in contatto con la EFF per ogni domanda di natura legale. </p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
