@@ -51,11 +51,12 @@ sub do_status($$) {
 		print "<tr>";
 		printf "<th>%s</th>", $file;
 		printf '<td%s>Revision %s%s<br>
-		        <a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/en/%s?root=tor&amp;view=markup">HEAD</a>
+		        <a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/%sen/%s?root=tor&amp;view=markup">HEAD</a>
 			%s',
 			($obs ? ' bgcolor="lightgrey"' : ''),
 			$files{'en'}->{$file}->{'rev'},
 			($obs ? ' (obsolete)' :''),
+			($dir eq '.' ? '' : $dir.'/'),
 			$file,
 			$validatorlink;
 		for my $lang (@LANGUAGES) {
@@ -80,8 +81,8 @@ sub do_status($$) {
 				} else {
 					$status='not current';
 					if ($files{$lang}->{$file}->{'based'} ne 'unknown') {
-						$difflink=sprintf '<br><a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/en/%s?root=tor&amp;r1=%s&amp;r2=%s">changes in original</a>',
-							$file, $files{$lang}->{$file}->{'based'}, $files{'en'}->{$file}->{'rev'};
+						$difflink=sprintf '<br><a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/%sen/%s?root=tor&amp;r1=%s&amp;r2=%s">changes in original</a>',
+							($dir eq '.' ? '' : $dir.'/'), $file, $files{$lang}->{$file}->{'based'}, $files{'en'}->{$file}->{'rev'};
 						$color='yellow';
 					} else {
 						$difflink='';
@@ -89,12 +90,13 @@ sub do_status($$) {
 					};
 				};
 				printf '<td bgcolor="%s">%s<br>
-					<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/%s/%s?root=tor&amp;view=markup">HEAD</a><br>
+					<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/%s%s/%s?root=tor&amp;view=markup">HEAD</a><br>
 					%s
 					%s
 					%s</td>',
 					$color,
 					$status,
+					($dir eq '.' ? '' : $dir.'/'),
 					$lang, $file,
 					$all_info,
 					$difflink,
