@@ -17,11 +17,11 @@ include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
 
 docs:
-	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
+	$(MAKE) -C "$@" WMLBASE=..
 eff:
-	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
+	$(MAKE) -C "$@" WMLBASE=..
 gui:
-	$(MAKE) -C "$@" WMLBASE=../$(WMLBASE)
+	$(MAKE) -C "$@" WMLBASE=..
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)

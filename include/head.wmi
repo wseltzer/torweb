@@ -42,11 +42,11 @@
 	      $page =~ s/\.wml//;
 	      if ($page ne $key) {
 	        if (-e "$(DOCROOT)/$(LANG)/$key.wml") {
-	          printf '<a href="$(DOCROOT)/%s.html.$(LANG)">%s</a>'."\n",
-	                 $key, $navigation{$key};
+	          printf '<a href="%s">%s</a>'."\n",
+	                 stripDotSlashs("$(DOCROOT)/$key.html.$(LANG)"), $navigation{$key};
 	        } else {
-	          printf '<a href="$(DOCROOT)/%s.html">%s</a>'."\n",
-	                 $key, $navigation{$key};
+	          printf '<a href="%s">%s</a>'."\n",
+	                 stripDotSlashs("$(DOCROOT)/$key.html"), $navigation{$key};
 	        }
 	      } else {
 	       printf '<a class="current">%s</a>'."\n", $navigation{$key};

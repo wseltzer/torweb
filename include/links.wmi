@@ -6,15 +6,24 @@
 #  Xinclude "locallinks.wmi"
 #  Xinclude "langlocallinks.$(LANG).wmi"
 
+<:
+	sub stripDotSlashs($) {
+		my ($s) = @_;
+		1 while ($s =~ s|/\./|/|);
+		1 while ($s =~ s|^\./||);
+		return $s;
+	};
+:>
+
 <define-tag page whitespace=delete><:{
 	my $page="%0";
 	my $lang="$(LANG)";
 	my ($dir, $base) = $page =~ m,^(?:(.*)/)?(.*?)$,;
 	$dir = '.' unless defined $dir;
 	if (-e "$(DOCROOT)/$dir/$lang/$base.wml") {
-		print "$(DOCROOT)/$dir/$base.html.$lang";
+		print stripDotSlashs("$(DOCROOT)/$dir/$base.html.$lang");
 	} elsif (-e "$(DOCROOT)/$dir/en/$base.wml") {
-		print "$(DOCROOT)/$dir/$base.html";
+		print stripDotSlashs("$(DOCROOT)/$dir/$base.html");
 	} else {
 		warn "$WML_SRC_FILENAME has a [page $page] (parses to docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$dir/$lang/$base.wml), but that doesn't exist.";
 	};
