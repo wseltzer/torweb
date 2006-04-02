@@ -75,15 +75,15 @@ href="<page docs/tor-switchproxy>">Tor SwitchProxy howto</a> to set up
 a plugin that makes it easy to switch between using Tor and using a
 direct connection.</p>
 
-<p>Otherwise, you need to manually configure your browser to HTTP proxy
-at localhost port 8118.
-(That's where Privoxy listens.)
-In Mozilla, this is in Mozilla|Preferences|Advanced|Proxies.
-You should set both your Web Proxy (HTTP) and your Secure Web Proxy
-(HTTPS or SSL) to localhost port 8118, to hide your SSL traffic too.
-You should consider configuring your "FTP Proxy" too; see <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">this
-note</a> about Tor and ftp proxies.
+<p>Otherwise, you need to manually configure your browser's proxy
+settings.
+In Firefox, this is in Mozilla|Preferences|Advanced|Proxies.
+You should fill in "localhost"
+and "8118" to point the top four protocols to Privoxy, as shown here. (Even
+though Privoxy doesn't support FTP and Gopher, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">you
+should set them up anyway</a>.) You should also fill out the socks              proxy entry to point directly to Tor ("localhost", "9050", and socks5)
+to cover protocols besides the first four. Then click "OK".</p>
 </p>
 
 <p>If you want to use Tor with Safari, you need to change your

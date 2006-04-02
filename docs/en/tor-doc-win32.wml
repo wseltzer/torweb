@@ -79,20 +79,20 @@ href="<page docs/tor-switchproxy>">Tor SwitchProxy howto</a> to set up
 a plugin that makes it easy to switch between using Tor and using a
 direct connection.</p>
 
-<p>Otherwise, you need to manually configure your browser to HTTP proxy
-at localhost port 8118.
-(That's where Privoxy listens.)
-In Mozilla, this is in Edit|Preferences|Advanced|Proxies.
+<p>Otherwise, you need to manually configure your browser's proxy
+settings.
+In Mozilla and Firefox, this is in Edit|Preferences|Advanced|Proxies.
 In Opera 7.5x it's Tools|Preferences|Network|Proxy servers.
 In IE, it's Tools|Internet Options|Connections|LAN Settings|Advanced.
-You should click the "use the same proxy server for all protocols"
-button; but see <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">this
-note</a> about Tor and ftp proxies.
-In IE, this looks something like:</p>
+You should fill in "localhost"
+and "8118" to point the top four protocols to Privoxy, as shown here. (Even
+though Privoxy doesn't support FTP and Gopher, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">you
+should set them up anyway</a>.) You should also fill out the socks              proxy entry to point directly to Tor ("localhost", "9050", and socks5)
+to cover protocols besides the first four. Then click "OK":</p>
 
-<img alt="Proxy settings in IE"
-src="../img/screenshot-win32-ie-proxies.jpg" />
+<img alt="Proxy settings in Firefox"
+src="../img/screenshot-win32-firefox-proxies.jpg" />
 
 <p>Using Privoxy is <strong>necessary</strong> because <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">browsers
