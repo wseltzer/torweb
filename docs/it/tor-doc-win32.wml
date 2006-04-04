@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.4
+# Based-On-Revision: 1.6
 # Last-Translator: jan.reister@unimi.it
 
 #include "head.wmi" TITLE="Istruzioni per installare Tor su MS Windows"
@@ -80,21 +80,23 @@ href="<page docs/tor-switchproxy>">Tor SwitchProxy howto</a> per installare
 un plugin che rende facilissimo passare da Tor a una
 connessione diretta.</p>
 
-<p>Se usi un altro browser, lo devi configurare manualmente per fargli usare un HTTP proxy
-su localhost porta 8118.
-(&#200; qui che Privoxy sta in ascolto.)
-In Mozilla, puoi configurarlo in Modifica|Preferenze|Avanzate|Proxy.
+<p>Se usi un altro browser, devi modificare manualmente la configurazione del
+proxy.
+In Mozilla and Firefox, &egrave; in Modifica|Preferenze|Avanzate|Proxy.
 In Opera 7.5x si trova in Strumenti|Preferenze|Rete|Proxy server.
-In IE, sta in Strumenti|OpzioniInternet|Connessioni|Impostazioni LAN|Avanzate.
-Devi selezionare il pulsante "usa lo stesso proxy server per tutti i protocolli";
-ma leggi anche  <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">questa
-nota</a> su Tor ed  i proxy ftp.
-In IE, &egrave; pi&ugrave; o meno cos&igrave;:</p>
+In IE, sta in Strumenti|OpzioniInternet|Connessioni|Impostazioni LAN|Avanzate.</p>
 
 <img alt="Proxy settings in IE"
 src="../img/screenshot-win32-ie-proxies.jpg" />
 
+<p>
+Compila inserendo "localhost"
+e "8118" per puntare i primi quattro protocolli a Privoxy, come mostrato qui. (Anche
+se Privoxy non supporta FTP e Gopher, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">dovresti
+configurarli lo stesso</a>.) Compila anche il campo socks proxy per puntarlo direttamente a Tor ("localhost", "9050", e socks5)
+in modo da coprire anche gli altri protocolli dopo i primi quattro. Poi fai clic su "OK".</p>
+ 
 <p>&#200; <strong>necessario</strong> usare Privoxy perch&eacute; <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">il browser
 rivela le tue richieste DNS quando usa direttamente un SOCKS proxy</a>, cosa che

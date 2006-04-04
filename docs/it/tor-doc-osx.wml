@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.5
+# Based-On-Revision: 1.7
 # Last-Translator: jan.reister@unimi.it
 
 #include "head.wmi" TITLE="Istruzioni per installare Tor su Mac OS X"
@@ -76,15 +76,17 @@ href="<page docs/tor-switchproxy>">guida per Tor e SwitchProxy</a> per installar
 un plugin che rende facilissimo passare da Tor a una
 connessione diretta.</p>
 
-<p>Se usi un altro browser devi configurarlo manualmente affinch&eacute; usi un proxy HTTP
-su localhost alla porta 8118
-(che &egrave; dove Privoxy sta in ascolto).
-In Mozilla, puoi configurarlo in Mozilla|Preferences|Advanced|Proxies.
-Configura il Web Proxy (HTTP) e il Secure Web Proxy
-(HTTPS o SSL) su localhost porta 8118, per nascondere anche il tuo traffico SSL.
-Configura anche "FTP Proxy", vedi infatti <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">questa
-nota</a> su Tor e i proxy ftp.
+<p>Se usi un altro browser, devi modificare manualmente la configurazione del
+proxy.
+In Firefox, &egrave; in Mozilla|Preferenze|Avanzate|Proxy.</p>
+
+<p>
+Compila inserendo "localhost"
+e "8118" per puntare i primi quattro protocolli a Privoxy, come mostrato qui. (Anche
+se Privoxy non supporta FTP e Gopher, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">dovresti
+configurarli lo stesso</a>.) Compila anche il campo socks proxy per puntarlo direttamente a Tor ("localhost", "9050", e socks5)
+in modo da coprire anche gli altri protocolli dopo i primi quattro. Poi fai clic su "OK".</p>
 </p>
 
 <p>Se vuoi usare Tor con Safari, devi modificare le
