@@ -147,7 +147,7 @@ where new development releases are announced.
 The <a href="<page tor-manual>">manual</a> for the
 latest stable version provides detailed instructions for how to install
 and use Tor, including configuration of client and server options.
-If you are running the CVS version the manual is available
+If you are running the development version of Tor the manual is available
 <a href="<page tor-manual-cvs>">here</a>.
 </p>
 
@@ -172,7 +172,8 @@ testing the IP and port you think it should be testing, etc.
 <p>When it decides that it's reachable, it will upload a "server
 descriptor" to the directories. This will let clients know
 what address, ports, keys, etc your server is using. You can <a
-href="http://belegost.seul.org/">load the directory manually</a> and
+href="http://belegost.mit.edu/tor/status/authority">load the network
+status manually</a> and
 look through it to find the nickname you configured, to make sure it's
 there. You may need to wait a few seconds to give enough time for it to
 make a fresh directory.</p>
@@ -237,14 +238,23 @@ limiting FAQ entry</a> for details.
 </p>
 
 <p>
-8. If you control the name servers for your domain, consider setting
+8. Back up your Tor server's private key (stored in "keys/secret_id_key"
+in your DataDirectory). This is your server's "identity," and
+you need to keep it safe so nobody can read the traffic that goes
+through your server. This is the critical file to keep if you need to <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">move
+or restore your Tor server</a> if something goes wrong.
+</p>
+
+<p>
+9. If you control the name servers for your domain, consider setting
 your hostname to 'anonymous' or 'proxy' or 'tor-proxy', so when other
 people see the address in their web logs, they will more quickly
 understand what's going on.
 </p>
 
 <p>
-9. If your computer isn't running a webserver, please consider
+10. If your computer isn't running a webserver, please consider
 changing your ORPort to 443 and your DirPort to 80. Many Tor
 users are stuck behind firewalls that only let them browse the
 web, and this change will let them reach your Tor server. Win32
@@ -259,7 +269,7 @@ ports are 22, 110, and 143.
 </p>
 
 <p>
-10. If your Tor server provides other services on the same IP address
+11. If your Tor server provides other services on the same IP address
 &mdash; such as a public webserver &mdash; make sure that connections to the
 webserver are allowed from the local host too. You need to allow these
 connections because Tor clients will detect that your Tor server is the <a
@@ -270,7 +280,7 @@ explicitly reject them in your exit policy.
 </p>
 
 <p>
-11. (Unix only). Make a separate user to run the server. If you
+12. (Unix only). Make a separate user to run the server. If you
 installed the OS X package or the deb or the rpm, this is already
 done. Otherwise, you can do it by hand. (The Tor server doesn't need to
 be run as root, so it's good practice to not run it as root. Running
@@ -281,7 +291,7 @@ into a chroot jail</a>.)
 </p>
 
 <p>
-12. (Unix only.) Your operating system probably limits the number
+13. (Unix only.) Your operating system probably limits the number
 of open file descriptors per process to 1024 (or even less). If you
 plan to be running a fast exit node, this is probably not enough. On
 Linux, you should add a line like "toruser hard nofile 8192" to your
@@ -294,20 +304,23 @@ you launch Tor.
 </p>
 
 <p>
-13. If you installed Tor via some package or installer, it probably starts
+14. If you installed Tor via some package or installer, it probably starts
 Tor for you automatically on boot. But if you installed from source,
 you may find the initscripts in contrib/tor.sh or contrib/torctl useful.
 </p>
 
-When you change your Tor configuration, be sure to restart Tor, and
-remember to verify that your server still works correctly after the
-change.
+<p>
+When you change your Tor configuration, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">in
+most cases you can reload your configuration without restarting Tor</a>,
+and remember to verify that your server still works correctly after
+the change.
+</p>
 
 <hr />
 
-<p>If you have suggestions for improving this document, please post
-them on <a href="http://bugs.noreply.org/tor">our bugtracker</a> in the
-website category. Thanks!</p>
+<p>If you have suggestions for improving this document, please <a
+href="<page contact>">send them to us</a>. Thanks!</p>
 
   </div><!-- #main -->
 </div>
