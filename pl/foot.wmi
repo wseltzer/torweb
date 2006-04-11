@@ -1,7 +1,8 @@
-#!/usr/bin/wml
+﻿#!/usr/bin/wml
+
 ## translation metadata
-# Based-On-Revision: unknown
-# Last-Translator: N/A
+# Based-On-Revision: 1.8
+# Last-Translator: gooseondaloose@msn.com
 
 #use "functions.wmi"
 
@@ -10,25 +11,26 @@
      <p>
      <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
 # please also translate "last modified" and "last compiled"
-      Last modified: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      Ostatna zmiana: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
-      Last compiled: <: print scalar localtime(); :>
+      Ostatnio opracowane: <: print scalar localtime(); :>
      </p>
-
-
+# Uncomment this in your translation:  (and translate it)
+#####################################
    <: unless (translation_current()) { :>
      <p>
-      Warning:  This translation might be obsolete.  The English original is at Revision
-      <:= translation_get_masterrevision() :> while this translation is based on
+      Uwaga: Oryginał po angielsku jest nowszy niż to tłumaczenie.  Oficjalna wersja angielska jest 
+      <:= translation_get_masterrevision() :>, a to przetłumaczenie jest bazowane na wersji 
       <:= translation_get_basedonrevision() :>.
      </p>
    <: } :>
 
    <: if (has_translations()) {  :>
      <p>
-       This page is also available in the following languages:
+       <b>Uwaga: Ta strona nie jest oficjalną wersją witryny Projektu Tor'a, ale tłumaczenie przez ochotnika pracując społecznie. Oficjalna versja to jest napisana po angielsku.</b>
+	Ta strona jest też dostępna w tych językach:
        <: print list_translations() :>.<br>
-       How to set <a href="http://www.debian.org/intro/cn#howtoset">the default document language</a>.
+       Jak ustalić <a href="http://www.debian.org/intro/cn#howtoset">swój wybrany język na tą strone</a>.
      </p>
    <: }; :>
   </div>
