@@ -2,7 +2,7 @@
 
 ## translation metadata
 # Based-On-Revision: 1.8
-# Last-Translator: arma@seul.org
+# Last-Translator: torero@alkur.net
 
 #use "functions.wmi"
 
@@ -11,25 +11,23 @@
      <p>
      <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
 # please also translate "last modified" and "last compiled"
-      Last modified: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      Ultima modificacion: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
-      Last compiled: <: print scalar localtime(); :>
+      Ultima compilacion: <: print scalar localtime(); :>
      </p>
-# Uncomment this in your translation:  (and translate it)
-#####################################
-#   <: unless (translation_current()) { :>
-#     <p>
-#      Warning:  This translation might be obsolete.  The English original is at Revision
-#      <:= translation_get_masterrevision() :> while this translation is based on
-#      <:= translation_get_basedonrevision() :>.
-#     </p>
-#   <: } :>
+   <: unless (translation_current()) { :>
+     <p>
+	Aviso: Esta traduccion podria estar obsoleta. La revision original en ingles es la
+      <:= translation_get_masterrevision() :> mientras que esta revision esta basada en la
+      <:= translation_get_basedonrevision() :>.
+     </p>
+   <: } :>
 
    <: if (has_translations()) {  :>
      <p>
-       This page is also available in the following languages:
-       <: print list_translations() :>.<br>
-       How to set <a href="http://www.debian.org/intro/cn#howtoset">the default document language</a>.
+	Esta pagina tambien esta disponible en los siguientes idiomas:
+           <: print list_translations() :>.<br>
+       Como establecer <a href="http://www.debian.org/intro/cn#howtoset">el idioma por defecto del documento</a>.
      </p>
    <: }; :>
   </div>
