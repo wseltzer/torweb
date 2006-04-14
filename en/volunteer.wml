@@ -56,14 +56,6 @@ you have RPM fu, please help out.</li>
 <a id="Usability"></a>
 <h2><a class="anchor" href="#Usability">Usability and Interface</a></h2>
 <ol>
-<li><a
-href="<page docs/tor-switchproxy>">SwitchProxy</a>
-is more complex than we need. It has confusing options like "anonymous"
-proxies that aren't really anonymous. Plus, the user needs to manually
-type in things like "localhost" and "8118". Should we offer our own
-adapted plugin that has suitable defaults for Tor pre-assigned?
-Also, I hear SwitchProxy is not as compatible with Firefox 1.5 -- are
-other plugins like ProxyButton more flexible across versions?</li>
 <li>We need a way to intercept DNS requests so they don't "leak" while
 we're trying to be anonymous. (This happens because the application does
 the DNS resolve before going to the SOCKS proxy.) One option is to use
@@ -71,8 +63,8 @@ Tor's built-in support for doing DNS resolves; but you need to ask via
 our new socks extension for that, and no applications do this yet. A
 nicer option is to use Tor's controller interface: you intercept the
 DNS resolve, tell Tor about the resolve, and Tor replies with a dummy IP
-address. Then the application makes a connection through Tor to that dummy
-IP address, and Tor automatically maps it back to the original query.</li>
+address. When the application makes a connection through Tor to that dummy
+IP address, Tor automatically maps it back to the original query.</li>
 <li>People running servers tell us they want to have one BandwidthRate
 during some part of the day, and a different BandwidthRate at other parts
 of the day. Rather than coding this inside Tor, we should have a little
