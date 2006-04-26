@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.21
+# Based-On-Revision: 1.22
 # Last-Translator: jan.reister@unimi.it
 
 #include "head.wmi" TITLE="Partecipa"
@@ -57,14 +57,6 @@ sei abile con gli RPM, per favore dacci una mano.</li>
 <a id="Usability"></a>
 <h2><a class="anchor" href="#Usability">Usabilit&agrave; e interfaccia</a></h2>
 <ol>
-<li><a
-href="<page docs/tor-switchproxy>">SwitchProxy</a>
-&egrave; pi&ugrave; complicato del necessario. Ha delle opzioni ambigue come proxy "anonimi"
-che anonimi in realt&agrave; non sono. Inoltre l'utente deve inserire a mano
-dati come "localhost" e "8118". Forse potremmo offrire un nostro
-plugin modificato con i valori di default per Tor gi&agrave; impostati?
-Inoltre pare che SwitchProxy non sia pienamente compatibile con Firefox 1.5 -- ci
-sono forse altri plugin come ProxyButton che siano pi&ugrave; flessibili con diverse versioni?</li>
 <li>Serve un sistema per intercettare le richieste al DNS in modo che non rivelino informazioni
 mentre cerchiamo di restare anonimi. (Questo succede con le applicazioni che risolvono
 il DNS prima di arrivare al proxy SOCKS.) Una soluzione consiste nell'usare
@@ -72,8 +64,8 @@ il supporto nativo Tor della risoluzione DNS, ma per questo occorre fare una ric
 la nostra nuova estensone socks, e per ora nessun programma lo fa. Un'altra
 possibilit&agrave; &egrave; usare la Tor controller interface: si intercetta la risoluzione
 DNS, la si passa a Tor, e Tor risponde con un indirizzo IP
-fasullo. Poi l'applicazione si collega via Tor all'indirizzo IP fasullo
-e Tor automaticamente lo collega alla query precedente. </li>
+fasullo. Quando l'applicazione si collega via Tor a questo indirizzo IP fasullo
+Tor automaticamente lo collega alla richiesta originale. </li>
 <li>Chi gestisce un server ci dice spesso che vorrebbe avere un certo BandwidthRate
 in certe ore del giorno e un diverso BandwidthRate in altre.
 Invece di programmare questa funzione in Tor, si potrebbe fare un piccolo
