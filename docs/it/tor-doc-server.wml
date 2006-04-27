@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 1.3
-# Last-Translator: jan.reister@unimi.it
+# Based-On-Revision: 1.5
+# Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Istruzioni per configurare un server Tor" CHARSET="UTF-8"
 
@@ -128,9 +128,10 @@ per permettere al tuo server di raggiungere gli altri server Tor.
 <p>
 5. Avvia il server: se lo hai installato a partire dai sorgenti esegui semplicemente
 <tt>tor</tt>, se hai usato un pacchetto, di solito si usa un
-initscript o uno startup script. Se i log segnalano degli allarmi, leggili. (Di
-default Tor stampa i log su stdout, ma alcuni pacchetti registrano i log in <tt>/var/log/tor/</tt>.
-Puoi modificare il file torrc per configurare dove devono essere messi i log).
+initscript o uno startup script. Se i log segnalano degli allarmi, leggili. 
+(Di default Tor stampa i log su stdout, ma alcuni pacchetti registrano i log in <tt>/var/log/tor/</tt> o <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">altrove</a>.
+Puoi modificare il file torrc per configurare la posizione dei log).
 </p>
 
 <p>
@@ -147,7 +148,7 @@ in cui vengono annunciate le nuove versioni di sviluppo.
 Il <a href="<page tor-manual>">manuale</a> dell'
 ultima versione stabile fornisce istruzioni dettagliate per installare
 e usare Tor, compresa la configurazione del cliente del server.
-Se usi la versione CVS, il manuale &egrave; disponibile
+Se usi la versione di sviluppo di Tor, il manuale &egrave; disponibile
 <a href="<page tor-manual-cvs>">qui</a>.
 </p>
 
@@ -172,7 +173,8 @@ l'IP giusto, etc.
 <p>Quando il server stabilisce di essere raggiungibile, invia un "server
 descriptor" alle directory. In questo modo i client sapranno
 quale indirizzo, che porta, che chiave, etc usi il tuo server. Puoi <a
-href="http://belegost.seul.org/">caricare manualmente la directory</a> e
+href="http://belegost.mit.edu/tor/status/authority">caricare lo stato della rete
+manualmente</a> e
 scorrerla per cercare il nickname che hai configurato, per essere certo che
 sia l&igrave;. Potrebbe volerci qualche secondo per dare il tempo di
 creare una directory aggiornata.</p>
@@ -237,14 +239,23 @@ limiting FAQ </a> per maggiori dettagli.
 </p>
 
 <p>
-8. Se controlli i name server del tuo dominio, potresti chiamare
+8. Fai un backup della chiave privata del tuo server Tor (&egrave; in "keys/secret_id_key"
+nella tua DataDirectory). Essa costituisce l'identit&agrave; del tuo server ed
+&egrave; importante custodirla al sicuro in modo che nessuno possa leggere il traffico
+che passa dal tuo server. Questo &egrave; un file importante da conservare se dovessi <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">spostare o
+ripristinare il tuo server Tor</a> in caso di prolemi.
+</p>
+
+<p>
+9. Se controlli il name server del tuo dominio, potresti chiamare
 il tuo host 'anonymous' o 'proxy' o 'tor-proxy', cos&igrave; quando qualcuno
 vede il tuo indirizzo nei log del suo webserver, pu&ograve; facilmente
 capire di cosa si tratta.
 </p>
 
 <p>
-9. Se non hai un webserver sul tuo computer, potresti cambiare
+10. Se non hai un webserver sul tuo computer, potresti cambiare
 la ORPort a 443 e la DirPort a 80. Molti utenti Tor
 si trovano dietro dei firewall che consentono solo di navigare
 sul web, e in questo modo potrano raggiungere il tuo Tor server. I server Win32
@@ -259,7 +270,7 @@ molto utili sono la 22, 110, e 143.
 </p>
 
 <p>
-10. Se il tuo server Tor fornisce altri servizi sul medesimo indirizzo IP
+11. Se il tuo server Tor fornisce altri servizi sul medesimo indirizzo IP
 &mdash; ad esempio, un webserver &mdash; controlla che sia possibile collegarsi al
 webserver anche da localhost. &#200; necessario
 perch&eacute; i client Tor rileveranno che il tuo server &egrave; <a
@@ -270,7 +281,7 @@ rifiutarle esplicitamente nella tua exit policy.
 </p>
 
 <p>
-11. (Solo per Unix). Crea un utente separato per il server. Se hai
+12. (Solo per Unix). Crea un utente separato per il server. Se hai
 installato il pacchetto OS X, il deb o l'rpm, &egrave; gi&agrave; cos&igrave;.
 Altrimenti puoi farlo a mano. (Il server Tor non ha bisogno di girare
 come root, anzi &egrave; buona prassi non eseguirlo come root. Girando
@@ -281,7 +292,7 @@ in un chroot jail</a>.)
 </p>
 
 <p>
-12. (Solo per Unix). Il tuo sistema operativo probabilmente limita il numero
+13. (Solo per Unix). Il tuo sistema operativo probabilmente limita il numero
 dei file descriptor aperti per ogni processo a 1024 (o meno). Se vuoi
 gestire un exit node veloce, probabilmente non basta. Su
 Linux, aggiungi una riga come "toruser hard nofile 8192" al file
@@ -294,20 +305,23 @@ di lanciare Tor.
 </p>
 
 <p>
-13. Se hai installato Tor da qualche pacchetto o installer, Tor si avvier&agrave;
+14. Se hai installato Tor da qualche pacchetto o installer, Tor si avvier&agrave;
 automaticamente al boot del sistema. Se per&ograve; l'hai installato dai sorgenti,
 potrebbero esserti utili gli initscript in contrib/tor.sh o contrib/torctl.
 </p>
 
-Ogni volta che modifichi la configurazione, ricordati di riavviare Tor e di
-controllare che il server funzioni correttamente dopo le
-modifiche.
+<p>
+Ogni volta che modifichi la configurazione di Tor, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">di
+solito puoi ricaricarla senza riavviare Tor</a>,
+ricorda inoltre di controllare che il server funzioni correttamente dopo
+le modifiche.
+</p>
 
 <hr />
 
-<p>Se hai suggerimenti per migliorare questo documento, inseriscili nel
-<a href="http://bugs.noreply.org/tor">nostro bugtracker</a> sotto la
-categoria website. Grazie!</p>
+<p>Se hai suggerimenti per migliorare questo documento, per favore <a
+href="<page contact>">segnalaceli</a>. Grazie!</p>
 
   </div><!-- #main -->
 </div>
