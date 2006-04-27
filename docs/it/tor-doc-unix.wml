@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 1.4
-# Last-Translator: jan.reister@unimi.it
+# Based-On-Revision: 1.9
+# Last-Translator: jan@eul.org
 
 #include "head.wmi" TITLE="Istruzioni per installare Tor su Linux/BSD/Unix" CHARSET="UTF-8"
 
@@ -86,19 +86,26 @@ e<br>
 usarli. Il primo passo è la configurazione della navigazione web.</p>
 
 <p>Se usi Firefox (noi lo consigliamo), controlla il <a
+href="http://freehaven.net/~squires/torbutton/">plugin Torbutton
+</a>e configura tutto ci&ograve; che serve. Se pensi di usare Firefox
+su un computer diverso da quello su cui gira Tor, leggi il <a
 href="<page docs/tor-switchproxy>">Tor SwitchProxy howto</a> per installare
 un plugin che semplifica il passaggio tra l'uso di Tor e l'uso di una
 connessione diretta.</p>
 
-<p>Altrimenti devi configuare manualmente il browser per usare un proxy HTTP
-su localhost porta 8118.
-(Dove Privoxy sta in ascolto.)
+<p>Altrimenti devi configuare manualmente il proxy del
+tuo browser.
 In Mozilla, &egrave; in Modifica|Preferenze|Avanzate|Proxy.
-In Opera 7.5x &egrave; in Strumenti|Preferenze|Rete|Proxy server.
-Fai clic sul pulsante "usa lo stesso proxy server per tutti i protocolli";
-ma vedi anche <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">questa
-nota</a> su Tor e i proxy ftp.
+In Opera 7.5x &egrave; in Strumenti|Preferenze|Rete|Proxy server.</p>
+
+<p>
+Devi scrivere "localhost" e
+"8118" per fare puntare i primi quattro protocolli a Privoxy, come mostrato qui. (Anche
+se Privoxy non supporta FTP e Gopher, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">devi
+configurarli ugualmente</a>.) Devi compilare anche la voce per il proxy socks in
+modo che punti direttamente a Tor ("localhost", "9050", e socks5)
+cos&igrave; da coprire altri protocolli oltre ai primi quattro. Poi fai clic su "OK".</p>.
 
 <p>&#200; <strong>necessario</strong> usare privoxy perch&eacute; <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">i browser
@@ -182,9 +189,8 @@ dal tuo computer o provengono da altrove.</p>
 
 <hr />
 
-<p>Se hai dei suggerimenti per migliorare questo documento, pubblicali
-per favore sul <a href="http://bugs.noreply.org/tor">nostro bugtracker</a> sotto la
-categoria website. Grazie!</p>
+<p>Se hai dei suggerimenti per migliorare questo documento, per favore <a
+href="<page contact>">contattaci</a>. Grazie!</p>
 
   </div><!-- #main -->
 </div>
