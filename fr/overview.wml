@@ -1,0 +1,206 @@
+## translation metadata
+# Based-On-Revision: 1.6
+# Last-Translator: arno.@no-log.org
+
+#include "head.wmi" TITLE="Vue d'ensemble"
+
+<div class="main-column">
+
+<h2>Tor&nbsp;: Vue d'ensemble</h2>
+<hr />
+
+<p>
+Tor est un réseau de tunnels virtuels qui permet d'améliorer l'intimité
+et la sécurité sur Internet. Il offre aussi la possibilité aux développeurs
+de créer de nouveaux outils de communication respectueux de la vie privée.
+Tor fournit les bases grâce auxquelles de multiples applications
+vont permettre à des organisations et à des individus d'échanger des
+informations sur les réseaux publics sans compromettre leur intimité.
+</p>
+
+<p>Des particuliers utilisent Tor pour empêcher les sites web de pister leurs
+connexions et celles de leurs familles, ou bien pour se connecter à des
+services de news, de messagerie instantanée ou autres lorsque ceux-ci sont
+bloqués par leurs fournisseurs d'accès. Des particuliers utilisent aussi Tor
+dans le cadre de communications personnelles sensibles pour lesquelles elles ne
+veulent pas dévoiler leur adresse IP&nbsp;: forums de discussion pour victimes
+de viol ou d'agressions, services médicaux, etc. Les 
+<a href="<page docs/tor-hidden-service>">services cachés</a> de Tor permettent
+de publier des sites web, ou de proposer d'autres services, uniquement
+accessibles via Tor, sans avoir à révéler l'emplacement géographique du
+site.</p>
+
+
+<p>Tor permet à des journalistes de communiquer de manière plus
+sécurisée avec des contacts ou des dissidents. Des organisations non
+gouvernementales utilisent Tor pour leurs échanges avec leurs membres
+afin d'éviter de dévoiler leur identité.</p>
+
+<p>Des groupes comme Indymedia recommandent à leurs membres l'usage de Tor pour
+protéger leur confidentialité et leur sécurité. Des groupes activistes comme
+l'Electronic Frontier Foundation (EFF) encouragent le développement de Tor
+qu'ils voient comme un moyen de préserver les libertés civiles sur Internet.
+Des entreprises utilisent Tor pour étudier leurs concurrents sans être
+surveillées. Elles l'utilisent aussi pour remplacer les <abbr lang="en"
+title="Virtual Private Network&nbsp;: Réseau privé virtuel">VPNs</abbr>
+traditionnels, qui ne masquent ni la quantité des données échangées, ni la
+durée, ni la date des connexions. Dans quelles entreprises les employés
+travaillent-t-ils tard ? Quelles sont les organisations dont les employés
+consultent des sites d'offre d'emploi ? Quels bureaux d'étude ont communiqué
+avec quels cabinets d'avocats d'affaire ?  </p>
+
+<p>Une des divisions de l'US Navy utilise Tor comme outil de renseignement dont
+le code est ouvert. Une de ses équipes s'est également servie de Tor récemment
+lorsqu'elle était déployée au Moyen-Orient. La police utilise Tor pour visiter
+ou surveiller des sites web sans que les adresses IP gouvernementales
+n'apparaissent dans les logs des serveurs, ainsi que lors de certaines
+opérations, pour des raisons de sécurité.</p>
+
+<p>La diversité des utilisateurs est en fait <a
+href="http://freehaven.net/doc/fc03/econymics.pdf">une composante importante de
+la sécurité de Tor</a>. Vous êtes mêlés aux autres utilisateurs de Tor&nbsp;;
+plus la base d'utilisateurs est nombreuse et variée, meilleure est la
+protection de l'anonymat.</p>
+
+<h3>Pourquoi nous avons besoin de Tor</h3>
+
+<p>Tor protège de « l'analyse de trafic », une forme courante de surveillance
+sur Internet. En connaissant la source et la destination de votre trafic
+Internet, on peut découvrir vos habitudes et vos centres d'intérêt.  Cela peut
+avoir des conséquences financières si par exemple, un site de commerce en ligne
+ne propose pas les mêmes prix en fonction de votre pays ou institution
+d'origine. Il y a même des cas où votre emploi ou bien votre sécurité physique
+peuvent être compromis si vous dévoilez qui et où vous êtes. Si par exemple
+vous voyagez à l'étranger, et que vous vous connectez à l'ordinateur de votre
+employeur pour recevoir ou envoyer des emails, vous risquez de révéler votre
+pays d'origine et votre situation professionnelle à quiconque est en train
+d'observer le réseau, et ce même si la communication est cryptée.</p>
+
+<p>Comment fonctionne l'analyse de trafic&nbsp;? Les paquets de données Internet
+se composent de deux parties&nbsp;: une charge utile, et un en-tête utilisé
+pour le routage. La charge utile correspond aux données que l'on veut
+effectivement envoyer&nbsp;: un email, une page web, un fichier audio, etc.
+L'en-tête contient entre autres l'origine, la destination, la taille des
+données. Même si vous cryptez vos données, les en-têtes restent visibles,
+et une analyse du trafic peut révéler beaucoup de choses sur ce que vous
+faites, et peut-être ce que vous dites.</p>
+
+<p>Un problème classique de protection de la vie privée est que les
+destinataires de vos communications peuvent savoir que vous en êtes
+l'auteur en regardant les en-têtes. Les intermédiaires autorisés, comme les
+fournisseurs d'accès Internet, ainsi que parfois, des intermédiaires non
+autorisés, le peuvent aussi. Une forme d'analyse de trafic très simple
+consiste donc par exemple à capturer le trafic entre un expéditeur et un
+destinataire, et à regarder les en-têtes.</p>
+
+<p>Mais il existe des formes d'analyse de trafic plus poussées.  Certains
+attaquants épient plusieurs endroits de l'Internet, et se servent de
+techniques statistiques sophistiquées pour observer des motifs dans les
+communications. Le cryptage ne dissimule que le contenu du trafic et pas
+les en-têtes. Il ne protège donc pas contre ces attaques.</p>
+
+<h3>La solution&nbsp;: une réseau anonyme décentralisé</h3>
+
+<p>Tor réduit les risques d'analyses de trafic simples ou sophistiquées, en
+répartissant vos transactions entre plusieurs endroits de l'Internet. On ne peut
+donc pas, en observant un seul point, vous associer à votre destinataire.
+C'est comme utiliser un chemin tortueux et difficile à suivre pour semer un
+poursuivant (tout en effaçant de temps en temps ses traces)&nbsp;. Au lieu
+d'emprunter un itinéraire direct entre la source et la destination, les
+paquets de données suivent une trajectoire aléatoire à travers plusieurs
+serveurs qui font disparaître vos traces. Personne ne peut donc déduire de
+l'observation d'un point unique, d'où viennent, ni où vont les données.</p>
+
+<img alt="Circuit de Tor, première phase" src="$(IMGROOT)/htw1.png" />
+
+<p>Pour définir un trajet privé à travers le réseau Tor, le logiciel de
+l'utilisateur détermine au fur et à mesure un circuit de connexions
+cryptées à travers les serveurs du réseau. Le circuit est construit étape
+par étape, et chaque serveur le long du chemin ne connaît que celui qui
+lui a transmis les données, et celui auquel il va les retransmettre. Aucun
+serveur ne connaît à lui tout seul le chemin complet pris par un paquet de
+données. Le client négocie indépendamment une paire de clé de chiffrement
+avec chaque serveur du circuit. Aucun d'eux ne peut donc
+intercepter la connexion au passage.</p>
+
+<img alt="Circuit de Tor, deuxième phase" src="$(IMGROOT)/htw2.png" />
+
+<p>Une fois le circuit établi, différents types de données peuvent être
+échangées, et plusieurs sortes d'applications peuvent être utilisées via le
+réseau Tor. Vu que chaque serveur ne voit pas plus d'une étape dans le circuit,
+ni un éventuel intermédiaire, ni un noeud compromis ne peuvent analyser le
+trafic pour établir une relation entre la source et la destination d'une
+connexion.</p>
+
+<p>Pour des raisons d'efficacité, le logiciel Tor utilise le même circuit
+pour des connexions espacées de quelques minutes. Les requêtes ultérieures
+utiliseront un nouveau circuit, afin d'éviter que l'on puisse faire le lien
+entre vos actions précédentes, et les nouvelles.</p>
+
+<p>Tor ne fonctionne qu'avec les flux 
+<abbr title="Transmission Control Protocol">TCP</abbr>, 
+et peut être employé par n'importe quelle application
+qui supporte SOCKS.</p>
+
+<img alt="Circuit de Tor, troisième phase" src="$(IMGROOT)/htw3.png" />
+
+<h3>Les services cachés</h3>
+
+<p>Les utilisateurs de Tor ont aussi la possibilité d'offrir des
+services, comme par exemple un site web ou un serveur de messagerie
+instantanée, tout en masquant le lieu géographique de ce service. Les autres
+utilisateurs de Tor peuvent se connecter à ces 
+<a href="<page docs/tor-hidden-service>">services cachés</a> en utilisant le
+système de «&nbsp;points de rendez-vous&nbsp;» de Tor. Ni le serveur, ni
+l'utilisateur ne peuvent alors découvrir avec qui ils communiquent. Ces
+services cachés pourraient permettre de mettre en place un site web sur
+lesquels des auteurs publieraient sans craindre la censure. Personne ne
+pourrait savoir qui a mis en place le site, et personne ne pourrait savoir qui
+a posté sur le site, pas même celui qui l'a mis en place.</p>
+
+<h3>Rester anonyme</h3>
+
+<p>Tor ne résout pas tous les problèmes d'anonymat. Il ne s'occupe que du
+transport des données. Vous devez utiliser des programmes appropriés aux
+différents protocoles si vous voulez éviter que les sites que vous visitez
+puissent vous identifier. Vous pouvez par exemple utiliser un proxy web comme
+Privoxy, pour bloquer les cookies et les informations spécifiques à votre
+navigateur lorsque vous surfez.</p>
+
+<p>Pour protéger votre anonymat, soyez malin. Ne rentrez pas votre nom ou
+d'autres informations personnelles dans les formulaires web. Soyez conscients
+que, comme tout réseau d'anonymat suffisamment rapide pour du surf sur le web,
+Tor ne protège pas contre certaines attaques temporelles&nbsp;: si votre
+attaquant peut observer à la fois le trafic sortant de votre poste, et le
+trafic arrivant à votre destination, il va pouvoir, grâce à des analyses
+statistiques, établir un lien entre les deux.</p>
+
+<h3>Le futur de Tor</h3>
+
+<p>Le pari de mettre en place un réseau d'anonymat utilisable aujourd'hui sur
+l'Internet n'est pas encore gagné. Nous voulons que le logiciel corresponde
+aux besoins des utilisateurs. Nous voulons aussi que le réseau reste fiable
+et puisse supporter le maximum d'usagers possible. Sécurité et facilité
+d'utilisation ne sont pas des notions antagonistes&nbsp;: plus Tor
+deviendra simple à utiliser, plus le nombre d'utilisateurs
+grandira, plus il sera difficile de pister une personne parmi toutes les
+connexions possibles, meilleure sera la sécurité pour tout le monde. Nous
+progressons, mais nous avons besoin de votre aide. Pourquoi ne pas <a
+href="<page docs/tor-doc-server>">mettre en place un serveur</a>,
+ou <a href="<page volunteer>">vous investir</a> dans
+<a href="<page developers>">le développement</a>&nbsp;?
+</p>
+
+<p>Les tendances législatives et technologiques actuelles
+menacent de plus en plus notre anonymat, restreignant ainsi notre liberté
+d'expression et d'accès à l'information sur l'Internet. Cela fragilise
+également la sécurité nationale et les infrastructures critiques en rendant
+les communications entre les individus, les organisations, les sociétés, et
+les gouvernements, vulnérables à l'analyse de trafic. Chaque utilisateur et
+chaque serveur introduit de la diversité, renforçant ainsi la possibilité
+offerte par Tor de nous laisser reprendre le contrôle de notre sécurité et
+de notre vie privée.</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
