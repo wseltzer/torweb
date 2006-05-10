@@ -8,17 +8,17 @@
 <!-- PUT CONTENT AFTER THIS TAG -->
 <h2>Four things everyone can do now:</h2>
 <ol>
-<li> Please consider <a href="<page docs/tor-doc-server>">running
+<li>Please consider <a href="<page docs/tor-doc-server>">running
 a server</a> to help the Tor network grow.</li>
-<li> Take a look at the <a href="<page gui/index>">Tor GUI Competition</a>, and
+<li>Take a look at the <a href="<page gui/index>">Tor GUI Competition</a>, and
 contribute to making Tor's interface
 and usability better. Free Tor T-shirt for each submission!</li>
-<li> Tell your friends! Get them to run servers. Get them to run hidden
+<li>Tell your friends! Get them to run servers. Get them to run hidden
 services. Get them to tell their friends.</li>
-<li> We are looking for funding and sponsors. If you like Tor's goals, please
+<li>We are looking for funding and sponsors. If you like Tor's goals, please
   <a href="<page donate>">take a moment to donate to support further
   Tor development</a>. Also, if you know any
-  companies, NGOs, or other organizations that want communications
+  companies, NGOs, agencies, or other organizations that want communications
   security, let them know about us.</li>
 </ol>
 
@@ -29,42 +29,32 @@ services. Get them to tell their friends.</li>
 because we try to use hundreds of sockets, and the
 Windows kernel doesn't seem capable of handling this. <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Please
-help us solve this!</a> It is the number one problem with growing
-the Tor network currently.</li>
+help us solve this!</a> Probably the best solution is to teach libevent
+how to use overlapped IO rather than select() on Windows, and then adapt
+Tor to the new libevent interface.</li>
 </ol>
-
-<!--
-<a id="Installers"></a>
-<h2><a class="anchor" href="#Installers">Installers</a></h2>
-<ol>
-<li>Matt Edman has written an <a
-href="http://freehaven.net/~edmanm/torcp/download.html">NSIS-based
-Windows installer bundle that
-includes Privoxy and TorCP</a>. Can you help make it more stable and
-featureful?
-</li>
-<li>Develop a way to handle OS X uninstallation
-that is more automated than telling people to
-<a href="<page docs/tor-doc-osx>#uninstall">manually remove
-each file</a>. It needs to have a way to click it into action.</li>
-<li>Our <a href="<cvssandbox>tor/tor.spec.in">RPM spec file</a>
-needs a maintainer, so we can get back to the business of writing Tor. If
-you have RPM fu, please help out.</li>
-</ol>
--->
 
 <a id="Usability"></a>
-<h2><a class="anchor" href="#Usability">Usability and Interface</a></h2>
+<h2><a class="anchor" href="#Usability">Supporting Applications</a></h2>
 <ol>
-<li>We need a way to intercept DNS requests so they don't "leak" while
-we're trying to be anonymous. (This happens because the application does
-the DNS resolve before going to the SOCKS proxy.) One option is to use
-Tor's built-in support for doing DNS resolves; but you need to ask via
-our new socks extension for that, and no applications do this yet. A
-nicer option is to use Tor's controller interface: you intercept the
-DNS resolve, tell Tor about the resolve, and Tor replies with a dummy IP
-address. When the application makes a connection through Tor to that dummy
-IP address, Tor automatically maps it back to the original query.</li>
+<li>We need good ways to intercept DNS requests so they don't "leak" their
+request to a local observer while we're trying to be anonymous. (This
+happens because the application does the DNS resolve before going to
+the SOCKS proxy.)</li>
+<ul>
+<li>We need to <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">apply
+all our tsocks patches</a> and maintain a new fork. We'll host it if
+you want.</li>
+<li>We should patch Dug Song's "dsocks" program to use Tor's
+<i>mapaddress</i> commands from the controller interface, so we
+don't waste a whole round-trip inside Tor doing the resolve before
+connecting.</li>
+<li>We need to make our <i>torify</i> script detect which of tsocks or
+dsocks is installed, and call them appropriately. This probably means
+unifying their interfaces, and might involve sharing code between them
+or discarding one entirely.</li>
+</ul>
 <li>People running servers tell us they want to have one BandwidthRate
 during some part of the day, and a different BandwidthRate at other parts
 of the day. Rather than coding this inside Tor, we should have a little
@@ -72,52 +62,36 @@ script that speaks via the <a href="<page gui/index>">Tor Controller Interface</
 and does a setconf to change the bandwidth rate. Perhaps it would run out
 of cron, or perhaps it would sleep until appropriate times and then do
 its tweak (that's probably more portable). Can somebody write one for us
-and we'll put it into <a href="<cvssandbox>tor/contrib/">tor/contrib/</a>?</li>
-<li>We have a variety of ways to <a
+and we'll put it into <a href="<cvssandbox>tor/contrib/">tor/contrib/</a>?
+This is a good entry for the <a href="<page gui/index>">Tor GUI
+competition</a>.</li>
+<li>Tor can <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">exit
-the Tor network from a particular country</a>, but they all
-require specifying the nickname of a particular Tor server. It
-would be nice to be able to specify just a country, and
-have something automatically pick. This requires having some
-component that knows what country each Tor node is in. The <a
-href="http://serifos.eecs.harvard.edu/cgi-bin/exit.pl">script on
-serifos</a> manually parses whois entries for this. Maybe geolocation
-data will also work?</li>
+the Tor network from a particular exit node</a>, but we should be able
+to specify just a country and have something automatically pick. The
+best bet is to fetch Blossom's directory also, and run a local Blossom
+client that fetches this directory securely (via Tor and checking its
+signature), intercepts <tt>.country.blossom</tt> hostnames, and does
+the right thing.</li>
 <li>Speaking of geolocation data, somebody should draw a map of the Earth
 with a pin-point for each Tor server. Bonus points if it updates as the
-network grows and changes.</li>
-<li>Tor provides anonymous connections, but we don't support
-keeping multiple pseudonyms in practice (say, in case you
-frequently go to two websites and if anybody knew about both of
-them they would conclude it's you). We should find a good approach
-and interface for handling pseudonymous profiles in Tor. See <a
-href="http://archives.seul.org/or/talk/Dec-2004/msg00086.html">this
-post</a> and <a
-href="http://archives.seul.org/or/talk/Jan-2005/msg00007.html">followup</a>
-for details.</li>
+network grows and changes. Unfortunately, the easy ways to do this involve
+sending all the data to Google and having them draw the map for you. How
+much does this impact privacy, and do we have any other good options?</li>
 </ol>
 
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">Documentation</a></h2>
 <ol>
-<li>Please volunteer to help maintain this website: code, content,
-css, layout. Step one is to hang out on the IRC channel until we
-get to know you.</li>
-<li>We have too much documentation --- it's spread out too much and
-duplicates itself in places. Please send us patches, pointers, and
-confusions about the documentation so we can clean it up.</li>
-<li>Help translate the web page and documentation into other
-languages. See the <a href="<page translation>">translation
-guidelines</a> if you want to help out. We also need people to help
-maintain the existing Italian, French, and Swedish translations -
-see the <a href="<page translation-status>">translation status
-overview</a>.</li>
-<li>Investigate privoxy vs. freecap vs. sockscap for win32 clients. Are
-there usability or stability issues that we can track down and
-resolve, or at least inform people about?</li>
-<li>Can somebody help Matt Edman with the documentation and how-tos
-for his <a href="http://freehaven.net/~edmanm/torcp/">Windows Tor
-Controller</a>?</li>
+<li>We hear that Tor users can fall victim to anonymity-breaking attacks
+from javascript, java, activex, flash, etc, if they don't disable
+them. Are there plugins out there (like NoScript for Firefox) that make
+it easier for users to manage this risk? What is the risk exactly?</li>
+<li>Is there a full suite of plugins that will replace all of Privoxy's
+functionality for Firefox 1.5+? We hear Tor is much faster when you take
+Privoxy out of the loop.</li>
+<li>Please help Matt Edman with the documentation and how-tos for his
+<a href="http://vidalia-project.net/">Tor Controller</a>.</li>
 <li>Evaluate and document
 <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">our
 list of programs</a> that can be configured to use Tor.</li>
@@ -127,29 +101,31 @@ and freecap (Windows) seem to be good candidates.</li>
 <li>We have a huge list of <a href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">potentially useful
 programs that interface to Tor</a>. Which ones are useful in which
 situations? Please help us test them out and document your results.</li>
+<li>Help translate the web page and documentation into other
+languages. See the <a href="<page translation>">translation
+guidelines</a> if you want to help out. We also need people to help
+maintain the existing Italian, French, and Swedish translations -
+see the <a href="<page translation-status>">translation status
+overview</a>.</li>
 </ol>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Coding and Design</a></h2>
 <ol>
-<li>We recommend Privoxy as a good scrubbing web proxy, but it's
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/PrivoxyPatches">unmaintained and still has bugs</a>, especially on Windows. While we're at
-it, what sensitive information is not kept safe by Privoxy? Are there
-other scrubbing web proxies that are more secure?</li>
-<li>tsocks appears to be unmaintained: we have collected <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">several
-patches</a> that need to be applied. Can somebody help us push these
-upstream, and if that fails volunteer to start maintaining a new tsocks
-branch? We'll help.</li>
-<li>Right now the hidden service descriptors are being stored on just a few
-directory servers. This is bad for privacy and bad for robustness. To get
-more robustness, we're going to need to make hidden service descriptors
-even less private because we're going to have to mirror them onto many
-places. Ideally we'd like to separate the storage/lookup system from the
-Tor directory servers entirely. Any reliable distributed storage system
-will do, as long as it allows authenticated updates. As far as we know,
-no implemented DHT code supports authenticated updates. What's the right
-next step?</li>
+<li>Right now the hidden service descriptors are being stored on just a
+few directory servers. This is bad for privacy and bad for robustness. To
+get more robustness, we're going to need to make hidden service
+descriptors even less private because we're going to have to mirror them
+onto many places. Ideally we'd like to separate the storage/lookup system
+from the Tor directory servers entirely. The first problem is that we need
+to design a new hidden service descriptor format to a) be ascii rather
+than binary for convenience; b) keep the list of introduction points
+encrypted unless you know the <tt>.onion</tt> address, so the directory
+can't learn them; and c) allow the directories to verify the timestamp
+and signature on a hidden service descriptor so they can't be tricked
+into giving out fake ones. Second, any reliable distributed storage
+system will do, as long as it allows authenticated updates, but as far
+as we know no implemented DHT code supports authenticated updates.</li>
 <li>Tor exit servers need to do many DNS resolves in parallel. But
 gethostbyname() is poorly designed --- it blocks until it has finished
 resolving a query --- so it requires its own thread or process. So Tor
@@ -173,34 +149,26 @@ just for buffers. We need better heuristics for when to shrink/expand
 buffers. Maybe this should be modelled after the Linux kernel buffer
 design, where you have many smaller buffers that link to each other,
 rather than monolithic buffers?</li>
-<li>How do ulimits work on Win32, anyway? We're having problems,
-especially on older Windowses with people running out of file
-descriptors, connection buffer space, etc. (We should handle
-WSAENOBUFS as needed, look at the MaxConnections registry entry,
-look at the MaxUserPort entry, and look at the TcpTimedWaitDelay
-entry. We may also want to provide a way to set them as needed. See <a
-href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=98">bug
-98</a>.)</li>
-<li>Patches to Tor's autoconf scripts. First, we'd like our configure.in
-to handle cross-compilation, e.g. so we can build Tor for obscure
-platforms like the Linksys WRTG54. Second, we'd like the with-ssl-dir
-option to disable the search for ssl's libraries.</li>
 <li>Implement reverse DNS requests inside Tor (already specified in
 Section 5.4 of <a href="<cvssandbox>tor/doc/tor-spec.txt">tor-spec.txt</a>).</li>
 <li>Perform a security analysis of Tor with <a
 href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determine
 if there are good fuzzing libraries out there for what we want. Win fame by
 getting credit when we put out a new release because of you!</li>
-<li>How hard is it to patch bind or a DNS proxy to redirect requests to
-Tor via our <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#CompatibleApplications">tor-resolve socks extension</a>? What about to convert UDP DNS
-requests to TCP requests and send them through Tor?</li>
+<li>How hard is it to patch bind or a
+DNS proxy to redirect requests to Tor via our <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#CompatibleApplications">tor-resolve
+socks extension</a>? dsocks already does this on BSD. What about to
+convert UDP DNS requests to TCP requests and send them through Tor?</li>
 <li>Tor uses TCP for transport and TLS for link
 encryption. This is nice and simple, but it means all cells
 on a link are delayed when a single packet gets dropped, and
 it means we can only reasonably support TCP streams. We have a <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">list
-of reasons why we haven't shifted to UDP transport</a>, but it would be
-great to see that list get shorter.</li>
+of reasons why we haven't shifted to UDP transport</a>, but it would
+be great to see that list get shorter. We also have a proposed <a
+href="<cvssandbox>tor/doc/tor-spec-udp.txt">specification for Tor and
+UDP</a> &mash; please let us know what's wrong with it.</li>
 <li>We're not that far from having IPv6 support for destination addresses
 (at exit nodes). If you care strongly about IPv6, that's probably the
 first place to start.</li>
@@ -292,3 +260,4 @@ of these!
   </div><!-- #main -->
 
 #include <foot.wmi>
+
