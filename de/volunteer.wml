@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.22
+# Based-On-Revision: 1.23
 # Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
 #include "head.wmi" TITLE="Mithelfen"
@@ -25,7 +25,7 @@
   <li>Wir suchen nach Sponsoren und Geldgebern. Wenn du die Ziele von Tor magst
     und es nützlich findest, <a href="<page donate>">nimm dir einen Moment Zeit
     und spende, um die weitere Entwicklung zu unterstützen</a>. Wenn du Firmen,
-    <abbr title="Non-Governmental Organisations">NGO</abbr>s oder andere
+    <abbr title="Non-Governmental Organisations">NGO</abbr>s oder anderen
     Organisationen, die Sicherheit in ihrer Kommunikation benötigen, kennst,
     lasse sie über uns wissen.</li>
   </ol>
@@ -35,51 +35,41 @@
 
 <ol>
   <li>Tor server laufen im Moment auf Windows XP nicht
-    stabil, weil wir versuchen, hunderte von Sockets
-    zu verwenden, und der Windows-Betriebssystemkern anscheinend
-    nicht in der Lage ist, damit umzugehen.
-    <a href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Bitte
-    hilf uns, das Problem zu lösen!</a>  Es ist im Moment das größte Problem,
-    welches das Wachsen des Tor Netzwerkes verhindert.</li>
+  stabil, weil wir versuchen, hunderte von Sockets
+  zu verwenden, und der Windows-Betriebssystemkern anscheinend
+  nicht in der Lage ist, damit umzugehen.
+  <a href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Bitte
+  hilf uns, das Problem zu lösen!</a> Wahrscheinlich ist es die
+  beste Lösung, libevent beizubringen, dass sie überlappendes I/O
+  statt <code>select()</code> auf Windows nutzt und danach Tor auf die
+  neue libevent-Schnittstelle zu adaptieren.</li>
 </ol>
 
-<!--
-<a id="Installers"></a>
-<h2><a class="anchor" href="#Installers">Installationsprogramme</a></h2>
-
-<ol>
-  <li>Matt Edman hat ein <a href="http://freehaven.net/~edmanm/torcp/download.html">
-    NSIS-basiertes Installationsprogramm</a> geschrieben,
-    welches auch Privoxy und TorCP enthält.  Kannst du helfen, es stabiler und
-    funktionaler zu machen?
-  <li>Entwickle einen Weg für die Deinstallation auf OS X, der mehr
-    automatisiert ist, als den Leuten
-    mitzuteilen, <a
-    href="<page docs/tor-doc-osx>#uninstall">alle
-    Dateien zu entfernen</a>.</li>
-  <li>Unser <a
-    href="<cvssandbox>tor/tor.spec.in">RPM-Spec</a>
-    benötigt einen Maintainer. Wenn du damit Kenntnisse hast, bitte
-    hilf uns aus.</li>
-  </ol>
--->
-
 <a id="Usability"></a>
-<h2><a class="anchor" href="#Usability">Benutzbarkeit und Schnittstellen</a></h2>
+<h2><a class="anchor" href="#Usability">unterstützende Anwendungen</a></h2>
 
 <ol>
-  <li>Wir brauchen einen Weg, um DNS-Abfragen abzufangen, damit diese
-    nicht nach außen dringen, während wir versuchen, anonym zu
-    bleiben. (Dies passiert, weil die Anwendung selbst DNS-Anfragen
-    stellt, anstatt diese über Tor zu leiten.) Eine Option wäre, die
-    eingebaute Unterstützung für DNS-Abfragen zu nutzen. Aber man muss
-    über die neue Sockserweiterung anfragen und keine Anweundung macht
-    das bis jetzt. Eine bessere Option ist, die Controllerschnittstelle
-    von Tor zu nutzen. Eine Anwendung verbindet sich zu Tor, übergibt
-    ihm die DNS-Abfrage und Tor antwortet mit einer
-    Dummy-IP-Adresse. Wenn die Anwendung eine Verbindung zu
-    dieser Dummyadresse macht, bildet Tor die Anfrage dann zur
-    Originaladresse ab.</li>
+  <li>Wir brauchen einen guten Weg, um DNS-Abfragen abzufangen, damit diese
+  nicht an einen lokalen Beobachter dringen, während wir versuchen, anonym zu
+  bleiben. (Dies passiert, weil die Anwendung selbst DNS-Anfragen
+  stellt, anstatt diese über Tor zu leiten.).
+  <ul>
+    <li>Wir müssen <a
+    href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">all
+    unsere Patches für tsocks</a> einspielen und einen Fork
+    betreuen. Wir würden diesen auch hosten, wenn du möchtest.</li>
+    <li>Wir sollten das Programm dsocks von Dug Song patchen, so dass es
+    das Kommando <code>mapaddress</code> von der Controllerschnittstelle
+    nutzt. Somit verschwenden wir nicht einen gesamten Round-trip
+    innerhalb von Tor, um die Auflösung vor der Verbindung zu
+    machen.</li>
+    <li>Wir müssen unser <kbd>torify</kbd>-Skript so umgestalten, dass
+    es erkennt, welches tsocks oder dsocks installiert ist und dieses
+    dann richtig aufruft. Das bedeutet wahrscheinlich, dass deren
+    Schnittstellen vereinheitlich werden müssen und führt wahrscheinlich
+    dazu, dass Code zwischen beiden geteilt werden muss oder dass eines
+    komplett nicht mehr benutzt wird.</li>
+  </ul></li>
   <li>Leute, die einen Server betreiben, teilen uns immer wieder mit,
     dass sie BandwidthRate in Teilen des Tages setzen wollen und eine
     andere BandwidthRate an anderen Teilen des Tages. Anstatt das
@@ -89,23 +79,27 @@
     herbeizuführen. Natürlich würde es durch Cron ausgeführt oder es
     schläft eine bestimmte Zeit und macht dann die Änderungen. Kann
     das jemand für uns schreiben und wir packen das dann
-    nach <a href="<cvssandbox>tor/contrib/">tor/contrib</a>?</li>
+    nach <a href="<cvssandbox>tor/contrib/">tor/contrib</a>? Das wäre
+  eine gute Möglichkeit für den <a href="<page gui/index>">Tor GUI
+  Wettbewerb</a>.</li>
   <li>Wir haben eine Vielzahl von Wegen, um
     das <a
     href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">Tornetzwerk
     in einem bestimmten Land zu verlassen</a>. Aber all diese Wege
-    brauchen den Namen eines spezillen Torservers. Es wäre schön,
+    brauchen den Namen eines speziellen Torservers. Es wäre schön,
     wenn man nur ein Land angeben muss und automatisch wird ein
-    Server ausgewählt. Dazu braucht es allerdings eine Komponente,
-    die weiss, wo sich der Server
-    befindet. Das <a
-    href="http://serifos.eecs.harvard.edu/cgi-bin/exit.pl">Skript
-    bei Serifos</a> bearbeitet die Whois-Einträge
-    manuell. Funktionieren hier auch Geolocationeinträge?</li>
+    Server ausgewählt. Der beste Weg ist wahrscheinlich, Blossoms
+  Verzeichnis herunterzuladen und einen lokalen Blossomclient laufen
+  zu lassen, der die Verzeichnisse sicher läd, die
+  <code>.country.blossom</code>-Hostnamen mitschneidet und dann das
+  richtige tut.</li>
   <li>Wenn wir gerade bei Geolocation sind, wäre es schön, wenn
     jemand eine Karte anfertigt, die die Standorte der Torserver
     anzeigt. Bonuspunkte gibt es, wenn es sich bei Änderungen am
-    Netzwerk auf den neuesten Stand bringt.</li>
+    Netzwerk auf den neuesten Stand bringt. Der leichteste Weg, um
+  dies zu erreichen, wäre alle Daten zu Google zu schicken und diese
+  machen dann die Karte für uns. Wie sehr beeinflusst dies die
+  Privatsphäre und haben wir noch andere gute Optionen?</li>
   <li>Tor bietet anonyme Verbindungen. Wenn du jedoch verschiedene
     Pseudonyme haben möchtest (z.B. rufst du desöfteren zwei Webseiten
     auf und wenn das jemand weiß, kann er auf dich schliessen.),
@@ -123,26 +117,15 @@
 <h2><a class="anchor" href="#Documentation">Dokumentation</a></h2>
 
 <ol>
-  <li>Mithilfe bei der Betreuung der Webseite: Code, Inhalte, CSS und
-    generelles Layout. Der erste Schritt hierzu ist, im IRC
-    herumzuhängen, bis wir dich genauer kennen.</li>
-  <li>Wir haben zuviel Dokumentation. Es ist zu weit an diversen
-    Plätzen verteilt. Bitte sende uns Patches, Kommentare oder anderes,
-    was dich verwirrt. Wir werden versuchen, das anzupassen.</li>
-  <li>Hilf die Webseite und die Dokumentation in andere Sprachen zu
-    übersetzen. Wenn du gern helfen möchtest, schaue dir die <a
-    href="<page translation>">Richtlinien zur Übersetzung</a>
-    an. Wir brauchen auch Leute, die helfen, die aktuelle
-    italienische, französiche und schwedische Versione zu betreuen -
-    siehe die <a href="<page translation-status>">Übersichtsseite
-    zum Übersetzungsstatus</a>.</li>
-  <li>Nachforschungen zu Privoxy vs. Freecap vs. Sockscap für
-    Windowsclients. Gibt es Benutzbarkeits- oder Stabilitätsprobleme,
-    die wir suchen und finden können bzw. die Leute darüber
-    informieren können?</li>
-  <li>Kann jemand Matt Edman mit der Dokumentation und HOWTOs für
-    seinen <a href="http://freehaven.net/~edmanm/torcp/">Torcontroller
-      für Windows</a> helfen?</li>
+  <li>Wir hören, dass Tornutzer diversen anonymitätsbrechenden
+  Attacken von Javascript, Java, ActiveX, Flash, etc. zu Opfer
+  fallen. Gibt es da draußen gute Plugins (wie NoScript für den
+  Firefox), die es den Nutzern erleichtern, diese Risiken zu meistern?
+  Was ist exakt das Risiko?</li>
+  <li>Gibt es eine komplette Seite mit Plugins, welche die komplette
+  Funktionalität von Privoxy für Firefox 1.5+ ersetzen?</li>
+  <li>Bitte hilf Matt Edman mit der Dokumentation und HOWTOs für
+  seinen <a href="http://vidalia-project.net/">Tor Controller</a>.</li>
   <li>Kommentiere und dokumentiere unsere <a
     href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">Liste
     von Programmen, die durch Tor geroutet werden können</a>. </li>
@@ -153,34 +136,34 @@
     Liste <a href="<page support>">potentiell nützlicher Programme,
     die eine Schnittstelle zu Tor haben</a>. Welche sind in welchen
     Situationen gut? Bitte hilf uns, diese zu testen und dokumentiere
-    die Eregbnisse.</li>
+    die Ergebnisse.</li>
+  <li>Hilf, die Webseite und die Dokumentation in andere Sprachen zu
+  übersetzen. Schaue dir die <a href="<page translation>">Richtlinien
+  zur Übersetzung</a> an, wenn du gern helfen möchtest. Wir brauchen
+  auch Leute, um die existierenden italienischen, französischen und
+  schwedischen Übersetzungen weiter zu betreuen. Einen Überblick gibt
+  es bei der <a href="<page translation-status>">Statusseite der
+  Übersetzungen</a>.</li>
   </ol>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programmierung und Design</a></h2>
 
 <ol>
-  <li>Wir brauchen eine bessere Option für einen Webproxy als nur
-    Privoxy. Das Programm wird <a href="http://wiki.noreply.org/noreply/TheOnionRouter/PrivoxyPatches"
-    >nicht mehr und betreut und hat eine
-    Menge Fehler</a>, gerade unter Windows. Wenn wir gerade dabei sind,
-    welche sensiblen Informationen sind bei Privoxy nicht sicher? Gibt
-    es andere Proxies, die hier besser sind?</li>
-  <li>tsocks scheint derzeit ohne Maintainer zu sein. Wir haben
-    <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">einige
-    Patches</a> hingeschickt und keine Antwort erhalten. Könnte jemand einen
-    neuen Entwicklungszweig starten? Wir bieten Hilfe.</li>
-  <li>Derzeit werden die Deskriptoren für versteckte Services auf
-    einigen wenigen Verzeichnisservern gespeichert. Das ist schlecht
-    für die Privatsphäre und schlecht für die Robustheit. Für mehr
-    Robustheit müssen wir die Deskriptoren weniger privat machen,
-    weil wir diese an vielen Plätzen spiegeln sollten. Idealerweise
-    möchten wir das Speicher-Nachschlagesystem komplett von den
-    Verzeichnisservern trennen. Jedes verlässliche verteilte
-    Speichersystem sollte diese Aufgabe erfüllen, solange es
-    authentifizierte Updfates erlaubt. Soweit wir wissen, erlaubt
-    kein implementierter DHT-Code authentifizierte Updates. Was wäre
-    der richtige nächste Schritt?</li>
+  <li>Momentan werden die Deskriptoren der versteckten Services nur
+  auf einigen wenigen Verzeichnisservern gespeichert. Dies ist
+  schlecht für die Privatsphäre und die Robustheit. Um mehr Robustheit
+  zu erlangen, sollten wir die privaten Daten aus den Deskriptoren
+  entfernen, um diese auf verschiedenen Plätzen spiegeln zu
+  können. Idealerweise hätten wir gern ein Speicher-/Backupsystem, das
+  verschieden zu den Verzeichnisservern ist. Das erste Problem ist,
+  das wir Format für die versteckten Services schaffen müssen, welches
+  a) ASCII statt binär ist, b) die Liste der Introductionpoints
+  verschlüsselt, solange man nicht die <tt>.onion</tt>-Adresse kennt
+  und c) den Verzeichnissen erlaubt, den Zeitstempel und die Signatur
+  eines Deskriptors zu verifizieren, so dass diese nicht mit falschen
+  überrumpelt werden. Zweitens wird es jedes verteilte Speichersystem
+  tun, solange es authentifizierte Updates erlaubt.</li>
   <li>Die Exitknoten von Tor müssen sehr viele DNS-Abfragen parallel
     erledigen. Aber <code>gethostbyname()</code> ist schlecht
     designt, denn es blockiert bis die Anfrage beendet ist. Daher
@@ -207,22 +190,6 @@
     verkleinern/vergrößern sind. Wahrscheinlich sollte dies nach dem
     Bufferdesign des Linuxkernels modelliert werden. Dort gibt es
     kleinere Buffer, die sich gegenseitig verbinden.</li>
-  <li>Wie funktionieren die ulimits auf Win32? Wir haben speziell bei
-    älteren Versionen Probleme, dass die Leute keine Dateideskriptoren,
-    Verbindung zum Buffer, etc. mehr haben. (Wir sollten WSAENOBUFS
-    nutzen, wie es gebraucht wird, einen Blick auf den
-    Registryeinträge MaxConnections, MaxUserPort und TcpTimedWaitDelay
-    werfen. Weiterhin sollten wir einen Weg bieten, diese Einstellung
-    nach Wunsch zu treffen. Schaue dir
-    auch <a
-    href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=98">Bug
-    98</a> an.)</li>
-  <li>Patches für autoconf-Skripte von Tor. Zuerst würden wir gern
-    unser <var>autoconfigure.in</var> dazu bringen, Crosskomilierung
-    zu handhaben. So dass wir beispielsweise Tor auf obskuren
-    Plattformen, wie dem Linksys WRTG54 bauen können. Zweitens mögen
-    wir die Option <var>with-ssl-dir</var>, um die suche nach
-    SSL-Bibliotheken zu deaktivieren.</li>
   <li>Reverse DNS implementieren (schon spezifiziert)</li>
   <li>Eine Sicherheitsanalyse mit
     "<a href="http://en.wikipedia.org/wiki/Fuzz_testing">Fuzz</a>"
@@ -232,8 +199,9 @@
   <li>Wie schwer ist es, BIND oder einen DNS-Proxy zu patchen, um die
     Anfragen über unsere <a
     href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#CompatibleApplications">tor-resolve-Erweiterung</a>
-    umzuleiten? Was wäre, wenn die UDP-Anfragen in TCP-Anfragen
-    geändert werden und dann durch Tor geschickt werden?</li>
+    umzuleiten? Auf BSD-Systemen macht das dsocks schon. Was wäre,
+    wenn die UDP-Anfragen in TCP-Anfragen geändert werden und dann durch
+    Tor geschickt werden?</li>
   <li>Tor nutzt TCP für den Transport und TLS für die Verschlüsselung
     der Verbindungen. Dies ist einfach. Es bedeutet aber auch, dass
     alle Zellen Verspätungen erfahren, wenn nur ein Paket verworfen
@@ -241,7 +209,11 @@
     gibt eine <a
     href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">Liste
     von Gründen</a>, warum wir nicht zu Transport per UDP gewechselt
-    sind. Es wäre schön, wenn diese Liste kürzer werden würde.</li>
+    sind. Es wäre schön, wenn diese Liste kürzer werden würde. Wir
+  haben auch eine <a
+  href="<cvssandbox>tor/doc/tor-spec-udp.txt">Spezifikation für Tor
+  und UDP</a> &mdash; bitte lass uns wissen, wenn damit etwas nicht
+  stimmt.</li>
   <li>Wir sind nicht weit davon entfernt, Unterstützung für IPv6 bei
     Exitknoten zu haben. Falls du dich stark um IPv6 kümmerst, ist
     das wahrscheinlich der Platz, um zu starten.</li>
