@@ -1,0 +1,34 @@
+# Based-On-Revision: 1.8
+# Last-Translator: asr@mail.telepac.pt
+
+#use "functions.wmi"
+
+</div>
+  <div class="bottom" id="bottom">
+     <p>
+     <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
+# please also translate "last modified" and "last compiled"
+      &Uacute;ltima modifica&ccedil;&atilde;o: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      -
+      Compilado em: <: print scalar localtime(); :>
+     </p>
+# Uncomment this in your translation:  (and translate it)
+#####################################
+   <: unless (translation_current()) { :>
+     <p>
+      Aviso: Esta tradu&ccedil;&atilde;o pode estar desactualizada. O original, em ingl&ecirc;s encontra-se na vers&atilde;o 
+      <:= translation_get_masterrevision() :> enquanto esta tradu&ccedil;&atilde;o &eacute; baseada na vers&atilde;o
+      <:= translation_get_basedonrevision() :>.
+     </p>
+   <: } :>
+
+   <: if (has_translations()) {  :>
+     <p>
+       Esta p&aacute;gina tamb&eacute;m est&aacute; traduzida em:
+       <: print list_translations() :>.<br>
+       How to set <a href="http://www.debian.org/intro/cn#howtoset">the default document language</a>.
+     </p>
+   <: }; :>
+  </div>
+</body>
+</html>
