@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.47
+# Based-On-Revision: 1.51
 # Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
 #include "head.wmi" TITLE="Download"
@@ -44,7 +44,8 @@ einträgst.).</p>
 </thead>
 
 <tr>
-<td>Windows stabil: Tor &amp; Privoxy &amp; TorCP Paket</td>
+<td>Windows stabil: Tor &amp; Privoxy &amp; <a
+  href="http://www.vidalia-project.net/">Vidalia-Paket</a></td>
 <td>
 <a
   href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a>
@@ -53,19 +54,24 @@ einträgst.).</p>
   für Tor unter Windows</a></td>
 </tr>
 
+<!--
 <tr>
   <td>Windows Entwicklung: Tor &amp; Privoxy &amp; <a
   href="http://www.vidalia-project.net/">Vidalia-Paket</a></td>
   <td><a
   href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a>
   (<a href="<package-win32-bundle-alpha-sig>">sig</a>).</td>
-  <td><a href="<page docs/tor-doc-win32>">Win32 instructions</a></td> 
+  <td><a href="<page docs/tor-doc-win32>">Anweisungen für Windows</a></td> 
 </tr>
+-->
 
 <tr>
 <td>Windows: nur Tor (f&uuml;r versierte Benutzer)</td>
 <td>
-<a href="<package-win32-stable>"><version-win32-stable></a> (<a href="<package-win32-stable-sig>">sig</a>),
+  <!--
+<a href="<package-win32-stable>"><version-win32-stable></a> (<a -->
+  <!--href="<package-win32-stable-sig>">sig</a>), -->
+  
 <a href="<package-win32-alpha>"><version-win32-alpha></a> (<a href="<package-win32-alpha-sig>">sig</a>).
 </td>
 <td>&Auml;hnlich wie <a href="<page docs/tor-doc-unix>#privoxy">unter UNIX</a></td>
@@ -73,7 +79,9 @@ einträgst.).</p>
 
 <tr>
 <td>Mac OS X Tiger</td>
-<td><a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>),
+<td>
+  <!--<a href="<package-osx-stable>"><version-osx-stable></a> (<a -->
+  <!--href="<package-osx-stable-sig>">sig</a>), -->
 <a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>).</td>
 <td><a href="<page docs/tor-doc-osx>">Installationsanweisungen f&uuml;r Tor unter OSX</a></td>
 </tr>
@@ -81,7 +89,9 @@ einträgst.).</p>
 <tr>
 <td>Mac OS X Panther</td>
 <td>
-<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a href="<package-oldosx-stable-sig>">sig</a>),
+  <!--
+<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a -->
+  <!--href="<package-oldosx-stable-sig>">sig</a>), -->
 <a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a href="<package-oldosx-alpha-sig>">sig</a>)
 </td>
 <td><a href="<page docs/tor-doc-osx>">Installationsanweisungen f&uuml;r Tor unter OSX</a></td>
@@ -107,8 +117,12 @@ einträgst.).</p>
 
 <tr>
 <td>Red Hat Linux</td>
-<td><a href="<package-rpm-stable>"><version-rpm-stable> RPM</a> (<a href="<package-rpm-stable-sig>">sig</a>)<br />
-<a href="<package-srpm-stable>"><version-rpm-stable> SRPM</a> (<a href="<package-srpm-stable-sig>">sig</a>)<br />
+<td>
+  <!--
+  <a href="<package-rpm-stable>"><version-rpm-stable> RPM</a> (<a href="<package-rpm-stable-sig>">sig</a>)<br />
+<a href="<package-srpm-stable>"><version-rpm-stable> SRPM</a> (<a -->
+  <!--href="<package-srpm-stable-sig>">sig</a>)<br /> -->
+  
 <a href="<package-rpm-alpha>"><version-rpm-alpha> RPM</a> (<a href="<package-rpm-alpha-sig>">sig</a>)<br />
 <a href="<package-srpm-alpha>"><version-rpm-alpha> SRPM</a> (<a href="<package-srpm-alpha-sig>">sig</a>)</td>
 <td><ul>
@@ -145,8 +159,12 @@ einträgst.).</p>
 
 <tr>
 <td>Quellcode</td>
-<td><a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>), <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)</td>
-<td>n/a</td>
+<td>
+  <!--
+  <a href="<package-source-stable>"><version-stable></a> (<a -->
+  <!--href="<package-source-stable-sig>">sig</a>), -->
+  <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)</td>
+<td><kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd></td>
 </tr>
 </table>
 
@@ -173,163 +191,23 @@ für eine Übersicht an.</p>
 
 <hr />
 
+<!--
 <h2>Testversionen</h2>
-
-<p>2006-05-03: Tor 0.1.1.19-rc <a
-href="http://archives.seul.org/or/talk/May-2006/msg00024.html">behebt
-den letzten bekannten wichtigen Fehler in der 0.1.1.x-Serie</a>.</p>
-
-<p>2006-04-10:
-Tor 0.1.1.18-rc: <a
-href="http://archives.seul.org/or/talk/Apr-2006/msg00048.html">fügt
-einen fünften Verzeichnisserver hinzu und behebt eine Menge Fehler,
-die mit grenzwertigen Entscheidungen bei Verzeichnissen zu tun
-haben</a>.</p>
-
-<p>2006-03-28:
-Tor 0.1.1.17-rc: <a
-href="http://archives.seul.org/or/talk/Mar-2006/msg00184.html">behebt
-einige schwerwiegendere Fehler für Clients und Server. Es fügt auch
-einen vierten autoritativen Verzeichnisserver hinzu (endlich)</a>.
-</p>
-
-<p>2006-03-18:
-Tor 0.1.1.16-rc: <a
-href="http://archives.seul.org/or/talk/Mar-2006/msg00149.html">behebt
-ein paar Kleinigkeiten.  Es wird damit angefangen, das Hinzufügen von
-neuen autoritativen Verzeichnisservern einfacher zu machen</a>.
-</p>
-
-<p>2006-03-11:
-Tor 0.1.1.15-rc: <a
-href="http://archives.seul.org/or/talk/Mar-2006/msg00109.html">behebt
-einen großen Fehler im Bootstrapping für Clientprogramme und bringt einige
-Verbesserungen in der Sicherheit mit.</a>
-</p>
-
-<p>
-2006-02-20: Tor 0.1.1.14-alpha <a
-href="http://archives.seul.org/or/talk/Feb-2006/msg00190.html">behebt
-Fehler bei Client und Server und bringt einige lose Enden zusammen.</a>
-</p>
-
-<p>2006-02-09:
-Tor 0.1.1.13-alpha: <a
-href="http://archives.seul.org/or/talk/Feb-2006/msg00093.html"> behebt
-einige wichtige Crash-Bugs für Server und Clients sowie eine Anzahl
-von grossen Speicher-Bloat-Problemen.</a>
-</p>
-
-<p>2006-01-11:
-Tor 0.1.1.12-alpha: <a
-href="http://archives.seul.org/or/talk/Jan-2006/msg00026.html"> behebt
-einen Fehler, der Tor-Server daran hinderte, Verbindungen von nicht-Servern
-anzunehmen</a>.
-</p>
-
-<p>2006-01-10:
-Tor 0.1.1.11-alpha: <a
-href="http://archives.seul.org/or/talk/Jan-2006/msg00024.html"> implementiert
-Eintrittswachknoten (entry guard nodes):  Tor wählt automatisch eine handvoll
-Eintrittsknoten und nutzt diese für alle Verbindungen. Weiterhin wird der
-Overhead für Verzeichnisanfragen drastisch gesenkt, Tor-Server auf dynamischen
-IP Adressen sind wieder nützlich, und IRC und IM Verbindungen über Tor sind
-stabiler</a>.  <strong>Alle, die einen versteckten Dienst (hidden service)
-anbieten sollten aktualisieren</strong>.
-</p>
-
-<p>2005-12-11:
-Tor 0.1.1.10-alpha: <a
-href="http://archives.seul.org/or/talk/Dec-2005/msg00053.html">behebt mehrere
-Fehler, die zum Absturz führen, behebt Probleme mit der Anonymität und bietet
-größere Performanceverbesserungen und braucht weniger Speicher</a>.</p>
-
-<p>2005-11-15:
-Tor 0.1.1.9-alpha: <a
-href="http://archives.seul.org/or/talk/Nov-2005/msg00139.html">behebt einige
-Probleme mit der Speicherverwaltung aus der letzten Version, entfernt eine Menge
-von verwirrenden Warnungen aus dem Logging und behebt andere Fehler.</a>
-</p>
-
-<p>2005-09-14: Tor 0.1.1.7-alpha
-  behebt <a
-  href="http://archives.seul.org/or/talk/Sep-2005/msg00152.html">einige
-  Fehler aus der Vorversion</a></p>
-
-<p>2005-08-22: Tor 0.1.1.6-alpha
-  behebt <a
-  href="http://archives.seul.org/or/talk/Aug-2005/msg00103.html">einige
-  Fehler der Vorgängerversion und fügt neue Eigenschaften, wie
-  Exitenklaven und verbesserte Geschwindigkeit bei versteckten
-  Services</a> hinzu. Weiterhin ist es der Start in das neue
-  Verzeichnisdesign.</p>
-
-<p>2005-08-08: Tor 0.1.1.5-alpha behebt <a
-  href="http://archives.seul.org/or/talk/Aug-2005/msg00036.html">einen
-  kritischen Fehler aus Version 0.1.0.14</a>.</p>
-
-<p>2005-08-04: Tor 0.1.1.4-alpha <a
-  href="http://archives.seul.org/or/talk/Aug-2005/msg00010.html">behebt einen
-  kritischen Fehler aus der Version 0.1.0.13</a>.</p>
-
-<p>2005-07-25:
-Tor 0.1.1.3-alpha <a
-  href="http://archives.seul.org/or/talk/Jul-2005/msg00107.html">behebt einen
-  Crashbug mit versteckten Services und einige andere Controllerbugs</a>.</p>
-
-<p>2005-07-14:
-Tor 0.1.1.2-alpha <a
-  href="http://archives.seul.org/or/talk/Jul-2005/msg00055.html">behebt einen
-  Segfault im Controllerhandling und ein paar weitere Bugs.</a>.</p>
-
-<p>2005-06-28:
-Tor 0.1.1.1-alpha hat ein <a
-  href="http://archives.seul.org/or/talk/Jun-2005/msg00252.html">revidiertes
-  Controllerprotokoll (Version 1), dass ASCII nutzt</a>
-</p>
-
-<hr  />
+-->
 
 <h2>Stabile Versionen</h2>
 
-<p>2006-02-17:
-  Tor 0.1.0.17 <a
-  href="http://archives.seul.org/or/announce/Feb-2006/msg00000.html">behebt
-  einen Fehler, der bei Servern mit Hibernation zu Abstürzen führen konnte,
-  erlaubt Windows-Servern besser zu skalieren, und versucht, den
-  Bandbreiten-Overhead vom alten Verzeichnis-Protokoll zu verringern.</a>
-  Sowohl Clients und Server sollten auf diese Version aktualisieren.
-  </p>
-
-<p>2006-01-02: Tor 0.1.0.16 <a
-  href="http://archives.seul.org/or/announce/Jan-2006/msg00000.html">behebt
-  neun seltene Fehler, die zum Absturz führen und enthält Backports vom
-  0.1.1.x-Zweig, um aggressiver bei der Wiederaufnahme abgebrochener
-  Streams zu sein.</a>
-  </p>
-
-<p>2005-09-23: Tor 0.1.0.15 behebt einen <a
-  href="http://archives.seul.org/or/announce/Sep-2005/msg00000.html">Fehler,
-  der zum Absturz führt, wenn der Exitknoten keine Dateideskriptoren
-  mehr hat. Weiter werden zwei mehr Ports in der Defaultpolixy
-  abgewiesen.</a></p> <p>2005-08-08: Tor 0.1.0.14 behebt den <a
-  href="http://archives.seul.org/or/announce/Aug-2005/msg00001.html">zweiten
-  Teil eines kritischen Fehlers in unseren Kryptohandshakes</a>. Alle
-  Klienten sollten <b>sofort</b> auf den neuesten Stand gebracht
-  werden.</p>
-
-<p>2005-08-04: Tor 0.1.0.13 behebt
-  einen <a
-  href="http://archives.seul.org/or/announce/Aug-2005/msg00000.html">kritischen
-  Fehler in der Sicherheit der Kryptohandshakes</a>. Alle Version
-  sollten
-<b>sofort</b> auf den neuesten Stand gebracht werden.</p>
-
-<p>2005-07-18: Tor 0.1.0.12 behebt
-  einen <a
-  href="http://archives.seul.org/or/announce/Jul-2005/msg00000.html">Fehler,
-  der in seltenen Fällen einige Clients und Server zum Absturz
-  brachte</a>.</p>
+<p>2006-05-23:
+Tor 0.1.1.20 bietet <a
+href="http://archives.seul.org/or/announce/May-2006/msg00000.html">einige
+größere Sicherheitsverbesserungen. Das schliesst Entryguards ein, um
+den Startpunkt einer Verbindung besser zu schützen, Exitenklaven, um
+das Ende zu schützen sowie bessere Unterstützung für Firewalls. Ein
+neues Verzeichnisprotokoll verbessert die Bandbreitennutzung und hält
+die Clients mehr aktuell. Ein neuer ASCII-basiertes Protokoll für den
+Controller ermöglicht es, schnell Anwendungen zu schreiben, die mit
+Tor interagieren. Des weiteren gab es viele Verbesserungen in der
+Skalierbarkeit und Performance</a>.</p>
 
 <hr />
 
