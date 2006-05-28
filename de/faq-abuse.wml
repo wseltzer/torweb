@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.6
+# Based-On-Revision: 1.7
 # Last-Translator: jo@durchholz.org,  peter@palfrader.org, jens@kubieziel.de (minor updates)
 
 #include "head.wmi" TITLE="Abuse-FAQ für Betreiber von Torservern"
@@ -245,33 +245,51 @@ erklären.</p>
 <h3><a class="anchor" href="#Bans">Ich möchte das Tornetz von meinen 
 Diensten aussperren.</a></h3>
 
+<p>Wir sind traurig, dies zu hören. Es gibt einige Situationen, in
+denen es sinnvoll ist, anonyme Nutzer z usperren. Aber in vielen
+Fällen gibt es leichtere Lösungen, die dein Problem lösen und es
+trotzdem erlauben auf deine Seiten in einer sicheren Art und Weise
+zuzugreifen.</p>
+
 <p>Bitte frage dich zunächst, ob es eine Möglichkeit gibt, auf
 Anwendungsebene zwischen legitimen Nutzern und Idioten zu unterscheiden. Du
 kannst beispielsweise bestimmte Bereiche Ihrer Website oder das Recht zum
-Schreiben registrierten Benutzern vorbehalten. Du kannst diese Richtlinie nur
-gegenüber bestimmten IPs (wie denen von Torservern) einsetzen. Auf diese Weise
-kannst du einen abgestuften Zugang gewähren, ohne gleich alles zu sperren.</p>
+Schreiben registrierten Benutzern vorbehalten. Es ist recht einfach,
+eine aktuelle Liste mit IP-Adressen von Torrechnern aufzubauen, die
+eine Verbindung zu deinem Dienst aufnehmen dürfen. So kannst du
+spezielle Bereiche nur Tornutzern zugänglich machen und hast einen
+Zugriff von verschiedenen Schichten. Dies ermöglicht es, nicht
+generell jeden Dienst zu sperren.</p>
 
-<p>Bedenke bitte, dass jeden Tag Tausende Menschen Tor verwenden, um sich
-vor Datensammlern wie Doubleclick zu schützen, während sie ihren normalen
-Aktivitäten nachgehen.  Andere nutzen Tor, weil es die einzige Möglichkeit ist,
-durch die restriktiven Firewalls ihrer Organisation oder Schule zu kommen.
-Wahrscheinlich sind gerade jetzt, in diesem Moment, einige Nutzer über Tor mit
-deinen Diensten verbunden und führen ihre normalen Aktivitäten aus. Du musst
-abwägen, ob du mit der Aussperrung des Tornetzes auch die Beiträge der
-legitimen Benutzer verlieren möchtest, zusammen mit zukünftigen legitimen
-Benutzern.</p>
+<p>Beispielsweise hatte das <a
+href="http://freenode.net/policy.shtml#tor">Freenode-IRC-Netzwerk</a>
+ein Problem mit einer koordinierten Gruppe von Lästerern. Sie traten
+Diskussionskanälen bei und übernahmen die Konversation. Aber als sie
+alle Nutzer, die sich mit Tor anmeldeten, als anonyme Nutzer
+deklarierten, kamen die Lästerer zurück und nutzten offene Proxies und
+Botnetzwerke.</p>
 
-<p>Weiterhin solltest du überlegen, was du mit anderen Diensten machen willst,
-die viele Benutzer hinter wenigen IP-Adressen verstecken. Tor unterscheidet
-sich in dieser Hinsicht nicht sehr von AOL.</p>
+<p>Bedenke bitte, dass jeden Tag Tausende Menschen Tor verwenden, um
+sich vor Datensammlern zu schützen, während sie ihren normalen
+Aktivitäten nachgehen.  Andere nutzen Tor, weil es die einzige
+Möglichkeit ist, den restriktiven Firewalls zu entgehen.
+Wahrscheinlich sind gerade jetzt, in diesem Moment, einige Nutzer über
+Tor mit deinen Diensten verbunden und führen ihre normalen Aktivitäten
+aus. Du musst abwägen, ob du mit der Aussperrung des Tornetzes auch
+die Beiträge der legitimen Benutzer verlieren möchtest, zusammen mit
+zukünftigen legitimen Benutzern.</p>
 
-<p>Und zuletzt bedenke, dass Torserver individuelle Exitpolicies haben.  Viele
-Torserver haben gar keinen Ausgang aus dem Tornetz.  Die, die es erlauben,
-erlauben das möglicherweise gar nicht zu deinen Diensten.  Wenn du Torserver
-sperrst, lese die Exitpolicies und sperre nur die, die unerwünschte Verbindungen
-erlauben.  Bedenke auch, dass die Policies sich ändern können (und dass ständig
-Torserver hinzukommen und verschwinden).</p>
+<p>Weiterhin solltest du überlegen, was du mit anderen Diensten machen
+willst, die viele Benutzer hinter wenigen IP-Adressen verstecken. Tor
+unterscheidet sich in dieser Hinsicht nicht sehr von AOL.</p>
+
+<p>Und zuletzt bedenke, dass Torserver individuelle <a
+href="#ExitPolicies">Exitpolicies</a> haben.  Viele Torserver haben
+gar keinen Ausgang aus dem Tornetz.  Die, die es erlauben, erlauben
+das möglicherweise gar nicht zu deinen Diensten.  Wenn du Torserver
+sperrst, lese die Exitpolicies und sperre nur die, die unerwünschte
+Verbindungen erlauben.  Bedenke auch, dass die Policies sich ändern
+können (und dass ständig Torserver hinzukommen und verschwinden).</p>
 
 <p>Wenn du das wirklich willst, kannst du das <a
 href="<cvssandbox>tor/contrib/exitlist">Python-Skript zum Auswerten des
