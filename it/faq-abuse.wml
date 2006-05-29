@@ -1,8 +1,8 @@
 ## translation metadata
-# Based-On-Revision: 1.6
-# Last-Translator: jan.reister@unimi.it
+# Based-On-Revision: 1.7
+# Last-Translator: jan@seul.org
 
-#include "head.wmi" TITLE="FAQ sugli abusi per operatori di server"
+#include "head.wmi" TITLE="FAQ sugli abusi per operatori di server" CHARSET="UTF-8"
 
 <div class="main-column">
 
@@ -240,18 +240,34 @@ cosa sono Tor e le exit policy. </p>
 <a id="Bans"></a>
 <h3><a class="anchor" href="#Bans">Voglio impedire alla rete Tor di accedere al mio servizio.</a></h3>
 
+<p>Ci dispiace che tu voglia farlo. Ci sono situazioni in cui ha senso
+bloccare utenti anonimi da un servizio Internet. Ma in molti
+casi, ci sono delle soluzioni pi&ugrave; semplici per risolvere il tuo problema
+e permettere comunque agli utenti di accedere al tuo sito in modo sicuro.</p>
+
+
 <p>Per prima cosa, c'&egrave; un modo per decidere, a livello applicativo,
 come separare gli utenti legittimi dai cretini? Ad esempio, si potrebbero
 rendere accessibili certe aree del sito o certi privilegi, come la scrittura di post,
-solo a utenti registrati. Si potrebbe mettere in atto questa
-distinzione solo per certi indirizzi IP, come i Tor exit node. Cos&igrave;
-potresti avere un accesso a pi&ugrave; livelli senza dover bloccare tutti.</p>
+solo a utenti registrati. &#200; facile creare una lista
+aggiornata di indirizzi IP Tor che permettono di raggiungere il tuo
+servizio, potresti così applicare queste distinzioni solo agli utenti Tor. In questo
+modo puoi avere un accesso a pi&ugrave; livelli senza bloccare totalmente
+il tuo servizio. </p>
 
-<p>Secondo, pensa che ogni giorno migliaia di persone usano Tor per proteggersi
-dalle grandi aziende di raccolta dati, come ad esempio Doubleclick, mentre svolgono
-le loro normali attivit&agrave;. Altri usano Tor perch&eacute; l'unico
-modo che hanno per aggirare firewall restrittivi a scuola o
-altrove. Alcuni utenti Tor potrebbero collegarsi legittimamente
++<p>Per esempio, la <a
++href="http://freenode.net/policy.shtml#tor">rete IRC Freenode</a>
+aveva un problema con un gruppo di abusivi che entravano nei canali e
+prendevano subdolamente il controllo delle conversazioni; una volta per&ograve;
+contrassegnati gli utenti provenienti dai nodi Tor come "anonymous user", togliendo agli abusivi la
+capacit&agrave; di mescolarsi agli altri utenti, questi sono tornati a utilizzare i loro open proxy
+e reti di bot.</p>
++
+<p>In secondo luogo,considera che migliaia di persone usano quotidianamente Tor semplicemente
+come buona igiene digitale &mdash; ad esempio, per proteggersi dalla raccolta di dati fatta
+dalle aziende pubblicitarie mentre svolgono le loro normali attivit&agrave;. Altri
+usano Tor perch&eacute; &egrave; il solo modo che hanno per superare dei firewall locali
+restrittivi. Alcuni utenti Tor potrebbero connettersi legittimamente
 al tuo servizio per attivit&agrave; normalissime. Devi decidere se
 bandire la rete Tor valga la perdita del contributo
 di questi utenti e di futuri utenti regolari. </p>
@@ -260,11 +276,11 @@ di questi utenti e di futuri utenti regolari. </p>
 servizi che aggregano numerosi utenti dietro pochi indirizzi IP. Tor non
 &egrave; poi cos&igrave; diverso da AOL, sotto questo aspetto.</p>
 
-<p>Infine, considera che ogni exit node Tor ha una sua exit
-policy individuale. Molt server Tor non permettono connessioni in uscita.
-Molti di quelli che le permettono potrebbero gi&agrave; inibire i collegamenti
-al tuo servizio.
-Se bandisci dei nodi, esaminane le
+<p>Infine, ricorda che i server Tor hanno <a
+href="#ExitPolicies">exit policy individuali</a>. Molti server Tor non
+permettono neppure alcuna connessione in uscita. Molti di quelli che permettono alcune
+connessioni in uscita potrebbero gi&agrave; impedire di collegarsi al 
+tuo servizio. Se bandisci dei nodi, esaminane le
 exit policy e blocca solo quelli che consentono di collegarsi a te;
 tieni presente che le exit policy possono cambiare (come pure la lista dei nodi
 della rete Tor). </p>
