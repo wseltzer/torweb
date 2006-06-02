@@ -92,17 +92,18 @@ of the Unix Tor installation howto.
 while to make sure it's actually working.</p>
 
 <hr />
-<a id="one"></a>
-<h2><a class="anchor" href="#one">Step One: Set it up as a server</a></h2>
+<a id="setup"></a>
+<h2><a class="anchor" href="#setup">Step One: Set it up as a server</a></h2>
 <br />
 
 <p>
 1. Verify that your clock is set correctly. If possible, synchronize
-your clock with public time servers. 
+your clock with public time servers.
 </p>
 
 <p>
-2. Make sure name resolution works (that is, your computer can resolve addresses correctly).
+2. Make sure name resolution works (that is, your computer can resolve
+Internet addresses correctly).
 </p>
 
 <p>
@@ -151,13 +152,9 @@ If you are running the development version of Tor the manual is available
 <a href="<page tor-manual-cvs>">here</a>.
 </p>
 
-<p>
-8. Read
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">this document</a>
-to get ideas how you can increase the security of your server.
 <hr />
-<a id="two"></a>
-<h2><a class="anchor" href="#two">Step Two: Make sure it's working</a></h2>
+<a id="check"></a>
+<h2><a class="anchor" href="#check">Step Two: Make sure it's working</a></h2>
 <br />
 
 <p>As soon as your server manages to connect to the network, it will
@@ -179,13 +176,129 @@ there. You may need to wait a few seconds to give enough time for it to
 make a fresh directory.</p>
 
 <hr />
-<a id="three"></a>
-<h2><a class="anchor" href="#three">Step Three: Register your nickname</a></h2>
+<a id="after"></a>
+<h2><a class="anchor" href="#after">Step Three: Once it's working</a></h2>
 <br />
 
 <p>
-Once you are convinced it's working (after a day or two maybe), you should
-register your server.
+We recommend the following steps as well:
+</p>
+
+<p>
+8. Read
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">this document</a>
+to get ideas how you can increase the security of your server.
+</p>
+
+<p>
+9. Decide what exit policy you want. By default your server allows
+access to many popular services, but we restrict some (such as port 25)
+due to abuse potential. You might want an exit policy that is
+less restrictive or more restrictive; edit your torrc appropriately.
+Read the FAQ entry on <a
+href="<page faq-abuse>#TypicalAbuses">issues you might
+encounter if you use the default exit policy</a>.
+If you choose a particularly open exit policy, you should make
+sure your ISP is ok with that choice.
+</p>
+
+<p>
+10. Decide about rate limiting. Cable modem, DSL, and other users
+who have asymmetric bandwidth (e.g. more down than up) should
+rate limit to their slower bandwidth, to avoid congestion. See the <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
+limiting FAQ entry</a> for details.
+</p>
+
+<p>
+11. Back up your Tor server's private key (stored in "keys/secret_id_key"
+in your DataDirectory). This is your server's "identity," and
+you need to keep it safe so nobody can read the traffic that goes
+through your server. This is the critical file to keep if you need to <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">move
+or restore your Tor server</a> if something goes wrong.
+</p>
+
+<p>
+12. If you control the name servers for your domain, consider setting
+your hostname to 'anonymous' or 'proxy' or 'tor-proxy', so when other
+people see the address in their web logs, they will more quickly
+understand what's going on.
+</p>
+
+<p>
+13. If your computer isn't running a webserver, please consider
+changing your ORPort to 443 and your DirPort to 80. Many Tor
+users are stuck behind firewalls that only let them browse the
+web, and this change will let them reach your Tor server. Win32
+servers can simply change their ORPort and DirPort directly
+in their torrc and restart Tor. OS X or Unix servers can't bind
+directly to these ports (since they don't run as root), so they will
+need to set up some sort of <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
+port forwarding</a> so connections can reach their Tor server. If you are
+using ports 80 and 443 already but still want to help out, other useful
+ports are 22, 110, and 143.
+</p>
+
+<p>
+14. If your Tor server provides other services on the same IP address
+&mdash; such as a public webserver &mdash; make sure that connections to the
+webserver are allowed from the local host too. You need to allow these
+connections because Tor clients will detect that your Tor server is the <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">safest
+way to reach that webserver</a>, and always build a circuit that ends
+at your server. If you don't want to allow the connections, you must
+explicitly reject them in your exit policy.
+</p>
+
+<p>
+15. (Unix only). Make a separate user to run the server. If you
+installed the OS X package or the deb or the rpm, this is already
+done. Otherwise, you can do it by hand. (The Tor server doesn't need to
+be run as root, so it's good practice to not run it as root. Running
+as a 'tor' user avoids issues with identd and other services that
+detect user name. If you're the paranoid sort, feel free to <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">put Tor
+into a chroot jail</a>.)
+</p>
+
+<p>
+16. (Unix only.) Your operating system probably limits the number
+of open file descriptors per process to 1024 (or even less). If you
+plan to be running a fast exit node, this is probably not enough. On
+Linux, you should add a line like "toruser hard nofile 8192" to your
+/etc/security/limits.conf file (where toruser is the user that runs the
+Tor process), and then restart Tor if it's installed as a package (or log
+out and log back in if you run it yourself). If that doesn't work, see <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">this
+FAQ entry</a> for other suggested ways to run "ulimit -n 8192" before
+you launch Tor.
+</p>
+
+<p>
+17. If you installed Tor via some package or installer, it probably starts
+Tor for you automatically on boot. But if you installed from source,
+you may find the initscripts in contrib/tor.sh or contrib/torctl useful.
+</p>
+
+<p>
+When you change your Tor configuration, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">in
+most cases you can reload your configuration without restarting Tor</a>,
+and remember to verify that your server still works correctly after
+the change.
+</p>
+
+<hr />
+
+<a id="register"></a>
+<h2><a class="anchor" href="#register">Step Four: Register your nickname</a></h2>
+<br />
+
+<p>
+Let it run a few days to make sure it's actually working and that you're
+happy with its level of resource use. Then you should register your server.
 This reserves your nickname so nobody else can take it, and lets us
 contact you if you need to upgrade or something goes wrong.
 </p>
@@ -207,115 +320,6 @@ look in /var/lib/tor or ~/.tor)
 <li>Who you are, so we know whom to contact if a problem arises</li>
 <li>What kind of connectivity the new server will have</li>
 </ul>
-
-<hr />
-<a id="four"></a>
-<h2><a class="anchor" href="#four">Step Four: Once it's working</a></h2>
-<br />
-
-<p>
-We recommend the following steps as well:
-</p>
-
-<p>
-6. Decide what exit policy you want. By default your server allows
-access to many popular services, but we restrict some (such as port 25)
-due to abuse potential. You might want an exit policy that is
-less restrictive or more restrictive; edit your torrc appropriately.
-Read the FAQ entry on <a
-href="<page faq-abuse>#TypicalAbuses">issues you might
-encounter if you use the default exit policy</a>.
-If you choose a particularly open exit policy, you should make
-sure your ISP is ok with that choice.
-</p>
-
-<p>
-7. Decide about rate limiting. Cable modem, DSL, and other users
-who have asymmetric bandwidth (e.g. more down than up) should
-rate limit to their slower bandwidth, to avoid congestion. See the <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
-limiting FAQ entry</a> for details.
-</p>
-
-<p>
-8. Back up your Tor server's private key (stored in "keys/secret_id_key"
-in your DataDirectory). This is your server's "identity," and
-you need to keep it safe so nobody can read the traffic that goes
-through your server. This is the critical file to keep if you need to <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">move
-or restore your Tor server</a> if something goes wrong.
-</p>
-
-<p>
-9. If you control the name servers for your domain, consider setting
-your hostname to 'anonymous' or 'proxy' or 'tor-proxy', so when other
-people see the address in their web logs, they will more quickly
-understand what's going on.
-</p>
-
-<p>
-10. If your computer isn't running a webserver, please consider
-changing your ORPort to 443 and your DirPort to 80. Many Tor
-users are stuck behind firewalls that only let them browse the
-web, and this change will let them reach your Tor server. Win32
-servers can simply change their ORPort and DirPort directly
-in their torrc and restart Tor. OS X or Unix servers can't bind
-directly to these ports (since they don't run as root), so they will
-need to set up some sort of <a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
-port forwarding</a> so connections can reach their Tor server. If you are
-using ports 80 and 443 already but still want to help out, other useful
-ports are 22, 110, and 143.
-</p>
-
-<p>
-11. If your Tor server provides other services on the same IP address
-&mdash; such as a public webserver &mdash; make sure that connections to the
-webserver are allowed from the local host too. You need to allow these
-connections because Tor clients will detect that your Tor server is the <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">safest
-way to reach that webserver</a>, and always build a circuit that ends
-at your server. If you don't want to allow the connections, you must
-explicitly reject them in your exit policy.
-</p>
-
-<p>
-12. (Unix only). Make a separate user to run the server. If you
-installed the OS X package or the deb or the rpm, this is already
-done. Otherwise, you can do it by hand. (The Tor server doesn't need to
-be run as root, so it's good practice to not run it as root. Running
-as a 'tor' user avoids issues with identd and other services that
-detect user name. If you're the paranoid sort, feel free to <a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">put Tor
-into a chroot jail</a>.)
-</p>
-
-<p>
-13. (Unix only.) Your operating system probably limits the number
-of open file descriptors per process to 1024 (or even less). If you
-plan to be running a fast exit node, this is probably not enough. On
-Linux, you should add a line like "toruser hard nofile 8192" to your
-/etc/security/limits.conf file (where toruser is the user that runs the
-Tor process), and then restart Tor if it's installed as a package (or log
-out and log back in if you run it yourself). If that doesn't work, see <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">this
-FAQ entry</a> for other suggested ways to run "ulimit -n 8192" before
-you launch Tor.
-</p>
-
-<p>
-14. If you installed Tor via some package or installer, it probably starts
-Tor for you automatically on boot. But if you installed from source,
-you may find the initscripts in contrib/tor.sh or contrib/torctl useful.
-</p>
-
-<p>
-When you change your Tor configuration, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">in
-most cases you can reload your configuration without restarting Tor</a>,
-and remember to verify that your server still works correctly after
-the change.
-</p>
 
 <hr />
 
