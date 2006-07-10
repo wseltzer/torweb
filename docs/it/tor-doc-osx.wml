@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 1.14
+# Based-On-Revision: 1.15
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Istruzioni per installare Tor su Mac OS X" CHARSET="UTF-8"
@@ -209,35 +209,21 @@ computer o &egrave; stata trasportata da un altro nodo Tor.</p>
 <h2><a class="anchor" href="#uninstall">Disinstallare Tor and Privoxy</a></h2>
 <br />
 
-<p>Le versioni di Tor della serie 0.1.0.x non hanno un uninstaller; &egrave; una funzione
-che verr&agrave; aggiunta nelle versioni della serie 0.1.1.x.  Se vuoi rimuovere Tor da OSX,
-ecco come fare:</p>
+<p>Le versioni di Tor della serie 0.1.0.x hanno un disinstallatore a riga di comando o 
+da Terminale. Se vuoi rimuovere Tor da OSX, ecco come fare:</p>
 
 <p>Riporta la configurazione proxy dei tuoi programmi ai valori originali.
 Se ti interessa semplicemente smettere di usare Tor, puoi fermarti qui.</p>
 
-<p>Per fare in modo che Tor e Privoxy non partano all'avvio, cancella le due
-directory /Library/StartupItems/Tor e /Library/StartupItems/Privoxy.
-Se ti interessa solo impedire a Tor di avviarsi, puoi fermarti
-qui.</p>
-
-<p>Per cancellare tutti i file di Tor e di Privoxy dal computer, devi
-cancellare:
-   <ul>
-   <li>/Library/Tor</li>
-   <li>/Library/Privoxy</li>
-   <li>/usr/bin/tor</li>
-   <li>/usr/bin/tor_resolve</li>
-   <li>/var/log/tor</li>
-   <li>/usr/share/man/man1/tor.1</li>
-   <li>/usr/share/man/man1/tor-resolve.1</li>
-   <li>/usr/share/man/man1/torify.1</li>
-   <li>/Library/Receipts/Privoxy.pkg/</li>
-   <li>/Library/Receipts/privoxyconf.pkg/</li>
-   <li>/Library/Receipts/Tor.pkg/</li>
-   <li>/Library/Receipts/torstartup.pkg/</li>
-  </ul>
-
+<p>Se invece vuoi rimuovere completamente Tor, e il tuo account ha privilegi di
+amministratore, fai cos&igrave;:</p>
+<ol>
+<li> Apri una sessione del Terminale o di x-term.</li>
+<li> cd /Library/Tor</li>
+<li> sudo -s</li>
+<li> ./uninstall_tor_bundle.sh</li>
+</ol>
+<p>Tor e Privoxy sono ora completamente rimossi dal tuo sistema.</p>
 
 <hr />
 
