@@ -8,7 +8,7 @@
 
 <div class="main-column">
 
-<h1 class="western">Einen <a href="http://tor.eff.org/">Tor</a>
+<h1 class="western">Einen <a href="<page index>">Tor</a>
 Server konfigurieren</h1>
 
 <p>Das Tor-Netzwerk beruht auf Freiwilligen, die Bandbreite zur
@@ -69,24 +69,24 @@ installieren, aber in <a href="http://wiki.noreply.org/noreply/TheOnionRouter/To
 FAQ Eintrag</a> wird beschrieben welche Betriebssysteme sich am
 besten eignen und welche Probleme auftreten könnten .</p>
 <HR>
-<H2><A NAME="zero"></a><a href="http://tor.eff.org/docs/tor-doc-server.html#zero">Schritt
+<H2><A NAME="zero"></a><a href="#zero">Schritt
 Null: Tor herunterladen und installieren</a></H2>
 <p><BR><BR>
 </p>
 <p>Bevor du beginnst, vergewissere dich, dass Tor installiert ist und
 läuft. 
 </p>
-<p>Für Windows Benutzer bedeutet das, dass mindestens <a href="http://tor.eff.org/docs/tor-doc-win32.html.en#installing">Schritt
+<p>Für Windows Benutzer bedeutet das, dass mindestens <a href="<page docs/tor-doc-win32>#installing">Schritt
 eins</a> vom Windows Tor Installations Howto ausgeführt sein
-muss. Mac OS X Benutzer müssen mindestens <a href="http://tor.eff.org/docs/tor-doc-osx.html.en#installing">Schritt
+muss. Mac OS X Benutzer müssen mindestens <a href="<page docs/tor-doc-osx>#installing">Schritt
 eins</a> vom OS X Tor installation howto erledigt haben.
-Linux/BSD/Unix Benutzer sollten mindestens <a href="http://tor.eff.org/docs/tor-doc-unix.html.en#installing">Schritt
+Linux/BSD/Unix Benutzer sollten mindestens <a href="<page docs/tor-doc-unix>#installing">Schritt
 eins</a> vom Unix Tor installation howto erledigt haben. 
 </p>
 <p>Wenn du willst kannst du es auch erst eine Weile als Client
 verwenden um sicher zu gehen, dass es auch richtig funktioniert.</p>
 <HR>
-<H2><A NAME="setup"></a><a href="http://tor.eff.org/docs/tor-doc-server.html#setup">Schritt
+<H2><A NAME="setup"></a><a href="#setup">Schritt
 eins: Richte Tor als Server ein</a></H2>
 <p></p>
 <p>1. Stelle sicher dass die Uhrzeit korrekt eingestellt ist, wenn
@@ -120,15 +120,15 @@ Mailing-Liste ein. Sie wird dich über neue stable Releases auf
 dem Laufenden halten. Du möchtest dich ev auch bei <a href="http://archives.seul.org/or/talk/">or-talk</a>
 einschreiben, welche über neue Entwickler-Releases informiert. 
 </p>
-<p><A NAME="check"></a>7. Wirf einen Blick ins Handbuch. Das <a href="http://tor.eff.org/tor-manual.html.en">Handbuch</a>
+7. Wirf einen Blick ins Handbuch. Das <a href="<page tor-manual>">Handbuch</a>
 der neusten stabilen Version enthält Informationen über die
 Installation und Verwendung von Tor, inkl Konfiguration von Client
 und Server Optionen. Das Handbuch zur Entwickler-Version findet sich
-<a href="http://tor.eff.org/tor-manual-cvs.html.en">hier</a>. 
+<a href="<page tor-manual-cvs>">hier</a>. 
 </p>
 <HR>
-<H2><a href="http://tor.eff.org/docs/tor-doc-server.html#check">Schritt
-zwei: Sicher gehen dass es funktioniert</a></H2>
+<p><A NAME="check"></a>
+<H2><a href="#check">Schritt zwei: Sicher gehen dass es funktioniert</a></H2>
 <p><BR><BR>
 </p>
 <p>Sobald sich dein Server zu Netzwerk verbinden kann, wird er
@@ -147,8 +147,7 @@ Netzwerkstatus manuell laden</a> und ihn nach dem Nickname
 durchsuchen welchen du definiert hast, um sicher zu gehen dass er
 existiert. Dies kann einige Sekunden dauern.</p>
 <HR>
-<H2><A NAME="after"></a><a href="http://tor.eff.org/docs/tor-doc-server.html#after">Schritt
-drei: Wenn es funktioniert</a></H2>
+<H2><A NAME="after"></a><a href="#after">Schritt drei: Wenn es funktioniert</a></H2>
 <p><BR><BR>
 </p>
 <p>Wir empfehlen folgende Schritte zusätzlich auszuführen: 
@@ -163,7 +162,7 @@ einige (z.b. Port 25) werden jedoch eingeschränkt aufgrund von
 vorhandenem Missbrauchspotential. Vielleicht möchtest du eine
 restriktivere oder weniger restriktive exit policy wählen;
 editiere dazu dein torrc entsprechend. Lies die FAQ über
-<a href="http://tor.eff.org/faq-abuse.html.en#TypicalAbuses">Probleme
+<a href="<page faq-abuse>#TypicalAbuses">Probleme
 die bei der Verwendung der Standard exit policy auftreten können</a>
 </p>
 <p>10. Du solltest dir Gedanken über Bandbreiten-Limitierung
@@ -190,14 +189,23 @@ doch deinen ORPort auf 443 und deinen DirPort auf 80 zu ändern.
 Viele Tor Benutzer stecken hinter Firewalls fest, welche sie nur
 surfen lassen, diese Änderungen würden auch diesen
 Benutzern Zugang zu deinem Tor Server ermöglichen. Auf einem
-Win32 Server  kann einfach der ORPort und DirPort direkt im torrc
-geändert und Tor neu gestartet werden . Falls du die Ports 80
-und 443 schon benutzt aber trozdem helfen willst, öffne Port 22,
-110, und 143. 
+Win32 Server kann einfach der ORPort und DirPort direkt im torrc
+geändert und Tor neu gestartet werden.  Auf OS X oder Unix Servern
+kann man nicht direkt diese Ports verwenden (weil Tor dort nicht
+als root läuft).  Deshalb muss man da irgendeine Form von
+<a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">Portweiterleitung</a>
+einrichten, damit Verbindungen zum Tor-Server gemacht werden können.
+Falls du die Ports 80 und 443 schon benutzt aber trozdem helfen willst, öffne
+Port 22, 110, und 143. 
 </p>
 <p>14. Falls dein Tor Server noch andere Dienste auf der selben IP
 anbietet &mdash; wie z.B. einen Webserver &mdash; vergewissere dich,
 dass Verbindungen zum Webserver auch vom localhost zugelassen werden.
+Diese Verbindungen müssen klappen, da Tor Clients erkennen, dass
+dein Tor Server der <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">sicherste
+Weg ist, deinen Webserver zu erreichen</a>, und daher immer Circuits bauen, die bei
+deinem Server aufhören.  Wenn du diese Verbindungen nicht erlauben willst, dann musst
+die sie direkt in deiner Exit-Policy verbieten.
 </p>
 <p>15. (Nur Unix). Lege einen neuen User an, welcher den Server
 ausführt. Wenn du das OS X, deb oder rpm installiert hast, so
@@ -209,7 +217,18 @@ auf Usernamen prüfen. Wenn du ein paranoider Zeitgenosse bist
 kannst du <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">Tor
 im jail ausführen</a>.) 
 </p>
-<p>16. Wenn du Tor über ein Paket oder Installer installiert
+<p>16. (Nur Unix).  Vermutlich limitiert dein Betriebssystem die Anzahl offener
+Dateien pro Prozess auf 1024 (oder noch weniger).  Wenn do vorhast, einen schnellen
+Exit-Knoten zu betreiben, wird das vermutlich nicht reichen.  Auf Linux solltest du
+eine Zeile wie "toruser hard nofile 8192" zu deiner /etc/security/limits.conf
+hinzufügen (toruser ist hier der Benutzer, unter dem der Torprozess läuft).
+Anschliessen musst du Tor neu starten wenn es als Paket installiert wurde, oder
+Dich neu einloggen, wenn du es selbst startest.  Wenn das nicht funktioniert,
+lies die bitte <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">diesen
+Eintrage in unserer FAQ</a> durch, der andere Möglichkeiten beschreibt, wie man
+"ulimit -n 8192" vor dem Starten von Tor ausführen kann.
+</p>
+<p>17. Wenn du Tor über ein Paket oder Installer installiert
 hast, wird er vermutlich automatisch beim Booten gestartet. Wenn du
 jedoch aus dem Source installiert hast, findest du vielleicht die
 init-Scripts in contrib/tor.sh oder contrib/torctl hilfreich. 
@@ -219,8 +238,7 @@ den meisten Fällen kann die Konfigurationsdatei neu geladen
 werden ohne Tor neu starten zu müssen</a>. 
 </p>
 <HR>
-<H2><A NAME="register"></a><a href="http://tor.eff.org/docs/tor-doc-server.html#register">Schritt
-vier: Registriere deinen Nickname</a></H2>
+<H2><A NAME="register"></a><a href="#register">Schritt vier: Registriere deinen Nickname</a></H2>
 <p><BR><BR>
 </p>
 <p>Lass es ein paar Tage laufen und vergewissere dich dass du mit dem
