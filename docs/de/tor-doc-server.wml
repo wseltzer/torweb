@@ -1,191 +1,191 @@
 ## translation metadata
-# Last-Translator: michael.sacher@hispeed.ch
+# Last-Translator: michael.sacher@hispeed.ch, jens@kubieziel.de
 # Based-On-Revision: 1.6
 
-#include "head.wmi" TITLE="Server Konfigurations-Anleitung"
+#include "head.wmi" TITLE="Konfigurationsanleitung für Server"
 
 <div class="center">
 
 <div class="main-column">
 
-<H1 CLASS="western">Einen <A HREF="http://tor.eff.org/index.html.en">Tor</A>
-Server konfigurieren</H1>
-<P><BR><BR>
-</P>
-<P>Das Tor-Netzwerk beruht auf Freiwillgen welche Bandbreite zur
+<h1 class="western">Einen <a href="http://tor.eff.org/">Tor</a>
+Server konfigurieren</h1>
+
+<p>Das Tor-Netzwerk beruht auf Freiwilligen, die Bandbreite zur
 Verfügung stellen. Je mehr Leute einen Tor-Server betreiben,
 desto schneller wird das Tor-Netzwerk. Wenn du wenigstens 20
 kilobytes/s in eine Richtung hast, bitte hilf uns und konfiguriere
-dein Tor auch als Server. Wir haben viele Features welche Tor Server
-einfach und bequem machen, z.B. Bandbreitenlimitierung, exit policies
-und Unterstützung für dynamische IP-Adressen.</P>
-<P>Server in vielen verschiedenen Plätzen im Internet zu haben
-ist das, was Tor Benutzern Sicherheit gibt. <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">Du
-kannst dadurch auch selbst bessere Anonymität erlangen</A>, da
-Webseiten nicht wissen können ob die Verbindung von deinem
+dein Torsoftware auch als Server. Wir haben viele Features, welche den Betrieb
+eines Torservers einfach und bequem machen, z.B. Bandbreitenlimitierung,
+Exitpolicies und Unterstützung für dynamische IP-Adressen.</p>
+<p>Server an verschiedenen Orten im Internet geben den Benutzern von
+Tor Sicherheit. <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">Du
+kannst dadurch auch selbst bessere Anonymität erlangen</a>, da
+Webseiten nicht wissen können, ob die Verbindung von deinem
 Computer stammt oder ob sie nur durch andere dorthin weitergeleitet
-wurde.</P>
-<P>Einen Tor Server einzurichten ist einfach und bequem:</P>
-<UL>
-	<LI><P STYLE="margin-bottom: 0cm">Tor hat eine eingebaute
-	<A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">Bandbreiten-Limitierung</A>,
+wurde.</p>
+
+<p>Einen Tor Server einzurichten ist einfach und bequem:</p>
+<ul>
+	<li><p>Tor hat eine eingebaute
+	<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">Bandbreiten-Limitierung</a>,
 	mehr noch &ndash; wenn du eine schnelle Verbindung hast, kannst du
-	die Anzahl bytes pro Tag (oder woche oder Jahr) die du bereitstellen
-	willst begrenzen, schau dir das <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
-	feature an</A>. 
-	</P>
-	<LI><P STYLE="margin-bottom: 0cm">Jeder Tor Server hat eine sog.
-	<A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">exit
-	policy</A> welche spezifiziert, welche Art abgehender Verbindungen
+	die Anzahl Bytes pro Tag (oder Woche oder Jahr), die du bereitstellen
+	willst begrenzen. Schau dir das <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
+	feature an</a>. 
+	</p>
+	<li><p>Jeder Tor Server hat eine sog.
+	<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">exit
+	policy</a> welche spezifiziert, welche Art abgehender Verbindungen
 	von diesem Server erlaubt oder gesperrt sind. Wenn du nicht möchtest
 	dass Leute von deinem Server aus das Tor Netzwerk verlassen, kannst
-	du auch nur Verbindungen zu anderen Servern zulassen.</P>
-	<LI><P STYLE="margin-bottom: 0cm">Es ist ok wenn der Server manchmal
+	du auch nur Verbindungen zu anderen Servern zulassen.</p>
+	<li><p>Es ist ok wenn der Server manchmal
 	offline geht. Die Verzeichnisse bemerken dies schnell und geben den
 	Server nicht mehr aus. Versuche nur es in Grenzen zu halten, da
 	bestehende Verbindungen welche über diesen Server laufen dann
 	unterbrochen sind.. 
-	</P>
-	<LI><P STYLE="margin-bottom: 0cm">Wir können mit Servern welche
+	</p>
+	<li><p>Wir können mit Servern welche
 	eine dynamische IP haben gut umgehen, solange die server ihre IP
-	selbst kennen. Schau dir <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DynamicIP">diesen
-	Beitrag in der FAQ an</A>. 
-	</P>
-	<LI><P STYLE="margin-bottom: 0cm">Wenn dein Server hinter einem NAT
+	selbst kennen. Schau dir <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DynamicIP">diesen
+	Beitrag in der FAQ an</a>. 
+	</p>
+	<li><p>Wenn dein Server hinter einem NAT
 	ist und seine öffentliche IP nicht kennt (hat z.B. Eine IP wie
 	192.168.x.y) musst du Port-Forwarding aktivieren. Ports forwarden
-	ist systemabhängig aber in <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">diesem
-	FAQ eintrag</A> stehen ein paar Beispiele wie man dies
+	ist systemabhängig aber in <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">diesem
+	FAQ eintrag</a> stehen ein paar Beispiele wie man dies
 	bewerkstelligen kann. 
-	</P>
-	<LI><P>Dein Server wird passiv die freie Bandbreite berechnen und
+	</p>
+	<li><p>Dein Server wird passiv die freie Bandbreite berechnen und
 	verteilen, je mehr Bandbreite zur Verfügung steht, desto mehr
 	Benutzer wird der Server aufnehmen können, es ist also auch
 	sinnvoll Server mit kleinen Bandbreiten zu betreiben. 
-	</P>
-</UL>
-<P>Du kannst einen Tor server auf so ziemlich jedem Betriebssystem
-installieren, aber in <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerOS">diesem
-FAQ Eintrag</A> wird beschrieben welche Betriebssysteme sich am
-besten eignen und welche Probleme auftreten könnten .</P>
+	</p>
+</ul>
+<p>Du kannst einen Tor server auf so ziemlich jedem Betriebssystem
+installieren, aber in <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerOS">diesem
+FAQ Eintrag</a> wird beschrieben welche Betriebssysteme sich am
+besten eignen und welche Probleme auftreten könnten .</p>
 <HR>
-<H2><A NAME="zero"></A><A HREF="http://tor.eff.org/docs/tor-doc-server.html#zero">Schritt
-Null: Tor herunterladen und installieren</A></H2>
-<P><BR><BR>
-</P>
-<P>Bevor du beginnst, vergewissere dich, dass Tor installiert ist und
+<H2><A NAME="zero"></a><a href="http://tor.eff.org/docs/tor-doc-server.html#zero">Schritt
+Null: Tor herunterladen und installieren</a></H2>
+<p><BR><BR>
+</p>
+<p>Bevor du beginnst, vergewissere dich, dass Tor installiert ist und
 läuft. 
-</P>
-<P>Für Windows Benutzer bedeutet das, dass mindestens <A HREF="http://tor.eff.org/docs/tor-doc-win32.html.en#installing">Schritt
-eins</A> vom Windows Tor Installations Howto ausgeführt sein
-muss. Mac OS X Benutzer müssen mindestens <A HREF="http://tor.eff.org/docs/tor-doc-osx.html.en#installing">Schritt
-eins</A> vom OS X Tor installation howto erledigt haben.
-Linux/BSD/Unix Benutzer sollten mindestens <A HREF="http://tor.eff.org/docs/tor-doc-unix.html.en#installing">Schritt
-eins</A> vom Unix Tor installation howto erledigt haben. 
-</P>
-<P>Wenn du willst kannst du es auch erst eine Weile als Client
-verwenden um sicher zu gehen, dass es auch richtig funktioniert.</P>
+</p>
+<p>Für Windows Benutzer bedeutet das, dass mindestens <a href="http://tor.eff.org/docs/tor-doc-win32.html.en#installing">Schritt
+eins</a> vom Windows Tor Installations Howto ausgeführt sein
+muss. Mac OS X Benutzer müssen mindestens <a href="http://tor.eff.org/docs/tor-doc-osx.html.en#installing">Schritt
+eins</a> vom OS X Tor installation howto erledigt haben.
+Linux/BSD/Unix Benutzer sollten mindestens <a href="http://tor.eff.org/docs/tor-doc-unix.html.en#installing">Schritt
+eins</a> vom Unix Tor installation howto erledigt haben. 
+</p>
+<p>Wenn du willst kannst du es auch erst eine Weile als Client
+verwenden um sicher zu gehen, dass es auch richtig funktioniert.</p>
 <HR>
-<H2><A NAME="setup"></A><A HREF="http://tor.eff.org/docs/tor-doc-server.html#setup">Schritt
-eins: Richte Tor als Server ein</A></H2>
-<P></P>
-<P>1. Stelle sicher dass die Uhrzeit korrekt eingestellt ist, wenn
-möglich synchronisiere sie mit einem Internet-Zeit Server.</P>
-<P>2. Stelle sicher, dass die Namensauflösung korrekt
+<H2><A NAME="setup"></a><a href="http://tor.eff.org/docs/tor-doc-server.html#setup">Schritt
+eins: Richte Tor als Server ein</a></H2>
+<p></p>
+<p>1. Stelle sicher dass die Uhrzeit korrekt eingestellt ist, wenn
+möglich synchronisiere sie mit einem Internet-Zeit Server.</p>
+<p>2. Stelle sicher, dass die Namensauflösung korrekt
 funktioniert ( Dein Computer muss Internet Adressen korrekt auflösen
 können, bei einem Ping auf google.com muss eine IP ersichtlich
-sein)</P>
-<P>3. Editiere den unteren Teil deiner torrc (In <A HREF="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#torrc">diesem
-FAQ Beitrag</A> kannst du Hilfe finden.) Stelle sicher dass du
+sein)</p>
+<p>3. Editiere den unteren Teil deiner torrc (In <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#torrc">diesem
+FAQ Beitrag</a> kannst du Hilfe finden.) Stelle sicher dass du
 mindestens Nickname and ORPort angegeben hast. Erstelle ein Daten
 Verzeichnis wenn nötig, und stelle sicher dass es jenem Benutzer
 gehört welcher Tor ausführen wird. We du mehrere Server
-betreiben willst ist das wunderbar<EM>, aber bitte setze <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleServers">die
-MyFamily Option</A> in den Konfigurations-Dateien aller Server</EM></P>
-<P>4. Wenn du eine Firewall verwendest öffne einen Port, damit
+betreiben willst ist das wunderbar<EM>, aber bitte setze <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleServers">die
+MyFamily Option</a> in den Konfigurations-Dateien aller Server</EM></p>
+<p>4. Wenn du eine Firewall verwendest öffne einen Port, damit
 eingehende Verbindungen die von dir konfigurierten Ports erreichen
 können (ORPort, plus DirPort falls gesetzt). Stelle sicher, dass
 alle abgehenden Verbindungen von der Firewall zugelassen werden,
 damit die anderen Tor Server erreicht werden können. 
-</P>
-<P>5. Starte deinen Server: Wenn du aus dem Quellcode installiert
+</p>
+<p>5. Starte deinen Server: Wenn du aus dem Quellcode installiert
 hast kannst du einfach <TT>tor <FONT FACE="Arial, sans-serif">ausführen</FONT></TT>,
 während bei Paketen dies typischerweise über ein Start-
 oder Initscript geschieht. Wenn es Warnungen gibt solltest du sie
 erst beheben. (standardmässig loggt Tor nach stdout, einige
-Pakete loggen nach <TT>/var/log/tor/</TT> oder <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">anderen
-Orten</A>. Du kannst diese Verzeichnisse im torrc definieren.</P>
-<P>6. Trage dich in die <A HREF="http://archives.seul.org/or/announce/">or-announce</A>
+Pakete loggen nach <TT>/var/log/tor/</TT> oder <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">anderen
+Orten</a>. Du kannst diese Verzeichnisse im torrc definieren.</p>
+<p>6. Trage dich in die <a href="http://archives.seul.org/or/announce/">or-announce</a>
 Mailing-Liste ein. Sie wird dich über neue stable Releases auf
-dem Laufenden halten. Du möchtest dich ev auch bei <A HREF="http://archives.seul.org/or/talk/">or-talk</A>
+dem Laufenden halten. Du möchtest dich ev auch bei <a href="http://archives.seul.org/or/talk/">or-talk</a>
 einschreiben, welche über neue Entwickler-Releases informiert. 
-</P>
-<P><A NAME="check"></A>7. Wirf einen Blick ins Handbuch. Das <A HREF="http://tor.eff.org/tor-manual.html.en">Handbuch</A>
+</p>
+<p><A NAME="check"></a>7. Wirf einen Blick ins Handbuch. Das <a href="http://tor.eff.org/tor-manual.html.en">Handbuch</a>
 der neusten stabilen Version enthält Informationen über die
 Installation und Verwendung von Tor, inkl Konfiguration von Client
 und Server Optionen. Das Handbuch zur Entwickler-Version findet sich
-<A HREF="http://tor.eff.org/tor-manual-cvs.html.en">hier</A>. 
-</P>
+<a href="http://tor.eff.org/tor-manual-cvs.html.en">hier</a>. 
+</p>
 <HR>
-<H2><A HREF="http://tor.eff.org/docs/tor-doc-server.html#check">Schritt
-zwei: Sicher gehen dass es funktioniert</A></H2>
-<P><BR><BR>
-</P>
-<P>Sobald sich dein Server zu Netzwerk verbinden kann, wird er
+<H2><a href="http://tor.eff.org/docs/tor-doc-server.html#check">Schritt
+zwei: Sicher gehen dass es funktioniert</a></H2>
+<p><BR><BR>
+</p>
+<p>Sobald sich dein Server zu Netzwerk verbinden kann, wird er
 versuchen herauszufinden ob die Ports die du konfiguriert hast von
 Aussen erreichbar sind. Dies kann bis zu 20 Minuten dauern. Halte
 nach log Einträgen wie <TT>Self-testing indicates your ORPort is
 reachable from the outside. Excellent <TT><FONT FACE="Arial, sans-serif">ausschau</FONT></TT>.</TT>
 Wenn du diese Nachricht nicht siehst bedeuted dies, dass dein Server
 von Aussen nicht erreichbar ist, stelle sicher dass die IP und Port
-Angaben richtig sind, etc.</P>
-<P>Wenn er erreichbar ist wird er einen &quot;server descriptor&quot;
+Angaben richtig sind, etc.</p>
+<p>Wenn er erreichbar ist wird er einen &quot;server descriptor&quot;
 in die Verzeichnisse laden. Dies wird die Clients wissen lassen
 welche Adresse, Ports, Schlüssel, etc. dein Server verwendet. Du
-kannst <A HREF="http://belegost.mit.edu/tor/status/authority">den
-Netzwerkstatus manuell laden</A> und ihn nach dem Nickname
+kannst <a href="http://belegost.mit.edu/tor/status/authority">den
+Netzwerkstatus manuell laden</a> und ihn nach dem Nickname
 durchsuchen welchen du definiert hast, um sicher zu gehen dass er
-existiert. Dies kann einige Sekunden dauern.</P>
+existiert. Dies kann einige Sekunden dauern.</p>
 <HR>
-<H2><A NAME="after"></A><A HREF="http://tor.eff.org/docs/tor-doc-server.html#after">Schritt
-drei: Wenn es funktioniert</A></H2>
-<P><BR><BR>
-</P>
-<P>Wir empfehlen folgende Schritte zusätzlich auszuführen: 
-</P>
-<P>8. In <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">diesem
-Dokument</A> gibt es Anweisungen wie du die Sicherheit des Servers
+<H2><A NAME="after"></a><a href="http://tor.eff.org/docs/tor-doc-server.html#after">Schritt
+drei: Wenn es funktioniert</a></H2>
+<p><BR><BR>
+</p>
+<p>Wir empfehlen folgende Schritte zusätzlich auszuführen: 
+</p>
+<p>8. In <a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">diesem
+Dokument</a> gibt es Anweisungen wie du die Sicherheit des Servers
 erhöhen kannst. 
-</P>
-<P>9. Entscheide dich welche exit policy du willst. Standardmässig
+</p>
+<p>9. Entscheide dich welche exit policy du willst. Standardmässig
 gewährt dein Server den Zugriff auf viele bekannte Dienste,
 einige (z.b. Port 25) werden jedoch eingeschränkt aufgrund von
 vorhandenem Missbrauchspotential. Vielleicht möchtest du eine
 restriktivere oder weniger restriktive exit policy wählen;
 editiere dazu dein torrc entsprechend. Lies die FAQ über
-<A HREF="http://tor.eff.org/faq-abuse.html.en#TypicalAbuses">Probleme
-die bei der Verwendung der Standard exit policy auftreten können</A>
-</P>
-<P>10. Du solltest dir Gedanken über Bandbreiten-Limitierung
+<a href="http://tor.eff.org/faq-abuse.html.en#TypicalAbuses">Probleme
+die bei der Verwendung der Standard exit policy auftreten können</a>
+</p>
+<p>10. Du solltest dir Gedanken über Bandbreiten-Limitierung
 machen. Cable modem, DSL, und andere Benutzer welche asymmetrische
 Verbindungen haben (z.B. Mehr down als up) sollten den Durchsatz auf
 die kleiner Bandbreite limitieren um Blockaden zu vermeiden. Dieser
-<A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">FAQ
-Eintrag</A> enthält weitere Details. 
-</P>
-<P>11. Mache ein Backup vom private key deines Tor Servers
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">FAQ
+Eintrag</a> enthält weitere Details. 
+</p>
+<p>11. Mache ein Backup vom private key deines Tor Servers
 (gespeichert in &quot;keys/secret_id_key&quot; in deinem Daten
 Verzeichnis). Dies ist die &bdquo;Identität&ldquo; deines
 Servers, halte sie geheim, damit niemand den Traffic deines Servers
-mithören kann. Das ist das kritische File um deinen Server <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">zu
-Verschieben oder Widerherzustellen</A> wenn etwas schief geht. 
-</P>
-<P>12. Wenn du die Nameserver für deine Domain kontrollierst,
+mithören kann. Das ist das kritische File um deinen Server <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">zu
+Verschieben oder Widerherzustellen</a> wenn etwas schief geht. 
+</p>
+<p>12. Wenn du die Nameserver für deine Domain kontrollierst,
 überlege dir ob du nicht deinen Hostnamen auf 'anonymous' oder
 'proxy' oder 'tor-proxy', wenn die Leute die Adresse in ihren Weblogs
 finden, wissen sie schneller was los ist. 
-</P>
-<P>13. Wenn dein Server nicht als Webserver fungiert, erwäge
+</p>
+<p>13. Wenn dein Server nicht als Webserver fungiert, erwäge
 doch deinen ORPort auf 443 und deinen DirPort auf 80 zu ändern.
 Viele Tor Benutzer stecken hinter Firewalls fest, welche sie nur
 surfen lassen, diese Änderungen würden auch diesen
@@ -194,61 +194,59 @@ Win32 Server  kann einfach der ORPort und DirPort direkt im torrc
 geändert und Tor neu gestartet werden . Falls du die Ports 80
 und 443 schon benutzt aber trozdem helfen willst, öffne Port 22,
 110, und 143. 
-</P>
-<P>14. Falls dein Tor Server noch andere Dienste auf der selben IP
+</p>
+<p>14. Falls dein Tor Server noch andere Dienste auf der selben IP
 anbietet &mdash; wie z.B. einen Webserver &mdash; vergewissere dich,
 dass Verbindungen zum Webserver auch vom localhost zugelassen werden.
-</P>
-<P>15. (Nur Unix). Lege einen neuen User an, welcher den Server
+</p>
+<p>15. (Nur Unix). Lege einen neuen User an, welcher den Server
 ausführt. Wenn du das OS X, deb oder rpm installiert hast, so
 wurde dies bereits erledigt. Ansonsten kannst du dies per Hand
 erledigen. (Der Tor Server muss nicht als root laufen, es ist also
 eine gute Idee das auch nicht zu tun. Ausführen als 'tor'
 Benutzer erübrigt Probleme mit inetd und anderen Diensten welche
 auf Usernamen prüfen. Wenn du ein paranoider Zeitgenosse bist
-kannst du <A HREF="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">Tor
-im jail ausführen</A>.) 
-</P>
-<P>16. Wenn du Tor über ein Paket oder Installer installiert
+kannst du <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">Tor
+im jail ausführen</a>.) 
+</p>
+<p>16. Wenn du Tor über ein Paket oder Installer installiert
 hast, wird er vermutlich automatisch beim Booten gestartet. Wenn du
 jedoch aus dem Source installiert hast, findest du vielleicht die
 init-Scripts in contrib/tor.sh oder contrib/torctl hilfreich. 
-</P>
-<P>Bei Änderungen kann <A HREF="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">in
+</p>
+<p>Bei Änderungen kann <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">in
 den meisten Fällen kann die Konfigurationsdatei neu geladen
-werden ohne Tor neu starten zu müssen</A>. 
-</P>
+werden ohne Tor neu starten zu müssen</a>. 
+</p>
 <HR>
-<H2><A NAME="register"></A><A HREF="http://tor.eff.org/docs/tor-doc-server.html#register">Schritt
-vier: Registriere deinen Nickname</A></H2>
-<P><BR><BR>
-</P>
-<P>Lass es ein paar Tage laufen und vergewissere dich dass du mit dem
+<H2><A NAME="register"></a><a href="http://tor.eff.org/docs/tor-doc-server.html#register">Schritt
+vier: Registriere deinen Nickname</a></H2>
+<p><BR><BR>
+</p>
+<p>Lass es ein paar Tage laufen und vergewissere dich dass du mit dem
 Ressourcenverbrauch zufrieden bist. Danach solltest du deinen Server
 registrieren. So kannst du deinen Nickname für dich
 beanspruchen, und lässt uns dich kontaktieren falls du ein
 Upgrade brauchst oder etwas schief läuft. 
-</P>
-<P>Sende eine Mail an <A HREF="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</A>
+</p>
+<p>Sende eine Mail an <a href="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</a>
 mit dem Betreff '[New Server] &lt;Nickname deines Servers&gt;' und
 lege folgende Informationen bei: 
-</P>
-<UL>
-	<LI><P STYLE="margin-bottom: 0cm">Nickname deines Servers</P>
-	<LI><P STYLE="margin-bottom: 0cm">Der fingerprint deines Server Keys
+</p>
+<ul>
+	<li><p>Nickname deines Servers</p>
+	<li><p>Der fingerprint deines Server Keys
 	(der Inhalt des &quot;fingerprint&quot; Files in deinem Daten
 	Verzeichnis &mdash; unter Windows, schau in
 	\<I>username</I>\Application&nbsp;Data\tor\ or
 	\Application&nbsp;Data\tor\; unter OS X, schau in
 	/Library/Tor/var/lib/tor/; und unter Linux/BSD/Unix, schau in
 	/var/lib/tor oder ~/.tor) 
-	</P>
-	<LI><P STYLE="margin-bottom: 0cm">Wer du bist, so dass wir dich im
-	Falle eines Problems kontaktieren können</P>
-	<LI><P>Was für eine Verbindung der neue Server haben wird</P>
-</UL>
-<P STYLE="margin-bottom: 0cm"><BR>
-</P>
+	</p>
+	<li><p>Wer du bist, so dass wir dich im
+	Falle eines Problems kontaktieren können</p>
+	<li><p>Was für eine Verbindung der neue Server haben wird</p>
+</ul>
   </div><!-- #main -->
 </div>
 
