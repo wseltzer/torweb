@@ -2,9 +2,10 @@
 cvs update -d -P
 make
 # XXX should check whether make fails
-scp *.html.* tor.eff.org:/www/tor.eff.org/docs/
-scp docs/*.html.* tor.eff.org:/www/tor.eff.org/docs/docs/
 
-## This won't move images, css, etc. Somebody should set up rsync or
-## something smarter to move those, or you can scp them separately.
+## I'm not comfortable having arbitrary people use --delete yet,
+## since if they screw up it'll blow away arbitrary things.
+#rsync -Pravz --delete . tor.eff.org:directory/
+
+rsync -Pravz . tor.eff.org:/www/tor.eff.org/docs/
 
