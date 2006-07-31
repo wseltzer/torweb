@@ -3,6 +3,9 @@ cvs update -d -P
 make
 # XXX should check whether make fails
 
+# don't copy over stuff with permissions that make it useless
+chmod a+r * -R
+
 ## I'm not comfortable having arbitrary people use --delete yet,
 ## since if they screw up it'll blow away arbitrary things.
 #rsync -Pravz --delete . tor.eff.org:directory/
