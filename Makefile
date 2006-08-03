@@ -5,7 +5,7 @@
 # 4. make
 # 5. scp *.html.* arma@tor.eff.org:/www/tor.eff.org/docs/
 
-TORCVSSTABLE = ../tor.0.1.0-branch
+TORCVSSTABLE = ../tor-stable
 TORCVSHEAD = ../tor-head
 #TORCVSSTABLE = /home/arma/work/onion/tor-010x/tor
 #TORCVSHEAD = /home/arma/work/onion/cvs/tor
