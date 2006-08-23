@@ -6,6 +6,7 @@
 <div class="main-column">
 
 <:
+	die "Missing manpage" unless -f "$(TORCVSHEAD)/doc/tor.1.in";
 	my $man = `man2html -M '' $(TORCVSHEAD)/doc/tor.1.in`;
 	die "No manpage" unless $man;
 
