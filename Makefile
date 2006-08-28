@@ -5,10 +5,10 @@
 # 4. make
 # 5. scp *.html.* arma@tor.eff.org:/www/tor.eff.org/docs/
 
-TORCVSSTABLE = ../tor-stable
-TORCVSHEAD = ../tor-head
-#TORCVSSTABLE = /home/arma/work/onion/tor-010x/tor
-#TORCVSHEAD = /home/arma/work/onion/cvs/tor
+TORSVNSTABLE = ../tor-stable
+TORSVNHEAD = ../tor-head
+#TORSVNSTABLE = /home/arma/work/onion/svn/tor-0_1_1-patches
+#TORSVNHEAD = /home/arma/work/onion/svn/trunk
 
 WMLBASE = .
 SUBDIRS=docs eff gui
