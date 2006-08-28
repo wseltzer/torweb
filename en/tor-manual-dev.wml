@@ -1,0 +1,21 @@
+## translation metadata
+# Revision: $Revision$
+
+#include "head.wmi" TITLE="manpage"
+
+<div class="main-column">
+
+<:
+	die "Missing manpage" unless -f "$(TORSVNHEAD)/doc/tor.1.in";
+	my $man = `man2html -M '' $(TORSVNHEAD)/doc/tor.1.in`;
+	die "No manpage" unless $man;
+
+	$man =~ s,.*<body>,,is;
+	$man =~ s,</body>.*,,is;
+
+	print $man;
+:>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
