@@ -1,0 +1,264 @@
+## translation metadata
+# Based-On-Revision: 8183 partial
+# Last-Translator: ygrekheretix/gmail
+
+#include "head.wmi" TITLE="Добровольцы" CHARSET="KOI8-R"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h2>Четыре вещи которые можно сделать прямо сейчас:</h2>
+<ol>
+<li> Пожалуйста задумайтесь над возможностью 
+<a href="<cvssandbox>tor/doc/tor-doc-server.html">запустить сервер</a>,
+чтобы увеличить сеть Tor.</li>
+<li> Участвуйте в <a href="<page gui/index>">Tor GUI Соревновании</a>,
+чтобы улучшить интерфейс и юзабилити Tor. Бесплатная футболка 
+(с логотипом Tor) за каждое дополнение.</li>
+<li> Расскажите друзьям! Пусть они тоже запустят сервер. Пусть 
+запустят скрытый сервис. Пусть они расскажут своим друзьям!</li>
+<li> Мы ищем финансирование и спонсоров. Если вам по душе цели Tor,
+пожалуйста <a href="<page donate>">
+помогите помогите проекту деньгами чтобы поддержать дальнейшую разработку</a>.
+И если вы знаете какие-либо компании, негосударственные организации,
+или другие организации, которым нужна безопасная связь в Сети, расскажите им о нас.</li>
+</ol>
+
+<a id="Bugs"></a>
+<h2><a class="anchor" href="#Bugs">Критические баги</a></h2>
+<ol>
+<li>В настоящий момент серверы Tor под Windows XP
+работают нестабильно, так как мы пытаемся использовать сотни
+сокетов, а ядро Windows похоже не в состоянии с этим справится.
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">
+Пожалуйста помогите нам решить эту проблему!</a> Наверное лучшим решением будет
+научить libevent под Windows использовать overlapped IO вместо select(), а потом 
+адаптировать Tor к новому интерфейсу libevent.
+</ol>
+
+<a id="Usability"></a>
+<h2><a class="anchor" href="#Usability">Поддержка приложений</a></h2>
+<ol>
+<li>Нам нужен хороший способ перехвата DNS запросов, чтобы они не давали
+дополнительной информации локальному наблюдателю когда мы пытаемся оставаться
+анонимными. (Это происходит потому что приложения самостоятельно посылают
+DNS запросы перед обращением к SOCKS прокси.)</li>
+<ul>
+<li>Нужно 
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">применить
+все наши патчи к tsocks</a> и форкнуться. Мы предоставим хостинг для 
+этого проекта если требуется.</li>
+<li>Мы должны пропатчить программу "dsocks" (автор Dug Song), чтобы использовать
+Tor'овскую команду <i>mapaddress</i> из интерфейса контроллера, таким образом мы
+не будем терять время в Tor на DNS разрешение перед соединением.</li>
+<li>Мы должны исправить наш скрипт <i>torify</i> так, чтобы он определял 
+установленный tsocks или dsocks и правильно вызывал их. Пожалуй для этого
+потребуется унифицировать их интерфейсы, и может быть использовать общий код,
+или вообще отбросить поддержку одного из них.</li>
+</ul>
+<li>People running servers tell us they want to have one BandwidthRate
+during some part of the day, and a different BandwidthRate at other parts
+of the day. Rather than coding this inside Tor, we should have a little
+script that speaks via the <a href="<page gui/index>">Tor Controller Interface</a>,
+and does a setconf to change the bandwidth rate. Perhaps it would run out
+of cron, or perhaps it would sleep until appropriate times and then do
+its tweak (that's probably more portable). Can somebody write one for us
+and we'll put it into <a href="<svnsandbox>contrib/">contrib/</a>?
+This is a good entry for the <a href="<page gui/index>">Tor GUI
+competition</a>.</li>
+<li>Tor can <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">exit
+the Tor network from a particular exit node</a>, but we should be able
+to specify just a country and have something automatically pick. The
+best bet is to fetch Blossom's directory also, and run a local Blossom
+client that fetches this directory securely (via Tor and checking its
+signature), intercepts <tt>.country.blossom</tt> hostnames, and does
+the right thing.</li>
+<li>Speaking of geolocation data, somebody should draw a map of the Earth
+with a pin-point for each Tor server. Bonus points if it updates as the
+network grows and changes. Unfortunately, the easy ways to do this involve
+sending all the data to Google and having them draw the map for you. How
+much does this impact privacy, and do we have any other good options?</li>
+</ol>
+
+<a id="Documentation"></a>
+<h2><a class="anchor" href="#Documentation">Documentation</a></h2>
+<ol>
+<li>We hear that Tor users can fall victim to anonymity-breaking attacks
+from javascript, java, activex, flash, etc, if they don't disable
+them. Are there plugins out there (like NoScript for Firefox) that make
+it easier for users to manage this risk? What is the risk exactly?</li>
+<li>Is there a full suite of plugins that will replace all of Privoxy's
+functionality for Firefox 1.5+? We hear Tor is much faster when you take
+Privoxy out of the loop.</li>
+<li>Please help Matt Edman with the documentation and how-tos for his
+<a href="http://vidalia-project.net/">Tor Controller</a>.</li>
+<li>Evaluate and document
+<a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">our
+list of programs</a> that can be configured to use Tor.</li>
+<li>We need better documentation for dynamically intercepting
+connections and sending them through Tor. tsocks (Linux), dsocks (BSD),
+and freecap (Windows) seem to be good candidates.</li>
+<li>We have a huge list of <a href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">potentially useful
+programs that interface to Tor</a>. Which ones are useful in which
+situations? Please help us test them out and document your results.</li>
+<li>Help translate the web page and documentation into other
+languages. See the <a href="<page translation>">translation
+guidelines</a> if you want to help out. We also need people to help
+maintain the existing Italian, French, and Swedish translations -
+see the <a href="<page translation-status>">translation status
+overview</a>.</li>
+</ol>
+
+<a id="Coding"></a>
+<h2><a class="anchor" href="#Coding">Coding and Design</a></h2>
+<ol>
+<li>Right now the hidden service descriptors are being stored on just a
+few directory servers. This is bad for privacy and bad for robustness. To
+get more robustness, we're going to need to make hidden service
+descriptors even less private because we're going to have to mirror them
+onto many places. Ideally we'd like to separate the storage/lookup system
+from the Tor directory servers entirely. The first problem is that we need
+to design a new hidden service descriptor format to a) be ascii rather
+than binary for convenience; b) keep the list of introduction points
+encrypted unless you know the <tt>.onion</tt> address, so the directory
+can't learn them; and c) allow the directories to verify the timestamp
+and signature on a hidden service descriptor so they can't be tricked
+into giving out fake ones. Second, any reliable distributed storage
+system will do, as long as it allows authenticated updates, but as far
+as we know no implemented DHT code supports authenticated updates.</li>
+<li>Tor exit servers need to do many DNS resolves in parallel. But
+gethostbyname() is poorly designed --- it blocks until it has finished
+resolving a query --- so it requires its own thread or process. So Tor
+is forced to spawn many separate DNS "worker" threads. There are some
+asynchronous DNS libraries out there, but historically they are buggy and
+abandoned. Are any of them stable, fast, clean, and free software? (Remember,
+Tor uses OpenSSL, and OpenSSL is (probably) not compatible with the GPL, so
+any GPL libraries are out of the running.) If so
+(or if we can make that so), we should integrate them into Tor. See <a
+href="http://archives.seul.org/or/talk/Sep-2005/msg00001.html">Agl's
+post</a> for one potential approach. Also see
+<a href="http://daniel.haxx.se/projects/c-ares/">c-ares</a> and
+<a href="http://www.monkey.org/~provos/libdnsres/">libdnsres</a>.
+</li>
+<li>Tor 0.1.1.x includes support for hardware crypto accelerators via
+OpenSSL. Nobody has ever tested it, though. Does somebody want to get
+a card and let us know how it goes?</li>
+<li>Because Tor servers need to store-and-forward each cell they handle,
+high-bandwidth Tor servers end up using dozens of megabytes of memory
+just for buffers. We need better heuristics for when to shrink/expand
+buffers. Maybe this should be modelled after the Linux kernel buffer
+design, where you have many smaller buffers that link to each other,
+rather than monolithic buffers?</li>
+<li>Implement reverse DNS requests inside Tor (already specified in
+Section 5.4 of <a href="<svnsandbox>doc/tor-spec.txt">tor-spec.txt</a>).</li>
+<li>Perform a security analysis of Tor with <a
+href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determine
+if there are good fuzzing libraries out there for what we want. Win fame by
+getting credit when we put out a new release because of you!</li>
+<li>How hard is it to patch bind or a
+DNS proxy to redirect requests to Tor via our <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#CompatibleApplications">tor-resolve
+socks extension</a>? dsocks already does this on BSD. What about to
+convert UDP DNS requests to TCP requests and send them through Tor?</li>
+<li>Tor uses TCP for transport and TLS for link
+encryption. This is nice and simple, but it means all cells
+on a link are delayed when a single packet gets dropped, and
+it means we can only reasonably support TCP streams. We have a <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">list
+of reasons why we haven't shifted to UDP transport</a>, but it would
+be great to see that list get shorter. We also have a proposed <a
+href="<svnsandbox>doc/tor-spec-udp.txt">specification for Tor and
+UDP</a> &mdash; please let us know what's wrong with it.</li>
+<li>We're not that far from having IPv6 support for destination addresses
+(at exit nodes). If you care strongly about IPv6, that's probably the
+first place to start.</li>
+</ol>
+
+<a id="Research"></a>
+<h2><a class="anchor" href="#Research">Research</a></h2>
+<ol>
+<li>The "website fingerprinting attack": make a list of a few
+hundred popular websites, download their pages, and make a set of
+"signatures" for each site. Then observe a Tor client's traffic. As
+you watch him receive data, you quickly approach a guess about which
+(if any) of those sites he is visiting. First, how effective is
+this attack on the deployed Tor codebase? Then start exploring
+defenses: for example, we could change Tor's cell size from 512
+bytes to 1024 bytes, we could employ padding techniques like <a
+href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>,
+or we could add traffic delays. How much of an impact do these have,
+and how much usability impact (using some suitable metric) is there from
+a successful defense in each case?</li>
+<li>The "end-to-end traffic confirmation attack":
+by watching traffic at Alice and at Bob, we can <a
+href="http://freehaven.net/anonbib/#danezis:pet2004">compare
+traffic signatures and become convinced that we're watching the same
+stream</a>. So far Tor accepts this as a fact of life and assumes this
+attack is trivial in all cases. First of all, is that actually true? How
+much traffic of what sort of distribution is needed before the adversary
+is confident he has won? Are there scenarios (e.g. not transmitting much)
+that slow down the attack? Do some traffic padding or traffic shaping
+schemes work better than others?</li>
+<li>The "routing zones attack": most of the literature thinks of
+the network path between Alice and her entry node (and between the
+exit node and Bob) as a single link on some graph. In practice,
+though, the path traverses many autonomous systems (ASes), and <a
+href="http://freehaven.net/anonbib/#feamster:wpes2004">it's not uncommon
+that the same AS appears on both the entry path and the exit path</a>.
+Unfortunately, to accurately predict whether a given Alice, entry,
+exit, Bob quad will be dangerous, we need to download an entire Internet
+routing zone and perform expensive operations on it. Are there practical
+approximations, such as avoiding IP addresses in the same /8 network?</li>
+<li>Tor doesn't work very well when servers have asymmetric bandwidth
+(e.g. cable or DSL). Because Tor has separate TCP connections between
+each hop, if the incoming bytes are arriving just fine and the outgoing
+bytes are all getting dropped on the floor, the TCP push-back mechanisms
+don't really transmit this information back to the incoming streams.
+Perhaps Tor should detect when it's dropping a lot of outgoing packets,
+and rate-limit incoming streams to regulate this itself? I can imagine
+a build-up and drop-off scheme where we pick a conservative rate-limit,
+slowly increase it until we get lost packets, back off, repeat. We
+need somebody who's good with networks to simulate this and help design
+solutions; and/or we need to understand the extent of the performance
+degradation, and use this as motivation to reconsider UDP transport.</li>
+<li>A related topic is congestion control. Is our
+current design sufficient once we have heavy use? Maybe
+we should experiment with variable-sized windows rather
+than fixed-size windows? That seemed to go well in an <a
+href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh
+throughput experiment</a>. We'll need to measure and tweak, and maybe
+overhaul if the results are good.</li>
+<li>To let dissidents in remote countries use Tor without being blocked
+at their country's firewall, we need a way to get tens of thousands of
+relays, not just a few hundred. We can imagine a Tor client GUI that
+has a "help China" button at the top that opens a port and relays a
+few KB/s of traffic into the Tor network. (A few KB/s shouldn't be too
+much hassle, and there are few abuse issues since they're not being exit
+nodes.) But how do we distribute a list of these volunteer clients to the
+good dissidents in an automated way that doesn't let the country-level
+firewalls intercept and enumerate them? Probably needs to work on a
+human-trust level. See our <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China">FAQ
+entry</a> on this, and then read the <a
+href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">censorship
+resistance section of anonbib</a>.</li>
+<li>Tor circuits are built one hop at a time, so in theory we have the
+ability to make some streams exit from the second hop, some from the
+third, and so on. This seems nice because it breaks up the set of exiting
+streams that a given server can see. But if we want each stream to be safe,
+the "shortest" path should be at least 3 hops long by our current logic, so
+the rest will be even longer. We need to examine this performance / security
+tradeoff.</li>
+<li>It's not that hard to DoS Tor servers or dirservers. Are client
+puzzles the right answer? What other practical approaches are there? Bonus
+if they're backward-compatible with the current Tor protocol.</li>
+</ol>
+
+<a href="<page contact>">Let us know</a> if you've made progress on any
+of these!
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
