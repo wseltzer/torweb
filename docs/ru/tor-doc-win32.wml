@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8152
+# Based-On-Revision: 8381
 # Last-Translator: ygrekheretix ON gmail
 
 #include "head.wmi" TITLE="Установка Tor на MS Windows" CHARSET="KOI8-R"
@@ -67,32 +67,23 @@ the settings. Tor is now installed.
 <br />
 
 <p>После установки, вы должны настроить остальные приложения
-чтобы они испoльзовали Tor и Privoxy. Для начала настроим браузер.</p>
+чтобы они использовали Tor и Privoxy. Для начала настроим браузер.</p>
 
-<p>Если вы используете Firefox (рекомендуем), попробуйте <a
-href="http://freehaven.net/~squires/torbutton/">плагин Torbutton</a>
-который настроит всё за вас. Если вы собираетесь использовать Firefox
-не на том компьютере где запущен Tor, прочитайте наш <a
-href="<page docs/tor-switchproxy>">Tor SwitchProxy howto</a> чтобы настроить
-плагин который позволит легко переключаться между Tor'ом и прямым соединением.</p>
+<p>Если вы используете Firefox (мы рекомендуем), просто установите
+<a href="http://freehaven.net/~squires/torbutton/">плагин Torbutton</a>,
+перезапустите браузер, и всё готово:
+</p>
 
-<p>В противном случае вам придётся вручную задать настройки прокси в вашем
-браузере.
-В Mozilla и Firefox, это Edit - Preferences - Advanced - Proxies.
-В Opera это Tools - Preferences(Advanced) - Network - Proxy servers.
-В IE, это Tools - Internet Options - Connections - LAN Settings - Check Proxy Server - Advanced.</p>
+<img alt="Torbutton plugin for Firefox" src="../img/screenshot-torbutton.png" border="1">
 
-<img alt="Proxy settings in Firefox"
-src="../img/screenshot-win32-firefox-proxies.jpg" />
+<br />
 
 <p>
-Вы должны указать "localhost" и "8118" чтобы перенаправлять
-четыре указанных протокола на Privoxy, как показано на рисунке. (Даже 
-учитывая что Privoxy не поддерживает FTP и Gopher, 
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">вы 
-должны указать их в любом случае</a>.) Также надо заполнить поле socks в настройках
-прокси чтобы перенаправлять прямо в Tor ("localhost", "9050", и socks5)
-остальные протоколы, кроме первых четырёх. Потом жмите "OK".</p>
+(Если вы собираетесь запускать Firefox и Tor на разных компьютерах, смотрите
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
+этот раздел FAQ</a>. Если вы используйте другой браузер (не Firefox),
+вам придётся <a href="<page docs/tor-doc-web>">самостоятельно указать настройки прокси</a>.)
+</p>
 
 <p>Использование Privoxy <strong>обязательно</strong> так как <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">браузеры
@@ -102,11 +93,11 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">браузер
 
 <p>Чтобы торифицировать(Torify) другие приложения которые поддерживают HTTP прокси,
 просто укажите им на Privoxy (то есть, localhost порт 8118). Для использования SOCKS
-напрямую (случай IM(системы мнгновенного обмена сообщениями), Jabber, IRC, итд), 
+напрямую (случай IM (системы мгновенного обмена сообщениями), Jabber, IRC, итд), 
 укажите адрес и порт клиента Tor (localhost порт 9050), но ознакомьтесь
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">с этим
 разделом FAQ</a> описывающим небезопасность такого способа. Для приложений
-которые не поддерживают ни SOCKS ни HTTP, попробуёте <a
+которые не поддерживают ни SOCKS ни HTTP, попробуйте <a
 href="http://www.socks.permeo.com/Download/SocksCapDownload/index.asp">SocksCap</a> или
 <a href="http://www.freecap.ru/eng/">FreeCap</a>.
 (FreeCap это свободное ПО; SocksCap проприетарное.)</p>
@@ -127,7 +118,7 @@ HOWTO</a>.
 Vidalia показывает зелёную луковицу в случае если Tor работает, или тёмную
 с красным крестиком если Tor не запущен. Вы можете запустить или остановить Tor
 кликнув правой кнопкой мыши на иконку Vidalia и выбрав в контекстном меню 
-Start или Stop соответствено:
+Start или Stop соответственно:
 </p>
 
 <img alt="Vidalia Tray Icon" src="../img/screenshot-win32-vidalia.png">
@@ -142,9 +133,9 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivat
 раздел FAQ</a> и узнайте больше способов протестировать Tor.)
 </p>
 
-<p>Если установлен персональный фаерволл который огранивает способность вашего
+<p>Если установлен персональный файерволл который ограничивает способность вашего
 компьютера коннектится к самому себе, разрешите соединения от локальных приложений
-на локальные порты 8118 и 9050. Если ваш фаерволл
+на локальные порты 8118 и 9050. Если ваш файерволл
 блокирует исходящие соединения, откройте по крайней мере TCP порты 
 80 и 443, а потом ознакомьтесь с 
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">
@@ -159,15 +150,15 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">FAQ</a
 <h2><a class="anchor" href="#server">Шаг четвёртый: Настройте сервер</a></h2>
 <br />
 
-<p>Сеть Tor основывается на добровольцах делящихся своим траффиком. Чем больше людей
+<p>Сеть Tor основывается на добровольцах делящихся своим трафиком. Чем больше людей
 запускают серверы, тем быстрее работает сеть Tor. Если у вас есть по крайней мере
 20 килобайт/сек в каждом направлении, пожалуйста помогите сети Tor настроив свой
 сервер. Мы реализовали много чего чтобы сделать серверы Tor лёгкими и удобными
-в использовании, включая ограничение траффика, ограничения выхода(exit policies),
+в использовании, включая ограничение трафика, ограничения выхода(exit policies),
 и поддержку динамических IP.</p>
 
 <p>Размещение серверов в разных уголках Интернета это именно то, что
-обезопасивает пользователей Tor. <a
+обеспечивает безопасность пользователей Tor. <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">Вы также получаете
 более сильную анонимность сами</a>,
 так как третьи стороны не могут знать кем открыты соединения - вашим локальным компьютером
