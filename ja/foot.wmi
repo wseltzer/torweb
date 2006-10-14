@@ -1,0 +1,41 @@
+#!/usr/bin/wml
+
+## translation metadata
+# Revision: $Revision: 7852 $
+# Last-Translator: buyoppy@yahoo.co.jp
+
+#use "functions.wmi"
+
+</div>
+  <div class="bottom" id="bottom">
+     <p>
+     <i><a href="<page contact>" class="smalllink">管理者</a></i> -
+# please also translate "last modified" and "last compiled"
+      最終更新: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      -
+      最終コンパイル: <: print scalar localtime(); :>
+     </p>
+# Uncomment this in your translation:  (and translate it)
+   <: unless (translation_current()) { :>
+     <p>
+      警告:  この翻訳は古いバージョンのものである可能性があります。英文のオリジナルは現在、リビジョン
+      <:= translation_get_masterrevision() :> ですが、この翻訳は
+      <:= translation_get_basedonrevision() :> に基づいています。
+     </p>
+   <: } :>
+
+   <: if (has_translations()) {  :>
+     <p>
+       このページは以下の言語でも閲覧することができます:
+       <: print list_translations() :>。<br>
+       <a href="http://www.debian.org/intro/cn#howtoset">ドキュメントのデフォルト言語</a>を設定する方法。
+     </p>
+   <: }; :>
+     <p>
+   	   Torの開発者もEFFもこの翻訳の正確性および正当性を検証したわけではありません。
+   	   内容が古くなったり誤りを含んでいる可能性があります。
+   	   正規のTorのウェブサイトはhttp://tor.eff.org/から入手できる英語版です。
+     </p>
+  </div>
+</body>
+</html>
