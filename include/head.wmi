@@ -62,9 +62,9 @@
 	  for my $dir (@LANGUAGES) {
 	    if (-e "$dir/$WML_SRC_FILENAME") {
 	      if ($dir eq '$(LANG)') {
-	        printf('<img src="$(IMGROOT)/%s.png" alt="%s" /> ', $dir, $LANGUAGES{$dir});
+	        printf('<acronym title="%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></acronym> ', $LANGUAGES{$dir}, $dir, $LANGUAGES{$dir});
 	      } else {
-	        printf('<a href="%s.html.%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></a> ', $page, $dir, $dir, $LANGUAGES{$dir});
+	        printf('<a href="%s.html.%s"><acronym title="%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></acronym></a> ', $page, $dir, $LANGUAGES{$dir}, $dir, $LANGUAGES{$dir});
 	      };
 	    } else {
 	      printf('<img src="$(IMGROOT)/green-flagspace.png"/> ');
