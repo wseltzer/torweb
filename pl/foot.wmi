@@ -2,7 +2,7 @@
 
 ## translation metadata
 # Based-On-Revision: 7852
-# Last-Translator: gooseondaloose@msn.com, laszpio@gmail.com
+# Last-Translator: bogdandr_at_op . pl
 
 #use "functions.wmi"
 
@@ -11,26 +11,29 @@
      <p>
      <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
 # please also translate "last modified" and "last compiled"
-      Ostatna zmiana: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      Ostatnio zmodyfikowane: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
-      Ostatnio opracowane: <: print scalar localtime(); :>
+      Ostatnio wygenerowane: <: print scalar localtime(); :>
      </p>
 # Uncomment this in your translation:  (and translate it)
 #####################################
    <: unless (translation_current()) { :>
      <p>
-      Uwaga: OryginaÅ‚ po angielsku jest nowszy niÅª to tÅ‚umaczenie.  Oficjalna wersja angielska jest 
-      <:= translation_get_masterrevision() :>, a to przetÅ‚umaczenie jest bazowane na wersji 
+      Uwaga: To t³umaczenie mo¿e byæ nieaktualne. Orygina³ po angielsku ma numer wersji
+      <:= translation_get_masterrevision() :> podczas gdy to t³umaczenie jest oparte na wersji
       <:= translation_get_basedonrevision() :>.
      </p>
    <: } :>
-
+ <p>
+ Ani deweloperzy Tor'a, ani EFF nie sprawdzi³y t³umaczenia tej strony pod wzglêdem dok³adno¶ci
+  i poprawno¶ci. T³umaczenie mo¿e byæ przestarza³e lub niepoprawne. Oficjalna strona Tor'a jest
+  po angielsku, pod adresem http://tor.eff.org/
+ </p>
    <: if (has_translations()) {  :>
      <p>
-       <b>Uwaga: Ta strona nie jest oficjalnÄ… wersjÄ… witryny projektu Tor'a, ale tÅ‚umaczenÄ… przez ochotnika pracujÄ…cego spoÅ‚ecznie. Oficjalna versja to jest napisana po angielsku.</b>
-	Strona ta jest takÅ¼e dostÄ™pna w nastÄ™pujÄ…cych jÄ™zykach:
+       Ta strona jest tak¿e dostêpna w nastêpuj±cych jêzykach:
        <: print list_translations() :>.<br>
-       Jak ustawiÄ‡ <a href="http://www.debian.org/intro/cn#howtoset">jÄ™zyk, w ktÃ³rym wyÅ›wietlana jest ta strona</a>.
+       Jak ustawiæ <a href="http://www.debian.org/intro/cn#howtoset">domy¶lny jêzyk dokumentu</a>.
      </p>
    <: }; :>
   </div>

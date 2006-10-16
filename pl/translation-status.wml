@@ -1,0 +1,151 @@
+## translation metadata
+# Based-On-Revision: 8267
+# Last-Translator: bogdandr_at_op . pl
+
+#include "head.wmi" TITLE="Stan t³umaczenia"
+#use "functions.wmi"
+
+<div class="main-column">
+
+<h2>Tor: Stan t³umaczenia</h2>
+<hr />
+
+<:
+sub do_status($$) {
+	my ($dir, $may_miss_dir) = @_;
+
+	my %files;
+	my @warnings;
+	for my $lang (@LANGUAGES) {
+		opendir(DIR, "$dir/$lang") or
+			$may_miss_dir or die ("Cannot opendir $dir/$lang: $!\n");
+		my @files = grep { $_ ne '.' && $_ ne '..' && $_ =~ m/^[^.]/ && -f "$dir/$lang/$_"} readdir(DIR);
+		closedir DIR;
+
+		for my $file (@files) {
+			$files{$lang}->{$file}->{'all'} = getMetadata("$dir/$lang/$file");
+			if ($lang eq 'en') {
+				$files{$lang}->{$file}->{'rev'} = translation_get_masterrevision_file($dir, $file);
+			} else {
+				$files{$lang}->{$file}->{'based'} = translation_get_basedonrevision_langfile($dir, $lang, $file);
+			};
+		};
+	};
+
+	print "<h1>$dir</h1>\n";
+
+	print "<table border=1>\n";
+	print "<tr>\n";
+	print "<th>Plik</th>\n";
+	printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for ('en', grep { $_ ne 'en' } @LANGUAGES);
+	print "</tr>\n";
+	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'http://tor.eff.org/') . ($dir eq '.' ? '' : $dir.'/');
+
+	for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
+		my $obs = file_is_obsolete($dir, 'en', $file);
+		my $validatorlink = '';
+		my $htmlfile = $file;
+		if ($htmlfile =~ s/\.wml/.html/) {
+			$validatorlink = sprintf '<br><a href="http://validator.w3.org/check?uri=%s%s.en">walidator</a>',
+				$HTMLBASE, $htmlfile;
+		}
+		print "<tr>";
+		printf "<th>%s</th>", $file;
+		printf '<td%s>Revision %s%s<br>
+		        <a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=tor&amp;view=markup">NAG£ÓWEK</a>
+			%s',
+			($obs ? ' bgcolor="lightgrey"' : ''),
+			$files{'en'}->{$file}->{'rev'},
+			($obs ? ' (przestarza³y)' :''),
+			($dir eq '.' ? '' : $dir.'/'),
+			$file,
+			$validatorlink;
+		for my $lang (@LANGUAGES) {
+			next if $lang eq 'en';
+			my $color;
+			my $status;
+			if ($validatorlink) {
+				$validatorlink = sprintf '<br><a href="http://validator.w3.org/check?uri=%s%s.%s">walidator</a>',
+					$HTMLBASE, $htmlfile, $lang;
+			};
+			if (exists $files{$lang}->{$file}) {
+				my $all_info = '';
+				for my $key (sort {$a cmp $b} keys %{$files{$lang}->{$file}->{'all'}}) {
+					$all_info .= sprintf "%s: %s<br>", $key, $files{$lang}->{$file}->{'all'}->{$key};
+				};
+
+				my $difflink;
+				if ($files{$lang}->{$file}->{'based'}  eq  $files{'en'}->{$file}->{'rev'}) {
+					$color='lightgreen';
+					$status='aktualny';
+					$difflink='';
+				} else {
+					$status='nieaktualny';
+					if ($files{$lang}->{$file}->{'based'} ne 'unknown') {
+						$difflink=sprintf '<br><a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=tor&amp;r1=%s&amp;r2=%s">zmiany wzglêdem orygina³u</a>',
+							($dir eq '.' ? '' : $dir.'/'), $file, $files{$lang}->{$file}->{'based'}, $files{'en'}->{$file}->{'rev'};
+						$color='yellow';
+					} else {
+						$difflink='';
+						$color='orange'
+					};
+				};
+				printf '<td bgcolor="%s">%s<br>
+					<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%s%s/%s?root=tor&amp;view=markup">NAG£ÓWEK</a><br>
+					%s
+					%s
+					%s</td>',
+					$color,
+					$status,
+					($dir eq '.' ? '' : $dir.'/'),
+					$lang, $file,
+					$all_info,
+					$difflink,
+					$validatorlink;
+			} else {
+				$color=($obs ? 'lightgreen' : 'red');
+				$status='brak';
+				printf '<td bgcolor="%s">%s</td>', $color, $status;
+			};
+			delete $files{$lang}->{$file};
+		};
+		print "</tr>\n\n";
+	};
+	print "</table>\n\n\n";
+
+	for my $lang (@LANGUAGES) {
+		next if $lang eq 'en';
+		if (keys %{$files{$lang}} > 0) {
+			print "<p>";
+			printf "<h2>Dodatkowe pliki w %s (%s)</h2>\n", $lang, $LANGUAGES{$lang};
+
+			print "<table border=1>\n";
+			print "<tr>\n";
+			print "<th>Plik</th>\n";
+			print "<th>Oparty na wersji</th>\n";
+			print "</tr>\n";
+			for my $file (sort {$a cmp $b} keys %{$files{$lang}}) {
+				print "<tr>";
+				printf "<th>%s</th><td>", $file;
+				for my $key (sort {$a cmp $b} keys %{$files{$lang}->{$file}->{'all'}}) {
+					printf "%s: %s<br>", $key, $files{$lang}->{$file}->{'all'}->{$key};
+				};
+				printf "</td>";
+				delete $files{$lang}->{$file};
+				print "</tr>\n";
+			};
+			print "</table>\n\n";
+		};
+	};
+};
+
+do_status('.', 0);
+do_status('docs', 1);
+do_status('eff', 1);
+do_status('gui', 1);
+
+:>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
