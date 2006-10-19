@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8268
+# Based-On-Revision: 8733
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Wskazówki na temat tłumaczenia" CHARSET="UTF-8"
@@ -25,8 +25,8 @@
 <li>Zajrzyj do <a
  href="<svnwebsite>en/"><svnwebsite>en/</a>, gdzie jest zestaw plików ".wml".
  Najważniejsze do tłumaczenia są <code>index.wml</code>, <code>overview.wml</code>,
- <code>download.wml</code>, <code>documentation.wml</code>,
- <code>foot.wmi</code> i <code>navigation.wml</code>.
+ <code>download*.wml</code>, <code>documentation.wml</code>,
+ <code>foot.wmi</code> i <code>navigation.wmi</code>.
  Możesz oczywiście przetłumaczyć więcej stron niż tylko te, jeśli chcesz:
  następny przydatny zestaw to pliki ".wml" w  <a
  href="<svnwebsite>docs/en/"><svnwebsite>docs/en/</a>.
@@ -34,20 +34,20 @@
  pożądanych formatów tłumaczenia.</li>
 
 #<li>Nazwy plików powinny być zmienione z index.html na index.xx.html, gdzie xx
-#to dwuliterowy kod twojego języka, według <a href="http://www.w3.org/WAI/ER/IG/ert/iso639.htm">ISO 639</a>.
+#to dwuliterowy kod twojego języka, według <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">ISO 639</a>.
 #</li>
 
 <li>Pierwszą linią w przetłumaczonym pliku powinna być linia
  <br />
- \# Based-On-Revision: 1.4<br />
- gdzie 1.4 to numer wersji oryginalnej tłumaczonej strony, by łatwo można było
+ \# Based-On-Revision: 6000<br />
+ gdzie 6000 to numer wersji oryginalnej tłumaczonej strony. To pozwala ci łatwo
  sprawdzić, czy strona nie jest przedawniona. Numer wersji można znaleźć na
  górze każdej ze stron -- jest tworzony przez SVN, więc
  <a href="<page documentation>#Developers">sprawdź</a> najnowszą wersję strony.</li>
 
 <li>Drugą linią w przetłumaczonym pliku powinna być linia zawirająca adres e-mail
  osoby tłumaczącej:<br />
- \# Last-Translator: abc@example.com<br />
+ \# Last-Translator: abc at example.com<br />
  żebyśmy mogli się z tobą skontaktować, jeśli strona musi być poprawiona lub zaktualizowana.</li>
 
 <li>Chcielibyśmy także dostać tłumaczenia diagramów na
@@ -58,7 +58,7 @@
 <li>Przetłumaczone strony powinny zawierać odnośniki do innych przetłumaczonych stron (jeśli
  zawierają do innych).</li>
 
-<li>Przetłumaczone strony powinny w pliku foot.wml zawierać następującą
+<li>Przetłumaczone strony powinny w pliku foot.wmi zawierać następującą
  informację przetłumaczoną na odpowiedni język: "Ani deweloperzy Tor'a, ani EFF nie
   sprawdziły tłumaczenia tej strony pod względem dokładności
   i poprawności. Tłumaczenie może być przestarzałe lub niepoprawne. Oficjalna strona Tor'a jest
@@ -67,7 +67,9 @@
 <li>Używaj prawidłowych <a href="http://roselli.org/adrian/articles/character_charts.asp">encji
  znakowych</a>. Mimo że większość przeglądarek w dziesiejszych czasach
  wyświetlają te znaki poprawnie, chcemy się zabezpieczyć, by nie otrzymywać
- zgłoszeń o błędach od ludzi, którzy nie mogą przeczytać tekstu.</li>
+ zgłoszeń o błędach od ludzi, którzy nie mogą przeczytać tekstu.
+ Jeśli musisz użyć zestawu znaków innego niż ISO-8859-1, dodaj coś w stylu
+  <code>CHARSET="UTF-8"</code> na końcu linii, która zaczyna się od <code>#include "head.wmi"</code>.</li>
 
 <li>Pisz swoje tłumaczenie w prawidłowym XHTML, by zminimalizować niezbędną pracę
  przed wrzuceniem strony do SVN. Możesz testować swój kod na <a
