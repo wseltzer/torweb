@@ -1,6 +1,13 @@
 ## translation metadata
-# Based-On-Revision: 8267
+# Based-On-Revision: 8749
 # Last-Translator: bogdandr_at_op . pl
+
+# Note to translators:
+# translating this page is probably not a good idea, and it never was intended to be translated.
+# it contains lots of programming logic, which you would have to duplicate, and it's probably
+# useful only to other translators which most likely will know a bit of english.
+#
+# Thanks for your hard work, improve the other pages instead. :)   -- weasel
 
 #include "head.wmi" TITLE="Stan tłumaczenia" CHARSET="UTF-8"
 #use "functions.wmi"
@@ -18,7 +25,7 @@ sub do_status($$) {
 	my @warnings;
 	for my $lang (@LANGUAGES) {
 		opendir(DIR, "$dir/$lang") or
-			$may_miss_dir or die ("Cannot opendir $dir/$lang: $!\n");
+			$may_miss_dir or die ("Nie mogę wykonać opendir $dir/$lang: $!\n");
 		my @files = grep { $_ ne '.' && $_ ne '..' && $_ =~ m/^[^.]/ && -f "$dir/$lang/$_"} readdir(DIR);
 		closedir DIR;
 
