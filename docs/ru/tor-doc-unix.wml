@@ -1,19 +1,19 @@
 ## translation metadata
-# Based-On-Revision: 8734
+# Based-On-Revision: 8724
 # Last-Translator: ygrekheretix/gmail
 
-#include "head.wmi" TITLE="Установка Tor на MS Windows" CHARSET="KOI8-R"
+#include "head.wmi" TITLE="Установка Tor на Linux/BSD/Unix" CHARSET="KOI8-R"
 
 <div class="center">
 
 <div class="main-column">
 
-<h1>Использование клиента <a href="<page index>">Tor</a> в MS Windows</h1>
+<h1>Запускк клиента <a href="<page index>">Tor</a> на Linux/BSD/Unix</h1>
 <br />
 
 <p>
-<b>Внимание: это инструкции по установке клиента Tor в MS Windows (98, 98SE,
-NT4, 2000, XP, Server). Если вы хотите передавать серверный трафик чтобы помочь
+<b>Внимание: это инструкции по установке клиента Tor.
+Если вы хотите передавать серверный трафик чтобы помочь
 увеличиться сети Tor (пожалуйста делайте это), прочитайте инструкции по
 <a href="<page docs/tor-doc-server>">настройке сервера</a>.</b>
 </p>
@@ -24,46 +24,65 @@ NT4, 2000, XP, Server). Если вы хотите передавать серверный трафик чтобы помочь
 <br />
 
 <p>
-Инсталлятор для MS Windows - <a href="<page index>">Tor</a>,
-<a href="http://www.vidalia-project.net/">Vidalia</a>
-(GUI (графический интерфейс) для Tor), и <a
-href="http://www.privoxy.org">Privoxy</a> (фильтрующий веб прокси) в
-одном пакете, все три приложения настроены работать вместе "из коробки".
-<a href="<page download>">Скачайте стабильную или 
-экспериментальную версию инсталлятора для Windows со страницы Download</a>.
+Скачайте последний релиз Tor со страницы
+<a href="<page download>">download</a>. Мы предоставляем пакеты для Debian,
+Red Hat, Gentoo, *BSD, etc.
 </p>
 
-<p>Если вы не хотите использовать пакет, вы можете скачать Tor отдельно
-со страницы <a href="<page download-windows>">download для Windows</a>, а затем
-<a href="<page docs/tor-doc-unix>#privoxy">установить и настроить
-Privoxy самостоятельно</a>.
+<p>Если вы собираете из исходников, сначала установите
+<a href="http://www.monkey.org/~provos/libevent/">libevent</a>, 
+и убедитесь что у вас есть openssl и zlib (включая -devel пакеты если такие
+существуют). Потом :<br />
+<tt>tar xzf tor-<version-stable>.tar.gz; cd tor-<version-stable><br />
+./configure &amp;&amp; make</tt><br />
+Теперь вы можете запускать tor как <tt>src/or/tor</tt>, или сделав <tt>make install</tt>
+(под root'ом если требуется) установите в /usr/local/, и тогда можно запускать клиент 
+просто командой <tt>tor</tt>.
 </p>
 
-<img alt="tor installer splash page"
-src="../img/screenshot-win32-installer-splash.png" />
-
-<p>Если вы ранее уже установили Tor, Vidalia или Privoxy
-вы можете выбрать только те компоненты, которые хотите обновить
-в диалоге показанном ниже.
+<p>По умолчанию Tor настроен работать в качестве клиента. Используется встроенный
+конфигурационный файл, и в большинстве случаев вам не требуется изменять какие-либо
+настройки. Всё, Tor установлен.
 </p>
 
-<img alt="select components to install"
-src="../img/screenshot-win32-installer-components.png" />
+<hr />
+<a id="privoxy"></a>
+<h2><a class="anchor" href="#privoxy">Шаг второй: Настроить Privoxy чтобы использовать Tor в браузере</a></h2>
+<br />
 
-<p>После завершения установки, компоненты которые вы выбрали
-будут запущены автоматически.
+<p>После установки Tor, надо научить другие приложения использовать его.
 </p>
 
-<!--
-<p>Tor comes configured as a client by default. It uses a built-in
-default configuration file, and most people won't need to change any of
-the settings. Tor is now installed.
+<p>
+Первым делом займёмся браузером. Сначала установите 
+<a href="http://www.privoxy.org/">Privoxy</a>: кликните 'recent releases'
+и выберите подходящий пакет или исходники. Privoxy это фильтрующий
+веб-прокси который хорошо интегрируется с Tor'ом.
 </p>
--->
+
+<p>После установки Privoxy (из пакета или из исходников),
+<b>требуется настроить Privoxy использовать Tor</b>.
+Откройте конфигурационный файл Privoxy (см. в /etc/privoxy/ или /usr/local/etc/)
+и добавьте строку <br>
+<tt>forward-socks4a / localhost:9050 .</tt><br>
+в начале файла. Не забудьте точку в конце строки.
+</p>
+
+<p>Privoxy записывает в лог-файл все проходящие запросы. Чтобы выключить это поведение
+закомментируйте три строчки в конфиге (вставив символ
+\# в начале строки). Эти три строки выглядят так:<br>
+<tt>logfile logfile</tt><br>
+и <br>
+<tt>jarfile jarfile</tt><br>
+и (на некоторых системах)<br>
+<tt>debug 1  # show each GET/POST/CONNECT request</tt><br>
+</p>
+
+<p>Перезапустите Privoxy чтобы настройки вступили в силу.</p>
 
 <hr />
 <a id="using"></a>
-<h2><a class="anchor" href="#using">Шаг второй: Настроить приложения для использования Tor</a></h2>
+<h2><a class="anchor" href="#using">Шаг третий: Настроить приложения для использования Tor</a></h2>
 <br />
 
 <p>После установки, вы должны настроить остальные приложения
@@ -74,7 +93,9 @@ the settings. Tor is now installed.
 перезапустите браузер, и всё готово:
 </p>
 
-<img alt="Torbutton plugin for Firefox" src="../img/screenshot-torbutton.png" border="1">
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1">
 
 <br />
 
@@ -98,10 +119,10 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">браузер
 укажите адрес и порт клиента Tor (localhost порт 9050), но ознакомьтесь
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">с этим
 разделом FAQ</a> описывающим небезопасность такого способа. Для приложений
-которые не поддерживают ни SOCKS ни HTTP, попробуйте <a
-href="http://www.socks.permeo.com/Download/SocksCapDownload/index.asp">SocksCap</a> или
-<a href="http://www.freecap.ru/eng/">FreeCap</a>.
-(FreeCap это свободное ПО; SocksCap проприетарное.)</p>
+которые не поддерживают ни SOCKS ни HTTP, попробуйте 
+<a href="http://tsocks.sourceforge.net/">tsocks</a> или
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
+</p>
 
 <p>Информацию о том как торифицировать другие приложения можно поискать в
 <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">Torify
@@ -110,19 +131,8 @@ HOWTO</a>.
 
 <hr />
 <a id="verify"></a>
-<h2><a class="anchor" href="#verify">Шаг третий: Убедитесь что всё работает</a></h2>
+<h2><a class="anchor" href="#verify">Шаг четвёртый: Убедитесь что всё работает</a></h2>
 <br />
-
-<p>
-Проверьте что Privoxy и Vidalia запущены. 
-Иконка Privoxy выглядит как зелёный или синий круг с буквой "P" внутри, а 
-Vidalia показывает зелёную луковицу в случае если Tor работает, или тёмную
-с красным крестиком если Tor не запущен. Вы можете запустить или остановить Tor
-кликнув правой кнопкой мыши на иконку Vidalia и выбрав в контекстном меню 
-Start или Stop соответственно:
-</p>
-
-<img alt="Vidalia Tray Icon" src="../img/screenshot-win32-vidalia.png">
 
 <p>
 Далее, попробуйте использовать браузер через Tor и убедитесь что
@@ -135,12 +145,16 @@ Start или Stop соответственно:
 </p>
 
 <p>Если установлен персональный файерволл который ограничивает способность вашего
-компьютера коннектится к самому себе, разрешите соединения от локальных приложений
-на локальные порты 8118 и 9050. Если ваш файерволл
+компьютера коннектится к самому себе (например это SELinux на Fedora Core 4),
+разрешите соединения от локальных приложений к Privoxy (локальный порт 8118) и
+Tor (локальный порт 9050). Если ваш файерволл
 блокирует исходящие соединения, откройте по крайней мере TCP порты 
 80 и 443, а потом ознакомьтесь с 
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">
-этим разделом FAQ</a>.
+этим разделом FAQ</a>. Если настройки SELinux мешают корректной работе 
+tor или privoxy, создайте файл booleans.local в каталоге
+/etc/selinux/targeted. Откройте этот файл в любимом текстовом редакторе и
+укажите "allow_ypbind=1". Перезапустите машину для принятия этих настроек.
 </p>
 
 <p>Если это всё-таки не сработает, поищите подсказки в <a
@@ -148,7 +162,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">FAQ</a
 
 <hr />
 <a id="server"></a>
-<h2><a class="anchor" href="#server">Шаг четвёртый: Настройте сервер</a></h2>
+<h2><a class="anchor" href="#server">Шаг пятый: Настройте сервер</a></h2>
 <br />
 
 <p>Сеть Tor основывается на добровольцах делящихся своим трафиком. Чем больше людей
