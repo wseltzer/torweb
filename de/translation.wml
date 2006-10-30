@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8268
+# Based-On-Revision: 8732
 # Last-Translator: jens@kubieziel.de
 
 #include "head.wmi" TITLE="Richtlinien zur Übersetzung"
@@ -28,7 +28,7 @@ sehr hilfreich.
   href="<svnsandbox>website/en/">SVN-Verzeichnis der
   Webseite</a> nach den .wml-Dateien. Die wichtigsten sind dabei
   <code>index.wml</code>, <code>overview.wml</code>,
-  <code>download.wml</code>, <code>documentation.wml</code>,
+  <code>download*.wml</code>, <code>documentation.wml</code>,
   <code>foot.wmi</code> und <code>navigation.wmi</code>.
   Wir würden uns sehr freuen, wenn du diese
   oder auch mehr übersetzen könntest:  Übersetzungen von den ".wml" Dateien in
@@ -37,13 +37,14 @@ sehr hilfreich.
   href="<svnwebsite>/de/">deutsche Archiv</a>
   werfen, um Beispiele für die gewünschten Formate zu erhalten.</li>
 
-#<li>File names should be changed from index.html to index.xx.html, where xx
-#is your <a href="http://www.w3.org/WAI/ER/IG/ert/iso639.htm">ISO 639</a>
-#two letter language code.</li>
+#<li>File names should be changed from index.html to index.xx.html,
+#where xx is your <a
+#href="http://www.loc.gov/standards/iso639-2/php/code_list.php">ISO
+#639</a> two letter language code.</li>
 
 <li>Die erste Zeile der übersetzten Datei schaut wie folgt aus:<br />
-<samp># Based-On-Revision: 1.4</samp><br />
-Dabei ist 1.4 die Revisionsnummer der übersetzten Datei. Dadurch kann
+<samp># Based-On-Revision: 6000</samp><br />
+Dabei ist 6000 die Revisionsnummer der übersetzten Datei. Dadurch kann
 man leicht feststellen, wenn eine Datei nicht mehr dem aktuellen Stand
 entspricht. Diese Nummer findest du am Anfang jeder Datei. Stelle also
 sicher, dass die immer die <a href="<page developers>">letzte
@@ -51,7 +52,7 @@ Version</a> der Webseite verfügbar hast.</li>
 
 <li>Die zweite Zeile der übersetzten Datei sollte die E-Mailadresse
 des Übersetzers sein:<br />
-<samp># Last-Translator: abc@example.com</samp><br /></li>
+<samp># Last-Translator: abc at example.com</samp><br /></li>
 
 <li>Wir hätten auch gern die Diagramme der <a href="<page
 overview>">Übersichtsseite</a> in der jeweiligen
@@ -61,18 +62,21 @@ gehört. Wir machen dann neue Versionen der Bilder.</li>
 <li>Übersetzte Seiten sollten zu den anderen übersetzten Seiten
 verlinken.</li>
 
-<li>Übersetzte Seiten sollten eine Notiz in der Datei foot.wml
-beinhalten, die in die entsprechende Sprache übersetzt wurde: "Weder
+<li>Übersetzte Seiten sollten eine Notiz in der Datei foot.wmi
+beinhalten, die in die entsprechende Sprache übersetzt wurde: <q>Weder
 die Entwickler von Tor noch die EFF hat diese Übersetzung auf
 Akkuratheit oder Korrektheit geprüft. Sie könnte veraltet oder falsch
 sein. Die offizielle Webseite des Torprojektes ist die englische
-Version, erhältlich bei http://tor.eff.org/"</li>
+Version, erhältlich bei http://tor.eff.org/</q></li>
 
 <li>Nutze valide <a
 href="http://roselli.org/adrian/articles/character_charts.asp">Characterentitäten</a>.
 Auch wenn die meisten Browser heutzutage die Zeichen korrekt anzeigen,
 möchten wir auf der sicheren Seite sein. Somit erhalten wir keine
-Bugreports von Leuten, die den Text nicht lesen können.</li>
+Bugreports von Leuten, die den Text nicht lesen können. Falls du ein
+Zeichen benötigst, welches nicht zu ISO-8859-1 gehört, füge
+<code>CHARSET="UTF-8"</code> zum Ende der Zeile, die mit
+<code>#include "head.wmi"</code> beginnt, hinzu.</li>
 
 <li>Deine Übersetzung sollte immer valides XHTML sein, um die Arbeit
 für den Commit ins CVS zu minimieren. Du kannst deinen Code bei <a
