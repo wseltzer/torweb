@@ -35,11 +35,11 @@
  4) rzeczywiście wszystko dobrze ustawiłeś.</p>
 
 <p>Użytkownicy Windows powinni przeczytać <a
-href="<page docs/tor-doc-win32>">instrukcje dla
-Windows</a>, użytkownicy OS X powinni przeczytać <a
-href="<page docs/tor-doc-osx>">instrukcje dla
-OS X</a>, a użytkownicy Linux/BSD/Unix powinni przeczytać <a
-href="<page docs/tor-doc-unix>">instrukcje dla systemów Unix</a>.
+ href="<page docs/tor-doc-win32>">instrukcje dla
+ Windows</a>, użytkownicy OS X powinni przeczytać <a
+ href="<page docs/tor-doc-osx>">instrukcje dla
+ OS X</a>, a użytkownicy Linux/BSD/Unix powinni przeczytać <a
+ href="<page docs/tor-doc-unix>">instrukcje dla systemów Unix</a>.
 </p>
 
 <p>Po instalacji i konfiguracji Tor'a i Privoxy możesz zobaczyć ukryte usługi
@@ -75,7 +75,7 @@ href="<page docs/tor-doc-unix>">instrukcje dla systemów Unix</a>.
 <p>Ta sekcja pliku składa się z grup linii, z których każda reprezentuje
  jedną usługę ukrytą. W tej chwili wszystkie są zakomentowane (linie zaczynają
  się od krzyżyka #), więc usługi ukryte są wyłączone. Każda grupa linii
- składa się z jednej linii HiddenServiceDir i jednej lu więcej linii HiddenServicePort:/p>
+ składa się z jednej linii HiddenServiceDir i jednej lub więcej linii HiddenServicePort:/p>
 <ul>
 <li><b>HiddenServiceDir</b> jest katalogiem, w którym Tor będzie przechowywał
  informacje o tej usłudze ukrytej. W szczególności, Tor utworzy w tym katalogu
@@ -136,7 +136,7 @@ HiddenServicePort 80 www.google.com:80
 
 <p>Po ponownym uruchomieniu, Tor zajmuje się pobieraniem punktów wstępu
  w sieci Tor'a i generowaniem czegoś, co nazywa się "deskryptorem usługi ukrytej",
- który jest podpisaną listą punktów wstępnych razem z pelnym publicznym kluczem
+ który jest podpisaną listą punktów wstępnych razem z pełnym publicznym kluczem
  usługi. Tor anonimowo umieszcza ten deskryptor na serwerach katalogowych, a
  inni ludzie anonimowo go pobierają z serwerów katalogowych, gdy próbują połączyć
  się z twoją usługą.
@@ -168,7 +168,7 @@ HiddenServicePort 80 www.google.com:80
  pobierz archiwum tar, rozpakuj je (utworzy się osobny katalog) i uruchom
  ./configure &amp;&amp; make. Potem wykonaj mkdir hidserv, cd hidserv,
  i uruchom "../thttpd -p 5222 -h localhost". Powrócisz do wiersza poleceń,
- a od tej port masz uruchomiony serwer WWW na porcie 5222. Możesz umieścić
+ a od tej pory masz uruchomiony serwer WWW na porcie 5222. Możesz umieścić
  pliki dla serwera w katalogu hidserv.
 </p>
 
@@ -182,7 +182,7 @@ HiddenServicePort 80 www.google.com:80
  nasłuchuje, gdyż ta informacja przyda się potem.
 </p>
 
-<p>(Powodem, dla którego serwer powinien działać tylko lokalnie jast upewnienie
+<p>(Powodem, dla którego serwer powinien działać tylko lokalnie jest upewnienie
  się, że nie jest on dostępny z zewnątrz. Jeśli ktoś mógłby się do niego
  połączyć bezpośrednio, mógłby potwierdzić, że to twój komputer oferuje
  tą ukrytą usługę.)
@@ -192,7 +192,7 @@ HiddenServicePort 80 www.google.com:80
  przejdź pod adres <a
  href="http://localhost:5222/">http://localhost:5222/</a>. Potem spróbuj
  umieścić jakiś plik w głównym katalogu HTML serwera i sprawdź, czy pokazuje
- się on, gdy łączysz sie ze swoim serwerem WWW.
+ się on, gdy łączysz się ze swoim serwerem WWW.
 </p>
 
 <hr />
@@ -201,10 +201,10 @@ HiddenServicePort 80 www.google.com:80
 <br />
 
 <p>Ta część jest bardzo prosta. Ponownie otwórz plik torrc i zmień linię z
-HiddenServicePort z "www.google.com:80" na "localhost:5222".
-Potem <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">ponownie
-uruchom Tor'a</a>. Sprawdź, czy działa wpisując adres swojej ukrytej usługi w przeglądarce.
+ HiddenServicePort z "www.google.com:80" na "localhost:5222".
+ Potem <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">ponownie
+ uruchom Tor'a</a>. Sprawdź, czy działa wpisując adres swojej ukrytej usługi w przeglądarce.
 </p>
 
 <hr />

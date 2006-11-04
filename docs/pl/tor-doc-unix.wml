@@ -29,12 +29,12 @@
 </p>
 
 <p>Jeśli masz zamiar kompilować Tor'a, najpierw zainstaluj <a
- href="http://www.monkey.org/~provos/libevent/">libevent</a>, i upewniej się, że
+ href="http://www.monkey.org/~provos/libevent/">libevent</a>, i upewnij się, że
  masz OpenSSL i zlib (łącznie z pakietami -devel, jeśli są). Potem uruchom:<br />
  <tt>tar xzf tor-<version-stable>.tar.gz; cd tor-<version-stable><br />
  ./configure &amp;&amp; make</tt><br />
  Możesz teraz uruchomić Tor'a poprzez <tt>src/or/tor</tt>, lub możesz uruchomić <tt>make install</tt>
- (jako root, jeśli potrzebne), by zainstalować Tor'a do /usr/local, wtedy możesz
+ (jako root, jeśli potrzeba), by zainstalować Tor'a do /usr/local, wtedy możesz
  go uruchamiać po prostu pisząc <tt>tor</tt>.
 </p>
 
@@ -54,12 +54,12 @@
 <p>
  Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW. Zacznij od instalacji <a
  href="http://www.privoxy.org/">Privoxy</a>: kliknij na 'ostatnie wydania' ('recent releases') i
- wybierz swój ulubiony typ aczki lub instaluj ze źródeł. Privoxy jest filtrującym
+ wybierz swój ulubiony typ paczki lub instaluj ze źródeł. Privoxy jest filtrującym
  serwerem pośredniczącym (proxy) do WWW, który dobrze integruje się z Tor'em.
 </p>
 
 <p>Po instalacji Privoxy (z paczki lub źródeł)
- <b>musisz skonfigurować Privoxy, by używało Tor</b>.
+ <b>musisz skonfigurować Privoxy, by używało Tor'a</b>.
  Otwórz plik "config" z konfiguracją Privoxy (poszukaj w /etc/privoxy/ lub /usr/local/etc/)
  i dodaj linię <br>
  <tt>forward-socks4a / localhost:9050 .</tt><br>
@@ -86,7 +86,7 @@
 <p>Po instalacji Tor'a i Privoxy musisz skonfigurować swoje aplikacje, by ich używały.
  Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW.</p>
 
-<p>Jeśli uzywasz przeglądarki Firefox (co zalecamy), po prostu zainstaluj <a
+<p>Jeśli używasz przeglądarki Firefox (co zalecamy), po prostu zainstaluj <a
  href="https://addons.mozilla.org/firefox/2275/">rozszerzenie
  Torbutton</a>, ponownie uruchom Firefox'a i gotowe:
 </p>
@@ -100,14 +100,14 @@
 <p>
 (<a href="http://freehaven.net/~squires/torbutton/">Dowiedz się więcej o
  rozszerzeniu Torbutton</a>.
- Jeśli masz zamiar uzywać Firefox'a na innym komputerze niż Tor'a, spójrz na <a
+ Jeśli masz zamiar używać Firefox'a na innym komputerze niż Tor'a, spójrz na <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">wpis w FAQ
  na temat uruchamiania Tor'a na innym komputerze</a>. Jeśli musisz używać innej
- przeglądarki niż Firefox, musisz <a href="<page
- docs/tor-doc-web>">samodzielnie skonfigurować jej ustawienia proxy</a>.)
+ przeglądarki niż Firefox, musisz <a href="<page docs/tor-doc-web>">samodzielnie
+ skonfigurować jej ustawienia proxy</a>.)
 </p>
 
-<p>Korzystanie z privoxy jest <strong>konieczne</strong>, gdyż <a
+<p>Korzystanie z Privoxy jest <strong>konieczne</strong>, gdyż <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">żądania DNS
  z przeglądarek wyciekają, gdy przeglądarki używają bezpośrednio serwera pośredniczącego SOCKS</a>,
  co uniemożliwia zachowanie pełnej anonimowości. Privoxy usuwa również pewne
@@ -119,7 +119,7 @@
  bezpośrednio na Tor'a (localhost, port 9050), ale przeczytaj <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">ten
  wpis do FAQ</a>, dlaczego to może być niebezpieczne. Jeśli aplikacja nie
- obsługuje nie proxy dla HTTP, ani dla SOCKS, spójrz na  <a
+ obsługuje ani proxy dla HTTP, ani dla SOCKS, spójrz na  <a
  href="http://www.taiyo.co.jp/~gotoh/ssh/connect.html">connect</a> lub
  <a href="http://www.dest-unreach.org/socat/">socat</a>.</p>
 
@@ -138,8 +138,8 @@
  href="http://serifos.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">wykrywacz
  Tor'a</a> i sprawdź, czy jego zdaniem używasz Tor'a, czy nie. (Jeśli ta strona
  akurat nie działa, przeczytaj <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">ten
-wpis w FAQ</a>, by poznać więcej sposobów na testowanie swojego Tor'a.)
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">ten
+ wpis w FAQ</a>, by poznać więcej sposobów na testowanie swojego Tor'a.)
 </p>
 
 <p>Jeśli masz zaporę ogniową, która ogranicza możliwości Twojego komputera co
@@ -155,8 +155,8 @@ wpis w FAQ</a>, by poznać więcej sposobów na testowanie swojego Tor'a.)
 </p>
 
 <p>Jeśli dalej nie działa, spójrz na <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">ten
-wpis FAQ</a>, by poszukać wskazówek.</p>
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">ten
+ wpis FAQ</a>, by poszukać wskazówek.</p>
 
 <hr />
 <a id="server"></a>
@@ -167,8 +167,8 @@ wpis FAQ</a>, by poszukać wskazówek.</p>
  ludzi uruchomi serwer, tym szybsza będzie sieć Tor'a. Jeśli masz co najmniej
  20 kilobajtów/s w obie strony, pomóż Tor'owi, konfigurując swojego klienta tak,
  by był także serwerem. Mamy wiele cech, które czynią serwery Tor'a łatwymi i
- wygodnymi, łącznie z ograniczeniem przepustowości, polityki wyjścia byś mógł
- zmniejszyć ryzyko skarg, i obsługę dynamicznych adresów IP.</p>
+ wygodnymi, łącznie z ograniczeniem przepustowości, politykami wyjścia, byś mógł
+ zmniejszyć ryzyko skarg, oraz obsługą dynamicznych adresów IP.</p>
 
 <p>Posiadanie serwerów w wielu różnych miejscach w sieci sprawia, że
  użytkownicy są bezpieczni. <a

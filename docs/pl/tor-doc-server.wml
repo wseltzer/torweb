@@ -15,8 +15,8 @@
  ludzi uruchomi serwer, tym szybsza będzie sieć Tor'a. Jeśli masz co najmniej
  20 kilobajtów/s w obie strony, pomóż Tor'owi, konfigurując swojego klienta tak,
  by był także serwerem. Mamy wiele cech, które czynią serwery Tor'a łatwymi i
- wygodnymi, łącznie z ograniczeniem przepustowości, polityki wyjścia byś mógł
- zmniejszyć ryzyko skarg, i obsługę dynamicznych adresów IP.</p>
+ wygodnymi, łącznie z ograniczeniem przepustowości, politykami wyjścia, byś mógł
+ zmniejszyć ryzyko skarg, oraz obsługą dynamicznych adresów IP.</p>
 
 <p>Posiadanie serwerów w wielu różnych miejscach w sieci sprawia, że
  użytkownicy są bezpieczni. <a
@@ -30,8 +30,8 @@
 <li>Tor ma wbudowaną obsługę <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">ograniczania
  przepustowości</a>. Ponadto, jeśli masz szybkie łącze, ale chcesz ograniczyć liczbę
- bajtów na dzień (lub tydzień, lub miesiąc) przeznazconych dla Tor'a, spójrz na <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernację</a>.
+ bajtów na dzień (lub tydzień, lub miesiąc) przeznaczonych dla Tor'a, spójrz na <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernację</a>.
 </li>
 <li>Każdy serwer Tor'a ma <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">politykę
@@ -47,8 +47,8 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hiberna
 </li>
 <li>Dobrze działają również serwery z dynamicznym IP, dopóki tylko serwer
  zna swój IP. Przeczytaj ten
- <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DynamicIP">
- wpis do FAQ</a>.
+ <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DynamicIP">wpis
+ do FAQ</a>.
 </li>
 <li>Jeśli twój serwer jest za NAT-em i nie zna swojego publicznego IP
  (np. ma adres postaci 192.168.x.y), będziesz musiał ustawić przekierowanie
@@ -107,7 +107,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hiberna
 3. Wyedytuj dolną część swojego pliku torrc. (Zajrzyj do <a
  href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#torrc">tego
  wpisu FAQ</a> po pomoc.)
- Upewnij się, że podałeś co najmniej Nickname i ORPort. Utwórz DataDirectory,
+ Upewnij się, że podałeś co najmniej Nickname i ORPort. Utwórz katalog podany w DataDirectory,
  jeśli jest to potrzebne, i sprawdź, czy właścicielem tego katalogu jest
  użytkownik, który będzie uruchamiał Tor'a.
  <em>Jeśli chcesz uruchomić więcej niż jeden serwer, to świetnie, ale ustaw proszę
@@ -116,7 +116,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hiberna
 </p>
 
 <p>
-4. Jeśli używasz zapory ogniowej, otwórz w niej przejscie, by połączenia
+4. Jeśli używasz zapory ogniowej, otwórz w niej przejście, by połączenia
  przychodzące mogły dostać sie do skonfigurowanych portów (ORPort, plus
  DirPort, jeśli go włączyłeś). Upewnij się, że dozwolone są wszystkie
  połączenia wychodzące, aby twój serwer mógł dotrzeć do innych serwerów Tor'a.
@@ -183,8 +183,8 @@ Polecamy też następujące kroki:
 
 <p>
 8. Przeczytaj
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">ten dokument</a>,
-by dowiedzieć sie, jak możesz podnieść bezpieczeństwo swojego serwera.
+ <a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">ten dokument</a>,
+ by dowiedzieć sie, jak możesz podnieść bezpieczeństwo swojego serwera.
 </p>
 
 <p>
@@ -205,7 +205,7 @@ by dowiedzieć sie, jak możesz podnieść bezpieczeństwo swojego serwera.
 <p>
 10. Pomyśl o ograniczaniu przepustowości łącza. Użytkownicy sieci kablowych,
  DSL oraz inni z asymetrycznym łączem (np. większy download niż upload) powinni
- ograniczyć przepustowość Tor'a do tej mniejszej, by uniknąć zatorów. Przeczytaj <a
+ ograniczyć przepustowość Tor'a do tej mniejszej wartości, by uniknąć zatorów. Przeczytaj <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">wpis do FAQ
  na temat ograniczania przepustowości</a>.
 </p>
@@ -228,15 +228,15 @@ by dowiedzieć sie, jak możesz podnieść bezpieczeństwo swojego serwera.
 
 <p>
 13. Jeśli na twoim komputerze nie ma serwera WWW, rozważ zmianę portu ORPort na
- 443, a portu katalogowego DirPort na 80. Wielu z użytkowników Tor'a jest ze
+ 443, a portu katalogowego DirPort na 80. Wielu z użytkowników Tor'a jest za
  zaporami ogniowymi, które pozwalają tylko przeglądać sieć WWW, ta zmiana pozwoli
  takim użytkownikom połączyć się z twoim serwerem. Operatorzy serwerów pod Win32
  mogą po prostu bezpośrednio zmienić swój ORPort i DirPort w pliku torrc i
  ponownie uruchomić Tor'a. Serwery pod OS X i Unix nie mogą bezpośrednio
  podłączyć się do tych portów (gdyż nie są uruchamiane jako root), więc dla nich
  trzeba uruchomić jakieś <a
- href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
- przekierowanie portów</a>, by połączenia mogły dotrzeć do ich serwera. Jeśli już
+ href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">przekierowanie
+ portów</a>, by połączenia mogły dotrzeć do ich serwera. Jeśli już
  używasz portó 80 i 443, ale i tak chcesz pomóc, to innymi użytecznymi portami są
  22, 110 i 143.
 </p>
@@ -245,7 +245,7 @@ by dowiedzieć sie, jak możesz podnieść bezpieczeństwo swojego serwera.
 14. Jeśli twój serwer Tor'a ma też inne usługi na tym samym adresie IP
  &mdash; jak na przykład publiczny serwer WWW &mdash; upewnij się, że
  połączenia do tego serwera są dozwolone także z tego samego komputera.
- Musisz zezwolić na te poąłczenia, gdyż klienci Tor'a odkryją, że twój
+ Musisz zezwolić na te połączenia, gdyż klienci Tor'a odkryją, że twój
  serwer Tor'a jest <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">najbezpieczniejszą
  drogą do połączenia się z tym serwerem</a>, i zawsze zbudują obwód, który
@@ -324,7 +324,7 @@ look in /var/lib/tor or ~/.tor)
 -->
 </li>
 <li>Kim jesteś, żebyśmy wiedzieli z kim się skontaktować w razie problemów</li>
-<li>Jakie łącze będie miał serwer</li>
+<li>Jakie łącze będzie miał serwer</li>
 </ul>
 
 <hr />
