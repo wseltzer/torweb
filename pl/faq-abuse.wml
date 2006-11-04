@@ -16,7 +16,7 @@
 
 <p>Przestępcy już i tak mogą robić złe rzeczy. Skoro chcą łamać prawo, już i tak
 mają wiele możliwości, które dają <em>lepsze</em> zabezpieczenie prywatności niż Tor.
-Mogą kraść telefony komórkowe, używać ich a potem wyrzucać; mogą włamywać się do
+Mogą kraść telefony komórkowe, używać ich, a potem wyrzucać; mogą włamywać się do
 komputerów w Korei czy Brazylii i używać ich do różnych działań; mogą używać
 oprogramowania szpiegowskiego, wirusów i innych technik, by przejąć kontrolę nad dosłownie
 milionami komputerów z Windowsem na całym świecie. </p>
@@ -50,13 +50,13 @@ Tor, won't civilization collapse?</a></h3>
 
 <p>Ataki DDoS zwykle polegają na posiadaniu grupy tysięcy komputerów wysyłających
 dane do ofiary. Skoro celem jest zapchanie łącza ofiary, ataki te zwykle wysyłają
-pakiety UDP, gdyż nie wymagają one uzgodnień ani koordynacji. </p>
+pakiety UDP, gdyż nie wymagają one uzgodnień ani koordynacji transmisji. </p>
 
 <p>Ale skoro Tor transportuje wyłącznie prawidłowo utworzone strumienie TCP,
 a nie wszystkie pakiety IP, nie można wysyłać pakietów UDP przez Tor'a. (Nie można
-też wykonać specjalnej fromy tego ataku, jak SYN flooding.) Więc zwykłe ataki DDoS
+też wykonać specjalnej formy tego ataku, jak SYN flooding.) Tak więc, zwykłe ataki DDoS
 nie są możliwe do przeprowadzenia przez Tor'a. Tor uniemożliwia też ataki
-polegające na zwiększeniu objętości danych wysyłanych do zewnętrznych serwerów:
+polegające na narastaniu objętości danych wysyłanych do zewnętrznych serwerów:
 musisz wysłać jeden bajt na każdy bajt, który Tor wyśle do odbiorcy. Ogólnie więc
 ci, którzy mają dość szerokie łącze by wykonać skuteczny atak DDoS, mogą to równie
 dobrze zrobić bez Tor'a. </p>
@@ -67,7 +67,7 @@ dobrze zrobić bez Tor'a. </p>
 <p>Po pierwsze, domyślna polityka wyjścia z Tor'a odrzuca cały ruch wychodzący na
  port 25 (SMTP). Dlatego wysyłanie spamu przez Tor'a nie będzie działać w domyślnej
  konfiguracji. Jest możliwe, że niektórzy operatorzy serwerów włączą port 25 na
- swoim punkcie wyjścia, wtedy ten komputer pozwoli na wysyłanie poczty. Ale ta osoba
+ swoim punkcie wyjścia, wtedy taki komputer pozwoli na wysyłanie poczty. Ale ta osoba
  mogłaby równie dobrze uruchomić otwarty serwer pocztowy przekazujący pocztę, niezależnie
  od Tor'a. Krótko mówiąc, Tor nie jest użyteczny do spamowania, gdyż prawie
  wszystkie serwery Tor'a odmawiają wysłania poczty. </p>
@@ -127,10 +127,10 @@ dobrze zrobić bez Tor'a. </p>
 <li>Ktoś łączy się z siecią IRC i staje się nieznośny. Twój dostawca dostaje uprzejmy list
  o tym, jak włamano się do twojego komputera i/lub twój komputer zostaje zaatakowany
  atakiem typu DDoS. [Port 6667]</li>
-<li>Ktoś używa tor'a do pobrania filmu Vin Diesel, a twój dostawca dostaje
+<li>Ktoś używa Tor'a do pobrania filmu Vin Diesel, a twój dostawca dostaje
  informację o naruszeniu praw autorskich. Zobacz
-<a href="<page eff/tor-dmca-response>">Szablon odpowiedzi
-na taką informację</a>, który wytłumaczy twojemu dostawcy, czemu może
+ <a href="<page eff/tor-dmca-response>">Szablon odpowiedzi
+ na taką informację</a>, który wytłumaczy twojemu dostawcy, czemu może
  prawdopodobnie zignorować taką wiadomość bez żadnych skutków prawnych. [Różne porty]</li>
 </ul>
 
@@ -156,22 +156,22 @@ na taką informację</a>, który wytłumaczy twojemu dostawcy, czemu może
  jest zdolny do spamowania. Próbowaliśmy z nimi współpracować, by im wytłumaczyć,
  że nie każdy program działa w ten sposób, ale poddaliśmy się. Zalecamy, byście
  ich unikali i <a
-href="http://paulgraham.com/spamhausblacklist.html">nauczyli swoich przyjaciół
-(jeśli też ich używają), żeby również unikali nadużywających czarnych list</a>.</li>
+ href="http://paulgraham.com/spamhausblacklist.html">nauczyli swoich przyjaciół
+ (jeśli też ich używają), żeby również unikali nadużywających czarnych list</a>.</li>
 
 </ul>
 
 <a id="IrcBans"></a>
-<h3><a class="anchor" href="#IrcBans">Tor jest zablokowany na sieci IRC, której chcialbym używać.</a></h3>
+<h3><a class="anchor" href="#IrcBans">Tor jest zablokowany na sieci IRC, której chciałbym używać.</a></h3>
 
 <p>Czasami różne ćwoki używają Tor'a, by trollować kanały IRC. Takie nadużycia
  skutkują w tymczasowym blokowaniu według IP ("klines" w slangu IRC), gdyż
- operatorzy sieci próbują trzmać troli z dala od swoich sieci. </p>
+ operatorzy sieci próbują trzymać troli z dala od swoich sieci. </p>
 
 <p>Tego typu odpowiedź podkreśla fundamentalny błąd w modelu bezpieczeństwa sieci IRC:
  wydaje im się, że adresy IP odpowiadają ludziom i że poprzez blokowanie adresu IP,
  blokują właściwego człowieka. W rzeczywistości tak nie jest &mdash;
- wielu takich troli normalnie korzystają z dosłownie milionów otwartych serwerów
+ wielu takich troli normalnie korzysta z dosłownie milionów otwartych serwerów
  proxy i komputerów w całym internecie, do których się włamano. Sieci IRC przegrywają
  walkę, próbując zablokować te wszystkie węzły, powstało wiele czarnych list i kontra-troli
  w oparciu o ten nieprawidłowy model (inaczej niż to jest w antywirusach). Sieć Tor'a jest
@@ -193,7 +193,7 @@ href="http://paulgraham.com/spamhausblacklist.html">nauczyli swoich przyjaciół
 
 <p>Oczywiście, nie wszystkie sieci IRC próbują blokować węzły Tor'a. W końcu, całkiem
  niemało ludzi używa Tor'a, by w prywatności poużywać IRC'a w celu nawiązania dobrej, legalnej
- komunikacji bez przywiązywania ich do ich rzeczywistej tożsamości. Każda sieć IRC musi zdecydować,
+ komunikacji bez przywiązywania tych ludzi do ich rzeczywistej tożsamości. Każda sieć IRC musi zdecydować,
  czy blokowanie kilku więcej z tych milionów adresów IP, których mogą używać
  źli ludzie, jest warte utraty wkładu od dobrze zachowujących się użytkowników Tor'a. </p>
 
@@ -206,8 +206,8 @@ href="http://paulgraham.com/spamhausblacklist.html">nauczyli swoich przyjaciół
 
 <p>Ostatecznie, jeśli odkryjesz sieć IRC, która zdaje się blokować Tor'a lub
  jeden z jego punktów wyjścia, podaj tę informację na <a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/BlockingIrc">stronie śledzenia
-blokad Tor'a przez IRC</a>, żeby podzielić się tym z innymi. Co najmniej jedna sieć
+ href="http://wiki.noreply.org/wiki/TheOnionRouter/BlockingIrc">stronie śledzenia
+ blokad Tor'a przez IRC</a>, żeby podzielić się tym z innymi. Co najmniej jedna sieć
  IRC sprawdza tę stronę, żeby odblokowywać punkty wyjścia, które zostały niesłusznie
  zablokowane. </p>
 
@@ -219,7 +219,7 @@ blokad Tor'a przez IRC</a>, żeby podzielić się tym z innymi. Co najmniej jedn
  że wszystkie otwarte sieci są złe &mdash; próbują przymusić administratorów sieci
  odnośnie spraw polityki, usług i trasowania, a potem wyciągać opłaty od ofiar. </p>
 
-<p>Jeśli administratorzy twojego serwera zdecydują się takich czasrnych list, by
+<p>Jeśli administratorzy twojego serwera zdecydują się takich czarnych list, by
  odrzucać pocztę przychodzącą, porozmawiaj z nimi i opowiedz im o Torze i jego
  politykach wyjścia. </p>
 
@@ -249,11 +249,11 @@ blokad Tor'a przez IRC</a>, żeby podzielić się tym z innymi. Co najmniej jedn
  do "dobrej higieny danych" &mdash; na przykład, by chronić się przed zbierającymi
  informacje firmami reklamowymi, w czasie swoich normalnych czynności. Inni
  używają Tor'a, gdyż jest to ich jedyny sposób na przejście przez restrykcyjne
- lokalne zapory ogniowe. Niektórzy użytkownicy Tor'a mogą właśnie legalnie
+ lokalne zapory ogniowe. Niektórzy użytkownicy Tor'a mogą właśnie teraz legalnie
  łączyć się z twoim serwisem, by wykonywać swoje normalne czynności. Musisz
  zdecydować, czy blokowanie sieci Tor'a jest warte utraty wkładu tych użytkowników,
  jak również potencjalnych przyszłych legalnych użytkowników. (Często ludzie nie
- mają wiedzy, ilu dobrych użytkowników Tor'a łączy się z ich serwisem &mdash;
+ wiedzą, ilu dobrych użytkowników Tor'a łączy się z ich serwisem &mdash;
  tego się nie zauważa, dopóki nie pojawi się jakiś nieuprzejmy.)</p>
 
 <p>Teraz powinieneś się zapytać samego siebie, co zrobić z usługami grupującymi
@@ -261,7 +261,7 @@ blokad Tor'a przez IRC</a>, żeby podzielić się tym z innymi. Co najmniej jedn
  bardzo od AOL.</p>
 
 <p>Ostatecznie, proszę pamiętać, że serwery Tor'a mają <a
-href="#ExitPolicies">indiwidualne polityki wyjścia</a>. Wiele serwerów Tor'a
+ href="#ExitPolicies">indywidualne polityki wyjścia</a>. Wiele serwerów Tor'a
  w ogóle nie zezwala na połączenia wychodzące. Wiele z tych, które zezwalają
  na pewne połączenia wychodzące może już blokować połączenia z twoim serwisem.
  Jeśli chcesz blokować węzły Tor'a, przejrzyj ich polityki wyjścia i blokuj
@@ -269,8 +269,8 @@ href="#ExitPolicies">indiwidualne polityki wyjścia</a>. Wiele serwerów Tor'a
  wyjścia mogą się zmieniać (podobnie jak lista węzłów w sieci). </p>
 
 <p>Jeśli naprawdę chcesz to zrobić, mamy
-<a href="<svnsandbox>contrib/exitlist">skrypt Pythona, który parsuje
-katalog Tor'a</a>. (Wiedz, że ten skrypt nie poda ci idealnie dokładnej listy
+ <a href="<svnsandbox>contrib/exitlist">skrypt Pythona, który parsuje
+ katalog Tor'a</a>. (Wiedz, że ten skrypt nie poda ci idealnie dokładnej listy
  adresów IP, które mogą się z tobą łączyć przez Tor, gdyż połączenia z niektórych
  serwerów Tor'a mogą wychodzić z innych adresów niż te, które podaje serwer.)
 </p>
@@ -310,8 +310,8 @@ Pamiętać należy jednak, że to nie znaczy, że Tor jest nie narażony. Tradyc
  ale to nie z nami należy rozmawiać o sprawach prawnych. </p>
 
 <p>Spójrz na
-<a href="<page eff/tor-legal-faq>">Prawne FAQ tor'a</a>,
-i skontaktuj się bezpośrednio z EFF jeśl ibędziesz miał jakiekolwiek dalsze pytania prawne. </p>
+ <a href="<page eff/tor-legal-faq>">Prawne FAQ tor'a</a>,
+ i skontaktuj się bezpośrednio z EFF jeśli będziesz miał jakiekolwiek dalsze pytania prawne. </p>
 
   </div><!-- #main -->
 
