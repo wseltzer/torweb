@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8183
+# Based-On-Revision: 8907
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Wolontariusze" CHARSET="UTF-8"
@@ -11,9 +11,6 @@
 <ol>
 <li>Prosimy rozważyć <a href="<page docs/tor-doc-server>">uruchomienie
  serwera</a>, by wspomóc rozwój sieci Tor'a.</li>
-<li>Spójrz na <a href="<page gui/index>">Konkurs na GUI dla Tor'a</a> i
- daj swój wkład w uczynienie interfejsu i używalności Tor'a lepszymi. Darmowa koszulka za
- każdy wkład!</li>
 <li>Rozpowiadaj o systemie Tor swoim znajomym. Spraw, by uruchomili serwer.
  Spraw, by uruchomili usługi ukryte. Spraw, by mówili o systemie Tor swoim znajomym.</li>
 <li>Szukamy funduszy i sponsorów. Jeśli podobają ci się cele Tor'a,
@@ -60,7 +57,9 @@
  z cron'a, a może byłby uśpiony aż do właściwego momentu i wtedy wykonywał swoją
  pracę (to by raczej było bardziej przenośne). Czy ktoś mógłby napisać taki
  skrypt za nas, a my byśmy go umieścili w katalogu <a href="<svnsandbox>contrib/">contrib/</a>?
- To byłby dobry wkład w <a href="<page gui/index>">Konkurs na GUI dla Tor'a</a>.</li>
+ To byłby dobry wkład w <a href="<page gui/index>">Konkurs na GUI dla Tor'a</a>.
+	 <!-- We have a good script to adjust stuff now, right? -NM -->
+ </li>
 <li>Tor może <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">wychodzić
  z sieci Tor'a z podanego węzła</a>, ale powinniśmy móc podać tylko kraj i mieć coś,
@@ -88,13 +87,14 @@
  funkcjonalność Privoxy w Firefoksie 1.5+? Podobno Tor jest o wiele szybszy, gdy
  nie używa się Privoxy.</li>
 <li>Proszę pomóc Matt'owi Edman'owi z dokumentacją i dokumentami jak-to-zrobić do
- jego projektu <a href="http://vidalia-project.net/">Tor Controller</a>.</li>
+ jego projektu Tor Controller i <a href="http://vidalia-project.net/">Vidalia</a>.</li>
 <li>Przejrzyj i udokumentuj
  <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">naszą
  listę programów</a>, które można skonfigurować do współpracy z Tor'em.</li>
 <li>Potrzebujemy lepszej dokumentacji do dynamicznego przechwytywania połączeń
  i wysyłania ich przez Tor'a. tsocks (Linux), dsocks (BSD),
- i freecap (Windows) zdają się być dobrymi kandydatami.</li>
+ i freecap (Windows) zdają się być dobrymi kandydatami, jako że lepiej
+ używałyby naszej nowej cechy TransPort.</li>
 <li>Mamy ogromną listę <a href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">potencjalnie
  użytecznych programów, które współpracują z Tor'em</a>. Które z nich są
  przydatne w jakich sytuacjach? Proszę pomóż nam je testować i zapisuj
@@ -124,21 +124,7 @@
  umożliwia autentyfikowane aktualizacje, ale według naszych informacji,
  żaden zaimplementowany kod typu DHT (z dystrybuowaną tablicą haszowaną) nie
  obsługuje autentyfikowanych aktualizacji.</li>
-<li>Serwery wyjściowe z sieci Tor muszą wysyłać wiele żądań DNS w sposób
- równoległy. Ale funkcja gethostbyname() jest słabo zaprojektowana --- zatrzymuje
- działanie programu dopóki nie skończy przetwarzać żądania --- wymaga więc
- osobnego wątku lub procesu. Dlatego Tor jest zmuszany uruchamiać wiele
- wątków wyłącznie dla DNS. Istnieją jakieś asynchroniczne biblioteki DNS, ale
- zawierają one błędy i zostały porzucone. Czy są wśród nich jakieś stabilne,
- szybkie, łatwe i będące wolnym oprogramowaniem? (Pamiętaj, że Tor używa
- OpenSSL, a OpenSSL jest (prawdopodobnie) niezgodny z GPL, więc biblioteki na
- licencji GPL odpadają.) Jeśli tak (lub jeśli możemy to sprawić), powinniśmy
- zintegrować je do Tor'a. Spójrz na <a
- href="http://archives.seul.org/or/talk/Sep-2005/msg00001.html">wiadomość
- Agl'a</a>, by poznać jedno potencjalne podejście. Zobacz też
- <a href="http://daniel.haxx.se/projects/c-ares/">c-ares</a> i
- <a href="http://www.monkey.org/~provos/libdnsres/">libdnsres</a>.
-</li>
+
 <li>Tor 0.1.1.x zawiera obsługę sprzętowych akcelelatorów kryptograficznych,
  poprzez OpenSSL. Ale nikt tego jeszcze nie przetestował. Czy ktoś chce
  zdobyć kartę i powiadomić nas, jak to działa?</li>
@@ -148,17 +134,10 @@
  określenia, kiedy skurczyć/rozszerzyć bufory. Może to powinno być zaprojektowane
  podobnie jak bufory w jądrze Linuksa, gdzie jest wiele mniejszych buforów, które
  łączą się wzajemnie, zamiast używać monolitycznych buforów?</li>
-<li>Zaimplementować żądania odwrotne DNS wewnątrz Tor'a (już podane w
- Sekcji 5.4 pliku <a href="<svnsandbox>doc/tor-spec.txt">tor-spec.txt</a>).</li>
 <li>Dokonać analizy bezpieczeństwa Tor'a z <a
  href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Sprawdzić, czy
  istnieją jakieś dobre biblioteki "fuzz", których nam potrzeba. Zdobądź sławę
  gdy wydamy nową wersję dzięki Tobie!</li>
-<li>Jak trudno jest zmienić bind'a lub serwer Proxy DNS tak, by kierował swoje
- żądania do Tor'a poprzez nasze <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#CompatibleApplications">rozszerzenie
- socks - tor-resolve</a>? dsocks już to robi na BSD. A może konwertować zapytania
- do DNS z UDP na TCP i wysyłać je przez Tor'a?</li>
 <li>Tor używa TCP do transportu i TLS do szyfrowania transmisji. To jest
  ładne i proste, ale oznacza to, że wszystkie komórki na łączu zostają
  opóźnione, gdy pojedynczy pakiet zostanie utracony, co oznacza, że rozsądnie
