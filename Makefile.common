@@ -6,7 +6,7 @@ WMLOPT  = \
           -D TORSVNHEAD=$(TORSVNHEAD)
 
 
-LANGS=de en es it fr ja pl pt se ru
+LANGS=de en es it fr ja pl pt ru se zh-cn
 WMLFILES=$(wildcard $(patsubst %, %/*.wml, $(LANGS)))
 WMIFILES=$(wildcard $(patsubst %, %/*.wmi, $(LANGS)) $(WMLBASE)/include/*.wmi )
 
@@ -40,10 +40,13 @@ all: $(HTMLFILES)
 %.html.pt: pt/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
+%.html.ru: ru/%.wml en/%.wml
+	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
+
 %.html.se: se/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
-%.html.ru: ru/%.wml en/%.wml
+%.html.zh-cn: zh-cn/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
 .deps/%.html.en.d: en/%.wml .deps/.stamp
@@ -102,6 +105,13 @@ all: $(HTMLFILES)
 	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
+.deps/%.html.ru.d: ru/%.wml .deps/.stamp
+	tmpfile=`tempfile` \
+	lang=`dirname $<` && \
+	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
+	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
+	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
+	rm -f $$tmpfile
 .deps/%.html.se.d: se/%.wml .deps/.stamp
 	tmpfile=`tempfile` \
 	lang=`dirname $<` && \
@@ -109,7 +119,7 @@ all: $(HTMLFILES)
 	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.html.ru.d: ru/%.wml .deps/.stamp
+.deps/%.html.zh-cn.d: zh-cn/%.wml .deps/.stamp
 	tmpfile=`tempfile` \
 	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
