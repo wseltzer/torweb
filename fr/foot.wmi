@@ -10,24 +10,24 @@
   <div class="bottom" id="bottom">
      <p>
      <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
-      Derni�re modification&nbsp;: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      Dernière modification : <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
-      Derni�re compilation&nbsp;: <: print scalar localtime(); :>
+      Dernière compilation : <: print scalar localtime(); :>
      </p>
 
    <: unless (translation_current()) { :>
      <p>
-      Attention: Cette traduction peut &ecirc;tre obsol&egrave;te. La version anglaise originale est la
-      <:= translation_get_masterrevision() :> alors que la version traduite est bas&eacute;e sur la
+      Attention: Cette traduction peut être obsolète. La version anglaise originale est la
+      <:= translation_get_masterrevision() :> alors que la version traduite est basée sur la
       <:= translation_get_basedonrevision() :>.
      </p>
    <: } :>
 
    <: if (has_translations()) {  :>
      <p>
-       Cette page est aussi disponible dans les langues suivantes&nbsp;:
+       Cette page est aussi disponible dans les langues suivantes :
        <: print list_translations() :>.<br>
-       Comment configurer la <a href="http://www.debian.org/intro/cn#howtoset">langue par d&eacute;faut du document</a>.
+       Comment configurer la <a href="http://www.debian.org/intro/cn#howtoset">langue par défaut du document</a>.
      </p>
    <: }; :>
   </div>
