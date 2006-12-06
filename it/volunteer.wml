@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8183
+# Based-On-Revision: 9027
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Partecipa"
@@ -11,9 +11,6 @@
 <ol>
 <li>Puoi <a href="<page docs/tor-doc-server>">realizzare
 un server</a> per aiutare a far crescere la rete Tor.</li>
-<li>Dai un'occhiata alla <a href="<page gui/index>">Tor GUI Competition</a>, e
-aiutaci a migliorare l'interfaccia
-e l'usabilit&agrave; di Tor. Una T-shirt Tor gratis per ogni proposta!</li>
 <li>Parla coi tuoi amici! Fagli realizzare un server. Fagli aprire degli hidden
 services. Falli parlare di Tor coi loro amici.</li>
 <li>Cerchiamo finanziamenti e sponsor. Se ne apprezzi gli obiettivi, per favore
@@ -65,7 +62,9 @@ cron, o magari attivarsi solo al momento giusto per fare
 la sua configurazione (probabilmente cos&igrave; &egrave; pi&ugrave; portabile). Qualcuno pu&ograve; scrivercelo
 cos&igrave; lo mettiamo in <a href="<svnsandbox>contrib/">contrib/</a>?
 Questa &egrave; una buona prova per il <a href="<page gui/index>">concorso per una GUI
-Tor</a>.</li>
+Tor</a>.
+<!-- We have a good script to adjust stuff now, right? -NM -->
+</li>
 <li>Tor &ograve; <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">uscire dalla
 rete Tor network da un particolare exit node</a>, ma dovremmo riuscire a
@@ -93,13 +92,16 @@ gli utenti a gestire questo rischio? E di che rischio si tratta esattamente?</li
 per Firefox 1.5+? Sappiamo che Tor &egrave; molto pi&ugrave; veloce senza
 Privoxy.</li>
 <li>Aiuta Matt Edman con la documentazione e con le guide del suo
-<a href="http://vidalia-project.net/">Tor Controller</a>.</li>
+Tor controller,
+<a href="http://vidalia-project.net/">Vidalia</a>.</li>
 <li>Analizzare e documentare
 <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">la
 nostra lista di programmi</a> configurabili per essere usati con Tor.</li>
 <li>Abbiamo bisogno di una documentazione migliore per intercettare dinamicamente
 le connessioni e inviarle via Tor. tsocks (Linux), dsocks (BSD),
-e freecap (Windows) sembrano dei buoni candidati.</li>
+e freecap (Windows) sembrano dei buoni candidati, come pure un miglior uso
+della nosta nuova funzione TransPort.</li>
+
 <li>C'&egrave; una lista immensa di <a href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">programmi potenzialmente
 utili che si interfacciano con Tor</a>. In quali situazioni sono utili?
 Aiutaci a testarli e a documentare i risultati.</li>
@@ -120,7 +122,7 @@ pochi directory server. &#200; uno svantaggio per la privacy e per la robustezza
 una maggiore robustezza dovremo rendere ancora meno privati i descrittori dei
 hidden service dato che dovremo duplicarli in
 molti mirror diversi. Idealmente vorremmo separare del tutto il sistema di storage/lookup dai
-directory server Tor. TIl primo problema &egrave; che occorre
+directory server Tor. Il primo problema &egrave; che occorre
 disegnare un nuovo formato per i descrittori dei hidden service che a) sia ascii piuttosto che
 binario, per praticit&agrave;; b) tenga criptata la lista degli introduction point
 a meno di non conoscere l'indirizzo <tt>.onion</tt>, in modo che la directory
@@ -129,20 +131,6 @@ e la firma su un descrittore di un hidden service in modo che non possano
 rivelarne uno falso. In secondo luogo, va bene qualsiasi sistema affidabile
 di storage distribuito, fintanto che permetta aggiornamenti automatici, ma per ora
 pare che nessun codice DHT implementato supporta gli aggiornamenti automatici.</li>
-<li>Gli exit server Tor devono eseguire numerose risoluzioni DNS in parallelo. Purtroppo
-gethostbyname() &egrave; mal disegnato --- si blocca finch&eacute; non ha finito
-di risolvere una query --- e richiede il proprio thread or processo. Cos&igrave; Tor
-deve aprire numerosi thread DNS "di lavoro". Esistono alcune librerie
-DNS asincrone, ma sono storicamente bacate e abbandonate.
-Qualcuna di queste &egrave; anche software stabile, pulito e libero? (Ricorda che
-Tor usa OpenSSL e che OpenSSL probabilmente non &egrave; compatibile con la GPL, perci&ograve;
-le librerie GPL sono escluse.) Se fosse cos&igrave;
-(o se potessimo renderle tali), le integreremmo in Tor. vedi <a
-href="http://archives.seul.org/or/talk/Sep-2005/msg00001.html">il post di Agl
-</a> per uno degli approcci possibili. Vedi anche
-<a href="http://daniel.haxx.se/projects/c-ares/">c-ares</a> e
-<a href="http://www.monkey.org/~provos/libdnsres/">libdnsres</a>.
-</li>
 <li>Tor 0.1.1.x include il supporto per acceleratori crittografici hardware
 tramite OpenSSL. Nessuno tuttavia lo ha ancora testato. C'&egrave; qualcuno che vuole
 prendere una scheda e farci sapere come va?</li>
@@ -152,17 +140,10 @@ solo per i buffer. Dobbiamo sapere quando restringere o espandere
 i buffer. Forse si potrebbe modellare una soluzione come i buffer nel kernel
 Linux, dove ci sono buffer pi&ugrave; piccoli che si collegano l'un l'altro,
 invece che dei buffer monolitici?</li>
-<li>Implementare richieste di reverse DNS dentro Tor (gi&agrave; specificato nella
-sezione 5.4 delle <a href="<svnsandbox>doc/tor-spec.txt">tor-spec.txt</a>).</li>
 <li>Effettuare una analisi di sicurezza di Tor con <a
 href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determinare
 se esistono delle buone librerie di fuzzing adatte al nostro scopo. Guadagnati la fama
 e il credito quando potremo fare una nuova release grazie a te!</li>
-<li>Sarebbe difficile fare una patch per bind o per
-un DNS proxy per redirigere le richieste a Tor tramite la nostra <a
-+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#CompatibleApplications">estensione socks
-tor-resolve</a>? dsocks lo permette gi&agrave; su BSD. E si potrebbe
-convertire le richieste DNS UDP in richieste TCP da inviare via Tor?</li>
 <li>Tor usa TCP per il trasporto e TLS per la cifratura del
 collegamento. Funziona ed &egrave; semplice, ma significa che se un pacchetto
 viene scartato tutte le cellule di un collegamento subiscono un ritardo; inoltre
