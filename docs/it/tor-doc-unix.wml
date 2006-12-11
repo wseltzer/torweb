@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8204
+# Based-On-Revision: 9065
 # Last-Translator: jan@eul.org
 
 #include "head.wmi" TITLE="Istruzioni per installare Tor su Linux/BSD/Unix" CHARSET="UTF-8"
@@ -69,11 +69,14 @@ in cima al file di configurazione. Non dimenticare il punto a fine riga.
 </p>
 
 <p>Privoxy conserva un file di log per tutto ci&ograve; che vi passa attraverso.  Per
-impedirlo occorre commentare via due righe inserendo un 
-\# a inizio linea. Le due righe sono:<br>
+impedirlo occorre commentare via tre righe inserendo un 
+\# a inizio linea. Le tre righe sono:<br>
 <tt>logfile logfile</tt><br>
 e<br>
 <tt>jarfile jarfile</tt><br>
+e (su alcuni sistemi) la riga <br>
+<tt>debug 1  # show each GET/POST/CONNECT request</tt><br>
+
 </p>
 
 <p>Dovrai riavviare Privoxy perch&eacute; le modifiche abbiano effetto.</p>
@@ -86,27 +89,27 @@ e<br>
 <p>Dopo aver installato Tor e Privoxy, devi configurare i tuoi programmi per
 usarli. Il primo passo è la configurazione della navigazione web.</p>
 
-<p>Se usi Firefox (noi lo consigliamo), controlla il <a
-href="http://freehaven.net/~squires/torbutton/">plugin Torbutton
-</a>e configura tutto ci&ograve; che serve. Se pensi di usare Firefox
-su un computer diverso da quello su cui gira Tor, leggi il <a
-href="<page docs/tor-switchproxy>">Tor SwitchProxy howto</a> per installare
-un plugin che semplifica il passaggio tra l'uso di Tor e l'uso di una
-connessione diretta.</p>
+<p>Se usi Firefox (l consigliamo), basta installare il <a
++href="https://addons.mozilla.org/firefox/2275/">plugin Torbutton
+</a> e riavviare Firefox:
+</p>
 
-<p>Altrimenti devi configuare manualmente il proxy del
-tuo browser.
-In Mozilla, &egrave; in Modifica|Preferenze|Avanzate|Proxy.
-In Opera 7.5x &egrave; in Strumenti|Preferenze|Rete|Proxy server.</p>
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1">
+
+<br />
 
 <p>
-Devi scrivere "localhost" e
-"8118" per fare puntare i primi quattro protocolli a Privoxy, come mostrato qui. (Anche
-se Privoxy non supporta FTP e Gopher, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">devi
-configurarli ugualmente</a>.) Devi compilare anche la voce per il proxy socks in
-modo che punti direttamente a Tor ("localhost", "9050", e socks5)
-cos&igrave; da coprire altri protocolli oltre ai primi quattro. Poi fai clic su "OK".</p>.
+(<a href="http://freehaven.net/~squires/torbutton/">Maggiori informazioni su
+Torbutton</a>.
+Se vuoi usare Firefox su un computer diverso da quello su cui gira Tor, leggi la <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
+FAQ
+per usare Tor su un pc diversor</a>. Se devi usare un
+browser diverso da Firefox, dovrai <a href="<page
+docs/tor-doc-web>">configurare il proxy da te</a>.)
+</p>
 
 <p>&#200; <strong>necessario</strong> usare privoxy perch&eacute; <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">i browser
@@ -138,9 +141,13 @@ HOWTO</a>.
 
 <p>
 Ora prova ad usare il tuo browser con Tor e controlla
-che il tuo indirizzo IP sia anonimo. Fai clic sul <a
-href="http://torstat.xenobite.eu/">Tor
-detector</a> e controlla se secondo lui stai usando Tor o no.
+che il tuo indirizzo IP address venga anonimizzato. Fai clic sul
+<a href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">
+Tor detector</a>
+e controlla se secondo lui stai usando Tor o no.
+#<a href="http://ipchicken.com/">iquesto sito</a>
+#per vedere quale indirizzo IP crede che tu stia usando.
+
 (Se questo sito non risponde, vedi <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">questa
 FAQ</a> per conoscere altri modi di verificare il tuo Tor.)

@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8169
+# Based-On-Revision: 8985
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Istruzioni per configurare un server Tor" CHARSET="UTF-8"
@@ -159,7 +159,10 @@ Se usi la versione di sviluppo di Tor, il manuale &egrave; disponibile
 
 <p>Appena il server si collega alla rete, cerca
 di capire se le porte che hai configurato sono raggiungibili dall'
-esterno. Ci vogliono fino a 20 minuti. Cerca una riga nei log che dica
+esterno. Ci vogliono fino a 20 minuti. Cerca
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">riga del
+log</a> cos&igrave;
+
 <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
 Se non trovi questo messaggio, significa che il tuo server non &egrave; raggiungibile
 dall'esterno &mdash; ricontrolla il firewall, controlla che il server usi e verifichi 
@@ -200,6 +203,11 @@ href="<page faq-abuse>#TypicalAbuses">problemi che potresti
 avere con la exit policy di default</a>.
 Se scegli di applicare una exit policy particolarmente aperta, assicurati
 che per il tuo ISP non ci siano problemi.
+Se il tuo computer non pu&ograve; raggiungere certe risorse (ad esempio,
+se sei dietro un firewall restrittivo o dietro un content filter), per favore
+rifiutali esplicitamente nella tua exit policy &mdash; altrimenti anche gli utenti Tor
+ne verrebbero pregiudicati.
+
 </p>
 
 <p>
@@ -296,8 +304,8 @@ le modifiche.
 <br />
 
 <p>
-Fai andare il tuo server per qualche giorno per controllare che funzioni e che
-l'uso delle risorse sia sostenibile. Poi dovresti registrare il tuo server.
+Fai andare il tuo server per qualche settimana per controllare che funzioni e che
+l'uso delle risorse sia sostenibile. Poi, se vuoi, puoi registrare il tuo server.
 In questo modo ti riservi il suo nickname che nessun altro potr&agrave; usare e ci permetterai
 di contattarti se dovessi aggiornare qualcosa o ci fossero problemi.
 </p>
@@ -310,15 +318,28 @@ scrivi nel messaggio queste informazioni:
 </p>
 <ul>
 <li>Il nickname del tuo server</li>
-<li>Il fingerprint della chiave del tuo server (il cotenuto del file
-"fingerprint" nella tua DataDirectory &mdash; su Windows, cerca in
+<li>Il fingerprint della identity key del tuo server. Viene  <a
++href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">loggata</a>
+all'avvio:
+qualcosa come "<tt>moria1 FFCB 46DB 1339 DA84 674C 70D7 CB58 6434
++C437 0441</tt>".
+<!--
+Si trova anche nel file "fingerprint" nella tua DataDirectory.
+&mdash; su Windows, cerca in
 \<i>username</i>\Dati&nbsp;Applicazioni\tor\ o \Dati&nbsp;Applicazioni\tor\;
 su OS X, vai in /Library/Tor/var/lib/tor/; e su Linux/BSD/Unix,
 guarda in /var/lib/tor o ~/.tor)
+-->
 </li>
 <li>Chi sei, cos&igrave che sappiamo chi contattare se ci sono problemi</li>
 <li>Che tipo di connessione ha il nuovo server</li>
 </ul>
+
+<p>
+Dopodich&eacute; noi valuteremo il tuo server per una settimana o due allo scopo
+di verificare che stia su e funzioni; non stupirti quindi se ci metteremo un po'
+a rispondere.
+</p>
 
 <hr />
 
