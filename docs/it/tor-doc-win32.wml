@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8152
+# Based-On-Revision: 9101
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Istruzioni per installare Tor su MS Windows" CHARSET="UTF-8"
@@ -29,13 +29,13 @@ L'installer per MS Windows comprende <a href="<page index>">Tor</a>,
 <a href="http://www.vidalia-project.net/">Vidalia</a> (una interfaccia grafica per Tor), e <a
 href="http://www.privoxy.org">Privoxy</a> (un filtro web proxy) in
 un unico pacchetto che contiene le tre applicazioni gi&agrave; preconfigurate per funzionare insieme.
-<a href="<page download>">Scarica la versione <!-- stabile o quella -->
+<a href="<page download>">Scarica la versione stabile o quella
 sperimentale dalla pagina dei download</a>.
 </p>
 
 <p>Se non riesci a far funzionare i pacchetti, puoi scaricare Tor da solo
-dalla <a href="<page download>">pagina di download</a>, e poi <a
-href="<page docs/tor-doc-unix>#privoxy>">installare
+dalla <a href="<page download-windows>">pagina di download per Windows</a>,
+e poi <a href="<page docs/tor-doc-unix>#privoxy>">installare
 e configurare Privoxy a parte</a>.
 </p>
 
@@ -69,30 +69,26 @@ di modificare. Ora Tor &egrave; installato.
 <p>Dopo l'installazione di Tor e di Privoxy, devi configurare i tuoi programmi affinch&eacute;
 li usino. Il primo passo &egrave; configurare il browser web.</p>
 
-<p>se usi Firefox (raccomandato), puoi usare il <a
-href="http://freehaven.net/~squires/torbutton/">plugin Torbutton
-</a> che configura tutto da solo. Se il computer su cui usi Firefox
-non &egrave; quello dove gira Tor, leggi la nostra <a
-href="<page docs/tor-switchproxy>">guida per Tor e SwitchProxy</a> per installare
-un plugin che rende facilissimo passare da Tor a una
-connessione diretta.</p>
+<p>Se usi Firefox (consigliato), basta installare il <a
+href="https://addons.mozilla.org/firefox/2275/">plugin Torbutton
+</a> e riavviare Firefox:
+</p>
 
-<p>Se usi un altro browser, devi modificare manualmente la configurazione del
-proxy.
-In Mozilla and Firefox, &egrave; in Modifica|Preferenze|Avanzate|Proxy.
-In Opera 7.5x si trova in Strumenti|Preferenze|Rete|Proxy server.
-In IE, sta in Strumenti|OpzioniInternet|Connessioni|Impostazioni LAN|Seleziona Server Proxy|Avanzate.</p>
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1">
 
-<img alt="Proxy settings in IE"
-src="../img/screenshot-win32-ie-proxies.jpg" />
+<br />
 
 <p>
-Compila inserendo "localhost"
-e "8118" per puntare i primi quattro protocolli a Privoxy, come mostrato qui. (Anche
-se Privoxy non supporta FTP e Gopher, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">dovresti
-configurarli lo stesso</a>.) Compila anche il campo socks proxy per puntarlo direttamente a Tor ("localhost", "9050", e socks5)
-in modo da coprire anche gli altri protocolli dopo i primi quattro. Poi fai clic su "OK".</p>
+(<a href="http://freehaven.net/~squires/torbutton/">Maggiori informazioni su
+Torbutton</a>.
+Se vuoi usare Firefox su un computer diverso da dove gira To, leggi la <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">FAQ
+per usare Tor su un pc differente</a>. Se devi usare un
+browser diverso da Firefox, dovrai <a href="<page
+docs/tor-doc-web>">configurare il proxy</a>.)
+</p>
  
 <p>&#200; <strong>necessario</strong> usare Privoxy perch&eacute; <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">il browser
@@ -136,9 +132,12 @@ src="../img/screenshot-win32-vidalia.png">
 
 <p>
 Ora devi provare Tor col tuo browser per controllare
-che il tuo indirizzo IP sia anonimo. Fai clic sul <a
-href="http://torstat.xenobite.eu/">Tor
-detector</a> e controlla se rileva che stai usando Tor oppure no.
+che il tuo indirizzo IP sia anonimizzato. Fai clic sul
+<a href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">
+Tor detector</a>
+e guarda se rileva se stai usando Tor o no.
+#<a href="http://ipchicken.com/">this site</a>
+#to see what IP address it thinks you're using.
 (se questo sito &egrave; gi&ugrave;, vedi <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">questa
 FAQ</a> per altri modi di testare il tuo Tor.)
