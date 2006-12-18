@@ -37,7 +37,7 @@ Tor 最新发布版本可以在<a href="<page download>">下载</a>页面获得�
 ./configure &amp;&amp; make</tt><br />
 现在你可以通过 <tt>src/or/tor</tt> 运行 Tor，
 或者你可以执行 <tt>make install</tt>（需要 root 权限）把它安装到 /usr/local，
-之后你就能通过 <tt>tor<tt> 启动 Tor。
+之后你就能通过 <tt>tor</tt> 启动 Tor。
 </p>
 
 <p>
@@ -57,13 +57,13 @@ Tor 安装结束后，你需要配置应用程序来使用它。
 <p>
 第一步是配置 Web 浏览。
 首先安装 <a href="http://www.privoxy.org/">Privoxy</a>：
-点击 'recent releases' 然后选择你需要的软件包或者直接从源文件安装。
+点击“recent releases”然后选择你需要的软件包或者直接从源文件安装。
 Privoxy 是一个进行内容过滤的 Web 代理，能与 Tor 很好地结合。
 </p>
 
 <p>
 Privoxy 安装完成后（通过软件包或源文件），<b>你需要配置 Privoxy 使用 Tor</b>。
-打开 Privoxy 的 "config" 文件（位于 /etc/privoxy 或 /usr/local/etc），
+打开 Privoxy 的“config”文件（位于 /etc/privoxy 或 /usr/local/etc），
 在配置文件的开始添加一行<br />
 <tt>forward-socks4a / localhost:9050 .</tt><br>
 别忘了最后那个点。
@@ -71,7 +71,7 @@ Privoxy 安装完成后（通过软件包或源文件），<b>你需要配置 Pr
 
 <p>
 Privoxy 保留了一个日志文件记录所有通过它的东西。
-为了阻止这个你需要注释掉三行（在行前添加 \#）。
+为了阻止这个你需要注释掉三行（在行前添加一个 #）。
 这三行是：<br />
 <tt>logfile logfile</tt><br>
 和<br>
@@ -147,14 +147,14 @@ HOWTO</a>。
 </p>
 
 <p>
-如果你的个人防火墙限制你的计算机连接到它自己（包括 Fedora Core4 上面的 SELinux 这样的东西），
+如果你的个人防火墙限制你的计算机连接到它自己（包括 Fedora Core 4 上面的 SELinux 这样的东西），
 一定要允许从本地应用程序到 Privoxy（本地端口 8118）和 Tor（本地端口 9050）的连接。
 如果你的防火墙阻挡向外的连接，那么至少让它能够连接 TCP 端口 80 和 443，
 然后阅读<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">此 FAQ 条目</a>。
 
 如果 SELinux 的配置使得 Tor 或者 Privoxy 无法正常运行，
 在目录 /etc/selinux/targeted 下创建一个名为 booleans.local 的文件。
-用你喜爱的文本编辑器修改这个文件加入 "allow_ypbind=1"。
+用你喜爱的文本编辑器修改这个文件加入“allow_ypbind=1”。
 然后重启机器使修改生效。
 </p>
 
