@@ -1,0 +1,241 @@
+## translation metadata
+# Based-On-Revision: 7395
+# Last-Translator: webmaster(ät]kuura.org
+
+#include "head.wmi" TITLE="Overview"
+
+<div class="main-column">
+
+<h2>Tor: Mikä se on?</h2>
+<hr />
+
+<p>
+Tor on virtuaalisista reiteistä koostuva verkosto, jonka avulla sekä
+yksityiset ihmiset että ryhmät voivat käyttää internetiä turvallisemmin.
+Se tarjoaa myös ohjelmistokehittäjille mahdollisuuden kehittää ohjelmia
+sisäänrakennetuilla turvaominaisuuksilla. Tor tarjoaa perustan monille
+erilaisille sovelluksille, joiden avulla sekä yksityiset henkilöt että
+organisaatiot voivat jakaa tietoa julkisten verkkojen yli vaarantamatta
+yksityisyyttään.
+</p>
+
+<p>
+Yksityishenkilöt käyttävät Tor-verkostoa estääkseen web-sivuja
+seuraamasta heitä tai heidän perheenjäseniään tai käyttääkseen
+uutissivuja, pikaviestipalveluita yms. kun heidän palveluntarjoajansa
+on estänyt ne. Tor mahdollistaa myös
+<a href="<page docs/tor-hidden-service>">piilotetuttujen palveluiden</a>
+ajamisen: käyttäjä voi ajaa www-palvelinta tai muita palveluja
+paljastamatta sivustonsa sijaintia. Tavallisia käyttökohteita ovat myös
+arkaluontoiset verkkokeskustelut, esimerkiksi chat-huoneet ja foorumit
+raiskauksen ja pahoinpitelyn uhreille tai vakavasti sairaille ihmisille.
+</p>
+
+<p>
+Toimittajat käyttävät Toria keskustellakseen anonyymisti kantelijoiden
+ja ääriryhmien edustajien kanssa. Organisaatiot antavat Torin avulla
+työntekijöilleen mahdollisuuden ottaa ulkomailla yhteyden kotisivuunsa
+paljastamatta kaikille lähellä oleville työskentelevänsä siellä.
+</p>
+
+<p>
+Indymedian kaltaiset ryhmittymät suosittelevat Tor-verkon käyttämistä
+jäseniensä tietoturvan ylläpitämiseksi. Aktivistiryhmät, kuten Electronic
+Frontier Foundation (EFF), tukevat Torin kehitystä keinona
+kansalaisoikeuksien säilyttämiseen verkossa. Yritykset käyttävät Toria
+turvallisena keinona suorittaa kilpailijatutkimusta ja suojaamaan
+arkaluontoisia välityskuvioita salakuuntelijoilta. Sillä korvataan myös
+perinteisiä yrityksen sisäisiä VPN-verkkoja, jotka paljastavat
+ulkopuolisille tietoja, kuten kommunikaation tarkka määrä ja aika. Missä
+toimipisteissä on myöhään työskenteleviä työntekijöitä? Missä työntekijät
+selaavat työvoimasivuja? Mitkä tutkimusosastot ovat yhteydessä yrityksen
+patenttilakimiehiin?
+</p>
+
+<p>
+Eräs Yhdysvaltain laivaston haara käyttää Toria open source -tiedusteluun,
+ja yhden sen ryhmistä tiedetään käyttäneen Toria äskettäin Lähi-Idässä.
+Valtion valvontaelimet käyttävät sitä web-sivujen valvomiseen ilman
+virallisten IP-osoitteiden jättämistä lokeihin sekä yllätysoperaatioiden
+salaamiseen.
+</p>
+
+<p>
+Yksi syy, <a href="http://freehaven.net/doc/fc03/econymics.pdf">miksi Tor on niin turvallinen</a>,
+on itse asiassa juuri sitä käyttävien tahojen moninaisuus. Tor piilottaa
+käyttäjän muiden verkon käyttäjien joukkoon, joten mitä laajempi ja
+monimuotoisempi Tor:n käyttäjäkunta on, sitä tehokkaammin anonymiteettisi
+on suojattu.
+</p>
+
+<h3>Miksi tarvitsemme Toria?</h3>
+
+<p>
+Torin käyttäminen suojaa käyttäjää eräältä tavalliselta internet-seurannan
+menetelmältä, liikenteen analysoinnilta. Sen avulla voidaan selvittää
+vaikkapa kuka puhuu kenelle julkisessa verkossa. Verkkoliikenteesi
+lähteen ja kohteen tunteminen antaa muille mahdollisuuden seurata
+toimiasi verkon välityksellä. Tällä voisi olla sinulle merkitystä
+jos esimerkiksi käyttämäsi kauppapaikka verkossa syrjisi sinua maasi
+tai edustamasi instituution perusteella. Paljastamalla oman
+henkilöllisyytesi ja sijaintisi voit asettaa uhatuksi jopa
+työpaikkasi ja fyysisen turvallisuutesi. Jos esimerkiksi ulkomailla
+matkustaessasi otat yhteyden työnantajasi tietokoneisiin
+tarkistaaksesi sähköpostisi, paljastat väistämättä kansallisuutesi ja
+työsi kaikille verkkoa seuraaville, vaikka liikenne olisikin salattu.
+</p>
+
+<p>
+Kuinka liikenteen analysointi sitten toimii? Internetissä liikkuvissa
+paketeissa on kaksi osaa: itse data ja reitin määrittämiseen käytettävät
+otsikkotiedot. Vaikka käyttäisit salausmenetelmiä datan salaamiseen, oli
+se sitten sähköpostiviesti, web-sivu tai äänitiedosto, liikenteen
+analysointi paljastaa yhä pitkälti mitä olet tekemässä, mahdollisesti 
+myös koko viestin. Tämä johtuu siitä, että se keskittyy otsikkotietoihin,
+joista paljastuu esimerkiksi paketin lähettäjä, vastaanottaja, koko ja 
+aikaleima.
+</p>
+
+<p>
+Perusongelma verkon yksityisyydessä on, että lähettämäsi tiedon
+vastaanottaja näkee otsikkotiedoista mistä se on lähetetty. Samalla sen
+näkevät myös valtuutetut tahot kuten palveluntarjoajasi, joskus myös
+joku muu. Todella yksinkertainen liikenneanalyysin keino olisikin istua
+lähettäjän ja vastaanottajan välissä ja tarkkailla verkossa kulkevien
+pakettien otsikkotietoja.
+</p>
+
+<p>
+Liikenteen analysoimiseen on kuitenkin tehokkaampiakin keinoja. Jotkut
+hyökkääjät vakoilevat useita Internetin osia ja käyttävät hienostuneita
+tilastollisia menetelmiä eri henkilöiden ja organisaatioiden
+kommunikaatiokuvioiden seuraamiseen. Tietojen salaaminen ei auta
+tällaisia menetelmiä vastaan, sillä se piilottaa ainoastaan tietojen
+sisällöt kajoamatta otsikkotietoihin.
+</p>
+
+<h3>Ratkaisu: hajautettu, anonyymi verkko</h3>
+
+<p>
+Tor vähentää sekä yksinkertaisen että hienostuneemman liikenteen
+analysoinnin uhkaa hajauttamalla käyttäjän tietoliikenteen ympäri
+verkkoa, jolloin mitään yksittäistä pistettä ei voida yhdistää 
+lähtöpisteeseen. Toimintamalli vastaa kiertelevän ja vaikeasti
+seurattavan reitin käyttämistä, kun joku ajaa sinua takaa. Samalla
+pyyhit jatkuvasti vanhoja jalanjälkiäsi pois näkyvistä. Suoran reitin
+sijaan Tor-verkon datapaketit kulkevat kohteeseensa satunnaista reittiä
+usean palvelimen välityksellä, jotka hävittävät jälkesi. Kukaan
+yksittäisessä pisteessä oleva tarkkailija ei pysty näkemään mistä
+paketti tuli tai mihin se on menossa.
+</p>
+
+<img alt="Tor-piirin ensimmäinen vaihe" src="$(IMGROOT)/htw1.png" />
+
+<p>
+Yksityisen kommunikointireitin luomiseksi käyttäjän asiakasohjelma
+rakentaa salattujen yhteyksien piirin Tor-verkossa olevien palvelinten
+kautta. Piiri rakentuu yksi hyppy kerrallaan niin, että jokainen matkalla
+oleva palvelin näkee ketjussa ainoastaan edellisen ja seuraavan
+palvelimen. Mikään yksittäinen palvelin ei tiedä koko datan kulkemaa
+reittiä. Asiakasohjelma sopii joka hypylle erillisen salausavaimen,
+jolloin reittiä ei voi yksittäiseltä palvelimelta käsin seurata.
+</p>
+
+<img alt="Tor-piirin toinen vaihe" src="$(IMGROOT)/htw2.png" />
+
+<p>
+Kun piiriin on saatu yhteys, monenlaista dataa voidaan lähettää ja
+vastaanottaa ja useita ohjelmia käyttää Tor-verkon yli. Koska mikään
+yksittäinen palvelin ei näe piirissä yhtä hyppyä pidemmälle, matkan
+varrella oleva salakuuntelija tai vallattu palvelin ei voi käyttää
+liikenteen analysointia yhdistämään viestin lähettäjää ja vastaanottajaa.
+Tor toimii ainoastaan TCP-yhteyksillä ja sitä voi käyttää mikä tahansa
+ohjelma, jossa on SOCKS-tuki.
+</p>
+
+<p>
+Tehokkuuden saavuttamiseksi Tor käyttää samaa piiriä suunnilleen saman
+minuutin aikana tehtyihin yhteyksiin. Myöhemmille pyynnöille annetaan
+uusi piiri, joten käyttäjän aiempia viestejä ei voida yhdistää uusiin.
+</p>
+
+<img alt="Tor-piirin kolmas vaihe" src="$(IMGROOT)/htw3.png" />
+
+<h3>Piilotetut palvelut</h3>
+
+<p>
+Tor also makes it possible for users to hide their locations while
+offering various kinds of services, such as web publishing or an instant
+messaging server.  Using Tor "rendezvous points," other Tor users can
+connect to these <a
+href="<page docs/tor-hidden-service>">hidden services</a>,
+each without knowing the other's
+network identity.  This hidden service functionality could allow Tor
+users to set up a website where people publish material without worrying
+about censorship.  Nobody would be able to determine who was offering
+the site, and nobody who offered the site would know who was posting to it.
+</p>
+
+<p>
+Tor tarjoaa myös mahdollisuuden piilottaa käyttäjän sijainti ajettaessa
+erilaisia palveluita, kuten web- tai pikaviestipalvelinta. Muut käyttäjät
+voivat Tor-kohtauspisteitä käyttäen ottaa yhteyden näihin
+<a href="<page docs/tor-hidden-service>"> piilotettuihin palveluihin</a>,
+kummankaan tahon tietämättä toisen identiteettiä. Tätä voitaisiin käyttää
+esimerkiksi sensuurista vapaaseen web-julkaisemiseen. Kukaan ei pystyisi
+selvittämään, kuka sivua ylläpitää, eikä ylläpitäjä tietäisi mitään
+sivuston käyttäjistä.
+</p>
+
+<h3>Anonyyminä pysyminen</h3>
+
+<p>
+Tor ei ratkaise kaikkia anonyymiyteen liittyviä ongelmia; se keskittyy
+vain tiedon suojaamiseen sen siirtovaiheessa. Tarvitset sen lisäksi
+protokollakohtaisia lisäohjelmia jos et halua selaamiesi sivujen
+näkevän sinut yksilöiviä tietoja. Voit käyttää esimerkiksi Privoxyn
+kaltaista välityspalvelinta selaimen tietojen salaamiseen ja cookieiden
+estämiseen.
+</p>
+
+<p>
+Älä myöskään unohda tervettä järkeä. Älä anna nimeäsi tai muita
+paljastavia tietoja web-lomakkeisiin. Muista, että Tor, kuten kaikki
+nopeutensa puolesta web-selaamiseen käyvät anonyymiyttä tarjoavat
+verkot, ei pysty tarjoamaan suojaa kaikille mahdollisille hyökkäyksille:
+jos hyökkääjä pystyy samanaikaisesti valvomaan koneeltasi lähtevää ja
+määränpäähän saapuvaa liikennettä, hän voi tilastollisen analyysin
+avulla päätellä niiden olevan samassa piirissä.
+</p>
+
+<h3>Torin tulevaisuus</h3>
+
+<p>
+Käyttökelpoisen anonymisoivan verkon tarjoaminen on jatkuva haaste.
+Haluamme tarjota käyttäjälle ohjelmiston, joka sopii hänen tarpeisiinsa
+ja samalla pitää verkkomme toimintakelpoisena niin, että se kykenee
+kantamaan mahdollisimman monta käyttäjää. Turvallisuudesta tai
+käytettävyydestä ei tarvitse tinkiä: Kun Torin käytettävyys paranee,
+se houkuttelee lisää käyttäjiä, mikä taas lisää jokaisen verkossa
+kulkevan viestin mahdollisia lähteitä ja kohteita parantaen jokaisen
+käyttäjän tietoturvaa. Teemme jatkuvaa edistystä, mutta tarvitsemme
+apuasi. Ole hyvä ja harkitse
+<a href="<page docs/tor-doc-server>">palvelimen ajamista</a> tai 
+<a href="<page volunteer>">vapaaehtoiseen</a> <a href="<page developers>">kehitystyöhön</a>
+osallistumista.
+</p>
+
+<p>
+Nykyiset suuntaukset laeissa, politiikassa ja teknologiassa uhkaavat
+yksityisyyttä ennennäkemättömällä tavalla, rajoittaen mahdollisuuksiamme
+kommunikoida vapaasti verkossa. Tällaiset suuntaukset vaarantavat myös
+kansallisen turvallisuuden ja kriittisen infrastruktuurin asettamalla
+yksityishenkilöiden, organisaatioiden, yritysten ja hallitusten välisen
+kommunikaation haavoittuvammaksi seurannalle. Jokainen uusi käyttäjä ja
+palvelin luo verkkoomme lisää monimuotoisuutta, mikä mahdollistaa Torin 
+tuomaan sinulle turvallisuutesi ja yksityisyytesi takaisin yhä tehokkaammin.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
