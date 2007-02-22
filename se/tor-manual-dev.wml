@@ -1,0 +1,22 @@
+## translation metadata
+# Based-On-Revision: 8261
+# Last-Translator: translator.se atTAat unowned.net
+
+#include "head.wmi" TITLE="man-sida"
+
+<div class="main-column">
+
+<:
+	die "man-sidan saknas" unless -f "$(TORSVNHEAD)/doc/tor.1.in";
+	my $man = `man2html -M '' $(TORSVNHEAD)/doc/tor.1.in`;
+	die "Ingen man-sida" unless $man;
+
+	$man =~ s,.*<body>,,is;
+	$man =~ s,</body>.*,,is;
+
+	print $man;
+:>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
