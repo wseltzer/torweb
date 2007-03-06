@@ -109,7 +109,7 @@ Windows, Tor uses the standard <tt>select</tt> system
 call, which uses space in the non-page pool. This means
 that a medium sized Tor server will empty the non-page pool, <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">causing
-havoc and crashes</a>. We should probably by using overlapped IO
+havoc and crashes</a>. We should probably be using overlapped IO
 instead. One solution would be to teach libevent how to use overlapped IO
 rather than select() on Windows, and then adapt Tor to the new libevent
 interface.</li>
@@ -117,7 +117,7 @@ interface.</li>
 high-bandwidth Tor servers end up using dozens of megabytes of memory
 just for buffers. We need better heuristics for when to shrink/expand
 buffers. Maybe this should be modelled after the Linux kernel buffer
-design, where you have many smaller buffers that link to each other,
+design, where we have many smaller buffers that link to each other,
 rather than monolithic buffers?</li>
 <li>We need an official central site to answer "Is this IP address a Tor
 server?" questions. This should provide several interfaces, including
@@ -125,7 +125,21 @@ a web interface and a DNSBL-style interface. It can provide the most
 up-to-date answers by keeping a local mirror of the Tor directory
 information. Bonus points if it does active testing through each exit
 node to find out what IP address it's really exiting from.</li>
-<li>We need a distributed testing framework. We have unit tests now,
+<li>We need a measurement study of <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+vs <a href="http://www.privoxy.org/">Privoxy</a>. Is Polipo in fact
+significantly faster, once you factor in the slow-down from Tor? Are the
+results the same on both Linux and Windows? Related, does Polipo handle
+more web sites correctly than Privoxy, or vice versa? Are there stability
+issues on any common platforms, e.g. Windows?</li>
+<li>It would be great to have a LiveCD that includes the latest
+versions of Tor, Polipo or Privoxy, Firefox, Gaim+OTR, etc. There are
+two challenges here: first is documenting the system and choices well
+enough that security people can form an opinion on whether it should be
+secure, and the second is figuring out how to make it easily maintainable,
+so it doesn't become quickly obsolete like AnonymOS. Bonus points if
+the CD image fits on one of those small-form-factor CDs.</li>
+<li>We need a distributed testing framework. We have unit tests,
 but it would be great to have a script that starts up a Tor network, uses
 it for a while, and verifies that at least parts of it are working.</li>
 <li>Right now the hidden service descriptors are being stored on just a
