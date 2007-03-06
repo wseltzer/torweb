@@ -19,18 +19,6 @@ services. Get them to tell their friends.</li>
   security, let them know about us.</li>
 </ol>
 
-<a id="Bugs"></a>
-<h2><a class="anchor" href="#Bugs">Critical bugs</a></h2>
-<ol>
-<li>Tor servers are not stable on Windows XP currently,
-because we try to use hundreds of sockets, and the
-Windows kernel doesn't seem capable of handling this. <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Please
-help us solve this!</a> Probably the best solution is to teach libevent
-how to use overlapped IO rather than select() on Windows, and then adapt
-Tor to the new libevent interface.</li>
-</ol>
-
 <a id="Usability"></a>
 <h2><a class="anchor" href="#Usability">Supporting Applications</a></h2>
 <ol>
@@ -108,11 +96,38 @@ guidelines</a> if you want to help out. We also need people to help
 maintain the existing Italian, French, and Swedish translations -
 see the <a href="<page translation-status>">translation status
 overview</a>.</li>
+<li>Can somebody walk us through whether we want to go the
+<a href="http://www.cacert.org/">cacert</a> route for our
+SSL <a href="<page documentation>#Developers">SVN repository?</a></li>
 </ol>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Coding and Design</a></h2>
 <ol>
+<li>Tor servers don't work well on Windows XP. On
+Windows, Tor uses the standard <tt>select</tt> system
+call, which uses space in the non-page pool. This means
+that a medium sized Tor server will empty the non-page pool, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">causing
+havoc and crashes</a>. We should probably by using overlapped IO
+instead. One solution would be to teach libevent how to use overlapped IO
+rather than select() on Windows, and then adapt Tor to the new libevent
+interface.</li>
+<li>Because Tor servers need to store-and-forward each cell they handle,
+high-bandwidth Tor servers end up using dozens of megabytes of memory
+just for buffers. We need better heuristics for when to shrink/expand
+buffers. Maybe this should be modelled after the Linux kernel buffer
+design, where you have many smaller buffers that link to each other,
+rather than monolithic buffers?</li>
+<li>We need an official central site to answer "Is this IP address a Tor
+server?" questions. This should provide several interfaces, including
+a web interface and a DNSBL-style interface. It can provide the most
+up-to-date answers by keeping a local mirror of the Tor directory
+information. Bonus points if it does active testing through each exit
+node to find out what IP address it's really exiting from.</li>
+<li>We need a distributed testing framework. We have unit tests now,
+but it would be great to have a script that starts up a Tor network, uses
+it for a while, and verifies that at least parts of it are working.</li>
 <li>Right now the hidden service descriptors are being stored on just a
 few directory servers. This is bad for privacy and bad for robustness. To
 get more robustness, we're going to need to make hidden service
@@ -127,15 +142,10 @@ and signature on a hidden service descriptor so they can't be tricked
 into giving out fake ones. Second, any reliable distributed storage
 system will do, as long as it allows authenticated updates, but as far
 as we know no implemented DHT code supports authenticated updates.</li>
-<li>Tor 0.1.1.x includes support for hardware crypto accelerators via
+<li>Tor 0.1.1.x and later include support for hardware crypto accelerators
+via
 OpenSSL. Nobody has ever tested it, though. Does somebody want to get
 a card and let us know how it goes?</li>
-<li>Because Tor servers need to store-and-forward each cell they handle,
-high-bandwidth Tor servers end up using dozens of megabytes of memory
-just for buffers. We need better heuristics for when to shrink/expand
-buffers. Maybe this should be modelled after the Linux kernel buffer
-design, where you have many smaller buffers that link to each other,
-rather than monolithic buffers?</li>
 <li>Perform a security analysis of Tor with <a
 href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determine
 if there are good fuzzing libraries out there for what we want. Win fame by
