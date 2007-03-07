@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9231
+# Based-On-Revision: 97509231
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Partecipa"
@@ -18,18 +18,6 @@ services. Falli parlare di Tor coi loro amici.</li>
 lo sviluppo di Tor</a>. Se conosci qualche azienda, ente o
 associazione che ha bisogno di sicurezza nelle
 comunicazioni, fagli conoscere il progetto Tor.</li>
-</ol>
-
-<a id="Bugs"></a>
-<h2><a class="anchor" href="#Bugs">Bachi</a></h2>
-<ol>
-<li>Attualmente i server Tor su Windows XP non sono stabili,
-perch&eacute; usiamo centinaia di socket che il
-kernel di Windows non &eacute; in grado di gestire. <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Aiutaci
-a risolvere questo problema!</a> Probabilmente la soluzione migliore &egrave; fare in modo che libevent
-usi un IO overlapped invece di libevent() in Windows, e poi adattare Tor
-in modo che usi la nuova interfaccia libevent.</li>
 </ol>
 
 <a id="Usability"></a>
@@ -111,12 +99,54 @@ tradurre</a> se vuoi dare una mano. Servono anche persone che aiutino
 a mantenere le traduzioni esistenti in italiano, francese e svedese -
 vedi lo <a href="<page translation-status>">stato delle
 traduzioni</a>.</li>
+<li>Puoi aiutarci a usare
+<a href="http://www.cacert.org/">cacert</a> per il nostro
+<a href="<page documentation>#Developers">SVN repository</a>SSL?</li>
 
 </ol>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programmazione e design</a></h2>
 <ol>
+<li>I server Tor non funzionano bene su Windows XP. Su
+Windows, Tor usa la normale chiamata di sistema <tt>select</tt>,
+che usa spazio nel pool non-page. Ci&ograve; significa
+che un server Tor di medie dimensioni esaurir&agrave; il non-page pool, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">causando
+confusione e crash</a>. Probabilmente dovremmo usare overlapped IO.
+Una soluzione otrebbe essere fare usare a libevent overlapped IO
+invece che select() su Windows, e poi adattare Tor alla nuova interfaccia
+libevent.</li>
+<li>Poich&eacute; i server Tor devono fare store-and-forward di ogni cella che gestiscono
+i server Tor a banda larga consumano molta memoria solo come
+buffer. Serve migliore conoscenza di quando restringere o espandere i
+buffer. Forse lo si potrebbe modellare seguendo il design buffer nel kernel
+Linux, in cui vi sono molto buffer pi&ugrave; piccoli linkati l'un l'altro,
+invece di un buffer monolitico.</li>
+<li>Serve un sito centrale per rispondere a domande come "Questo indirizzo IP &egrave; un
+server Tor?". Il sito dovrebbe avere varie interfacce, compresa una interfaccia
+web e una interfaccia simile a DNSBL. Pu&ograve; fornire le risposte pi&ugrave;
+aggiornate tenendo un mirror locale delle informazioni di directory
+Tor. Meglio ancora se verifica ogni exit node
+per scoprire con che indirizzo IP esce realmente.</li>
+<li>Abbiamo bisogno di uno studio quantitativo che confronti <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+con <a href="http://www.privoxy.org/">Privoxy</a>. Polipo &egrave; veramente
+pi&ugrave; veloce anche contando il rallentamento dato da Tor? I risultati
+sono gli stessi su Linux e Windows? Inoltre Polipo gestisce bene un maggior
+numero di siti web di Privoxy, o viceversa? Ci sono problemi di
+stabilit&agrave; sulle piattaforme pi&ugrave; comuni, come, Windows?</li>
+<li>Sarebbe bello avere un CD live contenente le versioni
+pi&ugrave; recenti di Tor, Polipo o Privoxy, Firefox, Gaim+OTR, etc. Ci sono
+due problemi: il primo consiste nel documentare il sistema e le opzioni con chiarezza
+tale da permettere a chi si occupa di sicurezza di esprimere un giudizio sulla
+sua sicurezza; il secondo problema &egrave; trovare un modo per renderlo di facile manutenzione,
+cos&igrave; da non divenire obsoleto rapidamente come AnonymOS. Meglio ancora se
+l'immagine CD sta su un mini-D.</li>
+<li>Ci serve un framework di testing distribuito. Abbiamo unit tests,
+ma sarebbe bello avere uno script che avvii una rete Tor, la usi per
+un po' e verifichi che almeno una parte di essa funzioni.</li>
+
 <li>Per ora i descrittori dei hidden service sono contenuti in solo in
 pochi directory server. &#200; uno svantaggio per la privacy e per la robustezza. Per
 una maggiore robustezza dovremo rendere ancora meno privati i descrittori dei
@@ -131,15 +161,10 @@ e la firma su un descrittore di un hidden service in modo che non possano
 rivelarne uno falso. In secondo luogo, va bene qualsiasi sistema affidabile
 di storage distribuito, fintanto che permetta aggiornamenti automatici, ma per ora
 pare che nessun codice DHT implementato supporta gli aggiornamenti automatici.</li>
-<li>Tor 0.1.1.x include il supporto per acceleratori crittografici hardware
-tramite OpenSSL. Nessuno tuttavia lo ha ancora testato. C'&egrave; qualcuno che vuole
+<li>Tor 0.1.1.x e successivi includono il supporto per acceleratori crittografici hardware
+tramite
+OpenSSL. Nessuno tuttavia lo ha ancora testato. C'&egrave; qualcuno che vuole
 prendere una scheda e farci sapere come va?</li>
-<li>Dato che i server Tor fanno store-and-forward di ogni cellula che gestiscono,
-i server Tor a larga banda finiscono ad usare dozzine di megabyte di memoria
-solo per i buffer. Dobbiamo sapere quando restringere o espandere
-i buffer. Forse si potrebbe modellare una soluzione come i buffer nel kernel
-Linux, dove ci sono buffer pi&ugrave; piccoli che si collegano l'un l'altro,
-invece che dei buffer monolitici?</li>
 <li>Effettuare una analisi di sicurezza di Tor con <a
 href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determinare
 se esistono delle buone librerie di fuzzing adatte al nostro scopo. Guadagnati la fama
