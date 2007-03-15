@@ -103,16 +103,18 @@ SSL <a href="<page documentation>#Developers">SVN repository?</a></li>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Coding and Design</a></h2>
-<p>Want to spend your Google Summer of Code working on Tor? Great. More
-details coming soon. In the mean time, see if any of these ideas catch
+<p>Want to spend your <a href="http://code.google.com/soc/">Google Summer
+of Code</a> working on Tor? Great.
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Read
+more about Tor and GSoC</a>, and see if any of the below ideas catch
 your eye.</p>
 <ol>
 <li>Tor servers don't work well on Windows XP. On
-Windows, Tor uses the standard <tt>select</tt> system
+Windows, Tor uses the standard <tt>select()</tt> system
 call, which uses space in the non-page pool. This means
 that a medium sized Tor server will empty the non-page pool, <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">causing
-havoc and crashes</a>. We should probably be using overlapped IO
+havoc and system crashes</a>. We should probably be using overlapped IO
 instead. One solution would be to teach libevent how to use overlapped IO
 rather than select() on Windows, and then adapt Tor to the new libevent
 interface.</li>
@@ -144,11 +146,14 @@ and well-documented USB image for Tor and supporting applications. A
 lot of the hard part here is deciding what configurations are secure,
 documentating these decisions, and making something that is easy to
 maintain going forward.</li>
+<li>Our preferred graphical front-end for Tor, named
+<a href="http://vidalia-project.net/">Vidalia</a>, needs all sorts
+of development work.</li>
 <li>We need to actually start building our <a href="<page
 documentation>#DesignDoc">blocking-resistance design</a>. This involves
-fleshing out the design, modifying many different pieces of Tor, working
-on a <a href="http://vidalia-project.net/">GUI</a> that's intuitive,
-and planning for deployment.</li>
+fleshing out the design, modifying many different pieces of Tor, adapting
+<a href="http://vidalia-project.net/">Vidalia</a> so it supports the
+new features, and planning for deployment.</li>
 <li>We need a flexible simulator framework for studying end-to-end
 traffic confirmation attacks. Many researchers have whipped up ad hoc
 simulators to support their intuition either that the attacks work
@@ -208,6 +213,8 @@ UDP</a> &mdash; please let us know what's wrong with it.</li>
 <li>We're not that far from having IPv6 support for destination addresses
 (at exit nodes). If you care strongly about IPv6, that's probably the
 first place to start.</li>
+<li><i>Don't see your idea here? We probably need it anyway! Contact
+us and find out.</i></li>
 </ol>
 
 <a id="Research"></a>
