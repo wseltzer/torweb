@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 97509231
+# Based-On-Revision: 9834
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Partecipa"
@@ -107,13 +107,18 @@ traduzioni</a>.</li>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programmazione e design</a></h2>
+<p>Vupo passare il <a href="http://code.google.com/soc/">Google Summer
+of Code</a> lavorando su Tor? Ottimo.
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Leggi
+qui come fare con Tor e GSoC</a>, e guarda anche se qualcuna delle idee qui sotto
+ti possono interessare.</p>
 <ol>
 <li>I server Tor non funzionano bene su Windows XP. Su
-Windows, Tor usa la normale chiamata di sistema <tt>select</tt>,
+Windows, Tor usa la normale chiamata di sistema <tt>select()</tt>,
 che usa spazio nel pool non-page. Ci&ograve; significa
 che un server Tor di medie dimensioni esaurir&agrave; il non-page pool, <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">causando
-confusione e crash</a>. Probabilmente dovremmo usare overlapped IO.
+confusione e crash del sistema</a>. Probabilmente dovremmo usare overlapped IO.
 Una soluzione otrebbe essere fare usare a libevent overlapped IO
 invece che select() su Windows, e poi adattare Tor alla nuova interfaccia
 libevent.</li>
@@ -124,11 +129,46 @@ buffer. Forse lo si potrebbe modellare seguendo il design buffer nel kernel
 Linux, in cui vi sono molto buffer pi&ugrave; piccoli linkati l'un l'altro,
 invece di un buffer monolitico.</li>
 <li>Serve un sito centrale per rispondere a domande come "Questo indirizzo IP &egrave; un
-server Tor?". Il sito dovrebbe avere varie interfacce, compresa una interfaccia
+exit server Tor?". Il sito dovrebbe avere varie interfacce, compresa una interfaccia
 web e una interfaccia simile a DNSBL. Pu&ograve; fornire le risposte pi&ugrave;
 aggiornate tenendo un mirror locale delle informazioni di directory
-Tor. Meglio ancora se verifica ogni exit node
-per scoprire con che indirizzo IP esce realmente.</li>
+Tor. Essere un exit server per&ograve; non &egrave; una condizione
+booleana: la domanda i realt&agrave; 6egrave; "Questo indirizzo IP &egrave; un exit
+server Tor in grado di collegarsi all'indirizzo:porta IP di destinazione?" L' interfaccia DNSBL
+ricever&agrave; probabilmente centinaia di richieste al minuto, per cui occorre
+qualche algoritmo efficiente. Bonus se effettua dei test attivi su
+ciascun exit node per scoprire da quale indirrizzo IP esce realmente.
+<a href="<svnsandbox>doc/contrib/torbl-design.txt">Leggi qui per approfondire</a>.</li>
+<li>Sarebbe bello avere un CD live contenente le versioni
+pi&ugrave; recenti di Tor, Polipo o Privoxy, Firefox, Gaim+OTR, etc. Ci sono
+due problemi: il primo consiste nel documentare il sistema e le opzioni con chiarezza
+tale da permettere a chi si occupa di sicurezza di esprimere un giudizio sulla
+sua sicurezza complessiva; il secondo problema &egrave; trovare un modo per renderlo di facile manutenzione,
+cos&igrave; da non divenire obsoleto rapidamente come AnonymOS. Meglio ancora se
+l'immagine CD sta su un mini-D.</li>
+<li>A proposito di immagini CD live, ci vorrebbe una immagine USB per Tor e le applicazioni di supporto
+che sia intuitiva, sicura e ben documentata. Il grosso delle
+difficolt&agrave; &egrave; decidere quali sono le configurazioni sicure,
+documentare queste scelte e creare qualcosa di facile da
+mantenere in futuro.</li>
+<li>Il front-end grafico a Tot che preferiamo,
+<a href="http://vidalia-project.net/">Vidalia</a>, ha bisogno di vari
+lavori di sviluppo.</li>
+<li>Dobbiamo iniziare a realizzare il nostro <a href="<page
+documentation>#DesignDoc">blocking-resistance design</a>. Occorre
+ideare il design, modificare varie parti di Tor, adattare
+<a href="http://vidalia-project.net/">Vidalia</a> perch&eacute; supporti le
+nuove funzionalit&agrave; e progettarne lo sviluppo.</li>
+<li>Serve un framework flessibile di simulazione per studiare gli attacchi
+end-to-end di conferma del traffico. Molti ricercatori hanno creato dei sumulatori
+ad hoc a sostegno delle loro intuizioni sul funzionamento degli attacchi
+o di certe difese e contromisure. Possiamo costruire un simulatore
+ben documentato e aperto che possa fornire a ciascuno risposte
+adeguare? Questo potrebbe contribuire a molte nuove ricerche.
+Vedi la voce <a href="#Research">qui sotto</a> sui confirmation attack per
+maggior dettagli sulla ricerca in questo campo &mdash; chiss&agrave; forse al
+termine  potresti scrivere qualche paper sull'argomento.</li>
+
 <li>Abbiamo bisogno di uno studio quantitativo che confronti <a
 href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
 con <a href="http://www.privoxy.org/">Privoxy</a>. Polipo &egrave; veramente
@@ -136,17 +176,13 @@ pi&ugrave; veloce anche contando il rallentamento dato da Tor? I risultati
 sono gli stessi su Linux e Windows? Inoltre Polipo gestisce bene un maggior
 numero di siti web di Privoxy, o viceversa? Ci sono problemi di
 stabilit&agrave; sulle piattaforme pi&ugrave; comuni, come, Windows?</li>
-<li>Sarebbe bello avere un CD live contenente le versioni
-pi&ugrave; recenti di Tor, Polipo o Privoxy, Firefox, Gaim+OTR, etc. Ci sono
-due problemi: il primo consiste nel documentare il sistema e le opzioni con chiarezza
-tale da permettere a chi si occupa di sicurezza di esprimere un giudizio sulla
-sua sicurezza; il secondo problema &egrave; trovare un modo per renderlo di facile manutenzione,
-cos&igrave; da non divenire obsoleto rapidamente come AnonymOS. Meglio ancora se
-l'immagine CD sta su un mini-D.</li>
+<li>A questo proposito ti piacerebbe aiutare a portare <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> in modo che
+sia stabile ed efficiente su Windows?</li>
+<!--
 <li>Ci serve un framework di testing distribuito. Abbiamo unit tests,
 ma sarebbe bello avere uno script che avvii una rete Tor, la usi per
 un po' e verifichi che almeno una parte di essa funzioni.</li>
-
 <li>Per ora i descrittori dei hidden service sono contenuti in solo in
 pochi directory server. &#200; uno svantaggio per la privacy e per la robustezza. Per
 una maggiore robustezza dovremo rendere ancora meno privati i descrittori dei
@@ -161,6 +197,7 @@ e la firma su un descrittore di un hidden service in modo che non possano
 rivelarne uno falso. In secondo luogo, va bene qualsiasi sistema affidabile
 di storage distribuito, fintanto che permetta aggiornamenti automatici, ma per ora
 pare che nessun codice DHT implementato supporta gli aggiornamenti automatici.</li>
+-->
 <li>Tor 0.1.1.x e successivi includono il supporto per acceleratori crittografici hardware
 tramite
 OpenSSL. Nessuno tuttavia lo ha ancora testato. C'&egrave; qualcuno che vuole
@@ -176,12 +213,18 @@ significa che possiamo ragionrvolmente supportare solo flussi TCP. Abbiamo una <
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">lista
 di motivi per evitare il trasporto UDP</a>, ma sarebbe bello accorciare
 questa lista. Abbiamo proposto anche delle <a
-href="<svnsandbox>doc/tor-spec-udp.txt">specifiche per Tor e
+href="<svnsandbox>doc/spec/proposals/100-tor-spec-udp.txt">specifiche
+per Tor e
 UDP</a> &mdash; facci sapere se presentano dei problemi.</li>
 </li>
 <li>Non ci manca molto per avere supporto IPv6 per indirizzi destinazione
 (sugli exit node). Se per te IPv6 &egrave; molto importante, questo &egrave;
 il punto da cui cominciare.</li>
+<li>Se nessuno dei punti qui sopra &egrave; di tuo gusto, dai un'occhiata alla <a
+href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">Tor development
+roadmap</a> per ulteriori spunti.</li>
+<li>Se non vedi elencata qui la tua idea, forse &egrave; comunque importante e ne abbiamo bisogno! Contattaci
+e scoprilo.</li>
 </ol>
 
 <a id="Research"></a>
