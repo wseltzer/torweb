@@ -115,9 +115,10 @@ call, which uses space in the non-page pool. This means
 that a medium sized Tor server will empty the non-page pool, <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">causing
 havoc and system crashes</a>. We should probably be using overlapped IO
-instead. One solution would be to teach libevent how to use overlapped IO
-rather than select() on Windows, and then adapt Tor to the new libevent
-interface.</li>
+instead. One solution would be to teach <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a> how to use
+overlapped IO rather than select() on Windows, and then adapt Tor to
+the new libevent interface.</li>
 <li>Because Tor servers need to store-and-forward each cell they handle,
 high-bandwidth Tor servers end up using dozens of megabytes of memory
 just for buffers. We need better heuristics for when to shrink/expand
@@ -177,6 +178,12 @@ runs stably and efficiently on Windows?</li>
 <li>We need a distributed testing framework. We have unit tests,
 but it would be great to have a script that starts up a Tor network, uses
 it for a while, and verifies that at least parts of it are working.</li>
+<li>Help Mike Perry on his <a
+href="http://tor.eff.org/svn/torflow/">TorFlow</a>
+library: it's a python library that uses the <a
+href="http://tor.eff.org/svn/torctl/doc/howto.txt">Tor controller
+protocol</a> to instruct Tor to build circuits in a variety of ways,
+and then it measures performance and tries to detect anomalies.</li>
 <!--
 <li>Right now the hidden service descriptors are being stored on just a
 few directory servers. This is bad for privacy and bad for robustness. To
