@@ -131,6 +131,12 @@
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programmierung und Design</a></h2>
 
+<p>Möchtest du deinen Google Summer of Code verbringen, an Tor zu arbeiten?
+Großartig. <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Lies mehr
+über Tor und GSoC</a> und schaue, ob eine der untenstehenden Ideen dir
+gefällt.</p>
+
 <ol>
   <li>Torserver funktionieren unter Windows XP nicht sehr gut. Wir
   verwenden auf Windows den standardmäßigen <code>select</code>-Systemaufruf.
@@ -150,7 +156,12 @@
   ein Webformular und DNSBL-ähnliche Abfrage, bieten. Es kann aktuelle
   Informationen bieten, indem es einen lokalen Spiegel der
   Verzeichnisinformationen anlegt. Du bekommst Bonuspunkte, wenn es aktiv
-  die Exitserver testet, wie die IP-Adresse ist. <a
+  die Exitserver testet, wie die IP-Adresse ist.  Der schwierige Punkt ist, das
+  die Eigenschaft, Exitserver zu sein, nicht einfach mit ja oder nein zu
+  beantworten ist. Daher ist die Frage eher: "Ist diese IP-Adresse ein
+  Existerver, der mich zur IP-Adresse:Port weitergibt?". Die DNSBL-Schnittstelle
+  wird wahrscheinlich hunderte von Anfragen pro Minute bekommen. Daher sind hier
+  intelligente Algorithmen gefragt. <a
   href="<svnsandbox>doc/contrib/torbl-design.txt">Hier</a> kannst du mehr dazu
   lesen.</li>
   <li>Wir brauchen ein verteiltes Testgerüst. Bisher haben wir Unittests. Es
@@ -174,6 +185,24 @@
   anderen müssen wir herausfinden, wie das leicht zu pflegen ist. Es sollte
   nicht so schnell obsolet werden, wie AnonymOS. Bonuspunkte gibt es, wenn die
   CD auf eine kleine CD (50MB) passt.</li>
+  <li>In Beug auf das CD-Image sollten wir auch an einer sicheren und gut
+  dokumentierten USB-Variante für Tor und unterstützete Anwendungen arbeiten.
+  Der schwierige Teil ist zu entscheiden, welche Konfigurationen sicher sind,
+  diese Entscheidungen zu dokumentieren und etwas zu schaffen, das leicht zu
+  pflegen ist.</li>
+  <li>Wir sollten damit anfangen unser <a href="<page
+  documentation>#DesignDoc">gegen Blockierungen geschütztes Design</a> zu
+  implementieren. Dies beinhaltet die Ausarbeitung des Designs, die
+  Modifizierung diverser Teile von Tor, die Arbeit an einer <a
+  href="http://vidalia-project.net/">GUI</a>, die intuitiv ist und die Planung
+  für den Einsatz.</li>
+  <li>Wir brauchen ein flexibles Gerüst, um Ende-zu-Ende Attacken des
+  Netzverkehrs zu simulieren. Viele Forscher haben Simulatoren geschaffen, die
+  ihre Intuition, ob ein Angriff oder Verteidigung funktioniert, unterstützt.
+  Können wir einen Simulator bauen, der offen und gut dokumentiert ist? Dies
+  wird eine Menge neuer Forschung anregen. Schaue auch auf den <a
+  href="#Research">Eintrug unten</a>, um Details zu dieser Aufgabe zu entdecken.
+  Wenn es fertig ist, könntest du helfen ein Papier dazu zu schreiben.</li>
   <li>Momentan werden die Deskriptoren der versteckten Services nur
   auf einigen wenigen Verzeichnisservern gespeichert. Dies ist
   schlecht für die Privatsphäre und die Robustheit. Um mehr Robustheit
@@ -205,7 +234,7 @@
     von Gründen</a>, warum wir nicht zu Transport per UDP gewechselt
     sind. Es wäre schön, wenn diese Liste kürzer werden würde. Wir
   haben auch eine <a
-  href="<svnsandbox>doc/tor-spec-udp.txt">Spezifikation für Tor
+  href="<svnsandbox>doc/100-tor-spec-udp.txt">Spezifikation für Tor
   und UDP</a> &mdash; bitte lass uns wissen, wenn damit etwas nicht
   stimmt.</li>
   <li>Wir sind nicht weit davon entfernt, Unterstützung für IPv6 bei
