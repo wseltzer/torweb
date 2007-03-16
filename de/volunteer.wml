@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 8907
+# Based-On-Revision: 9834
 # Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
 #include "head.wmi" TITLE="Mithelfen"
@@ -25,21 +25,6 @@
     Organisationen, die Sicherheit in ihrer Kommunikation benötigen, kennst,
     lasse sie über uns wissen.</li>
   </ol>
-
-<a id="Bugs"></a>
-<h2><a class="anchor" href="#Bugs">Bugs</a></h2>
-
-<ol>
-  <li>Tor server laufen im Moment auf Windows XP nicht
-  stabil, weil wir versuchen, hunderte von Sockets
-  zu verwenden, und der Windows-Betriebssystemkern anscheinend
-  nicht in der Lage ist, damit umzugehen.
-  <a href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Bitte
-  hilf uns, das Problem zu lösen!</a> Wahrscheinlich ist es die
-  beste Lösung, libevent beizubringen, dass sie überlappendes I/O
-  statt <code>select()</code> auf Windows nutzt und danach Tor auf die
-  neue libevent-Schnittstelle zu adaptieren.</li>
-</ol>
 
 <a id="Usability"></a>
 <h2><a class="anchor" href="#Usability">unterstützende Anwendungen</a></h2>
@@ -140,12 +125,55 @@
   schwedischen Übersetzungen weiter zu betreuen. Einen Überblick gibt
   es bei der <a href="<page translation-status>">Statusseite der
   Übersetzungen</a>.</li>
+  <li>
   </ol>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programmierung und Design</a></h2>
 
 <ol>
+  <li>Torserver funktionieren unter Windows XP nicht sehr gut. Wir
+  verwenden auf Windows den standardmäßigen <code>select</code>-Systemaufruf.
+  Dies bereitet gerade auf mittelgroßen Servern <a
+  href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Probleme</a>.
+  Wahrscheinlich sollten wir hier besser Overlapped I/O nutzen. Eine Lösung ist,
+  <a href="http://www.monkey.org/~provos/libevent/">libevent</a> beizubringen, Overlapped I/O statt <code>select()</code> zu wählen
+  und Tor dann an die neue libevent-Schnittstelle anzupassen.</li>
+  <li>Weil die Torserver jede Zelle speichern und weitergeben müssen,
+    brauchen die Torserver mit hoher Bandbreite Dutzende Megabyte an
+    Speicher. Wir benötigen bessere Heuristiken, wenn die Buffer zu
+    verkleinern/vergrößern sind. Wahrscheinlich sollte dies nach dem
+    Bufferdesign des Linuxkernels modelliert werden. Dort gibt es
+    kleinere Buffer, die sich gegenseitig verbinden.</li>
+  <li>Wir brauchen eine offizielle zentrale Seite, die die Frage "Ist das die
+  Adresse eines Torservers" beantwortet. Es sollte diverse Schnittstelle, wie
+  ein Webformular und DNSBL-ähnliche Abfrage, bieten. Es kann aktuelle
+  Informationen bieten, indem es einen lokalen Spiegel der
+  Verzeichnisinformationen anlegt. Du bekommst Bonuspunkte, wenn es aktiv
+  die Exitserver testet, wie die IP-Adresse ist. <a
+  href="<svnsandbox>doc/contrib/torbl-design.txt">Hier</a> kannst du mehr dazu
+  lesen.</li>
+  <li>Wir brauchen ein verteiltes Testgerüst. Bisher haben wir Unittests. Es
+  wäre großartig, ein Skript zu haben, welches ein Tornetzwerk startet und dort
+  für einige Zeit testet, ob die Erneuerungen funktionieren.</li>
+  <li>Hilf Mike Perry bei der <a
+  href="http://tor.eff.org/svn/torflow/">TorFlow</a>-Bibliothek. Es ist eine
+  Pythonbibliothek, die das <a
+  href="http://tor.eff.org/svn/torctl/doc/howto.txt">Tor Controller Protokoll
+  </a> nutzt, um mit Tor eine Vielzahl von Verbindungen zu schaffen, diese zu
+  messen und Anomalien festzustellen.</li>
+  <li>Wir brauchen eine Messung von <a
+  href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> und <a
+  href="http://www.privoxy.org/">Privoxy</a>. Ist Polipo wirklich schneller,
+  wenn man die Verlangsamung durch Tor mit einrechnet? Behandelt Polipo die
+  Webseiten korrekter als Privoxy? Gibt es Probleme mit der Stabilität bei den
+  häufig genutzten Plattformen?</li>
+  <li>Es wäre großartig, wenn es eine Live-CD mit den aktuellsten Versionen von
+  Tor, Polipo oder Privoxy, Firefox, Gaim+OTR usw. gäbe. Es gibt hier zwei
+  Herausforderungen: Zum einen muss das System dokumentiert werden und zum
+  anderen müssen wir herausfinden, wie das leicht zu pflegen ist. Es sollte
+  nicht so schnell obsolet werden, wie AnonymOS. Bonuspunkte gibt es, wenn die
+  CD auf eine kleine CD (50MB) passt.</li>
   <li>Momentan werden die Deskriptoren der versteckten Services nur
   auf einigen wenigen Verzeichnisservern gespeichert. Dies ist
   schlecht für die Privatsphäre und die Robustheit. Um mehr Robustheit
@@ -163,12 +191,6 @@
   <li>Torversionen ab 0.1.1.x unterstützen Cryptohardwarebeschleuniger
     via OpenSSL. Bisher hat das niemand getestet. Möchte jemand gern
     eine Karte haben und schauen, ob das funktioniert?</li>
-  <li>Weil die Torserver jede Zelle speichern und weitergeben müssen,
-    brauchen die Torserver mit hoher Bandbreite Dutzende Megabyte an
-    Speicher. Wir benötigen bessere Heuristiken, wenn die Buffer zu
-    verkleinern/vergrößern sind. Wahrscheinlich sollte dies nach dem
-    Bufferdesign des Linuxkernels modelliert werden. Dort gibt es
-    kleinere Buffer, die sich gegenseitig verbinden.</li>
   <li>Eine Sicherheitsanalyse mit
     "<a href="http://en.wikipedia.org/wiki/Fuzz_testing">Fuzz</a>"
     machen.  Herausfinden, ob es da draußen gute Bibliotheken dafür
