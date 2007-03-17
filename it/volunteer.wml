@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9834
+# Based-On-Revision: 9844
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Partecipa"
@@ -119,9 +119,10 @@ che usa spazio nel pool non-page. Ci&ograve; significa
 che un server Tor di medie dimensioni esaurir&agrave; il non-page pool, <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">causando
 confusione e crash del sistema</a>. Probabilmente dovremmo usare overlapped IO.
-Una soluzione otrebbe essere fare usare a libevent overlapped IO
-invece che select() su Windows, e poi adattare Tor alla nuova interfaccia
-libevent.</li>
+Una soluzione sarebbe far usare a <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a> l'
+overlapped IO invece di select() su Windows, per poi adattare Tor
+alla nuova interfaccia libevent.</li>
 <li>Poich&eacute; i server Tor devono fare store-and-forward di ogni cella che gestiscono
 i server Tor a banda larga consumano molta memoria solo come
 buffer. Serve migliore conoscenza di quando restringere o espandere i
@@ -168,7 +169,6 @@ adeguare? Questo potrebbe contribuire a molte nuove ricerche.
 Vedi la voce <a href="#Research">qui sotto</a> sui confirmation attack per
 maggior dettagli sulla ricerca in questo campo &mdash; chiss&agrave; forse al
 termine  potresti scrivere qualche paper sull'argomento.</li>
-
 <li>Abbiamo bisogno di uno studio quantitativo che confronti <a
 href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
 con <a href="http://www.privoxy.org/">Privoxy</a>. Polipo &egrave; veramente
@@ -179,10 +179,16 @@ stabilit&agrave; sulle piattaforme pi&ugrave; comuni, come, Windows?</li>
 <li>A questo proposito ti piacerebbe aiutare a portare <a
 href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> in modo che
 sia stabile ed efficiente su Windows?</li>
-<!--
 <li>Ci serve un framework di testing distribuito. Abbiamo unit tests,
 ma sarebbe bello avere uno script che avvii una rete Tor, la usi per
 un po' e verifichi che almeno una parte di essa funzioni.</li>
+<li>Dai una mano a Mike Perry per la sua libreria <a
+href="http://tor.eff.org/svn/torflow/">TorFlow</a>:
+&egrave; una libreria python che usa il <a
+href="http://tor.eff.org/svn/torctl/doc/howto.txt">Tor controller
+protocol</a> per fare costruire a Tor dei circuiti in vari modi,
+per poi misurarne le prestazioni e rilevarne le anomalie.</li>
+<!--
 <li>Per ora i descrittori dei hidden service sono contenuti in solo in
 pochi directory server. &#200; uno svantaggio per la privacy e per la robustezza. Per
 una maggiore robustezza dovremo rendere ancora meno privati i descrittori dei
