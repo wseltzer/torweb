@@ -32,6 +32,60 @@
 <a href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS feed</a>。
 </p>
 
+<hr />
+
+<a id="Warning"></a>
+<h2><a class="anchor" href="#Warning">警告：想让 Tor 真正地保护你吗？</a></h2>
+
+<p>……那么，请不要在安装软件后就什么也不管了。你需要改变你的一些习惯，还要重新配置软件！
+Tor，就它本身来说，并<b>不能</b>全面保护你的匿名。以下有一些常见的陷阱需要提防。
+</p>
+
+<p>首先，Tor 仅仅保护那些配置过的将数据通过 Tor 传输的应用程序——它并不会在你安装之后就奇迹般地匿名所有通信。
+我们建议你使用 <a href="http://www.mozilla.org/firefox">Firefox</a> 并安装
+<a href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> 扩展。 
+<!-- , and follow <a href="comingsoon">other recommendations for other
+supported applications</a>. -->
+</p>
+
+<p>第二，浏览器插件例如 Java、Flash、ActiveX、RealPlayer、Quicktime、Adobe 的 PDF 插件
+等等能被用来揭露真实的 IP 地址。你或许应该卸载这些插件
+（在地址栏输入“about:plugins”能够知道安装了哪些插件），如果你确实需要它们，请花时间研究研究
+<a href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>,
+<a href="https://addons.mozilla.org/firefox/433/">FlashBlock</a> 和
+<a href="http://noscript.net/">NoScript</a>。
+请考虑卸载那些除去你所访问站点还会查询更多信息的扩展（如 Google 工具条），
+因为它们可能绕过 Tor 并且（或者）广播敏感信息。
+有些人更乐意同时运行两个浏览器（一个使用 Tor，另一个用作不安全的浏览）。
+<!-- You may even want to use a text browser, such as <a
+href="http://lynx.browser.org/">lynx</a> when you are using Tor. -->
+<!-- You may also find
+<a href="https://addons.mozilla.org/firefox/722/">NoScript</a> and <a
+href="https://addons.mozilla.org/firefox/1865/">AdBlock</a> helpful. -->
+</p>
+
+<p>第三，谨防 cookies：如果你曾在未使用 Tor 和 Privoxy 的情况下浏览了某个站点，
+这个站点给你设置了一个 cookie，那么，即使你又开始使用 Tor，那个 cookie 仍能用来确认你的身份。
+你应该经常清理 cookies。<a href="https://addons.mozilla.org/firefox/82/">CookieCuller</a>
+能帮助你保留不想丢失的 cookies。
+</p>
+
+<p>第四，Tor 匿名通信的来源，加密 Tor 网络中的所有数据，但是，<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">它
+不能加密 Tor 网络与通信目的地之间的数据</a>。
+如果你正在传输敏感信息，你应该像平时在令人担心的互联网上一样谨小慎微——使用 SSL
+或其他端到端的加密与认证手段。
+</p>
+
+<p>第五，尽管 Tor 阻挡了在本地网络上想要发现或影响你的通信目的地的攻击者，
+它也使新的攻击成为可能：恶意的或配置错误的 Tor 出口节点会将错误的页面发送给你，
+甚至，将伪装成受信区域的、嵌入的 Java 小程序发送给你。
+</p>
+
+<p>细心些、多学些。明白 Tor 能提供什么、不能提供什么。以上这个常见陷阱的列表并不完整，
+我们需要你帮忙<a href="<page volunteer>#Documentation">确认所有问题并书写文档</a>。
+</p>
+
 <table border="1" cellspacing="0" cellpadding="2">
 <thead>
 <tr>
@@ -125,8 +179,26 @@ href="<package-oldosx-bundle-stable-sig>">sig</a>),
 <hr />
 
 <a id="ChangeLog"></a>
+<a id="Testing"></a>
+<h2><a class="anchor" href="#Testing">测试版本</a></h2>
 
-<h2>测试版本</h2>
+<p>2007-03-16:
+Tor 0.1.2.11-rc and 0.1.2.12-rc <a
+href="http://archives.seul.org/or/talk/Mar-2007/msg00232.html">
+修正了一个重要的错误，这个错误会导致 Tor 服务器陷入无限循环</a>。
+</p>
+
+<p>2007-03-08:
+Tor 0.1.2.10-rc <a
+href="http://archives.seul.org/or/talk/Mar-2007/msg00143.html">
+再次在 Windows 上工作得更好</a>。
+</p>
+
+<p>2007-03-02:
+Tor 0.1.2.9-rc <a
+href="http://archives.seul.org/or/talk/Mar-2007/msg00004.html">
+再次在 Windows 上工作得更好，修正了其他一些错误</a>。
+</p>
 
 <p>2007-02-26:
 Tor 0.1.2.8-beta <a
@@ -184,7 +256,8 @@ Adam Langley 的一个异步 DNS 库，更好的客户端和服务器的性能�
 
 <hr />
 
-<h2>稳定版本</h2>
+<a id="Stable"></a>
+<h2><a class="anchor" href="#Stable">稳定版本</a></h2>
 
 <p>2006-12-14:
 Tor 0.1.1.26 修正了 <a
