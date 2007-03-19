@@ -263,6 +263,13 @@ Unfortunately, to accurately predict whether a given Alice, entry,
 exit, Bob quad will be dangerous, we need to download an entire Internet
 routing zone and perform expensive operations on it. Are there practical
 approximations, such as avoiding IP addresses in the same /8 network?</li>
+<li>Other research questions regarding geographic diversity consider
+the tradeoff between choosing an efficient circuit and choosing a random
+circuit. Look at at Stephen Rollyson's <a
+href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">position
+paper</a> on how to discard particularly slow choices without hurting
+anonymity "too" much. This line of reasoning needs more work and more
+thinking, but it seems very promising.</li>
 <li>Tor doesn't work very well when servers have asymmetric bandwidth
 (e.g. cable or DSL). Because Tor has separate TCP connections between
 each hop, if the incoming bytes are arriving just fine and the outgoing
@@ -285,13 +292,15 @@ overhaul if the results are good.</li>
 <li>To let dissidents in remote countries use Tor without being blocked
 at their country's firewall, we need a way to get tens of thousands of
 relays, not just a few hundred. We can imagine a Tor client GUI that
-has a "help China" button at the top that opens a port and relays a
+has a "Tor for Freedom" button at the top that opens a port and relays a
 few KB/s of traffic into the Tor network. (A few KB/s shouldn't be too
 much hassle, and there are few abuse issues since they're not being exit
 nodes.) But how do we distribute a list of these volunteer clients to the
 good dissidents in an automated way that doesn't let the country-level
 firewalls intercept and enumerate them? Probably needs to work on a
-human-trust level. See our <a
+human-trust level. See our <a href="<page documentation>#DesignDoc">early
+blocking-resistance design document</a> and our
+<a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China">FAQ
 entry</a> on this, and then read the <a
 href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">censorship
