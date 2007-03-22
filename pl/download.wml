@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9519
+# Based-On-Revision: 9872
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Pobieranie" CHARSET="UTF-8"
@@ -32,6 +32,79 @@ by być informowanym o sprawach bezpieczeństwa i nowych stabilnych wydaniach
 <input name="email" size="15">
 <input type="submit" value="Zapisz">
 </form>
+
+<p>Jest również <a
+  href="http://rss.gmane.org/gmane.network.onion-routing.announce">kanał RSS</a>
+   z listy or-announce na <a
+   href="http://gmane.org">gmane.org</a>.</p>
+
+   <hr />
+
+   <a id="Warning"></a>
+   <h2><a class="anchor" href="#Warning">Uwaga: Chcesz, żeby Tor naprawdę działał?</a></h2>
+
+   <p>...to prosimy nie poprzestawaj tylko na instalacji. Musisz zmienić część
+   swoich zwyczajów i przekonfigurować swoje oprogramowanie!
+   Tor sam z siebie <b>NIE</b> jest wszystkim, czego ci trzeba, by zachować anonimowość.
+   Jest kilka poważnych pułapek, na które trzeba uważać.
+   </p>
+
+   <p>Po pierwsze, Tor chroni tylko te aplikacje internetowe, które są skonfigurowane,
+   by swoje dane wysyłać przez Tor'a &mdash; Tor nie anonimizuje magicznie całego
+   ruchu w sieci tylko dlatego, że jest zainstalowany. Polecamy przeglądarkę
+   use <a href="http://www.mozilla.org/firefox">Firefox</a> z rozszerzeniem <a
+   href="https://addons.mozilla.org/firefox/2275/">Torbutton</a>.
+   <!-- , and follow <a href="comingsoon">other recommendations for other
+   supported applications</a>. -->
+   </p>
+
+   <p>Po drugie, wtyczki przeglądarki takie jak Java, Flash, ActiveX, RealPlayer,
+   Quicktime, wtyczka Adobe PDF, i inne mogą zostać zmanipulowane, by zdradzić
+   twój adres IP. Powinieneś raczej odinstalować swoje wtyczki (wpisz w
+   przeglądarce "about:plugins", by zobaczyć, co jest zainstalowane) lub zainteresować się
+   rozszerzeniami <a
+   href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>, <a
+   href="https://addons.mozilla.org/firefox/433/">FlashBlock</a> i
+   <a href="http://noscript.net/">NoScript</a>, jeśli naprawdę potrzebujesz wtyczek.
+   Rozważ usunięcie rozszerzeń, które pobierają więcej informacji o stronach, które
+   wpisujesz (jak na przykład Google Toolbar), jako że mogą one omijać Tor'a i
+   wysyłać niepożądane informacje. Niektórzy ludzie wolą używać dwóch przeglądarek
+   (jednej dla Tor'a, drugiej do niebezpiecznego przeglądania sieci).
+   <!-- You may even want to use a text browser, such as <a
+   href="http://lynx.browser.org/">lynx</a> when you are using Tor. -->
+   <!-- You may also find
+   <a href="https://addons.mozilla.org/firefox/722/">NoScript</a> and <a
+   href="https://addons.mozilla.org/firefox/1865/">AdBlock</a> helpful. -->
+   </p>
+
+   <p>Po trzecie, strzeż się ciasteczek: jeśli kiedykolwiek zdarzy ci się
+   przeglądać sieć bez Tor'a i Privoxy, a jakaś strona przyśle ci ciasteczko,
+   to ciasteczko to może identyfikować cię nawet wtedy, gdy ponownie
+   zaczniesz używać Tor'a. Powinieneś okresowo usuwać ciasteczka. Rozszerzenie <a
+   href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> może pomóc
+   w ochronie ciasteczek, których nie chcesz stracić.
+   </p>
+
+   <p>Po czwarte, Tor anonimizuje źródło przesyłanych informacji i szyfruje wszystko
+   wewnątrz sieci Tor'a, ale <a
+   href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">nie może
+   szyfrować danych między siecią Tor'a a punktem docelowym.</a>
+   Jeśli wysyłasz prywatne informacje, powinieneś wkładać w ich ochronę tyle wysiłku,
+   ile normalnie byś wkładał w normalnym, przerażającym internecie &mdash; używaj SSL
+   lub innego protokołu uwierzytelniania i szyfrowania nadawca-odbiorca.
+   </p>
+
+   <p>Po piąte, Tor powstrzymując ludzi atakujących twoją sieć lokalną od poznania lub
+   wpływu na punkt docelowy wysyłanych informacji, otwiera nowe ryzyka: złośliwe
+   lub źle skonfigurowane węzły wyjściowe Tor'a mogą wysłać cię na złą stronę lub
+   nawet wysłać ci aplety Java wyglądające jak pochodzące z zaufanych domen.
+   </p>
+
+   <p>Bądź mądry i ucz się dalej. Zrozum, co oferuje Tor, a czego nie oferuje.
+   Ta lista pułapek nie jest kompletna i potrzebujemy twojej pomocy w
+   <a href="<page volunteer>#Documentation">identyfikowaniu i dokumentowaniu
+   wszystkich spraw</a>.
+   </p>
 
 <table border="1" cellspacing="0" cellpadding="2">
 <thead>
@@ -127,7 +200,32 @@ wersję rozwojową. Pamiętaj, ta wersja może nie działać ani nawet się komp
 
 <a id="ChangeLog"></a>
 
-<h2>Wydania testowe</h2>
+<a id="Testing"></a>
+<h2><a class="anchor" href="#Testing">Wydania testowe</a></h2>
+
+<p>2007-03-16:
+   Tor 0.1.2.11-rc i 0.1.2.12-rc <a
+   href="http://archives.seul.org/or/talk/Mar-2007/msg00232.html">naprawiają
+   ważny błąd, który mógł spowodować, że serwer wpadnie w nieskończoną pętlę</a>.
+   </p>
+
+   <p>2007-03-08:
+   Tor 0.1.2.10-rc <a
+   href="http://archives.seul.org/or/talk/Mar-2007/msg00143.html">ponownie
+   polepsza działanie pod Windows</a>.
+   </p>
+
+   <p>2007-03-02:
+   Tor 0.1.2.9-rc <a
+   href="http://archives.seul.org/or/talk/Mar-2007/msg00004.html">ponownie
+   polepsza działanie pod Windows i naprawia kilka innych błędów</a>.
+   </p>
+
+   <p>2007-02-26:
+   Tor 0.1.2.8-beta <a
+   href="http://archives.seul.org/or/talk/Feb-2007/msg00224.html">naprawia
+   kilka błędów powodujących pad programu i dalej oczyszcza sprawy. Zbliżamy się!</a>
+  </p>
 
 <p>2007-02-06:
  Tor 0.1.2.7-alpha <a
@@ -182,7 +280,8 @@ w klientach i serwerach, i nie tylko</a>.
 
 <hr />
 
-<h2>Wydania stabilne</h2>
+<a id="Stable"></a>
+ <h2><a class="anchor" href="#Stable">Wydania stabilne</a></h2>
 
 <p>2006-12-14:
  Tor 0.1.1.26 naprawia <a
@@ -247,3 +346,4 @@ dwa nowe katalogi; nowy protokół kontroli Tor'a, oparty na ASCII, który pozwo
   </div><!-- #main -->
 
 #include <foot.wmi>
+
