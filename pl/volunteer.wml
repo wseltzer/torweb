@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9231
+# Based-On-Revision: 9886
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Wolontariusze" CHARSET="UTF-8"
@@ -17,17 +17,6 @@
   <a href="<page donate>">poświęć chwilę, by złożyć dotację, aby wspomóc przyszły rozwój Tor'a</a>.
   Jeśli znasz jakieś firmy, organizacje pozarządowe, agencje lub inne organizacje, które
   są zainteresowane bezpieczną komunikacją, daj im znać o nas.</li>
-</ol>
-
-<a id="Bugs"></a>
-<h2><a class="anchor" href="#Bugs">Błędy krytyczne</a></h2>
-<ol>
-<li>Serwery Tor'a nie są aktualnie stabilne na Windows XP, gdyż próbujemy używać
- setek gniazd, a zdaje się, że jądro Windowsa nie jest w stanie tyle obsłużyć. <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">Prosimy,
- pomóż nam rozwiązać ten problem!</a> Prawdopodobnie najlepszym rozwiązaniem jest
- nauczyć bibliotekę libevent, jak używać nakładającego się I/O zamiast select() w
- Windows, a potem przystosować Tor'a do nowego interfejsu libevent.</li>
 </ol>
 
 <a id="Usability"></a>
@@ -49,7 +38,7 @@
  prawdopodobnie oznacza zunifikowanie ich interfejsów i w grę może wchodzić
  dzielenie kodu między nimi lub całkowita rezygnacja z jednego z nich.</li>
 </ul></li>
-<li>Ludzie, którzy uruchomili serwer Tor'a mówią nam, że chcę dać jedną
+<li>Ludzie, którzy uruchomili serwer Tor'a mówią nam, że chcą dać jedną
  przepustowość łącza dla Tor'a (BandwidthRate) w czasie pewnej części dnia,
  a inną w innych częściach dnia. Zamiast programować to w Torze, powinniśmy mieć
  mały skrypt, który łączy się przez <a href="<page gui/index>">Tor Controller Interface</a>,
@@ -104,11 +93,104 @@
  tłumaczenia</a>, jeśli chcesz pomóc. Potrzebujemy też ludzi do opieki nad
  istniejącymi tłumaczeniami: włoskim, francuskim i szwedzkim - zobacz
  <a href="<page translation-status>">stan tłumaczeń</a>.</li>
+<li>Czy ktoś może nas przekonać, że powinniśmy używać
+  <a href="http://www.cacert.org/">cacert</a> do
+  SSL w naszym <a href="<page documentation>#Developers">repozytorium SVN?</a></li>
 </ol>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programowanie i Projektowanie</a></h2>
+
+<p>Chcesz spędzić swoje <a href="http://code.google.com/soc/">Google Summer
+   of Code</a> pracując na Torem? Wspaniale.
+   <a href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Przeczytaj
+   więcej o Torze i GSoC</a>, i zobacz, czy któreś z poniższych pomysłów wpadają ci w oko.</p>
+
 <ol>
+
+<li>Serwery Tor'a nie dzialają zbyt dobrze na Windows XP. Pod systemem Windows Tor
+ używa standardowej funkcji systemowej <tt>select()</tt>, która zużywa miejsce
+ w niestronicowanym obszarze pamięci, <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">będąc
+ przyczyną dziwnych zachowań i padów systemu</a>. Powinniśmy raczej używać
+ nakładającego IO. Jednym z rozwiązań byłoby nauczenie biblioteki <a
+ href="http://www.monkey.org/~provos/libevent/">libevent</a>, jak używać nakładającego IO
+ zamiast select() pod Windows, po czym zaadaptować Tora do nowego interfejsu.</li>
+
+<li>Ponieważ serwer Tor'a muszą przechować i podać dalej każdą komórkę,
+ którą obsługują, serwery o wysokiej przepustowości używają wiele
+ megabajtów pamięci na same bufory. Potrzebujemy lepszej heurystyki do
+ określenia, kiedy skurczyć/rozszerzyć bufory. Może to powinno być zaprojektowane
+ podobnie jak bufory w jądrze Linuksa, gdzie jest wiele mniejszych buforów, które
+ łączą się wzajemnie, zamiast używać monolitycznych buforów?</li>
+
+<li>Potrzebujemy oficjalnej, centralnej strony, która odpowiadałaby na pytania
+ "Czy to jest adres serwera wyjściowego z sieci Tor?". Strona powinna dostarczyć klika
+ interfejsów, łącznie z interfejsem www i w stylu DNSBL. Powinna dostarczać najbardziej
+ aktualne odpowiedzi, przechowując lokalną kopię katalogów. Haczyk jest w tym, że
+ bycie serwerem wyjściowym to nie tylko prawda czy fałsz, więc pytanie powinno raczej
+ brzmieć: "Czy to jest adres serwera wyjściowego z sieci Tor, z którego można się
+ połączyć z moim adresem IP i portem?". Interfejs DNSBL będzie pewnie otrzymywał
+ setki zapytań na minutę, potrzeba więc mądrych algorytmów. Dodatkowe punkty, jeśli
+ aktywnie byłoby sprawdzane każdego węzła wyjściowego, z jakiego adresu IP naprawdę
+ wychodzą dane. <a href="<svnsandbox>doc/contrib/torbl-design.txt">Czytaj więcej tu</a>.</li>
+
+<li>Byłoby wspaniale imeć LiveCD zawierające najnowsze wersje Tor, Polipo lub Privoxy,
+ Firefox, Gaim+OTR itp. Są tu dwa wyzwania: pierwszym jest udokumentowanie systemu i
+ możliwości wyboru dość dobrze, by ludzie zajmujący się bezpieczeństwem mogli wydać opinię
+ o tym, czy taki system byłby bezpieczny, a drugim wyzwaniem jest jak sprawić, by taki
+ system był łatwy w utrzymaniu, żeby nie ulegał szybkim przedawnieniom, jak AnonymOS.
+ Dodatkowe punkty, jeśli obraz CD zmieści się na małej płycie.</li>
+
+<li>W połączeniu z obrazem LiveCD, powinniśmy popracować nad intuicyjnie bezpiecznym
+ i dobrze udokumentowanym obrazem USB dla Tor'a i aplikacji obsługujących. Ciężką
+ częścią tutaj jest zdecydowanie, jakie konfiguracje są bezpieczne, dokumentowanie
+ tych decyzji i zrobienie czegoś, co łatwo będzie utrzymać w przyszłości.</li>
+
+<li>Nasz preferowany interfejs graficzny dla Tor'aaa, o nazwie
+ <a href="http://vidalia-project.net/">Vidalia</a>, potrzebuje różnego rodzaju pracy włożonej
+ w rozwój.</li>
+
+<li>Musimy zacząć budować nasz <a href="<page
+ documentation>#DesignDoc">projekt odporny na blokowanie</a>. Wchodzi w to
+ przemyślenie projektu, zmiana wielu różnych elementór Tor'a, zaadaptowanie
+ <a href="http://vidalia-project.net/">Vidalii</a>, by obsługiwała nowe cechy i
+ planowanie rozpowszechniania.</li>
+
+<li>Potrzebujemy elastycznego framework'a symulacji do badania ataków potwierdzenia
+ ruchu od nadawcy do odbiorcy (end-to-end). Wielu ludzi szybko wyciągnęło/napisało doraźne
+ symulatory odpowiadające ich intuicji, że albo ataki znakomicie się udają, albo
+ że obrona działa dobrze. Czy możemy zbudować symulator, który jest dobrze udokumentowany
+ i dość otwarty, by wszyscy wiedzieli, że daje rozsądną odpowiedź? To zacznie wiele nowych
+ badań. Spójrz na wpis <a href="#Research">poniżej</a> o atakach potwierdzenia po szczegóły
+ strony badawczej tego zadania &mdash; kto wie, może gdy będzie skończone, pomożesz nam też
+ napisać dokumentację.</li>
+
+<li>Potrzebujemy badań pomiarowych/porównawczych <a
+ href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+ vs <a href="http://www.privoxy.org/">Privoxy</a>. Czy Polipo jest rzeczywiście znacznie
+ szybszy, po wliczeniu opóźnienia spowodowanego Tor'em? Czy wyniki są takie same na
+ Linuksie i Windows? Związan z tym problem: czy Polipo obsługuje więcej stron poprawnie,
+ niże Privoxy, czy na odwrót? Czy są problemy ze stabilnością na jednej z popularnych
+ platform, np. Windows?</li>
+
+<li>W związku z powyższym, czy chciałbyś pomóc przenieść <a
+ href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> tak, by działało
+ stabilnie i wydajnie pod Windows?</li>
+
+<li>Potrzebujemy framework'a do testów rozproszonych. Mamy pojedyncze testy, ale byłoby
+ wspaniale mieć skrypt, który uruchamia sieć Tor'a, używa jej przez chwilę i weryfikuje,
+ że przynajmniej jej część działa.</li>
+
+<li>Pomóżcie Mike'owi Perry z jego biblioteką <a
+ href="http://tor.eff.org/svn/torflow/">TorFlow</a>
+ (<a href="http://tor.eff.org/svn/torflow/TODO">TODO</a>):
+ jest to biblioteka napisana w Pythonie, która używa <a
+ href="http://tor.eff.org/svn/torctl/doc/howto.txt">protokołu kontroli Tor'a</a>,
+ by instruować Tor'a do budowania obwodów na wiele różnych sposobów, po czym
+ mierzy wydajność i próbuje wykryć anomalie.</li>
+  	 <!--
+
 <li>W tej chwili deskryptory usług ukrytych są przechowywane na zaledwie
  kilku serwerach katalogowych. To źle dla prywatności i wydajności. By to
  polepszyć, będziemy musieli uczynić deskryptory usług ukrytych jeszcze
@@ -124,16 +206,11 @@
  umożliwia autentyfikowane aktualizacje, ale według naszych informacji,
  żaden zaimplementowany kod typu DHT (z dystrybuowaną tablicą haszowaną) nie
  obsługuje autentyfikowanych aktualizacji.</li>
+-->
 
-<li>Tor 0.1.1.x zawiera obsługę sprzętowych akcelelatorów kryptograficznych,
+<li>Tor 0.1.1.x i późniejsze zawiera obsługę sprzętowych akcelelatorów kryptograficznych,
  poprzez OpenSSL. Ale nikt tego jeszcze nie przetestował. Czy ktoś chce
  zdobyć kartę i powiadomić nas, jak to działa?</li>
-<li>Ponieważ serwer Tor'a muszą przechować i podać dalej każdą komórkę,
- którą obsługują, serwery o wysokiej przepustowości używają wiele
- megabajtów pamięci na same bufory. Potrzebujemy lepszej heurystyki do
- określenia, kiedy skurczyć/rozszerzyć bufory. Może to powinno być zaprojektowane
- podobnie jak bufory w jądrze Linuksa, gdzie jest wiele mniejszych buforów, które
- łączą się wzajemnie, zamiast używać monolitycznych buforów?</li>
 <li>Dokonać analizy bezpieczeństwa Tor'a z <a
  href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Sprawdzić, czy
  istnieją jakieś dobre biblioteki "fuzz", których nam potrzeba. Zdobądź sławę
@@ -145,11 +222,15 @@
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">listę
  powodów, dla których nie przenieśliśmy się na UDP</a>, ale byłoby dobrze
  skrócić tę listę. Mamy też proponowaną <a
- href="<svnsandbox>doc/tor-spec-udp.txt">specyfikację dla Tor'a i
+ href="<svnsandbox>doc/spec/proposals/100-tor-spec-udp.txt">specyfikację dla Tor'a i
  UDP</a> &mdash; proszę dać znać, co z nią jest nie tak.</li>
 <li>Jesteśmy wcale niedaleko od obsługi adresów IPv6 jako docelowych (na węzłach
  wyjściowych). Jeśli mocno ci zależy na IPv6, to jest to chyba najlepszy punkt
  startu.</li>
+<li>Nie podoba ci się żaden z tych pomysłów? Spójrz na <a
+ href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">plan rozwoju Tor'a</a> po więcej pomysłów.</li>
+<li>Nie widzisz tu swojego pomysłu? Prawdopodobnie i tak go potrzebujemy! Skontaktuj się
+ z nami, by to sprawdzić.</li>
 </ol>
 
 <a id="Research"></a>
@@ -191,6 +272,13 @@
  Czy są jakieś praktyczne aproksymacje, jak np. unikanie adresów IP z tej
  samej sieci /8?
  </li>
+<li>Inne pytania badawcze dotyczące różnorodności geograficznej rozpatrują
+ kompromis między wybieraniem obwodu wydajnego a losowego. Spójrz na <a
+ href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">dokument o
+ pozycjach</a> Stephena Rollysona na temat tego, jak odrzucać szczególnie wolne
+ możliwości bez zbytniej utraty anonimowości. Ta argumentacja wymaga więcej pracy i
+ myślenia, ale wygląda bardzo obiecująco.</li>
+
 <li>Tor nie działa za dobrze, gdy serwery mają asymetryczne łącze
  (np. kablówka czy DSL). Ponieważ Tor wykonuje oddzielne połączenia między
  każdym skokiem, jeśli przychodzące bajty są przysyłane dobrze, a wychodzące
@@ -215,13 +303,15 @@
 <li>Aby umożliwić dysydentom w innych krajach używanie Tor'a bez bycia
  zablokowanym przez zaporę ogniową w ich kraju, potrzebujemy sposobu na
  zdobycie dziesiątek tysięcy serwerów pośredniczących, nie zaledwie kilkuset.
- Wyobrażamy sobie GUI klienta Tor'a, które na górze ma przycisk "Pomóż Chinom",
+ Wyobrażamy sobie GUI klienta Tor'a, które na górze ma przycisk "Tor dla wolności",
  który otwiera port i przekierowuje kilka kB/s ruchu do sieci Tor. (Kilka kB/s
  nie powinno być dużym kłopotem i nie będzie wiele spraw o nadużycia, gdyż
  nie będą to węzły wyjściowe.) Ale jak rozpowszechniać listę tych
  klientów-wolontariuszy do dobrych dysydentów automatycznie w taki sposób, który
  nie pozwoli krajowym zaporom ogniowym przechwycić i zliczyć ich? To prawdopodobnie
- musi działać poziomie zaufania ludzkiego. Spójrz na nasz <a
+ musi działać poziomie zaufania ludzkiego. Spójrz na nasz
+ <a href="<page documentation>#DesignDoc">wstępny dokument o
+ ochronie przed blokowaniem</a> i na nasz <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China">wpis w FAQ</a>
  o tym, a potem przeczytaj <a
  href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">sekcję w anonbib o
