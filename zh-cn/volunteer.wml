@@ -1,0 +1,215 @@
+## translation metadata
+# Based-On-Revision: 9886
+# Last-Translator: peihanru AT gmail.com
+
+#include "head.wmi" TITLE="志愿者" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h2>三件每个人都可以做的事:</h2>
+<ol>
+<li>请考虑<a href="<page docs/tor-doc-server>">运行一台服务器</a>帮助 Tor 网络成长。</li>
+<li>告诉你的朋友！请他们运行服务器。请他们运行隐匿服务。请他们告诉他们的朋友。</li>
+<li>我们正在寻求资助与赞助商。如果你认同 Tor 的目标，
+请<a href="<page donate>">花一些时间捐助以支持 Tor 的后继开发</a>。
+如果你还知道任何需要通信安全的公司、非政府组织、代理商或其他组织，把我们告诉他们。</li>
+</ol>
+
+<a id="Usability"></a>
+<h2><a class="anchor" href="#Usability">支撑应用</a></h2>
+<ol>
+<li>我们需要好的办法拦截 DNS 请求，这样，当我们想要匿名时，DNS 请求就不会泄露给本地的窃听者。
+（会发生这种情况是因为应用程序在使用 SOCKS 代理之前进行了 DNS 解析。）</li>
+<ul>
+<li>我们需要<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">应用
+我们所有的 tsocks 补丁</a>并维护一个新的分支。如果你需要，我们将提供空间。</li>
+<li>我们应该修补 Dug Song 的“dsocks”程序，令其从控制接口使用 Tor 的 <i>mapaddress</i> 命令，
+这样我们就不用浪费连接前在 Tor 内部作解析的整个时间。</li>
+<li>我们需要使我们的 <i>torify</i> 脚本检测安装的是 tsocks 还是 dsocks，并恰当地调用它们。
+这或许意味着统一它们的接口，也许还包括在它们之间共用代码或弃用其中之一。</li>
+</ul>
+<li>运行服务器的志愿者告诉我们他们想在一天中的某个时间段限制一种速率，在其他的时间段限制另一种速率。
+我们应当写一个脚本通过 <a href="<page gui/index>">Tor 控制接口</a>修改带宽限制，而不是把代码加入 Tor。
+也许它可以通过 cron 实现，也许它可以一直休眠并在适当的时候干活（这种办法可能更具可移植性）。
+有谁能为我们写一个吗，我们将把它置于 <a href="<svnsandbox>contrib/">contrib/</a>？
+这是 <a href="<page gui/index>">Tor 图形用户界面竞赛</a>的一个不错的项目。
+  <!-- We have a good script to adjust stuff now, right? -NM -->
+</li>
+<li>Tor 能够<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">从
+Tor 网络中选择特定的出口节点</a>，但我们应当能够指定一个国家并自动挑选（该国家的出口节点）。
+最有希望的办法是一并获取 Blossom 的目录，在本地运行一个 Blossom 客户端能够安全地获取这个目录
+（通过 Tor 并检查签名），拦截 <tt>.country.blossom</tt> 主机名，并做该做的事。</li>
+<li>说到地理位置数据，希望有人能画出一张标记每一台 Tor 服务器地理位置的地图。
+如果它能随着网络的变化而更新就更好了。
+不幸的是，实现这个功能的简单的办法会将所有的数据发送至 Google 并由他们画出地图。
+这么做会影响隐私吗，我们有其他好办法吗？</li>
+</ol>
+
+<a id="Documentation"></a>
+<h2><a class="anchor" href="#Documentation">文档</a></h2>
+<ol>
+<li>我们听说如果 Tor 的用户没有禁用 javascript、java、activex、flash 等等，
+他们会成为匿名破坏攻击的受害者。有方便用户规避这种风险的插件吗（比如 Firefox 的 NoScript）？
+这种风险到底是什么？</li>
+<li>有能够取代 Privoxy 所有功能的、供 Firefox 1.5+ 使用的一整套插件吗？
+我们听说当拿掉了 Privoxy 时，Tor 要快得多。</li>
+<li>请帮助 Matt Edman 完善他的 Tor 控制器——<a href="http://vidalia-project.net/">Vidalia</a>
+的文档和使用指导。</li>
+<li>评估并完善能被配置使用 Tor 的<a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">程序列表</a>。</li>
+<li>我们需要更好的文档描述动态拦截连接并通过 Tor 发送。tsocks（Linux）、dsocks（BSD）和
+freecap（Windows）看上去是不错的候选，但最好使用我们的新的 TransPort 特性。</li>
+<li>我们有一张<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">与
+Tor 接口的可能有用的程序</a>的冗长列表。在哪些情形下哪些是有用的？请帮助我们测试并写下你的结果。</li>
+<li>帮忙将网页与文档翻译成其他语言。如果你感兴趣，请阅读<a href="<page translation>">翻译指导</a>。
+我们还需要有人维护现有的意大利语、法语和瑞典语翻译——详见<a
+href="<page translation-status>">翻译状态概况</a>。</li>
+<li>Can somebody walk us through whether we want to go the
+<a href="http://www.cacert.org/">cacert</a> route for our
+SSL <a href="<page documentation>#Developers">SVN repository?</a></li>
+</ol>
+
+<a id="Coding"></a>
+<h2><a class="anchor" href="#Coding">编码与设计</a></h2>
+<p>想在这个 <a href="http://code.google.com/soc/">Google Summer of Code</a>
+与 Tor 一起工作吗？太好了。<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">阅读更多 Tor 与 GSoC</a>，
+看看你对下面哪些主意感兴趣。</p>
+<ol>
+<li>Tor 服务器在 Windows XP 上工作得不好。在 Windows 平台，Tor 使用标准的 <tt>select()</tt> 系统调用，
+该函数不使用页面文件的空间。这意味着一个中等大小的 Tor 服务器就会耗尽全部的物理内存，<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">导致
+系统极不稳定以致崩溃</a>。我们或许应该使用重叠 IO（overlapped IO）。
+一种解决办法是教会 <a href="http://www.monkey.org/~provos/libevent/">libevent</a>
+如何在 Windows 上使用重叠 IO 而不是 select()，然后调整 Tor 以使用新的 libevent 接口。</li>
+<li>因为 Tor 服务器需要存储转发它们所处理的每一个单元（cell），繁忙的 Tor 服务器最终会为缓存
+就消耗几十兆的内存。我们需要更好的启发式算法来决定何时缩小或扩大缓存。
+也许应该根据 Linux 内核的缓存设计来建立模型，即许多小的缓存块彼此连接而不是整体的缓存？</li>
+<li>我们需要一个官方的中心站点来回答“这是一台 Tor 出口服务器（exit server）的 IP 地址吗？”这种问题。
+它应能提供多种界面，包括一个 Web 界面和一个 DNSBL 样式的界面。它有一份 Tor 目录信息的本地备份，
+能提供最新的答复。棘手的是答案并非是或不是这么简单：确切的问题应该是“这是一台能够从我的
+IP 地址：端口退出的 Tor 出口服务器的 IP 地址吗？”DNSBL 界面可能每分钟接收到数百次查询，
+所以用得着一些聪明的算法。如果它能够主动测试每一个出口节点，发现真实的出口 IP 地址就更好了。<a
+href="<svnsandbox>doc/contrib/torbl-design.txt">阅读更多</a>。</li>
+<li>如能有一张 LiveCD，包括最新的 Tor、Polipo 或 Privoxy、Firefox、Gaim+OTR 等等该多好。
+有两项挑战：首先是为系统和选择撰写足够好的文档，这样安全专家就能对它是否安全做出判断；
+其次是找到使它易于维护的办法，这样它就不会像 AnonymOS 那样很快地被废弃。
+如果 CD 镜像在那些小尺寸的 CD 上也能用就更好了。</li>
+<li>与 LiveCD 相关，我们应该为 Tor 和支持程序制作一个安全的（直觉上）且写好文档的 USB 镜像。
+这里的困难之处在于决定那些配置是安全的、为这些选择撰写文档和使维护容易。</li>
+<li>我们首选的 Tor 图形前端——叫做 <a href="http://vidalia-project.net/">Vidalia</a>，
+需要全方面的开发工作。</li>
+<li>我们需要正式开始构建我们的<a href="<page documentation>#DesignDoc">抗封锁设计</a>。
+包括完善设计、修改 Tor 的许多部分、调整 <a href="http://vidalia-project.net/">Vidalia</a>
+以使它支持新特性以及计划部署工作。</li>
+<li>我们需要一个灵活的仿真框架来研究端到端的流量验证攻击（traffic confirmation attack）。
+许多研究人员仓促制作了特别的仿真器来支持他们的直觉——或者这种攻击很成功，
+或者一些抵御手段非常有效。我们能够构建一个文档撰写清晰的、足够开放的仿真器，
+令每一个都相信它在给出合理的答案吗？这会激励许多新的研究。查看<a href="#Research">下面</a>关于
+验证攻击的研究方面的细节——谁知道呢，如果这个任务完成了或许你也能帮忙写一篇或几篇论文了。</li>
+<li>我们需要对 <a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> 和
+<a href="http://www.privoxy.org/">Privoxy</a> 的衡量研究。考虑了 Tor 的影响，Polipo
+确实要快得多吗？结论在 Linux 和 Windows 上是一样的吗？与此相关，Polipo 正确处理的站点与 Privoxy
+相比是多还是少？在常用平台（比如 Windows）有什么稳定性方面的问题吗？</li>
+<li>同上面的相关，你愿意帮忙移植 <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> 使它在 Windows
+上能稳定而有效的运行吗？</li>
+<li>我们需要一个分布式的测试框架。我们有单元测试，但如能有这样一个脚本就太好了：它能启动 Tor
+网络，使用一段时间并验证至少部分在工作。</li>
+<li>帮助 Mike Perry 改进他的 <a href="http://tor.eff.org/svn/torflow/">TorFlow</a>（<a
+href="http://tor.eff.org/svn/torflow/TODO">TODO</a>）：TorFlow
+是一个使用 <a href="http://tor.eff.org/svn/torctl/doc/howto.txt">Tor 控制协议</a>的 python 库，
+它的作用是指示 Tor 以多种不同的方式建立电路（circuits），然后测试性能并尝试检测异常。</li>
+<!--
+<li>Right now the hidden service descriptors are being stored on just a
+few directory servers. This is bad for privacy and bad for robustness. To
+get more robustness, we're going to need to make hidden service
+descriptors even less private because we're going to have to mirror them
+onto many places. Ideally we'd like to separate the storage/lookup system
+from the Tor directory servers entirely. The first problem is that we need
+to design a new hidden service descriptor format to a) be ascii rather
+than binary for convenience; b) keep the list of introduction points
+encrypted unless you know the <tt>.onion</tt> address, so the directory
+can't learn them; and c) allow the directories to verify the timestamp
+and signature on a hidden service descriptor so they can't be tricked
+into giving out fake ones. Second, any reliable distributed storage
+system will do, as long as it allows authenticated updates, but as far
+as we know no implemented DHT code supports authenticated updates.</li>
+-->
+<li>Tor 0.1.1.x 及其后继版本包含对 OpenSSL 硬件密码加速器的支持。但是从没有人对其进行测试。
+有人愿意测试然后告诉我们结果如何吗？</li>
+<li>对 Tor 执行<a href="http://en.wikipedia.org/wiki/Fuzz_testing">“fuzz”</a>安全测试。
+确认有我们需要的好的 fuzzing 库。为你赢得声誉，我们可能因为你而发布新的版本！</li>
+<li>Tor 使用 TCP 传输数据，使用 TLS 加密连接。这种设计优雅而简单，
+但它意味着一个数据包的丢失就会导致一条连接上的所有单元的延时，它还意味着我们只能支持 TCP 流。
+我们列出了<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">我们
+为什么还不转而使用 UDP 传输的理由</a>，这些理由越少越好。我们还提出了一个 <a
+href="<svnsandbox>doc/spec/proposals/100-tor-spec-udp.txt">Tor 和 UDP 的规格说明</a>——如果
+什么地方错了，请告诉我们。</li>
+<li>我们离在出口节点对 IPv6 的支持并不远。如果你非常在意 IPv6，或许该从这里着手。</li>
+<li>对上面这些都没兴趣？<a href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">Tor
+开发线路图</a>里有着更多主意。</li>
+<li>没在这里发现你想到的主意？没准我们需要它！请和我们联系。</li>
+</ol>
+
+<a id="Research"></a>
+<h2><a class="anchor" href="#Research">研究</a></h2>
+<ol>
+<li>网站指纹攻击（website fingerprinting attack）：列出数百个热门网站，下载它们的页面，
+并为每个站点记录一系列的“指纹”。然后观察 Tor 客户端的流量。当你看到到他接收数据时，
+你就能很快地猜测在那些站点中他正在访问哪一个（如果他访问的网站恰好在其中）。首先，
+这种攻击对现有的 Tor 网络会多有效？然后开始探索抵御手段：例如，我们可以把 Tor 的单元尺寸从
+512 字节变成 1024 字节，我们可以采用像 <a
+href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>
+这样的填充（padding）技术，或者我们可以增加延迟。这些手段会有怎样的影响？在每一种情形下，
+一次成功的抵御对可用性（采用某种合适的衡量标准）会有怎样的影响？</li>
+<li>端到端的流量验证攻击（end-to-end traffic confirmation attack）：通过观察 Alice 的和 Bob
+的流量，我们能够<a href="http://freehaven.net/anonbib/#danezis:pet2004">比较流量签名
+并证实我们在观察同样的串流</a>。目前为止 Tor 承认确实如此同时假定在任何情形下这种攻击都无足轻重。
+首先，事实真的是这样吗？敌方需要多少哪种分布的流量才能确认他获胜了？这些方案（如不要传输很多）能
+延缓攻击吗？有些流量填充（traffic padding）或流量整形（traffic shaping）方案比其他方案更好吗？</li>
+<li>路由区域攻击（routing zones attack）：绝大多数的文献将 Alice 与入口节点（及出口节点与 Bob）
+之间的网络路径看作是图上的单条链路。但实际上，路径会通过许多自治系统（autonomous systems，ASes），
+<a href="http://freehaven.net/anonbib/#feamster:wpes2004">同一个 AS 同时出现在入口路径和
+出口路径的情况并不罕见</a>。不幸的是，精确预测 Alice、入口、出口、Bob 四者是危险的，
+我们需要下载整个 Internet 路由区域并对它施行耗费资源的操作。有切实可行的近似方法吗，
+例如避免同一 /8 网络中的 IP 地址？</li>
+<li>其他有关地理位置多样性的研究问题考虑了有效电路的选择与随机电路的选择的权衡。Stephen Rollyson
+的<a href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">论文</a>讨论了
+如何在不“过分”影响匿名的情况下放弃特别慢的选择。这些推理需要更多的工作和思考，
+但看上去非常有希望。</li>
+<li>当服务器的带宽非对称时（如 cable 或 DSL）Tor 不能很好地工作。这是因为 Tor
+在每一跳之间有不同的 TCP 连接，如果输入的数据正常到达而输出的数据丢失了，TCP
+的回推机制并不会将这一信息返回输入流。也许 Tor 自身应该检测到它正在丢失许多输出数据包，
+并对输入的数据流限制速率？我能设想一种递增——递减方案：我们先选择一种保守的速率，
+慢慢提高它直至开始丢包，降低速率，重复。我们需要对网络精通的人士模拟这一方案，
+并帮忙设计解决办法；并且/或者我们需要了解性能下降的程度，这会推动我们重新考虑 UDP 传输。</li>
+<li>一个相关的议题是阻塞控制。我们现在的设计足以应付大量用户吗？也许我们应该尝试
+可变大小而不是固定大小的滑动窗口？这一方案在一次 <a
+href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh 吞吐量试验</a>中表现不错。
+我们需要评估、需要调整，如果结果不错的话，也许会来一次彻底的变化。</li>
+<li>为了使身处他国的持不同政见者能使用 Tor 而不被他们国家的防火墙封锁，
+我们需要有一种方式来获得成千上万的中继服务器而不只有几百个。我们能设想有一种 Tor 客户端图形界面，
+在它的上面有一个“Tor for Freedom”按钮，点击按钮会在你的机器上打开一个端口，
+为 Tor 网络传输几千字节/秒的数据。（几千字节/秒算不上一个沉重的负担，也不会有什么滥用问题
+因为它们不是出口节点。）但是我们怎样才能把包含这些志愿者的列表以一种自动的方式分发给持不同政见者，
+并且不让国家一级的防火墙拦截和遍历它们呢？这也许需要 human-trust 一级的工作。
+请阅读我们的<a href="<page documentation>#DesignDoc">初步的抗封锁设计文档</a>和
+这一问题的 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance">FAQ
+条目</a>，然后阅读 <a
+href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">anonbib
+的抵御审查部分</a>。</li>
+<li>Tor 电路一次建立一跳，因此理论上我们能够使一些数据流在第二跳退出，一些数据流在第三跳退出，等等。
+这看上去不错因为这样一台服务器就不能知道退出数据流是哪些了。但是如果要保证每个数据流都是安全的，
+以我们现在的逻辑最短的路径至少需要三跳，其余的将更长。我们需要权衡这种方法的性能与安全。</li>
+<li>拒绝服务（DoS）Tor 服务器或目录服务器并不难。客户端难题（puzzles）是正确的答案吗？
+还有什么其他的实用方法？如果它们能兼容现有的 Tor 协议就更好了。</li>
+</ol>
+
+如果你在以上任何一点取得了进展，请<a href="<page contact>">告诉我们</a>！
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
