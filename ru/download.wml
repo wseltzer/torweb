@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9665
+# Based-On-Revision: 9872
 # Last-Translator: ygrekheretix/gmail/com
 
 #include "head.wmi" TITLE="Скачать" CHARSET="KOI8-R"
@@ -17,7 +17,7 @@
 href="<page donate>">помогите проекту</a>.
 </p>
 
-<p>Последний стабильный релиз <b><version-stable></b>, последний 
+<p>Последний стабильный релиз <b><version-stable></b>, последний
 альфа релиз <b><version-alpha></b>.</p>
 
 <p><b>Подпишитесь</b> на
@@ -33,8 +33,77 @@ href="<page donate>">помогите проекту</a>.
 <input type="submit" value="subscribe">
 </form>
 <p>Есть также
-<a href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS фид</a> 
+<a href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS фид</a>
 на <a href="http://gmane.org">gmane.org</a> дублирующий рассылку or-announce.</p>
+
+<hr />
+
+<a id="Warning"></a>
+<h2><a class="anchor" href="#Warning">Предупреждение: Хотите чтобы Tor на самом
+деле обеспечивал защиту?</a></h2>
+
+<p>...тогда пожалуйста не думайте что можно просто установить Tor и всё будет ок.
+Вы должны изменить ваши привычки и должным образом настроить остальное программное
+обеспечение! Tor сам по себе <b>НЕ</b> сможет обеспечит вашу анонимность. Есть
+несколько основных проблем с которыми надо справиться.
+</p>
+
+<p>Во-первых, Tor защищает только те сетевые приложения которые посылают свой
+трафик через Tor &mdash; он не может магическим образом анонимизировать весь ваш
+трафик только потому что вы его установили. Мы рекомендуем использовать
+<a href="http://www.mozilla.org/firefox">Firefox</a> с расширением
+<a href="https://addons.mozilla.org/firefox/2275/">Torbutton</a>.
+<!-- , and follow <a href="comingsoon">other recommendations for other
+supported applications</a>. -->
+</p>
+
+<p>Во-вторых, плагины браузера такие как Java, Flash, ActiveX, RealPlayer,
+Quicktime, Adobe PDF, и другие могут раскрыть ваш IP адрес. Пожалуй вам стоит
+удалить эти плагины (список установленных плагинов смотрите в "about:plugins"),
+или попробовать использовать
+<a href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>,
+<a href="https://addons.mozilla.org/firefox/433/">FlashBlock</a>, и
+<a href="http://noscript.net/">NoScript</a> если вам уж очень нужны эти
+возможности. Также стоит удалить те расширения которые узнают дополнительную
+информацию о сайтах которые вы посещаете (например Google toolbar), так как они
+могут идти в обход Tor и/или разглашать приватную информацию. Многие
+предпочитают использовать два разных браузера (один для Tor, другой для
+неанонимного серфинга).
+<!-- You may even want to use a text browser, such as <a
+href="http://lynx.browser.org/">lynx</a> when you are using Tor. -->
+<!-- You may also find
+<a href="https://addons.mozilla.org/firefox/722/">NoScript</a> and <a
+href="https://addons.mozilla.org/firefox/1865/">AdBlock</a> helpful. -->
+</p>
+
+<p>В-третьих, помните о cookies: если вы использовали браузер без Tor и Privoxy
+и сайт выдал вам cookie, то этот сайт сможет узнать вас по этому cookie даже
+во время последующего использования Tor. Вы должны периодически удалять cookie.
+<a href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> может помочь в
+сохранении тех cookie которые вы не хотите потерять.
+</p>
+
+<p>В-четвёртых, Tor анонимизирует источник вашего трафика, и шифрует всё внутри
+сети Tor, но
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">
+он не может зашифровать ваш трафик между сетью Tor и конечным получателем.</a>
+Если вы передаёте ценную информацию, вы должны уделять столько же внимания
+безопасности как и при нормальном использовании Интернет &mdash; использовать SSL
+или другой способ оконечного шифрования и аутентификации.
+</p>
+
+<p>В-пятых, хоть Tor и блокирует атаки прослушивания или изменения адресата со
+стороны вашей локальной сети, появляются другие угрозы: злонамеренные или
+неправильно настроенные выходные узлы Tor могут отдать вам не ту страницу, или
+даже послать вам встроенный в страницу Java апплет так как будто бы он пришёл от
+домена которому вы доверяете.
+</p>
+
+<p>Анализируйте и учитесь. Узнайте что предлагает Tor и что не
+предлагает. Этот список проблем не полный, и нам нужна ваша помощь в
+<a href="<page volunteer>#Documentation">определении и описании всех возможных
+вариантов</a>.
+</p>
 
 <table border="1" cellspacing="0" cellpadding="2">
 <thead>
@@ -113,7 +182,7 @@ href="<page donate>">помогите проекту</a>.
 Страница с torrent'ами для всех ссылок выше</a>. Вы также можете скачать
 <a href="dist/">исходный код Privoxy</a>
 и <a href="dist/vidalia-bundles/">исходники Vidalia</a>.</li>
-<li>Прочитайте 
+<li>Прочитайте
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/VerifyingSignatures">
 раздел FAQ по проверке цифровых подписей дистрибутивов</a>, что позволит Вам
 быть уверенными, что вы скачали именно то, что мы выложили для скачивания.</li>
@@ -126,12 +195,25 @@ href="<page donate>">помогите проекту</a>.
 
 <a id="ChangeLog"></a>
 
-<h2>Тестовые релизы</h2>
+<a id="Testing"></a>
+<h2><a class="anchor" href="#Testing">Тестовые релизы</a></h2>
+
+<p>2007-03-16:
+Tor 0.1.2.11-rc и 0.1.2.12-rc
+<a href="http://archives.seul.org/or/talk/Mar-2007/msg00232.html">исправляют серьёзный
+баг который мог повесить ваш сервер в бесконечном цикле</a>.
+</p>
+
+<p>2007-03-08:
+Tor 0.1.2.10-rc.
+<a href="http://archives.seul.org/or/talk/Mar-2007/msg00143.html">Ещё больше улучшений
+в работе под Windows</a>.
+</p>
 
 <p>2007-03-02:
 Tor 0.1.2.9-rc.
-<a href="http://archives.seul.org/or/talk/Mar-2007/msg00004.html">Улучшен код для Windows, 
-также исправлено несколько багов</a>. Пожалуйста тестируйте!
+<a href="http://archives.seul.org/or/talk/Mar-2007/msg00004.html">Улучшен код для Windows,
+также исправлено несколько багов</a>.
 </p>
 
 <p>2007-02-26:
@@ -141,11 +223,11 @@ Tor 0.1.2.8-beta.
 </p>
 
 <p>2007-02-06:
-Tor 0.1.2.7-alpha 
+Tor 0.1.2.7-alpha
 <a href="http://archives.seul.org/or/talk/Feb-2007/msg00060.html">значительно
 улучшает алгоритм ограничения трафика для серверов, вместе с множеством других исправлений</a>.
 </p>
-	 
+
 <p>2007-01-09:
 Tor 0.1.2.6-alpha.
 <a href="http://archives.seul.org/or/talk/Jan-2007/msg00095.html">
@@ -155,19 +237,19 @@ Tor 0.1.2.6-alpha.
 <p>2007-01-06:
 Tor 0.1.2.5-alpha.
 <a href="http://archives.seul.org/or/talk/Jan-2007/msg00087.html">По умолчанию
-включён лимит на запись, сервисы NT реализованы более корректно, улучшено 
+включён лимит на запись, сервисы NT реализованы более корректно, улучшено
 автоопределение неверных DNS серверов, а также множество других улучшений и багфиксов.
 Комплект собран с новым релизом Vidalia 0.0.10.</a>
 </p>
 
 <p>2006-12-03:
-Tor 0.1.2.4-alpha 
+Tor 0.1.2.4-alpha
 <a href="http://archives.seul.org/or/talk/Dec-2006/msg00057.html">фиксит несколько
 багов. Комплект для Windows и OS X включает новый Privoxy 3.0.6</a>.
 </p>
 
 <p>2006-10-29:
-Tor 0.1.2.3-alpha 
+Tor 0.1.2.3-alpha
 <a href="http://archives.seul.org/or/talk/Nov-2006/msg00030.html">подготавливает
 интеграцию основных серверов директорий Tor с новым контроллером Tor by Mike Perry,
 так что мы сможем автоматически определять нерабочие выходящие роутеры. Bundle включает
@@ -191,7 +273,8 @@ Tor 0.1.2.1-alpha.
 
 <hr />
 
-<h2>Стабильные релизы</h2>
+<a id="Stable"></a>
+<h2><a class="anchor" href="#Stable">Стабильные релизы</a></h2>
 
 <p>2006-12-14:
 Tor 0.1.1.26 фиксит
@@ -200,7 +283,7 @@ Tor 0.1.1.26 фиксит
 </p>
 
 <p>2006-11-04:
-Tor 0.1.1.25. Пофиксено 
+Tor 0.1.1.25. Пофиксено
 <a href="http://archives.seul.org/or/announce/Nov-2006/msg00000.html">
 много мелких багов и улучшена производительность, так же приглушены слишком громкие,
 но безобидные предпреждения в логе</a>.
@@ -223,7 +306,7 @@ href="http://archives.seul.org/or/announce/Aug-2006/msg00000.html">
 Tor 0.1.1.22 включает <a
 href="http://archives.seul.org/or/announce/Jul-2006/msg00000.html">
 улучшенную проверку доступности для серверов и возможность частичной
-закачки директорий. </a>. Серверы должны обновиться; клиенты с медленным 
+закачки директорий. </a>. Серверы должны обновиться; клиенты с медленным
 или ненадёжным соединением тоже получат выгоду от обновления. Также в
 комплект включена Vidalia новой версии - 0.0.7.
 </p>
@@ -232,7 +315,7 @@ href="http://archives.seul.org/or/announce/Jul-2006/msg00000.html">
 Tor 0.1.1.21 фиксит <a
 href="http://archives.seul.org/or/announce/Jun-2006/msg00000.html">мелкие
 проблемы с стабильностью и протоколом, в основном со стороны серверов Tor.
-В инсталлятор для Windows теперь по умолчанию входит Vidalia 0.0.5, и мы 
+В инсталлятор для Windows теперь по умолчанию входит Vidalia 0.0.5, и мы
 даём ссылку на новый комплект для OS X с Vidalia 0.0.5 (наконец-то появился
 улучшенный интерфейс для Mac!). Также, добавилась поддержка RPM пакетов
 для SUSE</a>. Мы в процессе добивания нескольких багов связанных
