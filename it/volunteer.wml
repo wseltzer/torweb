@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9844
+# Based-On-Revision: 9886
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Partecipa"
@@ -183,8 +183,9 @@ sia stabile ed efficiente su Windows?</li>
 ma sarebbe bello avere uno script che avvii una rete Tor, la usi per
 un po' e verifichi che almeno una parte di essa funzioni.</li>
 <li>Dai una mano a Mike Perry per la sua libreria <a
-href="http://tor.eff.org/svn/torflow/">TorFlow</a>:
-&egrave; una libreria python che usa il <a
+href="http://tor.eff.org/svn/torflow/">TorFlow</a>
+(<a href="http://tor.eff.org/svn/torflow/TODO">TODO</a>):
+&egrave una libreria in pythonche usa il <a
 href="http://tor.eff.org/svn/torctl/doc/howto.txt">Tor controller
 protocol</a> per fare costruire a Tor dei circuiti in vari modi,
 per poi misurarne le prestazioni e rilevarne le anomalie.</li>
@@ -268,6 +269,13 @@ Purtroppo, per calcolare se una certa configurazione tra Alice, entry,
 exit e Bob sia pericolosa occorre scaricare una intera
 routing zone Internet ed effettuare su di essa molte operazioni. Ci sono dei
 rimedi pratici approssimativi, come ad esempio evitare gli indirizzi IP nella stessa rete /8?</li>
+<li>Nella ricerca su Tor vi sono altre questioni riguardo la diversit&agrave; geografica:
+considera il costo tra scegliere un circuito client efficienteicient e sceglierne uno
+casuale. Leggi il <a
+href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">position
+paper</a> di Stephen Rollyson per come scartare alcuni circuiti particolarmente lenti senza ledere
+"troppo" l'anonimato. Su questa linea di ricerca serve pi&ugrave; lavoro,
+ma pare assai promettente.</li>
 <li>Tor funziona male quando un server dispone di banda asimmetrica
 (come via cavo o DSL). Siccome Tor usa connessioni TCP separate per
 ogni nodo, se i bye in arrivo giungono regolarmente e quelli in uscita
@@ -290,13 +298,14 @@ se i risultati fossero soddisfacenti.</li>
 <li>Per permettere ai dissidenti in tutto il mondo di usare Tor senza essere
 bloccati dai firewall del loro paese, serve un sistema per avere decine di migliaia
 di relay, non qualche centinaio. Potremmo immaginare la GUI di un client Tor con
-un pulsante "help China" che apre una porta e fa il relay di pochi
+un pulsante "Tor for Freedom" che apre una porta e fa il relay di pochi
 KB/s di traffico verso la rete Tor. (Pochi KB/s non dovrebbero essere un problema,
 e ci sarebbero pochi abusi, dato che non sarebbero degli exit
 node.) Ma come si fa a distribuire automaticamente ai dissidenti
 la lista di questi client volontari ed ad impedire ai firewall nazionali di
 intercettarli ed enumerarli? Forse si dovrebbe lavorare a livello di
-fiducia personale. Vedi la nostra <a
+fiducia personale. Vedi il nostro <a href="<page documentation>#DesignDoc">early
+blocking-resistance design document</a> e la nostra
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China">FAQ
 </a> sull'argomento e poi leggi la <a
 href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">sezione
