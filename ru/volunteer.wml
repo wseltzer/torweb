@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 9886
-# Last-Translator: ygrekheretix/gmail
+# Based-On-Revision: 9921
+# Last-Translator: ygrekheretix/gmail/com
 
 #include "head.wmi" TITLE="Добровольцы" CHARSET="KOI8-R"
 
@@ -88,8 +88,8 @@ Tor, <a href="http://vidalia-project.net/">Vidalia</a>.</li>
 проверить и задокументировать результаты.</li>
 <li>Помогите перевести веб-страницы и документацию на другие языки.
 Смотрите <a href="<page translation>">инструкции для переводчиков</a>
-если вы хотите помочь. Нам также нужны люди, чтобы поддерживать в актуальном
-состоянии итальянский, французский и шведский переводы - смотрите
+если вы хотите помочь. Нам также нужны люди для поддержки в актуальном
+состоянии существующие французский и шведский переводы - смотрите
 <a href="<page translation-status>">страницу состояния переводов</a>.</li>
 <li>Нужен ли нам SSL сертификат от
 <a href="http://www.cacert.org/">cacert</a> для нашего
@@ -248,25 +248,26 @@ roadmap</a>, может быть найдёте что-то интересное.</li>
 входящий узел, выходящий, и Боб), мы должны загрузить полную маршрутную таблицу
 Интернета и выполнить на ней ресурсоёмкие операции. Существуют ли какие-нибудь
 практические приближения, например избегание IP адреса в той же /8 сети?</li>
-<li>Other research questions regarding geographic diversity consider
-the tradeoff between choosing an efficient circuit and choosing a random
-circuit. Look at Stephen Rollyson's <a
-href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">position
-paper</a> on how to discard particularly slow choices without hurting
-anonymity "too much". This line of reasoning needs more work and more
-thinking, but it looks very promising.</li>
-<li>Tor doesn't work very well when servers have asymmetric bandwidth
-(e.g. cable or DSL). Because Tor has separate TCP connections between
-each hop, if the incoming bytes are arriving just fine and the outgoing
-bytes are all getting dropped on the floor, the TCP push-back mechanisms
-don't really transmit this information back to the incoming streams.
-Perhaps Tor should detect when it's dropping a lot of outgoing packets,
-and rate-limit incoming streams to regulate this itself? I can imagine
-a build-up and drop-off scheme where we pick a conservative rate-limit,
-slowly increase it until we get lost packets, back off, repeat. We
-need somebody who's good with networks to simulate this and help design
-solutions; and/or we need to understand the extent of the performance
-degradation, and use this as motivation to reconsider UDP transport.</li>
+<li>Другие исследования географического разнообразия рассматривают компромисс
+между выбором эффективной цепочки и случайной. Смотрите
+<a
+href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">работу</a>
+Stephen Rollyson'на о том как отбросить особенно медленные варианты "не сильно"
+ухудшая анонимность. Это направление исследований требует больше работы и размышлений,
+но выглядит многообещающе.</li>
+<li>Tor не работает очень хорошо на серверах с ассиметричной пропускной
+способностью (например кабель или DSL). Tor устанавливает отдельные TCP
+соединения между каждым прыжком, и если входящие байты прибывают нормально а
+исходящие теряются, механизм TCP push-back не передаёт эту информацию входящему
+потоку. Пожалуй Tor должен определять когда он теряет слишком много исходящих
+пакетов, и устанавливать ограничение на входящий поток чтобы регулировать
+самостоятельно? Можно представить такую схему - сначала выбирается
+консервативное ограничение трафика, которое медленно увеличивается до тех пор
+пока мы начинаем терять пакеты, откатываемся назад, повторяем. Нам требуется
+кто-нибудь хорошо разбирающийся в сетях чтобы симулировать это поведение и
+помочь спроектировать решение, и/или надо понять насколько упадёт
+производительность, и использовать это как мотивацию для пересмотра решения по
+использованию UDP транспорта.</li>
 <li>A related topic is congestion control. Is our
 current design sufficient once we have heavy use? Maybe
 we should experiment with variable-sized windows rather
