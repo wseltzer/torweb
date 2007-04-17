@@ -1,150 +1,324 @@
 ## translation metadata
-# Based-On-Revision: 8183
-# Last-Translator: eightone_18@yahoo.co.uk
+# Based-On-Revision: 9921
+# Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Contribuer"
 
 <div class="main-column">
 
 <!-- PUT CONTENT AFTER THIS TAG -->
-<h2>Quatre choses que vous pouvez faire :</h2>
+<h2>Trois choses que vous pouvez faire :</h2>
 <ol>
-<li> Pensez à <a href="<page docs/tor-doc-server>">héberger un serveur</a> pour aider à la croissance du réseau Tor.</li>
-<li> Jetez un oeil à <a href="<page gui/index>">la compétition d'interfaces graphiques pour Tor</a>, et contribuez à améliorer l'interface et l'ergonomie de Tor. Un t-shirt est offert pour chaque proposition !</li>
-<li> Informez vos ami-e-s ! Faites-leur héberger des serveurs. Faites-leur utiliser les services cachés. Encouragez-les à informer leurs propres ami-e-s.</li>
-<li> Nous recherchons des fonds et des mécènes. Si vous adhérez aux objectifs de Tor, prenez s'il-vous-plaît un moment <a href="<page donate>">pour faire un don et aider aux développements futurs de Tor</a>. De même, si vous connaissez des entreprises, des ONGs, ou d'autres organisations qui souhaitent utiliser des communications sécurisées, parlez-leur de nous.</li>
+<li> Pensez à <a href="<page docs/tor-doc-server>">héberger 
+un serveur</a> pour aider à la croissance du réseau Tor.</li>
+<li> Informez vos ami-e-s ! Faites-leur héberger des serveurs. Faites-leur utiliser les services 
+cachés. Encouragez-les à informer leurs propres ami-e-s.</li>
+<li> Nous recherchons des fonds et des mécènes. Si vous adhérez aux objectifs de Tor, prenez s'il-vous-plaît un moment 
+  <a href="<page donate>">pour faire un don et aider aux développements 
+  futurs de Tor</a>. De même, si vous connaissez des 
+  entreprises, des ONGs, ou d'autres organisations qui souhaitent utiliser des communications 
+  sécurisées, parlez-leur de nous.</li>
 </ol>
-
-<a id="Bugs"></a>
-<h2><a class="anchor" href="#Bugs">Bugs critiques</a></h2>
-<ol>
-<li>Les serveurs Tor ne sont actuellement pas stables sous Windows XP, car nous essayons d'utiliser des centaines de sockets alors que le noyau de Windows ne semble pas capable de le faire. <a href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems"> Aidez-nous à résoudre ce problème !</a>La meilleure solution consiste certainement à apprendre à libevent à utiliser des E/S chevauchantes plutôt que select() sous Windows, puis à adapter Tor pour cette nouvelle interface de libevent.</li>
-</ol>
-
-<!--
-<a id="Installers"></a>
-<h2><a class="anchor" href="#Installers">Installeurs</a></h2>
-<ol>
-<li>Matt Edman a écrit un <a
-href="http://freehaven.net/~edmanm/torcp/download.html"> installeur pour Windows basé sur NSIS et qui contient Privoxy et TorCP</a>. Est-ce que vous pouvez l'aider à améliorer sa stabilité et à lui ajouter des fonctionnalités ?
-</li>
-<li>Développer un logiciel pour la désinstallation sous OS X qui soit plus automatique que de demander aux gens <a href="<page docs/tor-doc-osx>#uninstall">d'effacer manuellement chaque fichier</a>. Il faut proposer un moyen de faire cela en un clic.</li>
-<li>Notre <a href="<cvssandbox>tor/tor.spec.in">fichier de spécification RPM</a> doit trouver un mainteneur, de sorte que l'on puisse se reconcentrer sur l'écriture de Tor. Si vous savez faire ce genre de chose avec les RPMs, aidez-nous.</li>
-</ol>
--->
 
 <a id="Usability"></a>
 <h2><a class="anchor" href="#Usability">Support d'applications</a></h2>
 <ol>
-<li>Nous avons besoin de méthodes efficaces d'interception des requêtes DNS, de sorte qu'elles ne laissent pas filtrer d'informations à un observateur local pendant que nous tentons d'être anonymes. (Ce qui arrive lorsque l'application fait sa résolution DNS avant de passer par le proxy SOCKS.)
-<!-- 
-Une possibilité est d'utiliser le support intégré à Tor pour ces résolutions DNS; mais il est nécessaire de faire l'appel en utilisant notre nouvelle extension à socks, et aucune application ne le fait encore. Une meilleure solution consiste en l'utilisation de l'interface de contrôle de Tor, qui intercepte la résolution DNS, la transmet à Tor, qui répond avec une adresse IP bidon. Lorsque l'application fait une connexion via Tor à cette adresse IP bidon, Tor la renvoie directement à la requête initiale.
--->
+<li>Nous avons besoin de méthodes efficaces d'interception des requêtes DNS, pour qu'elles ne laissent pas filtrer 
+d'informations à un observateur local pendant que nous tentons d'être anonymes. (Ce qui 
+arrive lorsque l'application fait sa résolution DNS avant de passer par 
+le proxy SOCKS.)</li>
 <ul>
-<li>Nous avons besoin <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">d'appliquer nos patchs à tsocks</a> et d'en maintenir un nouveau fork. Nous l'hébergerons si vous le souhaitez.</li>
-</li>
-<li>Nous devrions patcher le programme "dsocks" développé par Dug Song pour utiliser les commandes <i>mapaddress</i> de Tor depuis l'interface de contrôle, de manière à ne pas faire inutilement un aller-retour complet dans Tor pour faire la résolution avant la connexion.</li>
-<li>Notre script <i>torify</i> doit détecter lequel de tsocks ou dsocks est installé pour l'appeler correctement. Cela nécessite certainement d'unifier leurs interfaces, et peut amener à faire un mix des deux voire à en éliminer un des deux.</li>
+<li>Nous avons besoin <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">d'appliquer 
+tout nos patchs à tsocks</a> et d'en maintenir une nouvelle branche. Nous l'hébergerons si 
+vous le souhaitez.</li>
+<li>Nous devrions patcher le programme « dsocks » développé par Dug Song pour utiliser les commandes 
+<i>mapaddress</i> de Tor depuis l'interface de contrôle, de manière à ne pas faire 
+inutilement un aller-retour complet dans Tor pour faire la résolution avant la 
+connexion.</li>
+<li>Notre script <i>torify</i> doit détecter lequel de tsocks ou 
+dsocks est installé pour l'appeler correctement. Cela nécessite certainement 
+d'unifier leurs interfaces, et peut amener à faire un mix des deux 
+voire à en éliminer un des deux.</li>
 </ul>
-<li>Les gens qui hébergent des serveurs nous signalent qu'ils aimeraient pouvoir ajuster la bande passante allouée en fonction des moments de la journée. Plutôt que de coder ceci dans Tor, nous aimerions utiliser un petit script qui communique avec <a href="<page gui/index>">l'interface de contrôle de Tor</a>, et ferait un setconf pour changer la valeur de la bande passante. Éventuellement, ce pourrait être un script lancé par cron, ou qui se lancerait à certaines heures (ce qui est certainement plus portable). Quelqu'un pourrait-il écrire cela pour nous, nous l'ajouterons à <a href="<svnsandbox>tor/contrib/">tor/contrib/</a>? C'est une bonne entrée pour la <a href="<page gui/index>"> compétition pour l'interface graphique de Tor</a>.</li>
-<li>Tor peut <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit"> quitter le réseau Tor par un noeud de sorte choisi par l'utilisateur</a>, mais il serait pratique de n'avoir qu'à spécifier un pays, et que le serveur de sortie soit choisi automatiquement. Le meilleur moyen est probablement de récupérer le répertoire de Blossom, et d'utiliser en local un client qui récupère ce répertoire de manière sûre (via Tor et en vérifiant sa signature), lise les noms des machines <tt>.country.blossom</tt> et se charge ensuite de choisir le serveur.</li>
-<li>En parlant de géolocalisation, quelqu'un devrait faire une carte de la Terre indiquant chaque serveur Tor par un point. La cerise sur le gâteau serait la mise à jour dynamique de la carte à mesure que le réseau Tor évolue et grandit. Malheureusement, les moyens aisés de faire cela passent par l'envoi de toutes les données à Google pour qu'il trace cette carte pour vous. Dans quelle mesure cela jouerait-il sur la confidentialité, et par ailleurs, existe-t-il des solutions de remplacement valables ?</li>
+<li>Les gens qui hébergent des serveurs nous signalent qu'ils aimeraient avoir une passante allouée 
+durant une partie de la journée, et une autre bande passante à un autre moment. 
+Plutôt que de coder ceci dans Tor, nous aimerions utiliser un petit 
+script qui communique avec <a href="<page gui/index>">l'interface de contrôle de Tor</a>, 
+et ferait un setconf pour changer la valeur de la bande passante. Éventuellement, ce pourrait être un script lancé 
+par cron, ou qui se lancerait à certaines heures (
+ce qui est certainement plus portable). Quelqu'un pourrait-il écrire cela pour nous, 
+nous l'ajouterons à <a href="<svnsandbox>tor/contrib/">tor/contrib/</a> ? 
+C'est une bonne entrée pour la <a href="<page gui/index>"> compétition pour l'interface 
+graphique de Tor</a>.
+  <!-- Nous avons un bon script pour ça maintenant, n est-ce pas ? -NM -->
+</li>
+<li>Tor peut <a 
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">quitter 
+le réseau Tor par un noeud de sortie particulier</a>, mais il serait pratique 
+de n'avoir qu'à spécifier un pays, et que le serveur de sortie soit choisi automatiquement. Le 
+meilleur moyen est probablement de récupérer le répertoire de Blossom, et d'utiliser en local un client 
+qui récupère ce répertoire de manière sûre (via Tor et en vérifiant sa 
+signature), lise les noms des machines <tt>.country.blossom</tt> et se charge ensuite
+de choisir le serveur.</li>
+<li>En parlant de géolocalisation, quelqu'un devrait faire une carte de la Terre 
+indiquant chaque serveur Tor par un point. La cerise sur le gâteau serait la mise à jour dynamique 
+de la carte à mesure que le réseau Tor évolue et grandit. Malheureusement, les moyens aisés de faire cela 
+passent par l'envoi de toutes les données à Google pour qu'il trace cette carte pour vous. Dans quelle mesure 
+cela jouerait-il sur la confidentialité, et par ailleurs, existe-t-il des solutions de remplacement valables ?</li>
 </ol>
-
-<!--
-<li>Tor fournit des connexion anonymes, mais nous n'assurons pas la gestion de mutliples pseudonymes : vu que Tor utilise le même tunnel pour plusieurs connexions, si un attaquant sait que vous êtes l'auteur d'une de ces connexions (par exemple une site web sur lequel vous vous êtes authentifié); il peut savoir que vous êtes l'auteur des autres connexions qui passent par ce tunnel. Il faudrait trouver une approche et une interface pour gérer les pseudonymes dans Tor. Voir <a
-href="http://archives.seul.org/or/talk/Dec-2004/msg00086.html">ce post</a> et <a
-href="http://archives.seul.org/or/talk/Jan-2005/msg00007.html">sa suite</a>
-pour plus de détails.</li>
-</ol>
--->
-
 
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">Documentation</a></h2>
 <ol>
-<li>Nous avons des retours d'utilisateurs de Tor qui sont victimes d'attaques contre leur anonymat à cause de javascript, java, activex, flash, etc, s'ils ne pensent pas à les désactiver. Existe-t-il des greffons (comme le plugin NoScript pour Firefox) qui rendent la gestion de ce risque plus facile pour les utilisateurs ? Et quel est ce risque exactement ?</li>
-<li>Existerait-il un ensemble de plugins qui remplacerait la totalité des fonctions de Privoxy lorsqu'il est utilisé avec Firefox 1.5+ ? Il semblerait que Tor soit bien plus performant si l'on enlève Privoxy du circuit.</li></li>
-<li>Aidez Matt Edman à documenter et à écrire des tutoriaux pour son <a href="http://vidalia-project.net/">Contrôleur pour Tor</a>.
-</li>
-
-<!-- 
-<li>Proposez-vous pour maintenir ce site : code, contenu, css, mise en page. Prenez contact avec nous sur le canal IRC dans un premier temps.</li>
-<li>Nous avons trop de documentation -- elle est éparse et redondante parfois. Envoyez-nous des corrections, remarques et questions pour que nous puissions l'améliorer.</li>
-<li>Étudiez les versions de privoxy/freecap/sockscap pour windows 32bits pour y trouver des problèmes d'usage ou de stabilité afin d'essayer de les résoudre ou au moins en avertir les utilisateurs.</li>
-<li>Est-ce que quelqu'un pourrait aider Matt Edman pour la documentation et le howto de son <a href="http://freehaven.net/~edmanm/torcp/">Contrôleur pour Tor sous Windows</a>?</li>
--->
-
-<li>Évaluez et documentez la liste des <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">programmes pouvant être utilisés avec Tor</a>.</li>
-<li>Nous avons besoin d'une meilleure documentation traitant de l'interception dynamique de connexions et de leur envoi à travers Tor. tsocks (Linux), dsocks (BSD),et freecap (Windows) semblent être de bons candidats.</li>
-<li>Nous avons toute une liste de <a href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">programmes potentiellement utiles qui s'interfacent avec Tor</a>. Lesquels sont utiles et dans quelles situations ? Contribuez à les tester et à documenter les résultats.</li>
-<li>Aidez-nous à traduire le site et la documentation dans d'autres langues. Allez voir les <a href="<page translation>">conseils de traduction</a> si vous souhaitez le faire. Nous avons besoin de personnes pour maintenir à jour les versions existantes en italien, français et suédois - regardez la page <a href="<page translation-status>">d'état des traductions</a>.</li>
+<li>Nous avons des retours d'utilisateurs de Tor qui sont victimes d'attaques contre leur anonymat 
+à cause de javascript, java, activex, flash, etc, s'ils ne pensent pas à les désactiver. 
+Existe-t-il des greffons (comme NoScript pour Firefox) qui rendent la gestion 
+de ce risque plus facile pour les utilisateurs ? Et quel est ce risque exactement ?</li>
+<li>Existerait-il un ensemble de plugins qui remplacerait la totalité des fonctions de 
+Privoxy pour Firefox 1.5+ ? Il semblerait que Tor soit bien plus performant si l'on enlève 
+Privoxy du circuit.</li>
+<li>Aidez Matt Edman à documenter et à écrire des tutoriaux pour son 
+contrôleur Tor,
+<a href="http://vidalia-project.net/">Vidalia</a>.</li>
+<li>Évaluez et documentez 
+<a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">notre 
+liste de programmes</a> pouvant être utilisés avec Tor.</li>
+<li>Nous avons besoin d'une meilleure documentation traitant de l'interception dynamique de 
+connexions et de leur envoi à travers Tor. tsocks (Linux), dsocks (BSD), 
+et freecap (Windows) semblent être de bons candidats, et utiliserait au mieux
+notre nouvelle fonctionnalité Transport.</li>
+<li>Nous avons toute une liste de <a href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">programmes 
+potentiellement utiles qui s'interfacent avec Tor</a>. Lesquels sont utiles et dans quelles 
+situations ? Contribuez à les tester et à documenter les résultats.</li>
+<li>Aidez-nous à traduire le site et la documentation dans d'autres 
+langues. Allez voir les <a href="<page translation>">conseils de 
+traduction</a> si vous souhaitez le faire. Nous avons besoin de personnes pour 
+maintenir à jour les versions existantes, français et suédois - 
+regardez la page <a href="<page translation-status>">d'état des traductions
+</a>.</li>
+<li>Est-ce que quelqu'un pourrait nous aider au cas où nous souhaiterions la voie
+<a href="http://www.cacert.org/">cacert</a> pour le 
+SSL de notre <a href="<page documentation>#Developers">dépôt SVN</a></li>
 </ol>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Conception et Code</a></h2>
+<p>Vous souhaiter passer votre <a href="http://code.google.com/soc/">Google Summer
+of Code</a> en travaillant sur Tor ? Sympa.
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Lisez ceci 
+à propos de Tor et GSoC</a>, et voyez si l'une ou l'autre de ces idées 
+vous tente.</p>
 <ol>
-
+<li>Les serveurs de Tor ne fonctionnent pas parfaitement sur Windows XP. Sur
+Windows, Tor utilise l'appel système standard <tt>select()</tt>, 
+qui utilise l'espace non paginé dans le pool. Ce qui implique 
+que les serveurs de taille moyenne vont vider l'espace non paginé, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">provocant 
+l'instabilité et le plantage du système</a>. Nous devrions probablement utiliser des E/S recouvrables 
+à la place. Une solution pourrait-être d'apprendre à la <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a> comment utiliser 
+les E/S recouvrables à la place de select() sous Windows, et alors d'adapter Tor à 
+la nouvelle interface libevent.</li>
+<li>Du fait que les serveurs Tor ont besoin du mecanisme de stockage-et-envoi pour chaque cellules envoyées, 
+les serveurs Tor ayant une grosse bande passante se retrouvent avec des douzaines de mégaoctets de mémoire 
+juste pour les mémoires tampons. Il nous est nécessaire d'avoir une meilleur approche pour savoir quand réduire/étendre
+la taille des tampons. Probablement que ceci devrait être calqué sur l'architecture de gestion des tampons Linux, 
+où nous avons des tampons réduits et se liant les un aux autre, 
+plutôt que des gros tampons monolithiques ?</li>
+<li>Nous avons besoin d'un site central officiel pour répondre à la question "Est-ce que cette adresse IP est 
+un serveur de sortie Tor ?". Ceci devrait fournir plusieurs interfaces, y compris 
+une interface Web et une interface type DNSBL. Il pourrait apporter la plus 
+à jour des réponses en conservant un miroir local des informations des répertoires 
+Tor. Le point délicat c'est qu'être un serveur de sorti n'est pas 
+booléen : ainsi la question devient "Est-ce que cette adresse est un serveur de sorti 
+Tor pouvant sortir sur mon adresse IP:port ?" L'interface DNSBL 
+recevra probablement plusieurs centaines de requêtes par minute, ainsi développer des algorithmes 
+robustes est de mise. La cerise sur le gateau s'ils font des tests actifs à travers 
+chaque noeud de sorti pour déterminer de quelle adresse IP elle sort vraiment.
+<a href="<svnsandbox>doc/contrib/torbl-design.txt">Lisez-en plus ici</a>.</li>
+<li>Il serait sympa d'avoir un LiveCD qui inclurait les dernières
+versions de Tor, Polipo ou Privoxy, Firefox, Gaim+OTR, etc. Il y a 
+deux défis ici : le premier de documenter le sytème et les choix suffisament
+bien pour que les personnes de sécurité puissent former une opinion sur la 
+robustesse, et le second est de trouver comment faire en sorte qu'il soit facilement maintenable, 
+pour qu'il ne devienne pas rapidement obsolète comme AnonymOS. Le plus, serait 
+que l'image du CD tienne sur des CDs de tailles réduites.</li>
+<li>Lié au LiveCD, nous devrions travailler sur une image bien documentée et intuitive 
+de Tor et d'un ensemble d'application supportée sur une clé USB. Le
+gros du travail ici est de décider quelles configurations sont sécurisées,
+documenter ces décisions, et faire quelque chose qui soit simple à 
+maintenir et faire aller de l'avant.</li>
+<li>Notre interface graphique préférée pour Tor, nommée
+<a href="http://vidalia-project.net/">Vidalia</a>, nécessite toutes sortes 
+de dévelopments.</li>
+<li>Nous avons besoin maintenant de commencer l'élaboration de notre <a href="<page
+documentation>#DesignDoc">conception de résistance au blocage</a>. Ceci implique 
+une refonte de la conception, une modification de différents aspects de Tor, une adaptation de
+<a href="http://vidalia-project.net/">Vidalia</a> pour qu'il supporte les nouvelles
+fonctionnalités, et planifier le deploiement.</li>
+<li>Nous avons besoin d'un ensemble d'outils flexibles de simulation pour étudier de bout en bout
+les trafics de confirmation d'attaque. Beaucoups de chercheurs ont conçu des simulateurs ad hoc
+pour confirmer leurs intuitions comme quoi soit l'attaque marche 
+vraiment bien ou que les défenses fonctionnent. Pouvons nous construire un simulateur
+qui soit clairement documenté et suffisament ouvert pour que tout le monde sache qu'il
+donne une réponse raisonnable ? Ceci stimulera un grand nombre de nouvelles recherches.
+Voyez l'entrée <a href="#Research">suivante</a> sur les confirmations d'attaque pour les 
+détails sur le coté recherche de cette tâche &mdash; qui sait, quand ceci sera 
+fait peut-être pouvez aider en écrivant un papier ou deux.</li>
+<li>Nous avons besoin d'une étude mesurée des performances de <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+et <a href="http://www.privoxy.org/">Privoxy</a>. Est-ce que Polipo est en fait
+significativement plus rapide, une fois le ralentissement de Tor factorisé ? Est-ce que les 
+résultats sont les mêmes sous Linux et Windows ? Lié, est-ce que Polipo tient 
+plus de site Web correctement que Privoxy ou vice versa ? Y'a-t-il des 
+problèmes de stabilité sur les plateformes communes telles que Windows ?</li>
+<li>Lié à ce qui est dit au dessus, pouvez vous aider à porter <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> pour qu'il 
+tourne de manière stable et efficace sous Windows ?</li>
+<li>Nous avons besoin d'un banc de test distribué. Nous avons des unités de tests,
+mais il serait sympa d'avoir un script qui lance un réseau Tor, 
+l'utilise quelque temps, et vérifie que, au moins, quelques aspects fonctionnent.</li>
+<li>Aidez Mike Perry sur sa bibliothèque <a
+href="http://tor.eff.org/svn/torflow/">TorFlow</a> (<a href="http://tor.eff.org/svn/torflow/TODO">TODO</a>):
+c'est une bibliothèque python qui utilise le <a
+href="http://tor.eff.org/svn/torctl/doc/howto.txt">protocole du contrôleur Tor
+</a> pour apprendre à Tor à construire des circuits de différentes manières,
+et ensuite mesure les performances et essaye de détecter les anomalies.</li>
 <!--
-<li>Nous recommandons Privoxy comme proxy et antipub pour le Web, mais il n'est <a href="http://wiki.noreply.org/noreply/TheOnionRouter/PrivoxyPatches">plus maintenu et a encore des bugs</a>, en particulier sous Windows. Pendant que nous y sommes, quelles informations ne sont pas protégées par Privoxy ? Quels sont les autres outils du même type qui seraient plus sûrs ?</li>
-<li>tsocks ne semble plus maintenu: nous avons rassemblé <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">plusieurs correctifs</a> qui doivent être appliqués. Est-ce qu'une personne pourrait nous aider à les faire ajouter en amont, et sinon pourrait commencer une nouvelle branche tsocks ? Nous l'aiderons.</li>
+<li>Pour l'instant, les descripteurs de services cachés sont stockés sur un 
+petit nombre de serveurs de répertoires seulement. Ceci est mauvais au niveau confidentialité des données privées et au niveau de la robustesse. Pour 
+améliorer la robustesse, nous allons affaiblir encore la protection des données sur les descripteurs de services cachés,
+car nous allons devoir multiplier les miroirs des serveurs de repértoires. Idéalement, nous aimerions que le système de stockage/recherche 
+soit entièrement séparé des serveurs de répertoires Tor. Le premier problème est que nous devons 
+concevoir un nouveau format de description des services cachés 
+a) qui soit ascii plutôt 
+que binaire pour en simplifier l'utilisation; b) qui garde chiffrée la liste des points d'entrée 
+à moins que l'on ne connaisse l'adresse <tt>.onion</tt>, de sorte que le répertoire ne 
+puisse les lister; et c) qui autorise les répertoires à vérifier la date et 
+la signature d'un descripteur de service caché de sorte que ces répertoires ne puissent être bidouillés 
+pour en do nner des faux. Deuxièmement, tout système de stockage distribué 
+sûr conviendra, du moment qu'il permette des mises à jour authentifiées. Mais pour autant 
+qu'on le sache, aucune implémentation de DHT ne supporte de mises à jour authentifées.</li>
 -->
-
-<li>Pour l'instant, les descripteurs de services cachés sont stockés sur un petit nombre de serveurs de répertoires seulement. Ceci est mauvais au niveau confidentialité des données privées et au niveau de la robustesse. Pour améliorer la robustesse, nous allons affaiblir encore la protection des données sur les descripteurs de services cachés, car nous allons devoir multiplier les miroirs des serveurs de repértoires. Idéalement, nous aimerions que le système de stockage/recherche soit entièrement séparé des serveurs de répertoires Tor. Le premier problème est que nous devons concevoir un nouveau format de description des services cachés 
-<ol type ="a">
-<li>qui soit ascii plutôt que binaire pour en simplifier l'utilisation; <li>qui garde chiffrée la liste des points d'entrée à moins que l'on ne connaisse l'adresse <tt>.onion</tt>, de sorte que le répertoire ne puisse les lister; et <li>qui autorise les répertoires à vérifier la date et la signature d'un descripteur de service caché de sorte que ces répertoires ne puissent être bidouillés pour en do
- nner des faux.</li></ol> Deuxièmement, tout système de stockage distribué sûr conviendra, du moment qu'il permette des mises à jour authentifiées. Mais pour autant qu'on le sache, aucune implémentation de DHT ne supporte de mises à jour authentifées.</li>
-
-<li>Les serveurs de sortie Tor ont besoin de faire de nombreuses résolutions DNS en parallèle. Mais gethostbyname() est mal conçu --- il se bloque en attendant d'avoir terminé la résolution d'une requête --- et donc, il exige d'avoir son propre thread ou processus. Et Tor est obligé d'avoir plusieurs threads dédiés aux résolutions DNS. Il y a bien quelques bibliothèques DNS asynchrones par-ci par-là, mais historiquement elles sont buguées et abandonnées. Y en a-t-il qui soient stables, rapides, propres et libres (Rappelez-vous que Tor utilise OpenSSL, et que OpenSSL n'est (probablement) pas compatible avec la GPL, et donc que toute bibliothèque GPL est exclue.) S'il en existe (ou si nous pouvons faire en sorte qu'il en existe), nous devrions les intégrer à Tor. Voir <a
-href="http://archives.seul.org/or/talk/Sep-2005/msg00001.html">le message de Agl</a> sur une approche possible. Voir aussi
-<a href="http://daniel.haxx.se/projects/c-ares/">c-ares</a> et
-<a href="http://www.monkey.org/~provos/libdnsres/">libdnsres</a>.
-</li>
-<li>Tor 0.1.1.x inclut le support d'accélérateurs matériels de chiffrage via OpenSSL. Cependant, personne ne l'a jamais testé. Est-ce que quelqu'un voudrait se procurer une carte et nous dire ce qu'il en est ?</li>
-<li>Étant donné que les serveurs Tor doivent stocker et renvoyer chaque unité d'information traitée (cellule), les serveurs Tor à haut débit finissent par utiliser des dizaines de Mo de mémoire uniquement pour la mémoire tampon. Nous avons besoin de meilleures descriptions de fonctionnement pour prévoir les variations de taille des tampons. Ceci pourrait peut-être ceci être modélisé à partir de la conception de la mémoire tampon du noyau Linux, dans lequel il y a de nombreuses petites mémoires liées les unes aux autres, plutôt qu'avec des grosses mémoires monolithiques ?</li>
-
-<!--
-<li>D'ailleurs comment fonctionne ulimits sous win32 ? Nous avons des soucis, en particulier avec les anciennes versions de windows qui dépassent le nombre maximum de descripteurs de fichiers, la taille des mémoires de connexion, etc. (Nous devrions gérer WSAENOBUFS comme nécessaire, regarder l'entrée du registre MaxConnections,
-l'entrée MaxUserPort, et l'entrée TcpTimedWaitDelay. Nous devrions peut-être aussi proposer un moyen de les régler selon les besoins de chacun. Voir <a
-href="http://bugs.noreply.org/flyspray/index.php?do=details&id=98">le bug
-98</a>.)</li>
-<li>Correctifs aux scripts autoconf de Tor. Premièrement nous aimerions que notre autoconfigure.in sache faire de la cross-compilation, c'est à dire que nous sachions compiler Tor pour des plateformes obscures comme le Linksys WRTG54. Deuxièmement, nous aimerions que l'option with-ssl-dir désactive la recherche des bibliothèques ssl.</li>
--->
-
-<li>Implémenter les requêtes de DNS inverses dans Tor (déjà spécifié dans la section 5.4 de <a href="<svnsandbox>doc/tor-spec.txt">tor-spec.txt</a>).</li>
+<li>Tor 0.1.1.x inclut le support d'accélérateurs matériels de chiffrage 
+via 
+OpenSSL. Cependant, personne ne l'a jamais testé. Est-ce que quelqu'un voudrait se procurer 
+une carte et nous dire ce qu'il en est ?</li>
 <li>Faire une analyse de sureté de Tor avec <a
-href="http://en.wikipedia.org/wiki/Fuzz_testing">du "fuzz"</a>. Déterminer s'il existe déjà de bonnes bibliothèques de fuzz pour ce que nous voulons faire. La célébrité pour celui-lle grâce à qui une nouvelle version pourra voir le jour !</li>
-<li>Dans quelle mesure est-ce difficile de modifier bind ou un proxy DNS pour rediriger les requêtes à Tor via notre <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#CompatibleApplications">extension de socks : tor-resolve</a>? Sous BSD, docks en est déjà capable. Que pensez-vous de l'idée de convertir les requêtes UDP DNS en requêtes TCP et de les envoyer à travers Tor ?</li>
-<li>Tor utilise TCP pour le transport et TLS pour le chiffrage des liens. C'est simple et efficace, mais cela implique que toutes les unités (cellules) d'un lien sont mises en attente lorsqu'un seul paquet est perdu, et cela signifie que seuls des flux TCP peuvent être raisonnablement supportés. Nous avons dressé une <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP"> liste de raisons pour lesquelles nous n'avons pas bifurqué vers le transport par UDP</a>, mais ce serait bien de voir cette liste se raccourcir. Nous avons aussi proposé <a href="<svnsandbox>tor/doc/tor-spec-udp.txt">une spécification pour Tor et UDP</a> &mdash; lisez-la et faites-nous part de vos remarques et critiques, s'il-vous-plaît.</li>
-<li>Nous ne sommes plus très loin d'avoir le support pour IPV6 entre les serveurs de sorties et les adresses finales. Si IPV6 vous tient à cœur, partir de là est sans doute un premier pas.</li>
+href="http://en.wikipedia.org/wiki/Fuzz_testing">du "fuzz"</a>. Déterminer 
+s'il existe déjà de bonnes bibliothèques de fuzz pour ce que nous voulons faire. La célébrité pour celui-lle 
+grâce à qui une nouvelle version pourra voir le jour !</li>
+<li>Tor utilise TCP pour le transport et TLS pour le chiffrage 
+des liens. C'est simple et efficace, mais cela implique que toutes les unités (cellules) 
+d'un lien sont mises en attente lorsqu'un seul paquet est perdu, et 
+cela signifie que seuls des flux TCP peuvent être raisonnablement supportés. Nous avons dressé une <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP"> liste 
+de raisons pour lesquelles nous n'avons pas bifurqué vers le transport par UDP</a>, mais ce serait 
+bien de voir cette liste se raccourcir. Nous avons aussi proposé <a 
+href="<svnsandbox>tor/doc/100-tor-spec-udp.txt">une spécification pour Tor et 
+UDP</a> &mdash; lisez-la et faites-nous part de vos remarques et critiques, s'il-vous-plaît.</li>
+<li>Nous ne sommes plus très loin d'avoir le support pour IPV6 entre les serveurs de sorties 
+et les adresses finales. Si IPV6 vous tient à cœur, partir de là est sans doute 
+un premier pas.</li>
+<li>Quelque chose vous déplait ? Regardez la <a
+href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">planification du développement
+de Tor</a> pour plus d'idées.</li>
+<li>Vous ne voyez pas vos idées ici ? Nous en avons peut-être besoin ! Contactez
+nous et aidez.</li>
 </ol>
 
 <a id="Research"></a>
 <h2><a class="anchor" href="#Research">Recherche</a></h2>
 <ol>
-<li>"L'attaque par empreinte de sites": faire une liste de quelques centaines de sites populaires, en télécharger les pages, et faire des "signatures" pour chaque site. Ensuite, observer le trafic d'un client Tor. L'analyse de ses réceptions de données donne rapidement une idée des sites qu'il visite. Premièrement, quelle est l'efficacité de cette attaque sur le code actuellement utilisé dans Tor ? Ensuite, tester les défenses possibles : par exemple, changer la taille des cellules de Tor de 512 octets à 1024, utiliser des techniques de remplissage comme <a
-href="http://freehaven.net/anonbib/#timing-fc2004">le lâcher défensif</a>, ou ajouter des délais de trafic. Quel impact ces stratégies de défense ont-elles, et, dans les cas où elles sont efficaces en défense, quel impact ont-elles en terme de perte d'utilisabilité de Tor (à quantifier) ?
-</li>
-<li>"L'attaque par corrélation des trafics aux extrémités": par l'observation des trafics de Alice et Bob, il est possible de <a
-href="http://freehaven.net/anonbib/#danezis:pet2004">comparer les signatures des trafics et d'en déduire qu'il s'agit du même flux</a>. Jusqu'ici, Tor considère ce type d'attaque comme intrinsèque et donc inévitable. Tout d'abord, est-ce réellement vrai ? Quelle quantité de trafic - et avec quelle distribution - est-elle nécessaire pour que l'adversaire soit certain d'avoir gagné ? Est-ce qu'il existe des scénarios (par exemple avoir un trafic faible) pour ralentir cette attaque ? Est-ce que certains types de remplissage ou de modelage de trafic fonctionnent mieux que d'autres ?</li>
-<li>"L'attaque par zones de routage" : la littérature spécialisée considère le plus souvent que le chemin réseau entre Alice et son noeud d'entrée (et entre le noeud de sortie et Bob) comme un lien unique dans un graphe. En pratique, cependant, le chemin passe par de nombreux systèmes autonomes (Autonomous Systems : ASes), et <a
-href="http://freehaven.net/anonbib/#feamster:wpes2004">il n'est pas inhabituel de retrouver le même AS sur les chemins d'entrée et de sortie</a>.
-Malheureusement, pour prévoir précisément si le chemin "Alice, entrée, sortie, Bob" sera dangereux, nous devrions télécharger une zone de routage internet complète et faire dessus des calculs lourds. Est-ce qu'il existe des approximations utilisables, comme par exemple d'ignorer les adresses IP d'un réseau /8 ?</li>
-<li>Tor ne fonctionne pas très bien lorsque les serveurs ont des bandes passantes asymétriques (par exemple câble ou DSL). Comme Tor a des connexions TCP séparées entre chaque saut, si les octets arrivent correctement mais que les octets sortants sont bloqués sur place, les mécanismes de refoulement de TCP ne retransmettent pas vraiment cette information aux flux entrants.
-Peut-être Tor devrait-il détecter s'il perd beaucoup de paquets sortants, et limiter la vitesse du flux entrant pour réguler cela lui-même ?
-Je peux concevoir un schéma de type augmentation-descente dans lequel on choisit un débit "sûr", que l'on augmente jusqu'à perdre des paquets, puis qui redescend, puis qui réaugmente. Nous avons besoin de quelq'un-e de fort-e en réseau pour simuler ce fonctionnement et aider à concevoir des solutions. De manière générale, l'évaluation des pertes de performances d'un tel système pourrait peut-être - dans le cas où elles sont grandes - servir de motivation pour reconsidérer la question du transport UDP.
-<li>Un sujet lié est le contrôle de congestion : notre système actuel est-il suffisant pour un usage intensif ? Peut-être devrions-nous expérimenter des fenêtres de taille variable plutôt qu'à taille fixe ? C'est apparu assez efficace pour cette <a
-href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">expérience sur ssh</a>. Nous aurons à faire des mesures et des réglages, et peut-être une révision de Tor si les résulats sont bons.</li>
-<li>Pour permettre à des dissident-e-s de se connecter sans être bloqué-e-s par les pare-feu de leur pays, nous avons besoin de dizaines de milliers de relais et pas seulement de quelques centaines. Nous pourrions imaginer un client Tor graphique qui aurait un bouton "aidez la Chine" pour activer l'ouverture d'un port et le relai de quelques KB/s de trafic pour le réseau Tor. (Quelques KB/s ne devraient pas être trop pénibles et il y a peu de risque d'abus puisqu'il ne s'agirait pas de noeuds de sortie.) Mais comment distribuer la liste de ces clients volontaires aux bons dissidents de manière automatique, tout en ne permettant pas aux pare-feux au niveau national de l'intercepter et de lister ces clients ? Probablement, il faut faire intervenir la confiance, au niveau humain.
-Voir notre <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China">entrée dans la FAQ</a> à ce sujet, puis lire <a href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">la section sur la résistance à la censure de anonbib</a>.</li>
-<li>Les circuits Tor sont construits saut par saut, donc en théorie nous pouvons faire sortir des flux au second saut, au troisième, etc. Cela paraît bien car cassant l'ensemble des flux sortants qu'un serveur peut voir. Mais si nous voulons que chaque flux soit sûr, le chemin "le plus court" devrait comporter au moins 3 sauts dans notre logique actuelle, et les sorties suivantes seraient encore plus lointaines. Nous devons évaluer ce rapport performance/sûreté.</li>
-<li>Il n'est pas difficile de provoquer un DoS sur les serveurs et les serveurs de répertoires Tor. Est-ce que les puzzles de clients sont la bonne réponse ? Existe-t-il d'autres approches réalisables ? Il y a un bonus si elles sont rétro-compatibles avec le protocol actuel de Tor.</li>
+<li>"L'attaque par empreinte de sites": faire une liste de quelques 
+centaines de sites populaires, en télécharger les pages, et faire des 
+"signatures" pour chaque site. Ensuite, observer le trafic d'un client Tor. 
+L'analyse de ses réceptions de données donne rapidement une idée 
+des sites qu'il visite. Premièrement, quelle est l'efficacité 
+de cette attaque sur le code actuellement utilisé dans Tor ? Ensuite, tester 
+les défenses possibles : par exemple, changer la taille des cellules de Tor de 512 
+octets à 1024, utiliser des techniques de remplissage comme <a
+href="http://freehaven.net/anonbib/#timing-fc2004">le lâcher défensif</a>, 
+ou ajouter des délais de trafic. Quel impact ces stratégies de défense ont-elles, 
+et, dans les cas où elles sont efficaces en défense, quel impact ont-elles 
+en terme de perte d'utilisabilité de Tor (à quantifier) ?</li>
+<li>"L'attaque par corrélation des trafics aux extrémités": 
+par l'observation des trafics de Alice et Bob, il est possible de <a
+href="http://freehaven.net/anonbib/#danezis:pet2004">comparer 
+les signatures des trafics et d'en déduire qu'il s'agit du même 
+flux</a>. Jusqu'ici, Tor considère ce type d'attaque comme intrinsèque 
+et donc inévitable. Tout d'abord, est-ce réellement vrai ? Quelle 
+quantité de trafic - et avec quelle distribution - est-elle nécessaire pour que l'adversaire 
+soit certain d'avoir gagné ? Est-ce qu'il existe des scénarios (par exemple avoir un trafic faible) 
+pour ralentir cette attaque ? Est-ce que certains types de remplissage ou de modelage de trafic
+fonctionnent mieux que d'autres ?</li>
+<li>"L'attaque par zones de routage" : la littérature spécialisée considère 
+le plus souvent que le chemin réseau entre Alice et son noeud d'entrée (et entre le noeud de sortie 
+et Bob) comme un lien unique dans un graphe. En pratique, 
+cependant, le chemin passe par de nombreux systèmes autonomes (Autonomous Systems : ASes), et <a
+href="http://freehaven.net/anonbib/#feamster:wpes2004">il n'est pas inhabituel 
+de retrouver le même AS sur les chemins d'entrée et de sortie</a>.
+Malheureusement, pour prévoir précisément si le chemin "Alice, entrée, 
+sortie, Bob" sera dangereux, nous devrions télécharger une zone de routage 
+internet complète et faire dessus des calculs lourds. Est-ce qu'il existe 
+des approximations utilisables, comme par exemple d'ignorer les adresses IP d'un réseau /8 ?</li>
+<li>D'autres questions de recherche concernant la diversité géographique considèrent 
+la différence entre choisir un circuit efficace et en choisir un aléatoire.
+Lisez l' <a
+href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">argumentation
+</a> de Stephen Rollyson sur comment eviter les nœuds lents sans trop impacter
+l'anonymat. Cet axe de raisonnement nécessite davantage de travail et de 
+réflexion, mais semble très prometteur.</li>
+<li>Tor ne fonctionne pas très bien lorsque les serveurs ont des bandes passantes 
+asymétriques (par exemple câble ou DSL). Comme Tor a des connexions TCP séparées entre 
+chaque saut, si les octets arrivent correctement mais que les octets sortants 
+sont bloqués sur place, les mécanismes de refoulement de TCP 
+ne retransmettent pas vraiment cette information aux flux entrants.
+Peut-être Tor devrait-il détecter s'il perd beaucoup de paquets sortants, 
+et limiter la vitesse du flux entrant pour réguler cela lui-même ? Je peux concevoir 
+un schéma de type augmentation-descente dans lequel on choisit un débit "sûr", 
+que l'on augmente jusqu'à perdre des paquets, puis qui redescend, puis qui réaugmente. Nous 
+avons besoin de quelq'un-e de fort-e en réseau pour simuler ce fonctionnement et aider à concevoir 
+des solutions. De manière générale, l'évaluation des pertes de performances 
+d'un tel système pourrait peut-être - dans le cas où elles sont grandes - 
+servir de motivation pour reconsidérer la question du transport UDP.
+<li>Un sujet lié est le contrôle de congestion : notre système 
+actuel est-il suffisant pour un usage intensif ? Peut-être 
+devrions-nous expérimenter des fenêtres de taille variable 
+plutôt qu'à taille fixe ? C'est apparu assez efficace pour cette <a
+href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">expérience 
+sur ssh</a>. Nous aurons à faire des mesures et des réglages, et peut-être 
+une révision de Tor si les résulats sont bons.</li>
+<li>Pour permettre à des dissident-e-s de se connecter sans être bloqué-e-s 
+par les pare-feu de leur pays, nous avons besoin de dizaines de milliers de 
+relais et pas seulement de quelques centaines. Nous pourrions imaginer un client Tor graphique qui 
+aurait un bouton "Tor pour la liberté" pour activer l'ouverture d'un port et le relai 
+de quelques KB/s de trafic pour le réseau Tor. (Quelques KB/s ne devraient pas être trop 
+pénibles et il y a peu de risque d'abus puisqu'il ne s'agirait pas de noeuds de 
+sortie.) Mais comment distribuer la liste de ces clients volontaires aux 
+bons dissidents de manière automatique, tout en ne permettant pas aux 
+pare-feux au niveau national de l'intercepter et de lister ces clients ? Probablement, il faut faire 
+intervenir la confiance, au niveau humain. Voir notre <a href="<page documentation>#DesignDoc">document 
+préliminaire sur la résistance au blocage</a> et notre 
+<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China">entrée 
+dans la FAQ</a> à ce sujet, puis lire <a 
+href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">la section 
+sur la résistance à la censure de anonbib</a>.</li>
+<li>Les circuits Tor sont construits saut par saut, donc en théorie nous pouvons 
+faire sortir des flux au second saut, au 
+troisième, etc. Cela paraît bien car cassant l'ensemble des flux sortants 
+qu'un serveur peut voir. Mais si nous voulons que chaque flux soit sûr, 
+le chemin "le plus court" devrait comporter au moins 3 sauts dans notre logique actuelle, et 
+les sorties suivantes seraient encore plus lointaines. Nous devons évaluer ce rapport 
+performance/sûreté.</li>
+<li>Il n'est pas difficile de provoquer un DoS sur les serveurs et les serveurs de répertoires Tor. Est-ce 
+que les puzzles de clients sont la bonne réponse ? Existe-t-il d'autres approches réalisables ? Il y a un bonus 
+si elles sont rétro-compatibles avec le protocol actuel de Tor.</li>
 </ol>
 
-<a href="<page contact>">Contactez-nous</a> si vous avez avancé sur ces points !
+<a href="<page contact>">Contactez-nous</a> si vous avez avancé sur 
+ces points !
 
   </div><!-- #main -->
 
