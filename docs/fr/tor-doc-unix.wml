@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 8019
-# Last-Translator: arno.@no-log.org
+# Based-On-Revision: 9338
+# Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Guide d'installation pour Linux/BSD/Unix"
 
@@ -29,31 +29,33 @@ href="<page download>">téléchargement</a>. Nous avons ici des paquets pour Deb
 Red Hat, Gentoo, *BSD, etc.
 </p>
 
-<p>Si vous installez depuis le code source, installez d'abord
-<a href="http://www.monkey.org/~provos/libevent/">libevent</a>, et assurez vous de bien
-avoir openssl et zlib (avec les paquets -devel). Tapez ensuite 
-<tt>tar xzf tor-0.1.0.15.tar.gz; cd tor-0.1.0.15</tt>. Puis <tt>./configure && 
-make</tt>. Vous pouvez maintenant lancer tor depuis <tt>src/or/tor</tt>, ou vous pouvez
+<p>Si vous installez depuis le code source, installez d'abord <a 
+href="http://www.monkey.org/~provos/libevent/">libevent</a>, et 
+assurez vous de bien d'avoir openssl et zlib (avec les paquets 
+-devel). Tapez ensuite :<br /> 
+<tt>tar xzf tor-<version-stable>.tar.gz; cd tor-<version-stable><br />
+./configure && make</tt><br /> 
+Vous pouvez maintenant lancer tor depuis <tt>src/or/tor</tt>, ou vous pouvez
 l'installer dans /usr/local/ avec <tt>make install</tt> (en root si nécessaire), ce qui
 vous permettra de le lancer en tapant simplement <tt>tor</tt>.
 </p>
 
 <p>Tor est préconfiguré par défaut en tant que client. Le fichier de
 configuration qu'il utilise par défaut conviendra à la plupart des
-utilisateurs. Tor est maintenant installé.  </p>
+utilisateurs. Tor est maintenant installé. 
+</p>
 
 <hr />
 <a id="privoxy"></a>
-<h2><a class="anchor" href="#privoxy">Étape 2 : Installer Privoxy pour la navigation
-web</a></h2>
+<h2><a class="anchor" href="#privoxy">Étape 2 : Installer Privoxy pour la navigation web</a></h2>
 <br />
 
 <p>Une fois Tor installé, vous devez configurer vos applications pour l'utiliser.
 </p>
 
 <p>
-Il faut tout d'abord s'occuper de la navigation web. Commencez par installer 
-<a href="http://www.privoxy.org/">Privoxy</a> : sélectionnez « recent
+Il faut tout d'abord s'occuper de la navigation web. Commencez par installer <a 
+href="http://www.privoxy.org/">Privoxy</a> : sélectionnez « recent
 releases », et choisissez votre paquet, ou installez depuis le code source. Privoxy
 est un proxy web filtrant qui s'intègre très bien avec Tor.
 </p>
@@ -61,8 +63,7 @@ est un proxy web filtrant qui s'intègre très bien avec Tor.
 <p>Une fois Privoxy installé (par un paquet, ou par les sources),
 <b>il vous faudra configurer Privoxy pour utiliser Tor</b>.
 Ouvrez le fichier de configuration de Privoxy (regardez dans /etc/privoxy/ ou dans
-/usr/local/etc/), et ajoutez la ligne
-<br>
+/usr/local/etc/), et ajoutez la ligne <br>
 <tt>forward-socks4a / 127.0.0.1:9050 .</tt><br>
 au début de ce fichier. N'oubliez pas le point en fin de ligne.
 </p>
@@ -71,8 +72,10 @@ au début de ce fichier. N'oubliez pas le point en fin de ligne.
 pouvez commenter (en insérant # en début de ligne) ces deux lignes :
 <br>
 <tt>logfile logfile</tt><br>
-et <br>
+et la ligne<br>
 <tt>jarfile jarfile</tt><br>
+enfin (sur certains systèmes) la ligne <br>
+<tt>debug 1  # affiche chaque requète GET/POST/CONNECT</tt><br>
 </p>
 
 <p>Vous devrez redémarrer Privoxy pour que les modifications prennent effet.</p>
@@ -84,33 +87,36 @@ et <br>
 
 <p>Une fois Tor installé, vous devez configurer vos applications pour l'utiliser.</p>
 
-<p>Si vous utilisez Firefox (nous vous le conseillons), vous pouvez installer
-<a href="http://freehaven.net/~squires/torbutton/">l'extension Torbutton</a> qui effectue
-tous les réglages pour vous. Si vous avez l'intention d'utiliser Firefox sur un autre
-ordinateur que Tor, consultez notre <a href="<page docs/tor-switchproxy>">howto Tor 
-SwitchProxy</a> pour installer une extension qui facilitera le va-et-vient entre 
-une connexion via Tor et une connexion directe.</p>
+<p>Si vous utilisez Firefox (nous vous le conseillons), vous pouvez installer <a 
+href="https://addons.mozilla.org/firefox/2275/">l'extension Torbutton</a>,
+puis redemarrez votre Firefox et c'est terminé :
+</p>
 
-<p>Sinon, vous pouvez configurer manuellement les réglages du proxy dans votre navigateur.
-Pour Mozilla, c'est dans Édition|Préférences|Avancé|Proxys.
-Pour Opera 7.5x c'est dans Outils|Préférences|Réseau|Serveurs Proxy.</p>
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1">
 
-<p>Vous devez indiquer "localhost" et "8118" pour faire pointer les quatre premiers
-protocoles sur Privoxy. (Bien que Privoxy ne gère ni le FTP, in Gopher, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">vous devez quand
-même les régler</a>.) Vous devriez également remplir la ligne socks pour la faire pointer
-directement sur Tor ("localhost", "9050", et socks5) afin de couvrir les protocoles autres
-que les quatre premiers. Validez ensuite par "OK".</p>
+<br />
+
+<p>
+(<a href="http://freehaven.net/~squires/torbutton/">En savoir plus sur 
+Torbutton ici</a>.
+Si vous envisagez de faire tourner Firefox sur un ordinateur différent de Tor, jetez un œil à l'entrée <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">FAQ
+traitant de l'utilisation de Tor sur un ordinateur différent</a>. Si vous avez besoin 
+d'utiliser un navigateur autre que Firefox, vous aurez à <a href="<page
+docs/tor-doc-web>">configurer son proxy vous même</a>.)
+</p>
 
 <p>Il est <strong>nécessaire</strong> d'utiliser Privoxy car <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">les
 navigateurs ne cachent pas vos requêtes DNS lorsque vous utilisez SOCKS
 directement</a>, ce qui est mauvais pour votre anonymat. Privoxy supprime aussi
 de vos requêtes web certains en-têtes dangereux, et bloque les infectes
-publicités de sites comme doubleclick.</p>
+publicités de sites comme Doubleclick.</p>
 
 
-<p>Pour Tor-iffier d'autres applications qui gèrent les proxies HTTP, faites les
+<p>Pour Torréfier d'autres applications qui gèrent les proxies HTTP, faites les
 simplement utiliser Privoxy (c'est à dire, localhost port 8118). Pour utiliser SOCKS
 directement (pour la messagerie instantanée, Jabber, IRC, etc), faites pointer votre
 application directement sur Tor (localhost port 9050), mais consultez 
@@ -121,8 +127,8 @@ href="http://tsocks.sourceforge.net/">tsocks</a> ou <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
 </p>
 
-<p>Vous pouvez trouver des informations sur la Tor-iffication d'autres applications 
-sur le <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">HOWTO Tor-iffication</a>.
+<p>Vous pouvez trouver des informations sur la Torréfaction d'autres applications 
+sur le <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">HOWTO Torréfaction</a>.
 </p>
 
 <hr />
@@ -132,7 +138,7 @@ sur le <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">HOWTO T
 
 <p>Vous devriez ensuite essayer d'utiliser votre navigateur avec Tor, et vérifier que votre adresse
 IP est anonyme. Rendez vous sur le 
-<a href="http://torstat.xenobite.eu/">détecteur Tor</a>, vous
+<a href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">détecteur Tor</a>, vous
 verrez s'il pense que vous utilisez Tor ou non. (Si ce site ne marche pas, voyez <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">cet
 article de la FAQ</a> pour des suggestions supplémentaires sur la manière de tester Tor.)
