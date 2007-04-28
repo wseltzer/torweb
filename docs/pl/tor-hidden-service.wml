@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9004
+# Based-On-Revision: 10009
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Instrukcja konfiguracji usług ukrytych" CHARSET="UTF-8"
@@ -12,7 +12,7 @@
 <hr />
 
 <p>Tor umożliwia klientom i serwerom oferowanie usług ukrytych. To znaczy,
- możesz mieć serwer WWW, SSH etc. bez podawaia swojego adresu IP użytkownikom.
+ możesz mieć serwer WWW, SSH etc. bez podawaia swojego IP użytkownikom.
  Ponieważ nie używasz żadnego adresu publicznego, możesz prowadzić
  usługę ukrytą zza zapory ogniowej.
 </p>
@@ -49,108 +49,14 @@
  danej chwili jest niedostępna). Jeśli próba od razu kończy się błędem mówiącym, że
  nie można znaleźć serwera "6sxoyfb3h2nvok2d.onion", to znaczy, że nie skonfigurowałeś
  Tor'a i Privoxy poprawnie; zajrzyj do <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">tego
- wpisu w FAQ</a> po pomoc.
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">wpisu
+ "to nie działa" w FAQ</a> po pomoc.
 </p>
+
 
 <hr />
 <a id="one"></a>
-<h2><a class="anchor" href="#one">Krok 1: Konfiguracja przykładowej usługi ukrytej</a></h2>
-<br />
-
-<p>W tym kroku skonfigurujesz usługę ukrytą, która będzie wskazywać na www.google.com.
- W ten sposób możemy się upewnić, że to działa, zanim zaczniemy myśleć o
- uruchomieniu lokalnego serwera WWW.
-</p>
-
-<p>Najpierw otwórz swój plik torrc swoim ulubionym edytorem. (Przeczytaj <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#torrc">ten
- wpis FAQ</a>, by dowiedzieć się, co to znaczy.) Przejdź do środkowej sekcji i
- szukaj linii</p>
-
-<pre>
-\############### This section is just for location-hidden services ###
-</pre>
-
-<p>Ta sekcja pliku składa się z grup linii, z których każda reprezentuje
- jedną usługę ukrytą. W tej chwili wszystkie są zakomentowane (linie zaczynają
- się od krzyżyka #), więc usługi ukryte są wyłączone. Każda grupa linii
- składa się z jednej linii HiddenServiceDir i jednej lub więcej linii HiddenServicePort:/p>
-<ul>
-<li><b>HiddenServiceDir</b> jest katalogiem, w którym Tor będzie przechowywał
- informacje o tej usłudze ukrytej. W szczególności, Tor utworzy w tym katalogu
- plik o nazwie <i>hostname</i>, z którego odczytasz "adres cebulowy" (onion URL).
- Nie musisz dodawać żadnych plików do tego katalogu.</li>
-<li><b>HiddenServicePort</b> pozwala określić port wirtualny (tzn. użytkownikom
- łączącym się z usługą ukrytą będzie się zdawało, że używają tego właśnie portu) i
- adres IP wraz z portem do przekierowywania połączeń na ten wirtualny port.</li>
-</ul>
-
-<p>W tym przykładzie ustawimy usługę ukrytą, która wskazuje na Google. Dodaj więc
- następujące linie do swojego pliku torrc:
-</p>
-
-<pre>
-HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
-HiddenServicePort 80 www.google.com:80
-</pre>
-
-<p>Powinieneś zmienić linię HiddenServiceDir tak, by pokazywała na istniejący
- katalog, który jest odczytywalny/zapisywalny przez użytkownika, który uruchamia
- Tor'a. Powyższa linia powinna działać, gdy używasz paczki z Tor'em dla OS X.
- Pod systemem Unix, sprobuj "/home/użytkownik/hidserv/", podając własną nazwę użytkownika
- w miejsce "użytkownik". Pod systemem Windows mógłbyś wpisać:</p>
-<pre>
-HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
-HiddenServicePort 80 www.google.com:80
-</pre>
-
-<p>Teraz zapisz zmiany w pliku torrc, zamknij Tor'a i uruchom go ponownie. (Spójrz na <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">ten
- wpis w FAQ</a> po sposoby ponownego uruchamiania Tor'a.)
-</p>
-
-<p>Jeśli Tor ponownie się uruchomi, to świetnie. W innym przypadku coś musi być
- źle. Przejrzyj swój torrc w poszukiwaniu literówek. Potem sprawdź, czy
- masz prawa zapisu do wybranego przez ciebie katalogu. Jeśli ciągle nie działa,
- poszukaj wskazówek w logach Tor'a. (Przeczytaj <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">ten
- wpis w FAQ</a>, jeśli nie wiesz jak włączyć lub znaleźć plik z logami.)
-</p>
-
-<p>Gdy Tor się uruchomi, automatycznie utworzy podany katalog HiddenServiceDir
- (jeśli trzeba), a w nim utworzy dwa pliki. Po pierwsze, wygeneruje nową
- parę kluczy publiczny/prywatny do twojej usługi ukrytej i zapisze ją w
- pliku o nazwie "private_key". Nie dawaj tego klucza nikomu -- jeśli to zrobisz,
- inni będą mogli podszyć się pod twoją usługę ukrytą.
-</p>
-
-<p>Drugim plikiem, który zostanie utworzony, jest plik o nazwie "hostname".
- Zawiera on krótkie podsumowanie twojego klucza publicznego -- będzie wyglądać
- podobnie do tego: <tt>6sxoyfb3h2nvok2d.onion</tt>. To jest publiczna nazwa
- twojej usługi i możesz podawać ją innym, rozgłaszać w internecie,
- umieszczać na wizytówkach etc. (Jeśli Tor jest uruchomiony z prawami innego
- użytkownika niż ty, np. na systemach OS X, Debian, Red Hat, możesz potrzebować
- uprawnień root'a, by zobaczyć te pliki.)
-</p>
-
-<p>Po ponownym uruchomieniu, Tor zajmuje się pobieraniem punktów wstępu
- w sieci Tor'a i generowaniem czegoś, co nazywa się "deskryptorem usługi ukrytej",
- który jest podpisaną listą punktów wstępnych razem z pełnym publicznym kluczem
- usługi. Tor anonimowo umieszcza ten deskryptor na serwerach katalogowych, a
- inni ludzie anonimowo go pobierają z serwerów katalogowych, gdy próbują połączyć
- się z twoją usługą.
-</p>
-
-<p>Wypróbuj to: wklej zawartość pliku "hostname" do swojej przeglądarki WWW.
- Jeśli działa, zobaczysz stronę Google, ale adres w przeglądarce będzie
- adresem twojej usługi. Jeśli nie działa, poszukaj wskazówek w logach i
- zajmuj się tym do chwili, w której zadziała.
-</p>
-
-<hr />
-<a id="two"></a>
-<h2><a class="anchor" href="#two">Krok 2: Zainstaluj lokalnie serwer WWW</a></h2>
+<h2><a class="anchor" href="#one">Krok 1: Zainstaluj lokalnie serwer WWW</a></h2>
 <br />
 
 <p>Teraz gdy już masz działające usługi ukryte w Torze, musisz uruchomić
@@ -194,21 +100,101 @@ HiddenServicePort 80 www.google.com:80
  się on, gdy łączysz się ze swoim serwerem WWW.
 </p>
 
+
 <hr />
-<a id="three"></a>
-<h2><a class="anchor" href="#three">Krok 3: Podłącz serwer WWW do swojej usługi ukrytej</a></h2>
+<a id="two"></a>
+<h2><a class="anchor" href="#two">Krok 2: Konfiguracja twojej usługi ukrytej</a></h2>
 <br />
 
-<p>Ta część jest bardzo prosta. Ponownie otwórz plik torrc i zmień linię z
- HiddenServicePort z "www.google.com:80" na "localhost:5222".
- Potem <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">ponownie
- uruchom Tor'a</a>. Sprawdź, czy działa wpisując adres swojej ukrytej usługi w przeglądarce.
+<p>Teraz musisz skonfigurować swoją usługę ukrytą, by wskazywała na twój lokalny
+ serwer WWW.
+</p>
+
+<p>Najpierw otwórz swój plik torrc swoim ulubionym edytorem. (Przeczytaj <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#torrc">wpis
+ o torrc w FAQ</a>, by dowiedzieć się, co to znaczy.) Przejdź do środkowej sekcji i
+ szukaj linii</p>
+
+<pre>
+\############### This section is just for location-hidden services ###
+</pre>
+
+<p>Ta sekcja pliku składa się z grup linii, z których każda reprezentuje
+ jedną usługę ukrytą. W tej chwili wszystkie są zakomentowane (linie zaczynają
+ się od krzyżyka #), więc usługi ukryte są wyłączone. Każda grupa linii
+ składa się z jednej linii HiddenServiceDir i jednej lub więcej linii HiddenServicePort:/p>
+<ul>
+<li><b>HiddenServiceDir</b> jest katalogiem, w którym Tor będzie przechowywał
+ informacje o tej usłudze ukrytej. W szczególności, Tor utworzy w tym katalogu
+ plik o nazwie <i>hostname</i>, z którego odczytasz "adres cebulowy" (onion URL).
+ Nie musisz dodawać żadnych plików do tego katalogu.</li>
+<li><b>HiddenServicePort</b> pozwala określić port wirtualny (tzn. użytkownikom
+ łączącym się z usługą ukrytą będzie się zdawało, że używają tego właśnie portu) i
+ adres IP wraz z portem do przekierowywania połączeń na ten wirtualny port.</li>
+</ul>
+
+<p>Dodaj następujące linie do swojego pliku torrc:
+</p>
+
+<pre>
+HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:5222
+</pre>
+
+<p>Powinieneś zmienić linię HiddenServiceDir tak, by pokazywała na istniejący
+ katalog, który jest odczytywalny/zapisywalny przez użytkownika, który uruchamia
+ Tor'a. Powyższa linia powinna działać, gdy używasz paczki z Tor'em dla OS X.
+ Pod systemem Unix, sprobuj "/home/użytkownik/hidserv/", podając własną nazwę użytkownika
+ w miejsce "użytkownik". Pod systemem Windows mógłbyś wpisać:</p>
+<pre>
+HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
+HiddenServicePort 80 127.0.0.1:5222
+</pre>
+
+<p>Teraz zapisz zmiany w pliku torrc, zamknij Tor'a i uruchom go ponownie.
+</p>
+
+<p>Jeśli Tor ponownie się uruchomi, to świetnie. W innym przypadku coś musi być
+ źle. Przejrzyj swój torrc w poszukiwaniu literówek. Potem sprawdź, czy
+ masz prawa zapisu do wybranego przez ciebie katalogu. Jeśli ciągle nie działa,
+ poszukaj wskazówek w logach Tor'a. (Przeczytaj <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">wpis
+ o logach w FAQ</a>, jeśli nie wiesz jak włączyć lub znaleźć plik z logami.)
+</p>
+
+<p>Gdy Tor się uruchomi, automatycznie utworzy podany katalog HiddenServiceDir
+ (jeśli trzeba), a w nim utworzy dwa pliki. Po pierwsze, wygeneruje nową
+ parę kluczy publiczny/prywatny do twojej usługi ukrytej i zapisze ją w
+ pliku o nazwie "private_key". Nie dawaj tego klucza nikomu -- jeśli to zrobisz,
+ inni będą mogli podszyć się pod twoją usługę ukrytą.
+</p>
+
+<p>Drugim plikiem, który zostanie utworzony, jest plik o nazwie "hostname".
+ Zawiera on krótkie podsumowanie twojego klucza publicznego -- będzie wyglądać
+ podobnie do tego: <tt>6sxoyfb3h2nvok2d.onion</tt>. To jest publiczna nazwa
+ twojej usługi i możesz podawać ją innym, rozgłaszać w internecie,
+ umieszczać na wizytówkach etc. (Jeśli Tor jest uruchomiony z prawami innego
+ użytkownika niż ty, np. na systemach OS X, Debian, Red Hat, możesz potrzebować
+ uprawnień root'a, by zobaczyć te pliki.)
+</p>
+
+<p>Po ponownym uruchomieniu, Tor zajmuje się pobieraniem punktów wstępu
+ w sieci Tor'a i generowaniem czegoś, co nazywa się "deskryptorem usługi ukrytej",
+ który jest podpisaną listą punktów wstępnych razem z pełnym publicznym kluczem
+ usługi. Tor anonimowo umieszcza ten deskryptor na serwerach katalogowych, a
+ inni ludzie anonimowo go pobierają z serwerów katalogowych, gdy próbują połączyć
+ się z twoją usługą.
+</p>
+
+<p>Wypróbuj to: wklej zawartość pliku "hostname" do swojej przeglądarki WWW.
+ Jeśli działa, zobaczysz stronę Google, ale adres w przeglądarce będzie
+ adresem twojej usługi. Jeśli nie działa, poszukaj wskazówek w logach i
+ zajmuj się tym do chwili, w której zadziała.
 </p>
 
 <hr />
-<a id="four"></a>
-<h2><a class="anchor" href="#four">Krok 4: Wskazówki dla zaawansowanych</a></h2>
+<a id="three"></a>
+<h2><a class="anchor" href="#three">Krok 3: Wskazówki dla zaawansowanych</a></h2>
 <br />
 
 <p>Jeśli planujesz udostępniać swoją usługę przez dłuższy czas, zrób kopię
