@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 8117
-# Last-Translator: isydor@no-log.org
+# Based-On-Revision: 9912
+# Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Installation : MS Windows "
 
@@ -26,12 +26,13 @@ Si vous voulez installer un relai Tor pour aider à faire grandir le réseau (n'
 
 <p>
 L'installateur pour MS Windows contient <a href="<page index>">Tor</a>,
-<a href="http://www.vidalia-project.net/">Vidalia</a> (Une inteface graphique pour Tor), et <a
+<a href="http://www.vidalia-project.net/">Vidalia</a> (Une interface graphique pour Tor), et <a
 href="http://www.privoxy.org">Privoxy</a> (un proxy web filtrant) en un seul paquet, avec ces trois applications pré-configurées pour fonctionner ensemble.
-<a href="<page download>">Téléchargez la version expérimentale depuis la page de téléchargement</a>.
+<a href="<page download>">Téléchargez soit la version stable, soit la version expérimentale depuis la page de téléchargement</a>.
+</p>
 
-<p>Si le paquet précédent ne fonctionne pas, vous pouvez télécharger Tor seul, depuis la page de téléchargement
-<a href="<page download>">page de téléchargement</a>, puis <a
+<p>Si le paquet précédent ne fonctionne pas, vous pouvez télécharger Tor seul, depuis la 
+<a href="<page download-windows>">page de téléchargement</a>, puis <a
 href="<page docs/tor-doc-unix>#privoxy">installer
 et configurer Privoxy vous-même</a>.
 </p>
@@ -55,25 +56,26 @@ src="../img/screenshot-win32-installer-components.png" />
 <p>Après avoir installé Tor et Privoxy, vous devez configurer vos applications pour les utiliser. La prochaine action consiste à configurer le navigateur web.
 </p>
 
-<p>Si vous utilisez Firefox (ce que nous vous recommandons), regardez du côté du <a
-href="http://freehaven.net/~squires/torbutton/">plugin Torbutton
-</a> qui peut tout configurer pour vous. Si vous prévoyez d'utiliser un Firefox installé sur un autre ordinateur que celui où vous avez installé Tor, lisez notre 
-<a href="<page docs/tor-switchproxy>">Tor SwitchProxy howto</a> pour configurer le plugin permettant de passer facilement du mode "Tor" au mode "connexion directe à internet"</p>
+<p>Si vous utilisez Firefox (ce que nous vous recommandons), le paquet « tout en un » Vidalia installe le <a
+href="https://addons.mozilla.org/firefox/2275/">plugiciel Torbutton</a> pour vous. Redemarrez votre Firefox et c'est tout :
+</p>
 
-<p>Si vous le souhaitez, vous pouvez manuellement faire la configuration des paramètres proxy de votre navigateur web.
-Dans Mozilla et Firefox, c'est dans Edition|Préférences|Avancé|Proxy.
-Dans Opera 7.5x c'est Outils|Préférences|Réseau|Serveurs Proxy.
-Dans IE, c'est Outils|Options Internet|Connexions|Configuration Réseau|Avancé.</p>
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1">
 
-<img alt="Proxy settings in Firefox"
-src="../img/screenshot-win32-firefox-proxies.jpg" />
+<br />
+
 
 <p>
-Il faut mettre commme indiqué "localhost" et "8118" pour que les quatres premiers protocoles passent par Privoxy.
- (Même si Privoxy ne gère pas le FTP et Gopher, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy"> il faut les configurer
-</a>.) Il faut aussi renseigner les entrées du proxy de socks pour le faire passer directement par Tor ("localhost", "9050", et socks5)
-pour prendre en compte les protocoles au-dela des quatres premiers. Ensuite, cliquer sur "OK".</p>
+(<a href="http://freehaven.net/~squires/torbutton/">Quelques détails en plus à propos de
+Torbutton ici</a>.
+Si vous envisagez de faire tourner Firefox sur un ordinateur différent de celui de Tor, voyez l'<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">entrée de la FAQ
+sur comment faire tourner Tor sur un ordinateur différent</a>. Si vous avez besoin d'utiliser un
+navigateur autre que Firefox, vous aurez à <a href="<page
+docs/tor-doc-web>">configurer ses options de proxy vous même</a>.)
+</p>
 
 <p>L'utilisation de Privoxy est <strong>nécessaire</strong> car <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">le navigateur laisse passer des informations lorsqu'il fait des requêtes DNS en utilisant le proxy SOCKS directement, 
@@ -105,9 +107,10 @@ src="../img/screenshot-win32-vidalia.png">
 
 <p>
 À présent, vous devriez essayer votre navigateur web avec Tor activé pour vous assurer que votre adresse IP est anonymisée. Cliquez sur le 
-<a
-href="http://torstat.xenobite.eu/">Tor
+<a href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">Tor
 detector</a> et voyez si vous utilisez bien Tor ou non.
+#<a href="http://ipchicken.com/">this site</a>
+#to see what IP address it thinks you're using.
 (Si le site  n'est pas disponible, regardez cette <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">rubrique de la FAQ
 </a> pour trouver d'autres moyens de tester le fonctionnement de votre client Tor.)
