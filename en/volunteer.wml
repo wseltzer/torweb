@@ -103,11 +103,6 @@ SSL <a href="<page documentation>#Developers">SVN repository?</a></li>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Coding and Design</a></h2>
-<p>Want to spend your <a href="http://code.google.com/soc/">Google Summer
-of Code</a> working on Tor? Great.
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Read
-more about Tor and GSoC</a>, and see if any of the below ideas catch
-your eye.</p>
 <ol>
 <li>Tor servers don't work well on Windows XP. On
 Windows, Tor uses the standard <tt>select()</tt> system
@@ -136,6 +131,16 @@ will probably receive hundreds of queries a minute, so some smart
 algorithms are in order. Bonus points if it does active testing through
 each exit node to find out what IP address it's really exiting from.
 <a href="<svnsandbox>doc/contrib/torbl-design.txt">Read more here</a>.</li>
+<li>Sometimes Tor servers crash, or the computers they're on fall off the
+network, or other accidents happen. Some Tor operators have expressed
+an interest in signing up to a "notifying" service that periodically
+checks whether their Tor server is healthy and sends them a reminder mail
+when it's not. Anybody want to write a few cgi scripts, a few web pages,
+and set up some sort of wget hack and/or something more complex like <a
+href="http://nagios.org/">Nagios</a> to do the monitoring? The first
+version could check just the directory port, e.g. looking through the
+cached network-status page for the right IP address and port and then
+asking for the "/tor/server/authority" page.</li>
 <li>It would be great to have a LiveCD that includes the latest
 versions of Tor, Polipo or Privoxy, Firefox, Gaim+OTR, etc. There are
 two challenges here: first is documenting the system and choices well
