@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9921
+# Based-On-Revision: 10121
 # Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
 #include "head.wmi" TITLE="Mithelfen"
@@ -131,12 +131,6 @@
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programmierung und Design</a></h2>
 
-<p>Möchtest du deinen Google Summer of Code verbringen, an Tor zu arbeiten?
-Großartig. <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Lies mehr
-über Tor und GSoC</a> und schaue, ob eine der untenstehenden Ideen dir
-gefällt.</p>
-
 <ol>
   <li>Torserver funktionieren unter Windows XP nicht sehr gut. Wir
   verwenden auf Windows den standardmäßigen <code>select</code>-Systemaufruf.
@@ -164,6 +158,16 @@ gefällt.</p>
   intelligente Algorithmen gefragt. <a
   href="<svnsandbox>doc/contrib/torbl-design.txt">Hier</a> kannst du mehr dazu
   lesen.</li>
+  <li>Manchmal stürzen Torserver ab oder die Computer, auf denen das Programm
+  läuft, verschwinden vom Netz. Manche Betreiber von Tor haben Interesse
+  geäußert, an einem Service teilzunehmen, der in regelmäßigen Abständen prüft,
+  ob der jeweilige Torserver noch läuft und Mails versendet, falls das nicht der
+  Fall ist. Eventuell möchte jemand ein paar CGI-Skripte und Webseiten schreiben
+  and einen wget-hack oder etwas komplexeres wie <a
+  href="http://nagios.org/">Nagios</a> für das Monitoring machen? Die erste
+  Version sollte nur den Directoryport prüfen. Beispielsweise könnte das
+  Programm durch die Netzwerkstatusseite nach der richtigen IP-Adresse sowie
+  Port schauen und dann nach der "/tor/server/authority"-Seite.</li>
   <li>Wir brauchen ein verteiltes Testgerüst. Bisher haben wir Unittests. Es
   wäre großartig, ein Skript zu haben, welches ein Tornetzwerk startet und dort
   für einige Zeit testet, ob die Erneuerungen funktionieren.</li>
