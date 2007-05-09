@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9921
+# Based-On-Revision: 10121
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Partecipa"
@@ -107,11 +107,6 @@ traduzioni</a>.</li>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programmazione e design</a></h2>
-<p>Vupo passare il <a href="http://code.google.com/soc/">Google Summer
-of Code</a> lavorando su Tor? Ottimo.
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Leggi
-qui come fare con Tor e GSoC</a>, e guarda anche se qualcuna delle idee qui sotto
-ti possono interessare.</p>
 <ol>
 <li>I server Tor non funzionano bene su Windows XP. Su
 Windows, Tor usa la normale chiamata di sistema <tt>select()</tt>,
@@ -140,6 +135,16 @@ ricever&agrave; probabilmente centinaia di richieste al minuto, per cui occorre
 qualche algoritmo efficiente. Bonus se effettua dei test attivi su
 ciascun exit node per scoprire da quale indirrizzo IP esce realmente.
 <a href="<svnsandbox>doc/contrib/torbl-design.txt">Leggi qui per approfondire</a>.</li>
+<li>Talvolta i server Tor vanno in crash o i computer su cui sono escono dalla
+rete, o capita qualche incidente. Alcuni gestori Tor si sono detti interessati
+a un servizio di notifica che verifichi periodicamente
+lo stato dei propri server Tor ed invii una email in caso di problemi.
+C'&egrave; qualcuno che vuole scrivere qualche script cgi, delle pagine web
+e mettere in piedi un hack con wget oppure qualcosa di più complsso come <a
+href="http://nagios.org/">Nagios</a> per il monitoraggio? La versione iniziale
+potrebbe controllare solo la directory port, ovvero leggere la pagina in cache
+con il network-status alla ricerca degli indirizzi Ip e delle porte per poi richiedere
+la pagina "/tor/server/authority".</li>
 <li>Sarebbe bello avere un CD live contenente le versioni
 pi&ugrave; recenti di Tor, Polipo o Privoxy, Firefox, Gaim+OTR, etc. Ci sono
 due problemi: il primo consiste nel documentare il sistema e le opzioni con chiarezza
