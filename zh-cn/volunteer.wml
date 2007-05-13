@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9921
+# Based-On-Revision: 10121
 # Last-Translator: peihanru AT gmail.com
 
 #include "head.wmi" TITLE="志愿者" CHARSET="UTF-8"
@@ -72,10 +72,6 @@ SSL <a href="<page documentation>#Developers">SVN repository?</a></li>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">编码与设计</a></h2>
-<p>想在这个 <a href="http://code.google.com/soc/">Google Summer of Code</a>
-与 Tor 一起工作吗？太好了。<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">阅读更多 Tor 与 GSoC</a>，
-看看你对下面哪些主意感兴趣。</p>
 <ol>
 <li>Tor 服务器在 Windows XP 上工作得不好。在 Windows 平台，Tor 使用标准的 <tt>select()</tt> 系统调用，
 该函数不使用页面文件的空间。这意味着一个中等大小的 Tor 服务器就会耗尽全部的物理内存，<a
@@ -92,6 +88,12 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">导�
 IP 地址：端口退出的 Tor 出口服务器的 IP 地址吗？”DNSBL 界面可能每分钟接收到数百次查询，
 所以用得着一些聪明的算法。如果它能够主动测试每一个出口节点，发现真实的出口 IP 地址就更好了。<a
 href="<svnsandbox>doc/contrib/torbl-design.txt">阅读更多</a>。</li>
+<li>有时候 Tor 服务器会崩溃，或者运行它们的电脑与网络失去了连接，或者发生了其他的意外。
+一些 Tor 的操作者表达了对于一种“提示”服务的兴趣，该服务会定期对他们的 Tor 服务器进行测试，
+当发现问题时会给他们发送提示邮件。有谁愿意写一些 CGI 脚本，一些网页，通过 wget 和/或
+类似于 <a href="http://nagios.org/">Nagios</a> 的更复杂的机制来实现这一监视功能吗？
+第一个版本可以仅仅测试目录端口，例如遍历缓冲的 network-status 文件，查找正确的 IP 地址和
+端口，然后询问“/tor/server/authority”页面。</li>
 <li>如能有一张 LiveCD，包括最新的 Tor、Polipo 或 Privoxy、Firefox、Gaim+OTR 等等该多好。
 有两项挑战：首先是为系统和选择撰写足够好的文档，这样安全专家就能对它是否安全做出判断；
 其次是找到使它易于维护的办法，这样它就不会像 AnonymOS 那样很快地被废弃。
