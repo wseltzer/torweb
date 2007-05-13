@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9921
+# Based-On-Revision: 10121
 # Last-Translator: ygrekheretix/gmail/com
 
 #include "head.wmi" TITLE="Добровольцы" CHARSET="KOI8-R"
@@ -98,10 +98,6 @@ Tor, <a href="http://vidalia-project.net/">Vidalia</a>.</li>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Кодирование и проектирование</a></h2>
-<p>Хотите поработать над улучшением Tor во время <a
-href="http://code.google.com/soc/">Google Summer of Code</a>? Замечательно.
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Прочитайте
-больше о Tor и GSoC</a>, и может быть какая-то из идей ниже захватит вас.</p>
 <ol>
 <li>Серверы Tor под Windows XP работают не очень стабильно. Под Windows,
 Tor использует стандартный системный вызов <tt>select()</tt>, который потребляет
@@ -129,6 +125,16 @@ IP адрес выходящему узлу сети Tor?". Этот ресурс должен быть доступным по нескол
 потребуются какие-нибудь умные алгоритмы. Также было бы лучше проводить активное
 тестирование на проверку IP адреса с которого на самом деле выходят соединения.
 <a href="<svnsandbox>doc/contrib/torbl-design.txt">Прочитайте больше</a>.</li>
+<li>Иногда случается что сервера Tor аварийно завершают работу, или компьютеры
+теряют сетевое соединение, или происходит ещё что-нибудь непредвиденное.
+Некоторые из операторов серверов Tor заинтересованы в сервисе "уведомлений"
+который бы периодически проверял работу их сервера и присылал бы email в
+случаеего недоступности. Кто-нибудь хочет написать несколько cgi скриптов,
+пару веб-страниц, и настроить wget и/или что-то более сложное как например
+<a href="http://nagios.org/">Nagios</a> мониторинга? Первая версия могла бы
+просто проверять Dir-порт, например просматривая закэшированную информацию из
+network-status для указанного IP и порта и запрашивая затем страницу
+"/tor/server/authority".</li>
 <li>Было бы замечательно иметь LiveCD с последними версиями Tor,
 Polipo или Privoxy, Firefox, Gaim+OTR, etc. Тут вырисовываются два вопроса:
 во-первых требуется задокументировать всю систему и обосновать выбор средств, чтобы
@@ -275,29 +281,29 @@ than fixed-size windows? That seemed to go well in an <a
 href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh
 throughput experiment</a>. We'll need to measure and tweak, and maybe
 overhaul if the results are good.</li>
-<li>To let dissidents in remote countries use Tor without being blocked
-at their country's firewall, we need a way to get tens of thousands of
-relays, not just a few hundred. We can imagine a Tor client GUI that
-has a "Tor for Freedom" button at the top that opens a port and relays a
-few KB/s of traffic into the Tor network. (A few KB/s shouldn't be too
-much hassle, and there are few abuse issues since they're not being exit
-nodes.) But how do we distribute a list of these volunteer clients to the
-good dissidents in an automated way that doesn't let the country-level
-firewalls intercept and enumerate them? Probably needs to work on a
-human-trust level. See our <a href="<page documentation>#DesignDoc">early
-blocking-resistance design document</a> and our
+<li>Для того чтобы диссиденты в разных странах могли использовать Tor избегая
+блокирования на уровне брандмауэра страны, требуется не несоклько сотен
+серверов, а несколько десятков тысяч. Надо придумать способ получить такое
+число серверов. Например можно представить GUI для Tor с кнопкой "Tor для
+Свободы" запускающей небольшой сервер (несколько КБ/сек и политика выхода
+non-exit не должны доставлять много хлопот). Но как нам автоматическим образом
+доставить список всех этих добровольных клиентов-серверов диссидентам так чтобы
+брандмауэры на уровне страны не могли перехватить эти списки? Возможно придётся
+разработать сеть доверия пользователей. Смотрите наши
+<a href="<page documentation>#DesignDoc">ранние работы по проектированию
+архитектуры устойчивой к блокированию</a> и соответствующий
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China">раздел FAQ</a>,
+а также
 <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#China">FAQ
-entry</a> on this, and then read the <a
-href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">censorship
-resistance section of anonbib</a>.</li>
-<li>Tor circuits are built one hop at a time, so in theory we have the
-ability to make some streams exit from the second hop, some from the
-third, and so on. This seems nice because it breaks up the set of exiting
-streams that a given server can see. But if we want each stream to be safe,
-the "shortest" path should be at least 3 hops long by our current logic, so
-the rest will be even longer. We need to examine this performance / security
-tradeoff.</li>
+href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">раздел anonbib
+посвящённый противодействию цензуре</a>.</li>
+<li>Цепочки Tor строятся по одному прыжку за раз, так что в теории мы можем
+использовать некторые потоки для выхода со второго прыжка, некторые с третьего,
+и так далее. Это хорошо так как разбивает мноество выходящих потоков которое
+может наблюдать один конкретный сервер. Но если мы хотим добиться безопасности
+каждого потока, то по нашей логике они должны быть не менее трёх прыжков в длину
+каждый, а остальные тогда будут даже длиннее. Надо исследовать влияние такого
+подхода на скорость и безопасность.</li>
 <li>Сейчас довольно просто заDoSить сервера Tor или сервера каталогов.
 Правильный ответ - игра в загадки с клиентом? Какие ещё практические
 подходы вы можете предложить? Желательно чтобы они были совместимы с существующим
