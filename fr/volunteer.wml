@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9921
+# Based-On-Revision: 10181
 # Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Contribuer"
@@ -103,11 +103,6 @@ SSL de notre <a href="<page documentation>#Developers">dépôt SVN</a></li>
 
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Conception et Code</a></h2>
-<p>Vous souhaiter passer votre <a href="http://code.google.com/soc/">Google Summer
-of Code</a> en travaillant sur Tor ? Sympa.
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SummerOfCode">Lisez ceci 
-à propos de Tor et GSoC</a>, et voyez si l'une ou l'autre de ces idées 
-vous tente.</p>
 <ol>
 <li>Les serveurs de Tor ne fonctionnent pas parfaitement sur Windows XP. Sur
 Windows, Tor utilise l'appel système standard <tt>select()</tt>, 
@@ -136,6 +131,16 @@ recevra probablement plusieurs centaines de requêtes par minute, ainsi dévelop
 robustes est de mise. La cerise sur le gateau s'ils font des tests actifs à travers 
 chaque noeud de sorti pour déterminer de quelle adresse IP elle sort vraiment.
 <a href="<svnsandbox>doc/contrib/torbl-design.txt">Lisez-en plus ici</a>.</li>
+<li>Parfois les serveurs Tor plantent, ou les ordinateurs sur lesquels ils tournent tombent ou quittent
+le réseau, ou d'autres incidents surviennent. Certains opérateurs de nœud Tor ont exprimés le 
+souhait de pouvoir souscrire à un service qui pourrait périodiquement
+scruter l'état du serveur Tor et déterminer s'il est en état de marche et envoyer une notification par mail
+lorsqu'il ne l'est pas. Quelqu'un pourrait écrire quelques scripts, quelques pages, 
+et programmer quelque chose comme des scripts à base de wget et/ou plus complexe comme <a
+href="http://nagios.org/">Nagios</a> pour faire la supervision ? La première 
+version pourrait juste contrôler le port « directory », p.ex. en cherchant dans la
+page de status du réseau mise en cache, la bonne adresse IP et le port et ensuite
+demander la page "/tor/server/authority".</li>
 <li>Il serait sympa d'avoir un LiveCD qui inclurait les dernières
 versions de Tor, Polipo ou Privoxy, Firefox, Gaim+OTR, etc. Il y a 
 deux défis ici : le premier de documenter le sytème et les choix suffisament
