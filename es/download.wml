@@ -1,8 +1,8 @@
 ## translation metadata
-# Based-On-Revision: 7964
-# Last-Translator: torero@alkur.net
+# Based-On-Revision: 10337
+# Last-Translator: ruben at ugr es
 
-#include "head.wmi" TITLE="Download" CHARSET="UTF-8"
+#include "head.wmi" TITLE="Descarga" CHARSET="UTF-8"
 
 <div class="main-column">
 
@@ -10,17 +10,17 @@
 <hr />
 
 <p>Tor se distribuye como <a href="http://www.fsf.org/">Software Libre</a>
-bajo la <a href="<svnsandbox>LICENSE">clausula-3 de la licencia BSD</a>.
+bajo la <a href="<svnsandbox>LICENSE">licencia BSD de tres cláusulas</a>.
 </p>
 
-<p>Si quieres que Tor sea mas rapido y usable, por favor considera <a
+<p>Si quieres que Tor sea más rápido y usable, por favor considera <a
 href="<page donate>">hacer una donacion al proyecto Tor</a>.
 </p>
 
-<p>La ultima version estable es<b><version-stable></b>, y la 
-ultima version de desarrollo es<b><version-alpha></b>.</p>
+<p>La última versión estable es <b><version-stable></b>, y la 
+última versión de desarrollo es <b><version-alpha></b>.</p>
 
-<p><b>Suscribete</b> a la
+<p><b>Suscríbete</b> a la
 <a href="http://archives.seul.org/or/announce/">lista de correo or-announce</a>
 para mantenerte informado de las recomendaciones de seguridad y las nuevas publicaciones de versiones estables (necesitaras confirmar via email):</p>
 
@@ -32,143 +32,167 @@ para mantenerte informado de las recomendaciones de seguridad y las nuevas publi
 <input type="submit" value="subscribe">
 </form>
 
+<p>There is also an <a
+href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS
+feed</a> of the or-announce list at <a
+href="http://gmane.org">gmane.org</a>.</p>
+
+<hr />
+
+<a id="Warning"></a>
+<h2><a class="anchor" href="#Warning">Advertencia: ¿Quieres que Tor 
+realmente funcione?</a></h2>
+
+<p>...entonces por favor no sólo lo instale y continúe igual. 
+¡Necesita cambiar algunos de sus hábitos, y reconfigurar su
+software!
+Tor por sí mismo <b>NO</b> es todo lo que necesita para mantener su 
+anonimato. Hay varios escollos importantes que vigilar.
+</p>
+
+<p>Primero, Tor sólo protege las aplicaciones de Internet que están
+configuradas para enviar su tráfico a través de Tor &mdash; no vuelve
+automáticamente anónimo todo su tráfico sólo por instalarlo. Recomendamos
+que use <a href="http://www.mozilla.org/firefox">Firefox</a> con la
+extensión <a href="https://addons.mozilla.org/firefox/2275/">Torbutton</a>.
+</p>
+
+<p>Segundo, los plugins del navegador como Java, Flash, ActiveX, 
+RealPlayer, Quicktime, el plugin PDF de Adobe y otros pueden ser manipulados
+para revelar su dirección IP. Probablemente deba desinstalar sus plugins
+(vaya a "about:plugins" para ver qué está instalado), o investigue <a
+href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>, <a
+href="https://addons.mozilla.org/firefox/433/">FlashBlock</a>, y
+<a href="http://noscript.net/">NoScript</a>
+si realmente los necesita. Considere eliminar extensiones que buscan 
+más información sobre los sitios web con los que los rellena (como 
+Google toolbar), ya que pueden evitar Tor y/o enviar información confidencial.
+Alguna gente prefiere usar dos navegadores (uno para Tor, otro para 
+navegar de forma no segura).
+</p>
+
+<p>Tercero, tenga cuidado con las cookies: si alguna vez navega sin Tor ni
+Privoxy y un sitio le da una cookie, esa cookie podría identificarle aunque 
+empiece a usar Tor otra vez. Debería limpiar las cookies frecuentemente. <a
+href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> puede ayudarle
+a proteger las cookies que no quiera perder.
+</p>
+
+<p>Cuarto, Tor anonimiza el origen de su tráfico, y lo encripta todo dentro de la
+red Tor, pero <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">
+no puede encriptar su tráfico entre la red Tor y su destino final.</a>
+Si está comunicando información confidencial, debería tener el mismo cuidado que
+en la espeluznante Internet normal &mdash; use SSL u otra encriptación y autentificación 
+de punta a punta.
+</p>
+
+<p>Quinto, aunque Tor evita que los atacantes de tu red local descubran o influyan
+en tu destino, abre nuevos riesgos: nodos Tor de salida malicios o configurados mal
+pueden enviarle la página errónea, o incluso enviar applets Java embebidos disfrazados
+como dominios en los que confía.
+
+<p>Sea listo y aprenda más. Entienda lo que hace Tor y lo que no ofrece.
+Esta lista de escollos no está completa, y necesitamos su ayuda para
+<a href="<page volunteer>#Documentation">identificar y documentar todas las cuestiones
+</a>.
+</p>
+
 <table border="1" cellspacing="0" cellpadding="2">
 <thead>
 <tr>
 <th>Plataforma</th>
 <th>Paquete</th>
-<th>Info Configuracion</th>
+<th>Información de Configuración</th>
 </tr>
 </thead>
 
 <tr>
-<td>Windows: paquete Tor &amp; Privoxy &amp; TorCP </td>
-<td>
+<td>Windows</td>
+<td>Paquete Tor &amp; Privoxy &amp; Vidalia
 <a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>),
 <a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>).
 </td>
-<td><a href="<page docs/tor-doc-win32>">instrucciones Win32</a></td>
+<td><a href="<page docs/tor-doc-win32>">instrucciones Windows</a></td>
 </tr>
 
 <tr>
-<td>Windows: solo Tor (para expertos)</td>
+<td>Paquetes Windows para expertos</td>
 <td>
-<a href="<package-win32-stable>"><version-win32-stable></a> (<a href="<package-win32-stable-sig>">sig</a>),
-<a href="<package-win32-alpha>"><version-win32-alpha></a> (<a href="<package-win32-alpha-sig>">sig</a>).
+<td><a href="<page download-windows>">Página de descarga para Windows</a></td>
+<td><a href="<page docs/tor-doc-win32>">Instrucciones para Windows</a></td>
+</tr>
+
+<tr>
+<td>Binario universal para Mac OS X 10.4 (Tiger)</td>
+<td>
+<td>Paquete Tor &amp; Privoxy &amp; Vidalia:
+<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>),
+<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>).
 </td>
-<td>similar a las <a href="<page docs/tor-doc-unix>#privoxy">instrucciones Unix</a></td>
+<td><a href="<page docs/tor-doc-osx>">Instrucciones para OS X</a></td>
 </tr>
 
 <tr>
-<td>Mac OS X Tiger (OSX 10.4)</td>
-<td>
-<a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>),
-<a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>)
+<td>Mac OS X 10.3 (Panther)</td>
+<td>Paquete Tor &amp; Privoxy &amp; Vidalia:
+<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
+href="<package-oldosx-bundle-stable-sig>">sig</a>),
+<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a href="<package-oldosx-bundle-alpha-sig>">sig</a>).
 </td>
-<td><a href="<page docs/tor-doc-osx>">instrucciones OS X</a></td>
+<td><a href="<page docs/tor-doc-osx>">Instrucciones OS X </a></td>
 </tr>
 
 <tr>
-<td>Mac OS X Panther (OSX 10.3)</td>
-<td>
-<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a href="<package-oldosx-stable-sig>">sig</a>),
-<a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a href="<package-oldosx-alpha-sig>">sig</a>)
-</td>
-<td><a href="<page docs/tor-doc-osx>">instrucciones OS X </a></td>
+<td>Paquetes Mac OS X para expertos</td>
+<td><a href="<page download-osx>">Página de descarga para OS X</a></td>
+<td><a href="<page docs/tor-doc-osx>">Instrucciones para OS X</a></td>
 </tr>
 
 <tr>
-<td>Debian</td>
-<td><kbd>apt-get install tor</kbd></td>
+<td>Paquetes Linux/Unix</td>
+<td><a href="<page download-unix>">Página de descarga para Linux/Unix</a></td>
 <td>
-<ul>
-<li><a href="<page docs/tor-doc-unix>">instrucciones Linux/BSD/Unix</a></li>
-<li><a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorOnDebian">Backports para Woody y Sarge, Paquetes para Ubuntu, y paquetes de versiones de Tor experimentales</a></li>
-</ul>
-</td>
-</tr>
-
-<tr>
-<td>Gentoo</td>
-<td><kbd>emerge tor</kbd></td>
-<td>
-<ul>
-<li><a href="<page docs/tor-doc-unix>">instrucciones Linux/BSD/Unix</a></li>
-<li><a href="http://gentoo-wiki.com/HOWTO_Anonymity_with_Tor_and_Privoxy">Guia Gentoo-wiki</a></li>
-</ul>
+<a href="<page docs/tor-doc-unix>">Instrucciones para Linux/Unix</a>
 </td>
 </tr>
 
 <tr>
-<td>Red Hat Linux</td>
-<td>
-<a href="<package-rpm-stable>"><version-rpm-stable> RPM</a> (<a href="<package-rpm-stable-sig>">sig</a>)
-<br>
-<a href="<package-srpm-stable>"><version-rpm-stable> SRPM</a> (<a href="<package-srpm-stable-sig>">sig</a>)
-<br>
-<a href="<package-rpm-alpha>"><version-rpm-alpha> RPM</a> (<a href="<package-rpm-alpha-sig>">sig</a>)
-<br>
-<a href="<package-srpm-alpha>"><version-rpm-alpha> SRPM</a> (<a href="<package-srpm-alpha-sig>">sig</a>)
-</td>
-<td>
-<ul>
-<li><a href="<page docs/tor-doc-unix>">instrucciones Linux/BSD/Unix</a></li>
-<li><a href="http://mirror.noreply.org/pub/devil.homelinux.org/Tor/">Contrib RPMs uncluyendo CVS snapshots</a></li>
-</ul>
-</td>
-</tr>
-
-<tr>
-<td>FreeBSD</td>
-<td><kbd>portinstall -s security/tor</kbd></td>
-<td><a href="<page docs/tor-doc-unix>">instrucciones Linux/BSD/Unix</a></td>
-</tr>
-
-<tr>
-<td>OpenBSD</td>
-<td><kbd>cd /usr/ports/net/tor &amp;&amp; make &amp;&amp; make install</kbd></td>
-<td>
-<ul>
-<li><a href="<page docs/tor-doc-unix>">instrucciones Linux/BSD/Unix</a></li>
-<li><a href="http://wiki.noreply.org/noreply/TheOnionRouter/OpenbsdChrootedTor">Guia para chrootear Tor en OpenBSD</a></li>
-</ul>
-</td>
-</tr>
-
-<tr>
-<td>NetBSD</td>
-<td><kbd>cd /usr/pkgsrc/net/tor &amp;&amp; make install</kbd></td>
-<td><a href="<page docs/tor-doc-unix>">instrucciones Linux/BSD/Unix</a></td>
-</tr>
-
-<tr>
-<td>Source tarballs</td>
+<td>Ficheros tar con las fuentes</td>
 <td>
 <a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>),
-<a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)
+<a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>).
 </td>
-<td>n/a</td>
+<td><kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd></td>
 </tr>
 
 </table>
 
-<hr />
+<br />
 
-<h2>Mas informacion</h2>
+<h2>Más información</h2>
 
 <ul>
-<li>Mira esto <a href="http://wiki.noreply.org/noreply/TheOnionRouter/VerifyingSignatures">FAQ entry</a> para instrucciones sobre como verificar firmas de paquetes que te permitira asegurarte que has bajado el fichero que querias.</li>
-<li>Mira esta <a href="<page documentation>#Developers">pagina para desarrolladores</a>
-para instrucciones acerca de como obtener la ultima version de desarrollo de Tor del CVS. Date cuenta que esta version podria no funcionar incluso no compilar!.
+<li>Aquí hay una <a href="<page mirrors>">lista de sitios de replicación de Tor</a>. 
+Aquí hay una <a href="http://opensource.depthstrike.com/?category=tor">página con
+torrentes para cada descarga mencionada arriba</a>. También puede descargarse las
+<a href="dist/">fuentes de Privoxy</a>
+o las <a href="dist/vidalia-bundles/">fuentes de Vidalia</a>.</li>
+<li>Vea nuestra <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/VerifyingSignatures">entrada en la FAQ
+sobre la verificación de firmas de paquetes</a>, que le permite asegurarse de que ha descargado
+el fichero que pretendíamos que consiguiera.</li>
+<li>Vea la <a href="<page documentation>#Developers">documentación para desarrolladores</a>
+para instrucciones sobre obtener Tor por SVN si quiere conseguir la última versión de desarrollo.
+¡Dese cuenta de que esta versión podría no funcionar e incluso no compilar!
 </li>
 </ul>
 
-<p>Para una lista de sitios de replicacion de Tor mira <a href="<page mirrors>">esta pagina</a>.
-</p>
-
-
 <hr />
 
+<a id="ChangeLog"></a>
+<!--
+<a id="Testing"></a>
 <h2>Versiones de prueba</h2>
 
 <p>2006-03-28:
@@ -356,8 +380,42 @@ y mucho mas soporte para el protocolo controlador de Tor</a>.
 </p>
 
 <hr />
+-->
 
-<p>Puedes leer el <a href="<svnsandbox>ChangeLog">ChangeLog</a> para mas
+<a id="Stable"></a>
+<h2><a class="anchor" href="#Stable">Versiones estables</a></h2>
+
+<p>2007-05-25:
+Tor 0.1.2.14 <a
+href="http://archives.seul.org/or/announce/May-2007/msg00000.html">cambia
+las direcciones de dos autoridades de directorio (este cambio afecta especialmente
+a aquellos que sirven o usan servicios ocultos), arregla varios fallos
+que hacían que tor reventara y otros que afectaban a la seguridad</a>.
+</p>
+
+
+
+<p>2007-04-23:
+Características de Tor 0.1.2.13
+<a href="http://archives.seul.org/or/announce/Apr-2007/msg00000.html">
+Algunas correcciones para el anonimato importantes, como selección del 
+camino de más segura; mejor rendimiento del cliente; bootstraping más rápido,
+mejor detección de direcciones, y mejor soporte DNS para servidores;
+límite de escritura además del de lectura para hacer los servidores más
+fáciles de ejecutar; y un enorme montón de otras características y 
+corrección de errores.</a>. Los paquetes también contienen Vidalia 0.0.11.
+</p>
+
+<p>2006-12-14:
+Correciones de Tor 0.1.1.26<a
+href="http://archives.seul.org/or/announce/Dec-2006/msg00000.html">
+Un fallo de privacidad serio para la gente que ha activado la opción 
+de configuración HttpProxyAuthenticator</a>.
+</p>
+
+<hr />
+
+<p>Puedes leer el <a href="<svnsandbox>ChangeLog">ChangeLog</a> para más
 detalles.</p>
 
   </div><!-- #main -->
