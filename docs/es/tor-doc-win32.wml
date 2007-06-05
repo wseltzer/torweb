@@ -1,8 +1,8 @@
 ## translation metadata
-# Based-On-Revision: 7953
-# Last-Translator: 
+# Based-On-Revision: 9912
+# Last-Translator: ruben at ugr es
 
-#include "head.wmi" TITLE="Ejecutando el cliente Tor en MS Windows"
+#include "head.wmi" TITLE="Ejecutando el cliente Tor en MS Windows" CHARSET="UTF-8"
 
 <div class="center">
 
@@ -24,38 +24,29 @@ Si quieres gestionar tr&aacute;fico para otros y ayudar a crecer la red Tor,
 <h2><a class="anchor" href="#installing">Paso Uno: Descarga e Instala Tor</a></h2>
 <br>
 
-<p>La instalacion del "paquete" para MS Windows <a href="<page index>">Tor</a>,
-<a href="http://www.freehaven.net/%7Eedmanm/torcp/">TorCP</a>
-(un controlador de Tor que monitoriza y contola Tor), y
+<p>La instalacion del "paquete" para MS Windows incluye <a href="<page index>">Tor</a>,
+<a href="http://www.vidalia-project.net/">Vidalia</a>
+(una GUI para Tor), y
 <a href="http://www.privoxy.org/">Privoxy</a> (un proxy con filtro web) en un solo paquete,
 con las tres aplicaciones preconfiguradas para trabajar juntas.
-<a href="<page download>">Descarga la versi&oacute;n estable o la experimental</a>.
+<a href="<page download>">Descarga la versi&oacute;n estable o la experimental del paquete Windows 
+de la página de descarga</a>.
 </p>
 
-<p>
-<b>Si quieres configurar un servidor Tor, necesitas instalar la versi&oacute;n experimental.</b>
-</p>
-
-<p>Si el paquete no funciona para tus requisitos, puedes descargar Tor desde <a href="<page download>">la página de descargas</a>, y
+<p>Si el paquete no funciona para tus requisitos, puedes descargar Tor desde 
+<a href="<page download-windows>">la página de descargas para Windows</a>, y luego
 <a href="<page docs/tor-doc-unix>#privoxy">instalar y configurar Privoxy por ti mismo</a>.
 </p>
 
 <img alt="tor installer splash page" src="../img/screenshot-win32-installer-splash.png">
 
-<p>Si ya has instalado Tor, TorCP, o Privoxy previamente, puedes deseleccionar cualquier componente
-que no necesites en cuadro de dialogo mostrado abajo.
+<p>Si ya has instalado Tor, Vidalia, o Privoxy previamente, puedes deseleccionar cualquier componente
+que no necesites en el cuadro de diálogo mostrado abajo.
 </p>
 
 <img alt="select components to install" src="../img/screenshot-win32-installer-components.png">
 
 <p>Tras completar la instalacion, los componentes seleccionados se iniciarán automáticamente.</p>
-
-<!--
-This is explanatory
-Esto es aclaratory
--->
-<p>Si no se inicia TorCP, hacer click con el boton derecho sobre su icono, y aparece un men&uacute; contextual
-con opcion de iniciar, parar, configurar, ... y salir definitivamente.
 
 <!--
 <p>Tor comes configured as a client by default. It uses a built-in
@@ -66,28 +57,32 @@ the settings. Tor is now installed.
 
 <hr>
 <a id="using"></a>
-<h2><a class="anchor" href="#using">Paso Dos: Configurar tus aplicaciones para Tor</a></h2>
+<h2><a class="anchor" href="#using">Paso Dos: Configurar tus aplicaciones para que usen Tor</a></h2>
 <br>
 
 <p>Tras instalar Tor y Privoxy, debes configurar tus aplicaciones para usarlos.
 El primer paso es configurar tu explorador.</p>
 
-<p>Si usas Firefox (te lo recomendamos), visitar <a href="<page docs/tor-switchproxy>">Tor SwitchProxy howto</a> para
-configurar una extensi&oacute;n de Firefox que hace muy facil cambiar entre usar Tor o usar conexi&oacute;n directa.</p>
+<p>Si usas Firefox (te lo recomendamos), el paquete Vidalia te instala
+el <a href="https://addons.mozilla.org/firefox/2275/">plugin Torbutton
+</a>. Reinicia Firefox, y eso es todo:
+</p>
 
-<p>De otro modo debes configurar tu explorador para
-HTTP proxy en localhost, port 8118.
-(Este es el puerto en el que Privoxy atiende.)
-<ul>
-<li>En Mozilla, entrar en Editar|Preferencias|Avanzado|Proxies.</li>
-<li>En Opera 7.5x, es en Herramientas|Preferencias|Red|Proxy servers.</li>
-<li>En IE, es en Herramientas|Opciones de Internet|Conexiones|Configuraci&oacute;n LAN|Avanzado.</li>
-</ul>
-Deber&iacute;as marcar la casilla "usar el mismo proxy para todos los protocolos"
-pero visita <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">esta nota</a> sobre Tor y ftp proxies.
-En IE,  aparece algo como esto:
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1">
 
-<img alt="Proxy settings in IE" src="../img/screenshot-win32-ie-proxies.jpg">
+<br />
+
+<p>
+(<a href="http://freehaven.net/~squires/torbutton/">Aprenda más sobre
+Torbutton aquí</a>.
+Si planea usar Firefox en un ordenador distinto del de Tor, vea la <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
+entrada en la FAQ para ejecutar Tor en un ordenador distinto</a>. Si necesita usar 
+un navegador distinto de Firefox, tendrá que <a href="<page
+docs/tor-doc-web>">configurar sus opciones de proxies usted mismo.</a>.)
+</p>
 
 <p>Usar Privoxy es <strong>necesario</strong> porque
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">
@@ -96,7 +91,7 @@ lo cual es malo para el anonimato. Privoxy tambien elimina ciertas cabeceras
 peligrosas de tus peticiones web, y bloquea inc&oacute;modos sitios como Doubleclick.</p>
 
 <p>Para usar con TOR otras aplicaciones que soportan proxies HTTP, simplemente
-dirigirlo a Privoxy (localhost, puerto 8118). Para usar SOCKS directamente (para
+dirigirlas a Privoxy (localhost, puerto 8118). Para usar SOCKS directamente (para
 mensajer&iacute;a instantanea, Jabber, IRC, etc.) puedes dirigir tu aplicaci&oacute;n directamente
 a Tor (localhost, puerto 9050), pero visita <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">esta FAQ</a>
 donde se explica por qu&eacute; esto puede ser peligroso. Para aplicaciones que no soportan ni SOCKS ni HTTP,
@@ -111,21 +106,28 @@ HOWTO</a>.
 
 <hr>
 <a id="verify"></a>
-<h2><a class="anchor" href="#verify">Paso Tres: Asegurarse que funciona</a></h2>
+<h2><a class="anchor" href="#verify">Paso Tres: Asegurarse de que funciona</a></h2>
 <br>
 
-<p>Comprueba que Privoxy y TorCP se est&aacute;n ejecutando y que TorCP ha iniciado TOR con &eacute;xito.
-El icono de Privoxy es un circulo azul o verde con una "P" dentro, y TorCP es una
-cabeza de cebolla gris con una marca "V" en verde (cuando est&aacute; activado) como aqu&iacute;:</p>
+<p>Comprueba que Privoxy y Vidalia se est&aacute;n ejecutando.
+El icono de Privoxy es un circulo azul o verde con una "P" dentro, y Vidalia usa una
+pequeña cebolla verde para indicar que Tor se está ejecutando, o una cebolla
+oscura con una "X" roja cuando no lo está. Puedes arrancar o detener Tor pinchando
+con el botón derecho en el icono de Vidalia en la barra del sistema y seleccionando
+"Start" o "Stop" del menú como se muestra abajo:</p>
 
-<img alt="TorCP Tray Icon" src="../img/screenshot-win32-torcp.png">
+<img alt="Vidalia Tray Icon"
+src="../img/screenshot-win32-vidalia.png">
 
-<p>Despu&eacute;s, deber&iacute;as intentar usar tu explorador con Tor y asegurarte que tu direccion
+<p>Despu&eacute;s, deber&iacute;as intentar usar tu explorador con Tor y asegurarte que tu dirección
 IP esta siendo anonimizada.
-Visitar <a href="http://torstat.xenobite.eu/">Tor detector</a>
-y comprobar si cree que usas Tor o no.
-(Si este sitio no responde, visitar <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">
-esta FAQ</a> para mas sugerencias sobre como testear Tor.)
+Visite <a href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">el detector de
+Tor</a>
+y compruebe si cree que usas Tor o no.
+#<a href="http://ipchicken.com/">this site</a>
+#to see what IP address it thinks you're using.
+(Si este sitio no responde, visite <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">
+esta FAQ</a> para más sugerencias sobre como testear su Tor.)
 </p>
 
 <p>Si usas un cortafuegos personal que limita la capacidad de conexi&oacute;n de tu computadora,
@@ -145,22 +147,23 @@ para seguir consejos.</p>
 <br>
 
 <p>La red Tor se basa en voluntarios que donan su ancho de banda.
-Cuantos m&aacute;s servidores, m&aacute;s rapida ser&aacute; la red Tor. Si tienes al menos 20Kbytes/s en ambos sentidos,
+Cuantos m&aacute;s servidores, m&aacute;s rapida ser&aacute; la red Tor. Si tienes al menos 20 Kbytes/s en ambos sentidos,
 por favor ayuda a Tor configur&aacute;ndolo para que sea Servidor tambi&eacute;n. Tenemos varias caracter&iacute;sticas para que
 hacer a Tor servidor sea facil y conveniente, incluyendo limitaci&oacute;n del ancho de banda cedido, politicas de
 conexiones de salida que pueden limitar tu exposici&oacute;n a casos de abuso, y soporte para IP din&aacute;micas.
 
-<p>Tener servidores en varios y diferentes sitios en la Internet es lo que convierte a los usuarios de Tor seguros.
+<p>Tener servidores en varios y diferentes sitios en la Internet es lo que convierte a los usuarios de Tor en seguros.
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">Puedes reforzar tu propio anonimato</a>,
 haciendo que sitios remotos no puedan saber si las conexiones se originaron en
 tu computadora o fueron iniciadas desde otras.</p>
 
-<p>Lee mas en nuestra gu&iacute;a <a href="<page docs/tor-doc-server>">Configurando un servidor</a></p>
+<p>Lee más en nuestra gu&iacute;a <a href="<page docs/tor-doc-server>">Configurando un servidor</a></p>
 
-<hr>
+<hr/>
 
-<p>Si tienes sugerencias para mejorar este documento, por favor env&iacute;alas a
-<a href="http://bugs.noreply.org/tor">nuestro bugtracker</a> en la categor&iacute;a "website". Gracias!</p>
+<p>Si tienes sugerencias para mejorar este documento, por favor <a
+href="<page contact>">envíanoslas</a>.
+¡Gracias!</p>
 
   </div><!-- #main -->
 </div>

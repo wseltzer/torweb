@@ -1,0 +1,193 @@
+## translation metadata
+# Based-On-Revision: 9338
+# Last-Translator: ruben at ugr es
+
+#include "head.wmi" TITLE="Instrucciones de Instalación para Linux/BSD/Unix" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>Ejecutar el cliente <a href="<page index>">Tor</a> en Linux/BSD/Unix</h1>
+<br />
+
+<p><b>N&oacute;tese que estas son las instrucciones de instalaci&oacute;n para e
+jecutar un cliente Tor.
+Si quieres gestionar tr&aacute;fico para otros y ayudar a crecer la red Tor,
+ (h&aacute;zlo por favor), lee la gu&iacute;a
+<a href="<page docs/tor-doc-server>">Configurar un servidor</a>
+</b>
+</p>
+
+<hr />
+<a id="installing"></a>
+<h2><a class="anchor" href="#installing">Paso Uno: Descarga e Instala Tor</a></h2>
+<br />
+
+<p>
+La última versión de Tor se encuentra en la página de <a
+href="<page download>">descarga</a>. También tenemos paquetes para Debian,
+Red Hat, Gentoo, *BSD, etc allí.
+</p>
+
+<p>Si vas a compilar desde las fuentes, primero instala <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a>, y
+asegúrate de tener openssl y zlib (incluyendo los paquetes -devel si existen
+). Entonces ejecuta:<br />
+<tt>tar xzf tor-<version-stable>.tar.gz; cd tor-<version-stable><br />
+./configure &amp;&amp; make</tt><br />
+Ahora se puede ejecutar tor como <tt>src/or/tor</tt>, o puedes ejecutar <tt>make install</tt>
+(como root en caso necesario) para instalarlo en /usr/local/, tras lo cual se puede
+arrancar simplemente ejecutando <tt>tor</tt>.
+</p>
+
+<p>Tor viene configurado como cliente por defecto. Usa un fichero de configuración
+integrado, y la mayoría de la gente no nesitará cambiar ningún parámetro. Tor está ya
+instalado.
+</p>
+
+<hr />
+<a id="privoxy"></a>
+<h2><a class="anchor" href="#privoxy">Paso Dos: Instalar Privoxy para Navegar por la Web</a></h2>
+<br />
+
+<p>Tras instalar Tor, necesita configurar sus aplicaciones para usarlo.
+</p>
+
+<p>
+El primer paso es configurar la navegación web. Empiece instalando <a
+href="http://www.privoxy.org/">Privoxy</a>: haga click en 'recent releases'
+y elija su paquete favorito o instale desde las fuentes. Privoxy es un
+proxy web que hace filtrado y que se integra bien con Tor.
+</p>
+
+<p>Una vez que haya instalado Privoxy (o bien desde paquete o desde fuentes),
+<b>necesitará configurar Privoxy para que use Tor</b>.
+Abra el fichero "config" de Privoxy (busque en /etc/privoxy/ o /usr/local/etc/)
+y añada la línea <br>
+<tt>forward-socks4a / 127.0.0.1:9050 .</tt><br>
+al principio del fichero de configuración. No se olvide de añadir el punto al final.
+</p>
+
+<p>Privoxy mantiene un fichero de log de todo lo que pasa a su través. Para
+evitar esto tendrá que comentar tres líneas insertando un 
+\# antes de la línea. Las tres líneas son:<br>
+<tt>logfile logfile</tt><br>
+and the line <br>
+<tt>jarfile jarfile</tt><br>
+y (en algunos sistemas) la línea <br>
+<tt>debug 1  # show each GET/POST/CONNECT request</tt><br>
+</p>
+
+<p>Tendrá que reiniciar Privoxy para que los cambios tengan efecto.</p>
+
+<hr />
+<a id="using"></a>
+<h2><a class="anchor" href="#using">Paso Tres: Configurar tus aplicaciones para que usen Tor</a></h2>
+<br />
+
+<p>Tras instalar Tor y Privoxy, debes configurar tus aplicaciones para usarlos.
+El primer paso es configurar tu navegador.</p>
+
+<p>Si usa Firefox (lo recomendamos), simplemente instale el <a
+href="https://addons.mozilla.org/firefox/2275/">plugin Torbutton
+</a>, reinicie Firefox, y eso es todo:
+</p>
+
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1">
+
+<br />
+
+<p>
+(<a href="http://freehaven.net/~squires/torbutton/">Aprenda más sobre
+Torbutton aquí</a>.
+Si planea usar Firefox en un ordenador distinto del de Tor, vea la <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
+entrada en la FAQ para ejecutar Tor en un ordenador distinto</a>. Si necesita usar 
+un navegador distinto de Firefox, tendrá que <a href="<page
+docs/tor-doc-web>">configurar sus opciones de proxies usted mismo.</a>.)
+</p>
+
+<p>Usar Privoxy es <strong>necesario</strong> porque
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">
+los exploradores fallan al hacer peticiones DNS cuando usan un proxy SOCKS directamente</a>,
+lo cual es malo para el anonimato. Privoxy tambien elimina ciertas cabeceras
+peligrosas de tus peticiones web, y bloquea inc&oacute;modos sitios como Doubleclick.</p>
+
+<p>Para usar con TOR otras aplicaciones que soportan proxies HTTP, simplemente
+dirigirlas a Privoxy (localhost, puerto 8118). Para usar SOCKS directamente (para
+mensajer&iacute;a instantanea, Jabber, IRC, etc.) puedes dirigir tu aplicaci&oacute;n directamente
+a Tor (localhost, puerto 9050), pero visita <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">esta FAQ</a>
+donde se explica por qu&eacute; esto puede ser peligroso. Para aplicaciones que no soportan ni SOCKS ni HTTP,
+visitar <a
+href="http://tsocks.sourceforge.net/">tsocks</a> o <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
+</p>
+
+<p>Para m&aacute;s informaci&oacute;n sobre como "TOR"ificar otras aplicaciones
+visitar <a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">Torify
+HOWTO</a>.
+</p>
+
+<hr />
+<a id="verify"></a>
+<h2><a class="anchor" href="#verify">Paso Cuatro: Asegurarse de que funciona</a></h2>
+<br />
+
+<p>Despu&eacute;s, deber&iacute;as intentar usar tu explorador con Tor y asegurarte que tu dirección
+IP esta siendo anonimizada.
+Visite <a href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">el detector de
+Tor</a>
+y compruebe si cree que usas Tor o no.
+#<a href="http://ipchicken.com/">this site</a>
+#to see what IP address it thinks you're using.
+(Si este sitio no responde, visite <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">
+esta FAQ</a> para más sugerencias sobre como testear su Tor.)
+</p>
+
+<p>Si usas un cortafuegos personal que limita la capacidad de conexi&oacute;n de tu computadora
+a sí misma (esto incluye también SELinux en Fedora Core 4),
+asegúrate que permite conexiones de aplicaciones locales a Privoxy (puerto local 8118) y a Tor
+(puerto local 9050). Si tu cortafuegos bloquea conexiones salientes, configuralo para que puedan hacerse conexiones
+al menos a los puertos TCP 80 y 443 y visita
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">este apartado de la FAQ</a>. Si su fichero de configuración SELinux no permite a tor o a privoxy ejecutarse
+correctamente, crea un fichero llamado booleans.local en el directorio 
+/etc/selinux/targeted. Edite este fichero en su editor de textos favorito e inserte 
+"allow_ypbind=1". Reinicie su máquina para que este cambio tenga efecto.
+</p>
+
+<p>Si a&uacute;n no funciona, visita
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">este apartado de la FAQ</a>
+para seguir consejos.</p>
+
+<hr />
+<a id="server"></a>
+
+<h2><a class="anchor" href="#server">Paso Cinco: Configurarlo como servidor</a></h2>
+<br/>
+
+<p>La red Tor se basa en voluntarios que donan su ancho de banda.
+Cuantos m&aacute;s servidores, m&aacute;s rapida ser&aacute; la red Tor. Si tienes al menos 20 Kbytes/s en ambos sentidos,
+por favor ayuda a Tor configur&aacute;ndolo para que sea Servidor tambi&eacute;n. Tenemos varias caracter&iacute;sticas para que
+hacer a Tor servidor sea facil y conveniente, incluyendo limitaci&oacute;n del ancho de banda cedido, politicas de
+conexiones de salida que pueden limitar tu exposici&oacute;n a casos de abuso, y soporte para IP din&aacute;micas.
+
+<p>Tener servidores en varios y diferentes sitios en la Internet es lo que convierte a los usuarios de Tor en seguros.
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">Puedes reforzar tu propio anonimato</a>,
+haciendo que sitios remotos no puedan saber si las conexiones se originaron en
+tu computadora o fueron iniciadas desde otras.</p>
+
+<p>Lee más en nuestra gu&iacute;a <a href="<page docs/tor-doc-server>">Configurando un servidor</a></p>
+
+<hr/>
+
+<p>Si tienes sugerencias para mejorar este documento, por favor <a
+href="<page contact>">envíanoslas</a>. ¡Gracias!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+
