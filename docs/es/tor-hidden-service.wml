@@ -1,0 +1,254 @@
+## translation metadata
+# Based-On-Revision: 10009
+# Last-Translator: ruben at ugr es
+
+#include "head.wmi" TITLE="Instrucciones de Configuración de Servicios Ocultos" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>Configurar Servicios Ocultos para <a href="<page index>">Tor</a></h1>
+<hr />
+
+<p>Tor permite a los clientes y a los servidores que ofrezcan servicios ocultos.
+Eso significa que puede ofrecer un servidor web, servidor SSH, etc., sin revelar
+su dirección IP a sus usuarios. De hecho, como no se usa ninguna dirección pública,
+puedes ejecutar un servicio oculto desde detrás de un cortafuegos.
+</p>
+
+<p>Si tiene Tor y Privoxy instalado, puede ver los servicios ocultos 
+en acción visitando <a href="http://6sxoyfb3h2nvok2d.onion/">el wiki 
+oculto</a>.
+</p>
+
+<p>Este howto describe los pasos para configurar tu propio sitio web en
+un servicio oculto.
+</p>
+
+<hr />
+<a id="zero"></a>
+<h2><a class="anchor" href="#zero">Paso Cero: Hacer que Tor y Privoxy funcionen</a></h2>
+<br />
+
+<p>Antes de empezar, necesitará asegurarse de que 1) Tor está activo y ejecutándose,
+2) Provixy está activo y ejecutándose, 3) Provoxy está configurado para
+apuntar a Tor, y 4) Lo has configurado correctamente.
+</p>
+
+<p>Los usuarios de Windows deberían seguir el <a
+href="<page docs/tor-doc-win32>">howto para Windows
+</a>, Los usuarios de OS X deberían seguir el <a
+href="<page docs/tor-doc-osx>">howto para OS
+X</a>, y los usuarios de Linux/BSD/Unix deberían seguir el <a
+href="<page docs/tor-doc-unix>">howto para Unix</a>.
+</p>
+
+<p>Una vez que tenga Tor y Provoxy instalados y configurados,
+puede ver los servicios ocultos en acción siguiendo este enlace a <a
+href="http://6sxoyfb3h2nvok2d.onion/">el wiki oculto</a>.
+Tardará típicamente 10-60 segundos en cargarse
+(o en decidir que no se puede acceder por el momento). Si falla
+inmediatamente y tu navegador muestra una alerta diciendo que
+"www.6sxoyfb3h2nvok2d.onion no se encontró, compruebe por favor el nombre e
+inténtelo de nuevo" no ha configurado Tor y Privoxy correctamente; vea <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">la
+entrada de la FAQ no-funciona</a> para ayuda.
+</p>
+
+<hr />
+<a id="one"></a>
+<h2><a class="anchor" href="#one">Paso Uno: Instalar un servidor web localmente</a></h2>
+<br />
+
+<p>Primero, necesitará configurar un servidor web localmente. Configurar un 
+servidor web puede ser complicado, 
+así que sólo explicaremos algunas cosas básicas. Si se atranca o 
+quiere hacer más, busque un amigo que pueda ayudarle. Recomendamos que
+instale un nuevo servidor web separado para su servicio oculto, ya que
+incluso si ya tiene uno instalado, puede estar usándolo (o querer usarlo
+más tarde) para un sitio web real.
+</p>
+
+<p>Si está en Unix u OS X y está cómodo en la línea de órdenes,
+la mejor forma con diferencia es instalar <a
+href="http://www.acme.com/software/thttpd/">thttpd</a>. Coja el último
+fichero tar, descomprímalo (creará su propio directorio), y ejecute
+./configure &amp;&amp; make. Luego mkdir hidserv, cd hidserv, y ejecute
+"../thttpd -p 5222 -h localhost". Volverá a la línea de órdenes,
+y ya está usted ejecutando un servidor web en el puerto 5222. Puede poner
+ficheros para servir en el directorio hidserv.
+</p>
+
+<p>Si está en Windows, podría elegir <a
+href="http://savant.sourceforge.net/">Savant</a> o <a
+href="http://httpd.apache.org/">Apache</a>, y asegúrese de configurarlo
+para que escuche sólo a localhost. También debería averiguar en que
+puerto está escuchando, porque lo usará más abajo.
+</p>
+
+<p>(La razón de que el servidor web sólo escuche a localhost es para 
+asegurarse de que no es accesible públicamente. Si la gente
+pudiera conectarse a él directamente, podrían confirmar que su 
+ordenador es el que está ofreciendo el servicio oculto.)
+</p>
+
+<p>Una vez que tenga su servidor web configurado, asegúrese de que funciona:
+abra su navegador y vaya a <a
+href="http://localhost:5222/">http://localhost:5222/</a>, donde 5222 es
+el puerto que eligió antes. Intente poner un fichero en el directorio html
+principal, y asegúrese de que aparece cuando accede al sitio.
+</p>
+
+<hr />
+<a id="two"></a>
+<h2><a class="anchor" href="#two">Paso Dos: Configure su servicio oculto</a></h2>
+<br />
+
+<p>Para lo siguiente, necesita configurar su servicio oculto para que apunte
+a su servidor web local.
+</p>
+
+<p>Primero, abra su fichero torrc en su editor de texto favorito. (Vea <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#torrc">la
+entrada de la FAQ torrc</a> para aprender lo que esto significa.) 
+Vaya a la sección del medio y busque la línea</p>
+
+<pre>
+\############### This section is just for location-hidden services ###
+</pre>
+
+<p>
+Esta sección del fichero consiste en grupos de líneas, cada una representando
+un servicio oculto. Ahora mismo están todas comentadas (las líneas comienzan con
+#), así que los servicios ocultos están deshabilitados. Cada grupo de líneas
+consiste en una línea HiddenServiceDir, y una o más líneas HiddenServicePort:</p>
+<ul>
+<li><b>HiddenServiceDir</b> es un directorio donde Tor almacenará información 
+acerca de ese servicio oculto. En particular, Tor creará un fichero aquí de 
+nombre <i>hostname</i> que le dirá la URL onion.  No necesita añadir ningún
+fichero a este directorio.</li>
+<li><b>HiddenServicePort</b> le permite especificar un puerto virtual (eso es, qué
+puerto creerán que están usando la gente que acceda al servicio oculto) y una
+dirección IP y puerto para redireccionar conexiones a este puerto virtual.</li>
+</ul>
+
+<p>Añada las siguientes líneas a su torrc:
+</p>
+
+<pre>
+HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:5222
+</pre>
+
+<p>Querrá cambiar la línea HiddenServiceDir line, para que apunte
+a un directorio real que sea legible/escribible por el usuario que 
+ejecutará Tor. La línea anterior debería funcionar si está usando el 
+paquete Tor para OS X. En Unix, pruebe "/home/username/hidserv/" y complete su propio
+nombre de usuario en lugar de "username". En Windows puede escoger:</p>
+<pre>
+HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
+HiddenServicePort 80 127.0.0.1:5222
+</pre>
+
+<p>Ahora grabe el torrc, apague su Tor, e inícielo de nuevo.
+</p>
+
+<p>Si tor reinicia, estupendo. En caso contrario, algo está mal. Mire
+su torrc buscando errores obvios como palabras mal escritas. Luego 
+compruebe de nuevo que el directorio que eligió tiene permiso de escritura
+para usted. Si aún no funciona, debería mirar los logs de Tor para ideas.
+(Vea  <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">la
+entrada FAQ sobre log</a> si no está seguro de cómo activar o encontrar
+su fichero de log.)
+</p>
+
+<p>Cuando Tor arranque, automáticamente creará el HiddenServiceDir
+que especificó (en caso necesario), y creará dos ficheros allí.
+Primero, generará una pareja de llaves publica/privada para tu servicio
+oculto, y la escribirá en un fichero llamado "private_key". No comparta esta
+clave con otros -- si lo hace podrán impersonar su servicio oculto.
+</p>
+
+<p>El otro fichero que creará se llama "hostname". Contiene un pequeño
+resumen de su llave pública -- parecerá algo como 
+<tt>6sxoyfb3h2nvok2d.onion</tt>. Este es el nombre público de su servicio,
+y puede decírselo a la gente, publicarlo en sitios web, ponerlo en tarjetas
+de visita, etc. (Si Tor se ejecuta como un usuario diferente de usted, por
+ejemplo en OS X, Debian, o Red Hat, puede que necesite hacerse root para 
+poder ver esos ficheros.)
+</p>
+
+<p>Ahora que ha reiniciado Tor, está ocupado eligiendo puntos de introducción en
+la red Tor, y generando lo que se llama un "descriptor de servicio oculto",
+que es una lista firmada de puntos de introducción junto con la llave pública
+completa del servicio. Publica anónimamente este descriptor a los servidores
+de directorio, y otra gente lo obtiene anónimamente de los servidores de 
+directorio cuando intentan acceder a su servicio.
+</p>
+
+<p>Pruebe ahora: pegue el contenido del fichero hostname en tu navegador 
+web. Si funciona, obtendrá la página html que configuró en el paso uno.
+Si no funciona, mire en sus logs buscando sugerencias, y siga jugando con
+él hasta que funcione.
+</p>
+
+<hr />
+<a id="three"></a>
+<h2><a class="anchor" href="#three">Paso Tres: Consejos más avanzados</a></h2>
+<br />
+
+<p>Si planea mantener su servicio disponible durante largo tiempo, puede que
+quiera hacer una copia de seguridad del fichero private_key en alguna parte.
+</p>
+
+<p>Hemos evitado recomendar Apache antes, a) porque mucha gente podría 
+estar ya ejecutándolo para su servidor web público en su ordenador, y b)
+porque es grande y tiene muchos sitios donde podría revelar su dirección
+IP u otra información identificadora, por ejemplo en páginas 404. Para
+la gente que necesite más funcionalidad, sin embargo, Apache puede ser la
+respuesta correcta. ¿Puede alguien hacernos una lista de formas de bloquear
+el Apache cuando se usa como servicio oculto? Savant probablemente también
+tenga esos problemas también.
+</p>
+
+<p>Si quiere redireccionar múltiples puertos virtuales para un mismo servicio 
+oculto, simplemente añada más líneas HiddenServicePort.
+Si quiere ejecutar múltiples servicios ocultos desde el mismo cliente Tor,
+simplemente añada otra línea HiddenServiceDir. Todas las líneas
+HiddenServicePort subsiguientes se refieren a esta línea HiddenServiceDir, hasta
+que añada otra línea HiddenServiceDir:
+</p>
+
+<pre>
+HiddenServiceDir /usr/local/etc/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:8080
+
+HiddenServiceDir /usr/local/etc/tor/other_hidden_service/
+HiddenServicePort 6667 127.0.0.1:6667
+HiddenServicePort 22 127.0.0.1:22
+</pre>
+
+<p>Hay algunas consideraciones de anonimato que debería tener en cuenta también:
+</p>
+<ul>
+<li>Como se mencionó antes, tenga cuidado de dejar que su servidor web
+revele información identificatiba sobre usted, su ordenador, o su posición.
+Por ejemplo, los lectores pueden probablemente determinar si es thttpd o 
+Apache, y aprender algo acerca de su sistema operativo.</li>
+<li>Si su ordenador no está online todo el tiempo, su servicio oculto
+tampoco lo estará. Esto filtra información a un adversario observador.</li>
+<!-- increased risks over time -->
+</ul>
+
+<hr />
+
+<p>Si tiene sugerancias para mejorar este documento, por favor <a
+href="<page contact>">envíenoslas</a>. ¡Gracias!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+

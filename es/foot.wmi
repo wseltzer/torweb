@@ -2,7 +2,7 @@
 
 ## translation metadata
 # Based-On-Revision: 7852
-# Last-Translator: torero@alkur.net
+# Last-Translator: torero@alkur.net, ruben at ugr es
 
 #use "functions.wmi"
 
@@ -11,23 +11,23 @@
      <p>
      <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
 # please also translate "last modified" and "last compiled"
-      Ultima modificacion: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      Última modificación: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
       -
-      Ultima compilacion: <: print scalar localtime(); :>
+      Útima compilación: <: print scalar localtime(); :>
      </p>
    <: unless (translation_current()) { :>
      <p>
-	Aviso: Esta traduccion podria estar obsoleta. La revision original en ingles es la
-      <:= translation_get_masterrevision() :> mientras que esta revision esta basada en la
+	Aviso: Esta traducción podría estar obsoleta. La revisión original en inglés es la
+      <:= translation_get_masterrevision() :> mientras que esta revisión está basada en la
       <:= translation_get_basedonrevision() :>.
      </p>
    <: } :>
 
    <: if (has_translations()) {  :>
      <p>
-	Esta pagina tambien esta disponible en los siguientes idiomas:
+	Esta página también está disponible en los siguientes idiomas:
            <: print list_translations() :>.<br>
-       Como establecer <a href="http://www.debian.org/intro/cn#howtoset">el idioma por defecto del documento</a>.
+       Cómo establecer <a href="http://www.debian.org/intro/cn#howtoset">el idioma por defecto del documento</a>.
      </p>
    <: }; :>
   </div>
