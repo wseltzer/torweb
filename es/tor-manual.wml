@@ -1,0 +1,22 @@
+## translation metadata
+# Based-On-Revision: 8260
+# Last-Translator: ruben at ugr es
+
+#include "head.wmi" TITLE="Página de manual" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<:
+	die "Falta la página del manual" unless -f "$(TORSVNTABLE)/doc/tor.1.in";
+	my $man = `man2html -M '' $(TORSVNTABLE)/doc/tor.1.in`;
+	die "No hay página de manual" unless $man;
+
+	$man =~ s,.*<body>,,is;
+	$man =~ s,</body>.*,,is;
+
+	print $man;
+:>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
