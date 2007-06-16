@@ -1,0 +1,358 @@
+## translation metadata
+# Based-On-Revision: 10472
+# Last-Translator: ruben at ugr es
+
+#include "head.wmi" TITLE="Instrucciones de Configuración del Servidor" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>Configurar un servidor <a href="<page index>">Tor</a></h1>
+<br />
+
+<p>
+La red Tor se apoya en voluntarios que donen ancho de banda. Cuanta
+más gente ejecute servidores, más rápida será la red Tor. Si tiene 
+por lo menos 20 kilobytes/s en cada dirección, por favor ayuda a Tor
+configurando su Tor para que también sea servidor. Tenemos muchas 
+características que hacen a los servidores Tor fáciles y convenientes, 
+incluyendo limitación de velocidad para el ancho de banda, políticas de
+salida para que pueda limitar su exposición a quejas de abuso, y soporte
+para direcciones IP dinámicas.
+</p>
+
+<p>Tener servidores en muchos sitios diferentes de Internet es lo que hace
+a los usuarios de Tor seguros. <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">
+También puede que usted consiga más anonimato</a>,
+ya que los sitios de destino no pueden saber si las conexiones se origiraron en
+su ordenador o fueron reenviadas desde otros.</p>
+
+<p>Configurar un servidor Tor server es fácil y práctico:
+<ul>
+<li>Tor tiene soporte integrado de <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">
+limitación de velocidad</a>. Además, si tiene un enlace rápido
+pero quiere limitar el número de bytes por día (o semana o mes) que dona, 
+mire la <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">característica 
+de hibernación</a>.
+</li>
+<li>Cada servidor Tor tiene una <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">política
+de salida</a> que especifica qué clase de conexiones salientes se permiten 
+o se rechazan desde ese servidor. Si le incomoda permitir a la gente
+salir desde su servidor, puede configurarlo para que sólo permita conexiones
+a otros servidores Tor.
+</li>
+<li>No pasa nada si el servidor se desconecta a veces. Los directorios
+lo notan rápido y dejan de anunciar el servidor. Sólo asegúrese de
+que no sea muy a menudo, ya que las conexiones que estén usando el servidor cuando
+se desconecte se romperán.
+
+</li>
+<li>Podemos manejar servidores con IPs dinámicas sin problemas, mientras
+que el propio servidor conozca su IP. Mira esta
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DynamicIP">entrada
+en la FAQ</a>.
+</li>
+<li>Si tu servidor está detrás de un NAT y no conoce su dirección IP pública
+(e.g. tiene una IP de 192.168.x.y), tendrá que configurar el redireccionamiento
+de puertos. Redireccionar conexiones TCP depende del sistema pero <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">esta
+entrada de la FAQ</a> ofrece algunos ejemplos de cómo hacer esto.
+</li>
+<li>Su servidor estimará y anunciará su capacidad de ancho de banda 
+reciente, así que los servidores con gran ancho de banda atraerán más servidores
+que los de poco ancho de banda. Por tanto, tener servidores con poco 
+ancho de banda también es útil.
+</li>
+</ul>
+
+<p>Se puede ejecutar un servidor Tor en casi cualquier sistema operativo,
+pero vea <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerOS">esta
+entrada de la FAQ</a> para sugerencias acerca de cuáles funcionan mejor y 
+otros problemas que pudiera encontrarse.</p>
+
+<hr />
+<a id="zero"></a>
+<h2><a class="anchor" href="#zero">Paso Cero: Descargar e Instalar Tor</a></h2>
+<br />
+
+<p>Antes de empezar, debe asegurarse de que Tor está activo y ejecutándose.
+</p>
+
+<p>Para usuarios Windows, esto significa al menos <a
+href="<page docs/tor-doc-win32>#installing">el paso uno</a>
+del howto de instalación de Tor en Windows. Los usuarios de Mac OS X deben hacer al menos
+<a href="<page docs/tor-doc-osx>#installing">el paso uno</a>
+del howto de instalación de Tor en OS X. Los usuarios de Linux/BSD/Unix deberían hacer al menos
+<a href="<page docs/tor-doc-unix>#installing">el paso uno</a>
+del howto de instalación de Tor en Unix.
+</p>
+
+<p>Si es oportuno, también puede que quiera usarlo de cliente un tiempo
+para asegurarse de que realmente funciona.</p>
+
+<hr />
+<a id="setup"></a>
+<h2><a class="anchor" href="#setup">Paso Uno: Configurarlo como servidor</a></h2>
+<br />
+
+<p>
+1. Verifique que su reloj está en hora. Si es posible, sincronice su
+reloj con servidores de tiempo públicos.
+</p>
+
+<p>
+2. Asegúrese de que la resolución de nombres funciona (eso quiere decir
+que su ordenador puede resolver direcciones de Internet correctamente).
+</p>
+
+<p>
+3. Edite la parte de abajo de su torrc. (Vea <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#torrc">esta
+entrada en la FAQ</a> para ayuda.)
+Asegúrese de definir al menos Nickname y ORPort. Cree el DataDirectory
+en caso necesario, y asegúrese de que el dueño es el usuario que ejecutará 
+tor. <em>Si quiere ejecutar más de un servidor estupendo, pero
+por favor active <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleServers">la
+opción MyFamily</a> en todos los ficheros de configuración de sus servidores.</em>
+</p>
+
+<p>
+4. Si usa un cortafuegos, abra un agujero en el cortafuegos para
+que las conexiones entrantes puedan alcanzar los puertos que ha configurado
+(ORPort, más DirPort si lo ha activado). Asegúrese de permitir todas las conexiones
+salientes, para que su servidor pueda llegar a los otros servidores Tor.
+</p>
+
+<p>
+5. Arranque su servidor: si instaló desde las fuentes puede simplemente 
+ejecutar <tt>tor</tt>, aunque los paquetes típicamente activan Tor desde sus
+initscripts o scripts de arranque. Si en el log aparecen advertencias,
+resuélvalas. (Por defecto Tor escribe los mensajes en la salida estandar,
+pero algunos paquetes usan <tt>/var/log/tor/</tt> u <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">otros
+sitios</a>. Puede editar su torrc para configurar el sitio del log.)
+</p>
+
+<p>
+6. Subscríbase a la lista de correo <a
+href="http://archives.seul.org/or/announce/">or-announce</a>. 
+Tiene muy poco tráfico, y le mantendrá informado de nuevas versiones
+estables. También puede considerar subscribirse a  <a
+href="http://archives.seul.org/or/talk/">or-talk</a> (de más tráfico),
+donde se anuncian las nuevas versiones de desarrollo.
+</p>
+
+<p>
+7. Échele un vistazo al manual.
+El <a href="<page tor-manual>">manual</a> de la
+última versión estable da información detallada sobre cómo instalar y
+usar Tor, incluyendo la configuración de las opciones de cliente y servidor.
+Si ejecuta la versión de desarrollo de Tor el manual está disponible
+<a href="<page tor-manual-dev>">aquí</a>.
+</p>
+
+<hr />
+<a id="check"></a>
+<h2><a class="anchor" href="#check">Paso Dos: Asegurarse de que funciona</a></h2>
+<br />
+
+<p>En cuanto su servidor consiga conectarse a la red, intentará
+determinar si los puertos que configuró son accesibles desde el exterior.
+Esto puede tardar hasta 20 minutos. Busque una
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">entrada
+en el log</a> como
+<tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
+Si no ve este mensaje, significa que su servidor no es accesible desde el exterior
+&mdash; debería re-revisar sus cortafuegos, comprobar que esté
+comprobando la IP y el puerto que usted crea que debería estar comprobando, etc.
+</p>
+
+<p>Cuando decida que es accesible, subirá un "descripor de servidor"
+a los directorios. Esto permitirá a los clientes conocer qué dirección,
+puertos, llaves, etc usa su servidor. Puede <a
+href="http://moria.seul.org:9032/tor/status/authority">cargar uno de los
+status de red manualmente</a> y mirarlo entero para encontrar el nickname
+que configuró, para asegurarse de que está allí. Puede que necesite esperar
+unos segundos para darle suficiente tiempo para generar un directorio nuevo.</p>
+
+<hr />
+<a id="after"></a>
+<h2><a class="anchor" href="#after">Paso Tres: Una vez que funcione</a></h2>
+<br />
+
+<p>
+También recomendamos los siguientes pasos:
+</p>
+
+<p>
+8. Lea
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">este documento</a>
+para coger ideas de cómo aumentar la seguridad de su servidor.
+</p>
+
+<p>
+9. Decida qué política de salida quiere. Por defecto su servidor permite
+acceso a muchos servicios populares, pero restringimos algunos (como el
+puerto 25) debido al potencial de abuso. Puede que quiera una política
+de salida que sea menos restrictiva o más restrictiva; edite su torrc
+apropiadamente. Lea la entrada de la FAQ acerca de <a
+href="<page faq-abuse>#TypicalAbuses">cuestiones con las que podría
+encontrarse si usa la política de salida por defecto</a>.
+Si elige una política de salida particulamente abierta, debería asegurarse
+de que su ISP está de acuerdo con esa elección.
+Si hay algunos recursos que su ordenador no pueda acceder (por ejemplo,
+si está detrás de un cortafuegos restrictivo o un filtro de contenido), 
+por favor rechácelos explícitamente en su política de salida &mdash; 
+en caso contrario a los usuarios de Tor también les afectará.
+</p>
+
+<p>
+10. Decida acerca de la limitación de velocidad. Los usuarios de cable,
+DSL, y otros usuarios que tienen ancho de banda asimétrico (e.g. más
+de descarga que de subida) deberían limitar la velocidad a su ancho de
+banda más lento, para evitar congestión. Vea la <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">entrada
+de la FAQ sobre limitación de velocidad</a> para detalles.
+</p>
+
+<p>
+11. Haga una copia de seguridad de la llave privada de su servidor Tor
+(almacenada en "keys/secret_id_key" en su DataDirectory). Esta es la 
+"identidad" de su servidor, y necesitará mantenerla a salvo para que nadie
+pueda leer el tráfico que va a través de su servidor. Este es el fichero
+crítico a guardar si necesita <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">mover
+o restaurar su servidor Tor</a> si algo va mal.
+</p>
+
+<p>
+12. Si controla los servidores de nombres de su dominio, considere
+llamar a su host 'anonymous' o 'proxy' o 'tor-proxy', para que cuando
+otra gente vea la dirección en sus web logs, entiendan más rápido qué
+está pasando.
+</p>
+
+<p>
+13. Si su ordenador no ejecuta un servidor web, por favor 
+considere cambiar su ORPort a 443 y su DirPort a 80. Muchos usuarios
+de Tor están atrapados detrás de cortafuegos que sólo les permiten ver 
+la web, y este cambio les permitirá acceder a su servidor Tor. Los
+servidores en Win32 pueden simplemente cambiar su ORPort y DirPort directamente
+en su torrc y reiniciar Tor. Los servidores OS X y Unix servers no pueden escuchar
+directamente en esos puertos (ya que no se ejecutan como root), así que 
+tendrán que configurar algun tipo de <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
+redirección de puertos</a> para que las conexiones puedan acceder a su servidor Tor. 
+Si ya usa los puertos 80 y 443 pero todavía quiere ayudar, otros puertos útiles son el
+22, 110, y 143.
+</p>
+
+<p>
+14. Si su servidor Tor da otros servicios en la misma dirección IP
+&mdash; como un servidor web público &mdash; asegúrese de que las conexiones al
+servidor web se permiten desde el host local también. Necesitará permitir estas
+conexiones porque los clientes Tor detectarán que su servidor Tor es la <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">forma
+más segura de llegar a ese servidor web</a>, y siempre construirán un circuito que termine
+en su servidor. Si no quiere permitir las conexiones, debe rechazarlas explícitamente en su 
+política de salida.
+</p>
+
+<p>
+15. (Sólo Unix). Cree un usuario separado para ejecutar el servidor. Si
+instaló el paquete OS X o el deb o el rpm, ya está hecho. En caso contrario,
+puede hacerlo a mano. (El servidor Tor no necesitar ejecutarse como root,
+así que es buena práctica no ejecutarlo como root. Ejecutarlo como el
+usuario 'tor' evita problemas con identd y otros servicios que detectan
+el nombre de usuario. Si eres del tipo paranoico, siéntase libre de <a
+href="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">poner Tor
+en una cárcel chroot</a>.)
+</p>
+
+<p>
+16. (Sólo Unix.) Su sistema operativo probablemente limita el número de
+descriptores de fichero abiertos por proceso a 1024 (o incluso menos).
+Si planea ejecutar un nodo de salida rápido, probablemente no sea suficiente.
+En Linux, debería añadir una línea como "toruser hard nofile 8192" a su
+fichero /etc/security/limits.conf (donde toruser es el usuario que ejecuta
+el proceso Tor), y reiniciar Tor si se instaló como paquete (o salga de su
+cuenta y vuelva a entrar si lo ejecuta directamente). Si eso no funciona, vea <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">esta
+entrada de la FAQ</a> para otras sugerencias de ejecutar "ulimit -n 8192" antes de
+ejecutar Tor.
+</p>
+
+<p>
+17. Si instaló Tor usando algún paquete o instalador, probablemente ejecute Tor 
+automáticamente al arrancar. Pero si lo instaló desde las fuentes,
+puede que encuentre los scripts de arranque en contrib/tor.sh o contrib/torctl útiles.
+</p>
+
+<p>
+Cuando cambie su configuración Tor, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">en
+la mayoría de los casos puede recargar su configuración sin reiniciar Tor</a>,
+y recuerde verificar que su servidor todavía funciona correctamente tras el 
+cambio.
+</p>
+
+<hr />
+
+<a id="register"></a>
+<h2><a class="anchor" href="#register">Paso Cuatro: Registre su nickname</a></h2>
+<br />
+
+<p>
+Déjelo ejecutarse durante unas semanas para asegurarse de que realmente funciona y
+de que está contento con su nivel de uso de recursos. Entonces si quiere, registre
+su servidor. Esto reserva su nickname para que nadie más pueda cogerlo, y nos 
+permite contactar con usted si necesita actualizar o algo va mal.
+</p>
+
+<p>
+Envía un correo a <a
+href="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</a> con el 
+título '[New Server] &lt;el nickname de su servidor&gt;' e
+incluya la siguiente información en el mensaje:
+</p>
+<ul>
+<li>El nickname de su servidor</li>
+<li>El fingerprint de la llave de identidad de su servidor. Esto se envía al <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">log</a>
+al arrancar:
+algo como "<tt>moria1 FFCB 46DB 1339 DA84 674C 70D7 CB58 6434
+C437 0441</tt>".
+<!--
+It is also written to the "fingerprint" file in your DataDirectory.
+&mdash; on Windows, look in
+\<i>username</i>\Application&nbsp;Data\tor\ or \Application&nbsp;Data\tor\;
+on OS X, look in /Library/Tor/var/lib/tor/; and on Linux/BSD/Unix,
+look in /var/lib/tor or ~/.tor)
+-->
+</li>
+<li>Quién es usted, para que sabramos a quién contactar si aparece un problema</li>
+<li>Qué tipo de conectividad dentrá el nuevo servidor</li>
+</ul>
+
+<p>
+Entonces evaluaremos su servidor durante otra semana o dos para
+asegurarnos de que se mantiene activo y funciona; así que no se
+sorprenda si tardamos un poco en responder.
+</p>
+
+<hr />
+
+<p>Si tiene sugerencias para mejorar este documento, por favor <a
+href="<page contact>">envíenoslas</a>. ¡Gracias!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+
