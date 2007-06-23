@@ -8,7 +8,7 @@
 
 <div class="main-column">
 
-<h1>Konfiguracja usług ukrytych <a href="<page index>">Tor'a</a></h1>
+<h1>Konfiguracja usług ukrytych <a href="<page index>">Tora</a></h1>
 <hr />
 
 <p>Tor umożliwia klientom i serwerom oferowanie usług ukrytych. To znaczy,
@@ -17,7 +17,7 @@
  usługę ukrytą zza zapory ogniowej.
 </p>
 
-<p>Jeśli masz zainstalowanego Tor'a i Privoxy, możesz zobaczyć usługi
+<p>Jeśli masz zainstalowanego Tora i Privoxy, możesz zobaczyć usługi
  ukryte w działaniu, odwiedzając <a href="http://6sxoyfb3h2nvok2d.onion/">ukryte
  wiki</a>.
 </p>
@@ -27,11 +27,11 @@
 
 <hr />
 <a id="zero"></a>
-<h2><a class="anchor" href="#zero">Krok 0: Uruchomienie Tor'a i Privoxy</a></h2>
+<h2><a class="anchor" href="#zero">Krok 0: Uruchomienie Tora i Privoxy</a></h2>
 <br />
 
 <p>Zanim zaczniesz sprawdź, czy 1) Tor jest uruchomiony i działa,
- 2) Privoxy jest uruchomione i działa, 3) Privoxy jest skonfigurowane na Tor'a
+ 2) Privoxy jest uruchomione i działa, 3) Privoxy jest skonfigurowane na Tora
  4) rzeczywiście wszystko dobrze ustawiłeś.</p>
 
 <p>Użytkownicy Windows powinni przeczytać <a
@@ -42,13 +42,13 @@
  href="<page docs/tor-doc-unix>">instrukcje dla systemów Unix</a>.
 </p>
 
-<p>Po instalacji i konfiguracji Tor'a i Privoxy możesz zobaczyć ukryte usługi
+<p>Po instalacji i konfiguracji Tora i Privoxy możesz zobaczyć ukryte usługi
  w działaniu, wchodząc na <a
  href="http://6sxoyfb3h2nvok2d.onion/">ukryte wiki</a>.
  Zwykle trzeba poczekać 10-60 na załadowanie strony (lub stwierdzenie, że w
  danej chwili jest niedostępna). Jeśli próba od razu kończy się błędem mówiącym, że
  nie można znaleźć serwera "6sxoyfb3h2nvok2d.onion", to znaczy, że nie skonfigurowałeś
- Tor'a i Privoxy poprawnie; zajrzyj do <a
+ Tora i Privoxy poprawnie; zajrzyj do <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">wpisu
  "to nie działa" w FAQ</a> po pomoc.
 </p>
@@ -143,7 +143,7 @@ HiddenServicePort 80 127.0.0.1:5222
 
 <p>Powinieneś zmienić linię HiddenServiceDir tak, by pokazywała na istniejący
  katalog, który jest odczytywalny/zapisywalny przez użytkownika, który uruchamia
- Tor'a. Powyższa linia powinna działać, gdy używasz paczki z Tor'em dla OS X.
+ Tora. Powyższa linia powinna działać, gdy używasz paczki z Torem dla OS X.
  Pod systemem Unix, sprobuj "/home/użytkownik/hidserv/", podając własną nazwę użytkownika
  w miejsce "użytkownik". Pod systemem Windows mógłbyś wpisać:</p>
 <pre>
@@ -151,13 +151,13 @@ HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_serv
 HiddenServicePort 80 127.0.0.1:5222
 </pre>
 
-<p>Teraz zapisz zmiany w pliku torrc, zamknij Tor'a i uruchom go ponownie.
+<p>Teraz zapisz zmiany w pliku torrc, zamknij Tora i uruchom go ponownie.
 </p>
 
 <p>Jeśli Tor ponownie się uruchomi, to świetnie. W innym przypadku coś musi być
  źle. Przejrzyj swój torrc w poszukiwaniu literówek. Potem sprawdź, czy
  masz prawa zapisu do wybranego przez ciebie katalogu. Jeśli ciągle nie działa,
- poszukaj wskazówek w logach Tor'a. (Przeczytaj <a
+ poszukaj wskazówek w logach Tora. (Przeczytaj <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">wpis
  o logach w FAQ</a>, jeśli nie wiesz jak włączyć lub znaleźć plik z logami.)
 </p>
@@ -179,7 +179,7 @@ HiddenServicePort 80 127.0.0.1:5222
 </p>
 
 <p>Po ponownym uruchomieniu, Tor zajmuje się pobieraniem punktów wstępu
- w sieci Tor'a i generowaniem czegoś, co nazywa się "deskryptorem usługi ukrytej",
+ w sieci Tora i generowaniem czegoś, co nazywa się "deskryptorem usługi ukrytej",
  który jest podpisaną listą punktów wstępnych razem z pełnym publicznym kluczem
  usługi. Tor anonimowo umieszcza ten deskryptor na serwerach katalogowych, a
  inni ludzie anonimowo go pobierają z serwerów katalogowych, gdy próbują połączyć
@@ -212,7 +212,7 @@ HiddenServicePort 80 127.0.0.1:5222
 
 <p>Jeśli chcesz przekierować wiele portów wirtualnych w ramach pojedynczej
  usługi ukrytej, po prostu dodaj więcej linii HiddenServicePort.
- Jeśli chcesz uruchomić wiele usług ukrytych z tego samego klienta Tor'a,
+ Jeśli chcesz uruchomić wiele usług ukrytych z tego samego klienta Tora,
  po prostu dodaj kolejną linię HiddenServiceDir. Wszystkie następujące po
  niej linie HiddenServicePort odnoszą się do aktualnej linii HiddenServiceDir,
  dopóki nie dodasz kolejnej linii HiddenServiceDir:

@@ -12,7 +12,7 @@
 <br />
 
 <p>
-<b>To są instrukcje do instalacji klienta Tor'a. Jeśli chcesz
+<b>To są instrukcje do instalacji klienta Tora. Jeśli chcesz
  przekazywać ruch innych, by wspomóc rozwój sieci (prosimy), przeczytaj poradnik o <a
   href="<page docs/tor-doc-server>">Konfigurowaniu serwera</a>.</b>
 </p>
@@ -20,21 +20,21 @@
 
 <hr />
 <a id="installing"></a>
-<h2><a class="anchor" href="#installing">Krok 1: Pobranie i instalacja Tor'a</a></h2>
+<h2><a class="anchor" href="#installing">Krok 1: Pobranie i instalacja Tora</a></h2>
 <br />
 
-<p>Najnowsze wydanie Tor'a można znaleźć na stronie <a
+<p>Najnowsze wydanie Tora można znaleźć na stronie <a
  href="<page download>">pobierania</a>. Mamy tam też pakiety dla systemów Debian,
  Red Hat, Gentoo, *BSD, etc.
 </p>
 
-<p>Jeśli masz zamiar kompilować Tor'a, najpierw zainstaluj <a
+<p>Jeśli masz zamiar kompilować Tora, najpierw zainstaluj <a
  href="http://www.monkey.org/~provos/libevent/">libevent</a>, i upewnij się, że
  masz OpenSSL i zlib (łącznie z pakietami -devel, jeśli są). Potem uruchom:<br />
  <tt>tar xzf tor-<version-stable>.tar.gz; cd tor-<version-stable><br />
  ./configure &amp;&amp; make</tt><br />
- Możesz teraz uruchomić Tor'a poprzez <tt>src/or/tor</tt>, lub możesz uruchomić <tt>make install</tt>
- (jako root, jeśli potrzeba), by zainstalować Tor'a do /usr/local, wtedy możesz
+ Możesz teraz uruchomić Tora poprzez <tt>src/or/tor</tt>, lub możesz uruchomić <tt>make install</tt>
+ (jako root, jeśli potrzeba), by zainstalować Tora do /usr/local, wtedy możesz
  go uruchamiać po prostu pisząc <tt>tor</tt>.
 </p>
 
@@ -48,18 +48,18 @@
 <h2><a class="anchor" href="#privoxy">Krok 2: Instalacja Privoxy do przeglądania sieci WWW</a></h2>
 <br />
 
-<p>Po instalacji Tor'a musisz skonfigurować swoje aplikacje, by go używały.
+<p>Po instalacji Tora musisz skonfigurować swoje aplikacje, by go używały.
 </p>
 
 <p>
  Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW. Zacznij od instalacji <a
  href="http://www.privoxy.org/">Privoxy</a>: kliknij na 'ostatnie wydania' ('recent releases') i
  wybierz swój ulubiony typ paczki lub instaluj ze źródeł. Privoxy jest filtrującym
- serwerem pośredniczącym (proxy) do WWW, który dobrze integruje się z Tor'em.
+ serwerem pośredniczącym (proxy) do WWW, który dobrze integruje się z Torem.
 </p>
 
 <p>Po instalacji Privoxy (z paczki lub źródeł)
- <b>musisz skonfigurować Privoxy, by używało Tor'a</b>.
+ <b>musisz skonfigurować Privoxy, by używało Tora</b>.
  Otwórz plik "config" z konfiguracją Privoxy (poszukaj w /etc/privoxy/ lub /usr/local/etc/)
  i dodaj linię <br>
  <tt>forward-socks4a / 127.0.0.1:9050 .</tt><br>
@@ -80,10 +80,10 @@
 
 <hr />
 <a id="using"></a>
-<h2><a class="anchor" href="#using">Krok 3: Konfiguracja aplikacji, by używały Tor'a</a></h2>
+<h2><a class="anchor" href="#using">Krok 3: Konfiguracja aplikacji, by używały Tora</a></h2>
 <br />
 
-<p>Po instalacji Tor'a i Privoxy musisz skonfigurować swoje aplikacje, by ich używały.
+<p>Po instalacji Tora i Privoxy musisz skonfigurować swoje aplikacje, by ich używały.
  Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW.</p>
 
 <p>Jeśli używasz przeglądarki Firefox (co zalecamy), po prostu zainstaluj <a
@@ -100,9 +100,9 @@
 <p>
 (<a href="http://freehaven.net/~squires/torbutton/">Dowiedz się więcej o
  rozszerzeniu Torbutton</a>.
- Jeśli masz zamiar używać Firefox'a na innym komputerze niż Tor'a, spójrz na <a
+ Jeśli masz zamiar używać Firefox'a na innym komputerze niż tam, gdzie jest Tor, spójrz na <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">wpis w FAQ
- na temat uruchamiania Tor'a na innym komputerze</a>. Jeśli musisz używać innej
+ na temat uruchamiania Tora na innym komputerze</a>. Jeśli musisz używać innej
  przeglądarki niż Firefox, musisz <a href="<page docs/tor-doc-web>">samodzielnie
  skonfigurować jej ustawienia proxy</a>.)
 </p>
@@ -116,7 +116,7 @@
 <p>By "storyfikować" inne aplikacje, które używają proxy dla HTTP, po prostu
  skieruj je na Privoxy (czyli localhost, port 8118). By aplikacje bezpośrednio używały
  serwera SOCKS (do komunikatorów, Jabber'a, IRC, itp.), skieruj je
- bezpośrednio na Tor'a (localhost, port 9050), ale przeczytaj <a
+ bezpośrednio na Tora (localhost, port 9050), ale przeczytaj <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">ten
  wpis do FAQ</a>, dlaczego to może być niebezpieczne. Jeśli aplikacja nie
  obsługuje ani proxy dla HTTP, ani dla SOCKS, spójrz na  <a
@@ -133,15 +133,15 @@
 <h2><a class="anchor" href="#verify">Krok 4: Upewnij się, że wszystko działa</a></h2>
 <br />
 
-<p>Teraz powinieneś spróbować użyć swojej przeglądarki z Tor'em i
+<p>Teraz powinieneś spróbować użyć swojej przeglądarki z Torem i
  upewnić się, że Twój adres IP jest anonimizowany. Kliknij na
  <a href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">wykrywacz
- Tor'a</a> i sprawdź, cze jego zdaniem używasz Tor'a czy nie.
+ Tora</a> i sprawdź, cze jego zdaniem używasz Tora czy nie.
 #<a href="http://ipchicken.com/">tą stronę</a>
 #by zobaczyć, jakiego adresu IP jej zdaniem używasz.
  (Jeśli ta strona akurat nie działa, przeczytaj <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">ten
- wpis w FAQ</a>, by poznać więcej sposobów na testowanie swojego Tor'a.)
+ wpis w FAQ</a>, by poznać więcej sposobów na testowanie swojego Tora.)
 </p>
 
 <p>Jeśli masz zaporę ogniową, która ogranicza możliwości Twojego komputera co
@@ -151,7 +151,7 @@
  po czym przeczytaj <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">ten
  wpis do FAQ</a>. Jeśli twoja konfiguracja SELinux'a nie pozwala na
- prawidowe działanie Tor'a lub Privoxy, utwórz plik o nazwie booleans.local
+ prawidowe działanie Tora lub Privoxy, utwórz plik o nazwie booleans.local
  w katalogu /etc/selinux/targeted. Wyedytuj ten plik swoim ulubionym edytorem
  i dopisz "allow_ypbind=1". Aby zmiany odniosły efekt, ponownie uruchom komputer.
 </p>
@@ -162,13 +162,13 @@
 
 <hr />
 <a id="server"></a>
-<h2><a class="anchor" href="#server">Krok 5: Konfiguracja Tor'a jako serwer</a></h2>
+<h2><a class="anchor" href="#server">Krok 5: Konfiguracja Tora jako serwer</a></h2>
 <br />
 
-<p>Sieć Tor'a polega na ochotnikach oddających część swojego łącza. Im więcej
- ludzi uruchomi serwer, tym szybsza będzie sieć Tor'a. Jeśli masz co najmniej
- 20 kilobajtów/s w obie strony, pomóż Tor'owi, konfigurując swojego klienta tak,
- by był także serwerem. Mamy wiele cech, które czynią serwery Tor'a łatwymi i
+<p>Sieć Tora polega na ochotnikach oddających część swojego łącza. Im więcej
+ ludzi uruchomi serwer, tym szybsza będzie sieć Tora. Jeśli masz co najmniej
+ 20 kilobajtów/s w obie strony, pomóż Torowi, konfigurując swojego klienta tak,
+ by był także serwerem. Mamy wiele cech, które czynią serwery Tora łatwymi i
  wygodnymi, łącznie z ograniczeniem przepustowości, politykami wyjścia, byś mógł
  zmniejszyć ryzyko skarg, oraz obsługą dynamicznych adresów IP.</p>
 
