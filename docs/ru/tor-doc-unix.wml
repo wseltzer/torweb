@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 9338
-# Last-Translator: ygrekheretix/gmail
+# Based-On-Revision: 10690
+# Last-Translator: ygrekheretix/gmail/com
 
 #include "head.wmi" TITLE="Установка Tor на Linux/BSD/Unix" CHARSET="KOI8-R"
 
@@ -30,13 +30,13 @@ Red Hat, Gentoo, *BSD, etc.
 </p>
 
 <p>Если вы собираете из исходников, сначала установите
-<a href="http://www.monkey.org/~provos/libevent/">libevent</a>, 
+<a href="http://www.monkey.org/~provos/libevent/">libevent</a>,
 и убедитесь что у вас есть openssl и zlib (включая -devel пакеты если такие
 существуют). Потом :<br />
 <tt>tar xzf tor-<version-stable>.tar.gz; cd tor-<version-stable><br />
 ./configure &amp;&amp; make</tt><br />
 Теперь вы можете запускать tor как <tt>src/or/tor</tt>, или сделав <tt>make install</tt>
-(под root'ом если требуется) установите в /usr/local/, и тогда можно запускать клиент 
+(под root'ом если требуется) установите в /usr/local/, и тогда можно запускать клиент
 просто командой <tt>tor</tt>.
 </p>
 
@@ -54,7 +54,7 @@ Red Hat, Gentoo, *BSD, etc.
 </p>
 
 <p>
-Первым делом займёмся браузером. Сначала установите 
+Первым делом займёмся браузером. Сначала установите
 <a href="http://www.privoxy.org/">Privoxy</a>: кликните 'recent releases'
 и выберите подходящий пакет или исходники. Privoxy это фильтрующий
 веб-прокси который хорошо интегрируется с Tor'ом.
@@ -100,7 +100,7 @@ border="1">
 <br />
 
 <p>
-(<a href="http://freehaven.net/~squires/torbutton/">Подробнее про Torbutton</a>. 
+(<a href="http://freehaven.net/~squires/torbutton/">Подробнее про Torbutton</a>.
 Если вы собираетесь запускать Firefox и Tor на разных компьютерах, смотрите
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
 этот раздел FAQ</a>. Если вы используйте другой браузер (не Firefox),
@@ -115,11 +115,11 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">браузер
 
 <p>Чтобы торифицировать(Torify) другие приложения которые поддерживают HTTP прокси,
 просто укажите им на Privoxy (то есть, localhost порт 8118). Для использования SOCKS
-напрямую (случай IM (системы мгновенного обмена сообщениями), Jabber, IRC, итд), 
+напрямую (случай IM (системы мгновенного обмена сообщениями), Jabber, IRC, итд),
 укажите адрес и порт клиента Tor (localhost порт 9050), но ознакомьтесь
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">с этим
 разделом FAQ</a> описывающим небезопасность такого способа. Для приложений
-которые не поддерживают ни SOCKS ни HTTP, попробуйте 
+которые не поддерживают ни SOCKS ни HTTP, попробуйте
 <a href="http://tsocks.sourceforge.net/">tsocks</a> или
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
 </p>
@@ -136,10 +136,10 @@ HOWTO</a>.
 
 <p>
 Далее, попробуйте использовать браузер через Tor и убедитесь что
-ваш IP адрес не выдаётся. Посетите 
-<a href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">Tor
-детектор</a> и проверьте, что он скажет - используете ли вы Tor или нет.
-(Если сайт не работает, посмотрите 
+ваш IP адрес не выдаётся. Посетите
+<a href="http://check.torproject.org/">Tor детектор</a>
+и проверьте что он скажет - используете вы Tor или нет.
+(Если сайт не работает, посмотрите
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">этот
 раздел FAQ</a> и узнайте больше способов протестировать Tor.)
 </p>
@@ -148,10 +148,10 @@ HOWTO</a>.
 компьютера коннектится к самому себе (например это SELinux на Fedora Core 4),
 разрешите соединения от локальных приложений к Privoxy (локальный порт 8118) и
 Tor (локальный порт 9050). Если ваш файерволл
-блокирует исходящие соединения, откройте по крайней мере TCP порты 
-80 и 443, а потом ознакомьтесь с 
+блокирует исходящие соединения, откройте по крайней мере TCP порты
+80 и 443, а потом ознакомьтесь с
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">
-этим разделом FAQ</a>. Если настройки SELinux мешают корректной работе 
+этим разделом FAQ</a>. Если настройки SELinux мешают корректной работе
 tor или privoxy, создайте файл booleans.local в каталоге
 /etc/selinux/targeted. Откройте этот файл в любимом текстовом редакторе и
 укажите "allow_ypbind=1". Перезапустите машину для принятия этих настроек.
@@ -190,4 +190,3 @@ href="<page contact>">высылайте их нам</a>. Спасибо!</p>
 </div>
 
 #include <foot.wmi>
-
