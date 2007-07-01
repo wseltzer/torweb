@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10121
+# Based-On-Revision: 10181
 # Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
 #include "head.wmi" TITLE="Mithelfen"
@@ -38,7 +38,8 @@
     <li>Wir müssen <a
     href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">all
     unsere Patches für tsocks</a> einspielen und einen Fork
-    betreuen. Wir würden diesen auch hosten, wenn du möchtest.</li>
+    betreuen. Wir würden diesen auch auf unserem Server mit anbieten, wenn
+    du möchtest.</li>
     <li>Wir sollten das Programm dsocks von Dug Song patchen, so dass es
     das Kommando <code>mapaddress</code> von der Controllerschnittstelle
     nutzt. Somit verschwenden wir nicht einen gesamten Round-trip
@@ -47,16 +48,16 @@
     <li>Wir müssen unser <kbd>torify</kbd>-Skript so umgestalten, dass
     es erkennt, welches tsocks oder dsocks installiert ist und dieses
     dann richtig aufruft. Das bedeutet wahrscheinlich, dass deren
-    Schnittstellen vereinheitlich werden müssen und führt wahrscheinlich
+    Schnittstellen vereinheitlicht werden müssen und führt wahrscheinlich
     dazu, dass Code zwischen beiden geteilt werden muss oder dass eines
     komplett nicht mehr benutzt wird.</li>
   </ul></li>
   <li>Leute, die einen Server betreiben, teilen uns immer wieder mit,
-    dass sie BandwidthRate in Teilen des Tages setzen wollen und eine
-    andere BandwidthRate an anderen Teilen des Tages. Anstatt das
+    dass sie <var>BandwidthRate</var> in Abhängigkeit von der Uhrzeit setzen
+    wollen. Anstatt das
     direkt in Tor zu implementieren, sollten wir lieber ein kleines
     Skript haben, das über die <a href="<page gui/index>">Torschnittstelle</a>
-    spricht und ein setconf macht, um die Änderungen
+    spricht und ein <code>setconf</code> macht, um die Änderungen
     herbeizuführen. Natürlich würde es durch Cron ausgeführt oder es
     schläft eine bestimmte Zeit und macht dann die Änderungen. Kann
     das jemand für uns schreiben und wir packen das dann
@@ -98,8 +99,8 @@
 <h2><a class="anchor" href="#Documentation">Dokumentation</a></h2>
 
 <ol>
-  <li>Wir hören, dass Tornutzer diversen anonymitätsbrechenden
-  Attacken von Javascript, Java, ActiveX, Flash, etc. zu Opfer
+  <li>Wir hören, dass Tornutzer diversen
+  Attacken von Javascript, Java, ActiveX, Flash etc. zu Opfer
   fallen. Gibt es da draußen gute Plugins (wie NoScript für den
   Firefox), die es den Nutzern erleichtern, diese Risiken zu meistern?
   Was ist exakt das Risiko?</li>
@@ -109,7 +110,7 @@
   seinen <a href="http://vidalia-project.net/">Vidalia</a>.</li>
   <li>Kommentiere und dokumentiere unsere <a
     href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">Liste
-    von Programmen, die durch Tor geroutet werden können</a>. </li>
+    von Programmen, die durch Tor geroutet werden können</a>.</li>
   <li>Wir brauchen bessere Dokumentation für Programme, die dynamisch
     in Verbindungen eingreifen und diese durch Tor schicken. Für Linux
     und Windows scheinen tsocks (Linux), dsocks (BSD), und freecap gute Kandidaten.</li>
@@ -152,8 +153,8 @@
   die Exitserver testet, wie die IP-Adresse ist.  Der schwierige Punkt ist, das
   die Eigenschaft, Exitserver zu sein, nicht einfach mit ja oder nein zu
   beantworten ist. Daher ist die Frage eher: "Ist diese IP-Adresse ein
-  Existerver, der mich zur IP-Adresse:Port weitergibt?". Die DNSBL-Schnittstelle
-  wird wahrscheinlich hunderte von Anfragen pro Minute bekommen. Daher sind hier
+  Exiterver, der mich zur IP-Adresse:Port weitergibt?". Die DNSBL-Schnittstelle
+  wird wahrscheinlich Hunderte von Anfragen pro Minute bekommen. Daher sind hier
   intelligente Algorithmen gefragt. <a
   href="<svnsandbox>doc/contrib/torbl-design.txt">Hier</a> kannst du mehr dazu
   lesen.</li>
@@ -184,7 +185,7 @@
   Webseiten korrekter als Privoxy? Gibt es Probleme mit der Stabilität bei den
   häufig genutzten Plattformen?</li>
   <li>Es wäre großartig, wenn es eine Live-CD mit den aktuellsten Versionen von
-  Tor, Polipo oder Privoxy, Firefox, Gaim+OTR usw. gäbe. Es gibt hier zwei
+  Tor, Polipo oder Privoxy, Firefox, Pidgin+OTR usw. gäbe. Es gibt hier zwei
   Herausforderungen: Zum einen muss das System dokumentiert werden und zum
   anderen müssen wir herausfinden, wie das leicht zu pflegen ist. Es sollte
   nicht so schnell obsolet werden, wie AnonymOS. Bonuspunkte gibt es, wenn die
@@ -205,8 +206,8 @@
   ihre Intuition, ob ein Angriff oder Verteidigung funktioniert, unterstützt.
   Können wir einen Simulator bauen, der offen und gut dokumentiert ist? Dies
   wird eine Menge neuer Forschung anregen. Schaue auch auf den <a
-  href="#Research">Eintrug unten</a>, um Details zu dieser Aufgabe zu entdecken.
-  Wenn es fertig ist, könntest du helfen ein Papier dazu zu schreiben.</li>
+  href="#Research">Eintrag unten</a>, um Details zu dieser Aufgabe zu entdecken.
+  Wenn es fertig ist, könntest du helfen, eine Veröffentlichung  dazu zu schreiben.</li>
   <li>Momentan werden die Deskriptoren der versteckten Services nur
   auf einigen wenigen Verzeichnisservern gespeichert. Dies ist
   schlecht für die Privatsphäre und die Robustheit. Um mehr Robustheit
@@ -253,8 +254,7 @@
   <li>Die Fingerprintattacken gegen Webseiten machen eine Liste von
     einigen wenigen populären Webseiten, laden die Inhalte herunter
     und machen einen Satz von Signaturen für jede Seite. Danach
-    observieren sie den Verkehr des Torclients. Während sie
-    beobachten, wie der Client die Daten empfängt, gelangen sie
+    beobachten sie den Verkehr des Torclients. Währenddessen gelangen sie
     schnell zu einer Vermutung, welche Seite gerade besucht wird. Wie
     effektiv ist dieser Angriff bezüglich der aktuellen Codebasis von
     Tor? Beginne danach Verteidigungsmöglichkeiten auszuloten. Wir
@@ -265,7 +265,7 @@
     einarbeiten. Welchen Einfluss haben diese Massnahmen und wie groß
     ist der Einfluss auf die Benutzbarkeit?</li>
   <li>Eine weitere Angriffsmöglichkeit (end-to-end traffic
-    confirmation attack) basiert darauf, dass der verkehr zwischen
+    confirmation attack) basiert darauf, dass der Verkehr zwischen
     Alice und Bob beobachtet wird. Durch den <a
     href="http://freehaven.net/anonbib/#danezis:pet2004">Vergleich
     der Signaturen des Netzverkehrs kann man herausfinden, on man
@@ -283,7 +283,7 @@
     System sowohl beim Eingangs- wie auch beim Ausgangspfad
     erscheint</a>. Um nun herauszufinden, ob ein spezielles Alice-,
     Eingangs-, Ausgangs-, Bobviereck gefährlich ist, müssten wir die
-    gesamte Routingzone des internet herunterladen und Operationen
+    gesamte Routingzone des Internet herunterladen und Operationen
     darauf ausführen. Gibt es praktische Abschätzungen, die die
     Arbeit erleichtern können?</li>
     <li>Andere Fragen in der Forschung, die die geografische
@@ -331,7 +331,7 @@
     href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance"
     >Eintrag in der FAQ</a> und lies dann <a
     href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship"
-    >die Zunsurwiderstandssektion der AnonBib</a>.
+    >die Zensurwiderstandssektion der AnonBib</a>.
     </li>
   <li>Tor-Verbindungen werden schrittweise aufgebaut, ein Knoten nach
     dem anderen.  Also haben wir theoretisch die Möglichkeit, manche
