@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10009
+# Based-On-Revision: 10715
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Instrukcja konfiguracji usług ukrytych" CHARSET="UTF-8"
@@ -30,9 +30,12 @@
 <h2><a class="anchor" href="#zero">Krok 0: Uruchomienie Tora i Privoxy</a></h2>
 <br />
 
-<p>Zanim zaczniesz sprawdź, czy 1) Tor jest uruchomiony i działa,
- 2) Privoxy jest uruchomione i działa, 3) Privoxy jest skonfigurowane na Tora
- 4) rzeczywiście wszystko dobrze ustawiłeś.</p>
+<p>Zanim zaczniesz sprawdź, czy:</p>
+<ol>
+<li> Tor jest uruchomiony i działa,</li>
+<li> Privoxy jest uruchomione i działa,</li>
+<li> Privoxy jest skonfigurowane na Tora</li>
+<li> rzeczywiście wszystko dobrze ustawiłeś.</li>
 
 <p>Użytkownicy Windows powinni przeczytać <a
  href="<page docs/tor-doc-win32>">instrukcje dla
@@ -72,8 +75,8 @@
  linii poleceń, najlepszym sposobem jest instalacja <a
  href="http://www.acme.com/software/thttpd/">thttpd</a>. Po prostu
  pobierz archiwum tar, rozpakuj je (utworzy się osobny katalog) i uruchom
- ./configure &amp;&amp; make. Potem wykonaj mkdir hidserv, cd hidserv,
- i uruchom "../thttpd -p 5222 -h localhost". Powrócisz do wiersza poleceń,
+ <kbd>./configure &amp;&amp; make</kbd>. Potem wykonaj <kbd>mkdir hidserv; cd hidserv</kbd>,
+ i uruchom <kbd>../thttpd -p 5222 -h localhost</kbd>. Powrócisz do wiersza poleceń,
  a od tej pory masz uruchomiony serwer WWW na porcie 5222. Możesz umieścić
  pliki dla serwera w katalogu hidserv.
 </p>
@@ -122,13 +125,14 @@
 <p>Ta sekcja pliku składa się z grup linii, z których każda reprezentuje
  jedną usługę ukrytą. W tej chwili wszystkie są zakomentowane (linie zaczynają
  się od krzyżyka #), więc usługi ukryte są wyłączone. Każda grupa linii
- składa się z jednej linii HiddenServiceDir i jednej lub więcej linii HiddenServicePort:</p>
+ składa się z jednej linii <var>HiddenServiceDir</var> i jednej lub więcej linii
+ <var>HiddenServicePort</var>:</p>
 <ul>
-<li><b>HiddenServiceDir</b> jest katalogiem, w którym Tor będzie przechowywał
+<li><var>HiddenServiceDir</var> jest katalogiem, w którym Tor będzie przechowywał
  informacje o tej usłudze ukrytej. W szczególności, Tor utworzy w tym katalogu
- plik o nazwie <i>hostname</i>, z którego odczytasz "adres cebulowy" (onion URL).
+ plik o nazwie <var>hostname</var>, z którego odczytasz "adres cebulowy" (onion URL).
  Nie musisz dodawać żadnych plików do tego katalogu.</li>
-<li><b>HiddenServicePort</b> pozwala określić port wirtualny (tzn. użytkownikom
+<li><var>HiddenServicePort</var> pozwala określić port wirtualny (tzn. użytkownikom
  łączącym się z usługą ukrytą będzie się zdawało, że używają tego właśnie portu) i
  adres IP wraz z portem do przekierowywania połączeń na ten wirtualny port.</li>
 </ul>
@@ -141,7 +145,7 @@ HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
 HiddenServicePort 80 127.0.0.1:5222
 </pre>
 
-<p>Powinieneś zmienić linię HiddenServiceDir tak, by pokazywała na istniejący
+<p>Powinieneś zmienić linię <var>HiddenServiceDir</var> tak, by pokazywała na istniejący
  katalog, który jest odczytywalny/zapisywalny przez użytkownika, który uruchamia
  Tora. Powyższa linia powinna działać, gdy używasz paczki z Torem dla OS X.
  Pod systemem Unix, sprobuj "/home/użytkownik/hidserv/", podając własną nazwę użytkownika
@@ -155,32 +159,37 @@ HiddenServicePort 80 127.0.0.1:5222
 </p>
 
 <p>Jeśli Tor ponownie się uruchomi, to świetnie. W innym przypadku coś musi być
- źle. Przejrzyj swój torrc w poszukiwaniu literówek. Potem sprawdź, czy
- masz prawa zapisu do wybranego przez ciebie katalogu. Jeśli ciągle nie działa,
- poszukaj wskazówek w logach Tora. (Przeczytaj <a
+ źle. Najpierw przejrzyj plik z logami, by poszukać przyczyn. Będą w nim
+ ostrzeżenia i błędy. Powinny one wskazać, co poszło nie tak. Zazwyczaj chodzi o
+ literówki w pliku torrc lub złe uprawnienia do katalogów. (Przeczytaj <a
  href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">wpis
  o logach w FAQ</a>, jeśli nie wiesz jak włączyć lub znaleźć plik z logami.)
 </p>
 
-<p>Gdy Tor się uruchomi, automatycznie utworzy podany katalog HiddenServiceDir
- (jeśli trzeba), a w nim utworzy dwa pliki. Po pierwsze, wygeneruje nową
- parę kluczy publiczny/prywatny do twojej usługi ukrytej i zapisze ją w
+<p>Gdy Tor się uruchomi, automatycznie utworzy podany katalog <var>HiddenServiceDir</var>
+ (jeśli trzeba), a w nim utworzy dwa pliki.</p>
+ <dl>
+ <dt><var>private_key</var></dt>
+ <dd>Po pierwsze, Tor wygeneruje nową
+ parę kluczy publiczny/prywatny do twojej usługi ukrytej. Zostaje ona zapisana w
  pliku o nazwie "private_key". Nie dawaj tego klucza nikomu -- jeśli to zrobisz,
  inni będą mogli podszyć się pod twoją usługę ukrytą.
-</p>
-
-<p>Drugim plikiem, który zostanie utworzony, jest plik o nazwie "hostname".
+ <dt><var>hostname</var><dt>
+ <dd>Drugim plikiem, który zostanie utworzony, jest plik o nazwie "hostname".
  Zawiera on krótkie podsumowanie twojego klucza publicznego -- będzie wyglądać
  podobnie do tego: <tt>6sxoyfb3h2nvok2d.onion</tt>. To jest publiczna nazwa
  twojej usługi i możesz podawać ją innym, rozgłaszać w internecie,
- umieszczać na wizytówkach etc. (Jeśli Tor jest uruchomiony z prawami innego
+ umieszczać na wizytówkach etc.</dd>
+ </dl>
+
+<p>Jeśli Tor jest uruchomiony z prawami innego
  użytkownika niż ty, np. na systemach OS X, Debian, Red Hat, możesz potrzebować
- uprawnień roota, by zobaczyć te pliki.)
+ uprawnień roota, by zobaczyć te pliki.
 </p>
 
 <p>Po ponownym uruchomieniu, Tor zajmuje się pobieraniem punktów wstępu
- w sieci Tora i generowaniem czegoś, co nazywa się "deskryptorem usługi ukrytej",
- który jest podpisaną listą punktów wstępnych razem z pełnym publicznym kluczem
+ w sieci Tora i generowaniem <em>deskryptorem usługi ukrytej</em>.
+ Jest to podpisana lista punktów wstępnych razem z pełnym publicznym kluczem
  usługi. Tor anonimowo umieszcza ten deskryptor na serwerach katalogowych, a
  inni ludzie anonimowo go pobierają z serwerów katalogowych, gdy próbują połączyć
  się z twoją usługą.
@@ -198,7 +207,7 @@ HiddenServicePort 80 127.0.0.1:5222
 <br />
 
 <p>Jeśli planujesz udostępniać swoją usługę przez dłuższy czas, zrób kopię
- zapasową pliku private_key.
+ zapasową pliku <var>private_key</var>.
 </p>
 
 <p>Wcześniej unikaliśmy polecania serwera Apache, a) gdyż wielu ludzi
@@ -211,11 +220,11 @@ HiddenServicePort 80 127.0.0.1:5222
 </p>
 
 <p>Jeśli chcesz przekierować wiele portów wirtualnych w ramach pojedynczej
- usługi ukrytej, po prostu dodaj więcej linii HiddenServicePort.
+ usługi ukrytej, po prostu dodaj więcej linii <var>HiddenServicePort</var>.
  Jeśli chcesz uruchomić wiele usług ukrytych z tego samego klienta Tora,
- po prostu dodaj kolejną linię HiddenServiceDir. Wszystkie następujące po
- niej linie HiddenServicePort odnoszą się do aktualnej linii HiddenServiceDir,
- dopóki nie dodasz kolejnej linii HiddenServiceDir:
+ po prostu dodaj kolejną linię <var>HiddenServiceDir</var>. Wszystkie następujące po
+ niej linie <var>HiddenServicePort</var> odnoszą się do aktualnej linii <var>HiddenServiceDir</var>,
+ dopóki nie dodasz kolejnej linii <var>HiddenServiceDir</var>:
 </p>
 
 <pre>
