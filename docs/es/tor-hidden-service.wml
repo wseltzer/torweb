@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10009
+# Based-On-Revision: 10715
 # Last-Translator: ruben at ugr es
 
 #include "head.wmi" TITLE="Instrucciones de Configuración de Servicios Ocultos" CHARSET="UTF-8"
@@ -31,10 +31,13 @@ un servicio oculto.
 <h2><a class="anchor" href="#zero">Paso Cero: Hacer que Tor y Privoxy funcionen</a></h2>
 <br />
 
-<p>Antes de empezar, necesitará asegurarse de que 1) Tor está activo y ejecutándose,
-2) Privoxy está activo y ejecutándose, 3) Privoxy está configurado para
-apuntar a Tor, y 4) Lo has configurado correctamente.
-</p>
+<p>Antes de empezar, necesitará asegurarse de que: </p>
+<ol>
+<li>Tor está activo y ejecutándose,</li>
+<li>Privoxy está activo y ejecutándose,</li>
+<li>Privoxy está configurado para apuntar a Tor, y </li>
+<li>Lo ha configurado correctamente.</li>
+</ol>
 
 <p>Los usuarios de Windows deberían seguir el <a
 href="<page docs/tor-doc-win32>">howto para Windows
@@ -74,8 +77,9 @@ más tarde) para un sitio web real.
 la mejor forma con diferencia es instalar <a
 href="http://www.acme.com/software/thttpd/">thttpd</a>. Coja el último
 fichero tar, descomprímalo (creará su propio directorio), y ejecute
-./configure &amp;&amp; make. Luego mkdir hidserv, cd hidserv, y ejecute
-"../thttpd -p 5222 -h localhost". Volverá a la línea de órdenes,
+<kbd>./configure &amp;&amp; make</kbd>. Luego <kbd>mkdir hidserv; cd 
+hidserv</kbd>, y ejecute
+<kbd>../thttpd -p 5222 -h localhost</kbd>. Volverá a la línea de órdenes,
 y ya está usted ejecutando un servidor web en el puerto 5222. Puede poner
 ficheros para servir en el directorio hidserv.
 </p>
@@ -122,13 +126,14 @@ Vaya a la sección del medio y busque la línea</p>
 Esta sección del fichero consiste en grupos de líneas, cada una representando
 un servicio oculto. Ahora mismo están todas comentadas (las líneas comienzan con
 #), así que los servicios ocultos están deshabilitados. Cada grupo de líneas
-consiste en una línea HiddenServiceDir, y una o más líneas HiddenServicePort:</p>
+consiste en una línea <var>HiddenServiceDir</var>, y una o más líneas 
+<var>HiddenServicePort</var>:</p>
 <ul>
-<li><b>HiddenServiceDir</b> es un directorio donde Tor almacenará información 
+<li><var>HiddenServiceDir</var> es un directorio donde Tor almacenará información 
 acerca de ese servicio oculto. En particular, Tor creará un fichero aquí de 
-nombre <i>hostname</i> que le dirá la URL onion.  No necesita añadir ningún
+nombre <var>hostname</var> que le dirá la URL onion.  No necesita añadir ningún
 fichero a este directorio.</li>
-<li><b>HiddenServicePort</b> le permite especificar un puerto virtual (eso es, qué
+<li><var>HiddenServicePort</var> le permite especificar un puerto virtual (eso es, qué
 puerto creerán que están usando la gente que acceda al servicio oculto) y una
 dirección IP y puerto para redireccionar conexiones a este puerto virtual.</li>
 </ul>
@@ -141,7 +146,7 @@ HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
 HiddenServicePort 80 127.0.0.1:5222
 </pre>
 
-<p>Querrá cambiar la línea HiddenServiceDir line, para que apunte
+<p>Querrá cambiar la línea <var>HiddenServiceDir</var>, para que apunte
 a un directorio real que sea legible/escribible por el usuario que 
 ejecutará Tor. La línea anterior debería funcionar si está usando el 
 paquete Tor para OS X. En Unix, pruebe "/home/username/hidserv/" y complete su propio
@@ -154,35 +159,38 @@ HiddenServicePort 80 127.0.0.1:5222
 <p>Ahora grabe el torrc, apague su Tor, e inícielo de nuevo.
 </p>
 
-<p>Si tor reinicia, estupendo. En caso contrario, algo está mal. Mire
-su torrc buscando errores obvios como palabras mal escritas. Luego 
-compruebe de nuevo que el directorio que eligió tiene permiso de escritura
-para usted. Si aún no funciona, debería mirar los logs de Tor para ideas.
-(Vea  <a
+<p>Si tor reinicia, estupendo. En caso contrario, algo está mal. Primero
+mire los logs de tor para consejos. Mostrará algunos mensajes con advertencias 
+o errores. Eso debería darle alguna idea de qué está mal. Lo típico es que haya
+palabras mal escritas o permisos erróneos en los directorios. (Vea  <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">la
 entrada FAQ sobre log</a> si no está seguro de cómo activar o encontrar
 su fichero de log.)
 </p>
 
-<p>Cuando Tor arranque, automáticamente creará el HiddenServiceDir
-que especificó (en caso necesario), y creará dos ficheros allí.
-Primero, generará una pareja de llaves pública/privada para su servicio
-oculto, y la escribirá en un fichero llamado "private_key". No comparta esta
+<p>Cuando Tor arranque, automáticamente creará el <var>HiddenServiceDir</var>
+que especificó (en caso necesario), y creará dos ficheros allí.</p>
+<dl>
+<dt><var>private_key</var></dt>
+<dd>
+Primero, Tor generará una pareja de llaves pública/privada para su servicio
+oculto. Se escribe en un fichero llamado "private_key". No comparta esta
 clave con otros -- si lo hace podrán impersonar su servicio oculto.
-</p>
-
-<p>El otro fichero que creará se llama "hostname". Contiene un pequeño
+</dd>
+<dt><var>hostname</var><dt>
+<dd>El otro fichero que Tor creará se llama "hostname". Contiene un pequeño
 resumen de su llave pública -- parecerá algo como 
 <tt>6sxoyfb3h2nvok2d.onion</tt>. Este es el nombre público de su servicio,
 y puede decírselo a la gente, publicarlo en sitios web, ponerlo en tarjetas
-de visita, etc. (Si Tor se ejecuta como un usuario diferente de usted, por
+de visita, etc.</dd>
+
+<p>Si Tor se ejecuta como un usuario diferente de usted, por
 ejemplo en OS X, Debian, o Red Hat, puede que necesite hacerse root para 
-poder ver esos ficheros.)
-</p>
+poder ver esos ficheros.</p>
 
 <p>Ahora que ha reiniciado Tor, está ocupado eligiendo puntos de introducción en
-la red Tor, y generando lo que se llama un "descriptor de servicio oculto",
-que es una lista firmada de puntos de introducción junto con la llave pública
+la red Tor, y generando lo que se llama un <em>descriptor de servicio oculto</em>.
+Esto es una lista firmada de puntos de introducción junto con la llave pública
 completa del servicio. Publica anónimamente este descriptor a los servidores
 de directorio, y otra gente lo obtiene anónimamente de los servidores de 
 directorio cuando intentan acceder a su servicio.
@@ -200,7 +208,7 @@ Si no funciona, mire en sus logs buscando sugerencias, y siga jugando con
 <br />
 
 <p>Si planea mantener su servicio disponible durante largo tiempo, puede que
-quiera hacer una copia de seguridad del fichero private_key en alguna parte.
+quiera hacer una copia de seguridad del fichero <var>private_key</var> en alguna parte.
 </p>
 
 <p>Hemos evitado recomendar Apache antes, a) porque mucha gente podría 
@@ -214,11 +222,11 @@ tenga esos problemas también.
 </p>
 
 <p>Si quiere redireccionar múltiples puertos virtuales para un mismo servicio 
-oculto, simplemente añada más líneas HiddenServicePort.
+oculto, simplemente añada más líneas <var>HiddenServicePort</var>.
 Si quiere ejecutar múltiples servicios ocultos desde el mismo cliente Tor,
-simplemente añada otra línea HiddenServiceDir. Todas las líneas
-HiddenServicePort subsiguientes se refieren a esta línea HiddenServiceDir, hasta
-que añada otra línea HiddenServiceDir:
+simplemente añada otra línea <var>HiddenServiceDir</var>. Todas las líneas
+<var>HiddenServicePort</var> subsiguientes se refieren a esta línea <var>HiddenServiceDir</var>, hasta
+que añada otra línea <var>HiddenServiceDir</var>:
 </p>
 
 <pre>
