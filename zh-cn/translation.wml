@@ -1,0 +1,91 @@
+## translation metadata
+# Based-On-Revision: 10519
+# Last-Translator: cheungtifan AT gmail.com
+
+#include "head.wmi" TITLE="翻译指导"
+
+<div class="main-column">
+
+<h2>Tor:翻译指导</h2>
+<hr />
+
+<p>
+如果你想帮助我们翻译Tor的网站和文献到其他语种，这里有一些
+帮你尽可能高效实现的基本准则<br />
+为了使您知道现在的翻译状态，我们创建了一个被称作是
+<a href="<page translation-status>">翻译状态</a>的网页。</p>
+
+<p>
+注意，我们虽然对翻译整个网站有兴趣，但是仅仅几页也是有用的
+</p>
+
+<ol>
+<li>在<a href="<svnwebsite>en/"><svnwebsite>en/</a>
+处可以看到一些".wml"文件。 最重要的一些是
+<code>index.wml</code>, <code>overview.wml</code>,
+<code>download*.wml</code>, <code>documentation.wml</code>,
+<code>foot.wmi</code>, and <code>navigation.wmi</code>.
+翻译这些也是受欢迎的【如果你愿意】
+次重要的文件是在<a
+href="<svnwebsite>docs/en/"><svnwebsite>docs/en/</a>中的".wml"文件。
+你可以看一下<a href="<svnwebsite>de/"><svnwebsite>de/</a>
+来获得一些期望的翻译格式</li>
+
+#<li>文件名应该从index.xx.html【 xx
+#是你的 <a
+#href="http://www.loc.gov/standards/iso639-2/php/code_list.php">ISO 639</a>
+#两个字母的语言代码】</li>
+
+<li>翻译文件的第一行应该象<br />
+\# Based-On-Revision: 6000<br />
+这样，6000是原始文件的版本号。这些使我们
+很容易的知道这个文件是否过期版本号可以在
+页面顶部找到 -- 他被SVN创建用来
+<a href="<page documentation>#Developers">检查</a>网站的最后版本
+</li>
+
+<li>翻译文本的第二行应该是翻译者的电子邮件地址
+例如<br />
+\# Last-Translator: abc at example.com<br />
+这是我们在这个页面需要更正或者更新的时候联系你。
+(因为这个网页会被传到网上，垃圾邮件制造者会找到你，
+你可能愿意用一个特殊分隔符号或者是电邮地址变模糊)</li>
+
+<li>我们也愿意翻译者们翻译
+<a href="<page overview>">概览页</a>中的图表。 你可以只寄给我们
+应该在表格上的文字，我们就会在新版本图片时更改。
+</li>
+
+<li>翻译版本网页应该链接到翻译版上。</li>
+
+<li>翻译版应该在foot.wmi后增加翻译到准确语言的一行
+"Neither the Tor developers nor EFF have reviewed
+this translation for accuracy and correctness. It may be out of date
+or wrong. The official Tor web site is the English version, available
+at https://tor.eff.org/"</li>
+<li>对于中文来说，这句话应该翻译为“Tor 的开发者和 EFF 均未对本翻译的精确性和正确性作检查。 
+它可能是过时的或者错误的。 Tor 的官方网站的语言是英文，位于 
+https://tor.eff.org/。”
+</li>
+<li>使用有效的<a href="http://roselli.org/adrian/articles/character_charts.asp">文本编码</a>.
+即使现在大部分浏览器能正确的显示文字，但是安全起见，
+我们不希望碰见说不能正确显示网页的big报告。如果你希望
+使用ISO-8859-1以外的编码，在以<code>#include "head.wmi"</code>开头的段落
+的结尾加上象<code>CHARSET="UTF-8"</code>。
+</li>
+
+<li>保持你的翻译本是有效的XHTML，这是你能最小化
+本页提交到SVN以前的工作量。 你可以在<a href="http://validator.w3.org/">validator.w3.org</a>
+处检验。</li>
+
+<li>当你完成某页以后，传给
+位于<a href="<page contact>">联系页的</a><tt>tor-webmaster</tt>。
+(语过你有一些对当前页的更改, 用比较工具
+产生patch文件，如果可能。) 如果你希望在这里待着
+继续保养这些网页，我们会很高兴得给你
+一个SVN帐号，使你直接管理他们。</li>
+</ol>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
