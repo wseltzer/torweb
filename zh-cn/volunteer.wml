@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10181
+# Based-On-Revision: 10723
 # Last-Translator: peihanru AT gmail.com
 
 #include "head.wmi" TITLE="志愿者" CHARSET="UTF-8"
@@ -21,6 +21,7 @@
 <ol>
 <li>我们需要好的办法拦截 DNS 请求，这样，当我们想要匿名时，DNS 请求就不会泄露给本地的窃听者。
 （会发生这种情况是因为应用程序在使用 SOCKS 代理之前进行了 DNS 解析。）</li>
+<li>Tsocks/dsocks 相关：
 <ul>
 <li>我们需要<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">应用
 我们所有的 tsocks 补丁</a>并维护一个新的分支。如果你需要，我们将提供空间。</li>
@@ -29,6 +30,7 @@
 <li>我们需要使我们的 <i>torify</i> 脚本检测安装的是 tsocks 还是 dsocks，并恰当地调用它们。
 这或许意味着统一它们的接口，也许还包括在它们之间共用代码或弃用其中之一。</li>
 </ul>
+</li>
 <li>运行服务器的志愿者告诉我们他们想在一天中的某个时间段限制一种速率，在其他的时间段限制另一种速率。
 我们应当写一个脚本通过 <a href="<page gui/index>">Tor 控制接口</a>修改带宽限制，而不是把代码加入 Tor。
 也许它可以通过 cron 实现，也许它可以一直休眠并在适当的时候干活（这种办法可能更具可移植性）。
