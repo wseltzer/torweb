@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10009
+# Based-On-Revision: 10766
 # Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Instructions pour la configuration des Services Cachés"
@@ -31,9 +31,13 @@ caché
 <h2><a class="anchor" href="#zero">Étape zéro : s'assurer que Tor et Privoxy fonctionnent</a></h2>
 <br />
 
-<p>Avant de commencer, il est nécessaire de s'assurer que 1) Tor est lancé et fonctionne,
-2) Privoxy est lancé et fonctionne, 3) Privoxy est configuré pour pointer sur
-Tor, et 4) que l'ensemble est bien paramétré.</p>
+<p>Avant de commencer, il est nécessaire de s'assurer que :</p>
+<ol>
+<li>Tor est lancé et fonctionne ;</li>
+<li>privoxy est lancé et fonctionne ;</li>
+<li>privoxy est configuré pour pointer sur Tor ;</li>
+<li>que l'ensemble est bien paramétré.</li>
+</ol>
 
 <p>Les utilisateurs Windows devraient suivre <a
 href="<page docs/tor-doc-win32>">le
@@ -73,8 +77,8 @@ plus tard) pour un usage différent.
 la ligne de commande, le plus simple, et de loin, est d'installer <a
 href="http://www.acme.com/software/thttpd/">thttpd</a>. Rappatriez juste la
 dernière archive, décompactez là (ça créer son propre répertoire), et lancez
-./configure &amp;&amp; make. Puis mkdir hidserv, cd hidserv, et run
-"../thttpd -p 5222 -h localhost". Vous devriez retrouver le prompt,
+<kbd>./configure &amp;&amp; make.</kbd> Puis <kbd>mkdir hidserv ; cd hidserv,</kbd> et run
+<kbd>../thttpd -p 5222 -h localhost</kbd> Vous devriez retrouver le prompt,
 et à ce stade vous faites tourner un serveur web sur le port 5222. Vous pouvez mettre des fichiers dans 
 le répertoire hidserv.
 </p>
@@ -121,14 +125,14 @@ cherchez la ligne</p>
 Cette section du fichier consiste en un groupe de lignes, chacune représentant
 un service caché. Actuellement elles sont toutes en commentaire (les lignes
 commençant par #), ainsi les services cachés sont désactivés. Chaque groupe de lignes
-consiste en une ligne HiddenServiceDir, et une ou plus HiddenServicePort :
+consiste en une ligne <var>HiddenServiceDir</var>, et une ou plus <var>HiddenServicePort</var> :
 </p>
 <ul>
-<li><b>HiddenServiceDir</b> est un répertoire où Tor va stocker les informations
+<li><var>HiddenServiceDir</var> est un répertoire où Tor va stocker les informations
 à propos du service caché.  En particulier, Tor va créer un fichier dedans, nommé
-<i>hostname</i> qui va vous donner le nom onion de l'URL. Vous n'avez pas à ajouter d'autre fichier 
+<var>hostname</var> qui va vous donner le nom onion de l'URL. Vous n'avez pas à ajouter d'autre fichier 
 dans ce répertoire.</li>
-<li><b>HiddenServicePort</b> vous permet de spécifier un port virtuel (c'est celui
+<li><var>HiddenServicePort</var> vous permet de spécifier un port virtuel (c'est celui
 que les gens penseront utiliser en accédant à votre service) et une
 adresse IP et un port pour les redirection vers ce port virtuel.</li>
 </ul>
@@ -141,7 +145,7 @@ HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
 HiddenServicePort 80 127.0.0.1:5222
 </pre>
 
-<p>Vous allez avoir à changer la ligne HiddenServiceDir, pour qu'elle pointe
+<p>Vous allez avoir à changer la ligne <var>HiddenServiceDir</var>, pour qu'elle pointe
 vers le repertoire qui est accessible en lecture/écriture par l'utilisateur qui fait
 tourner Tor. L'exemple du dessus devrait fonctionner si vous utilisez le paquet 
 Tor OS X. Sous Unix, essayez "/home/username/hidserv/" et remplacez par votre propre
@@ -155,34 +159,36 @@ HiddenServicePort 80 127.0.0.1:5222
 votre Tor, et ensuite redémarrez le.
 </p>
 
-<p>Si Tor redémarre, génial. Sinon, quelque chose se passe mal. Jetez un œil
-sur votre torrc à la recherche d'erreurs évidentes comme des fautes de frappe. Puis recontrôlez
-que le répertoire que vous avez paramétré est accessible en lecture écriture pour Tor. Si ça ne 
-fonctionne toujours pas, vous devriez regarder les traces Tor pour vous aiguiller. (Voyez <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">la FAQ sur les logs
+<p>Si Tor redémarre, génial. Sinon, quelque chose se passe mal. Premièrement regardez les logs
+pour avoir des pistes. Il devrait y'avoir des « warnings » ou des erreurs. Ça devrait vous donner une idée
+du pourquoi ça se passe mal. Souvent des erreurs de frappe dans le fichier torrc ou de droits d'accès aux répertoires.
+(Voyez <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">la FAQ sur les logs
 </a> si vous ne savez pas comment les activer ou bien où les trouver.)
 </p>
 
-<p>Quand Tor se lance, il doit automatiquement créer le HiddenServiceDir
-que vous avez spécifié (si nécessaire), et il devrait y créer deux fichiers.
-Premièrement, il va générer une nouvelle paire de clés
+<p>Quand Tor se lance, il doit automatiquement créer le <var>HiddenServiceDir</var>
+que vous avez spécifié (si nécessaire), et il devrait y créer deux fichiers.</p>
+<dl>
+<dt><var>private_key</var></dt>
+<dd>Premièrement, Tor va générer une nouvelle paire de clés
 publique/privée pour votre service caché, et les écrire dans un 
 fichier appelé "private_key". Ne partagez pas cette clé avec d'autre -- si vous le faite
-ils peuvent impersonnaliser votre service caché.
-</p>
+ils peuvent impersonnaliser votre service caché.</dd>
 
-<p>L'autre fichier qui va être créé s'appelle "hostname". Il contient
+<dd>L'autre fichier qui va être créé s'appelle "hostname". Il contient
 un court résumé de votre clé publique -- ça devrait ressembler à quelque chose comme
 <tt>6sxoyfb3h2nvok2d.onion</tt>. C'est le nom public pour votre service,
 et vous pouvez l'annoncer à d'autre gens, le publier, le mettre sur votre carte de 
-visite, etc. (Si Tor tourne sous un utilisateur différent du votre, par exemple sous
+visite, etc.</dd>
+
+</dl>
+<p>Si Tor tourne sous un utilisateur différent du votre, par exemple sous
 OS X, Debian, or Red Hat, vous aurez à passer sous root pour être autorisé à 
-consulter ces fichiers.)
-</p>
+consulter ces fichiers.</p>
 
 <p>Maintenant que vous avez redémarré Tor, il collecte des points d'introduction
-dans le réseau Tor, et génére ce qui est appelé un "descripteur de service 
-caché", qui est une liste de points d'introduction signée avec
+dans le réseau Tor, et génére ce qui est appelé un <em>descripteur de service 
+caché</em>, qui est une liste de points d'introduction signée avec
 la pleine clé publique. Il publie ce descripteur anonymement
 aux serveurs d'annuaires, et d'autres utilisateurs peuvent anonymement le rappatrier 
 à partir des serveurs de repertoires lorsqu'ils souhaitent accéder à votre service.
@@ -200,7 +206,7 @@ jusqu'à ce que ça fonctionne.
 <br />
 
 <p>Si vous envisagez de maintenir votre service pendant quelques temps, il est conseillé
-de faire une copie de votre fichier private_key quelque part.
+de faire une copie de votre fichier <var>private_key</var> quelque part.
 </p>
 
 <p>Nous avons évité de recommander Apache au dessus, a) parceque beaucoup de personnes
@@ -214,11 +220,11 @@ l'utilisez comme service caché ? « Savant » doit aussi avoir ce genre de p
 </p>
 
 <p>Si vous souhaitez renvoyer plusieurs ports virtuels pour un seul service 
-caché, ajoutez simplement plus de lignes  HiddenServicePort.
+caché, ajoutez simplement plus de lignes  <var>HiddenServicePort</var>.
 Si vous voulez faire tourner plusieurs service cachés à partir du même client
-Tor, rajoutez simplement une autre ligne HiddenServiceDir. Toutes les lignes
-suivant le HiddenServicePort se réfèrent a la ligne HiddenServiceDir jusqu'a ce que vous
-ajoutiez une autre ligne HiddenServiceDir :
+Tor, rajoutez simplement une autre ligne <var>HiddenServiceDir</var>. Toutes les lignes
+suivant le <var>HiddenServicePort</var> se réfèrent a la ligne <var>HiddenServiceDir</var> jusqu'a ce que vous
+ajoutiez une autre ligne <var>HiddenServiceDir</var> :
 </p>
 
 <pre>
