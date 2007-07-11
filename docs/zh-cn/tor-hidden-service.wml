@@ -1,0 +1,217 @@
+## translation metadata
+# Based-On-Revision: 10766
+# Last-Translator: peihanru AT gmail.com
+
+#include "head.wmi" TITLE="隐匿服务配置指导" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>配置 <a href="<page index>">Tor</a> 隐匿服务</a></h1>
+<hr />
+
+<p>Tor 允许客户端和服务器提供隐匿服务。即你能够在不向用户泄露你的 IP 地址的情况下
+提供 Web 服务、SSH 服务等等。事实上，因为你不需要任何公开的地址，你能在防火墙后面
+运行隐匿服务。
+</p>
+
+<p>如果你已安装了 Tor 和 Privoxy，你能通过访问<a href="http://6sxoyfb3h2nvok2d.onion/">隐匿
+Wiki</a> 来感受隐匿服务是如何运行的。
+</p>
+
+<p>本指导描述了设置你自己的隐匿服务网站的步骤。
+</p>
+
+<hr />
+<a id="zero"></a>
+<h2><a class="anchor" href="#zero">第零步：使 Tor 和 Privoxy 正常工作</a></h2>
+<br />
+
+<p>开始前，你需要确认：</p>
+<ol>
+<li>Tor 正在运行，</li>
+<li>Privoxy 正在运行，</li>
+<li>Privoxy 被配置为指向 Tor，以及</lI>
+<li>你确实正确地设置了一切。</li>
+</ol>
+
+
+<p>Windows 用户应该遵照 <a href="<page docs/tor-doc-win32>">Windows 指导</a>，OS
+X 用户应该遵照 <a href="<page docs/tor-doc-osx>">OS X 指导</a>，Linux/BSD/Unix
+用户应该遵照 <a href="<page docs/tor-doc-unix>">Unix 指导</a>。
+</p>
+
+<p>一旦 Tor 和 Privoxy 安装与配置完成，你能通过访问<a
+href="http://6sxoyfb3h2nvok2d.onion/">隐匿 Wiki</a> 来感受隐匿服务是如何运行的。
+通常需要 10 到 60 秒的时间来载入页面（或者确定当前无法访问）。如果立刻失败并且
+浏览器弹出警告说“找不到 www.6sxoyfb3h2nvok2d.onion，请检查地址重新尝试”，则说明
+你没能正确配置 Tor 和 Privoxy。请查看<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">此
+FAQ 条目</a>获得帮助。
+</p>
+
+<hr />
+<a id="one"></a>
+<h2><a class="anchor" href="#one">第一步：在本地安装 Web 服务器</a></h2>
+<br />
+
+<p>首先，你需要在本地设置一台 Web 服务器。设置 Web 服务器是一个棘手的难题，
+因此我们在这里将仅仅介绍一些基本步骤。如果你想知道更多，去找一位能帮助你的朋友。
+我们建议你为隐匿服务安装一台新的、独立的 Web 服务器，这是因为即使你已经有了一台，
+你也许正在用它（或打算用它）运行一个真实的网站。
+</p>
+
+<p>如果你使用的是 Unix 或 OS X 并且对命令行不陌生，目前为止最好的方法是安装
+<a href="http://www.acme.com/software/thttpd/">thttpd</a>。获取最新的源文件压缩包，
+解压缩（它会创建自己的目录），运行 <kbd>./configure &amp;&amp; make</kbd>。
+然后 <kbd>mkdir hidserv; cd hidserv</kbd>，然后运行 <kbd>../thttpd -p 5222 -h
+localhost</kbd>。你将回到提示符，现在一台 Web 服务器已在端口 5222 运行。你可以在
+hidserv 目录放入（隐匿服务提供的）文件。
+</p>
+
+<p>如果你使用的是 Windows，你可以选择 <a href="http://savant.sourceforge.net/">Savant</a>
+或者 <a href="http://httpd.apache.org/">Apache</a>，请配置其仅绑定本地主机。
+你还应该知道监听的端口，下面将用到。
+</p>
+
+<p>（我们将 Web 服务器仅绑定本地主机的原因是为了保证它无法被公开地访问。如果有人
+可以直接访问它，他们将据此确认你的计算机正在提供隐匿服务。）
+</p>
+
+<p>当 Web 服务器设置完成时，请确认它工作正常：打开浏览器，访问 <a
+href="http://localhost:5222/">http://localhost:5222/</a>，其中 5222 是上面你所
+选择的端口。然后在主目录中加入一个文件，看看它是否出现在你所访问的站点中。
+</p>
+
+<hr />
+<a id="two"></a>
+<h2><a class="anchor" href="#two">第二步：配置你的隐匿服务</a></h2>
+<br />
+
+<p>接下来，你需要将你的隐匿服务指向本地的 Web 服务器。
+</p>
+
+<p>首先，在你的文本编辑器中打开 torrc 文件。（如果不明白这句话的意思，请看<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#torrc">关于 torrc 的
+FAQ 条目</a>。）在中间部分查找这样一行</p>
+
+<pre>
+\############### This section is just for location-hidden services ###
+</pre>
+
+<p>文件的这一部分包括了几组，每组由多行构成，每一组都代表了一项隐匿服务。现在
+它们都被注释掉了（以 # 开始的行），所以隐匿服务是禁止的。每组都包括一行
+<var>HiddenServiceDir</var>，另有一行或多行 <var>HiddenServicePort</var>：</p>
+<ul>
+<li><var>HiddenServiceDir</var> 是 Tor 将要保存隐匿服务信息的目录。特别地，Tor
+将创建一个名为 <var>hostname</var> 的文件记录 onion URL。你无需向此目录添加
+任何文件。</li>
+<li><var>HiddenServicePort</var> 让你指定虚拟端口（即当他人访问隐匿服务时认为他们
+在使用的端口）和虚拟端口的连接重定向到的 IP 地址和端口。</li>
+</ul>
+
+<p>将以下两行加入 torrc：
+</p>
+
+<pre>
+HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:5222
+</pre>
+
+<p>你需要修改 <var>HiddenServiceDir</var> 这一行，使其指向一个运行 Tor 的用户能够
+读写的目录。如果你正在使用 OS X 的 Tor 软件包，上面一行是有效的。在 Unix 上请
+尝试“/home/username/hidserv/”，“username”对应你自己的用户名。在 Windows 上或许可以
+这样：</p>
+<pre>
+HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
+HiddenServicePort 80 127.0.0.1:5222
+</pre>
+
+<p>现在保存 torrc，关闭 Tor，然后再次启动它。
+</p>
+
+<p>如果 Tor 再次成功启动，很好。否则的话，说明什么地方发生了问题。首先查看日志文件
+寻找线索。它将记录一些警告或错误消息。你应该能够由此明白错在哪里。典型的错误是
+torrc 中的笔误或不正确的目录权限。（如果你不知道如何激活日志或找不到日志文件，
+请查看<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">关于
+日志的 FAQ 条目</a>。）
+</p>
+
+<p>Tor 在启动时会自动创建你所指定的 <var>HiddenServiceDir</var>（如果需要的话），
+它还将在那儿创建两个文件。</p>
+
+<dl>
+<dt><var>private_key</var></dt>
+<dd>首先，Tor 将生成一对新的供隐匿服务使用的公钥/私钥对。它被写入一个
+名为“private_key”的文件中。不要与他人分享这一秘钥——如果你这么做，他们将能够冒充你的
+隐匿服务。</dd>
+<dt><var>hostname</var><dt>
+<dd>Tor 将创建的另一个文件是“hostname”。其中包括了你的公钥的简短摘要——它看起来像
+<tt>6sxoyfb3h2nvok2d.onion</tt>。这是你的服务的公开名字，你能够将它告诉别人，
+把它发布在网站上，打印在商务名片上，等等。</dd>
+</dl>
+
+<p>如果运行 Tor 的不是你而是其他用户，例如在 OS X、Debian 或 Red Hat 平台上，
+则你需要成为 root 来查看这些文件。</p>
+
+<p>现在你已经重启了 Tor，它正忙于在 Tor 网络中选择介绍节点（introduction points），
+以及生成一个<em>隐匿服务描述符</em>。隐匿服务描述符是经过签名的介绍节点列表与服务
+的完整的公钥。它以匿名的方式将这一描述符发布到目录服务器，当其他用户尝试访问你的
+服务时，他们同样以匿名的方式从目录服务器获取这一描述符。
+</p>
+
+<p>现在就来试试：将 hostname 文件中的内容粘贴到浏览器中。如果一切正常，你将看到
+你在第一步时添加的 HTML 页面。如果工作不正常，请查看日志寻找线索，不断尝试直至
+正常工作。
+</p>
+
+<hr />
+<a id="three"></a>
+<h2><a class="anchor" href="#three">第三步：更多高级技巧</a></h2>
+<br />
+
+<p>如果你打算长期运行服务，你或许需要在什么地方备份 <var>private_key</var> 文件。
+</p>
+
+<p>在上面，我们避免推荐 Apache，这是因为 a) 许多人可能已在他们的计算机上用它来
+运行公开的 Web 服务器；b) 它很大，可能在许多地方泄露你的 IP 地址或其他信息，如
+404 页面中。但是对于需要更多功能的人来说，Apache 也许是正确的选择。有谁能为我们
+制作一份清单，列举使用 Apache 作为隐匿服务时需要注意的事项吗？Savant 可能也会有
+这些问题。
+</p>
+
+<p>如果你需要为一项隐匿服务转发多个虚拟端口，添加多行 <var>HiddenServicePort</var>
+即可。如果你需要从同一个 Tor 客户端运行多项隐匿服务，添加另一行 <var>HiddenServiceDir</var>
+即可。紧接着的所有 <var>HiddenServicePort</var> 行都是与这一行 <var>HiddenServiceDir</var>
+相关，直到你又添加另一行 <var>HiddenServiceDir</var>：
+</p>
+
+<pre>
+HiddenServiceDir /usr/local/etc/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:8080
+
+HiddenServiceDir /usr/local/etc/tor/other_hidden_service/
+HiddenServicePort 6667 127.0.0.1:6667
+HiddenServicePort 22 127.0.0.1:22
+</pre>
+
+<p>你还需要记住一些与匿名有关的问题：
+</p>
+<ul>
+<li>如前所述，小心你的 Web 服务器泄露你的身份信息、你的计算机或你的位置。
+例如，访问者可能会知道它是 thttpd 还是 Apache，以及了解你的操作系统的一些信息。</li>
+<li>如果你的计算机不是一直在线的，你的隐匿服务也不会一直在线。这会向观察敏锐的敌手
+泄露信息。</li>
+<!-- increased risks over time -->
+</ul>
+
+<hr />
+
+<p>如果你有改进本文档的建议，请<a href="../contact.html.zh-cn">告诉我们</a>。
+谢谢！</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
