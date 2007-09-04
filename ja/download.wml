@@ -1,8 +1,8 @@
 ## translation metadata
-# Based-On-Revision: 8551
+# Based-On-Revesion: 11283 $
 # Last-Translator: buyoppy@yahoo.co.jp
 
-#include "head.wmi" TITLE="ダウンロード" CHARSET="UTF-8"
+#include "head.wmi" TITLE="ダウンロード"
 
 <div class="main-column">
 
@@ -24,15 +24,103 @@
 
 <p>セキュリティ勧告や最新の安定版のリリースを常に知るためには
 <a href="http://archives.seul.org/or/announce/">orアナウンスメーリングリスト</a>
-を<b>購読してください</b>(メールによる認証が必要):</p>
+に<b>登録してください</b>(メールによる認証が必要):</p>
 
 <form action="http://freehaven.net/cgi-bin/majordomo.cgi">
 <input type="hidden" name="mlist" value="or-announce">
 <input type="hidden" name="subscribe" value="1">
 <input type="hidden" name="host" value="freehaven.net">
 <input name="email" size="15">
-<input type="submit" value="購読">
+<input type="submit" value="登録">
 </form>
+
+<p><a
+href="http://gmane.org">gmane.org</a>にorアナウンスメーリングリストの<a
+href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS
+フィード</a>もあります。</p>
+
+<hr />
+
+<a id="Warning"></a>
+<h2><a class="anchor" href="#Warning">警告: Torを実際に動かしたいですか？
+</a></h2>
+
+<p>...それなら、Torをただインストールしてそのまま運用することはしないで
+ください。あなたの習慣の幾つかを変える必要があります、そしてソフトウェアの
+設定をしてください！Torはもともとあなたの匿名性にとって必要なものの
+すべてでは<b>ありません</b>。注意すべき主な落とし穴が幾つかあります。
+</p>
+
+<p>まず最初に、Torはそれを通して送られるように設定された
+インターネットアプリケーションだけを保護するものですーそれは
+インストールするだけであなたの通信のすべてを匿名化してしまう
+魔法ではありません。私達は<a href="http://www.mozilla.org/firefox">
+Firefox</a>を<a
+href="https://addons.mozilla.org/firefox/2275/">Torbutton</a>
+拡張といっしょに使うことをお薦めします。
+
+<!-- , and follow <a href="comingsoon">その他のサポートされる
+アプリケーションについてのその他の助言
+</a>. -->
+</p>
+
+<p>第二に、Java、Flash、ActiveX、RealPlayer、Quicktime、Adobe PDF
+プラグイン、およびその他のブラウザプラグインはあなたのIPアドレスを
+露出させるように操作される可能性があります。あなたのプラグイン
+("about:plugins"とURLに入力するとどのプラグインがインストールされているかを
+確かめることができます)をアンインストールすべきでしょう。あるいは
+どうしてもそれらが必要なら、<a
+href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>、 <a
+href="https://addons.mozilla.org/firefox/433/">FlashBlock</a>および
+<a href="http://noscript.net/">NoScript</a>を使ってみてください。
+あなたが入力したウェブサイトについてより多くの情報を与えるような拡張
+(Googleツールバーのような)を撤去することを検討してください。そのような
+拡張はTorをバイパスしてしまい、さらに／もしくはデリケートな情報を
+拡散させてしまうかもしれないからです。二つのブラウザを使うのが
+好きな人たちもいます(一つにはTorを使用し、もう一つは安全でない
+ブラウジングに使用する)。
+
+<!-- You may even want to use a text browser, such as <a
+href="http://lynx.browser.org/">lynx</a> when you are using Tor. -->
+<!-- You may also find
+<a href="https://addons.mozilla.org/firefox/722/">NoScript</a> and <a
+href="https://addons.mozilla.org/firefox/1865/">AdBlock</a> helpful. -->
+</p>
+
+<p>第三に、クッキーに注意してください:TorおよびPrivoxyを使わずに
+ブラウジングしたことがあり、その際に訪れたサイトがあなたのブラウザに
+クッキーを残していった場合、その後再びTorを使用してブラウズした
+場合でもクッキーがあなたを判別してしまうかもしれないのです。
+あなたはクッキーを頻繁にクリアするべきです。
+失いたくないクッキーを保護するには<a
+href="https://addons.mozilla.org/firefox/82/">CookieCuller</a>
+が役に立ちます。
+</p>
+
+<p>第四に、Torはあなたの通信の発信元を匿名化し、Torネットワークの内側を
+通るすべてを暗号化しますが、<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">
+Torネットワークと最終目的地との間の通信は暗号化できません。
+</a>
+もしあなたがデリケートな情報をやりとりするのなら、通常のあの恐ろしい
+インターネット上と同じ程度の注意を払う必要がありますーSSLその他の
+エンドツーエンドな暗号化および認証を使ってください。
+</p>
+
+<p>第五に、Torはあなたのローカルなネットワーク上の攻撃者があなたの
+目的地を発見したりそれを外部に漏らしたりすることを防ぎますが、
+その一方で、それは新たなリスクを生じさせます:悪意のあるまたは
+設定を誤ったTorの出口ノードがあなたに違うページを送ってしまったり、
+さらにはあなたが信頼しているドメインであるかのように偽装された
+埋め込みJavaアプレットが送りつけられることさえあり得ます。
+</p>
+
+<p>賢く振る舞ってください、そしてより多くを学んでください。
+Torには何が出来て何が出来ないのかを理解してください。この落とし穴の
+リストは完全なものではありません。
+<a href="<page volunteer>#Documentation">すべての問題点を
+特定してドキュメント化する</a>のを手伝ってください。
+</p>
 
 <table border="1" cellspacing="0" cellpadding="2">
 <thead>
@@ -45,7 +133,7 @@
 
 <tr>
 <td>Windows</td>
-<td>Tor &amp; Privoxy &amp; Vidaliaバンドル:
+<td>Tor &amp; Privoxy &amp; Vidalia バンドル:
 <a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>),
 <a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>).
 </td>
@@ -59,23 +147,20 @@
 </tr>
 
 <tr>
-<td>Mac OS X 10.4 (Tiger)</td>
-<td>Tor &amp; Privoxy &amp; Vidaliaバンドル:
-<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="
-<package-osx-bundle-stable-sig>">sig</a>),
-<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<p
-ackage-osx-bundle-alpha-sig>">sig</a>).
+<td>Mac OS X 10.4 (Tiger)ユニバーサルバイナリ </td>
+<td>Tor &amp; Privoxy &amp; Vidalia バンドル:
+<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>),
+<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>).
 </td>
-<td><a href="<page docs/tor-doc-osx>">OS X向けガイド</a></td>
+<td><a href="<page docs/tor-doc-osx>">OS X 向けガイド</a></td>
 </tr>
 
 <tr>
 <td>Mac OS X 10.3 (Panther)</td>
 <td>Tor &amp; Privoxy &amp; Vidaliaバンドル:
-<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a 
+<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
 href="<package-oldosx-bundle-stable-sig>">sig</a>),
-<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a hr
-ef="<package-oldosx-bundle-alpha-sig>">sig</a>).
+<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a href="<package-oldosx-bundle-alpha-sig>">sig</a>).
 </td>
 <td><a href="<page docs/tor-doc-osx>">OS X向けガイド</a></td>
 </tr>
@@ -95,7 +180,7 @@ ef="<package-oldosx-bundle-alpha-sig>">sig</a>).
 </tr>
 
 <tr>
-<td>ソースtarball</td>
+<td>ソースtarballs</td>
 <td>
 <a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>),
 <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>).
@@ -112,84 +197,119 @@ ef="<package-oldosx-bundle-alpha-sig>">sig</a>).
 <ul>
 <li><a href="<page mirrors>">Torのミラーサイトのリスト</a>はこちらにあります。
 <a href="http://opensource.depthstrike.com/?category=tor">
-上掲の全ての版のトーレント向けダウンロードページ</a>はこちらです。
-<a href="dist/privoxy-3.0.3-2-stable.src.tar.gz">Privoxy 3.0.3ソース版</a>
-または<a href="dist/vidalia-bundles/">Vidaliaソース版</a>
-もダウンロードできます。</li>
+上掲の全ての版のトーレント向けダウンロードページ</a>はこちらです。 
+<a href="dist/">Privoxyソース版</a>または
+<a href="dist/vidalia-bundles/?C=M;O=D">Vidaliaソース版</a>もダウンロードできます。
+</li>
 <li>私たちの<a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/VerifyingSignatures">
 パッケージのシグネチャを検証する方法についてのFAQ</a>には、あなたがダウンロードした
-ファイルが本当に私たちが提供しているものと同じものなのかどうかを確認する方法が書かれています。</li>
-<li>SVNからTorの最新開発版を取得するためのガイドは<a href="<page documentation>#Developers">開発者向けドキュメント
+ファイルが本当に私たちが提供しているものと同じものなのかどうかを確認する方法が
+書かれています。</li>
+<li>SVNからTorの最新開発版を取得するためのガイドは
+<a href="<page documentation>#Developers">開発者向けドキュメント
 </a>をご覧ください。このバージョンは正常に動かないまたはコンパイルさえ成功しない可能性が
 ありますので注意!</li>
 </ul>
 
 <hr />
 
+<a id="Testing"></a>
+<h2><a class="anchor" href="#Testing">テストリリース</a></h2>
+
+<p>2007-08-26:
+Tor 0.2.0.6-alpha
+<a href="http://archives.seul.org/or/talk/Aug-2007/msg00215.html">
+はWindowsおよびOS Xバンドルに新しいVidaliaのバージョンを含めました。
+Vidalia 0.0.14はデフォルト設定でControlPortに必要な認証を行います。
+これによって重大なセキュリティリスクに対処します。
+加えて、このスナップショットはパス選択に関するロードバランス問題に
+ついてメジャーな修正がなされており、アップグレードによって大幅に
+速度が向上するはずです。またディレクトリオーソリティサーバは、
+どのサーバが安定しているかを追跡記録するのに単に最近の稼働時間
+を見るだけではなく、新しいMTBFアプローチを採用しています。</a>
+</p>
+
+<p>2007-08-19:
+Tor 0.2.0.5-alpha
+<a href="http://archives.seul.org/or/talk/Aug-2007/msg00187.html">
+はWindows上のコンパイル問題を修正しました;性質の悪いクライアント側の
+バグを修正しましたがこのために処理速度が低下し、またネットワークからの
+ロードがさらに必要になりました;v3ディレクトリ投票スキームを使用する
+ことがだんだん現実味を帯びてきました;Torコントローラがクッキーベースの
+認証を使用しやすくしました;その他雑多なバグ修正を行いました</a>
+</p>
+
+<p>2007-08-01:
+Tor 0.2.0.4-alpha
+<a href="http://archives.seul.org/or/talk/Aug-2007/msg00109.html">
+多くのユーザにとっての致命的なセキュリティ脆弱性、特にVidalia、
+TorKその他の使用に関するものを修正しました</a>。すべてのユーザが
+アップグレードするべきです。
+</p>
+
+<p>2007-07-29:
+Tor 0.2.0.3-alpha
+<a href="http://archives.seul.org/or/talk/Aug-2007/msg00109.html">
+試験的な抗ブロッキング機能の導入、v3ディレクトリ投票デザインの
+暫定版、およびその他の細々とした機能の実装およびバグ修正が
+行われました。</a>
+</p>
+
+<p>2007-06-02:
+Tor 0.2.0.1-alpha and 0.2.0.2-alpha
+<a href="http://archives.seul.org/or/talk/Jun-2007/msg00026.html">
+Torをクライアント兼サーバとして運用している人々のための新機能
+(RelayBandwidth設定オプションを調べて)を提供しました;Torを
+DNSプロキシとして運用させる;および多くの点での前進あり</a>
+</p>
+
+<hr />
+
+<a id="Stable"></a>
+<h2><a class="anchor" href="#Stable">安定版リリース</a></h2>
+
+<p>2007-08-01:
+Tor 0.1.2.16
+<a href="http://archives.seul.org/or/announce/Aug-2007/msg00000.html">
+ほとんどのユーザ、特にVidalia、TorKを使用しているユーザにとっての
+致命的なセキュリティ脆弱性を修正しました。すべてのユーザが
+アップデートすべきです。
+</p>
+
+<p>2007-07-17:
+Tor 0.1.2.15 <a
+href="http://archives.seul.org/or/announce/Jul-2007/msg00000.html">
+幾つかのクラッシュバグを修正、幾つかの匿名性関連の問題を修正、
+BSD上でのコンパイル問題を修正、その他雑多なバグ修正を施しました。</a>
+</p>
+
+<p>2007-05-25:
+Tor 0.1.2.14 <a
+href="http://archives.seul.org/or/announce/May-2007/msg00000.html">
+2つのディレクトリオーソリティサーバのアドレスを変更(この変更は
+特にヒドゥンサービスを提供または利用している人々に影響を与えます)、
+その他幾つかのクラッシュおよびセキュリティ関連のバグを修正しました。
+</a>
+</p>
+
+<p>2007-04-23:
+Tor 0.1.2.13 features
+<a href="http://archives.seul.org/or/announce/Apr-2007/msg00000.html">
+より安全なパス選択など、幾つかのメジャーな匿名性に関する修正;
+クライアントのパフォーマンス向上;より速い起動、よりよいアドレス検出、
+そしてサーバに対するよりよいDNSサポート;サーバを運用しやすくするため
+にread制限だけでなくwrite制限も;その他沢山の機能実装およびバグ修正。
+</a>バンドルはVidalia 0.0.11と共にリリースされます。
+</p>
+
+<hr />
+
 <a id="ChangeLog"></a>
-
-<h2>テストリリース</h2>
-
-<p>2006-08-27:
-Tor 0.1.2.1-alphaの新機能 <a
-href="http://archives.seul.org/or/talk/Aug-2006/msg00300.html">
-パフォーマンス向上、クライアントおよびサーバのメモリーオーバーヘッド減少
-その他の効能がある、Adam Langleyによる非同期DNSライブラリ</a>を導入。
-</p>
-
-<hr />
-
-<h2>安定版リリース</h2>
-
-<p>2006-09-29:
-Tor 0.1.1.24　さらにいくつかのクラッシュおよびパフォーマンスバグを修正。 
-</p>
-
-<p>2006-07-30:
-Tor 0.1.1.23 <a
-href="http://archives.seul.org/or/announce/Aug-2006/msg00000.html">
-サーバ到達テストのバグ、さらにいくつかのクラッシュバグおよびクライアントサイドの
-重大なバグ</a>を修正。クライアントおよびサーバの双方が要アップグレード。
-</p>
-
-<p>2006-07-05:
-Tor 0.1.1.22 <a
-href="http://archives.seul.org/or/announce/Jul-2006/msg00000.html">
-サーバ用到達テストおよび部分的ディレクトリダウンロード</a>を修正。
-サーバは要アップグレード。クライアントでもネット接続が断続的または遅くなっている
-場合にはアップグレードしたほうがよい。新しいVidaliaのバージョン: 0.0.7も一緒に
-バンドルされています。
-</p>
-
-<p>2006-06-10:
-Tor 0.1.1.21 <a
-href="http://archives.seul.org/or/announce/Jun-2006/msg00000.html">
-主にTorサーバに関する、マイナーな安定性およびプロトコル正確性の問題を修正。
-Windows向けバンドルをアップグレードしてVidalia 0.0.5を追加、新しいOS X
-向けバンドルにVidalia 0.0.5(最終的にMacユーザ向けのよりよいインターフェース)を
-リンクしています。そして最後に、SUSEスタイルのRPMパッケージのサポートを追加しました
-</a>。Torのサーバ到達テストにあった報告済バグのいくつかについては
-いまだに原因を探索中です。 
-</p>
-
-<p>2006-05-23:
-Tor 0.1.1.20 <a
-href="http://archives.seul.org/or/announce/May-2006/msg00000.html">
-回路構築を保護するためのエントリ保護を含む幾つかのメジャーなセキュリティ修正、
-エンドノード保護のためのexit enclave、ファイアーウォールサポートの改善;
-帯域消費を軽減する新しいディレクトリプロトコルおよびクライアントの
-情報更新頻度の向上;2つの新たなオーソリティーディレクトリサーバ;
-人々が容易にTorと交信するアプリケーションを書くことを可能にする
-新しいアスキーベースの制御プロトコル;およびスケーラビリティとパフォーマンスに
-おける改善;</a>が施されました。
-</p>
-
-<hr />
-
 <p>詳しくは<a href="<svnsandbox>ChangeLog">変更ログ</a>
 を参照してください。</p>
 
   </div><!-- #main -->
 
 #include <foot.wmi>
+
