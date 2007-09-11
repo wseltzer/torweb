@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 9004
+# Based-On-Revision: 10766
 # Last-Translator: jan@eul.org
 
 #include "head.wmi" TITLE="Istruzioni per configurare un Hidden Service" CHARSET="UTF-8"
@@ -13,7 +13,7 @@
 
 <p>Tor permette a client e server di offrire dei "servizi nascosti" (hidden service). In altre parole,
 puoi realizzare un server web, un server SSH, etc., senza rivelare il tuo
-IP agli altri utenti. Di fatto, non usando un indirizzo IP pubblico,
+indirizzo IP agli altri utenti. Di fatto, non usando un indirizzo IP pubblico,
 puoi avere un hidden service anche da dietro il tuo firewall.
 </p>
 
@@ -31,9 +31,13 @@ service.
 <h2><a class="anchor" href="#zero">Zero: installa Tor e Privoxy</a></h2>
 <br />
 
-<p>Prima di iniziare occorre che 1) Tor sia attivo e funzioni correttamente,
-2) Privoxy sia attivo, 3) Privoxy sia configurato per puntare a
-Tor, e che 4) l'installazione sia corretta e funzionante.</p>
+<p>Prima di iniziare occorre che:</p>
+<ol>
+<li>Tor sia attivo e funzioni correttamente,</li>
+<li>Privoxy sia attivo e funzioni,</li>
+<li>Privoxy sia configurato per puntare a Tor e che</li>
+<li>l'installazione sia corretta e funzionante.</li>
+</ol>
 
 <p>Gli utenti Windows possono seguire il <a
 href="<page docs/tor-doc-win32>">Windows
@@ -57,17 +61,62 @@ FAQ</a> per aiuto e suggerimenti.
 
 <hr />
 <a id="one"></a>
-<h2><a class="anchor" href="#one">Uno: configura un servizio nascosto di esempio</a></h2>
+<h2><a class="anchor" href="#one">Uno: installa localmente un web server</a></h2>
 <br />
 
-<p>In questa sezione configurerai un hidden service che punta
-a www.google.com. In questo modo si pu&ograve; essere sicuri che il tutto funzioni
-prima di passare a realizzare localmente un server web vero e proprio.
+<p>Per prima cosa devi installare un web server in locale. Pu&ograve;
+essere una cosa delicata,
+per cui qui descriveremo solo alcuni passaggi elementari.Se ti trovi in difficolt&agrave;
+o se vuoi fare di pi&ugrave; cerca un amico che ti aiuti. Ti consigliamo di
+di installare un web server separato per il tuo hidden service, dato che
+se ne hai gi&agrave; uno installato forse lo stai gi&agrave; usando (o vorrai
+usarlo in futuro) per un altro sito web.
+
+</p>
+
+<p>Se usi Unix o OS X e sei a tuo agio con la linea di
+comando, la cosa migliore &egrave; installare <a
+href="http://www.acme.com/software/thttpd/">thttpd</a>. Piglia la tarball
+pi&ugrave; recente, scompattala (creer&agrave; la sua directory), ed esegui
+<kbd>./configure &amp;&amp; make</kbd>. Poi <kbd>mkdir hidserv; cd
+hidserv</kbd>, ed esegui
+<kbd>../thttpd -p 5222 -h localhost</kbd>. Ti restituir&agrave; il prompt
+e avrai un webserver sulla porta 5222. Puoi mettere dei file 
+nella directory hidserv.
+</p>
+
+<p>Su Windows, puoi usare <a
+href="http://savant.sourceforge.net/">Savant</a> o <a
+href="http://httpd.apache.org/">Apache</a>, e configurarlo per collegarsi
+solo da localhost. Devi anche sapere su quale pota &egrave; in
+ascolto, dato che servir&agrave; pi&ugrave; sotto.
+</p>
+
+<p>(Il motivo per collegare il web server solo a localhost &egrave; per
+assicurarsi che non sia accessibile pubblicamente. Se si potesse accedere direttamente,
+si potrebbe avere la prova che &egrave; il tuo computer a offire l'hidden
+service.)
+</p>
+
+<p>Una volta installato il web server, controlla che funzioni: apri un browser
+e vai a <a
+href="http://localhost:5222/">http://localhost:5222/</a>, dove 5222 &egrave;
+la porta scelta poco pi&ugrave; sopra. Prova poi a mettere unfile nella directory
+html principale e controlla che sia visibile quando accedi al sito.
+</p>
+
+<hr />
+<a id="two"></a>
+<h2><a class="anchor" href="#two">Due: Configura il tuo hidden service</a></h2>
+<br />
+
+<p>Ora devi configurare l'hidden service perch&eacute; punti al
+web server locale
 </p>
 
 <p>Per prima cosa, apri il file torrc con un editor di testo. (Vedi <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#torrc">questa
-FAQ</a> se hai dei dubbi.) Vai alla sezione intermedia del file e
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#torrc">la
+torrc FAQ</a> per maggiori informazioni.) Vai alla sezione di mezzo e
 cerca la riga</p>
 
 <pre>
@@ -78,146 +127,92 @@ cerca la riga</p>
 Questa sezione del file contiene un gruppo di righe che rappresentano ciascuna
 un hidden service. Per ora sono tutte commentate via (le linee
 iniziano con #), infatti i hidden service sono disabilitati. Ogni gruppo di righe
-consiste in una riga HiddenServiceDir e una o pi&ugrave; righe HiddenServicePort:
-</p>
+consiste in una riga <var>HiddenServiceDir</var> e una o pi&ugrave; 
+righe <var> HiddenServicePort</var>:</p>
+
 <ul>
-<li><b>HiddenServiceDir</b> &egrave; una directory dove Tor metter&agrave; le informazioni
+<li><var>HiddenServiceDir</var> &egrave; una directory dove Tor metter&agrave; le informazioni
 su quel hidden service.  In particolare Tor vi creer&agrave; un file di nome
-<i>hostname</i> che indica l'onion URL.  Non occorre aggiungere
+<var>hostname</var> che indica l'onion URL.  Non occorre aggiungere
 altri file a questa directory.</li>
-<li><b>HiddenServicePort</b> permette di specificare una porta virtuale (ovvero, la porta
+<li><var>HiddenServicePort</var> permette di specificare una porta virtuale (ovvero, la porta
 che chi accede al servizio creder&agrave; di usare), e un
 indirizzo IP e una porta per redirigere le connessioni verso questa porta virtuale.</li>
 </ul>
 
-<p>In questo esempio realizzaremo un hidden service che punta a
-Google. Aggiungi le seguenti righe a torrc:
+<p>Aggiungi le seguenti righe a torrc:
 </p>
 
 <pre>
 HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
-HiddenServicePort 80 www.google.com:80
+HiddenServicePort 80 127.0.0.1:5222 
 </pre>
 
-<p>Sar&agrave; necessario modificare la riga  HiddenServiceDir in modo che punti
+<p>Sar&agrave; necessario modificare la riga <var>HiddenServiceDir</var> in modo che punti
 a una directory vera che sia leggibile e scrivibile dall'utente con cui
 gira Tor. L'esempio sopra dovrebbe funzionare con il pacchetto Tor
 per OS X. In Unix, prova "/home/nomeutente/hidserv/" e metti il tuo nome
 utente al posto di "nomeutente". Su Windows puoi provare:</p>
 <pre>
 HiddenServiceDir C:\Documents and Settings\nomeutente\Dati applicazioni\hidden_service\\
-HiddenServicePort 80 www.google.com:80
+HiddenServicePort 80 127.0.0.1:5222
 </pre>
 
 <p>Ora salva il file torrc, chiudi
-Tor e riavvialo.  (Vedi <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">questa
-FAQ</a> con dei suggerimenti per riavviare Tor.)
+Tor e riavvialo.  
 </p>
 
-<p>Se Tor riparte, bene. Altrimenti c'&egrave; qualcosa che non va. Dai
-un'occhiata al file torrc per eventuali errori di battitura. Ricontrolla che la
-directory scelta sia veramente scrivibile dall'utente. Se ancora non
-funziona, controlla i log di Tor per ulteriori informazioni. (Vedi <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">questa
-FAQ</a> se non sai come abilitare o trovare i file di log.)
+<p>Se Tor riparte, bene. Altrimenti c'&egrave; qualcosa che non va. Per prima cosa dai
+un'occhiata ai file di log, che riportano avvisi o messaggi di errore. Ci&ograve;
+dovrebbe darti indicazioni sui problemi incontrati. Spesso ci sono errori di battitura nel file torrc
+o permessi di directory errati. (Vedi la <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">logging
+FAQ</a> se non sai come abilitare o trovare
+i file di log.)
+
 </p>
 
-<p>Quando Tor parte creer&agrave; automaticamente la HiddenServiceDir
-che hai indicato (se serve), e vi creer&agrave; due file.
-Anzitutto creer&agrave; un nuovo paio di chiavi
-pubbliche/private per il hidden service e lo registrer&agrave; in un
-file di nome "private_key". Non dare questa chiave a nessuno -- altrimenti
-qualcun altro potrebbe impersonare il tuo hidden service.
-</p>
-
-<p>L'altro file che Tor creer&agrave; &egrave; "hostname". Contiene
+<p>Quando Tor parte creer&agrave; automaticamente la  <var>HiddenServiceDir </var>
+che hai indicato (se serve), e vi creer&agrave; due file.</p>
+<dl>
+<dt><var>private_key</var></dt>
+<dd>Anzitutto Tor creer&agrave; un nuovo paio di chiavi pubblica/privata per il tuo hidden
+service. Esso viene scritto in un file detto "private_key". Non condividere questa chiave
+co altri -- altrimenti un altro otrebbe impersonare il tuo hidden
+service.</dd>
+<dt><var>hostname</var><dt>
+<dd>L'altro file creato da Tor &egrave; detto "hostname". Esso contiene
 un breve sommario della tua chiave pubblica -- qualcosa di smile a
 <tt>6sxoyfb3h2nvok2d.onion</tt>. &#200; il nome pubblico del tuo servizio
 e puoi comunicarlo a tutti, pubblicarlo su siti web, scriverlo sul biglietto
-da visita, etc. (Se Tor gira con un utente diverso dal tuo, ad esempio su
+da visita, etc. .</dd>
+</dl>
+
+<p>Se Tor gira con un diverso utente, ad esempio su
 OS X, Debian, o Red Hat, forse devi diventare root per leggere
-questi file.)
-</p>
+questi file.</p>
 
 <p>Ora che hai riavviato Tor, lui cerca degli introduction point
-nella rete Tor, generando un cosiddetto "hidden service
-descriptor", che &egrave; una lista firmata di introduction point e della chiave
+nella rete Tor, generando un cosiddetto <em>hidden service
+descriptor</em>. Esso &egrave; una lista firmata di introduction point e della chiave
 pubblica del servizio. Tor pubblica anonimamente questa descrizione
 ai directory server, cos&igrave; gli altri possono prelevarla anonimamente dai
 directory server quando cercano di accedere al tuo servizio.
 </p>
 
 <p>Ora fai una prova: copia e incolla il contenuto del file hostname nel tuo
-browser. Se funziona vedrai la home page di google, ma l'URL nel tuo
-browser sar&agrave; quello del tuo hidden service. Se non funziona
-guarda nei log e fai altre prove e modifiche finch&eacute; non andr&agrave; in porto.
-</p>
-
-<hr />
-<a id="two"></a>
-<h2><a class="anchor" href="#two">Due: ora installa localmente un server web</a></h2>
-<br />
-
-<p>Ora che hai un have hidden service funzionante su Tor, puoi
-realizzare un web server locale. Realizzare un server web &egrave; un'operazione
-complessa, qui passeremo in rassegna solo le fasi di base. Se ti trovi in difficolt&agrave;
-o vuoi fare di pi&ugrave;, fatti aiutare da un amico. &#200; bene
-installare un nuovo web server separato per il tuo hidden service, perch&eacute; se ne
-avessi gi&agrave; uno installato potresti volerlo usare (ora o
-in futuro) per un sito web vero e proprio.
-</p>
-
-<p>Se usi Unix o OS X e sei a tuo agio con
-la linea di comando, la cosa pi&ugrave; semplice &egrave; installare <a
-href="http://www.acme.com/software/thttpd/">thttpd</a>. Scarica
-l'ultimo tarball, estrailo (creer&agrave; la sua propria directory), ed esegui
-./configure &amp;&amp; make. Poi mkdir hidserv, cd hidserv, ed esegui
-"../thttpd -p 5222 -h localhost". Ti restituir&agrave; il prompt
-ed ora avrai un webserver sulla porta 5222. Puoi mettere dei file
-da pubblicare nella directory hidserv.
-</p>
-
-<p>Se usi Windows, puoi usare <a
-href="http://savant.sourceforge.net/">Savant</a> o <a
-href="http://httpd.apache.org/">Apache</a> e configurarlo
-solo su localhost. Devi anche sapere su quale porta &egrave;
-in ascolto, questa informazione ti servir&agrave; pi&ugrave; sotto.
-</p>
-
-<p>(Il motivo per cui il web server deve ascoltare solo su localhost &egrave; che
-non deve essere accessibile pubblicamente. Se lo si potesse raggiungere direttamente,
-si avrebbe la conferma che &egrave; il tuo computer ad offrire quel hidden
-service.)
-</p>
-
-<p>Una volta messo su il server web, controlla che funzioni: col tuo
-browser vai a <a
-href="http://localhost:5222/">http://localhost:5222/</a>, dove 5222 &egrave;
-la porta in ascolto indicata pi&ugrave; sopra. Prova a mettere un file nella
-directory principale html, e controlla che sia visibile quando accedi al sito.
+browser. Se funziona vedrai la pagina html che hai preparato al punto uno.
+Se non funziona, guarda nei log e fai altre prove e modifiche finch&eacute; non 
+funziona.
 </p>
 
 <hr />
 <a id="three"></a>
-<h2><a class="anchor" href="#three">Tre: collega il tuo server web al tuo hidden service</a></h2>
-<br />
-
-<p>Questa parte &egrave; molto semplice. Riapri torrc con un editor e cambia la
-linea HiddenServicePort da "www.google.com:80" a "localhost:5222".
-Poi <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">riavvia
-Tor</a>. Controlla che funzioni ricaricando l'hostname del tuo hidden
-service col tuo browser.
-</p>
-
-<hr />
-<a id="four"></a>
-<h2><a class="anchor" href="#four">Quattro: argomenti avanzati</a></h2>
+<h2><a class="anchor" href="#three">Tre: argomenti avanzati</a></h2>
 <br />
 
 <p>Se pensi di rendere disponibile a lungo il tuo servizio, dovresti fare
-una copia di backup del file private_key.
+una copia di backup del file <var>private_key</var>.
 </p>
 
 <p>Nell'esempio sopra abbiamo evitato di proposito Apache, a) perch&eacute; molti
@@ -231,11 +226,11 @@ hidden service? Anche Savant probabilmente ha problemi del genere.
 </p>
 
 <p>Se vuoi inoltrare pi&ugrave; porte virtuali a un unico hidden
-service, basta aggiungere altre righe HiddenServicePort.
+service, basta aggiungere altre righe <var>HiddenServicePort</var>.
 Se vuoi gestire pi&ugrave; hidden services dallo stesso client Tor,
-aggiungi un'altra riga HiddenServiceDir. Tutte le seguenti righe
-HiddenServicePort si riferiscono a questa riga HiddenServiceDir, fino
-a quando non aggiungi un'altra riga HiddenServiceDir:
+aggiungi un'altra riga <var>HiddenServiceDir</var>. Tutte le seguenti righe
+<var>HiddenServicePort</var> si riferiscono a questa riga <var>HiddenServiceDir</var>, fino
+a quando non aggiungi un'altra riga <var>HiddenServiceDir</var>:
 </p>
 
 <pre>
