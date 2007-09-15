@@ -1,0 +1,381 @@
+## translation metadata
+# Based-On-Revision: 10723
+# Last-Translator: solutions@janwoning.com
+
+#include "head.wmi" TITLE="Volunteer"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h2>Drie dingen die iedereen nu kan doen:</h2>
+<ol>
+<li>Overweeg a.u.b. <a href="<page docs/tor-doc-server>">een Tor server te
+draaien</a> om het Tor netwerk te helpen groeien.</li>
+<li>Zegt het voort!  Haal uw vrienden over om Tor servers te draaien, verborgen
+diensten aan te bieden en het op hun beurt door te vertellen aan hun vrienden.
+
+<li>Wij zijn thans actief op zoek naar fondsen en sponsors.  Indien u Tor's
+doelstellingen steunt, neemt u dan a.u.b. even de tijd voor een
+<a href="<page donate>">donatie t.b.v. de verdere ontwikkeling van Tor</a>.
+Indien u bedrijven, NGOs of andere organisaties weet die
+verlegen zijn om veilige communicatie, vertel hen dan over ons.</li>
+</ol>
+
+<a id="Usability"></a>
+<h2><a class="anchor" href="#Usability">Hulpprogramma's</a></h2>
+<ol>
+<li>We hebben goede methoden nodig voor het onderscheppen van DNS verzoeken,
+zodat deze geen informatie lekken naar een plaatselijke waarnemer, waar
+wij anoniem proberen te zijn (kan gebeuren doordat DNS verzoeken worden afgehandeld
+vóór verzending naar de SOCKS proxy).</li>
+<li>Tsocks/dsocks items:
+<ul>
+<li>We moeten <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">al onze tsocks
+patches toepassen</a> en een nieuwe vork onderhouden. Wij zullen uw oplossing
+desgewenst hosten.</li>
+<li>We zouden Dug Song's "dsocks" programma moeten opwaarderen voor het gebruik van 
+<i>mapaddress</i> opdrachten door Tor's controle koppeling, opdat we niet langer
+een retourtje binnen Tor verspillen aan het verwerken van DNS verzoeken voor het
+leggen van verbindingen.</li>
+<li>We moeten ons <i>torificatie</i> script laten bepalen welke type tsocks of
+dsocks is geïnstalleerd en deze dienovereenkomstig aanroepen. Dit komt waarschijnlijk
+neer op het samenvoegen van hun koppelingen, waarbij de code wordt gedeeld of
+één van de twee geheel wordt afgedankt.</li>
+</ul>
+</li>
+<li>
+Serverbeheerders wensen de optie tot het instellen van een zekere bandbreedte gedurende
+een bepaald dagdeel en een andere bandbreedte gedurende een ander dagdeel. I.p.v.
+programmeren in Tor, is een script gewenst dat via de
+<a href="<page gui/index>">Tor Controller Interface</a> praat en een "setconf" uitvoert
+om de bandbreedte aan te passen. Het script zou mogelijk onder (Unix) cron kunnen draaien
+danwel slapen om op de juiste tijd de kneep te doen (dit laatste is waarschijnlijk beter
+overdraagbaar). Zou iemand zo'n script voor ons kunnen schrijven?
+Wij zullen het dan in de <a href="<svnsandbox>contrib/">contrib/</a> plaatsen. Dit
+zou een goede inzending zijn voor de <a href="<page gui/index>">Tor GUI wedstrijd</a>.
+  <!-- We have a good script to adjust stuff now, right? -NM -->
+</li>
+
+<li>Berichtenverkeer kan <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">het Tor
+netwerk verlaten via een gekozen uitgangsserver</a>.  Echter het moet mogelijk zijn
+alleen het land te selecteren en het programma vervolgens automatisch een uitgangsserver
+te laten kiezen. De beste optie is om Blossom's directory ook op te halen, met een 
+lokale Blossom client die dit veilig (via Tor, met echtverklaring van de
+handtekening) doet, <tt>.country.blossom</tt> onderschept en de juiste actie neemt.</li>
+
+<li>Over geografische lokaties gesproken: Iemand zou een wereldkaart moeten
+tekenen, met elke Tor serverlokatie gemarkeerd door een speld.  Bonuspunten indien
+de kaart zichzelf aanpast aan een groeiend, veranderend Tor netwerk. Eenvoudigst
+zou zijn om alle gegevens naar Google te sturen en hen de kaart laten tekenen. In
+hoeverre zou dit de privacy beïnvloeden en zijn er alternatieven?</li>
+</ol>
+
+<a id="Documentation"></a>
+<h2><a class="anchor" href="#Documentation">Documentatie</a></h2>
+<ol>
+<li>We horen dat Tor gebruikers slachtoffer kunnen worden van anonimiteit-brekende
+aanvallen via Javascript, Java, ActiveX, Flash, enz. indien zij
+deze programma's niet uitschakelen. Bestaan er uitbeidingen, zoals
+NoScript voor Firefox, welke dit risico eenvoudig te beheren maken?  Wat is
+het risico precies?</li>
+
+<li>Bestaat er een suite van uitbreidingen voor Firefox 1.5+ met volledige
+Privoxy functionaliteit? We hebben vernomen dat Tor veel sneller werkt zonder
+Privoxy in de lus.</li>
+
+<li>Helpt u Matt Edman a.u.b. met het documenteren van zijn
+<a href="http://vidalia-project.net/">Vidalia</a>  Tor controller.</li>
+
+<li>Evalueer en documenteer
+<a href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">onze
+lijst van programma's</a> welke kunnen worden geconfigureerd voor gebruik met Tor.</li>
+
+<li>We hebben betere documentatie nodig voor het dynamisch onderscheppen
+en omleggen van verbindingen via Tor.  Tsocks (Linux), dsocks (BSD), freecap
+(Windows) en een beter gebruik van onze nieuwe TransPort lijken goede kandidaten.</li>
+
+<li>We hebben <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">een lange lijst
+potentiëel bruikbare programma's</a> die met Tor kunnen samenwerken. Welke zijn nuttig en in
+welke situaties? Help ons a.u.b. met testen en vastleggen van de uitkomsten.</li>
+
+<li>Help met het vertalen van de Tor webpagina's en documenten. Zie de
+<a href="<page translation>">richtlijnen</a> indien u wilt meehelpen.
+Ook hebben we mensen nodig om de bestaande Franse en Zweedse vertalingen
+bij te houden, zie het betreffende <a href="<page translation-status>">status
+overzicht</a>.</li>
+
+<li>Kan iemand ons uitleggen en helpen besluiten of we de 
+<a href="http://www.cacert.org/">cacert</a> weg met ons SSL
+<a href="<page documentation>#Developers">SVN repository</a> moeten opgaan?</li>
+</ol>
+
+<a id="Coding"></a>
+<h2><a class="anchor" href="#Coding">Programmeren en Ontwerp</a></h2>
+<ol>
+<li>Tor servers werken niet goed onder Windows XP.  Onder Windows doet Tor
+een standaard <tt>select()</tt> systeem aanroep, welke niet-wegschrijfbaar 
+geheugen gebruikt. Dit houdt in dat een gemiddelde Tor server deze
+geheugenruimte in z'n geheel overschrijft, <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">resulterend
+in systeemuitval</a>.
+Vermoedelijk moeten we "overlapped IO" gebruiken. Eén oplossing is, om een
+<a href="http://www.monkey.org/~provos/libevent/">libevent</a> te leren hoe
+overlapped IO i.p.v. select() onder Windows te gebruiken, en vervolgens Tor op
+de nieuwe libevent koppeling af te stemmen.</li>
+
+<li>Omdat Tor servers elke cel die zij behandelen moeten opslaan en uitsturen,
+gebruiken breedbandige Tor servers tientallen megabytes aan uitsluitend
+buffergeheugen. We hebben een betere geheugenhiërarchie nodig om te bepalen
+wanneer buffers in te krimpen danwel uit te breiden. Moet dit misschien
+analoog aan het Linux kernelontwerp worden ingericht, waar sprake is van
+vele kleine buffers welke naar elkaar verwijzen, i.p.v. monolithische buffers?
+</li>
+
+<li>
+We zijn verlegen om een officiële centrale lokatie welke de vraag "Is dit
+IP adres een Tor uitgangsserver?" beantwoordt. Dit zou moeten
+leiden tot diverse koppelingen, inclusief een webkoppeling en een
+DNSBL-stijl koppeling. Deze opzet is in staat de meest precieze
+antwoorden te leveren, door een lokale kopie ("mirror") van de Tor
+directory informatie aan te houden. Teer punt is, dat de
+uitgangsserver-functie niet booleaans is. Daarom luidt de eigenlijke vraag
+"Is dit IP adres een Tor uitgangsserver welke uit kan sturen naar
+mijn IP adres:poort?".  DE DNSBL koppeling ontvangt waarschijnlijk
+ honderen informatieverzoeken per minuut. Derhalve zijn er slimme
+algoritmen nodig.  Bonuspunten voor algoritmen welke actief elke
+uitgangsserver testen om te bepalen vanuit welk IP adres het Tor network
+daadwerkelijk wordt verlaten.
+<a href="<svnsandbox>doc/contrib/torbl-design.txt">Lees hier verder</a>.</li>
+
+<li>
+Af en toe vallen Tor servers uit, verliezen computers waarop zij draaien
+hun netwerkverbinding of gebeuren er andere ongelukken. Een aantal Tor
+beheerders heeft interesse getoond in een berichtendienst
+welke periodiek nagaat of hun Tor server gezond is en een herinnering
+stuurt indien dit niet het geval is. Is iemand bereid om een paar cgi
+scripts en webpagina's te schrijven en een wget hack danwel iets
+ingewikkelders, bijvoorbeeld <a
+href="http://nagios.org/">Nagios</a> voor deze controle op te zetten?
+De eerste versie zou alleen de directory poort kunnen uitlezen, bijvoorbeeld
+door de cached netwerk statuspagina op het juiste IP adres en poort te
+doorzoeken en dan de "/tor/server/authority" pagina op te vragen.</li>
+
+<li>Het zou mooi zou om een live CD te hebben met alle inclusief de
+meest recente versies van Tor, Polipo, Privoxy, Firefox, Gaim+OTR, enz.
+Er zijn twee uitdagingen: De eerste is het documenteren van het system
+en de keuzemogelijkheden, op een wijze welke veiligheidsmensen in staat
+stelt een mening te vormen hoe veilig het zou moeten zijn.
+De tweede is nadenken over hoe de inhoud kan worden bijgehouden, opdat
+deze niet snel in onbruik raakt (in tegenstelling tot AnonymOS). Bonuspunten
+indien het image bestand op moderne CDs met kleine vormfactor past.</li>
+
+<li>
+In analogie met een live CD image, zouden we moeten werken aan een intuïtief
+veilig en goed beschreven USB image bestand voor Tor en de hulpprogramma's.
+
+<li>Het door ons verkozen grafische bedieningspaneel voor Tor,
+<a href="http://vidalia-project.net/">Vidalia</a> genaamd, heeft behoefte aan
+velerlei ontwikkelingswerk.</li>
+
+<li> We moeten daadwerkelijk beginnen met het bouwen van het
+<a href="<page
+documentation>#DesignDoc">blokkade-weerstand ontwerp</a> (tegen
+firewalls enz). Dit omvat het verder uitwerken van het ontwerp,
+wijzigen van diverse onderdelen van Tor, modificeren van
+<a href="http://vidalia-project.net/">Vidalia</a>
+ter ondersteuning van de nieuwe Tor functionaliteit, en planning
+voor de uitgifte.</li>
+
+<li>We hebben een flexibel simulatie-raamwerk nodig voor de studie
+van "end-to-end traffic confirmation" aanvallen. Vele onderzoekers
+hebben ad hoc simulators opgeklopt ter onderbouwing van hun
+oordeel dat dergelijke aanvallen hetzij goed werken of goed kunnen
+worden afgeweerd. Kunnen we een duidelijk omschreven simulator
+bouwen die dusdanig open is, dat iedereen weet dat er redelijke
+antwoorden uitkomen? Dit zal de prikkel geven tot veel nieuw
+onderzoek. Zie <a href="#Research">onderstaande bijdrage</a> over
+"confirmation" aanvallen voor de onderzoeksaspecten van deze taak
+&mdash; wie weet, kunt u bij het gereedkomen ook meehelpen met het
+schrijven van een stuk of drie artikelen.</li>
+
+<li>We hebben prestatiemetingen nodig van <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+tegen <a href="http://www.privoxy.org/">Privoxy</a>. Is Polipo
+in feite aanmerkelijk sneller dan Privoxy, wanneer de vertraging door
+Tor buiten beschouwing wordt gelaten?  Zijn de resultaten gelijk onder
+Linux en Windows? Behandelt Polipo meer websites correct dan Privoxy
+of omgekeerd? Zijn er problemen met de stabiliteit onder Windows
+of andere wijdverbreide platforms?</li>
+
+<li>In relatie tot het bovenstaande, zou u willen helpen met het
+omprogammeren van <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> voor
+stabiel en efficiënt gebruik onder Windows?</li>
+
+<li>We hebben een gedistribueerd test-raamwerk nodig. We beschikken
+over eenheidstests. Mooier zou zijn een script dat een Tor netwerk opstart, korte
+tijd gebruikt en bevestigt dat tenminste een deel ervan werkt.</li>
+
+<li>Help Mark Perry a.u.b. met zijn <a
+href="http://tor.eff.org/svn/torflow/">TorFlow</a>
+bibliotheek (<a href="http://tor.eff.org/svn/torflow/TODO">TODO</a>). Dit  
+betreft een python programmabibliotheek welke het <a
+href="http://tor.eff.org/svn/torctl/doc/howto.txt">Tor controller
+protocol</a> gebruikt om Tor op diverse manieren verbindingstrajecten
+te laten uitzetten, en vervolgens de prestaties te meten en anomalieën 
+op te sporen.</li>
+<!--
+<li>Thans worden de verborgen service descriptors op slechts enkele directory
+servers opgeslagen. Dit is slecht voor de privacy en de robuustheid. Voor
+meer robuustheid, dienen we verborgen-service descriptiors minder privé te
+maken, omdat ze naar vele plaatsen moeten worden gespiegeld. Idealiter willen
+we het opslag/opzoeksysteem van de Tor directory servers volledig scheiden.
+Eerste probleem is het ontwerpen van een nieuw verborgen-service descriptorformaat
+voor a) ascii i.p.v. binair voor gebruiksgemak; b) het versleuteld houden van de
+lijst van introductiepunten, tenzij het <tt>.onion</tt> adres bekend is, zodat
+de directory deze niet kan achterhalen en c) de directories toe te staan het
+datum-tijdstempel en de handtekening van de verborgen service descriptor
+echt te verklaren, zodat de descriptors niet kunnen worden verleid tot
+het aannemen van een valse indentiteit. Ten tweede is elk betrouwbaar
+gedistribueerd opslagsysteem goed, mits het echtverklaring van wijzingen
+ondersteund. Dit is voor tot dusverre geïmplementeerde DHT code niet het geval.</li>
+-->
+<li>Tor 0.1.1.x en latere versies ondersteunen hardware welke versleuteling
+via OpenSSL versnelt. Niemand heeft dit echter ooit getest. Is er misschien
+iemand die een testkaart wil hebben en ons wil laat weten of het werkt? </li>
+
+<li>
+Voer een veiligheidsanalyse van Tor uit met <a
+href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Bepaal of er
+goede "fuzzing" bibliotheken bestaan voor wat we willen. Maak naam door
+puntenwinst, wanneer wij speciaal vanwege u een nieuwe versie uitgeven!</li>
+
+<li>Tor gebruikt TCP voor transport en TLS voor versleuteling van verbindingen.
+Dit is mooi en eenvoudig, maar betekent wel dat alle cellen op een verbinding
+worden vertraagd bij verlies van één enkel datapakket, en dat we alleen TCP
+datastromen redelijk kunnen ondersteunen. We hebben een <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">lijst
+met redenen waarom we niet zijn overgegaan op UDP transport</a>. Echter het zou
+prima zijn indien de lijst kan worden ingekort. Ook hebben we een <a
+href="<svnsandbox>doc/spec/proposals/100-tor-spec-udp.txt">specificatie voor
+voor Tor met UDP voorgesteld</a> &mdash; laat ons a.u.b. weten wat er
+verkeerd aan is.</li>
+
+<li>We zijn dichtbij IPv6 ondersteuning voor bestemmingsadressen
+(vanaf uitgangsservers). Indien u veel waarde hecht aan IPv6, dan is dit de
+eerste plaats om te beginnen.</li>
+
+<li>Geen van alle naar uw zin? Kijk naar de <a
+href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">plan voor verdere
+ontwikkeling van Tor</a> voor meer ideeën.</li>
+<li>Uw idee hier niet gevonden? Tien tegen één dat we het toch nodig hebben! Neem
+contact met ons op.</li>
+</ol>
+
+<a id="Research"></a>
+<h2><a class="anchor" href="#Research">Onderzoek</a></h2>
+<ol>
+<li>De "website fingerprinting" aanval: Maak een lijst van een paar honderd
+websites en een reeks "handtekeningen" voor elke site.  Observeer het
+berichtenverkeer van een Tor client. Terwijl u hem data ziet ontvangen,
+krijgt u snel inzicht in welke van deze sites hij aan het bezoeken is. Hoe
+effecief is deze aanval op de geplaatste Tor codebasis? Begin vervolgens met
+het verkennen van mogelijke verdedigingen: We zouden bijvoorbeeld Tor's cel
+van 512 naar 1024 bytes kunnen vergroten, paddingtechnieken als <a
+href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>
+kunnen toepassen of het berichtenverkeer kunnen vertragen.  Hoeveel effect
+hebben deze maatregelen en wat is effect op de bruikbaarheid (gebruikmakend van een
+toepasselijke metriek) van een succesvolle verdediging in elk
+van deze gevallen?.</li>
+
+<li>De "end-to-end traffic confirmation" aanval: Door bewaken van het
+berichtenverkeer bij Alice en Bob kunnen we <a
+href="http://freehaven.net/anonbib/#danezis:pet2004">handtekeningen vergelijken
+en overtuigd raken dat we dezelfde datastroom zien</a>. Tot dusverre accepteert
+Tor dit en neemt in alle gevallen aan dat het om een triviale aanval gaat.
+Is dit eigenlijk wel waar? Hoeveel berichtenverkeer van welk soort distributie is
+nodig om de vijand in zijn overwinning te doen geloven? Zijn er scenarios (bijv. weining
+transmissie) welke de aanval vertragen? Werken sommige vormen van padding beter dan
+dan andere?</li>
+
+<li>The "routing zones" aanval: De meeste literatuur benadert het netwerktraject
+tussen Alice en haar ingangsserver (en tussen Bob en zijn uitgangsserver) als
+een enkelvoudige verbinding in een raster. In de praktijk kruist het traject
+vele autonome systemen (ASes), en <a
+href="http://freehaven.net/anonbib/#feamster:wpes2004">is het niet ongewoon dat
+dezelfde ASes in zowel het ingangs- als het uitgangstraject voorkomen</a>.
+Helaas, om nauwkeurig te voorspellen of een zeker (Alice, ingang, uitgang, Bob)-kwartet
+gevaarlijk is, moeten we een complete Internet routing zone downloaden
+en kostbare berekeningen uitvoeren. Zijn er praktische benaderingen, zoals het
+vermijden van IP adressen in eenzelfde /8 netwerk?</li>
+
+<li>
+Andere onderzoeksvragen m.b.t. geografische diversiteit zetten de keuze van
+een efficiënt traject af tegen de keuze van een willekeurig traject.  Zie Stephen
+Rollyson's <a
+href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">position
+paper</a> hoe te trage keuzes af te danken zonder de anonimteit teveel 
+geweld aan te doen. Deze veelbelovende redenering vraagt om nader onderzoek
+en denkwerk.</li>
+
+<li>Tor werkt niet erg goed op kabel of DSL servers met asymmetrische
+bandbreedte. Gegeven dat Tor gescheiden TCP verbindigen voor elke transmissiestap
+heeft: Indien alle bytes normaal binnenkomen terwijl er uitgaande bytes verloren
+gaan, dan koppelt de TCP deze informatie niet terug. Moet Tor misschien detecteren
+wanneer een aanmerkelijk deel van de uitgaande bytes verloren gaat en hierop de
+snelheid van de inkomende informatiestroom afregelen? Ik kan me een regelschema
+voorstellen waarbij we de transmissiesnelheid langzaam laten toenemen tot er
+nog net geen uitgaande bytes verloren gaan en vervolgens via terugkoppeling de
+snelheid van de inkomende datastroom hierop af te stemmen. We hebben iemand nodig
+die goed is met netwerken om e.e.a. te kunnen simuleren en te helpen met het
+ontwerpen van oplossingen, danwel de omvang van het prestatieverlies te begrijpen
+en als argument voor heroverweging van UDP transport in te brengen.</li>
+
+
+<li>Een aanverwant onderwerp is controle van verkeersopstoppingen.  Is ons
+huidige ontwerp voldoende voor zwaar gebruik? Misschien moeten we variabele
+i.p.v. vaste vensters uitproberen. Dit leek goed te gaan in een <a
+href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh
+data-doorzet experiment</a>. We zullen moeten meten en knijpen, en
+mogelijk grondig inspecteren als de resultaten goed zijn.</li>
+
+<li>
+Om dissidenten uit verre landen Tor ongehinderd ('s lands firewall omzeilend)
+te laten gebruiken, hebben we een manier nodig om tienduizenden i.p.v.
+honderden relais te verkrijgen. We kunnen ons een bedieningspaneel
+voorstellen met een "Tor voor Vrijheid" knop die een poort opent en enkele
+kB/s het netwerk in stuurt (dit zal nauwelijks ophef of kwesties t.a.v.
+misbruik veroorzaken daar er geen uitgangsservers in het spel zijn).
+Echter hoe kunnen we automatisch een lijst van deze vrijwillige clients
+onder de goede dissidenten verdelen, zonder interceptie door de firewall?
+Het is waarschijnlijk nodig op het niveau van menselijk vertrouwen te
+werken. Zie ons <a
+href="<page documentation>#DesignDoc">vroege blokkade-afweer
+ontwerpdocument</a> plus ons <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance">FAQ
+hoofdstuk</a> hierover. Lees daarna het onderdeel <a
+href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">censuur
+afweer van anonbib</a>.</li>
+
+<li>Tor trajecten worden stapsgewijs opgebouwd. Derhalve zijn we in theorie in
+staat om enkele datastromen te doen uitgaan in de tweede stap, een paar andere
+in de derde stap, enz. Dit lijkt mooi omdat de samenhange tussen uitgaande
+datastromen welke een gegeven server kan zien wordt vergebroken. Maar als we
+elke stroom willen beveiligen, dan omvat het kortste traject volgens onze
+huidige logica minimaal 3 stappen (meer voor de rest).  Deze uitruil tussen
+prestatie en beveiliging verdient nadere studie.</li>
+
+<li>Het is niet moelijk Tor of dirservers met DoS aan te vallen. Zijn client
+puzzels het juiste antwoord? Welke ander praktische benaderingen zijn er? Bonus
+indien deze achterwaarts compatibel zijn met het huidige Tor protocol.</li>
+</ol>
+
+<a href="<page contact>">Laat ons weten</a> wanneer u vooruitgang heeft geboekt
+op één van bovenstaande punten!
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
