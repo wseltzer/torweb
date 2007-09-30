@@ -46,7 +46,7 @@ sub do_status($$) {
 	printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for ('en', grep { $_ ne 'en' } @LANGUAGES);
 	print "</tr>\n";
 	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'http://tor.eff.org/') . ($dir eq '.' ? '' : $dir.'/');
-	
+
 	for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
 		my $obs = file_is_obsolete($dir, 'en', $file);
 		my $validatorlink = '';
@@ -60,7 +60,7 @@ sub do_status($$) {
 		printf '<td%s>Revision %s%s<br>
 		        <a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;view=markup">HEAD</a>
 			%s',
-			($obs ? ' bgcolor="lightgrey"' : ''),
+			($obs ? ' bgcolor="#D3D3D3"' : ''),
 			$files{'en'}->{$file}->{'rev'},
 			($obs ? ' (obsolete)' :''),
 			($dir eq '.' ? '' : $dir.'/'),
@@ -82,7 +82,7 @@ sub do_status($$) {
 
 				my $difflink;
 				if ($files{$lang}->{$file}->{'based'}  eq  $files{'en'}->{$file}->{'rev'}) {
-					$color='lightgreen';
+					$color='#90EE90';
 					$status='current';
 					$difflink='';
 				} else {
@@ -109,7 +109,7 @@ sub do_status($$) {
 					$difflink,
 					$validatorlink;
 			} else {
-				$color=($obs ? 'lightgreen' : 'red');
+				$color=($obs ? '#90EE90' : 'red');
 				$status='missing';
 				printf '<td bgcolor="%s">%s</td>', $color, $status;
 			};
@@ -122,7 +122,8 @@ sub do_status($$) {
 	for my $lang (@LANGUAGES) {
 		next if $lang eq 'en';
 		if (keys %{$files{$lang}} > 0) {
-			print "<p>";
+#			print "<p>";
+			print "<br><br>";
 			printf "<h2>Additional files in %s (%s)</h2>\n", $lang, $LANGUAGES{$lang};
 
 			print "<table border=1>\n";
