@@ -25,7 +25,8 @@ sub do_status($$) {
 	for my $lang (@LANGUAGES) {
 		opendir(DIR, "$dir/$lang") or
 			$may_miss_dir or die ("Cannot opendir $dir/$lang: $!\n");
-		my @files = grep { $_ ne '.' && $_ ne '..' && $_ =~ m/^[^.]/ && -f "$dir/$lang/$_"} readdir(DIR);
+		my @files = grep { $_ ne '.' && $_ ne '..' &&
+			&& $_ !~ /tor-manual/i && $_ !~ /translation/i && $_ =~ m/^[^.]/ && -f "$dir/$lang/$_"} readdir(DIR);
 		closedir DIR;
 
 		for my $file (@files) {
@@ -148,8 +149,8 @@ sub do_status($$) {
 
 do_status('.', 0);
 do_status('docs', 1);
-do_status('eff', 1);
-do_status('gui', 1);
+#do_status('eff', 1);
+#do_status('gui', 1);
 
 :>
 
