@@ -26,7 +26,7 @@ sub do_status($$) {
 		opendir(DIR, "$dir/$lang") or
 			$may_miss_dir or die ("Cannot opendir $dir/$lang: $!\n");
 		my @files = grep { $_ ne '.' && $_ ne '..' &&
-			&& $_ !~ /tor-manual/i && $_ !~ /translation/i && $_ =~ m/^[^.]/ && -f "$dir/$lang/$_"} readdir(DIR);
+			$_ !~ /tor-manual/i && $_ !~ /translation/i && $_ =~ m/^[^.]/ && -f "$dir/$lang/$_"} readdir(DIR);
 		closedir DIR;
 
 		for my $file (@files) {
