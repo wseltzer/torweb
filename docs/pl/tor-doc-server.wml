@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10858
+# Based-On-Revision: 11724
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Instrukcja konfiguracji serwera" CHARSET="UTF-8"
@@ -123,13 +123,9 @@
 </p>
 
 <p>
-5. Uruchom swój serwer: jeśli instalowałeś ze źródła, możesz po prostu uruchomić
- <tt>tor</tt>, podczas gdy paczki zazwyczaj uruchamiają Tora ze swoich skryptów
- inicjalizacyjnych lub startowych. Jeśli wypisze jakieś ostrzeżenia, zajmij się nimi.
- (Domyślnie Tor wyświetla logi na standardowe wyjście, ale niektóre paczki zapisują
- logi do <tt>/var/log/tor/</tt> lub <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">innych
- miejsc</a>. Możesz zmienić położenie logów w swoim pliku torrc.)
+5. Uruchom ponownie swój serwer. Jeśli <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">wypisze jakieś ostrzeżenia</a>,
+ zajmij się nimi.
 </p>
 
 <p>
@@ -144,8 +140,8 @@
 <p>
 7. Przejrzyj podręcznik.
  Strona <a href="<page tor-manual>">podręcznika</a> najnowszej stabilnej wersji
- podaje dokładne instrukcje na temat instalacji i użytkowania Tora, łącznie z
- konfiguracją klienta i opcjami serwera. Jeśli używasz rozwojowej wersji Tora,
+ zawiera listę wszystkich możliwych opcji konfiguracyjnych dla klienta i serwera.
+ Jeśli używasz rozwojowej wersji Tora,
  to podręcznik jest <a href="<page tor-manual-dev>">tutaj</a>.
 </p>
 
@@ -189,7 +185,7 @@ Polecamy też następujące kroki:
 
 <p>
 9. Zdecyduj się na politykę wyjścia. Domyślnie twój serwer pozwala na dostęp
- do wielu popularnych usług, lecz ograniczamy niektóre z nich (jak na przykład port 25)
+ do wielu popularnych usług, lecz ogranicza niektóre z nich (jak na przykład port 25)
  ze względu na możliwości nadużyć. Być może będziesz chciał taką politykę, która
  będzie mniej lub bardziej restrykcyjna; wtedy odpowiednio zmień swój plik torrc.
  Przeczytaj w FAQ o <a
@@ -283,60 +279,13 @@ Polecamy też następujące kroki:
  ze źródeł, to mogą ci się przydać skrypty inicjalizacyjne contrib/tor.sh lub contrib/torctl.
 </p>
 
-<p>Gdy zmieniasz konfigurację Tora, <a
- href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">w większości
- przypadków możesz przeładować konfigurację bez ponownego uruchamiania Tora</a>,
- pamiętając o sprawdzeniu, czy twój serwer dalej działa poprawnie po zmianie.
-</p>
-
-<hr />
-
-<a id="register"></a>
-<a id="email"></a>
-<!-- <h2><a class="anchor" href="#register">Krok 4: Rejestracja swojej nazwy serwera</a></h2> -->
-<h2><a class="anchor" href="#email">Krok 4: Daj nam znać o swoim serwerze</a></h2>
-<br />
-
-<p>Daj serwerowi podziałać przez kilka tygodni, by upewnić się, że rzeczywiście
- działa i że jesteś zadowolony z jego poziomu zużycia zasobów. Po tym czasie, jeśli chcesz,
- wyślij nam e-mail z danymi kontaktowymi i szczegółami.
- <!--zarejestruj swój serwer-->. To
- <!--zarezerwuje twoją nazwę, żeby nikt inny
- nie mógł jej wziąć i--> pozwala nam skontaktować się z tobą, gdy będzie potrzeba
- aktualizacji lub coś nie będzie działać.
-</p>
-
-<p>
-Wyślij list na <a
-href="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</a> z
-tematem '[New Server] &lt;nazwa twojego serwera&gt;' i dołącz
-następujące informacje w wiadomości:
-</p>
-<ul>
-<li>Nazwę twojego serwera</li>
-<li>Odcisk palca (hash) klucza tożsamości twojego serwera. Jest on <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">logowany</a>
-w czasie uruchamiania:
-coś w stylu "<tt>moria1 FFCB 46DB 1339 DA84 674C 70D7 CB58 6434
-C437 0441</tt>".
-<!--
-It is also written to the "fingerprint" file in your DataDirectory.
-&mdash; on Windows, look in
-\<i>username</i>\Application&nbsp;Data\tor\ or \Application&nbsp;Data\tor\;
-on OS X, look in /Library/Tor/var/lib/tor/; and on Linux/BSD/Unix,
-look in /var/lib/tor or ~/.tor)
--->
-</li>
-<li>Kim jesteś, żebyśmy wiedzieli z kim się skontaktować w razie problemów</li>
-<li>Jakie łącze będzie miał serwer</li>
-</ul>
-
-<p>
-W związku z liczbą listów, które otrzymujemy, możemy nie być w stanie odpowiedzieć
- na każdy z nich. Bądź jednak pewien, że cieszymy się, że pomagasz rosnąć sieci Tora!
- Jeśli masz problem z działaniem serwera, daj nam znać, a my spróbujemy pomóc.
-<!--Potem będziemy sprawdzać Twój serwer przez 1 czy 2 tygodnie by upewnić się,
- że działa; nie bądź więc zaskoczony, że musisz czekać na naszą odpowiedź.-->
+<p>Gdy zmieniasz konfigurację Tora, pamiętaj sprawdzić, czy Twój serwer dalej działa
+ po tych zmianach. Ustaw w pliku torrc opcję "ContactInfo", byśmy mogli się z Tobą
+ skontaktować, jeśli powinieneś zainstalować nowszą wersję lub coś działa nie tak.
+ Jeśli masz jakieś problemy lub pytania, przeczytaj sekcję
+ the <a href="<page documentation>#Support">Uzyskiwanie pomocy</a> lub
+ <a href="<page contact>">skontaktuj się z nami</a> na liście tor-ops. Dziękujemy,
+ że pomagasz rosnąć sieci Tora!
 </p>
 
 <hr />
