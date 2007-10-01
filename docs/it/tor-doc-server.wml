@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10858
+# Based-On-Revision: 11729
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Istruzioni per configurare un server Tor" CHARSET="UTF-8"
@@ -49,10 +49,8 @@ infatti se ne accorgono presto e cessano di pubblicarlo. Cerca per&ograve; di no
 farlo cadere troppo di frequente, perch&eacute; le connessioni che in quel momento stanno
 usando il server vengono interrotte.
 </li>
-<li>I server con indirizzo IP dinamico funzionano bene, a condizione che conoscano
-il loro indirizzo IP. Leggi a proposito
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DynamicIP">
-questa FAQ</a>.
+<li>Si  pu&ograve; realizzare un server anche con un indirizzo IP dinamico &mdash; basta
+lasciare vuota l'opzione Address config e Tor ricaver&agrave; da solo l'indirizzo.
 </li>
 <li>Se il tuo server &egrave; in NAT e non conosce il suo IP
 pubblico (es. ha un IP simile a 192.168.x.y), dovreai configurare il port
@@ -126,12 +124,10 @@ per permettere al tuo server di raggiungere gli altri server Tor.
 </p>
 
 <p>
-5. Avvia il server: se lo hai installato a partire dai sorgenti esegui semplicemente
-<tt>tor</tt>, se hai usato un pacchetto, di solito si usa un
-initscript o uno startup script. Se i log segnalano degli allarmi, leggili. 
-(Di default Tor stampa i log su stdout, ma alcuni pacchetti registrano i log in <tt>/var/log/tor/</tt> o <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">altrove</a>.
-Puoi modificare il file torrc per configurare la posizione dei log).
+5. Riavvia il server. Se <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">segnala
+dei messaggi di avviso</a>, esaminali.
+
 </p>
 
 <p>
@@ -146,8 +142,8 @@ in cui vengono annunciate le nuove versioni di sviluppo.
 <p>
 7. Leggi il manuale.
 Il <a href="<page tor-manual>">manuale</a> dell'
-ultima versione stabile fornisce istruzioni dettagliate per installare
-e usare Tor, compresa la configurazione del cliente del server.
+ultima versione stabile ha una lista di tutte le opzioni di configurazione
+possibili per client e server.
 Se usi la versione di sviluppo di Tor, il manuale &egrave; disponibile
 <a href="<page tor-manual-dev>">qui</a>.
 </p>
@@ -291,59 +287,13 @@ potrebbero esserti utili gli initscript in contrib/tor.sh o contrib/torctl.
 </p>
 
 <p>
-Ogni volta che modifichi la configurazione di Tor, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">di
-solito puoi ricaricarla senza riavviare Tor</a>,
-ricorda inoltre di controllare che il server funzioni correttamente dopo
-le modifiche.
-</p>
-
-<hr />
-<a id="register"></a>
-<a id="email"></a>
-<!-- <h2><a class="anchor" href="#register">Step Four: Register your nickname</a></h2> -->
-<h2><a class="anchor" href="#email">Quattro: facci conoscere il tuo server</a></h2>
-<br />
-
-<p>
-Fai andare il tuo server per qualche settimana per controllare che funzioni e che
-l'uso delle risorse sia sostenibile. Poi, se vuoi, scrivici una email
-con le informazioni per metterci in contatto con te e i dettagli, cos&igrave; potremo
-contattarti se dovessi aggiornare qualcosa o ci fossero problemi.
-</p>
-
-<p>
-Scrivi a <a
-href="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</a> con un
-oggetto '[New Server] &lt;il nickname del tuo server&gt;' e
-scrivi nel messaggio queste informazioni:
-</p>
-<ul>
-<li>Il nickname del tuo server</li>
-<li>Il fingerprint della identity key del tuo server. Viene  <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">loggata</a>
-all'avvio:
-qualcosa come "<tt>moria1 FFCB 46DB 1339 DA84 674C 70D7 CB58 6434
-C437 0441</tt>".
-<!--
-Si trova anche nel file "fingerprint" nella tua DataDirectory.
-&mdash; su Windows, cerca in
-\<i>username</i>\Dati&nbsp;Applicazioni\tor\ o \Dati&nbsp;Applicazioni\tor\;
-su OS X, vai in /Library/Tor/var/lib/tor/; e su Linux/BSD/Unix,
-guarda in /var/lib/tor o ~/.tor)
--->
-</li>
-<li>Chi sei, cos&igrave che sappiamo chi contattare se ci sono problemi</li>
-<li>Che tipo di connessione ha il nuovo server</li>
-</ul>
-
-<p>
-A causa delle molte email che riceviamo potremmo non rispondere a ciascuna
-email. Ma ti assicuriamo che siamo davvero felici che tu ci stia aiutando
-a far crescere la rete Tor! Se hai dei problemi a far funzionare il tuo server,
-facci sapere e cercheremo di aiutarti.
-<!-- di verificare che stia su e funzioni; non stupirti quindi se ci metteremo un po'
-a rispondere. -->
+Quando modifichi la configurazione di Tor, ricordati di controllare che
+il tuo server funzioni regolarmente dopo le modifiche. Completa la voce
+"ContactInfo" nel file torrc in modo che possiamo contattarti se ci fosse bisogno
+di aggiornare o ci fossero dei problemi. Se hai problemi o domande, vedi
+la sezione <a href="<page documentation>#Support">Supporto</a> o la pagina
+<a href="<page contact>">contact us</a> sulla lista tor-ops. Grazie
+del tuo aiuto per far crescere la rete Tor!
 </p>
 
 <hr />
