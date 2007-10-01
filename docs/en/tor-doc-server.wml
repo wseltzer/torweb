@@ -125,13 +125,9 @@ so your server can reach the other Tor servers.
 </p>
 
 <p>
-5. Start your server: if you installed from source you can just
-run <tt>tor</tt>, whereas packages typically launch Tor from their
-initscripts or startup scripts. If it logs any
-warnings, address them. (By default Tor logs to stdout,
-but some packages log to <tt>/var/log/tor/</tt> or <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">other
-locations</a>. You can edit your torrc to configure log locations.)
+5. Restart your server. If it <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">logs
+any warnings</a>, address them.
 </p>
 
 <p>
@@ -146,9 +142,9 @@ where new development releases are announced.
 <p>
 7. Have a look at the manual.
 The <a href="<page tor-manual>">manual</a> for the
-latest stable version provides detailed instructions for how to install
-and use Tor, including configuration of client and server options.
-If you are running the development version of Tor the manual is available
+latest stable version provides a list of all the possible configuration
+options for both clients and servers.
+If you are running the development version of Tor, the manual is available
 <a href="<page tor-manual-dev>">here</a>.
 </p>
 
@@ -194,7 +190,7 @@ to get ideas how you can increase the security of your server.
 
 <p>
 9. Decide what exit policy you want. By default your server allows
-access to many popular services, but we restrict some (such as port 25)
+access to many popular services, but restricts some (such as port 25)
 due to abuse potential. You might want an exit policy that is
 less restrictive or more restrictive; edit your torrc appropriately.
 Read the FAQ entry on <a
@@ -289,62 +285,13 @@ you may find the initscripts in contrib/tor.sh or contrib/torctl useful.
 </p>
 
 <p>
-When you change your Tor configuration, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">in
-most cases you can reload your configuration without restarting Tor</a>,
-and remember to verify that your server still works correctly after
-the change.
-</p>
-
-<hr />
-
-<a id="register"></a>
-<a id="email"></a>
-<!-- <h2><a class="anchor" href="#register">Step Four: Register your nickname</a></h2> -->
-<h2><a class="anchor" href="#email">Step Four: Let us know about your server</a></h2>
-<br />
-
-<p>
-Let it run a few weeks to make sure it's actually working and that you're
-happy with its level of resource use. Then if you want, send us email
-with contact info and details. <!--register your server. -->
-This <!-- reserves your nickname so nobody else can take it, and --> lets us
-contact you if you need to upgrade or something goes wrong.
-</p>
-
-<p>
-Send mail to <a
-href="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</a> with a
-subject of '[New Server] &lt;your server's nickname&gt;' and
-include the following information in the message:
-</p>
-<ul>
-<li>Your server's nickname</li>
-<li>The fingerprint for your server's identity key. This is <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">logged</a>
-at startup:
-something like "<tt>moria1 FFCB 46DB 1339 DA84 674C 70D7 CB58 6434
-C437 0441</tt>".
-<!--
-It is also written to the "fingerprint" file in your DataDirectory.
-&mdash; on Windows, look in
-\<i>username</i>\Application&nbsp;Data\tor\ or \Application&nbsp;Data\tor\;
-on OS X, look in /Library/Tor/var/lib/tor/; and on Linux/BSD/Unix,
-look in /var/lib/tor or ~/.tor)
--->
-</li>
-<li>Who you are, so we know whom to contact if a problem arises</li>
-<li>What kind of connectivity the new server will have</li>
-</ul>
-
-<p>
-Due to the number of emails we get, we may not be able to respond to
-every mail. But please be assured that we're very happy you're helping
-to make the Tor network grow! If you have problems making it run
-smoothly, let us know and we'll try to help.
-<!--Then we'll evaluate your server for another week or two to make
-sure it stays up and works; so don't be surprised if it takes a
-while for us to reply. -->
+When you change your Tor configuration, remember to verify that your
+server still works correctly after the change. Be sure to set your
+"ContactInfo" line in the torrc so we can contact you if you need to
+upgrade or something goes wrong. If you have problems or questions, see
+the <a href="<page documentation>#Support">Support</a> section or
+<a href="<page contact>">contact us</a> on the tor-ops list. Thanks
+for helping to make the Tor network grow!
 </p>
 
 <hr />
