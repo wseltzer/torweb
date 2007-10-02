@@ -52,7 +52,8 @@ sub translation_get_basedonrevision_langfile($$$) {
 
 	die ("Cannot find 'Based-On-Revision' header in translations's translation metadata of $lang/$page") unless exists $translation->{'Based-On-Revision'};
 
-	my ($rev) = $translation->{'Based-On-Revision'};
+#	my ($rev) = $translation->{'Based-On-Revision'};
+	my ($rev) = $translation->{'Based-On-Revision'} =~ m/([0-9.]+)/;
 	if ($rev eq '') { $rev = '(unknown)'; };
 
 	return $rev
