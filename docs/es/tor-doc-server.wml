@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10858
+# Based-On-Revision: 11724
 # Last-Translator: ruben at ugr es
 
 #include "head.wmi" TITLE="Instrucciones de Configuración del Servidor" CHARSET="UTF-8"
@@ -130,13 +130,9 @@ salientes, para que su servidor pueda llegar a los otros servidores Tor.
 </p>
 
 <p>
-5. Arranque su servidor: si instaló desde las fuentes puede simplemente 
-ejecutar <tt>tor</tt>, aunque los paquetes típicamente activan Tor desde sus
-initscripts o scripts de arranque. Si en el log aparecen advertencias,
-resuélvalas. (Por defecto Tor escribe los mensajes en la salida estandar,
-pero algunos paquetes usan <tt>/var/log/tor/</tt> u <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">otros
-sitios</a>. Puede editar su torrc para configurar el sitio del log.)
+5. Rearranque su servidor. Si en el <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">log 
+aparecen advertencias</a>, resuélvalas. 
 </p>
 
 <p>
@@ -151,9 +147,9 @@ donde se anuncian las nuevas versiones de desarrollo.
 <p>
 7. Échele un vistazo al manual.
 El <a href="<page tor-manual>">manual</a> de la
-última versión estable da información detallada sobre cómo instalar y
-usar Tor, incluyendo la configuración de las opciones de cliente y servidor.
-Si ejecuta la versión de desarrollo de Tor el manual está disponible
+última versión estable da una lista de todas las posibles opciones de configuración
+tanto para clientes como para servidores.
+Si ejecuta la versión de desarrollo de Tor, el manual está disponible
 <a href="<page tor-manual-dev>">aquí</a>.
 </p>
 
@@ -198,7 +194,7 @@ para coger ideas de cómo aumentar la seguridad de su servidor.
 
 <p>
 9. Decida qué política de salida quiere. Por defecto su servidor permite
-acceso a muchos servicios populares, pero restringimos algunos (como el
+acceso a muchos servicios populares, pero restringe	 algunos (como el
 puerto 25) debido al potencial de abuso. Puede que quiera una política
 de salida que sea menos restrictiva o más restrictiva; edite su torrc
 apropiadamente. Lea la entrada de la FAQ acerca de <a
@@ -295,62 +291,12 @@ puede que encuentre los scripts de arranque en contrib/tor.sh o contrib/torctl �
 </p>
 
 <p>
-Cuando cambie su configuración Tor, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">en
-la mayoría de los casos puede recargar su configuración sin reiniciar Tor</a>,
-y recuerde verificar que su servidor todavía funciona correctamente tras el 
-cambio.
-</p>
-
-<hr />
-
-<a id="register"></a>
-<a id="email"></a>
-<!--<h2><a class="anchor" href="#register">Paso Cuatro: Registre su nickname</a></h2>-->
-<h2><a class="anchor" href="#email">Paso Cuatro: Háganos saber de su servidor</a></h2>
-<br /> 
-
-<p>
-Déjelo ejecutarse durante unas semanas para asegurarse de que realmente funciona y
-de que está contento con su nivel de uso de recursos. Entonces si quiere, envíenos un
-email con información de contacto y detalles. <!--registre
-su servidor.--> Esto <!--reserva su nickname para que nadie más pueda cogerlo, y --> nos 
-permite contactar con usted si necesita actualizar o algo va mal.
-</p>
-
-<p>
-Envía un correo a <a
-href="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</a> con el 
-título '[New Server] &lt;el nickname de su servidor&gt;' e
-incluya la siguiente información en el mensaje:
-</p>
-<ul>
-<li>El nickname de su servidor</li>
-<li>El fingerprint de la llave de identidad de su servidor. Esto se envía al <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">log</a>
-al arrancar:
-algo como "<tt>moria1 FFCB 46DB 1339 DA84 674C 70D7 CB58 6434
-C437 0441</tt>".
-<!--
-It is also written to the "fingerprint" file in your DataDirectory.
-&mdash; on Windows, look in
-\<i>username</i>\Application&nbsp;Data\tor\ or \Application&nbsp;Data\tor\;
-on OS X, look in /Library/Tor/var/lib/tor/; and on Linux/BSD/Unix,
-look in /var/lib/tor or ~/.tor)
--->
-</li>
-<li>Quién es usted, para que sabramos a quién contactar si aparece un problema</li>
-<li>Qué tipo de conectividad dentrá el nuevo servidor</li>
-</ul>
-
-<p>
-Debido al número de emails que recibimos, puede que no podamos responder a todos
-los correos. ¡Pero no se preocupe, estamos muy contentos de que ayude a crecer
-la red Tor! Si tiene problemas haciendo que funcione bien, avísenos y le intentaremos
-ayudar.
-<!--Entonces evaluaremos su servidor durante otra semana o dos para
-asegurarnos de que se mantiene activo y funciona; así que no se
-sorprenda si tardamos un poco en responder.-->
+Cuando cambie su configuración Tor, recuerde verificar que su servidor todavía funciona 
+correctamente tras el cambio. Asegúrese de rellenar su línea "ContactInfo" en el torrc
+para que podamos contactar con usted si necesita actualizarse o algo va mal. Si tiene
+problemas o preguntas, vea la sección de <a href="<page documentation>#Support">Soporte</a> 
+or <a href="<page contact>">contáctenos</a> en la lista tor-ops. ¡Gracias por ayudar a 
+hacer crecer la red Tor!
 </p>
 
 <hr />
