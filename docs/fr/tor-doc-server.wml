@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10858
+# Based-On-Revision: 11724
 # Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Instruction de configuration d'un serveur"
@@ -127,13 +127,9 @@ pour que votre serveur puisse atteindre les autres serveurs Tor.
 </p>
 
 <p>
-5. Lancer votre serveur : si vous avez installé à partir des sources vous n'avez qu'à 
-lancer <tt>tor</tt>, tandis que les paquets lancent typiquement Tor à partir de leur
-scripts d'initialisation et de demarrage. S'il affiche des traces de log en 
-warnings, faites les nous parvenir. (Par defaut, Tor affiche les traces sur stdout,
-mais quelques paquets les envoie dans <tt>/var/log/tor/</tt> ou <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">d'autres
-endroits</a>. Vous pouvez editer votre fichier de configuration torrc pour configurer l'emplacement des logs.)
+5. Relancer votre serveur. S'il <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">trace</a>
+n'importe quel dysfonctionnement, faites nous en part.
 </p>
 
 <p>
@@ -148,8 +144,8 @@ où les versions de développement sont annoncées.
 <p>
 7. Jetez un œil sur le manuel.
 Le <a href="<page tor-manual>">manuel</a> pour la
-dernière version stable apporte des instructions détaillées sur comment installer
-et utiliser Tor, fourni également les options de configuration serveurs et clientes.
+dernière version stable contient une liste de toutes les options de configuration possible pour,
+à la fois, les clients et les serveurs.
 Si vous utilisez la version de développement de Tor, le manuel est disponible
 <a href="<page tor-manual-dev>">ici</a>.
 </p>
@@ -291,60 +287,15 @@ vous trouverez surement les scripts de demarrage situés dans contrib/tor.sh ou 
 </p>
 
 <p>
-Quand vous changez la configuration de votre Tor, <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">dans de 
-nombreux cas vous pouvez recharger la configuration sans avoir à relancer Tor</a>,
-souvenez vous simplement de vérifier qu'il fonctionne toujours après 
-le changement.
-</p>
+Quand vous changez la configuration de votre Tor, 
+assurez vous qu'il fonctionne encore après les modifications.
+Assurez vous de bien positionner votre ligne « ContactInfo » dans le fichier torrc 
+pour que nous puissions vous contacter en cas de mise à jour ou si quelque chose se passait mal. 
+Si vous avez des problèmes ou des questions, voyez
+la <a href="<page documentation>#Support">section d'aide</a> ou
+<a href="<page contact>">contactez nous</a> sur la liste tor-ops. Merci
+de nous aider à faire croitre le réseau Tor !
 
-<hr />
-
-<a id="register"></a>
-<a id="email"></a>
-<!--<h2><a class="anchor" href="#register">Étape quatre : enregistrer votre nickname</a></h2>-->
-<h2><a class="anchor" href="#email">Étape quatre : faites nous connaitre votre serveur</a></h2>
-<br />
-
-<p>
-Laissez le tourner quelques semaines pour être certain que tout se passe bien et que vous 
-êtes content du niveau de ressouces consommées. Alors, si vous le souhaitez, envoyez nous un mél contenant des informations de contact et quelques détails.
-Ceci <!--réserve votre nickname de manière à ce que personne d'autre que vous puisse le prendre, et--> nous permet
-de vous contacter si vous avez besoin d'une mise à jour ou si quelque chose ne va pas.
-</p>
-
-<p>
-Envoyez un mail à <a
-href="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</a> avec le
-sujet  '[New Server] &lt;le nickname de votre server&gt;' et
-joignez les informations suivantes dans le message :
-</p>
-<ul>
-<li>Le nom de votre serveur</li>
-<li>L'empreinte (fingerprint) de votre clé d'identité. Ceci est <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">tracé</a>
-au démarrage :
-quelque chose comme "<tt>moria1 FFCB 46DB 1339 DA84 674C 70D7 CB58 6434
-C437 0441</tt>".
-<!--
-C'est également écrit dans le fichier "fingerprint" de votre DataDirectory.
-&mdash; Sous Windows, regardez dans
-\<i>nom_utilisateur</i>\Application&nbsp;Data\tor\ or \Application&nbsp;Data\tor\;
-sous OS X, regardez dans /Library/Tor/var/lib/tor/; et sous Linux/BSD/Unix,
-regardez dans /var/lib/tor or ~/.tor)
--->
-</li>
-<li>Qui vous êtes, pour que nous puissions vous joindre en cas de problème.</li>
-<li>Quel type de connexion le nouveau serveur a.</li>
-</ul>
-
-<p>
-En raison du nombre de mél que nous recevons, nous ne sommes pas en mesure de répondre à tous.
-Mais soyez assuré que nous sommes très heureux de votre contribution à faire croitre le réseau Tor !
-Si vous rencontrez des problèmes pour le faire tourner, faites le nous savoir et nous essayerons d'aider.
-<!--Alors nous évaluerons votre serveur pendant une semaine ou deux pour 
-s'assurer qu'il reste stable et fonctionne ; ne soyez pas surpris si ça nous prend 
-du temps pour vous répondre.-->
 </p>
 
 <hr />
