@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10858
+# Based-On-Revision: 11729
 # Last-Translator: peihanru AT gmail.com
 
 #include "head.wmi" TITLE="服务器配置指导" CHARSET="UTF-8"
@@ -36,8 +36,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">出�
 <li>如果服务器时常下线也没有什么关系。目录服务器会很快发现并停止公布它。
 但是请不要过于频繁地下线，因为当服务器下线时，会破坏正在使用这台服务器的连接。
 </li>
-<li>我们能正确处理具有动态 IP 的服务器，前提是服务器知道它的 IP 地址。请查看
-此 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#DynamicIP">FAQ 条目</a>。
+<li>我们能正确处理具有动态 IP 的服务器——把“Address”配置选项留空即可，Tor 会尝试猜测。
 </li>
 <li>如果你的服务器位于 NAT 后面而且不知道它的公网 IP（例如它的 IP 类似 192.168.x.y），
 你需要设置端口转发。转发 TCP 连接的方法因系统而异，但是此 <a
@@ -103,11 +102,9 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleServers">MyF
 </p>
 
 <p>
-5、启动你的服务器：如果安装自源代码运行 <tt>tor</tt> 即可，而软件包通常有它们
-自己的初始脚本或启动脚本。如果日志中有任何警告信息，想办法解决它们。（默认
-情况下，Tor 将日志发送至 stdout，但一些软件包将日志记录在 <tt>/var/log/tor/</tt> 或<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">其他地方</a>。
-你能在 torrc 中设置日志的位置。）
+5、重启服务器。如果<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">日志中有任何警告信息</a>，
+想办法解决它们。
 </p>
 
 <p>
@@ -118,9 +115,9 @@ href="http://archives.seul.org/or/talk/">or-talk</a>（高流量），新的开�
 </p>
 
 <p>
-7、检阅手册。稳定版本的<a href="<page tor-manual>">手册</a>提供了安装与使用 Tor
-的详尽说明，包括客户端与服务器的配置选项。如果你运行的是 Tor 的开发版本，它的
-手册在<a href="<page tor-manual-dev>">这里</a>。
+7、检阅手册。最新稳定版本的<a href="<page tor-manual>">手册</a>提供了一个
+客户端和服务器所有可能配置选项的列表。如果你运行的是 Tor 的开发版本，
+它的手册在<a href="<page tor-manual-dev>">这里</a>。
 </p>
 
 <hr />
@@ -157,7 +154,7 @@ descriptor）”。客户端因此知道你的服务器的地址、端口、公�
 </p>
 
 <p>
-9、考虑你想要怎样的出口策略。默认情况下，服务器允许访问多种流行的服务，并限制
+9、考虑你想要怎样的出口策略。默认情况下，服务器允许访问多种流行的服务，但限制
 一些可能招致滥用的服务（如端口 25）。你可能想要更宽松的限制，也可能想要更严格
 的限制，请根据需要修改 torrc。
 请阅读<a href="<page faq-abuse>#TypicalAbuses">使用默认的出口策略可能会遇到的问题</a>的
@@ -231,52 +228,11 @@ FAQ 条目</a>，该 FAQ 有在启动 Tor 之前先运行“ulimit -n 8192”的
 </p>
 
 <p>
-当你修改了 Tor 的配置，<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Restarting">大部分
-情况下你不需要重启 Tor，重新载入配置即可</a>，修改后请记得检查你的服务器依旧正常工作。
-</p>
-
-<hr />
-
-<a id="register"></a>
-<a id="email"></a>
-<!-- <h2><a class="anchor" href="#register">第四步：注册服务器的名字</a></h2> -->
-<h2><a class="anchor" href="#email">第四步：让我们知道你的服务器</a></h2>
-<br />
-
-<p>
-保持服务器运行几周，确认它的确正常工作并且你对它使用的资源感到满意。之后，如果你愿意，
-发送电子邮件告诉我们你的联系方式与服务器的相关细节。<!-- 注册你的服务器。-->
-这样<!-- 你就能保留服务器的名字使其他人无法使用，并且 -->当需要升级或者
-发生了什么问题时我们能与你取得联系。
-</p>
-
-<p>
-发送邮件到 <a href="mailto:tor-ops@freehaven.net">tor-ops@freehaven.net</a>，
-邮件的主题是 '[New Server] &lt;your server's nickname&gt;'，邮件正文包含以下信息：
-</p>
-<ul>
-<li>服务器的名字</li>
-<li>服务器 identity 密钥的指纹。这一信息在启动时记录在<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">日志</a>中，
-类似于“<tt>moria1 FFCB 46DB 1339 DA84 674C 70D7 CB58 6434 C437 0441</tt>”。
-<!--
-It is also written to the "fingerprint" file in your DataDirectory.
-&mdash; on Windows, look in
-\<i>username</i>\Application&nbsp;Data\tor\ or \Application&nbsp;Data\tor\;
-on OS X, look in /Library/Tor/var/lib/tor/; and on Linux/BSD/Unix,
-look in /var/lib/tor or ~/.tor)
--->
-</li>
-<li>你是谁，如果发生了问题我们好知道该与谁联系</li>
-<li>新的服务器将拥有怎样的连接能力</li>
-</ul>
-
-<p>
-由于我们收到大量的电子邮件，我们也许不会回复每一封邮件。但是请相信我们对于你的帮助
-Tor 网络成长的行为非常开心！如果你有服务器运行方面的问题，请让我们知道，我们会
-设法帮助你。
-<!-- 之后我们会对你的服务器再进行一至二周的考察，因此如果我们过了一段时间才回复请不要惊讶。-->
+当你修改了 Tor 的配置，请记得检查服务器在配置修改以后依旧正常工作。
+请确认你在 torrc 中设置了“ContactInfo”，这样当需要升级或者发生了什么问题时我们能与你取得联系。
+如果你有疑问或者问题，请查看文档的<a href="<page documentation>#Support">获得支持</a>部分
+或者从 tor-ops 信箱<a href="<page contact>">联系我们</a>。
+感谢你为 Tor 网络成长做出的贡献！
 </p>
 
 <hr />
