@@ -1,0 +1,403 @@
+## translation metadata
+# Revision: $Revision: 11912 $
+
+#include "head.wmi" TITLE="Download"
+
+<div class="main-column">
+
+<h2>Download current Tor version</h2>
+
+<p>
+Tor is distributed as <a href="http://www.fsf.org/">Free Software</a>
+under the <a href="<svnsandbox>LICENSE">3-clause BSD license</a>.
+There is no fee for installing Tor or using the Tor network, but 
+if you want Tor to become faster and more usable, please consider
+<a href="<page donate>">making a tax deductible donation to the Tor project</a>.
+</p>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="2">
+<thead>
+<tr>
+<th>Platform</th>
+<th>Package</th>
+</tr>
+</thead>
+
+<tr>
+<td>Windows<br><a href="<page docs/tor-doc-win32>">Install & configure guide</a></td>
+<td>
+Tor &amp; Privoxy &amp; Vidalia bundle (recommended):
+<a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>)
+<br>
+Expert install <a href="<page docs/tor-doc-unix>#privoxy">(use UNIX instructions)</a>:
+<a href="<package-win32-stable>"><version-win32-stable></a>
+(<a href="<package-win32-stable-sig>">sig</a>)
+</td>
+</tr>
+
+<tr>
+<td>
+Mac OS X<br>
+<a href="<page docs/tor-doc-osx>">Install & configure guide</a>
+</td>
+
+<td>
+Tor &amp; Privoxy &amp; Vidalia bundle (recommended):<br>
+&nbsp&nbsp&nbsp 10.4 (Tiger) Universal Binary:
+<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>)
+
+<br>
+&nbsp&nbsp&nbsp 10.3 (Panther):
+<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
+href="<package-oldosx-bundle-stable-sig>">sig</a>)
+
+<br>
+Packages for experts: 
+Tor &amp; Privoxy only bundle (experts only):<br>
+&nbsp&nbsp&nbsp 10.4 (Tiger) Universal Binary:
+<a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>)
+
+<br>
+&nbsp&nbsp&nbsp 10.3 (Panther):
+<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a
+href="<package-oldosx-stable-sig>">sig</a>)
+</td>
+</tr>
+
+<tr>
+<td>
+Linux/Unix packages<br>
+<a href="<page docs/tor-doc-unix>">Install & configure guide</a>
+</td>
+<td><a href="<page download-unix>">Linux/Unix download page</a></td>
+</tr>
+
+</table>
+
+<br>
+
+<a id="Warning"></a>
+<b><a class="anchor" href="#Warning">Warning: Want Tor to really
+work?</a></b>
+
+<p>...then please don't just install it and go on.  You need to change
+some of your habits, and reconfigure your software!
+Tor by itself is <b>NOT</b> all you need to maintain your anonymity.
+There are several major pitfalls to watch out for:
+</p>
+
+<ol>
+<li>Tor only protects Internet applications that are configured to
+send their traffic through Tor &mdash; it doesn't magically anonymize
+all your traffic just because you install it.  We recommend you
+use <a href="http://www.mozilla.org/firefox">Firefox</a> with the <a
+href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> extension.
+<!-- , and follow <a href="comingsoon">other recommendations for other
+supported applications</a>. -->
+</li>
+
+<li>Browser plugins such as Java, Flash, ActiveX, RealPlayer,
+Quicktime, Adobe's PDF plugin, and others can be manipulated
+into revealing your IP address. You should probably uninstall your plugins
+(go to "about:plugins" to see what is installed), or investigate <a
+href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>, <a
+href="https://addons.mozilla.org/firefox/433/">FlashBlock</a>, and
+<a href="http://noscript.net/">NoScript</a>
+if you really need them. Consider removing extensions that look up
+more information about the websites you type in (like Google toolbar),
+as they may bypass Tor and/or broadcast sensitive information. Some
+people prefer using two browsers (one for Tor, one for unsafe browsing).
+<!-- You may even want to use a text browser, such as <a
+href="http://lynx.browser.org/">lynx</a> when you are using Tor. -->
+<!-- You may also find
+<a href="https://addons.mozilla.org/firefox/722/">NoScript</a> and <a
+href="https://addons.mozilla.org/firefox/1865/">AdBlock</a> helpful. -->
+</li>
+
+<li>Beware of cookies: if you ever browse without Tor and Privoxy
+and a site gives you a cookie, that cookie could identify you even when
+you start using Tor again. You should clear your cookies frequently. <a
+href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> can help
+protect any cookies you do not want to lose.
+</li>
+
+<li>Tor anonymizes the origin of your traffic,
+and it encrypts everything inside the Tor network, but <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">it
+can't encrypt your traffic between the Tor network and its final
+destination.</a>
+If you are communicating sensitive information, you should use as much
+care as you would on the normal scary Internet &mdash; use SSL or other
+end-to-end encryption and authentication.
+</li>
+
+<li>While Tor blocks attackers
+on your local network from discovering or influencing your destination,
+it opens new risks: malicious or misconfigured Tor exit nodes can send
+you the wrong page, or even send you embedded Java applets disguised as
+domains you trust.
+</li>
+</ol>
+
+<p>Be smart and learn more. Understand what Tor does and does not offer.
+This list of pitfalls isn't complete, and we need your
+help <a href="<page volunteer>#Documentation">identifying and documenting
+all the issues</a>.
+</p>
+
+<h2>Developers: test releases & source code</h2>
+
+<p>
+These releases are alpha, and are released for testing and development purposes.
+Even though these have a higher version number than the stable versions
+listed above, there is a much higher chance of serious bugs in these downloads.
+Unless you have a specific reason to use these alpha builds, please use
+the stable versions above for better reliability and security.
+</p>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="2">
+<thead>
+<tr>
+<th>Platform</th>
+<th>Package</th>
+</tr>
+</thead>
+
+<tr>
+<td>Windows<br><a href="<page docs/tor-doc-win32>">Install & configure guide</a></td>
+<td>
+Tor &amp; Privoxy &amp; Vidalia bundle (recommended):
+<a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>)
+<br>
+Expert install <a href="<page docs/tor-doc-unix>#privoxy">(use UNIX instructions)</a>:
+<a href="<package-win32-alpha>"><version-win32-alpha></a>
+(<a href="<package-win32-alpha-sig>">sig</a>)
+</td>
+</tr>
+
+<tr>
+<td>
+Mac OS X<br>
+<a href="<page docs/tor-doc-osx>">Install & configure guide</a>
+</td>
+
+<td>
+Tor &amp; Privoxy &amp; Vidalia bundle (recommended):<br>
+&nbsp&nbsp&nbsp 10.4 (Tiger) Universal Binary:
+<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>)
+
+<br>
+&nbsp&nbsp&nbsp 10.3 (Panther):
+<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a
+href="<package-oldosx-bundle-alpha-sig>">sig</a>)
+
+<br>
+Packages for experts: 
+Tor &amp; Privoxy only (experts only):<br>
+&nbsp&nbsp&nbsp 10.4 (Tiger) Universal Binary:
+<a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>)
+
+<br>
+&nbsp&nbsp&nbsp 10.3 (Panther):
+<a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a
+href="<package-oldosx-alpha-sig>">sig</a>)
+</td>
+</tr>
+
+<tr>
+<td>
+Linux/Unix packages<br>
+<a href="<page docs/tor-doc-unix>">Install & configure guide</a>
+</td>
+<td><a href="<page download-unix>">Linux/Unix download page</a></td>
+</tr>
+
+<tr>
+<td>
+Source tarballs<br>
+<kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd>
+</td>
+<td>
+Stable: <a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>)<br>
+Alpha: <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)
+</td>
+</tr>
+
+</table>
+<br>
+
+<p>
+See the <a href="<page documentation>#Developers">developer
+documentation</a> for instructions on fetching Tor from SVN to get
+the latest development version. Note that this version may not work or
+even compile!
+</p>
+
+<h2>More Information</h2>
+
+<p>
+To keep informed of security advisories and new stable releases (you will
+need to confirm via email), subscribe to the
+<a href="http://archives.seul.org/or/announce/">or-announce mailing list</a>
+</p>
+
+<form action="http://freehaven.net/cgi-bin/majordomo.cgi">
+<input type="hidden" name="mlist" value="or-announce">
+<input type="hidden" name="subscribe" value="1">
+<input type="hidden" name="host" value="freehaven.net">
+<input name="email" size="15">
+<input type="submit" value="subscribe">
+</form>
+
+<p>There is also an <a
+href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS
+feed</a> of the or-announce list at <a
+href="http://gmane.org">gmane.org</a>.</p>
+
+<p>
+If you have trouble downloading Tor from this site,
+here is a <a href="<page mirrors>">list of
+sites mirroring the Tor site</a>. Here is a <a
+href="http://opensource.depthstrike.com/?category=tor">page with torrents
+for each download above</a>. You can also download the
+<a href="dist/">Privoxy source</a>
+or <a href="dist/vidalia-bundles/?C=M;O=D">Vidalia source</a>.
+</p>
+
+<p>
+See our <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/VerifyingSignatures">FAQ
+entry on verifying package signatures</a>, which allows
+you to make sure you've downloaded the file we intended you to get.
+</p>
+
+<a id="ChangeLog"></a>
+<p>
+For a list of all changes made in various Tor releases, see the
+<a href="<svnsandbox>ChangeLog">ChangeLog</a>.
+</p>
+
+<a id="Stable"></a>
+<h2><a class="anchor" href="#Stable">Recent changes to stable releases</a></h2>
+
+<p>2007-08-30:
+Tor 0.1.2.17
+<a href="http://archives.seul.org/or/announce/Aug-2007/msg00001.html">features
+a new Vidalia version in the Windows and OS X bundles. Vidalia 0.0.14
+makes authentication required for the ControlPort in the default
+configuration, which addresses important security risks. In addition,
+this update fixes major load balancing problems with path selection,
+which should speed things up a lot once many people have upgraded</a>.
+</p>
+
+<p>2007-08-01:
+Tor 0.1.2.16
+<a href="http://archives.seul.org/or/announce/Aug-2007/msg00000.html">
+fixes a critical security vulnerability for most users, specifically
+those running Vidalia, TorK, etc. Everybody should upgrade</a>.
+</p>
+
+<p>2007-07-17:
+Tor 0.1.2.15 <a
+href="http://archives.seul.org/or/announce/Jul-2007/msg00000.html">fixes
+several crash bugs, fixes some anonymity-related problems, fixes
+compilation on BSD, and fixes a variety of other bugs</a>.
+</p>
+
+<p>2007-05-25:
+Tor 0.1.2.14 <a
+href="http://archives.seul.org/or/announce/May-2007/msg00000.html">changes
+the addresses of two directory authorities (this change especially affects
+those who serve or use hidden services), and fixes several other crash-
+and security-related bugs</a>.
+</p>
+
+<p>2007-04-23:
+Tor 0.1.2.13 features
+<a href="http://archives.seul.org/or/announce/Apr-2007/msg00000.html">
+some major anonymity fixes, such as safer path selection; better client
+performance; faster bootstrapping, better address detection, and better
+DNS support for servers; write limiting as well as read limiting to
+make servers easier to run; and a huge pile of other features and bug
+fixes</a>. The bundles also ship with Vidalia 0.0.11.
+</p>
+
+
+<a id="Testing"></a>
+<h2><a class="anchor" href="#Testing">Recent changes to developer (testing/alpha) releases</a></h2>
+
+<p>2007-10-12:
+Tor 0.2.0.8-alpha
+<a href="http://archives.seul.org/or/talk/Oct-2007/msg00123.html">fixes
+a crash bug that's been bothering us since February 2007, lets
+bridge authorities store a list of bridge descriptors they've seen,
+gets v3 directory voting closer to working, starts caching v3 directory
+consensus documents on directory mirrors, and fixes a variety of smaller
+issues including some minor memory leaks</a>.
+The Windows bundle also includes the new <a
+href="https://torbutton.torproject.org/dev/">development Torbutton
+version 1.1.8</a>, which improves usability and compatibility over 1.1.7.
+Windows users are encouraged to
+back up their Firefox settings before upgrading.
+</p>
+
+<p>2007-09-21:
+Tor 0.2.0.7-alpha
+<a href="http://archives.seul.org/or/talk/Sep-2007/msg00361.html">makes
+bridges work again, makes bridge authorities work for the first time,
+fixes two huge performance flaws in hidden services, and fixes a variety
+of minor issues</a>. The Windows bundle also includes the new <a
+href="https://torbutton.torproject.org/dev/">development Torbutton version
+1.1.7</a>, which clears cookies and disables a lot of other dangerous
+web behavior. Windows users are encouraged to back up their Firefox
+settings before upgrading.
+</p>
+
+<p>2007-08-26:
+Tor 0.2.0.6-alpha
+<a href="http://archives.seul.org/or/talk/Aug-2007/msg00215.html">features
+a new Vidalia version in the Windows and OS X bundles. Vidalia 0.0.14
+makes authentication required for the ControlPort in the default
+configuration, which addresses important security risks.
+In addition, this snapshot fixes major load balancing problems
+with path selection, which should speed things up a lot once many
+people have upgraded. The directory authorities also use a new
+mean-time-between-failure approach to tracking which servers are stable,
+rather than just looking at the most recent uptime</a>.
+</p>
+
+<p>2007-08-19:
+Tor 0.2.0.5-alpha
+<a href="http://archives.seul.org/or/talk/Aug-2007/msg00187.html">fixes
+compilation on Windows again; fixes an obnoxious client-side bug that
+slowed things down and put extra load on the network; gets us closer to
+using the v3 directory voting scheme; makes it easier for Tor controllers
+to use cookie-based authentication; and fixes a variety of other bugs</a>.
+</p>
+
+<p>2007-08-01:
+Tor 0.2.0.4-alpha
+<a href="http://archives.seul.org/or/talk/Aug-2007/msg00109.html">fixes
+a critical security vulnerability for most users, specifically
+those running Vidalia, TorK, etc</a>. Everybody should upgrade.
+</p>
+
+<p>2007-07-29:
+Tor 0.2.0.3-alpha
+<a href="http://archives.seul.org/or/talk/Aug-2007/msg00109.html">
+introduces new experimental blocking-resistance features and a
+preliminary version of the v3 directory voting design, and includes
+many other smaller features and bugfixes</a>.
+</p>
+
+<p>2007-06-02:
+Tor 0.2.0.1-alpha and 0.2.0.2-alpha
+<a href="http://archives.seul.org/or/talk/Jun-2007/msg00026.html">provide
+new features for people running Tor as both a client and a server (check
+out the new RelayBandwidth config options); let Tor run as a DNS proxy;
+and generally move us forward on a lot of fronts</a>.
+</p>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
