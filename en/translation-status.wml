@@ -46,7 +46,7 @@ sub do_status($$) {
 	print "<th>File</th>\n";
 	printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for ('en', grep { $_ ne 'en' } @LANGUAGES);
 	print "</tr>\n";
-	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'http://tor.eff.org/') . ($dir eq '.' ? '' : $dir.'/');
+	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'https://torproject.org/') . ($dir eq '.' ? '' : $dir.'/');
 
 	for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
 		my $obs = file_is_obsolete($dir, 'en', $file);
