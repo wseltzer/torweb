@@ -1,13 +1,13 @@
 ## translation metadata
 # Revision: $Revision$
 
-#include "head.wmi" TITLE="Abuse FAQ for Server Operators"
+#include "head.wmi" TITLE="Abuse FAQ for Relay Operators"
 
 <div class="main-column">
 
 <!-- PUT CONTENT AFTER THIS TAG -->
 
-<h2>Abuse FAQ for Tor Server Operators</h2>
+<h2>Abuse FAQ for Tor Relay Operators</h2>
 <hr />
 
 <a id="WhatAboutCriminals"></a>
@@ -68,11 +68,11 @@ DDoS attack can do it just fine without Tor. </p>
 
 <p>First of all, the default Tor exit policy rejects all outgoing
 port 25 (SMTP) traffic. So sending spam mail through Tor isn't going to
-work by default. It's possible that some server operators will enable
+work by default. It's possible that some relay operators will enable
 port 25 on their particular exit node, in which case that computer will
 allow outgoing mails; but that individual could just set up an open mail
 relay too, independent of Tor. In short, Tor isn't useful for spamming,
-because nearly all Tor servers refuse to deliver the mail. </p>
+because nearly all Tor relays refuse to deliver the mail. </p>
 
 <p>Of course, it's not all about delivering the mail. Spammers can use
 Tor to connect to open HTTP proxies (and from there to SMTP servers); to
@@ -91,13 +91,13 @@ it only transports correctly-formed TCP connections.
 <a id="ExitPolicies"></a>
 <h3><a class="anchor" href="#ExitPolicies">How do Tor exit policies work?</a></h3>
 
-<p>Each Tor server has an exit policy that specifies what sort of
-outbound connections are allowed or refused from that server. The exit
+<p>Each Tor relay has an exit policy that specifies what sort of
+outbound connections are allowed or refused from that relay. The exit
 policies are propagated to the client via the directory, so clients
 will automatically avoid picking exit nodes that would refuse to exit
 to their intended destination. </p>
 
-<p>This way each server can decide the services, hosts, and networks
+<p>This way each relay can decide the services, hosts, and networks
 he wants to allow connections to, based on abuse potential and his own
 situation. </p>
 
@@ -118,16 +118,16 @@ well</a>, we feel that we're doing pretty well at striking a balance
 currently. </p>
 
 <a id="TypicalAbuses"></a>
-<h3><a class="anchor" href="#TypicalAbuses">So what should I expect if I run a server?</a></h3>
+<h3><a class="anchor" href="#TypicalAbuses">So what should I expect if I run a relay?</a></h3>
 
-<p>If you run a Tor server that allows exit connections (such as the
+<p>If you run a Tor relay that allows exit connections (such as the
 default exit policy), it's probably safe to say that you will eventually
 hear from somebody. Abuse
 complaints may come in a variety of forms. For example: </p>
 <ul>
 <li>Somebody connects to Hotmail, and sends a ransom note to a
 company. The
-FBI sends you a polite email, you explain that you run a Tor server,
+FBI sends you a polite email, you explain that you run a Tor relay,
 and they say "oh well" and leave you alone. [Port 80]</li>
 <li>Somebody tries to get you shut down by using Tor to connect to Google
 groups and post spam to Usenet, and then sends an angry mail to
@@ -142,15 +142,15 @@ Template</a>, which explains why your ISP can probably ignore
 the notice without any liability. [Arbitrary ports]</li>
 </ul>
 
-<p>You might also find that your Tor server's IP is blocked from accessing
+<p>You might also find that your Tor relay's IP is blocked from accessing
 some Internet sites/services. This might happen regardless of your exit
 policy, because some groups don't seem to know or care that Tor has
 exit policies. (If you have a spare IP not used for other activities,
-you might consider running your Tor server on it.) For example, </p>
+you might consider running your Tor relay on it.) For example, </p>
 
 <ul>
 <li>Because of a few cases of anonymous jerks messing with its web
-pages, Wikipedia is currently blocking many Tor server IPs from writing
+pages, Wikipedia is currently blocking many Tor relay IPs from writing
 (reading still works). We're talking to Wikipedia about how they might
 control abuse while still providing access to anonymous contributors,
 who often have hot news or inside info on a topic but don't want to risk
@@ -158,10 +158,10 @@ revealing their identities when publishing it (or don't want to reveal
 to local observers that they're accessing Wikipedia). Slashdot is also
 in the same boat.</li>
 
-<li>SORBS is putting some Tor server IPs on their email
+<li>SORBS is putting some Tor relay IPs on their email
 blacklist as well. They do this because they passively detect whether your
-server connects to certain IRC networks, and they conclude from this that
-your server is capable of spamming. We tried to work with
+relay connects to certain IRC networks, and they conclude from this that
+your relay is capable of spamming. We tried to work with
 them to teach them that not all software works this way,
 but we have given up. We recommend you avoid them, and <a
 href="http://paulgraham.com/spamhausblacklist.html">teach your friends
@@ -278,8 +278,8 @@ an impolite one.)</p>
 services that aggregate many users behind a few IP addresses. Tor is
 not so different from AOL in this respect.</p>
 
-<p>Lastly, please remember that Tor servers have <a
-href="#ExitPolicies">individual exit policies</a>. Many Tor servers do
+<p>Lastly, please remember that Tor relays have <a
+href="#ExitPolicies">individual exit policies</a>. Many Tor relays do
 not allow exiting connections at all. Many of those that do allow some
 exit connections might already disallow connections to
 your service. When you go about banning nodes, you should parse the
@@ -291,7 +291,7 @@ the overall list of nodes in the network). </p>
 <a href="<svnsandbox>contrib/exitlist">Python script to parse the Tor
 directory</a>. (Note that this script won't give you a perfect list
 of IP addresses that might connect to you using Tor, since some Tor
-servers might exit from other addresses than the one they publish.)
+relays might exit from other addresses than the one they publish.)
 </p>
 
 <a id="TracingUsers"></a>

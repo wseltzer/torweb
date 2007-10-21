@@ -8,9 +8,9 @@
 <!-- PUT CONTENT AFTER THIS TAG -->
 <h2>Three things everyone can do now:</h2>
 <ol>
-<li>Please consider <a href="<page docs/tor-doc-server>">running
-a server</a> to help the Tor network grow.</li>
-<li>Tell your friends! Get them to run servers. Get them to run hidden
+<li>Please consider <a href="<page docs/tor-doc-relay>">running
+a relay</a> to help the Tor network grow.</li>
+<li>Tell your friends! Get them to run relays. Get them to run hidden
 services. Get them to tell their friends.</li>
 <li>We are looking for funding and sponsors. If you like Tor's goals, please
   <a href="<page donate>">take a moment to donate to support further
@@ -42,7 +42,7 @@ unifying their interfaces, and might involve sharing code between them
 or discarding one entirely.</li>
 </ul>
 </li>
-<li>People running servers tell us they want to have one BandwidthRate
+<li>People running relays tell us they want to have one BandwidthRate
 during some part of the day, and a different BandwidthRate at other
 parts of the day. Rather than coding this inside Tor, we should have a
 little script that speaks via the <a href="<page gui/index>">Tor
@@ -59,7 +59,7 @@ client that fetches this directory securely (via Tor and checking its
 signature), intercepts <tt>.country.blossom</tt> hostnames, and does
 the right thing.</li>
 <li>Speaking of geolocation data, somebody should draw a map of the Earth
-with a pin-point for each Tor server. Bonus points if it updates as the
+with a pin-point for each Tor relay. Bonus points if it updates as the
 network grows and changes. Unfortunately, the easy ways to do this involve
 sending all the data to Google and having them draw the map for you. How
 much does this impact privacy, and do we have any other good options?</li>
@@ -97,37 +97,37 @@ Farsi translations, for the many Tor users in censored areas.</li>
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Coding and Design</a></h2>
 <ol>
-<li>Tor servers don't work well on Windows XP. On
+<li>Tor relays don't work well on Windows XP. On
 Windows, Tor uses the standard <tt>select()</tt> system
 call, which uses space in the non-page pool. This means
-that a medium sized Tor server will empty the non-page pool, <a
+that a medium sized Tor relay will empty the non-page pool, <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">causing
 havoc and system crashes</a>. We should probably be using overlapped IO
 instead. One solution would be to teach <a
 href="http://www.monkey.org/~provos/libevent/">libevent</a> how to use
 overlapped IO rather than select() on Windows, and then adapt Tor to
 the new libevent interface.</li>
-<li>Because Tor servers need to store-and-forward each cell they handle,
-high-bandwidth Tor servers end up using dozens of megabytes of memory
+<li>Because Tor relays need to store-and-forward each cell they handle,
+high-bandwidth Tor relays end up using dozens of megabytes of memory
 just for buffers. We need better heuristics for when to shrink/expand
 buffers. Maybe this should be modelled after the Linux kernel buffer
 design, where we have many smaller buffers that link to each other,
 rather than monolithic buffers?</li>
 <li>We need an official central site to answer "Is this IP address a Tor
-exit server?" questions. This should provide several interfaces, including
+exit relay?" questions. This should provide several interfaces, including
 a web interface and a DNSBL-style interface. It can provide the most
 up-to-date answers by keeping a local mirror of the Tor directory
-information. The tricky point is that being an exit server is not a
+information. The tricky point is that being an exit relay is not a
 boolean: so the question is actually "Is this IP address a Tor exit
-server that can exit to my IP address:port?" The DNSBL interface
+relay that can exit to my IP address:port?" The DNSBL interface
 will probably receive hundreds of queries a minute, so some smart
 algorithms are in order. Bonus points if it does active testing through
 each exit node to find out what IP address it's really exiting from.
 <a href="<svnsandbox>doc/contrib/torbl-design.txt">Read more here</a>.</li>
-<li>Sometimes Tor servers crash, or the computers they're on fall off the
+<li>Sometimes Tor relays crash, or the computers they're on fall off the
 network, or other accidents happen. Some Tor operators have expressed
 an interest in signing up to a "notifying" service that periodically
-checks whether their Tor server is healthy and sends them a reminder mail
+checks whether their Tor relay is healthy and sends them a reminder mail
 when it's not. Anybody want to write a few cgi scripts, a few web pages,
 and set up some sort of wget hack and/or something more complex like <a
 href="http://nagios.org/">Nagios</a> to do the monitoring? The first
@@ -269,7 +269,7 @@ href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">pos
 paper</a> on how to discard particularly slow choices without hurting
 anonymity "too much". This line of reasoning needs more work and more
 thinking, but it looks very promising.</li>
-<li>Tor doesn't work very well when servers have asymmetric bandwidth
+<li>Tor doesn't work very well when relays have asymmetric bandwidth
 (e.g. cable or DSL). Because Tor has separate TCP connections between
 each hop, if the incoming bytes are arriving just fine and the outgoing
 bytes are all getting dropped on the floor, the TCP push-back mechanisms
@@ -307,11 +307,11 @@ resistance section of anonbib</a>.</li>
 <li>Tor circuits are built one hop at a time, so in theory we have the
 ability to make some streams exit from the second hop, some from the
 third, and so on. This seems nice because it breaks up the set of exiting
-streams that a given server can see. But if we want each stream to be safe,
+streams that a given relay can see. But if we want each stream to be safe,
 the "shortest" path should be at least 3 hops long by our current logic, so
 the rest will be even longer. We need to examine this performance / security
 tradeoff.</li>
-<li>It's not that hard to DoS Tor servers or dirservers. Are client
+<li>It's not that hard to DoS Tor relays or directory authorities. Are client
 puzzles the right answer? What other practical approaches are there? Bonus
 if they're backward-compatible with the current Tor protocol.</li>
 </ol>
