@@ -261,8 +261,8 @@ coming from Tor nodes as "anonymous users," removing the ability of the
 abusers to blend in, the abusers moved back to using their open proxies
 and bot networks. </p>
 
-<p>Second, consider that hundreds of thousands of people use Tor every
-day simply for
+<p>Second, consider that hundreds of thousands of <a href="<page
+whousestor>">people</a> use Tor every day simply for
 good data hygiene &mdash; for example, to protect against data-gathering
 advertising companies while going about their normal activities. Others
 use Tor because it's their only way to get past restrictive local
@@ -285,13 +285,16 @@ exit connections might already disallow connections to
 your service. When you go about banning nodes, you should parse the
 exit policies and only block the ones that allow these connections;
 and you should keep in mind that exit policies can change (as well as
-the overall list of nodes in the network). </p>
+the overall list of nodes in the network).</p>
 
 <p>If you really want to do this, we provide a
 <a href="<svnsandbox>contrib/exitlist">Python script to parse the Tor
 directory</a>. (Note that this script won't give you a perfect list
 of IP addresses that might connect to you using Tor, since some Tor
 relays might exit from other addresses than the one they publish.)
+For a more accurate approach (with perhaps an easier interface for
+you), consider the <a href="http://exitlist.torproject.org/">TorDNSEL
+service</a>.
 </p>
 
 <a id="TracingUsers"></a>
