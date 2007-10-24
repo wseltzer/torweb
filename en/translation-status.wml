@@ -38,87 +38,105 @@ sub do_status($$) {
 			};
 		};
 	};
+	my %priorities;
+	for my $file (keys %{$files{'en'}}) {
+		my $p = $files{'en'}->{$file}->{'all'}->{'Translation-Priority'};
+		if (defined $p) {
+			$priorities{$p} = 1;
+		};
+	};
+	my @priorities = sort {$a cmp $b} keys %priorities;
+	push @priorities, 'other';
+
+	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'https://www.torproject.org/') . ($dir eq '.' ? '' : $dir.'/');
+
 
 	print "<h1>$dir</h1>\n";
 
-	print "<table border=1>\n";
-	print "<tr>\n";
-	print "<th>File</th>\n";
-	printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for ('en', grep { $_ ne 'en' } @LANGUAGES);
-	print "</tr>\n";
-	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'https://www.torproject.org/') . ($dir eq '.' ? '' : $dir.'/');
+	for my $priority (@priorities) {
+		print "<h2>$priority</h2>\n";
+		print "<table border=1>\n";
+		print "<tr>\n";
+		print "<th>File</th>\n";
+		printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for ('en', grep { $_ ne 'en' } @LANGUAGES);
+		print "</tr>\n";
 
-	for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
-		my $obs = file_is_obsolete($dir, 'en', $file);
-		my $validatorlink = '';
-		my $htmlfile = $file;
-		if ($htmlfile =~ s/\.wml/.html/) {
-			$validatorlink = sprintf '<br><a href="http://validator.w3.org/check?uri=%s%s.en">validator</a>',
-				$HTMLBASE, $htmlfile;
-		}
-		print "<tr>";
-		printf "<th>%s</th>", $file;
-		printf '<td%s>Revision %s%s<br>
-		        <a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;view=markup">HEAD</a>
-			%s',
-			($obs ? ' bgcolor="#D3D3D3"' : ''),
-			$files{'en'}->{$file}->{'rev'},
-			($obs ? ' (obsolete)' :''),
-			($dir eq '.' ? '' : $dir.'/'),
-			$file,
-			$validatorlink;
-		for my $lang (@LANGUAGES) {
-			next if $lang eq 'en';
-			my $color;
-			my $status;
-			if ($validatorlink) {
-				$validatorlink = sprintf '<br><a href="http://validator.w3.org/check?uri=%s%s.%s">validator</a>',
-					$HTMLBASE, $htmlfile, $lang;
-			};
-			if (exists $files{$lang}->{$file}) {
-				my $all_info = '';
-				for my $key (sort {$a cmp $b} keys %{$files{$lang}->{$file}->{'all'}}) {
-					$all_info .= sprintf "%s: %s<br>", $key, $files{$lang}->{$file}->{'all'}->{$key};
+		for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
+			my $file_priority = $files{'en'}->{$file}->{'all'}->{'Translation-Priority'};
+			next if (defined $file_priority && $priority ne $file_priority);
+			next if (!defined $file_priority && $priority ne 'other');
+
+			my $obs = file_is_obsolete($dir, 'en', $file);
+			my $validatorlink = '';
+			my $htmlfile = $file;
+			if ($htmlfile =~ s/\.wml/.html/) {
+				$validatorlink = sprintf '<br><a href="http://validator.w3.org/check?uri=%s%s.en">validator</a>',
+					$HTMLBASE, $htmlfile;
+			}
+			print "<tr>";
+			printf "<th>%s</th>", $file;
+			printf '<td%s>Revision %s%s<br>
+				<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;view=markup">HEAD</a>
+				%s',
+				($obs ? ' bgcolor="#D3D3D3"' : ''),
+				$files{'en'}->{$file}->{'rev'},
+				($obs ? ' (obsolete)' :''),
+				($dir eq '.' ? '' : $dir.'/'),
+				$file,
+				$validatorlink;
+			for my $lang (@LANGUAGES) {
+				next if $lang eq 'en';
+				my $color;
+				my $status;
+				if ($validatorlink) {
+					$validatorlink = sprintf '<br><a href="http://validator.w3.org/check?uri=%s%s.%s">validator</a>',
+						$HTMLBASE, $htmlfile, $lang;
 				};
-
-				my $difflink;
-				if ($files{$lang}->{$file}->{'based'}  eq  $files{'en'}->{$file}->{'rev'}) {
-					$color='#90EE90';
-					$status='current';
-					$difflink='';
-				} else {
-					$status='not current';
-					if ($files{$lang}->{$file}->{'based'} ne 'unknown') {
-						$difflink=sprintf '<br><a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;r1=%s&amp;r2=%s">changes in original</a>',
-							($dir eq '.' ? '' : $dir.'/'), $file, $files{$lang}->{$file}->{'based'}, $files{'en'}->{$file}->{'rev'};
-						$color='yellow';
-					} else {
-						$difflink='';
-						$color='#FFA500';
+				if (exists $files{$lang}->{$file}) {
+					my $all_info = '';
+					for my $key (sort {$a cmp $b} keys %{$files{$lang}->{$file}->{'all'}}) {
+						$all_info .= sprintf "%s: %s<br>", $key, $files{$lang}->{$file}->{'all'}->{$key};
 					};
+
+					my $difflink;
+					if ($files{$lang}->{$file}->{'based'}  eq  $files{'en'}->{$file}->{'rev'}) {
+						$color='#90EE90';
+						$status='current';
+						$difflink='';
+					} else {
+						$status='not current';
+						if ($files{$lang}->{$file}->{'based'} ne 'unknown') {
+							$difflink=sprintf '<br><a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;r1=%s&amp;r2=%s">changes in original</a>',
+								($dir eq '.' ? '' : $dir.'/'), $file, $files{$lang}->{$file}->{'based'}, $files{'en'}->{$file}->{'rev'};
+							$color='yellow';
+						} else {
+							$difflink='';
+							$color='#FFA500';
+						};
+					};
+					printf '<td bgcolor="%s">%s<br>
+						<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%s%s/%s?root=Tor&amp;view=markup">HEAD</a><br>
+						%s
+						%s
+						%s</td>',
+						$color,
+						$status,
+						($dir eq '.' ? '' : $dir.'/'),
+						$lang, $file,
+						$all_info,
+						$difflink,
+						$validatorlink;
+				} else {
+					$color=($obs ? '#90EE90' : 'red');
+					$status='missing';
+					printf '<td bgcolor="%s">%s</td>', $color, $status;
 				};
-				printf '<td bgcolor="%s">%s<br>
-					<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%s%s/%s?root=Tor&amp;view=markup">HEAD</a><br>
-					%s
-					%s
-					%s</td>',
-					$color,
-					$status,
-					($dir eq '.' ? '' : $dir.'/'),
-					$lang, $file,
-					$all_info,
-					$difflink,
-					$validatorlink;
-			} else {
-				$color=($obs ? '#90EE90' : 'red');
-				$status='missing';
-				printf '<td bgcolor="%s">%s</td>', $color, $status;
+				delete $files{$lang}->{$file};
 			};
-			delete $files{$lang}->{$file};
+			print "</tr>\n\n";
 		};
-		print "</tr>\n\n";
+		print "</table>\n\n\n";
 	};
-	print "</table>\n\n\n";
 
 	for my $lang (@LANGUAGES) {
 		next if $lang eq 'en';
