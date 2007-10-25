@@ -1,43 +1,66 @@
 ## translation metadata
-# Based-On-Revision: 11912
+# Based-On-Revision: 12184
+# Translation-Priority: 1-high
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Pobieranie" CHARSET="UTF-8"
 
 <div class="main-column">
 
-<h2>Tor: Paczki i kod źródłowy</h2>
+<h2>Pobierz najnowszą wersję Tora</h2>
 <hr />
 
-<p>Tor jest rozprowadzany jako <a href="http://www.fsf.org/"> Wolne Oprogramowanie (Free Software)</a>
+<p>
+Tor jest rozprowadzany jako <a href="http://www.fsf.org/"> Wolne Oprogramowanie (Free Software)</a>
 pod <a href="<svnsandbox>LICENSE">3-punktową licencją BSD</a>.
+Nie ma żadnych opłat za instalację oprogramowania ani za korzystanie z sieci,
+ale jeśli chcesz, by Tor stał się szybszy i bardziej użyteczny, rozważ
+<a href="<page donate>">złożenie na Projekt Tor dotacji, którą można odpisać od podatku</a>.
 </p>
 
-<p>Jeśli chcesz, by Tor stał się szybszy i bardziej użyteczny, rozważ <a
-href="<page donate>">złożenie dotacji na projekt Tor</a>.
-</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="2">
+<thead>
+<tr>
+<th>Platform</th>
+<th>Package</th>
+</tr>
+</thead>
 
-<p>Najnowszym stabilnym wydaniem jest <b><version-stable></b>, a najnowszym
-rozwijanym wydaniem jest <b><version-alpha></b>.</p>
+<tr>
+<td>Windows<br><a href="<page docs/tor-doc-win32>">Przewodnik instalacji i konfiguracji dla Windows</a></td>
+<td>
+Paczka Tor + Privoxy + Vidalia + Torbutton:
+<a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>)
+</td>
+</tr>
 
-<p><b>Zapisz się</b> na
-<a href="http://archives.seul.org/or/announce/">listę mailingową or-announce</a>,
-by być informowanym o sprawach bezpieczeństwa i nowych stabilnych wydaniach
-(będziesz musiał potwierdzić zapisanie się poprzez e-mail):</p>
+<tr>
+<td>
+Mac OS X<br>
+<a href="<page docs/tor-doc-osx>">Przewodnik instalacji i konfiguracji dla MAC OS X</a>
+</td>
+<td>
+Paczka Tor + Privoxy + Vidalia + Torbutton:<br>
+&nbsp;&nbsp;&nbsp; Uniwersalne Binaria (OSX 10.4 i 10.5):
+<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a
+href="<package-osx-bundle-stable-sig>">sig</a>)
+<br>
+&nbsp;&nbsp;&nbsp; 10.3 (Panther):
+<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
+href="<package-oldosx-bundle-stable-sig>">sig</a>)
+</td>
+</tr>
 
-<form action="http://freehaven.net/cgi-bin/majordomo.cgi">
-<input type="hidden" name="mlist" value="or-announce">
-<input type="hidden" name="subscribe" value="1">
-<input type="hidden" name="host" value="freehaven.net">
-<input name="email" size="15">
-<input type="submit" value="Zapisz">
-</form>
+<tr>
+<td>
+Paczki dla Linux/Unix
+</td>
+<td><a href="<page download-unix>">Strona pobierania dla Linux/Unix</a></td>
+</tr>
 
-<p>Jest również <a
-  href="http://rss.gmane.org/gmane.network.onion-routing.announce">kanał RSS</a>
-   z listy or-announce na <a href="http://gmane.org">gmane.org</a>.</p>
+</table>
 
-   <hr />
+<br>
 
    <a id="Warning"></a>
    <h2><a class="anchor" href="#Warning">Uwaga: Chcesz, żeby Tor naprawdę działał?</a></h2>
@@ -45,7 +68,7 @@ by być informowanym o sprawach bezpieczeństwa i nowych stabilnych wydaniach
    <p>...to prosimy nie poprzestawaj tylko na instalacji. Musisz zmienić część
    swoich zwyczajów i przekonfigurować swoje oprogramowanie!
    Tor sam z siebie <b>NIE</b> jest wszystkim, czego ci trzeba, by zachować anonimowość.
-   Jest kilka poważnych pułapek, na które trzeba uważać.
+   Jest kilka poważnych pułapek, na które trzeba uważać:
    </p>
 
    <ol>
@@ -54,14 +77,13 @@ by być informowanym o sprawach bezpieczeństwa i nowych stabilnych wydaniach
    ruchu w sieci tylko dlatego, że jest zainstalowany. Polecamy przeglądarkę
     <a href="http://www.mozilla.org/firefox">Firefox</a> z rozszerzeniem <a
    href="https://addons.mozilla.org/firefox/2275/">Torbutton</a>.
-   <!-- , and follow <a href="comingsoon">other recommendations for other
-   supported applications</a>. -->
    </li>
 
    <li>Wtyczki przeglądarki takie jak Java, Flash, ActiveX, RealPlayer,
    Quicktime, wtyczka Adobe PDF, i inne mogą zostać zmanipulowane, by zdradzić
-   twój adres IP. Powinieneś raczej odinstalować swoje wtyczki (wpisz w
-   przeglądarce "about:plugins", by zobaczyć, co jest zainstalowane) lub zainteresować się
+   twój adres IP. Powinieneś raczej
+   <a href="http://plugindoc.mozdev.org/faqs/uninstall.html">odinstalować swoje wtyczki</a>
+   (wpisz w przeglądarce "about:plugins", by zobaczyć, co jest zainstalowane) lub zainteresować się
    rozszerzeniami <a
    href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>, <a
    href="https://addons.mozilla.org/firefox/433/">FlashBlock</a> i
@@ -70,11 +92,6 @@ by być informowanym o sprawach bezpieczeństwa i nowych stabilnych wydaniach
    wpisujesz (jak na przykład Google Toolbar), jako że mogą one omijać Tora i
    wysyłać niepożądane informacje. Niektórzy ludzie wolą używać dwóch przeglądarek
    (jednej dla Tora, drugiej do niebezpiecznego przeglądania sieci).
-   <!-- You may even want to use a text browser, such as <a
-   href="http://lynx.browser.org/">lynx</a> when you are using Tor. -->
-   <!-- You may also find
-   <a href="https://addons.mozilla.org/firefox/722/">NoScript</a> and <a
-   href="https://addons.mozilla.org/firefox/1865/">AdBlock</a> helpful. -->
    </li>
 
    <li>Strzeż się ciasteczek: jeśli kiedykolwiek zdarzy ci się
@@ -90,7 +107,7 @@ by być informowanym o sprawach bezpieczeństwa i nowych stabilnych wydaniach
    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">nie może
    szyfrować danych między siecią Tora a punktem docelowym.</a>
    Jeśli wysyłasz prywatne informacje, powinieneś wkładać w ich ochronę tyle wysiłku,
-   ile normalnie byś wkładał w normalnym, przerażającym internecie &mdash; używaj SSL
+   ile normalnie byś wkładał w normalnym, przerażającym internecie &mdash; używaj HTTPS
    lub innego protokołu uwierzytelniania i szyfrowania nadawca-odbiorca.
    </li>
 
@@ -107,225 +124,151 @@ by być informowanym o sprawach bezpieczeństwa i nowych stabilnych wydaniach
    wszystkich spraw</a>.
    </p>
 
-<table border="1" cellspacing="0" cellpadding="2">
+<p>
+By być informowanym o sprawach bezpieczeństwa i nowych stabilnych wydaniach, zapisz się
+na <a href="http://archives.seul.org/or/announce/"> listę mailingową or-announce</a>
+(będziesz poproszony o potwierdzenie za pośrednictwem e-mail). Możesz także
+<a href="http://rss.gmane.org/gmane.network.onion-routing.announce">obserwować
+kanał RSS listy</a>.
+</p>
+
+<form action="http://freehaven.net/cgi-bin/majordomo.cgi">
+<input type="hidden" name="mlist" value="or-announce">
+<input type="hidden" name="subscribe" value="1">
+<input type="hidden" name="host" value="freehaven.net">
+<input name="email" size="15">
+<input type="submit" value="subscribe to or-announce">
+</form>
+
+<hr />
+
+<h2>Wersje rozwojowe, paczki dla ekspertów i kod źródłowy</h2>
+
+<p>
+Wydawane są migawki deweloperskie (snapshots), abyście mogli pomagać nam w
+testowaniu nowych cech i znajdowaniu błędów. Mimo iż te migawki mają wyższy numer
+wersje niż podane wyżej wersje stabilne, jest znacznie większe ryzyko, że w
+wersjach rozwojowych są poważne błędy bezpieczeństwa i stabilności. Prosimy
+przygotować się na zgłaszanie błędów.
+</p>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="2">
 <thead>
 <tr>
 <th>Platforma</th>
 <th>Paczka</th>
-<th>Informacje o instalacji</th>
 </tr>
 </thead>
 
 <tr>
-<td>Windows</td>
-<td>Pakiet Tor &amp; Privoxy &amp; Vidalia:
- <a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a
- href="<package-win32-bundle-stable-sig>">sig</a>),
- <a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a
- href="<package-win32-bundle-alpha-sig>">sig</a>).
+<td>Windows<br><a href="<page docs/tor-doc-win32>">Przewodnik instalacji i konfiguracji dla Windows</a></td>
+<td>
+
+Pakiet Tor + Privoxy + Vidalia (zalecany):
+
+<a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a>
+(<a href="<package-win32-bundle-alpha-sig>">sig</a>)
+
+<br>
+Instalacja dla ekspertów:
+<a href="<package-win32-stable>"><version-win32-stable></a>
+(<a href="<package-win32-stable-sig>">sig</a>),
+<a href="<package-win32-alpha>"><version-win32-alpha></a>
+(<a href="<package-win32-alpha-sig>">sig</a>)
 </td>
-<td><a href="<page docs/tor-doc-win32>">Instrukcje dla Windows</a></td>
 </tr>
 
 <tr>
-<td>Pakiet pod Windows dla ekspertów</td>
-<td><a href="<page download-windows>">Strona pobierania dla Windows</a></td>
-<td><a href="<page docs/tor-doc-win32>">Instrukcje dla Windows</a></td>
-</tr>
-
-<tr>
-<td>Mac OS X 10.4 (Tiger) Uniwersalne binaria</td>
-<td>Pakiet Tor &amp; Privoxy &amp; Vidalia:
-<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>),
-<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>).
+<td>
+Mac OS X<br>
+<a href="<page docs/tor-doc-osx>">Przewodnik instalacji i konfiguracji dla MAC OS X</a>
 </td>
-<td><a href="<page docs/tor-doc-osx>">Instrukcje dla OS X</a></td>
-</tr>
+<td>
 
-<tr>
-<td>Mac OS X 10.3 (Panther)</td>
-<td>Pakiet Tor &amp; Privoxy &amp; Vidalia:
-<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
-href="<package-oldosx-bundle-stable-sig>">sig</a>),
-<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a href="<package-oldosx-bundle-alpha-sig>">sig</a>).
+Pakiet Tor + Privoxy + Vidalia (zalecany):
+
+&nbsp;&nbsp;&nbsp; Uniwersalne Binaria (10.4 i 10.5):
+<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a
+href="<package-osx-bundle-alpha-sig>">sig</a>)
+
+<br>
+
+&nbsp;&nbsp;&nbsp; 10.3 (Panther):
+<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a
+href="<package-oldosx-bundle-alpha-sig>">sig</a>)
+
+<br>
+Paczki dla ekspertów:
+Tylko Tor + Privoxy:<br>
+&nbsp;&nbsp;&nbsp; Uniwersalne Binaria (OSX 10.4 i 10.5):
+<a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>),
+<a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>)
+
+<br>
+&nbsp;&nbsp;&nbsp; 10.3 (Panther):
+<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a
+href="<package-oldosx-stable-sig>">sig</a>),
+<a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a
+href="<package-oldosx-alpha-sig>">sig</a>)
+
 </td>
-<td><a href="<page docs/tor-doc-osx>">Instrukcje dla OS X</a></td>
 </tr>
 
-<tr>
-<td>Pakiet pod Mac OS X dla ekspertów</td>
-<td><a href="<page download-osx>">Strona pobierania dla OS X</a></td>
-<td><a href="<page docs/tor-doc-osx>">Instrukcje dla OS X</a></td>
-</tr>
 
 <tr>
-<td>Paczki dla Linux/Unix</td>
+<td>
+Paczki dla Linux/Unix
+</td>
 <td><a href="<page download-unix>">Strona pobierania dla Linux/Unix</a></td>
-<td>
-<a href="<page docs/tor-doc-unix>">Instrukcje dla Linux/Unix</a>
-</td>
 </tr>
 
 <tr>
-<td>Paczki z kodem źródłowym</td>
 <td>
-<a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>),
-<a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>).
+Paczki z kodem źródłowym<br>
+
+<kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd>
 </td>
-<td><kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd></td>
+<td>
+Stabilne: <a href="<package-source-stable>"><version-stable></a>
+(<a href="<package-source-stable-sig>">sig</a>)<br>
+Alfa: <a href="<package-source-alpha>"><version-alpha></a>
+(<a href="<package-source-alpha-sig>">sig</a>)
+</td>
 </tr>
 
 </table>
+<br>
 
-<br />
+<p>
 
-<h2>Więcej szczegółów</h2>
-
-<ul>
-<li>Tutaj znajduje się <a href="<page mirrors>">lista
-stron-mirrorów strony Tora</a>. Tu jest <a
-href="http://opensource.depthstrike.com/?category=tor">strona z torrentami
-dla każdego z plików powyżej</a>. Możesz też pobrać
-<a href="dist/">kod źródłowy Privoxy</a>
-lub <a href="dist/vidalia-bundles/?C=M;O=D">kod źródłowy Vidalia</a>.</li>
-<li>Zobacz nasz <a
+Zobacz nasz <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">wpis do FAQ
 odnośnie weryfikacji podpisów paczek</a>, który powoli upewnić się,
-że pobrałeś plik, który my daliśmy do pobrania.</li>
-<li>Przeczytaj <a href="<page documentation>#Developers">dokumentację dla
-deweloperów</a> z instrukcjami, jak pobrać Tora przez SVN, by mieć najnowszą
-wersję rozwojową. Pamiętaj, ta wersja może nie działać ani nawet się kompilować!</li>
-</ul>
-
-<hr />
-
-<a id="Testing"></a>
-<h2><a class="anchor" href="#Testing">Wydania testowe</a></h2>
-
-<p>2007-10-12:
- Tor 0.2.0.8-alpha
- <a href="http://archives.seul.org/or/talk/Oct-2007/msg00123.html">naprawia
- błąd powodujący pad programu, który przeszkadzał nam od lutego 2007 r.,
- pozwala centrom mostowym przechowywać listę tych deskryptorów mostowych, które
- były widziane, przybliża głosowanie katalogów w wersji 3 do pełnego działania,
- zaczyna cache'ować dokumenty ugodowe (consensus documents) katalogów na
- katalogowych serwerach lustrzanych, oraz naprawia parę mniej ważnych spraw,
- łącznie z małymi wyciekami pamięci.</a>.
- Paczka dla Windows zawiera też nową <a
- href="https://torbutton.torproject.org/dev/">rozwojową wersję Torbutton
- 1.1.8</a>, usprawniającą używalność i zgodność w stosunku do wersji 1.1.7.
- Użytkownicy Windows powinni zrobić kopię zapasową ustawień Firefoksa
- przed aktualizacją.</p>
-
-<p>2007-09-21:
-  Tor 0.2.0.7-alpha
-  <a href="http://archives.seul.org/or/talk/Sep-2007/msg00361.html">znów zawiera
-  działające mosty, po raz pierwszy uruchamia centra mostowe (bridge authorities),
-  poprawia dwa olbrzymie problemy z wydajnością usług ukrytych i wiele mniejszych
-  rzeczy</a>. Paczka dla Windows zawiera też nową <a
-  href="https://torbutton.torproject.org/dev/">rozwojową wersję Torbutton
-  1.1.7</a>, która usuwa ciasteczka i wyłącza wiele innych niebezpiecznych działań
-  sieciowych. Prosimy użytkowników Windows o zrobienie kopii zapasowej ustawień
-  Firefoksa przed aktualizacją.
-  	 </p>
-
-<p>2007-08-26:
-  Tor 0.2.0.6-alpha
-  <a href="http://archives.seul.org/or/talk/Aug-2007/msg00215.html">zawiera
-  nową wersję Vidalia w paczkach dla Windows i OS X. Vidalia 0.0.14
-  w domyślnej konfiguracji wymaga uwierzytelniania dla ControlPort, co
-  usuwa pewne zagrożenia bezpieczeństwa. Dodatkowo, ta wersja poprawia
-  poważne problemy z równoważeniem obciążenia przy wyborze ścieżki, co
-  powinno przyspieszyć sieć, gdy tylko większość ludzi zainstaluje nową
-  wersję. Centra katalogowe używają nowego podejścia średniego czasu między
-  wyłączeniami do śledzenia, które serwery są stabilne zamiast po prostu
-  patrzeć na najnowszy czas działania</a>.
-  	 </p>
-
-<p>2007-08-19:
-  Tor 0.2.0.5-alpha
-  <a href="http://archives.seul.org/or/talk/Aug-2007/msg00187.html">ponownie naprawia
-  kompilację pod Windows; naprawia nieznośny błąd po stronie klienta, który
-  wszystko spowalniał i powodował więsze użycie sieci; przybliża nas do
-  projektu głosowania katalogów w wersji 3; ułatwia kontrolerom używanie
-  uwierzytelniania opartego na ciasteczkach cookies; oraz naprawia wiele
-  innych błędów</a>.
-  </p>
-
-<p>2007-08-01:
-  <a href="http://archives.seul.org/or/talk/Aug-2007/msg00109.html">Tor 0.2.0.4-alpha
-  naprawia krytyczną lukę bezpieczeństwa u większości użytkowników, zwłaszcza tych
-  posiadających Vidalię, TorK itp.</a> Wszyscy powinni zainstalować nową wersję.
-  </p>
-
-<p>2007-07-29:
- Tor 0.2.0.3-alpha
- <a href="http://archives.seul.org/or/talk/Aug-2007/msg00109.html">wprowadza
- nowe eksperymentalne mechanizmy przeciwdziałające blokowaniu i
- wstępną wersję projektu trzeciej wersji katalogu, oraz zawiera wiele mniejszych
- nowości i poprawek.</a>
- </p>
-
-<p>2007-06-02:
-Tor 0.2.0.1-alpha i 0.2.0.2-alpha
-<a href="http://archives.seul.org/or/talk/Jun-2007/msg00026.html">dostarczają
-nowych możliwości dla osób, u których Tor jest uruchomiony jako i klient i serwer
-(obejrzyj nowe opcje konfiguracji RelayBandwidth); pozwalają działać Torowi jako
-serwer pośredniczący DNS (DNS proxy); ogólnie dają nam postępy na wielu frontach</a>.
-
-
-<hr />
-
-<a id="Stable"></a>
- <h2><a class="anchor" href="#Stable">Wydania stabilne</a></h2>
-
-<p>2007-08-30:
- Tor 0.1.2.17
- <a href="http://archives.seul.org/or/announce/Aug-2007/msg00001.html">zawiera
- nową wersję Vidalia w paczkach dla Windows i OS X. Vidalia 0.0.14
- w domyślnej konfiguracji wymaga uwierzytelniania dla ControlPort, co
- usuwa pewne zagrożenia bezpieczeństwa. Dodatkowo, ta wersja poprawia
- poważne problemy z równoważeniem obciążenia przy wyborze ścieżki, co
- powinno przyspieszyć sieć, gdy tylko większość ludzi zainstaluje nową
- wersję</a>.
+że pobrałeś plik, który my daliśmy do pobrania.
 </p>
 
-<p>2007-08-01:
-  Tor 0.1.2.16
-  <a href="http://archives.seul.org/or/announce/Aug-2007/msg00000.html">naprawia
-  krytyczną lukę bezpieczeństwa u większości użytkowników, zwłaszcza tych
-  posiadających Vidalię, TorK itp. Wszyscy powinni zainstalować nową wersję.</a>
-  </p>
+<p>
+Przeczytaj <a href="<page documentation>#Developers">dokumentację dla
+deweloperów</a> z instrukcjami, jak pobrać Tora przez SVN, by mieć najnowszą
+wersję rozwojową.
+Możesz pobrać także <a href="dist/">kod źródłowy Privoxy</a> lub <a
+href="dist/vidalia-bundles/?C=M;O=D">kod źródłowy Vidalia</a>.
+</p>
 
-<p>2007-07-17:
- Tor 0.1.2.15 <a
- href="http://archives.seul.org/or/announce/Jul-2007/msg00000.html">naprawia
- kilka błędów powodujących padanie programu, kilka problemów związanych z
- anonimowością, kompilację na BSD i grono innych błędów</a>.
- </p>
-
-<p>2007-05-25:
-   Tor 0.1.2.14 <a
-   href="http://archives.seul.org/or/announce/May-2007/msg00000.html">zmienia
-   adresy dwóch centrów katalogowych (zmiana ta szczególnie wpłynie na tych,
-   którzy mają lub używają usług ukrytych), oraz poprawia kilka innych błędów
-   związanych z padaniem programu lub bezpieczeństwem</a>.
-   </p>
-
-<p>2007-04-23:
-   Tor 0.1.2.13 zawiera
-   <a href="http://archives.seul.org/or/announce/Apr-2007/msg00000.html"
-   >trochę poważnych poprawek anonimowości, jak np. bezpieczniejszy wybór
-   ścieżki; lepsza wydajność klienta; szybsze uruchamianie, lepsze
-   wykrywanie adresów, lepsza obsługa DNS w serwerach; ograniczanie zapisu
-   i czytania, by serwery były łatwiejsze w obsłudze; oraz dużą ilość innych
-   usprawnień i poprawek błędów</a>. Paczki zawierają Vidalia 0.0.11.
-   </p>
-
-<hr />
+<p>
+Jeśli masz problem z pobraniem Tora z tej strony, masz tu <a
+href="<page mirrors>">listę stron lustrzanych do strony Tora</a>.
+</p>
 
 <a id="ChangeLog"></a>
-<p>Możesz też przeczytać <a href="<svnsandbox>ChangeLog">ChangeLog</a>, by poznać więcej szczegółów.</p>
+<a id="Stable"></a>
+<a id="Testing"></a>
+<p>
+By obejrzeć listę rzeczy zmienionych w każdym stabilnym wydaniu Tora, przeczytaj
+<a href="<svnsandbox>ReleaseNotes">informacje o wydaniu</a>. By obejrzeć listę
+zmian zarówno w stabilnych, jak i rozwojowych wersjach, przeczytaj
+<a href="<svnsandbox>ChangeLog">ChangeLog</a>.
+</p>
 
   </div><!-- #main -->
 
