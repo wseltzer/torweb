@@ -23,7 +23,7 @@
 （会发生这种情况是因为应用程序在使用 SOCKS 代理之前进行了 DNS 解析。）</li>
 <li>Tsocks/dsocks 相关：
 <ul>
-<li>我们需要<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TSocksPatches">应用
+<li>我们需要<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TSocksPatches">应用
 我们所有的 tsocks 补丁</a>并维护一个新的分支。如果你需要，我们将提供空间。</li>
 <li>我们应该修补 Dug Song 的“dsocks”程序，令其从控制接口使用 Tor 的 <i>mapaddress</i> 命令，
 这样我们就不用浪费连接前在 Tor 内部作解析的整个时间。</li>
@@ -38,7 +38,7 @@
 这是 <a href="<page gui/index>">Tor 图形用户界面竞赛</a>的一个不错的项目。
   <!-- We have a good script to adjust stuff now, right? -NM -->
 </li>
-<li>Tor 能够<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">从
+<li>Tor 能够<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">从
 Tor 网络中选择特定的出口节点</a>，但我们应当能够指定一个国家并自动挑选（该国家的出口节点）。
 最有希望的办法是一并获取 Blossom 的目录，在本地运行一个 Blossom 客户端能够安全地获取这个目录
 （通过 Tor 并检查签名），拦截 <tt>.country.blossom</tt> 主机名，并做该做的事。</li>
@@ -59,10 +59,10 @@ Tor 网络中选择特定的出口节点</a>，但我们应当能够指定一个
 <li>请帮助 Matt Edman 完善他的 Tor 控制器——<a href="http://vidalia-project.net/">Vidalia</a>
 的文档和使用指导。</li>
 <li>评估并完善能被配置使用 Tor 的<a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorifyHOWTO">程序列表</a>。</li>
+href="https://wiki.torproject.org/wiki/TheOnionRouter/TorifyHOWTO">程序列表</a>。</li>
 <li>我们需要更好的文档描述动态拦截连接并通过 Tor 发送。tsocks（Linux）、dsocks（BSD）和
 freecap（Windows）看上去是不错的候选，但最好使用我们的新的 TransPort 特性。</li>
-<li>我们有一张<a href="http://wiki.noreply.org/noreply/TheOnionRouter/SupportPrograms">与
+<li>我们有一张<a href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">与
 Tor 接口的可能有用的程序</a>的冗长列表。在哪些情形下哪些是有用的？请帮助我们测试并写下你的结果。</li>
 <li>帮忙将网页与文档翻译成其他语言。如果你感兴趣，请阅读<a href="<page translation>">翻译指导</a>。
 为了帮助受限地区的 Tor 用户，我们特别需要阿拉伯语和波斯语翻译。</li>
@@ -73,7 +73,7 @@ Tor 接口的可能有用的程序</a>的冗长列表。在哪些情形下哪些
 <ol>
 <li>Tor 服务器在 Windows XP 上工作得不好。在 Windows 平台，Tor 使用标准的 <tt>select()</tt> 系统调用，
 该函数不使用页面文件的空间。这意味着一个中等大小的 Tor 服务器就会耗尽全部的物理内存，<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/WindowsBufferProblems">导致
+href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">导致
 系统极不稳定以致崩溃</a>。我们或许应该使用重叠 IO（overlapped IO）。
 一种解决办法是教会 <a href="http://www.monkey.org/~provos/libevent/">libevent</a>
 如何在 Windows 上使用重叠 IO 而不是 select()，然后调整 Tor 以使用新的 libevent 接口。</li>
@@ -143,7 +143,7 @@ as we know no implemented DHT code supports authenticated updates.</li>
 确认有我们需要的好的 fuzzing 库。为你赢得声誉，我们可能因为你而发布新的版本！</li>
 <li>Tor 使用 TCP 传输数据，使用 TLS 加密连接。这种设计优雅而简单，
 但它意味着一个数据包的丢失就会导致一条连接上的所有单元的延时，它还意味着我们只能支持 TCP 流。
-我们列出了<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">我们
+我们列出了<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">我们
 为什么还不转而使用 UDP 传输的理由</a>，这些理由越少越好。我们还提出了一个 <a
 href="<svnsandbox>doc/spec/proposals/100-tor-spec-udp.txt">Tor 和 UDP 的规格说明</a>——如果
 什么地方错了，请告诉我们。</li>
@@ -196,7 +196,7 @@ href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh 吞吐量�
 因为它们不是出口节点。）但是我们怎样才能把包含这些志愿者的列表以一种自动的方式分发给持不同政见者，
 并且不让国家一级的防火墙拦截和遍历它们呢？这也许需要 human-trust 一级的工作。
 请阅读我们的<a href="<page documentation>#DesignDoc">初步的抗封锁设计文档</a>和
-这一问题的 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance">FAQ
+这一问题的 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance">FAQ
 条目</a>，然后阅读 <a
 href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">anonbib
 的抵御审查部分</a>。</li>
