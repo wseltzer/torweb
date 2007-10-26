@@ -46,7 +46,7 @@ sub do_status($$) {
 		};
 	};
 	my @priorities = sort {$a cmp $b} keys %priorities;
-	push @priorities, 'other';
+	push @priorities, 'none';
 
 	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'https://www.torproject.org/') . ($dir eq '.' ? '' : $dir.'/');
 
@@ -64,7 +64,7 @@ sub do_status($$) {
 		for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
 			my $file_priority = $files{'en'}->{$file}->{'all'}->{'Translation-Priority'};
 			next if (defined $file_priority && $priority ne $file_priority);
-			next if (!defined $file_priority && $priority ne 'other');
+			next if (!defined $file_priority && $priority ne 'none');
 
 			my $obs = file_is_obsolete($dir, 'en', $file);
 			my $validatorlink = '';
