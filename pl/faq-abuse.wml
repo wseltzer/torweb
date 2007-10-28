@@ -1,14 +1,15 @@
 ## translation metadata
-# Based-On-Revision: 10377
+# Based-On-Revision: 12184
+
 # Last-Translator: bogdandr_at_op . pl
 
-#include "head.wmi" TITLE="FAQ o nadużyciach dla Operatorów Serwerów Tora" CHARSET="UTF-8"
+#include "head.wmi" TITLE="FAQ o nadużyciach dla Operatorów Przekaźników Sieci Tora" CHARSET="UTF-8"
 
 <div class="main-column">
 
 <!-- PUT CONTENT AFTER THIS TAG -->
 
-<h2>FAQ o nadużyciach dla Operatorów Serwerów Tora</h2>
+<h2>FAQ o nadużyciach dla Operatorów Przekaźników Sieci Tora</h2>
 <hr />
 
 <a id="WhatAboutCriminals"></a>
@@ -66,11 +67,11 @@ dobrze zrobić bez Tora. </p>
 
 <p>Po pierwsze, domyślna polityka wyjścia z Tora odrzuca cały ruch wychodzący na
  port 25 (SMTP). Dlatego wysyłanie spamu przez Tora nie będzie działać w domyślnej
- konfiguracji. Jest możliwe, że niektórzy operatorzy serwerów włączą port 25 na
+ konfiguracji. Jest możliwe, że niektórzy operatorzy przekaźników sieci Tor włączą port 25 na
  swoim punkcie wyjścia, wtedy taki komputer pozwoli na wysyłanie poczty. Ale ta osoba
  mogłaby równie dobrze uruchomić otwarty serwer pocztowy przekazujący pocztę, niezależnie
  od Tora. Krótko mówiąc, Tor nie jest użyteczny do spamowania, gdyż prawie
- wszystkie serwery Tora odmawiają wysłania poczty. </p>
+ wszystkie przekaźniki sieci Tora odmawiają wysłania poczty. </p>
 
 <p>Ale oczywiście, nie chodzi tylko o dostarczanie poczty. Spamerzy mogą wykorzystywać
  Tora, by łączyć się z otwartymi serwerami Proxy HTTP (a z nich do serwerów SMTP);
@@ -88,12 +89,12 @@ dobrze zrobić bez Tora. </p>
 <a id="ExitPolicies"></a>
 <h3><a class="anchor" href="#ExitPolicies">Jak działają polityki wyjścia z Tora?</a></h3>
 
-<p>Każdy serwer Tora ma politykę wyjścia, która określa, jakie połączenia
- wychodzące są dozwolone lub odrzucane przez ten serwer. Polityki wyjścia są
+<p>Każdy przekaźnik sieci Tora ma politykę wyjścia, która określa, jakie połączenia
+ wychodzące są dozwolone lub odrzucane przez ten przekaźnik. Polityki wyjścia są
  wysyłane klientom poprzez katalog, więc klienci automatycznie będą unikać
  punktów wyjścia, które odmówiłyby połączenia z zamierzonym serwerem docelowym. </p>
 
-<p>W ten sposób każdy serwer może decydować o usługach, serwerach i sieciach,
+<p>W ten sposób każdy przekaźnik sieci może decydować o usługach, serwerach i sieciach,
  na połączenia do których chce zezwolić, w oparciu o możliwości nadużyć oraz
  własną sytuację. </p>
 
@@ -112,14 +113,15 @@ dobrze zrobić bez Tora. </p>
  nam idzie ustalanie równowagi. </p>
 
 <a id="TypicalAbuses"></a>
-<h3><a class="anchor" href="#TypicalAbuses">Więc czego mam oczekiwać, jeśli uruchomię serwer?</a></h3>
+<h3><a class="anchor" href="#TypicalAbuses">Więc czego mam oczekiwać, jeśli uruchomię
+przekaźnik sieci Tor?</a></h3>
 
-<p>Jeśli masz serwer Tora, który umożliwia połączenia wychodzące (tak jak polityka
+<p>Jeśli masz przekaźnik sieci Tora, który umożliwia połączenia wychodzące (tak jak polityka
  domyślna), można prawie na pewno powiedzieć, że wcześniej czy później dostaniesz od
  kogoś wiadomość. Skargi o nadużycia mają wiele postaci. Na przykład: </p>
 <ul>
 <li>Ktoś podłącza się do systemu Hotmail i wysyła żądanie okupu jakiejś firmie.
- FBI przysyła ci uprzejmy list, ty tłumaczysz, że masz serwer Tora, a oni
+ FBI przysyła ci uprzejmy list, ty tłumaczysz, że masz przekaźnik sieci Tora, a oni
  odpowiadają "no trudno" i zostawiają cię w spokoju. [Port 80]</li>
 <li>Ktoś stara się zmusić cię do wyłączenia, używając Tora do połączenia się z
  Google Groups i wysyłania spamu do Usenetu, a potem wysyła nieuprzejmy list
@@ -134,11 +136,11 @@ dobrze zrobić bez Tora. </p>
  prawdopodobnie zignorować taką wiadomość bez żadnych skutków prawnych. [Różne porty]</li>
 </ul>
 
-<p>Możesz także dowiedzieć się, że IP twojego serwera Tor jest blokowane przy próbie
+<p>Możesz także dowiedzieć się, że IP twojego przekaźnika sieci Tor jest blokowane przy próbie
  dostępu do pewnych stron lub usług internetowych. To może się zdarzyć niezależnie od
  polityki wyjścia, gdyż niektóre grupy nie wiedzą, że Tor ma polityki wyjścia lub ich to
  nie obchodzi. (Jeśli masz wolny adres IP nieużywany do innych działań, możesz rozważyć
- uruchomienia serwera Tora na tym właśnie adresie) Na przykład, </p>
+ uruchomienia przekaxnika sieci Tora na tym właśnie adresie) Na przykład, </p>
 
 <ul>
 <li>Z powodu paru przypadków anonimowych pacanów, bawiących się jej stronami,
@@ -150,10 +152,10 @@ dobrze zrobić bez Tora. </p>
  chcę odkrywać przed lokalnymi obserwatorami, że korzystają z Wikipedii). Podobna
  sprawa jest z serwisem Slashdot.</li>
 
-<li>SORBS umieszcza adresy IP niektórych serwerów Tora na swojej czarnej liście
- dotyczące e-maili. Robią to, gdyż pasywnie sprawdzają, czy twój serwer
- łączy się z pewnymi sieciami IRC, i w oparciu o to wnioskują, że twój serwer
- jest zdolny do spamowania. Próbowaliśmy z nimi współpracować, by im wytłumaczyć,
+<li>SORBS umieszcza adresy IP niektórych przekaźników sieci Tora na swojej czarnej liście
+ dotyczące e-maili. Robią to, gdyż pasywnie sprawdzają, czy twój przekaźnik
+ łączy się z pewnymi sieciami IRC, i w oparciu o to wnioskują, że
+ jest on zdolny do spamowania. Próbowaliśmy z nimi współpracować, by im wytłumaczyć,
  że nie każdy program działa w ten sposób, ale poddaliśmy się. Zalecamy, byście
  ich unikali i <a
  href="http://paulgraham.com/spamhausblacklist.html">nauczyli swoich przyjaciół
@@ -260,8 +262,8 @@ dobrze zrobić bez Tora. </p>
  wielu użytkowników za kilkoma adresami IP. Tor w tej kwestii nie różni się za
  bardzo od AOL.</p>
 
-<p>Ostatecznie, proszę pamiętać, że serwery Tora mają <a
- href="#ExitPolicies">indywidualne polityki wyjścia</a>. Wiele serwerów Tora
+<p>Ostatecznie, proszę pamiętać, że przekaźniki sieci Tora mają <a
+ href="#ExitPolicies">indywidualne polityki wyjścia</a>. Wiele przekaźników Tora
  w ogóle nie zezwala na połączenia wychodzące. Wiele z tych, które zezwalają
  na pewne połączenia wychodzące może już blokować połączenia z twoim serwisem.
  Jeśli chcesz blokować węzły Tora, przejrzyj ich polityki wyjścia i blokuj
@@ -270,9 +272,19 @@ dobrze zrobić bez Tora. </p>
 
 <p>Jeśli naprawdę chcesz to zrobić, mamy
  <a href="<svnsandbox>contrib/exitlist">skrypt Pythona, który parsuje
- katalog Tora</a>. (Wiedz, że ten skrypt nie poda ci idealnie dokładnej listy
+ katalog Tora</a>. Wiedz, że ten skrypt nie poda ci idealnie dokładnej listy
  adresów IP, które mogą się z tobą łączyć przez Tora, gdyż połączenia z niektórych
- serwerów Tora mogą wychodzić z innych adresów niż te, które podaje serwer.)
+ serwerów Tora mogą wychodzić z innych adresów niż te, które podaje serwer.
+ Dokładniejsze wyniki (prawdopodobnie z wygodniejszym interfejsem) daje
+ <a href="http://exitlist.torproject.org/">usługa TorDNSEL</a>.
+</p>
+
+ <p>
+ (Niektórzy administratorzy blokują zakresy adresów IP z przyczyn oficjalnej polityki
+ lub pewnych wzorców nadużyć, ale niektórzy pytali o możliwość znalezienia
+ węzłów wyjściowych Tora w celu ich odblokowania, gdyż chcą dać dostęp do
+ swoich systemów z wykorzystaniem Tora.
+ Te skrypty są przydatne także w tych celach.)
 </p>
 
 <a id="TracingUsers"></a>

@@ -1,0 +1,299 @@
+## translation metadata
+# Based-On-Revision: 12150
+# Translation-Priority: 2-medium
+# Last-Translator: bogdandr_at_op . pl
+
+#include "head.wmi" TITLE="Instrukcja konfiguracji przekaźnika sieci Tora" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>Konfiguracja przekaźnika <a href="<page index>">Tora</a> </h1>
+<br />
+
+<p>Sieć Tora polega na ochotnikach oddających część swojego łącza. Im więcej
+ ludzi uruchomi przekaźnik, tym szybsza będzie sieć Tora. Jeśli masz co najmniej
+ 20 kilobajtów/s w obie strony, pomóż Torowi, konfigurując swojego klienta tak,
+ by był także przekaźnikiem sieci. Mamy wiele cech, które czynią przekaźniki Tora łatwymi i
+ wygodnymi, łącznie z ograniczeniem przepustowości, politykami wyjścia, byś mógł
+ zmniejszyć ryzyko skarg, oraz obsługą dynamicznych adresów IP.</p>
+
+<p>Posiadanie przekaźników w wielu różnych miejscach w sieci sprawia, że
+ użytkownicy są bezpieczni. <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">Ty
+ też możesz mieć lepszą anonimowość</a>, gdyż przekaźniki sieci, do których się łączysz,
+ nie mogą stwierdzić, czy połączenie pochodzi z Twojego komputera, czy
+ zostało przekierowane z innych.</p>
+
+<p>Uruchomienie przekaxnika Tora jest łatwe i wygodne:
+<ul>
+<li>Tor ma wbudowaną obsługę <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">ograniczania
+ przepustowości</a>. Ponadto, jeśli masz szybkie łącze, ale chcesz ograniczyć liczbę
+ bajtów na dzień (lub tydzień, lub miesiąc) przeznaczonych dla Tora, spójrz na <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernację</a>.
+</li>
+<li>Każdy przekaźnik sieci Tora ma <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">politykę
+ wyjścia</a>, która określa, jakiego typu połączenia wychodzące są dozwolone
+ lub zabronione na danym przekaźniku sieci. Jeśli nie podoba ci się to, że połączenia
+ innych mogą wychodzić z twojego przekaźnika, możesz go ustawić tak, by pozwalał
+ na połączenia wyłącznie do innych przekaźników sieci Tora.
+</li>
+<li>Twój przekaźnik może czasem być niedostępny - w porządku. Katalogi przekaźników
+ szybko to odkryją i przestaną ogłaszać go jako dostępny. Tylko niech
+ okresy wyłączenia nie zdarzają się zbyt często, gdyż rozłączenie przekaźnika
+ przerywa wszystkie połączenia, które go używały.
+</li>
+<li>Dobrze działają również przekaźniki z dynamicznym IP &mdash; po prostu pozostaw
+ pole Address w konfiguracji puste, a Tor spróbuje odgadnąć swój IP.
+</li>
+<li>Jeśli twój przekaźnik jest za NAT-em i nie zna swojego publicznego IP
+ (np. ma adres postaci 192.168.x.y), będziesz musiał ustawić przekierowanie
+ portów. Przekierowanie portów jest zależne od systemu, ale <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">ten
+ wpis FAQ</a> podaje kilka przykładów, jak to można zrobić.
+</li>
+<li>Twój przekaźnik pasywnie sam sprawdzi i ogłosi najnowszą przepustowość
+ swojego łącza, więc przekaźniki o szerszym łączu przyciągają więcej użytkowników
+ niż te o wąskim. Zatem posiadanie przekaźnika ze słabym łączem też jest przydatne.
+</li>
+</ul>
+
+<p>Możesz uruchomić przekaźnik sieci Tora na prawie każdym systemie operacyjnym, ale spójrz na <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerOS">ten
+ wpis FAQ</a>, by dowiedzieć się, które działają najlepiej oraz o innych problemach,
+ na które możesz się natknąć.</p>
+
+<hr />
+<a id="zero"></a>
+<h2><a class="anchor" href="#zero">Krok 0: Pobranie i instalacja Tora</a></h2>
+<br />
+
+<p>Zanim zaczniesz, upewnij się, że Tor jest uruchomiony i działa.
+</p>
+
+<p>Użytkownicy Windows muszą wykonać co najmniej <a
+ href="<page docs/tor-doc-win32>#installing">krok 1</a>
+ w opisie instalacji Tora dla Windows, a użytkownicy MAC OS X muszą wykonać co najmniej <a
+ href="<page docs/tor-doc-osx>#installing">krok 1</a>
+ w opisie instalacji Tora dla MAC OS X. Użytkownicy Linux/BSD/Unix powinni wykonać co najmniej <a
+ href="<page docs/tor-doc-unix>#installing">krok 1</a>
+ w opisie instalacji Tora dla systemów Unix.
+</p>
+
+
+<p>Jeśli uznasz to za wygodne, możesz najpierw poużywać Tora jako klienta, by
+ upewnić się, czy rzeczywiście działa.</p>
+
+<hr />
+<a id="setup"></a>
+<h2><a class="anchor" href="#setup">Krok 1: Ustawienie Tora jako przekaźnika sieci</a></h2>
+<br />
+
+<p>
+1. Sprawdź, czy twój zegar jest dobrze ustawiony. Jeśli jest to możliwe,
+ zsynchronizuj swój zegar z publicznymi serwerami czasu.
+</p>
+
+<p>
+2. Sprawdź, czy prawidłowo działa rozwiązywanie nazw (tzn. czy twój komputer
+ potrafi otrzymać prawidłowy adres IP dla podanej nazwy serwera).
+</p>
+
+<p>
+3. Wyedytuj dolną część swojego pliku torrc. (Zajrzyj do <a
+ href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#torrc">tego
+ wpisu FAQ</a> po pomoc.)
+ Upewnij się, że podałeś co najmniej Nickname i ORPort. Utwórz katalog podany w DataDirectory,
+ jeśli jest to potrzebne, i sprawdź, czy właścicielem tego katalogu jest
+ użytkownik, który będzie uruchamiał Tora.
+ <em>Jeśli chcesz uruchomić więcej niż jeden przekaźnik, to świetnie, ale ustaw proszę
+ <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleServers">opcję
+ MyFamily</a> w plikach konfiguracyjnych wszystkich przekaźników.</em>
+</p>
+
+<p>
+4. Jeśli używasz zapory ogniowej, otwórz w niej przejście, by połączenia
+ przychodzące mogły dostać sie do skonfigurowanych portów (ORPort, plus
+ DirPort, jeśli go włączyłeś). Upewnij się, że dozwolone są wszystkie
+ połączenia wychodzące, aby twój przekaźnik mógł dotrzeć do innych przekaźników Tora.
+</p>
+
+<p>
+5. Uruchom ponownie swój przekaźnik. Jeśli <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">wypisze jakieś ostrzeżenia</a>,
+ zajmij się nimi.
+</p>
+
+<p>
+6. Zapisz się na listę mailingową <a
+ href="http://archives.seul.org/or/announce/">or-announce</a>.
+ Ma ona mały ruch, dzięki niej będziesz informowany o nowych stabilnych wydaniach.
+ Możesz także zapisać się na <a
+ href="http://archives.seul.org/or/talk/">or-talk</a> (większy ruch),
+ gdzie ogłaszane są nowe wydania rozwijane (testowe).
+</p>
+
+<p>
+7. Przejrzyj podręcznik.
+ Strona <a href="<page tor-manual>">podręcznika</a> najnowszej stabilnej wersji
+ zawiera listę wszystkich możliwych opcji konfiguracyjnych dla klienta i przekaźnika.
+ Jeśli używasz rozwojowej wersji Tora,
+ to podręcznik jest <a href="<page tor-manual-dev>">tutaj</a>.
+</p>
+
+<hr />
+<a id="check"></a>
+<h2><a class="anchor" href="#check">Krok 2: Sprawdzenie, czy wszystko działa</a></h2>
+<br />
+
+<p>Jak tylko twój przekaźnik zdoła połączyć się z siecią, spróbuje określić,
+ czy skonfigurowane porty są dostępne z zewnątrz. To może potrwać do 20 minut. Szukaj
+ <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">wpisów
+ do logów</a> w postaci
+ <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
+ Jeśli nie widzisz tej wiadomości, to znaczy, że twój przekaźnik nie jest osiągalny z
+ zewnątrz &mdash; powinieneś ponownie sprawdzić ustawienia zapory ogniowej, zobaczyć,
+ czy sprawdza ten IP i port, który powinien sprawdzać etc.
+</p>
+
+<p>Gdy Tor stwierdzi, że jest osiągalny z zewnątrz, wyśle "deskryptor serwera" do
+ serwerów katalogowych. To pozwoli klientom dowiedzieć się, jakiego używasz
+ adresu, portów, kluczy etc. Możesz <a
+ href="http://moria.seul.org:9032/tor/status/authority">ręcznie otworzyć jedną ze stron
+ zawierających status sieci</a> i poszukać w nim nazwy, którą skonfigurowałeś, by upewnić się, że
+ tam jest. Możliwe, że będziesz musiał poczekać parę sekund, by utworzony
+ został świeży katalog serwerów.</p>
+
+<hr />
+<a id="after"></a>
+<h2><a class="anchor" href="#after">Krok 3: Gdy już wszystko działa</a></h2>
+<br />
+
+<p>
+Polecamy też następujące kroki:
+</p>
+
+<p>
+8. Przeczytaj
+ <a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">ten dokument</a>,
+ by dowiedzieć sie, jak możesz podnieść bezpieczeństwo swojego przekaźnika.
+</p>
+
+<p>
+9. Zdecyduj się na politykę wyjścia. Domyślnie twój przekaźnik pozwala na dostęp
+ do wielu popularnych usług, lecz ogranicza niektóre z nich (jak na przykład port 25)
+ ze względu na możliwości nadużyć. Być może będziesz chciał taką politykę, która
+ będzie mniej lub bardziej restrykcyjna; wtedy odpowiednio zmień swój plik torrc.
+ Przeczytaj w FAQ o <a
+ href="<page faq-abuse>#TypicalAbuses">sprawach, na które możesz się natknąć
+ podczas używania domyślnej polityki wyjścia</a>.
+ Jeśli wybierzesz dość otwartą politykę wyjścia, upewnij się, że twój dostawca internetu
+ nie ma nic przeciwko. Jeśli są jakiekolwiek zasoby, do których twój komputer nie
+ może się dostać (na przykład, jesteś za restrykcyjną zaporą ogniową lub filtrem
+ zawartości), to jawnie wyłącz te zasoby ze swojej polityki wyjścia &mdash; w innym
+ przypadku dotknie to użytkowników Tora.
+</p>
+
+<p>
+10. Pomyśl o ograniczaniu przepustowości łącza. Użytkownicy sieci kablowych,
+ DSL oraz inni z asymetrycznym łączem (np. większy download niż upload) powinni
+ ograniczyć przepustowość Tora do tej mniejszej wartości, by uniknąć zatorów. Przeczytaj <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">wpis do FAQ
+ na temat ograniczania przepustowości</a>.
+</p>
+
+<p>
+11. Zrób kopię zapasową prywatnego klucza swojego przekaźnika (przechowywanego w
+ "keys/secret_id_key" w katalogu DataDirectory). To jest "tożsamość" twojego
+ przekaźnika i musisz trzymać ją w bezpiecznym miejscu, by nikt nie mógł
+ podsłuchać ruchu, który przechodzi przez twój przekaźnik. To jest najważniejszy plik
+ do zachowania w przypadku, gdy musisz <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">przenieść
+ lub odbudować swój przekaźnik Tora</a> jeśli coś pójdzie nie tak.
+</p>
+
+<p>
+12. Jeśli kontrolujesz nazwy serwerów w swojej domenie, rozważ ustawienie
+ swojej nazwy hosta na 'anonymous' lub 'proxy' lub 'tor-proxy', aby inni
+ mogli szybciej zrozumieć co się dzieje, gdy zobaczą twój adres w swoich logach.
+</p>
+
+<p>
+13. Jeśli na twoim komputerze nie ma serwera WWW, rozważ zmianę portu ORPort na
+ 443, a portu katalogowego DirPort na 80. Wielu z użytkowników Tora jest za
+ zaporami ogniowymi, które pozwalają tylko przeglądać sieć WWW, ta zmiana pozwoli
+ takim użytkownikom połączyć się z twoim przekaźnikiem. Operatorzy przekaźników pod Win32
+ mogą po prostu bezpośrednio zmienić swój ORPort i DirPort w pliku torrc i
+ ponownie uruchomić Tora. Przekaźniki pod OS X i Unix nie mogą bezpośrednio
+ podłączyć się do tych portów (gdyż nie są uruchamiane jako root), więc dla nich
+ trzeba uruchomić jakieś <a
+ href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">przekierowanie
+ portów</a>, by połączenia mogły do nich dotrzeć. Jeśli już
+ używasz portów 80 i 443, ale i tak chcesz pomóc, to innymi użytecznymi portami są
+ 22, 110 i 143.
+</p>
+
+<p>
+14. Jeśli twój przekaźnik sieci Tora ma też inne usługi na tym samym adresie IP
+ &mdash; jak na przykład publiczny serwer WWW &mdash; upewnij się, że
+ połączenia do tego serwera są dozwolone także z tego samego komputera.
+ Musisz zezwolić na te połączenia, gdyż klienci Tora odkryją, że twój
+ przekaźnik Tora jest <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">najbezpieczniejszą
+ drogą do połączenia się z tym serwerem</a>, i zawsze zbudują obwód, który
+ będzie kończył się na twoim przekaźniku. Jeśli nie chcesz zezwalać na takie połączenia,
+ musisz jawnie wykluczyć je w swojej polityce wyjścia.
+</p>
+
+<p>
+15. (Tylko Unix). Utwórz osobnego użytkownika, na którego prawach będzie uruchamiany
+ przekaźnik. Jeśli zainstalowałeś paczkę OS X lub deb lub rpm, to wszystko już jest zrobione.
+ W innym przypadku musisz zrobić to ręcznie. (Przekaźnik Tora nie musi być uruchamiany
+ jako root, więc dobrze jest nie uruchamiać go jako root. Uruchamianie jako
+ użytkownik 'tor' unika problemów z indent i innymi usługami, które sprawdzają
+ nazwę użytkownika. Jeśli jesteś paranoikiem, możesz śmiało <a
+ href="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">umieścić Tora w
+ chrootowanym środowisku</a>.)
+</p>
+
+<p>
+16. (Tylko Unix) Twój system operacyjny prawdopodobnie ogranicza liczbę
+ otwartych deskryptorów plików dla każdego procesu do 1024 (lub nawet mniej). Jeśli planujesz
+ uruchomienie szybkiego węzła wyjściowego, to ta ilość prawdopodobnie
+ nie wystarczy. W systemie Linux powinieneś dodać linię w stylu  "toruser hard nofile 8192"
+ do swojego pliku /etc/security/limits.conf (toruser oznacza użytkownika, na
+ którego prawach uruchomiony jest Tor), po czym ponownie uruchomić Tora, jeśli
+ jest zainstalowany jako pakiet (lub wylogować się i zalogować ponownie, jeśli
+ uruchamiasz go sam). Jeśli to nie podziała, przeczytaj <a
+ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">ten
+ wpis do FAQ</a> po inne sposoby uruchomienia "ulimit -n 8192" przed startem Tora.
+</p>
+
+<p>
+17. Jeśli zainstalowałeś Tora z jakiejś paczki lub instalatora, prawdopodobnie
+ uruchamia to Tora automatycznie w czasie ładowania systemu. Ale jeśli instalowałeś
+ ze źródeł, to mogą ci się przydać skrypty inicjalizacyjne contrib/tor.sh lub contrib/torctl.
+</p>
+
+<p>Gdy zmieniasz konfigurację Tora, pamiętaj sprawdzić, czy Twój przekaźnik dalej działa
+ po tych zmianach. Ustaw w pliku torrc opcję "ContactInfo", byśmy mogli się z Tobą
+ skontaktować, jeśli powinieneś zainstalować nowszą wersję lub coś działa nie tak.
+ Jeśli masz jakieś problemy lub pytania, przeczytaj sekcję
+ the <a href="<page documentation>#Support">Uzyskiwanie pomocy</a> lub
+ <a href="<page contact>">skontaktuj się z nami</a> na liście tor-ops. Dziękujemy,
+ że pomagasz rosnąć sieci Tora!
+</p>
+
+<hr />
+
+<p>Jeśli masz pomysły na ulepszenie tej strony, prosimy <a
+href="<page contact>">je do nas wysłać</a>. Dziękujemy!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+
