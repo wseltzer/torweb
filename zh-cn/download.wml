@@ -1,68 +1,89 @@
 ## translation metadata
-# Based-On-Revision: 11815
+# Based-On-Revision: 12208
+# Translation-Priority: 1-high
 # Last-Translator: peihanru AT gmail.com
 
 #include "head.wmi" TITLE="下载" CHARSET="UTF-8"
 
 <div class="main-column">
 
-<h2>Tor: 软件包和源文件</h2>
-<hr />
-
-<p>Tor 是<a href="http://www.fsf.org/">自由软件</a>，
-遵循 <a href="<svnsandbox>LICENSE">3-clause BSD 许可证发布</a>。
-</p>
-
-<p>如果你希望 Tor 更快更可用，请考虑<a href="<page donate>">捐助 Tor 项目</a>。</p>
-
-<p>最新的稳定版本是 <b><version-stable></b>，最新的测试版本是 <b><version-alpha></b>。</p>
-
-<p><b>订阅</b> <a href="http://archives.seul.org/or/announce/">or-announce 邮件列表</a>，
-及时得到安全警告和新的稳定版本的通知（你需要通过电子邮件确认）：</p>
-
-<form action="http://freehaven.net/cgi-bin/majordomo.cgi">
-<input type="hidden" name="mlist" value="or-announce">
-<input type="hidden" name="subscribe" value="1">
-<input type="hidden" name="host" value="freehaven.net">
-<input name="email" size="15">
-<input type="submit" value="订阅">
-</form>
-
-<p><a href="http://gmane.org">gmane.org</a> 提供 or-announce 邮件列表的
-<a href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS feed</a>。
-</p>
+<h2>下载当前版本的 Tor</h2>
 
 <hr />
+
+<p>
+Tor 是<a href="http://www.fsf.org/">自由软件</a>，
+遵循 <a href="<svnsandbox>LICENSE">3-clause BSD 许可证</a>发布。
+安装 Tor 以及使用 Tor 网络不需要支付费用，但如果你希望 Tor 更快更可用，
+请考虑<a href="<page donate>">捐助 The Tor Project（免税）</a>。
+</p>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="2">
+<thead>
+<tr>
+<th>平台</th>
+<th>软件包</th>
+</tr>
+</thead>
+
+<tr>
+<td>Windows<br><a href="<page docs/tor-doc-win32>">安装和配置指导</a></td>
+<td>
+Tor &amp; Privoxy &amp; Vidalia &amp; Torbutton bundle:
+<a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>)
+</td>
+</tr>
+
+<tr>
+<td>
+Mac OS X<br>
+<a href="<page docs/tor-doc-osx>">安装和配置指导</a>
+</td>
+<td>
+Tor &amp; Privoxy &amp; Vidalia bundle:<br>
+&nbsp;&nbsp;&nbsp; Universal Binary (OSX 10.4 &amp; 10.5):
+<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>)
+<br>
+&nbsp;&nbsp;&nbsp; 10.3 (Panther):
+<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
+href="<package-oldosx-bundle-stable-sig>">sig</a>)
+</td>
+</tr>
+
+<tr>
+<td>
+Linux/Unix 软件包
+</td>
+<td><a href="<page download-unix>">Linux/Unix 下载页面</a></td>
+</tr>
+
+</table>
+
+<br>
 
 <a id="Warning"></a>
 <h2><a class="anchor" href="#Warning">警告：想让 Tor 真正地保护你吗？</a></h2>
 
 <p>……那么，请不要在安装软件后就什么也不管了。你需要改变你的一些习惯，还要重新配置软件！
-Tor，就它本身来说，并<b>不能</b>全面保护你的匿名。以下有一些常见的陷阱需要提防。
+Tor，就它本身来说，并<b>不能</b>全面保护你的匿名。以下有一些常见的陷阱需要提防：
 </p>
 
 <ol>
 <li>Tor 仅仅保护那些配置过的将数据通过 Tor 传输的应用程序——它并不会在你安装之后就奇迹般地匿名所有通信。
 我们建议你使用 <a href="http://www.mozilla.org/firefox">Firefox</a> 并安装
 <a href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> 扩展。 
-<!-- , and follow <a href="comingsoon">other recommendations for other
-supported applications</a>. -->
 </li>
 
 <li>浏览器插件例如 Java、Flash、ActiveX、RealPlayer、Quicktime、Adobe 的 PDF 插件
-等等能被用来揭露真实的 IP 地址。你或许应该卸载这些插件
-（在地址栏输入“about:plugins”能够知道安装了哪些插件），如果你确实需要它们，请花时间研究研究
+等等能被用来揭露真实的 IP 地址。你或许应该<a
+href="http://plugindoc.mozdev.org/faqs/uninstall.html">卸载这些插件</a>（在地址栏
+输入“about:plugins”能够知道安装了哪些插件），如果你确实需要它们，请花时间研究研究
 <a href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>,
 <a href="https://addons.mozilla.org/firefox/433/">FlashBlock</a> 和
 <a href="http://noscript.net/">NoScript</a>。
 请考虑卸载那些除去你所访问站点还会查询更多信息的扩展（如 Google 工具条），
 因为它们可能绕过 Tor 并且（或者）广播敏感信息。
 有些人更乐意同时运行两个浏览器（一个使用 Tor，另一个用作不安全的浏览）。
-<!-- You may even want to use a text browser, such as <a
-href="http://lynx.browser.org/">lynx</a> when you are using Tor. -->
-<!-- You may also find
-<a href="https://addons.mozilla.org/firefox/722/">NoScript</a> and <a
-href="https://addons.mozilla.org/firefox/1865/">AdBlock</a> helpful. -->
 </li>
 
 <li>谨防 cookies：如果你曾在未使用 Tor 和 Privoxy 的情况下浏览了某个站点，
@@ -74,7 +95,7 @@ href="https://addons.mozilla.org/firefox/1865/">AdBlock</a> helpful. -->
 <li>Tor 匿名通信的来源，加密 Tor 网络中的所有数据，但是，<a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">它
 不能加密 Tor 网络与通信目的地之间的数据</a>。
-如果你正在传输敏感信息，你应该像平时在令人担心的互联网上一样谨小慎微——使用 SSL
+如果你正在传输敏感信息，你应该像平时在令人担心的互联网上一样谨小慎微——使用 HTTPS
 或其他端到端的加密与认证手段。
 </li>
 
@@ -88,196 +109,130 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdropper
 我们需要你帮忙<a href="<page volunteer>#Documentation">确认所有问题并撰写文档</a>。
 </p>
 
-<table border="1" cellspacing="0" cellpadding="2">
+<p>
+为了及时得到安全警告和新的稳定版本的通知，订阅
+<a href="http://archives.seul.org/or/announce/">or-announce 邮件列表</a>（你需要
+通过电子邮件确认）。你也可以浏览<a
+href="http://rss.gmane.org/gmane.network.onion-routing.announce">邮件列表的 RSS feed</a>。
+</p>
+
+<form action="http://freehaven.net/cgi-bin/majordomo.cgi">
+<input type="hidden" name="mlist" value="or-announce">
+<input type="hidden" name="subscribe" value="1">
+<input type="hidden" name="host" value="freehaven.net">
+<input name="email" size="15">
+<input type="submit" value="订阅 or-announce">
+</form>
+
+<hr />
+
+<h2>测试版本，专家使用的软件包和源文件</h2>
+
+<p>
+发布这些测试版本的目的是使你能帮助我们测试新的特性和错误修正。
+尽管它们的版本号比上面所列的稳定版本要高，但它们存在严重的可靠问题和安全问题的
+可能性要高得多。请随时准备报告错误。
+</p>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="2">
 <thead>
 <tr>
 <th>平台</th>
 <th>软件包</th>
-<th>设置信息</th>
 </tr>
 </thead>
 
 <tr>
-<td>Windows</td>
-<td>Tor &amp; Privoxy &amp; Vidalia bundle:
-<a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>),
-<a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>).
+<td>Windows<br><a href="<page docs/tor-doc-win32>">安装和配置指导</a></td>
+<td>
+Tor &amp; Privoxy &amp; Vidalia &amp; Torbutton bundle (推荐):
+<a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>)
+<br>
+专家使用:
+<a href="<package-win32-stable>"><version-win32-stable></a>
+(<a href="<package-win32-stable-sig>">sig</a>),
+<a href="<package-win32-alpha>"><version-win32-alpha></a>
+(<a href="<package-win32-alpha-sig>">sig</a>)
 </td>
-<td><a href="<page docs/tor-doc-win32>">Windows 指导</a></td>
 </tr>
 
 <tr>
-<td>专家使用的 Windows 软件包</td>
-<td><a href="<page download-windows>">Windows 下载页面</a></td>
-<td><a href="<page docs/tor-doc-win32>">Windows 指导</a></td>
-</tr>
-
-<tr>
-<td>Mac OS X 10.4 (Tiger) Universal Binary</td>
-<td>Tor &amp; Privoxy &amp; Vidalia bundle:
-<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>),
-<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>).
+<td>
+Mac OS X<br>
+<a href="<page docs/tor-doc-osx>">安装和配置指导</a>
 </td>
-<td><a href="<page docs/tor-doc-osx>">OS X 指导</a></td>
-</tr>
 
-<tr>
-<td>Mac OS X 10.3 (Panther)</td>
-<td>Tor &amp; Privoxy &amp; Vidalia bundle:
-<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
-href="<package-oldosx-bundle-stable-sig>">sig</a>),
-<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a href="<package-oldosx-bundle-alpha-sig>">sig</a>).
+<td>
+Tor &amp; Privoxy &amp; Vidalia &amp; Torbutton bundle (推荐):<br>
+&nbsp;&nbsp;&nbsp; Universal Binary (10.4 &amp; 10.5):
+<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>)
+
+<br>
+&nbsp;&nbsp;&nbsp; 10.3 (Panther):
+<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a
+href="<package-oldosx-bundle-alpha-sig>">sig</a>)
+
+<br>
+专家使用:
+Tor &amp; Privoxy only:<br>
+&nbsp;&nbsp;&nbsp; Universal Binary (OSX 10.4 &amp; 10.5):
+<a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>),
+<a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>)
+
+<br>
+&nbsp;&nbsp;&nbsp; 10.3 (Panther):
+<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a
+href="<package-oldosx-stable-sig>">sig</a>),
+<a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a
+href="<package-oldosx-alpha-sig>">sig</a>)
 </td>
-<td><a href="<page docs/tor-doc-osx>">OS X 指导</a></td>
 </tr>
 
 <tr>
-<td>专家使用的 Mac OS X 软件包</td>
-<td><a href="<page download-osx>">OS X 下载页面</a></td>
-<td><a href="<page docs/tor-doc-osx>">OS X 指导</a></td>
-</tr>
-
-<tr>
-<td>Linux/Unix 软件包</td>
+<td>
+Linux/Unix 软件包
+</td>
 <td><a href="<page download-unix>">Linux/Unix 下载页面</a></td>
-<td>
-<a href="<page docs/tor-doc-unix>">Linux/Unix 指导</a>
-</td>
 </tr>
 
 <tr>
-<td>源文件</td>
 <td>
-<a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>),
-<a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>).
+源文件<br>
+<kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd>
 </td>
-<td><kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd></td>
+<td>
+稳定版: <a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>)<br>
+测试版: <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)
+</td>
 </tr>
 
 </table>
+<br>
 
-<br />
+<p>
+查看<a href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">关于
+如何验证软件包签名的 FAQ</a>，你可以据此确认你下载了我们希望你得到的文件。
+</p>
 
-<h2>更多信息</h2>
-
-<ul>
-<li>
-这里是 <a href="<page mirrors>">Tor 的镜像网站列表</a>。
-<a href="http://opensource.depthstrike.com/?category=tor">这个页面提供以上各下载的 BT 种子</a>。
-你也可以下载 <a href="dist/">Privoxy 的源文件</a>和
-<a href="dist/vidalia-bundles/?C=M;O=D">Vidalia 的源文件</a>。
-</li>
-<li>
-查看<a href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">关于如何验证软件包签名的 FAQ</a>，
-你可以据此确认你下载了我们希望你得到的文件。
-</li>
-<li>
+<p>
 查看<a href="<page documentation>#Developers">开发者文档</a>，
-其中介绍了如何从 SVN 得到 Tor 开发中的最新版本。
-请注意这个版本也许不能工作，甚至不能编译！
-</li>
-</ul>
-
-<hr />
-
-<a id="Testing"></a>
-<h2><a class="anchor" href="#Testing">测试版本</a></h2>
-
-<p>2007-09-21:
-Tor 0.2.0.7-alpha
-<a href="http://archives.seul.org/or/talk/Sep-2007/msg00361.html">使
-桥服务器（bridges）再次运行，首次使权威桥服务器（bridge authorities）运行，
-修正了隐匿服务的两个严重的性能缺陷，修正了各类小问题</a>。Windows
-捆绑软件包还包括了新的 <a href="https://torbutton.torproject.org/dev/">Torbutton
-开发版本 1.1.7</a>，这个版本的 Torbutton 会清理 cookies 并禁止许多其他危险的 web
-行为。建议 Windows 用户在升级之前备份 Firefox 设置。
+其中介绍了如何从 SVN 获取 Tor 开发中的最新版本。
+你也可以下载 <a href="dist/">Privoxy 源文件</a>或
+<a href="dist/vidalia-bundles/?C=M;O=D">Vidalia 源文件</a>。
 </p>
 
-<p>2007-08-26:
-Tor 0.2.0.6-alpha
-<a href="http://archives.seul.org/or/talk/Aug-2007/msg00215.html">Windows 和
-OS X 捆绑软件包包含了新版的 Vidalia。Vidalia 0.0.14 默认要求认证控制端口，
-清除了严重的安全威胁。另外，这个测试版本修正了路径选择方面的重要的负载平衡问题，
-当许多用户升级后，速度应会有显著的提升。权威目录服务器在跟踪哪些服务器是稳定的
-（stable）时，使用了一种新的失败间隔的平均时间（mean-time-between-failure）策略，
-而不是仅仅查看最近的正常运行时间</a>。
+<p>
+如果你从这个站点下载 Tor 有困难，这里是 <a href="<page mirrors>">Tor 的镜像网站列表</a>。
 </p>
-
-<p>2007-08-19:
-Tor 0.2.0.5-alpha
-<a href="http://archives.seul.org/or/talk/Aug-2007/msg00187.html">再次修正了
-Windows 平台的编译问题；修正了一个客户端的令人厌恶的错误，这个错误会减慢连接速度
-并给网络带来额外的负担；使我们更接近第三版目录投票方案；使 Tor 控制器更容易使用
-基于 cookie 的认证；修正了其他许多错误</a>。
-</p>
-
-<p>2007-08-01:
-Tor 0.2.0.4-alpha
-<a href="http://archives.seul.org/or/talk/Aug-2007/msg00109.html">修正了
-一个影响大部分用户，特别是 Vidalia、TorK 等用户的严重的安全漏洞</a>。
-所有人都应该升级。
-</p>
-
-<p>2007-07-29:
-Tor 0.2.0.3-alpha
-<a href="http://archives.seul.org/or/talk/Aug-2007/msg00109.html">引入了
-新的实验阶段的抗封锁特性和第三版目录投票设计的初始版本，还包括其他许多
-小的特性和错误修正</a>。
-</p>
-
-<p>2007-06-02:
-Tor 0.2.0.1-alpha 和 0.2.0.2-alpha
-<a href="http://archives.seul.org/or/talk/Jun-2007/msg00026.html">为同时将 Tor
-作为客户端和服务器使用的用户提供了新的特性（请检视新的 RelayBandwidth 配置
-选项）；可以把 Tor 作为 DNS 代理；在许多方面我们都有了长足的进步</a>。
-</p>
-
-<hr />
-
-<a id="Stable"></a>
-<h2><a class="anchor" href="#Stable">稳定版本</a></h2>
-
-<p>2007-08-30:
-Tor 0.1.2.17
-<a href="http://archives.seul.org/or/announce/Aug-2007/msg00001.html">Windows 和
-OS X 捆绑软件包包含了新版的 Vidalia。Vidalia 0.0.14 默认要求认证控制端口，
-清除了严重的安全威胁。另外，这一更新版本修正了路径选择方面的重要的负载平衡问题，
-当许多用户升级后，速度应会有显著的提升</a>。
-</p>
-
-<p>2007-08-01:
-Tor 0.1.2.16
-<a href="http://archives.seul.org/or/announce/Aug-2007/msg00000.html">修正了
-一个影响大部分用户，特别是 Vidalia、TorK 等用户的严重的安全漏洞</a>。
-所有人都应该升级。
-</p>
-
-<p>2007-07-17:
-Tor 0.1.2.15 <a
-href="http://archives.seul.org/or/announce/Jul-2007/msg00000.html">修正了
-数个会导致崩溃的错误，一些与匿名相关的问题，BSD 上的编译问题和其他各种类型的错误</a>。
-</p>
-
-<p>2007-05-25:
-Tor 0.1.2.14 <a
-href="http://archives.seul.org/or/announce/May-2007/msg00000.html">更改了
-两台权威目录服务器的地址（此一改动尤其影响到提供或使用隐匿服务的用户），
-修正了其他一些崩溃与安全相关的错误</a>。
-</p>
-
-<p>2007-04-23:
-Tor 0.1.2.13 特性有
-<a href="http://archives.seul.org/or/announce/Apr-2007/msg00000.html">
-一些重要的匿名性方面的修正，例如更安全的路径选择；更好的客户端性能；更快的启动速度，
-更好的地址检测和服务器端更好的 DNS 支持；使服务器更易于运行的写限制和读限制；
-以及其他大量的特性和错误修正</a>。捆绑包中的 Vidalia 升级到了 0.0.11。
-</p>
-
-<hr />
 
 <a id="ChangeLog"></a>
-<p>更多细节请阅读<a href="<svnsandbox>ChangeLog">更新日志</a>。</p>
+<a id="Stable"></a>
+<a id="Testing"></a>
+<p>
+每一个 Tor 稳定版本的变化，请阅读<a href="<svnsandbox>ReleaseNotes">发布记录</a>。
+稳定版本和测试版本所有的变化，请阅读<a href="<svnsandbox>ChangeLog">更新日志</a>。
+</p>
 
-  </div><!-- #main -->
+</div><!-- #main -->
 
 #include <foot.wmi>
