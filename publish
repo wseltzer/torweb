@@ -4,6 +4,8 @@ set -e # stop if we encounter an error
 svn update
 make
 
+# Update a timestamp so we can check whether each mirror is
+# up to date.
 [ -d project/trace ] || mkdir -p project/trace
 date -u > project/trace/www.torproject.org
 
