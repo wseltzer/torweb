@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 11649
+# Based-On-Revision: 12228
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Wolontariusze" CHARSET="UTF-8"
@@ -9,9 +9,9 @@
 <!-- PUT CONTENT AFTER THIS TAG -->
 <h2>Trzy rzeczy, które każdy może zrobić już teraz:</h2>
 <ol>
-<li>Prosimy rozważyć <a href="<page docs/tor-doc-server>">uruchomienie
- serwera</a>, by wspomóc rozwój sieci Tora.</li>
-<li>Rozpowiadaj o systemie Tor swoim znajomym. Spraw, by uruchomili serwer.
+<li>Prosimy rozważyć <a href="<page docs/tor-doc-relay>">uruchomienie
+ przekaźnika sieci Tor</a>, by wspomóc rozwój sieci Tora.</li>
+<li>Rozpowiadaj o systemie Tor swoim znajomym. Spraw, by uruchomili przekaźniki sieci.
  Spraw, by uruchomili usługi ukryte. Spraw, by mówili o systemie Tor swoim znajomym.</li>
 <li>Szukamy funduszy i sponsorów. Jeśli podobają ci się cele Tora,
   <a href="<page donate>">poświęć chwilę, by złożyć dotację, aby wspomóc przyszły rozwój Tora</a>.
@@ -40,26 +40,23 @@
  dzielenie kodu między nimi lub całkowita rezygnacja z jednego z nich.</li>
 </ul>
 </li>
-<li>Ludzie, którzy uruchomili serwer Tora mówią nam, że chcą dać jedną
+<li>Ludzie, którzy uruchomili przekaźnik sieci Tora mówią nam, że chcą dać jedną
  przepustowość łącza dla Tora (BandwidthRate) w czasie pewnej części dnia,
  a inną w innych częściach dnia. Zamiast programować to w Torze, powinniśmy mieć
  mały skrypt, który łączy się przez <a href="<page gui/index>">Tor Controller Interface</a>,
- i wykonuje SETCONF by zmienić przepustowość. Być może ten skrypt byłby uruchamiany
- z crona, a może byłby uśpiony aż do właściwego momentu i wtedy wykonywał swoją
- pracę (to by raczej było bardziej przenośne). Czy ktoś mógłby napisać taki
- skrypt za nas, a my byśmy go umieścili w katalogu <a href="<svnsandbox>contrib/">contrib/</a>?
- To byłby dobry wkład w <a href="<page gui/index>">Konkurs na GUI dla Tora</a>.
-	 <!-- We have a good script to adjust stuff now, right? -NM -->
+ i wykonuje SETCONF by zmienić przepustowość. Jest już po jednym skrypcie dla systemów
+ Unix i Mac (korzystają z basha i crona), ale dalej potrzebne jest rozwiązanie
+ dla użytkowników Windowsa.
  </li>
 <li>Tor może <a
  href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">wychodzić
- z sieci Tora z podanego węzła</a>, ale powinniśmy móc podać tylko kraj i mieć coś,
+ z sieci Tora używając podanego węzła</a>, ale powinniśmy móc podać tylko kraj i mieć coś,
  co automatycznie za nas wybierze węzeł. Najlepszym kandydatem jest pobranie także
  katalogu Blossom i uruchomienie lokalnego klienta Blossom, który pobrałby swój katalog w
  sposób bezpieczny (poprzez Tor i sprawdzając jego podpis), przechwycałby nazwy
  hostów <tt>.country.blossom</tt>  i robił to, co trzeba.</li>
 <li>A mówiąc o danych geolokacyjnych, ktoś powinien narysować mapę Ziemi z
- zaznaczonym każdym serwerem Tora. Dodatkowe punkty, jeśli mapa będzie się
+ zaznaczonym każdym przekaźnikiem sieci Tora. Dodatkowe punkty, jeśli mapa będzie się
  aktualizować w miarę jak sieć rośnie i się zmienia. Niestety, łatwy sposób na
  dokonanie tego to wysłanie wszystkich danych do Google, w celu narysowania
  przez nich taj mapy. Jak bardzo to uderza w prywatność i czy mamy jakieś inne
@@ -86,7 +83,8 @@
  i wysyłania ich przez Tora. tsocks (Linux), dsocks (BSD),
  i freecap (Windows) zdają się być dobrymi kandydatami, jako że lepiej
  używałyby naszej nowej cechy TransPort.</li>
-<li>Mamy ogromną listę <a href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">potencjalnie
+<li>Mamy ogromną listę <a
+ href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">potencjalnie
  użytecznych programów, które współpracują z Torem</a>. Które z nich są
  przydatne w jakich sytuacjach? Proszę pomóż nam je testować i zapisuj
  swoje wyniki.</li>
@@ -102,36 +100,38 @@
 
 <ol>
 
-<li>Serwery Tora nie działają zbyt dobrze na Windows XP. Pod systemem Windows Tor
+<li>Przekaźniki sieci Tora nie działają zbyt dobrze na Windows XP. Pod systemem Windows Tor
  używa standardowej funkcji systemowej <tt>select()</tt>, która zużywa miejsce
- w niestronicowanym obszarze pamięci, <a
+ w niestronicowanym obszarze pamięci. Znaczy to, że średnich rozmiarów
+ przekaźnik sieci Tora zapełni dotępną przestrzeń, <a
  href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">będąc
  przyczyną dziwnych zachowań i padów systemu</a>. Powinniśmy raczej używać
  nakładającego IO. Jednym z rozwiązań byłoby nauczenie biblioteki <a
  href="http://www.monkey.org/~provos/libevent/">libevent</a>, jak używać nakładającego IO
  zamiast select() pod Windows, po czym zaadaptować Tora do nowego interfejsu.</li>
 
-<li>Ponieważ serwery Tora muszą przechować i podać dalej każdą komórkę,
- którą obsługują, serwery o wysokiej przepustowości używają wiele
+<li>Ponieważ przekaźniki sieci Tora muszą przechować i podać dalej każdą komórkę,
+ którą obsługują, przekaźniki o wysokiej przepustowości zużywają wiele
  megabajtów pamięci na same bufory. Potrzebujemy lepszej heurystyki do
  określenia, kiedy skurczyć/rozszerzyć bufory. Może to powinno być zaprojektowane
  podobnie jak bufory w jądrze Linuksa, gdzie jest wiele mniejszych buforów, które
  łączą się wzajemnie, zamiast używać monolitycznych buforów?</li>
 
 <li>Potrzebujemy oficjalnej, centralnej strony, która odpowiadałaby na pytania
- "Czy to jest adres serwera wyjściowego z sieci Tor?". Strona powinna dostarczyć klika
+ "Czy to jest adres przekaźnika wyjściowego z sieci Tor?". Strona powinna dostarczyć klika
  interfejsów, łącznie z interfejsem www i w stylu DNSBL. Powinna dostarczać najbardziej
  aktualne odpowiedzi, przechowując lokalną kopię katalogów. Haczyk jest w tym, że
- bycie serwerem wyjściowym to nie tylko prawda czy fałsz, więc pytanie powinno raczej
- brzmieć: "Czy to jest adres serwera wyjściowego z sieci Tor, z którego można się
+ bycie przekaźnikiem wyjściowym nie jest takie proste jak tylko prawda czy fałsz,
+ więc pytanie powinno raczej
+ brzmieć: "Czy to jest adres przekaźnika wyjściowego z sieci Tor, z którego można się
  połączyć z moim adresem IP i portem?". Interfejs DNSBL będzie pewnie otrzymywał
  setki zapytań na minutę, potrzeba więc mądrych algorytmów. Dodatkowe punkty, jeśli
  aktywnie byłoby sprawdzane każdego węzła wyjściowego, z jakiego adresu IP naprawdę
- wychodzą dane. <a href="<svnsandbox>doc/contrib/torbl-design.txt">Czytaj więcej tu</a>.</li>
+ wychodzą dane. <a href="<svnsandbox>doc/contrib/torel-design.txt">Czytaj więcej tu</a>.</li>
 
-<li>Czasami serwery Tora padają, komputery z tymi serwerami zostają odłączone od sieci
+<li>Czasami przekaźniki sieci Tora padają, komputery z tymi serwerami zostają odłączone od sieci
  lub zdarzają się inne wypadki. Część operatorów Tora wyraziła zainteresowanie zapisaniem
- się do usługi "powiadamiającej", która okresowo sprawdzałaby, czy ich serwer działa, i
+ się do usługi "powiadamiającej", która okresowo sprawdzałaby, czy ich przekaźnik działa, i
  wysyłała list przypominający, gdy serwer nie działa. Czy ktoś chce napisać kilka skryptów
  CGI, kilka stron internetowych i używać jakiegoś sposobu z Wget lub czegoś bardziej
  złożonego jak <a href="http://nagios.org/">Nagios</a> do monitorowania? Pierwsza wersja
@@ -187,10 +187,10 @@
  że przynajmniej jej część działa.</li>
 
 <li>Pomóżcie Mike'owi Perry z jego biblioteką <a
- href="http://tor.eff.org/svn/torflow/">TorFlow</a>
- (<a href="http://tor.eff.org/svn/torflow/TODO">TODO</a>):
+ href="https://www.torproject.org/svn/torflow/">TorFlow</a>
+ (<a href="https://www.torproject.org/svn/torflow/TODO">lista rzeczy do zrobienia</a>):
  jest to biblioteka napisana w Pythonie, która używa <a
- href="http://tor.eff.org/svn/torctl/doc/howto.txt">protokołu kontroli Tora</a>,
+ href="https://www.torproject.org/svn/torctl/doc/howto.txt">protokołu kontroli Tora</a>,
  by instruować Tora do budowania obwodów na wiele różnych sposobów, po czym
  mierzy wydajność i próbuje wykryć anomalie.</li>
   	 <!--
@@ -283,7 +283,7 @@
  możliwości bez zbytniej utraty anonimowości. Ta argumentacja wymaga więcej pracy i
  myślenia, ale wygląda bardzo obiecująco.</li>
 
-<li>Tor nie działa za dobrze, gdy serwery mają asymetryczne łącze
+<li>Tor nie działa za dobrze, gdy przekaźnik sieci ma asymetryczne łącze
  (np. kablówka czy DSL). Ponieważ Tor wykonuje oddzielne połączenia między
  każdym skokiem, jeśli przychodzące bajty są przysyłane dobrze, a wychodzące
  są wyrzucane, mechanizmy push-back w TCP nie transmitują tej informacji
@@ -323,12 +323,12 @@
 <li>Obwody Tora są budowane po jednym elemencie na raz, więc teoretycznie
  możemy uczynić, aby część strumieni wychodziła z drugiego węzła, część z
  trzeciego itd. To wydaje się dobre, bo ogranicza zbiór strumieni wychodzących,
- które dany serwer może zobaczyć. Ale jeśli chcemy by każdy strumień był
+ które dany przekaźnik sieci może zobaczyć. Ale jeśli chcemy by każdy strumień był
  bezpieczny, "najkrótsza" ścieżka powinna, według naszego bieżącego rozumowania,
  składać się z co najmniej 3 elementów, więc inne będą jeszcze dłuższe.
  Musimy zbadać ten kompromis wydajność/bezpieczeństwo.
  </li>
-<li>Nie jest trudno wykonać atak DoS na serwery Tora lub serwery katalogowe.
+<li>Nie jest trudno wykonać atak DoS na przekaźniki sieci Tora lub centra katalogowe.
  Zagadki dla klientów (?) (client puzzles) są właściwą odpowiedzią? Jakie są
  inne praktyczne podejścia? Dodatkowe punkty, jeśli są zgodne wstecz z
  bieżącym protokołem Tora.</li>
