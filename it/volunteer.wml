@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 11649
+# Based-On-Revision: 12228
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="Partecipa" CHARSET="UTF-8"
@@ -9,9 +9,9 @@
 <!-- PUT CONTENT AFTER THIS TAG -->
 <h2>Tre cose che puoi fare subito:</h2>
 <ol>
-<li>Puoi <a href="<page docs/tor-doc-server>">realizzare
-un server</a> per aiutare a far crescere la rete Tor.</li>
-<li>Parla coi tuoi amici! Fagli realizzare un server. Fagli aprire degli hidden
+<li>Puoi <a href="<page docs/tor-doc-relay>">realizzare
+un relay</a> per aiutare a far crescere la rete Tor.</li>
+<li>Parla coi tuoi amici! Fagli realizzare un relay. Fagli aprire degli hidden
 services. Falli parlare di Tor coi loro amici.</li>
 <li>Cerchiamo finanziamenti e sponsor. Se ne apprezzi gli obiettivi, per favore
   <a href="<page donate>">fai una donazione per sostenere
@@ -43,17 +43,13 @@ unificarne le interfacce e potrebbe essere necessario condividere del codice tra
 o scartarne uno direttamente.</li>
 </ul>
 </li>
-<li>Chi gestisce un server ci dice spesso che vorrebbe avere un certo BandwidthRate
-in certe ore del giorno e un diverso BandwidthRate in altre.
-Invece di programmare questa funzione in Tor, si potrebbe fare un piccolo
-script che dialoghi con la <a href="<page gui/index>">Tor Controller Interface</a>,
-e faccia un setconf per cambiare la banda disponibile. Potrebbe girare con
-cron, o magari attivarsi solo al momento giusto per fare
-la sua configurazione (probabilmente cos&igrave; &egrave; pi&ugrave; portabile). Qualcuno pu&ograve; scrivercelo
-cos&igrave; lo mettiamo in <a href="<svnsandbox>contrib/">contrib/</a>?
-Questa &egrave; una buona prova per il <a href="<page gui/index>">concorso per una GUI
-Tor</a>.
-<!-- We have a good script to adjust stuff now, right? -NM -->
+<li>Chi gestisce un relay spesso vuole avere un BandwidthRate
+durante parte della giornata, e un altro BandwidthRate nell'altra
+parte del giorno. Invece di programmarlo dentro Tor, sarebbe bello avere
+un piccolo script che parla tramite la <a href="<page gui/index>">Tor
+Controller Interface</a> e fa un setconf per modificare la banda disponibile.
+Ce n'&egrave; gi&agrave; uno per Unix e Mac (usa bash e cron),
+ma gli utenti Windows hanno ancora bisogno di una soluzione.
 </li>
 <li>Tor pu&ograve; <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">uscire dalla
@@ -64,7 +60,7 @@ locale che recuperi la directory in modo sicuro (via Tor e verificandone la
 firma), intercetti i <tt>.country.blossom</tt> hostname, e faccia
 la cosa giusta.</li>
 <li>A proposito di geolocalizzazione, qualcuno potrebbe disegnare un mappamondo
-indicante tutti i server Tor. Un premio se si aggiorna man mano che
+indicante tutti i relay Tor. Un premio se si aggiorna man mano che
 la rete cresce e cambia. Purtroppo la maniera pi&ugrave; semplice per farlo implica
 inviare tutti i dati a Google che disegni la mappa per te. Che
 conseguenze ha per la privacy? Ci sono altre buone soluzioni?</li>
@@ -104,7 +100,7 @@ Arabo e Farsi, per i tanti utenti Tor in aree dove vige la censura.</li>
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Programmazione e design</a></h2>
 <ol>
-<li>I server Tor non funzionano bene su Windows XP. Su
+<li>I relay Tor non funzionano bene su Windows XP. Su
 Windows, Tor usa la normale chiamata di sistema <tt>select()</tt>,
 che usa spazio nel pool non-page. Ci&ograve; significa
 che un server Tor di medie dimensioni esaurir&agrave; il non-page pool, <a
@@ -114,27 +110,27 @@ Una soluzione sarebbe far usare a <a
 href="http://www.monkey.org/~provos/libevent/">libevent</a> l'
 overlapped IO invece di select() su Windows, per poi adattare Tor
 alla nuova interfaccia libevent.</li>
-<li>Poich&eacute; i server Tor devono fare store-and-forward di ogni cella che gestiscono
-i server Tor a banda larga consumano molta memoria solo come
+<li>Poich&eacute; i relay Tor devono fare store-and-forward di ogni cella che gestiscono
+i relay Tor a banda larga consumano molta memoria solo come
 buffer. Serve migliore conoscenza di quando restringere o espandere i
 buffer. Forse lo si potrebbe modellare seguendo il design buffer nel kernel
 Linux, in cui vi sono molto buffer pi&ugrave; piccoli linkati l'un l'altro,
 invece di un buffer monolitico.</li>
 <li>Serve un sito centrale per rispondere a domande come "Questo indirizzo IP &egrave; un
-exit server Tor?". Il sito dovrebbe avere varie interfacce, compresa una interfaccia
+exit relay Tor?". Il sito dovrebbe avere varie interfacce, compresa una interfaccia
 web e una interfaccia simile a DNSBL. Pu&ograve; fornire le risposte pi&ugrave;
 aggiornate tenendo un mirror locale delle informazioni di directory
-Tor. Essere un exit server per&ograve; non &egrave; una condizione
-booleana: la domanda i realt&agrave; 6egrave; "Questo indirizzo IP &egrave; un exit
-server Tor in grado di collegarsi all'indirizzo:porta IP di destinazione?" L' interfaccia DNSBL
+Tor. Essere un exit relay per&ograve; non &egrave; una condizione
+booleana: la domanda i realt&agrave; &egrave; "Questo indirizzo IP &egrave; un exit
+relay Tor in grado di collegarsi all'indirizzo:porta IP di destinazione?" L' interfaccia DNSBL
 ricever&agrave; probabilmente centinaia di richieste al minuto, per cui occorre
 qualche algoritmo efficiente. Bonus se effettua dei test attivi su
 ciascun exit node per scoprire da quale indirrizzo IP esce realmente.
-<a href="<svnsandbox>doc/contrib/torbl-design.txt">Leggi qui per approfondire</a>.</li>
-<li>Talvolta i server Tor vanno in crash o i computer su cui sono escono dalla
+<a href="<svnsandbox>doc/contrib/torel-design.txt">Leggi qui per approfondire</a>.</li>
+<li>Talvolta i relay Tor vanno in crash o i computer su cui sono escono dalla
 rete, o capita qualche incidente. Alcuni gestori Tor si sono detti interessati
 a un servizio di notifica che verifichi periodicamente
-lo stato dei propri server Tor ed invii una email in caso di problemi.
+lo stato dei propri relay Tor ed invii una email in caso di problemi.
 C'&egrave; qualcuno che vuole scrivere qualche script cgi, delle pagine web
 e mettere in piedi un hack con wget oppure qualcosa di pi&ugrave; complesso come <a
 href="http://nagios.org/">Nagios</a> per il monitoraggio? La versione iniziale
@@ -184,10 +180,10 @@ sia stabile ed efficiente su Windows?</li>
 ma sarebbe bello avere uno script che avvii una rete Tor, la usi per
 un po' e verifichi che almeno una parte di essa funzioni.</li>
 <li>Dai una mano a Mike Perry per la sua libreria <a
-href="http://tor.eff.org/svn/torflow/">TorFlow</a>
-(<a href="http://tor.eff.org/svn/torflow/TODO">TODO</a>):
-&egrave una libreria in pythonche usa il <a
-href="http://tor.eff.org/svn/torctl/doc/howto.txt">Tor controller
+href="https://torproject.org/svn/torflow/">TorFlow</a>
+(<a href="https://torproject.org/svn/torflow/TODO">TODO</a>):
+&egrave; una libreria in pythonche usa il <a
+href="https://torproject.org/svn/torctl/doc/howto.txt">Tor controller
 protocol</a> per fare costruire a Tor dei circuiti in vari modi,
 per poi misurarne le prestazioni e rilevarne le anomalie.</li>
 <!--
@@ -276,7 +272,7 @@ href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">pos
 paper</a> di Stephen Rollyson per come scartare alcuni circuiti particolarmente lenti senza ledere
 "troppo" l'anonimato. Su questa linea di ricerca serve pi&ugrave; lavoro,
 ma pare assai promettente.</li>
-<li>Tor funziona male quando un server dispone di banda asimmetrica
+<li>Tor funziona male quando un relay dispone di banda asimmetrica
 (come via cavo o DSL). Siccome Tor usa connessioni TCP separate per
 ogni nodo, se i bye in arrivo giungono regolarmente e quelli in uscita
 vengono tutti persi, il meccanismo di push-back del TCP non
@@ -313,11 +309,11 @@ di anonbib sulla resistenza alla censura</a>.</li>
 <li>I circuiti Tor si stabiliscono un nodo alla volta, per cui potremmo
 fare uscire alcuni flussi dal secondo nodo, altri dal terzo e cos&igrave; via.
 Sembra una buona idea, dato che riduce i flussi in uscita
-che ciascun server pu&ograve; vedere. Se per&ograve; vogliamo assicurare la sicurezza di ciascun flusso,
+che ciascun relay pu&ograve; vedere. Se per&ograve; vogliamo assicurare la sicurezza di ciascun flusso,
 il percorso pi&ugrave; breve dovrebbe essere almeno di tre nodi, secondo i criteri correnti, e
 gli altri dovrebbero essere anche pi&ugrave; lunghi. Dobbiamo valutare questo compromesso tra
 sicurezza e prestazioni.</li>
-<li>Non &egrave; difficile effettuare un DoS ai Tor server o ai dirserver. I client
+<li>Non &egrave; difficile effettuare un DoS ai Tor relay o alle autorit&agrave di directory. I client
 puzzle sono la soluzione giusta? Quali altri approcci pratici esistono? Un premio
 se sono compatibili col protocollo Tor attuale.</li>
 </ol>
