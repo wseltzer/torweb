@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 10377
+# Based-On-Revision: 12184
 # Last-Translator: jan@seul.org
 
 #include "head.wmi" TITLE="FAQ sugli abusi per operatori di server"
@@ -8,7 +8,7 @@
 
 <!-- PUT CONTENT AFTER THIS TAG -->
 
-<h2>FAQ sugli abusi per gli operatori di server Tor</h2>
+<h2>FAQ sugli abusi per gli operatori di relay Tor</h2>
 <hr />
 
 <a id="WhatAboutCriminals"></a>
@@ -69,11 +69,11 @@ DDoS efficace pu&ograve; tranquillamente fare a meno di Tor. </p>
 
 <p>Per prima cosa, l'exit policy di default in Tor blocca tutto il
 traffico verso la porta 25 (SMTP). Perci&ograve; l'invio di spam via Tor non
-funziona di default. Alcuni operatori di server potrebbero permettere la
+funziona di default. Alcuni operatori di relay potrebbero permettere la
 porta 25 sul loro specifico exit node, e in quel caso quel computer
 permetter&agrave; la posta in uscita; per&ograve; costoro potrebbero pure
 realizzarsi un open mail relay a prescindere da Tor. In breve, Tor non serve a spedire spam
-perch&eacute; quasi tutti i server Tor si rifiutano di inviare posta. </p>
+perch&eacute; quasi tutti i relay Tor si rifiutano di inviare posta. </p>
 
 <p>Naturalmente l'invio di posta non &egrave; tutto. Uno spammer potrebbe usare
 Tor per collegarsi a un open HTTP proxy (e da l&igrave; a dei server SMTP); per
@@ -92,13 +92,13 @@ Tor trasporta solo connessioni TCP formate correttamente.
 <a id="ExitPolicies"></a>
 <h3><a class="anchor" href="#ExitPolicies">Come funzionano le exit policy?</a></h3>
 
-<p>Ogni server Tor ha una exit policy che stabilisce quali
-connessioni sono permesse o vietate da quel server verso l'esterno. Le exit
+<p>Ogni relay Tor ha una exit policy che stabilisce quali
+connessioni sono permesse o vietate da quel relay verso l'esterno. Le exit
 policy vengono notificate ai client attraverso la directory, in modo che i client
 evitino automaticamente di scegliere degli exit node che rifiutino il collegamento
 verso la destinazione finale. </p>
 
-<p>In questo modo ogni server pu&ograve; decidere a quali servizi, host e reti
+<p>In questo modo ogni relay pu&ograve; decidere a quali servizi, host e reti
 vuole permettere di collegarsi, in base alla possibilit&agrave; di abusi e
 alla propria situazione contingente. </p>
 
@@ -119,16 +119,16 @@ degli altri tentativi di costruire reti anonime nel passato. </p>
 per ora. </p>
 
 <a id="TypicalAbuses"></a>
-<h3><a class="anchor" href="#TypicalAbuses">Cosa posso aspettarmi se gestisco un server?</a></h3>
+<h3><a class="anchor" href="#TypicalAbuses">Cosa posso aspettarmi se gestisco un relay?</a></h3>
 
-<p>Se gestisci un server Tor che permette connessioni in uscita (come nella
+<p>Se gestisci un relay Tor che permette connessioni in uscita (come nella
 default exit policy), &egrave; probabile che alla fine qualcuno ti contatti
 segnalando un abuso. Le segnalazioni
 possono essere molto varie. Ad esempio: </p>
 <ul>
 <li>Qualcuno si collega a Hotmail per spedire una lettera di estorsione
 a un'azienda. L'FBI
-ti scrive una email molto gentile, tu spieghi che hai un server Tor e
+ti scrive una email molto gentile, tu spieghi che hai un relay Tor e
 loro dicono "oh, va bene" e ti lasciano in pace. [Port 80] </li>
 <li>Qualcuno cerca di farti chiudere collegandosi con Tor a Google
 Groups per inviare spam su Usenet, e poi scrivendo al tuo
@@ -143,15 +143,15 @@ ISP riceve una diffida DMCA . Vedi il
 la diffida senza alcun rischio. [Arbitrary ports]</li>
 </ul>
 
-<p>Potrebbe capitarti che l'IP del tuo Tor server venga bloccato
+<p>Potrebbe capitarti che l'IP del tuo Tor relay venga bloccato
 da alcuni siti o servizi internet. Potrebbe succedere a prescindere dalla tua exit
 policy, perch&eacute; per alcuni non fa differenza che Tor abbia o applichi delle
 exit policy. (Se hai degli IP liberi che non usi per altre attivit&agrave;,
-potresti riservarli al tuo server Tor.) Ad esempio, </p>
+potresti riservarli al tuo relay Tor.) Ad esempio, </p>
 
 <ul>
 <li>per colpa di pochi cretini anonimi che pasticciano con le sue pagine web,
-Wikipedia attualmente blocca diversi server Tor dalla scrittura
+Wikipedia attualmente blocca diversi relay Tor dalla scrittura
 (la lettura invece funziona). Stiamo discutendo con Wikipedia per trovare un modo
 di controllare gli abusi mantenendo l'accesso agli utenti anonimi,
 che spesso hanno notizie di prima mano su un argomento, ma non voglion rischiare di
@@ -159,10 +159,10 @@ svelare la loro identità quando le pubblicano (o non vogliono far sapere
 a un osservatore locale che stanno usando Wikipedia). Anche per Slashdot la situazione
 &egrave; simile.</li>
 
-<li>anche SORBS ha messo alcuni IP di Tor server nella sua blacklist
-email. Lo fanno perch&eacute; rilevano se il tuo server si
+<li>anche SORBS ha messo alcuni IP di Tor relay nella sua blacklist
+email. Lo fanno perch&eacute; rilevano se il tuo relay si
 collega a certe reti IRC e ne deducono che
-il tuo server pu&ograve; inviare spam. Abbiamo tentato di lavorare con
+il tuo relay pu&ograve; inviare spam. Abbiamo tentato di lavorare con
 loro per mostrargli che non tutto il software funziona cos&igrave;,
 ma abbiamo dovuto rinunciare. Ti raccomandiamo di evitarli e <a
 href="http://paulgraham.com/spamhausblacklist.html">di dire ai tuoi amici
@@ -280,21 +280,30 @@ uno maleducato). </p>
 servizi che aggregano numerosi utenti dietro pochi indirizzi IP. Tor non
 &egrave; poi cos&igrave; diverso da AOL, sotto questo aspetto.</p>
 
-<p>Infine, ricorda che i server Tor hanno <a
-href="#ExitPolicies">exit policy individuali</a>. Molti server Tor non
+<p>Infine, ricorda che i relay Tor hanno <a
+href="#ExitPolicies">exit policy individuali</a>. Molti relay Tor non
 permettono neppure alcuna connessione in uscita. Molti di quelli che permettono alcune
 connessioni in uscita potrebbero gi&agrave; impedire di collegarsi al
 tuo servizio. Se bandisci dei nodi, esaminane le
 exit policy e blocca solo quelli che consentono di collegarsi a te;
 tieni presente che le exit policy possono cambiare (come pure la lista dei nodi
-della rete Tor). </p>
+della rete Tor).</p>
 
 <p>Se vuoi davvero farlo, abbiamo uno
 <a href="<svnsandbox>contrib/exitlist">script Python per il parsing della Tor
-directory</a>.(Nota che questo scriptno fornisce una lista perfetta
-di indirizzi IP che potrebbero collegarsi usando Tor, dato che alcuni server Tor
-potrebbero uscire con indirizzi differenti da quelli pubblicati.)
+directory</a>. Nota che questo script non fornisce una lista perfetta
+di indirizzi IP che potrebbero collegarsi usando Tor, dato che alcuni relay Tor
+potrebbero uscire con indirizzi differenti da quelli pubblicati.
+Per un approccio pi&ugrave; preciso (che forse ha una interfaccia pi&ugrave; semplice
+per te), considera il <a href="http://exitlist.torproject.org/">servizio TorDNSEL
+</a>.
+</p>
 
+<p>
+(Alcuni amministratori di sistema bloccano dei range di indirizzi IP per politica
+ufficiale o in seguito a determinati abusi, ma alcuni hanno anche chiesto
+di mettere in whitelist gli exit relay Tor perch&eacute; vogliono consentire l'accesso ai loro
+sistemi con Tor. Questi script funzionano anche per il whitelisting.)
 </p>
 
 <a id="TracingUsers"></a>
