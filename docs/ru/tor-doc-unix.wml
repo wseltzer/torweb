@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 11815
+# Based-On-Revision: 12150
 # Last-Translator: ygrekheretix/gmail/com
 
 #include "head.wmi" TITLE="Установка Tor на Linux/BSD/Unix" CHARSET="UTF-8"
@@ -15,7 +15,7 @@
 <b>Внимание: это инструкции по установке клиента Tor.
 Если вы хотите передавать серверный трафик чтобы помочь
 увеличиться сети Tor (пожалуйста делайте это), прочитайте инструкции по
-<a href="<page docs/tor-doc-server>">настройке сервера</a>.</b>
+<a href="<page docs/tor-doc-relay>">настройке сервера</a>.</b>
 </p>
 
 <hr />
@@ -76,6 +76,11 @@ Red Hat, Gentoo, *BSD, etc.
 <tt>jarfile jarfile</tt><br>
 и (на некоторых системах)<br>
 <tt>debug 1  # show each GET/POST/CONNECT request</tt><br>
+</p>
+
+<p>В зависомости от того какие у вас по умолчанию настройки Privoxy,
+вам может понадобиться отключить <tt>enable-remote-toggle</tt>,
+<tt>enable-remote-http-toggle</tt>, и <tt>enable-edit-actions</tt>.
 </p>
 
 <p>Перезапустите Privoxy чтобы настройки вступили в силу.</p>
@@ -162,7 +167,8 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">FAQ</a
 
 <hr />
 <a id="server"></a>
-<h2><a class="anchor" href="#server">Шаг пятый: Настройте сервер</a></h2>
+<a id="relay"></a>
+<h2><a class="anchor" href="#relay">Шаг пятый: Настройте сервер</a></h2>
 <br />
 
 <p>Сеть Tor основывается на добровольцах делящихся своим трафиком. Чем больше людей
@@ -172,19 +178,19 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">FAQ</a
 в использовании, включая ограничение трафика, ограничения выхода(exit policies),
 и поддержку динамических IP.</p>
 
-<p>Размещение серверов в разных уголках Интернета это именно то, что
-обеспечивает безопасность пользователей Tor. <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">Вы также получаете
+<p>Безопасноть пользователей Tor в первую очередь обеспечивается 
+именно размещением самих серверов Tor в разных уголках Интернета. 
+<a href="https://wiki.torproject.org/TheOnionRouter/TorFAQ#RelayAnonymity">Вы также получаете
 более сильную анонимность сами</a>,
-так как третьи стороны не могут знать кем открыты соединения - вашим локальным компьютером
-или другими узлами сети Tor.</p>
+так как третьи стороны не могут знать кто инициировал соединения - ваш локальный компьютер
+или другие узлы сети Tor.</p>
 
-<p>Смотрите подробное описание <a href="<page docs/tor-doc-server>">Настройки сервера</a>.</p>
+<p>Смотрите подробное описание <a href="<page docs/tor-doc-relay>">как настроить сервер</a>.</p>
 
 <hr />
 
 <p>Если у вас есть пожелания по улучшению этого документа, пожалуйста <a
-href="<page contact>">высылайте их нам</a>. Спасибо!</p>
+href="<page contact>">присылайте их нам</a>. Спасибо!</p>
 
   </div><!-- #main -->
 </div>
