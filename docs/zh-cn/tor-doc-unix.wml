@@ -1,5 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 11815
+# Based-On-Revision: 12150
+# Translation-Priority: 3-low
 # Last-Translator: peihanru AT gmail.com
 
 #include "head.wmi" TITLE="Linux/BSD/Unix 安装指导" CHARSET="UTF-8"
@@ -15,7 +16,7 @@
 <b>
 请注意此处提供的是运行 Tor 客户端的安装指导。
 如果你想要贡献流量帮助网络增长（请这么做），
-请阅读<a href="<page docs/tor-doc-server>">配置服务器</a>指南。
+请阅读<a href="<page docs/tor-doc-relay>">配置中继</a>指导。
 </b>
 </p>
 
@@ -78,6 +79,11 @@ Privoxy 保留了一个日志文件记录所有通过它的东西。
 <tt>jarfile jarfile</tt><br>
 和（在某些系统上）<br>
 <tt>debug 1  # show each GET/POST/CONNECT request</tt><br>
+</p>
+
+<p>取决于你所使用的是哪一个 Privoxy 默认配置文件，你也许还需要取消
+<tt>enable-remote-toggle</tt>、<tt>enable-remote-http-toggle</tt> 和
+<tt>enable-edit-actions</tt>。
 </p>
 
 <p>为了使修改生效，你需要重启 Privoxy。</p>
@@ -162,25 +168,25 @@ HOWTO</a>。
 </p>
 
 <hr />
-<a id="server"></a>
-<h2><a class="anchor" href="#server">第五步：配置服务器</a></h2>
+<a id="relay"></a>
+<h2><a class="anchor" href="#relay">第五步：配置中继</a></h2>
 <br />
 
 <p>
-Tor 网络依靠志愿者们贡献带宽运行。运行服务器的人越多，Tor 网络的速度就越快。
-如果你的网络连接速度达到至少每秒 20KB，请运行一台服务器以帮助 Tor。
-我们有许多特性使得 Tor 服务器的运行简单而方便，包括带宽的速率限制，
+Tor 网络依靠志愿者们贡献带宽运行。运行中继的人越多，Tor 网络的速度就越快。
+如果你的网络连接速度达到至少每秒 20KB，请运行一台中继以帮助 Tor。
+我们有许多特性使得 Tor 中继的运行简单而方便，包括带宽的速率限制，
 定制出口策略以避免滥用，以及对于动态 IP 地址的支持。
 </p>
 
 <p>
-在互联网上的许多不同地方运行服务器保护了 Tor 用户的安全。
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">你自身的匿名也能得到更好的保护</a>，
-因为站点不知道连接究竟来自你的电脑还是为他人传递。
+在互联网上的许多不同地方运行中继保护了 Tor 用户的安全。<a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">你自身的
+匿名也能得到更好的保护</a>，因为站点不知道连接究竟来自你的电脑还是为他人传递。
 </p>
 
 <p>
-阅读更详细的<a href="<page docs/tor-doc-server>">配置服务器</a>指导。
+阅读更详细的<a href="<page docs/tor-doc-relay>">配置中继</a>指导。
 </p>
 
 <hr />
