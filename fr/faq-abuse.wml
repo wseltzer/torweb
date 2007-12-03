@@ -12,9 +12,9 @@
 <hr />
 
 <a id="WhatAboutCriminals"></a>
-<h3><a class="anchor" href="#WhatAboutCriminals">Tor permet-il aux criminels d'accomplir leurs forfaits ?</a></h3>
+<h3><a class="anchor" href="#WhatAboutCriminals">Tor permet-il aux criminels d'accomplir leurs forfaits ?</a></h3>
 
-<p>Les criminels peuvent déjà accomplir leurs mauvaises actions. Déterminés à briser les lois, ils disposent déjà de nombreuses options qui peuvent leur procurer un <em>meilleur</em> anonymat que ne le peut Tor. Ils peuvent voler des téléphones portables, les utiliser, puis les jeter dans un caniveau ; ils peuvent pirater des ordinateurs en Corée ou au Brésil et les utiliser pour lancer leurs attaques.Ils peuvent utiliser des logiciels espions, des virus, et d'autres techniques, pour prendre le contrôle, au sens propre, de millions de machines Windows dans le monde.</p>
+<p>Les criminels peuvent déjà accomplir leurs mauvaises actions. Déterminés à briser les lois, ils disposent déjà de nombreuses options qui peuvent leur procurer un <em>meilleur</em> anonymat que ne le peut Tor. Ils peuvent voler des téléphones portables, les utiliser, puis les jeter dans un caniveau ; ils peuvent pirater des ordinateurs en Corée ou au Brésil et les utiliser pour lancer leurs attaques.Ils peuvent utiliser des logiciels espions, des virus, et d'autres techniques, pour prendre le contrôle, au sens propre, de millions de machines Windows dans le monde.</p>
 
 <p>Tor a pour vocation d'apporter la sécurité des communications Internet à des gens ordinaires respectueux des lois. Pour le moment, seuls les criminels bénéficient de confidentialité, et nous devons corriger cela. </p>
 
@@ -29,40 +29,40 @@ Tor, won't civilization collapse?</a></h3>
 -->
 
 <a id="DDoS"></a>
-<h3><a class="anchor" href="#DDoS">Qu'en est-il des attaques par déni de service distribué ?</a></h3>
+<h3><a class="anchor" href="#DDoS">Qu'en est-il des attaques par déni de service distribué ?</a></h3>
 
 <p>Les attaques par déni de service distribué (ou déni de service réparti, en anglais : DDoS - Distributed Denial of Service) supposent, globalement, de disposer d'un groupe de milliers d'ordinateurs lançant des requêtes vers une machine victime de façon simultanée. Le but étant de saturer la bande passante de la machine visée, ces ordinateurs envoient généralement des paquets UDP, car ceux-ci ne nécessitent ni procédures d'authentification, ni coordination.</p>
 
 <p>Mais, Tor ne transportant que des flux TCP correctement configurés, et non des paquets IP, on ne peut pas utiliser Tor pour envoyer des paquets UDP. De même, Tor n'autorise pas les attaques par amplification de bande passante : vous devez envoyer un octet pour chaque octet que Tor enverra vers la destination que vous avez choisie. Donc, d'une façon générale, des attaquants qui disposeraient d'une bande passante suffisante pour une attaque DDoS efficace peuvent le faire tout aussi bien sans l'aide de Tor.</p>
 
 <a id="WhatAboutSpammers"></a>
-<h3><a class="anchor" href="#WhatAboutSpammers">Et les spammeurs ?</a></h3>
+<h3><a class="anchor" href="#WhatAboutSpammers">Et les spammeurs ?</a></h3>
 
 <p>Premier point, les règles par défaut pour les nœuds de sortie de Tor rejettent tout trafic sortant du port 25 (SMTP) : envoyer du spam via Tor, par défaut, ne va donc pas fonctionner,. Il est possible que certains opérateurs de relais ouvrent le port 25 sur leur serveur, ce qui autoriserait l'envoi de mails. Mais ces opérateurs peuvent tout aussi bien installer un serveur relais de mail ouvert, complètement indépendant de Tor. En résumé, Tor n'est pas très utile au spammeur, parce que presque tous les serveurs Tor refusent d'acheminer les mails sortants.
 </p>
 
-<p>Bien sûr, il y a plus que l'acheminement des mails. Les spammeurs peuvent utiliser Tor pour se connecter à des proxys HTTP ouverts (et de là, à des serveurs SMTP) ; pour se connecter à de mauvais scripts CGI envoyant des mails, et pour contrôler leur robots - et ainsi, communiquer, de façon déguisée, avec des armées de machines compromises qui enverront le spam.
+<p>Bien sûr, il y a plus que l'acheminement des mails. Les spammeurs peuvent utiliser Tor pour se connecter à des proxys HTTP ouverts (et de là, à des serveurs SMTP) ; pour se connecter à de mauvais scripts CGI envoyant des mails, et pour contrôler leur robots - et ainsi, communiquer, de façon déguisée, avec des armées de machines compromises qui enverront le spam.
 </p>
 
 <p>C'est désolant, mais il faut noter que les spammeurs font déjà ceci très bien, sans Tor. Surtout, souvenez-vous que nombre de leurs méthodes d'attaque les plus subtiles (comme l'envoi de paquets UDP contrefaits) ne peuvent pas être utilisées sur Tor, parce qu'il ne transporte que des paquets TCP correctement formés.
 </p>
 
 <a id="ExitPolicies"></a>
-<h3><a class="anchor" href="#ExitPolicies">Quelle est la stratégie pour les relais de sortie de Tor ?</a></h3>
+<h3><a class="anchor" href="#ExitPolicies">Quelle est la stratégie pour les relais de sortie de Tor ?</a></h3>
 
 <p>Chaque relais qui choisit d'être nœud de sortie choisit sa propre stratégie définissant quelles sont les connexions sortantes autorisées ou refusées par lui. Les stratégies de sortie sont répercutées à l'utilisateur client par le biais du répertoire. De cette façon, les clients éviteront par exemple de choisir des nœuds de sortie qui refuseraient la sortie vers la destination qu'ils auraient choisie.</p>
 
 <p>Ainsi, chaque relais peut décider des connexions des services, hôtes, et réseaux qu'il autorise, sur la base des utilisations abusives et de sa situation particulière.</p>
 
 <a id="HowMuchAbuse"></a>
-<h3><a class="anchor" href="#HowMuchAbuse">Y a-t-il beaucoup d'utilisations abusives de Tor ?</a></h3>
+<h3><a class="anchor" href="#HowMuchAbuse">Y a-t-il beaucoup d'utilisations abusives de Tor ?</a></h3>
 
 <p>Pas beaucoup, tout bien considéré. Nous avons mis en place et maintenu le réseau depuis octobre 2003, et il n'y a eu qu'une poignée de plaintes. Bien entendu, comme tous les réseaux orientés vers la confidentialité des communications sur Internet, nous attirons notre lot de malades. Les stratégies de sortie pratiquées par Tor aident à bien différencier le rôle de "voulant contribuer au réseau par des ressources" de celui de "voulant avoir à gérer les plaintes pour utilisations abusives"; nous espérons ainsi faire de Tor un réseau plus durable que les essais précédents de réseaux anonymes.</p>
 
 <p>Étant donné que Tor a également <a href="<page overview>">un nombre important d'utilisateurs légitimes</a>, nous pensons réussir plutôt bien à maintenir l'équilibre pour l'instant.</p>
 
 <a id="TypicalAbuses"></a>
-<h3><a class="anchor" href="#TypicalAbuses">Si je mets en place un relais, à quoi dois-je m'attendre ?</a></h3>
+<h3><a class="anchor" href="#TypicalAbuses">Si je mets en place un relais, à quoi dois-je m'attendre ?</a></h3>
 
 <p>Si le relais Tor que vous mettez en place autorise les sorties de connexions (et ce, avec les stratégies de sortie par défaut), il est probable de dire que vous finirez par entendre parler de quelqu'un. Les plaintes pour utilisation abusive présentent des formes variées. Par exemple :</p>
 <ul>
@@ -134,7 +134,7 @@ TorDNSEL</a>.
 </p>
 
 <a id="TracingUsers"></a>
-<h3><a class="anchor" href="#TracingUsers">J'ai une raison impérieuse de retrouver la trace d'un utilisateur de Tor. Pouvez-vous m'y aider ?</a></h3>
+<h3><a class="anchor" href="#TracingUsers">J'ai une raison impérieuse de retrouver la trace d'un utilisateur de Tor. Pouvez-vous m'y aider ?</a></h3>
 
 <p>Les développeurs de Tor ne peuvent rien pour retrouver la trace des utilisateurs de Tor. Les mêmes protections qui empêchent les méchants de violer l'anonymat apporté par Tor nous empêchent, nous aussi, de voir ce qui se passe.
 </p>

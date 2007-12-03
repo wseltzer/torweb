@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 11815
+# Based-On-Revision: 12150
 # Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Guide d'installation pour Linux/BSD/Unix"
@@ -15,7 +15,7 @@
 <b>Ces instructions ne s'appliquent qu'à l'installation d'un client Tor.
 Si vous voulez aider à la croissance du réseau Tor en relayant du trafic pour les autres
 (ce qui est une très bonne idée), lisez le guide sur la <a 
-href="<page docs/tor-doc-server>">configuration d'un serveur</a>.</b>
+href="<page docs/tor-doc-relay>">configuration d'un relais</a>.</b>
 </p>
 
 <hr />
@@ -76,6 +76,11 @@ et la ligne<br>
 <tt>jarfile jarfile</tt><br>
 enfin (sur certains systèmes) la ligne <br>
 <tt>debug 1  # affiche chaque requète GET/POST/CONNECT</tt><br>
+</p>
+
+<p>Suivant la configuration par défaut que vous avez pour Privoxy,
+vous pourrez avoir à couper <tt>enable-remote-toggle</tt>,
+<tt>enable-remote-http-toggle</tt>, et <tt>enable-edit-actions</tt>.
 </p>
 
 <p>Vous devrez redémarrer Privoxy pour que les modifications prennent effet.</p>
@@ -162,26 +167,27 @@ la FAQ</a>.</p>
 
 <hr />
 <a id="server"></a>
-<h2><a class="anchor" href="#server">Étape 5 : Configurer Tor en tant que serveur</a></h2>
+<a id="relay"></a>
+<h2><a class="anchor" href="#relay">Étape 5 : Configurer Tor en tant que relais</a></h2>
 <br />
 
 <p>Le réseau Tor se base sur des volontaires qui donnent de leur bande passante.
-Plus il y a de monde qui fait tourner de serveurs, plus le réseau Tor sera rapide. Si vous
+Plus il y a de monde qui fait tourner de relais, plus le réseau Tor sera rapide. Si vous
 disposez d'au moins 20 Ko/s en upload et en download, vous pouvez aider Tor en configurant
-Tor pour être un serveur lui aussi. Nous avons beaucoup de fonctionnalités qui rendent les
-serveurs Tor simples et pratiques, comme la gestion des adresses IP dynamiques, ou la
+Tor pour être un relais lui aussi. Nous avons beaucoup de fonctionnalités qui rendent les
+relais Tor simples et pratiques, comme la gestion des adresses IP dynamiques, ou la
 limitation de la bande passante maximale et les politiques de sortie afin que vous
 puissiez limiter votre vulnérabilité aux possibles plaintes suite à des abus.</p>
 
 <p>Tor est un système dont la sécurité dépend de la diversité des lieux géographiques où tournent
-les serveurs.
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">Faire
-tourner un serveur renforce votre anonymat</a>, car les sites distants ne peuvent pas
+les relais.
+<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">Faire
+tourner un relais renforce votre anonymat</a>, car les sites distants ne peuvent pas
 savoir si les connexions proviennent de votre ordinateur, ou si vous les avez juste
 relayé depuis un autre endroit.</p>
 
-<p>Pour en savoir plus, voir le guide de <a href="<page docs/tor-doc-server>">configuration
-d'un serveur</a>.</p>
+<p>Pour en savoir plus, voir le guide de <a href="<page docs/tor-doc-relay>">configuration
+d'un relais</a>.</p>
 
 <hr />
 
