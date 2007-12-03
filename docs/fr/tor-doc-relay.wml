@@ -1,26 +1,26 @@
 ## translation metadata
-# Based-On-Revision: 11729
+# Based-On-Revision: 12150
 # Last-Translator: fredzupy@gmail.com
 
-#include "head.wmi" CHARSET="UTF-8" TITLE="Instruction de configuration d'un serveur"
+#include "head.wmi" CHARSET="UTF-8" TITLE="Instruction de configuration d'un relais"
 
 <div class="center">
 
 <div class="main-column">
 
-<h1>Configurer un <a href="<page index>">serveur Tor</a></h1>
+<h1>Configurer un <a href="<page index>">relais Tor</a></h1>
 <br />
 
 <p>
 Le réseau Tor repose sur des contributeurs qui offrent de leur bande passante. Plus
-il y'aura de gens à faire tourner un serveur, plus le réseau sera rapide. Si vous avez
+il y'aura de gens à faire tourner un relais, plus le réseau sera rapide. Si vous avez
 au moins 20 kilo octets/s dans chaque sens, aidez Tor en le configurant 
-comme serveur. Nous avons plusieurs options qui rendent Tor facile 
+comme relais. Nous avons plusieurs options qui rendent Tor facile 
 et agréable, par exemple la limitation de bande passante consommée, les contrôles sur ports de sortie 
 pour que vous puissiez limiter votre expositions aux plaintes, et le support des 
 adresses dynamiques.</p>
 
-<p>Avoir des serveurs dans plein de lieux différents sur Internet c'est
+<p>Avoir des relais dans plein de lieux différents sur Internet c'est
 ce qui sécurise les utilisateurs. <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">Vous
 auriez également d'avantage d'anonymat</a>,
@@ -28,7 +28,7 @@ puisque les sites distants ne pourraient pas savoir si une connexion vient de vo
 ordinateur ou si elle est relayée d'un autre.</p>
 
 
-<p>Paramétrer un serveur Tor est facile et commode :
+<p>Paramétrer un relais Tor est facile et commode :
 <ul>
 <li>Tor a des fonctions intégrées pour <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">la limitation
@@ -38,34 +38,34 @@ mais souhaitez limiter le nombre d'octets échangés par jour
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
 </a>.
 </li>
-<li>Chaque serveur Tor a <a
+<li>Chaque relais Tor a <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">une politique 
 de sortie</a> qui spécifie quelles sortes de trafic sortant sont autorisées
-ou refusées depuis ce serveur. Si vous êtes géné à l'idée de laisser des gens
+ou refusées depuis ce relais. Si vous êtes géné à l'idée de laisser des gens
 sortir par votre connexion, vous pouvez paramétrer Tor pour qu'il ne se connecte 
-qu'a d'autres serveurs Tor.
+qu'à d'autres relais Tor.
 </li>
-<li>Ce n'est pas grave que le serveur soit coupé de temps en temps. Les annuaires
-le note rapidement et stoppent la propagation du serveur. Assurez vous simplement 
+<li>Ce n'est pas grave que le relais soit coupé de temps en temps. Les annuaires
+le note rapidement et stoppent la propagation du relais. Assurez vous simplement 
 que ça n'arrive pas trop souvent, puisque les connexions en cours dans le 
-serveur seront coupées.
+relais seront coupées.
 </li>
-<li>Nous pouvons prendre en compte les serveurs avec une adresse IP dynamique &mdash; veillez
+<li>Nous pouvons prendre en compte les relais avec une adresse IP dynamique &mdash; veillez
 simplement à laisser l'option de configuration « Address » à vide, et Tor essayera de la deviner.
 </li>
-<li>Si votre serveur est derrière un NAT et qu'il ne connait pas son adresse IP
+<li>Si votre relais est derrière un NAT et qu'il ne connait pas son adresse IP
 publique (par exemple si l'IP est 192.168.x.y), vous aurez à paramétrer une 
 translation de port. La translation de port est dépendante du système mais cette <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">entrée 
 de la FAQ</a> offre quelques exemple sur comment le faire.
 </li>
-<li>Votre serveur va de manière passive estimer et propager sa capacité récente 
-en terme de bande passante, ainsi les serveurs à fort débit attireront davantage d'utilisateurs que
-ceux en ayant un faible. Bien qu'avoir un serveur à petit débit soit tout de même utile.
+<li>Votre relais va de manière passive estimer et propager sa capacité récente 
+en terme de bande passante, ainsi les relais à fort débit attireront davantage d'utilisateurs que
+ceux en ayant un faible. Bien qu'avoir un relais à petit débit soit tout de même utile.
 </li>
 </ul>
 
-<p>Vous pouvez faire tourner un serveur Tor sur 
+<p>Vous pouvez faire tourner un relais Tor sur 
 pratiquement n'importe quel système, mais voyez <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerOS">cette
 entrée de la FAQ</a> pour vous documenter sur ceux qui fontionnent le mieux et les différents problèmes
@@ -93,7 +93,7 @@ quelques temps pour savoir si ça fonctionne réellement.</p>
 
 <hr />
 <a id="setup"></a>
-<h2><a class="anchor" href="#setup">Étape une : le paramétrer comme serveur</a></h2>
+<h2><a class="anchor" href="#setup">Étape une : le paramétrer comme relais</a></h2>
 <br />
 
 <p>
@@ -112,20 +112,20 @@ href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#torrc">cette entrée
 de la FAQ</a> pour l'aide.)
 Assurez vous de définir au moins les options Nickname et ORPort. Créez un DataDirectory
 si nécessaire, et prenez soin de lui attribuer les droits de l'utilisateur qui fera tourner 
-Tor. <em>Si vous souhaitez faire tourner plus d'un serveur, c'est possible, mais
+Tor. <em>Si vous souhaitez faire tourner plus d'un relais, c'est possible, mais
 prenez soin de positionner l'option <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleServers">
-MyFamily</a> sur l'ensemble de vos fichiers de configurations serveurs.</em>
+MyFamily</a> sur l'ensemble de vos fichiers de configurations relais.</em>
 </p>
 
 <p>
 4. Si vous utilisez un pare-feu, ouvrez le port tel que les 
 connections entrantes puissent atteindre le port que vous avez configuré (ORPort, et 
 DirPort si vous l'avez activé). Assurez vous qu'il autorise toutes les connections sortantes 
-pour que votre serveur puisse atteindre les autres serveurs Tor.
+pour que votre relais puisse atteindre les autres relais Tor.
 </p>
 
 <p>
-5. Relancer votre serveur. S'il <a
+5. Relancer votre relais. S'il <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">trace</a>
 n'importe quel dysfonctionnement, faites nous en part.
 </p>
@@ -143,7 +143,7 @@ où les versions de développement sont annoncées.
 7. Jetez un œil sur le manuel.
 Le <a href="<page tor-manual>">manuel</a> pour la
 dernière version stable contient une liste de toutes les options de configuration possible pour,
-à la fois, les clients et les serveurs.
+à la fois, les clients et les relais.
 Si vous utilisez la version de développement de Tor, le manuel est disponible
 <a href="<page tor-manual-dev>">ici</a>.
 </p>
@@ -153,20 +153,20 @@ Si vous utilisez la version de développement de Tor, le manuel est disponible
 <h2><a class="anchor" href="#check">Étape deux : assurez vous que ça fonctionne</a></h2>
 <br />
 
-<p>Dès que votre serveur va tenter de se connecter au réseau, il va 
+<p>Dès que votre relais va tenter de se connecter au réseau, il va 
 essayer de déterminer si le port que vous avez configuré est atteignable de
 l'extérieur. Ceci peut prendre jusqu'à 20 minutes. Jetez un œil sur les
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">traces
-</a> comme l'
+</a> du genre
 <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
-Si vous ne voyez pas ce message, ça signifie que votre serveur n'est pas atteignable
+Si vous ne voyez pas ce message, ça signifie que votre relais n'est pas atteignable
 de l'extérieur &mdash; vous devriez revérifier vos pare-feux, vérifier qu'il
 teste l'adresse IP et le port que vous penser qu'il devrait tester, etc.
 </p>
 
-<p>Quand votre serveur est joignable, il envoie un « descripteur 
-de serveur » aux annuaires. Ceci permettra aux clients de connaitre
-quelle adresse, ports, clé, etc votre serveur utilise. Vous pouvez <a
+<p>Quand votre relais est joignable, il envoie un « descripteur 
+de relais » aux annuaires. Ceci permettra aux clients de connaitre
+quelle adresse, ports, clé, etc votre relais utilise. Vous pouvez <a
 href="http://moria.seul.org:9032/tor/status/authority">charger l'un des états 
 du réseau</a> et
 voir si vous trouvez dedans le nickname que vous avez configuré, pour être certain qu'il
@@ -185,11 +185,11 @@ Nous recommandons tout aussi bien les étapes suivantes :
 <p>
 8. Lisez
 <a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">ce document</a>
-pour avoir des idées sur comment accroitre la sécurité de votre serveur.
+pour avoir des idées sur comment accroitre la sécurité de votre relais.
 </p>
 
 <p>
-9. Décidez quelle politique de sortie vous souhaitez. Par défaut, votre serveur autorise
+9. Décidez quelle politique de sortie vous souhaitez. Par défaut, votre relais autorise
 l'accès à plusieurs services populaires, mais en restreint certains (comme le port 25)
 en raison des abus potentiels. Vous pouvez préférer une politique de sortie qui soit
 plus ou moins restrictive ; éditez votre fichier torrc de manière appropriée.
@@ -213,12 +213,12 @@ la limitation de débit</a> pour plus de détails.
 </p>
 
 <p>
-11. Sauvegardez la clé privée de votre serveur Tor (stockée dans "keys/secret_id_key"
-de votre DataDirectory). C'est l'« identité » de votre serveur, et
+11. Sauvegardez la clé privée de votre relais Tor (stockée dans "keys/secret_id_key"
+de votre DataDirectory). C'est l'« identité » de votre relais, et
 prenez soin de la garder en sécurité pour que personne ne puisse lire le trafic qui passe
 au travers de votre nœud. C'est un fichier critique à conserver si vous compter <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">déplacer
-ou restorer votre serveur Tor</a> si quelque chose se passe mal.
+ou restorer votre relais Tor</a> si quelque chose se passe mal.
 </p>
 
 <p>
@@ -232,32 +232,32 @@ ce qui se passe.
 13. Si votre ordinateur ne fait pas tourner un serveur web, envisagez de 
 changer l'option ORPort à 443 et votre DirPort à 80. Un certain nombre d'utilisateur
  Tor sont cloitrés derrière des pare-feux qui ne leur permettent que d'aller sur le
-web, et ce changement leur permettra d'atteindre votre serveur Tor. Les serveurs
+web, et ce changement leur permettra d'atteindre votre relais Tor. Les relais
 Win32 peuvent simplement changer leurs options ORPort et DirPort directement
-dans leur configuration torrc et relancer Tor. Les serveurs OS X ou Unix ne peuvent pas attacher
+dans leur configuration torrc et relancer Tor. Les relais OS X ou Unix ne peuvent pas attacher
 directement ces ports (puisqu'ils doivent être lancé en root), alors ils doivent
 paramétrer une sorte de <a
 href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
-translation de port</a> pour que les connections puissent atteindre leur serveur Tor. Si vos ports
+translation de port</a> pour que les connections puissent atteindre leur relais Tor. Si vos ports
 80 et 443 sont déjà utilisés mais que vous souhaitez quand même aider, d'autres sont interessant comme
 les ports 22, 110, et 143.
 </p>
 
 <p>
-14. Si votre serveur Tor apporte d'autres services sur la même adresse IP
+14. Si votre relais Tor apporte d'autres services sur la même adresse IP
 &mdash; comme par exemple un site web &mdash; assurez vous que les connexions 
 au serveur web sont autorisées à partir de l'hôte local également. Vous devez faire ça
-parceque les clients Tor détecteront que le serveur Tor est le <a
+parceque les clients Tor détecteront que le relais Tor est le <a
 href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">le chemin
 le plus sûr pour atteindre le serveur web</a>, et construira toujours un chemin qui finira 
-par votre serveur. Si vous ne souhaitez pas autoriser les connexions, vous devrez 
+par votre relais. Si vous ne souhaitez pas autoriser les connexions, vous devrez 
 explicitement les rejeter dans votre politique de sortie.
 </p>
 
 <p>
-15. (Unix uniquement). Créer un utilisateur séparé pour faire tourner le serveur. Si vous
+15. (Unix uniquement). Créer un utilisateur séparé pour faire tourner le relais. Si vous
 installez le paquet OS X ou deb ou rpm, ceci est déjà 
-fait. Sinon, vous devez le faire à la main. (Le serveur Tor ne nécessite pas d'être
+fait. Sinon, vous devez le faire à la main. (Le relais Tor ne nécessite pas d'être
 lancé sous root, c'est une bonne pratique de ne pas le faire. Le lancer
 sous l'utilisateur 'tor' évite les problèmes avec identd et d'autres services qui
 détectent le nom d'utilisateur. Si vous êtes dans le genre paranoïaque, sentez vous libre de <a
