@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 12030
+# Based-On-Revision: 12228
 # Last-Translator: ruben at ugr es
 
 #include "head.wmi" TITLE="Volunteer" CHARSET="UTF-8"
@@ -9,9 +9,9 @@
 <!-- PUT CONTENT AFTER THIS TAG -->
 <h2>Tres cosas que todo el mundo puede hacer ahora:</h2>
 <ol>
-<li>Por favor considere <a href="<page docs/tor-doc-server>">ejecutar
-un servidor</a> para ayudar a crecer a la red Tor.</li>
-<li>¡Dígaselo a sus amigos! Consiga que ejecuten servidores. Consiga que ejecuten 
+<li>Por favor considere <a href="<page docs/tor-doc-relay>">ejecutar
+un repetidor</a> para ayudar a crecer a la red Tor.</li>
+<li>¡Dígaselo a sus amigos! Consiga que ejecuten repetidores. Consiga que ejecuten 
 servicios ocultos. Consiga que se lo digan a sus amigos.</li>
 <li>Estamos buscando financiación y esponsors. Si le gustan los fines de Tor,
 por favor <a href="<page donate>">tomese un momento para donar para apoyar 
@@ -43,7 +43,7 @@ unificar sus interfaces, y podria suponer compartir código entre ellos o
 descartar uno enteramente.</li>
 </ul>
 </li>
-<li>La gente que ejecuta servidores nos dice que quieren tener un BandwidthRate
+<li>La gente que ejecuta repetidores nos dice que quieren tener un BandwidthRate
 durante una parte del día, y un BandwidthRate diferente en otras partes 
 del día. Mejor que codificar esto dentro de Tor, deberíamos tener un pequeño
 script que hable via el <a href="<page gui/index>">Interfaz de Control de Tor</a>,
@@ -60,7 +60,7 @@ Blossom local que obtenga este directorio de forma segura (via Tor y comprobando
 la firma), que intercepte hostnames <tt>.country.blossom</tt>, y que haga
 lo correcto.</li>
 <li>A propósito de datos de geolocalización, alguien debería dibujar un
-mapa de la tierra con una marca para cada servidor Tor. Bonus si se 
+mapa de la tierra con una marca para cada repetidor Tor. Bonus si se 
 actualiza conforme la red crece y cambia. Desafortunadamente, las formas
 fáciles de hacer esto es enviar todos los datos a Google y hacer que te
 dibuje el mapa. ¿Cuánto impacto tiene esto en la privacidad, y tenemos 
@@ -88,7 +88,9 @@ lista de programas</a> que pueden ser configurados para usar Tor.</li>
 y enviarlas a través de Tor. tsocks (Linux), dsocks (BSD),
 y freecap (Windows) parecen buenos candidatos, y también lo sería usar mejor
 nuestra nueva característica de TransPort.</li>
-<li>Tenemos una lista enorme de <a href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">programas potentialmente útiles que son interfaz con Tor</a>. 
+<li>Tenemos una lista enorme de <a 
+href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">programas 
+potentialmente útiles que son interfaz con Tor</a>. 
 ¿Cuáles son útiles en cada situación? Por favor ayudenos a probarlos y 
 documentar sus resultados.</li>
 <li>Ayudenos a traducir la página web y la documentación a otros idiomas.
@@ -100,9 +102,9 @@ Necesitamos especialmente traducciones al árabe o al farsi, para los muchos usu
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">Codificación y Diseño</a></h2>
 <ol>
-<li>Los servidores Tor no funcionan bien en Windows XP. En
+<li>Los repetidores Tor no funcionan bien en Windows XP. En
 Windows, Tor usa la llamada al sistema estandar <tt>select()</tt>,
-que usa espacio en la zona no paginada. Esto significa que un servidor
+que usa espacio en la zona no paginada. Esto significa que un repetidor
 Tor de tamaño medio vaciará la zona no paginada, <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">causando
 el caos y colgando el sistema</a>. Probablemente deberíamos estar usando E/S
@@ -110,29 +112,29 @@ solapada en su lugar. Una solución sería enseñarle a <a
 href="http://www.monkey.org/~provos/libevent/">libevent</a> a usar
 E/S solapada en lugar de select() en Windows, y luego adaptar Tor a
 la nueva interfaz de libevent.</li>
-<li>Como los servidores Tor tienen que almacenar-y-reenviar cada célula
-que manejan, los servidores Tor de gran ancho de banda terminan usando 
+<li>Como los repetidores Tor tienen que almacenar-y-reenviar cada célula
+que manejan, los repetidores Tor de gran ancho de banda terminan usando 
 docenas de megabytes de memoria sólo para buffers. Necesitamos mejores 
 heurísticas para cuándo encojer/expandir los buffers. ¿Quizás esto debería
 de modelarse siguiendo el diseño de buffers del kernel de Linux, en donde
 tenemos muchos buffers pequeños enlazados entre sí, en lugar de buffers 
 monolíticos?</li>
 <li>Necesitamos un sitio central oficial que responda preguntas del tipo 
-"¿Es esta dirección IP un servidor Tor de salida?". Debería dar varias
+"¿Es esta dirección IP un repetidor Tor de salida?". Debería dar varias
 interfaces, incluyendo una interfaz web y una interfaz de estilo DNSBL.
 Puede dar las respuestas más actualizadas guardando un mirror local de la
-información del directorio Tor. Lo más lioso es que ser un servidor de salida
+información del directorio Tor. Lo más lioso es que ser un repetidor de salida
 no es un valor lógico: así que la pregunta es en realidad "¿Es esta 
-dirección IP un servidor Tor de salida que puede salir a mi dirección:puerto IP?"
+dirección IP un repetidor Tor de salida que puede salir a mi dirección:puerto IP?"
 El interfaz DNSBL recibirá probablemente cientos de peticiones por minuto,
 así que se necesitan algoritmos inteligentes. Puntos de bonus si hace testing
 activo a cada nodo de salida para averigura de qué direcciones IP está 
 realmente saliendo.
-<a href="<svnsandbox>doc/contrib/torbl-design.txt">Lea más aquí</a>.</li>
-<li>Algunas veces los servidores Tor se cuelgan, o a los ordenadores en los
+<a href="<svnsandbox>doc/contrib/torel-design.txt">Lea más aquí</a>.</li>
+<li>Algunas veces los repetidores Tor se cuelgan, o a los ordenadores en los
 que están se les cae la red, u otros accidentes pasan. Algunos operadores Tor
 han expresado un interes en inscribirse en un servidio "de notificación"
-que compruebe periódicamente si sus servidores Tor están saludables y 
+que compruebe periódicamente si sus repetidores Tor están saludables y 
 les envíe un correo de recuerdo si no lo están. ¿Alguien quiere escribir
 unos cuantos scripts cgi, unas cuantas páginas web, y configurar algún tipo
 de hack con wget y/o algo más complejo como <a 
@@ -281,7 +283,7 @@ artículo de posición</a> de Stephen Rollyson sobre cómo descartar elecciones
 particularmente lentas sin dañar el anonimato "demasiado". Esta línea de
 razonamiento necesita más trabajo y más ideas, pero parece muy prometedora.
 </li>
-<li>Tor no funciona muy bien cuando los servidores tienen ancho de banda
+<li>Tor no funciona muy bien cuando los repetidores tienen ancho de banda
 asimétrico (e.g. cable o DSL). Como Tor tiene conexiones TCP separadas 
 para cada salto, si los bytes de entrada llegan bien y los bits de salida
 se están descartando todos, los mecanismos de ralentización de TCP no 
@@ -321,16 +323,16 @@ de restencia a la censura de anonbib</a>.</li>
 <li>Los circuitos Tor se construyen un salto cada vez, así que en teoría tenemos
 la habilidad de hacer que algunos flujos salgan del segundo salto, algunos del
 tercero, y así sucesivamente. Esto parece bueno porque rompe el conjunto de
-flujos de salida que un servidor dado puede ver. Pero si queremos que cada flujo
+flujos de salida que un repetidor dado puede ver. Pero si queremos que cada flujo
 esté seguro, el camino "más corto" debería ser al menos de 3 saltos de acuerdo con
 nuestra lógica actual, así que el resto serán aún más largos. Necesitamos examinar
 este intercambio forzado entre rendimiento y seguridad.</li>
-<li>No es tan difícil hacer DoS a servidores Tor o servidores de directorio.
+<li>No es tan difícil hacer DoS a repetidores Tor o autoridades de directorio.
 ¿Son los puzzles a los clientes la respuesta correcta? ¿Qué otros enfoques prácticos
 hay? Bonus si son compatibles hacia atrás con el protocolo Tor actual.</li>
 </ol>
 
-¡<a href="<page contact>">Haganoslo saber</a> si ha hecho progreso en algo 
+¡<a href="<page contact>">Háganoslo saber</a> si ha hecho progreso en algo 
 de esto!
 
   </div><!-- #main -->
