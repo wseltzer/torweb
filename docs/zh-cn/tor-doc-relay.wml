@@ -18,19 +18,19 @@
 定制出口策略以避免滥用，以及对于动态 IP 地址的支持。</p>
 
 <p>在互联网上的许多不同地方运行中继保护了 Tor 用户的安全。<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">你
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">你
 自身的匿名也能得到更好的保护</a>，因为站点不知道连接究竟来自你的电脑还是为他人传递。
 </p>
 
 <p>设置一台 Tor 中继既简单又方便
 <ul>
 <li>Tor 内建即支持<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">速率限制</a>。
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">速率限制</a>。
 更进一步地，如果你不限制带宽但是想限制每天（或每星期、或每月）贡献的字节数，请查看<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">休眠特性</a>。
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">休眠特性</a>。
 </li>
 <li>每台 Tor 中继都有一套<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">出口策略</a>，
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">出口策略</a>，
 规定了这台中继都允许或禁止哪些类型的外部连接。如果你对于让其他人从你的中继
 退出感到不安，你可以将它设置成仅允许连接到其他 Tor 中继。
 </li>
@@ -41,7 +41,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">出口
 </li>
 <li>如果你的中继位于 NAT 后面而且不知道它的公网 IP（例如它的 IP 类似 192.168.x.y），
 你需要设置端口转发。转发 TCP 连接的方法因系统而异，但是此 <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">FAQ
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">FAQ
 条目</a>提供了如何实现这一目的的一些示例。
 </li>
 <li>你的中继将定期估计并公布它最近的带宽，高带宽的中继将因此吸引更多的用户。
@@ -50,7 +50,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledC
 </ul>
 
 <p>你能在几乎所有的操作系统上运行 Tor 中继，但是请查看此 <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RelayOS">FAQ
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">FAQ
 条目</a>以了解哪些操作系统更合适以及你可能会碰到的其他问题。
 </p>
 
@@ -86,11 +86,11 @@ href="<page docs/tor-doc-unix>#installing">第一步</a>。
 
 <p>
 3、修改 torrc 的最后部分。（如需帮助，请查看<a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#torrc">此 FAQ 条目</a>。）
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">此 FAQ 条目</a>。）
 请确认至少定义了 Nickname 和 ORPort 选项。需要的话创建 DataDirectory 并确认
 这个目录的所有者是将要运行 Tor 的用户。<em>如果你打算运行多台中继——这太棒了——
 但是请为所有中继的配置文件加入 <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">MyFamily
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">MyFamily
 选项</a>。</em>
 </p>
 
@@ -104,7 +104,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">MyFa
 
 <p>
 5、重启中继。如果<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">日志中有任何警告信息</a>，
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">日志中有任何警告信息</a>，
 想办法解决它们。
 </p>
 
@@ -129,7 +129,7 @@ href="http://archives.seul.org/or/talk/">or-talk</a>（高流量），新的开�
 <p>一旦你的中继连接上了网络，它就会尝试检测能否从外部访问你所配置的端口。
 这一过程最长可持续 20 分钟。请查看是否有“<tt>Self-testing indicates your ORPort
 is reachable from the outside. Excellent.</tt>”这样的<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">日志条目</a>。
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">日志条目</a>。
 如果你没有看到这条消息，说明从外部不能访问你的中继——你应该重新检查防火墙设置，
 检查测试的 IP 和端口是否正确，等等。
 </p>
@@ -150,7 +150,7 @@ descriptor）”。客户端因此知道你的中继的地址、端口、公钥�
 </p>
 
 <p>
-8、阅读<a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">该文档</a>，
+8、阅读<a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">该文档</a>，
 了解如何增强中继的安全性。
 </p>
 
@@ -167,7 +167,7 @@ FAQ 条目。如果你选择了特别开放的出口策略，你还要确认你�
 <p>
 10、考虑速率限制。线缆调制解调器、DSL 和其他拥有非对称带宽（如下行速率大于上行速率）
 的用户应将速率限制为较低的那个带宽，以避免拥塞。请查看<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">有关
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">有关
 速率限制的 FAQ 条目</a>。
 </p>
 
@@ -175,7 +175,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">有�
 11、备份 Tor 中继的私钥（在 DataDirectory 目录里的“keys/secret_id_key”文件中）。
 这是你的中继的“身份证”，你需要保证它的安全，这样就没有人能读取通过你的中继的流量了。
 如果出于什么原因，你需要<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeRelay">转移或还原
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#UpgradeRelay">转移或还原
 Tor 中继</a>，这是你需要保存的关键文件。
 </p>
 
@@ -189,7 +189,7 @@ Tor 中继</a>，这是你需要保存的关键文件。
 改成 80。许多 Tor 用户由于防火墙的阻挡只能浏览 Web，这种修改使他们能够连接到你的
 Tor 中继。Win32 中继直接在 torrc 里修改 ORPort 和 DirPort，然后重启即可。OS X
 和 Unix 中继无法直接绑定这些端口（因为运行中继的用户不是 root），它们需要设置<a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">端口
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">端口
 转发</a>以使得连接能够到达 Tor 中继。如果 80 端口和 443 端口已被占用，其他常用
 的端口是 22、110 和 143。
 </p>
@@ -198,7 +198,7 @@ href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClie
 14、如果你的 Tor 中继在同一 IP 地址运行其它服务——例如公开的 Web 服务器——请确认
 Web 服务器允许来自本地主机的连接。这是因为（当用户访问你的网站时）Tor 客户端会
 发现你的 Tor 中继是<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">访问
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">访问
 你的 Web 服务器的最安全的方式</a>，总是会建立一条终止于你的中继的电路。
 如果你不想允许这种连接，你必须在出口策略中明确地拒绝它们。
 </p>
@@ -208,7 +208,7 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">�
 软件包或者 rpm 软件包，这一步已经完成。在其他情况下，你可以自己动手完成这一步。
 （Tor 中继不需要以 root 运行，因此不以 root 运行是一个好的实践。以一个“tor”用户运行
 避免了 identd 和其他检查用户名的服务会带来的问题。如果你非常谨小慎微，你自然可以<a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">将 Tor 置于
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">将 Tor 置于
 chroot jail 中</a>。）
 </p>
 
@@ -218,7 +218,7 @@ chroot jail 中</a>。）
 你应该在 /etc/security/limits.conf 文件中添加一行，如“toruser hard nofile 8192”
 （toruser 是运行 Tor 进程的用户），然后重新启动 Tor（如果 Tor 以软件包的方式
 安装）或者登出再登陆（如果运行 Tor 的用户就是你）。如果以上步骤无效，请查看<a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">此
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">此
 FAQ 条目</a>，该 FAQ 有在启动 Tor 之前先运行“ulimit -n 8192”的其他建议方式。
 </p>
 

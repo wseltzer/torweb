@@ -22,7 +22,7 @@ IP addresses.</p>
 
 <p>Having relays in many different places on the Internet is what
 makes Tor users secure. <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">You
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">You
 may also get stronger anonymity yourself</a>,
 since remote sites can't know whether connections originated at your
 computer or were relayed from others.</p>
@@ -30,15 +30,15 @@ computer or were relayed from others.</p>
 <p>Setting up a Tor relay is easy and convenient:
 <ul>
 <li>Tor has built-in support for <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
 limiting</a>. Further, if you have a fast link
 but want to limit the number of bytes per day
 (or week or month) that you donate, check out the <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
 feature</a>.
 </li>
 <li>Each Tor relay has an <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">exit
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">exit
 policy</a> that specifies what sort of outbound connections are allowed
 or refused from that relay. If you are uncomfortable allowing people
 to exit from your relay, you can set it up to only allow connections
@@ -55,7 +55,7 @@ leave the Address config option blank, and Tor will try to guess.
 <li>If your relay is behind a NAT and it doesn't know its public
 IP (e.g. it has an IP of 192.168.x.y), you'll need to set up port
 forwarding. Forwarding TCP connections is system dependent but <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">this
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">this
 FAQ entry</a> offers some examples on how to do this.
 </li>
 <li>Your relay will passively estimate and advertise its recent
@@ -66,7 +66,7 @@ low-bandwidth ones. Therefore having low-bandwidth relays is useful too.
 
 <p>You can run a Tor relay on
 pretty much any operating system, but see <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#RelayOS">this
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">this
 FAQ entry</a> for advice about which ones work best and other problems
 you might encounter.</p>
 
@@ -107,12 +107,12 @@ Internet addresses correctly).
 
 <p>
 3. Edit the bottom part of your torrc. (See <a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#torrc">this
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">this
 FAQ entry</a> for help.)
 Make sure to define at least Nickname and ORPort. Create the DataDirectory
 if necessary, and make sure it's owned by the user that will be running
 tor. <em>If you want to run more than one relay that's great, but
-please set <a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">the
+please set <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">the
 MyFamily option</a> in all your relays' configuration files.</em>
 </p>
 
@@ -125,7 +125,7 @@ so your relay can reach the other Tor relays.
 
 <p>
 5. Restart your relay. If it <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">logs
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">logs
 any warnings</a>, address them.
 </p>
 
@@ -155,7 +155,7 @@ If you are running the development version of Tor, the manual is available
 <p>As soon as your relay manages to connect to the network, it will
 try to determine whether the ports you configured are reachable from
 the outside. This may take up to 20 minutes. Look for a
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#Logs">log
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">log
 entry</a> like
 <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
 If you don't see this message, it means that your relay is not reachable
@@ -183,7 +183,7 @@ We recommend the following steps as well:
 
 <p>
 8. Read
-<a href="http://wiki.noreply.org/noreply/TheOnionRouter/OperationalSecurity">this document</a>
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">this document</a>
 to get ideas how you can increase the security of your relay.
 </p>
 
@@ -207,7 +207,7 @@ will be impacted too.
 10. Decide about rate limiting. Cable modem, DSL, and other users
 who have asymmetric bandwidth (e.g. more down than up) should
 rate limit to their slower bandwidth, to avoid congestion. See the <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
 limiting FAQ entry</a> for details.
 </p>
 
@@ -216,7 +216,7 @@ limiting FAQ entry</a> for details.
 in your DataDirectory). This is your relay's "identity," and
 you need to keep it safe so nobody can read the traffic that goes
 through your relay. This is the critical file to keep if you need to <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#UpgradeRelay">move
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#UpgradeRelay">move
 or restore your Tor relay</a> if something goes wrong.
 </p>
 
@@ -236,7 +236,7 @@ relays can simply change their ORPort and DirPort directly
 in their torrc and restart Tor. OS X or Unix relays can't bind
 directly to these ports (since they don't run as root), so they will
 need to set up some sort of <a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
 port forwarding</a> so connections can reach their Tor relay. If you are
 using ports 80 and 443 already but still want to help out, other useful
 ports are 22, 110, and 143.
@@ -247,7 +247,7 @@ ports are 22, 110, and 143.
 &mdash; such as a public webserver &mdash; make sure that connections to the
 webserver are allowed from the local host too. You need to allow these
 connections because Tor clients will detect that your Tor relay is the <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">safest
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">safest
 way to reach that webserver</a>, and always build a circuit that ends
 at your relay. If you don't want to allow the connections, you must
 explicitly reject them in your exit policy.
@@ -260,7 +260,7 @@ done. Otherwise, you can do it by hand. (The Tor relay doesn't need to
 be run as root, so it's good practice to not run it as root. Running
 as a 'tor' user avoids issues with identd and other services that
 detect user name. If you're the paranoid sort, feel free to <a
-href="http://wiki.noreply.org/wiki/TheOnionRouter/TorInChroot">put Tor
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">put Tor
 into a chroot jail</a>.)
 </p>
 
@@ -272,7 +272,7 @@ Linux, you should add a line like "toruser hard nofile 8192" to your
 /etc/security/limits.conf file (where toruser is the user that runs the
 Tor process), and then restart Tor if it's installed as a package (or log
 out and log back in if you run it yourself). If that doesn't work, see <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">this
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">this
 FAQ entry</a> for other suggested ways to run "ulimit -n 8192" before
 you launch Tor.
 </p>
