@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 11649
+# Based-On-Revision: 12228
 # Last-Translator: peihanru AT gmail.com
 
 #include "head.wmi" TITLE="志愿者" CHARSET="UTF-8"
@@ -9,8 +9,8 @@
 <!-- PUT CONTENT AFTER THIS TAG -->
 <h2>三件每个人都可以做的事:</h2>
 <ol>
-<li>请考虑<a href="<page docs/tor-doc-server>">运行一台服务器</a>帮助 Tor 网络成长。</li>
-<li>告诉你的朋友！请他们运行服务器。请他们运行隐匿服务。请他们告诉他们的朋友。</li>
+<li>请考虑<a href="<page docs/tor-doc-relay>">运行一台中继</a>帮助 Tor 网络成长。</li>
+<li>告诉你的朋友！请他们运行中继。请他们运行隐匿服务。请他们告诉他们的朋友。</li>
 <li>我们正在寻求资助与赞助商。如果你认同 Tor 的目标，
 请<a href="<page donate>">花一些时间捐助以支持 Tor 的后继开发</a>。
 如果你还知道任何需要通信安全的公司、非政府组织、代理商或其他组织，把我们告诉他们。</li>
@@ -31,18 +31,15 @@
 这或许意味着统一它们的接口，也许还包括在它们之间共用代码或弃用其中之一。</li>
 </ul>
 </li>
-<li>运行服务器的志愿者告诉我们他们想在一天中的某个时间段限制一种速率，在其他的时间段限制另一种速率。
+<li>运行中继的志愿者告诉我们他们想在一天中的某个时间段限制一种速率，在其他的时间段限制另一种速率。
 我们应当写一个脚本通过 <a href="<page gui/index>">Tor 控制接口</a>修改带宽限制，而不是把代码加入 Tor。
-也许它可以通过 cron 实现，也许它可以一直休眠并在适当的时候干活（这种办法可能更具可移植性）。
-有谁能为我们写一个吗，我们将把它置于 <a href="<svnsandbox>contrib/">contrib/</a>？
-这是 <a href="<page gui/index>">Tor 图形用户界面竞赛</a>的一个不错的项目。
-  <!-- We have a good script to adjust stuff now, right? -NM -->
+Unix 和 Mac 已经有了这样的一个脚本（它使用了 bash 和 cron），但是 Windows 用户仍缺少解决方案。
 </li>
 <li>Tor 能够<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">从
 Tor 网络中选择特定的出口节点</a>，但我们应当能够指定一个国家并自动挑选（该国家的出口节点）。
 最有希望的办法是一并获取 Blossom 的目录，在本地运行一个 Blossom 客户端能够安全地获取这个目录
 （通过 Tor 并检查签名），拦截 <tt>.country.blossom</tt> 主机名，并做该做的事。</li>
-<li>说到地理位置数据，希望有人能画出一张标记每一台 Tor 服务器地理位置的地图。
+<li>说到地理位置数据，希望有人能画出一张标记每一台 Tor 中继地理位置的地图。
 如果它能随着网络的变化而更新就更好了。
 不幸的是，实现这个功能的简单的办法会将所有的数据发送至 Google 并由他们画出地图。
 这么做会影响隐私吗，我们有其他好办法吗？</li>
@@ -71,23 +68,23 @@ Tor 接口的可能有用的程序</a>的冗长列表。在哪些情形下哪些
 <a id="Coding"></a>
 <h2><a class="anchor" href="#Coding">编码与设计</a></h2>
 <ol>
-<li>Tor 服务器在 Windows XP 上工作得不好。在 Windows 平台，Tor 使用标准的 <tt>select()</tt> 系统调用，
-该函数不使用页面文件的空间。这意味着一个中等大小的 Tor 服务器就会耗尽全部的物理内存，<a
+<li>Tor 中继在 Windows XP 上工作得不好。在 Windows 平台，Tor 使用标准的 <tt>select()</tt> 系统调用，
+该函数不使用页面文件的空间。这意味着一个中等大小的 Tor 中继就会耗尽全部的物理内存，<a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">导致
 系统极不稳定以致崩溃</a>。我们或许应该使用重叠 IO（overlapped IO）。
 一种解决办法是教会 <a href="http://www.monkey.org/~provos/libevent/">libevent</a>
 如何在 Windows 上使用重叠 IO 而不是 select()，然后调整 Tor 以使用新的 libevent 接口。</li>
-<li>因为 Tor 服务器需要存储转发它们所处理的每一个单元（cell），繁忙的 Tor 服务器最终会为缓存
+<li>因为 Tor 中继需要存储转发它们所处理的每一个单元（cell），繁忙的 Tor 中继最终会为缓存
 就消耗几十兆的内存。我们需要更好的启发式算法来决定何时缩小或扩大缓存。
 也许应该根据 Linux 内核的缓存设计来建立模型，即许多小的缓存块彼此连接而不是整体的缓存？</li>
-<li>我们需要一个官方的中心站点来回答“这是一台 Tor 出口服务器（exit server）的 IP 地址吗？”这种问题。
+<li>我们需要一个官方的中心站点来回答“这是一台 Tor 出口中继（exit relay）的 IP 地址吗？”这种问题。
 它应能提供多种界面，包括一个 Web 界面和一个 DNSBL 样式的界面。它有一份 Tor 目录信息的本地备份，
 能提供最新的答复。棘手的是答案并非是或不是这么简单：确切的问题应该是“这是一台能够从我的
-IP 地址：端口退出的 Tor 出口服务器的 IP 地址吗？”DNSBL 界面可能每分钟接收到数百次查询，
+IP 地址：端口退出的 Tor 出口中继的 IP 地址吗？”DNSBL 界面可能每分钟接收到数百次查询，
 所以用得着一些聪明的算法。如果它能够主动测试每一个出口节点，发现真实的出口 IP 地址就更好了。<a
-href="<svnsandbox>doc/contrib/torbl-design.txt">阅读更多</a>。</li>
-<li>有时候 Tor 服务器会崩溃，或者运行它们的电脑与网络失去了连接，或者发生了其他的意外。
-一些 Tor 的操作者表达了对于一种“提示”服务的兴趣，该服务会定期对他们的 Tor 服务器进行测试，
+href="<svnsandbox>doc/contrib/torel-design.txt">阅读更多</a>。</li>
+<li>有时候 Tor 中继会崩溃，或者运行它们的电脑与网络失去了连接，或者发生了其他的意外。
+一些 Tor 的操作者表达了对于一种“提示”服务的兴趣，该服务会定期对他们的 Tor 中继进行测试，
 当发现问题时会给他们发送提示邮件。有谁愿意写一些 CGI 脚本，一些网页，通过 wget 和/或
 类似于 <a href="http://nagios.org/">Nagios</a> 的更复杂的机制来实现这一监视功能吗？
 第一个版本可以仅仅测试目录端口，例如遍历缓冲的 network-status 文件，查找正确的 IP 地址和
@@ -179,7 +176,7 @@ href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>
 的<a href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">论文</a>讨论了
 如何在不“过分”影响匿名的情况下放弃特别慢的选择。这些推理需要更多的工作和思考，
 但看上去非常有希望。</li>
-<li>当服务器的带宽非对称时（如 cable 或 DSL）Tor 不能很好地工作。这是因为 Tor
+<li>当中继的带宽非对称时（如 cable 或 DSL）Tor 不能很好地工作。这是因为 Tor
 在每一跳之间有不同的 TCP 连接，如果输入的数据正常到达而输出的数据丢失了，TCP
 的回推机制并不会将这一信息返回输入流。也许 Tor 自身应该检测到它正在丢失许多输出数据包，
 并对输入的数据流限制速率？我能设想一种递增——递减方案：我们先选择一种保守的速率，
@@ -201,9 +198,9 @@ href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh 吞吐量�
 href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">anonbib
 的抵御审查部分</a>。</li>
 <li>Tor 电路一次建立一跳，因此理论上我们能够使一些数据流在第二跳退出，一些数据流在第三跳退出，等等。
-这看上去不错因为这样一台服务器就不能知道退出数据流是哪些了。但是如果要保证每个数据流都是安全的，
+这看上去不错因为这样一台中继就不能知道退出数据流是哪些了。但是如果要保证每个数据流都是安全的，
 以我们现在的逻辑最短的路径至少需要三跳，其余的将更长。我们需要权衡这种方法的性能与安全。</li>
-<li>拒绝服务（DoS）Tor 服务器或目录服务器并不难。客户端难题（puzzles）是正确的答案吗？
+<li>拒绝服务（DoS）Tor 中继或权威目录并不难。客户端难题（puzzles）是正确的答案吗？
 还有什么其他的实用方法？如果它们能兼容现有的 Tor 协议就更好了。</li>
 </ol>
 
