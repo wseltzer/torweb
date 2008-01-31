@@ -127,7 +127,8 @@ sub do_status($$) {
 						$difflink,
 						$validatorlink;
 				} else {
-					$color=($obs ? '#90EE90' : 'red');
+					$color=(($obs or $priority eq 'none') ?
+						'#90EE90' : 'red');
 					$status='missing';
 					printf '<td bgcolor="%s">%s</td>', $color, $status;
 				};
