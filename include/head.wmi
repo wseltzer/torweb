@@ -44,6 +44,8 @@
 	        if (-e "$(DOCROOT)/$(LANG)/$key.wml") {
 	          printf '<a href="%s">%s</a>'."\n",
 	                 stripDotSlashs("$(DOCROOT)/$key.html.$(LANG)"), $navigation{$key};
+	        } elsif ($key =~ /^http/) {
+	          printf '<a href="%s">%s</a>'."\n", $key, $navigation{$key};
 	        } else {
 	          printf '<a href="%s">%s</a>'."\n",
 	                 stripDotSlashs("$(DOCROOT)/$key.html"), $navigation{$key};
