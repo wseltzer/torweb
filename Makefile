@@ -7,11 +7,11 @@
 
 TORSVNSTABLE = ../tor-stable
 TORSVNHEAD = ../tor-head
-#TORSVNSTABLE = /home/arma/work/onion/svn/tor-0_1_1-patches
+#TORSVNSTABLE = /home/arma/work/onion/tor-012x/tor/
 #TORSVNHEAD = /home/arma/work/onion/svn/trunk
 
 WMLBASE = .
-SUBDIRS=docs eff gui
+SUBDIRS=docs eff gui torbrowser
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
@@ -22,8 +22,10 @@ eff:
 	$(MAKE) -C "$@" WMLBASE=..
 gui:
 	$(MAKE) -C "$@" WMLBASE=..
+torbrowser:
+	$(MAKE) -C "$@" WMLBASE=..
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
 
-.PHONY: docs eff gui
+.PHONY: docs eff gui torbrowser
