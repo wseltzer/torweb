@@ -16,5 +16,5 @@ chmod a+r * -R
 ## since if they screw up it'll blow away arbitrary things.
 #rsync -Prvz --delete . tor.eff.org:directory/
 
-rsync -Prvz . www.torproject.org:/var/www/www.torproject.org/htdocs/
+rsync --exclude .svn --exclude .deps -Prvz . www.torproject.org:/var/www/www.torproject.org/htdocs/
 
