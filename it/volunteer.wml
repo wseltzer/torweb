@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 13768
+# Based-On-Revision: 13843
 # Last-Translator: jan at seul dot org
 
 #include "head.wmi" TITLE="Tor: partecipa" CHARSET="UTF-8"
@@ -70,13 +70,6 @@ conseguenze ha per la privacy? Ci sono altre buone soluzioni?</li>
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">Documentazione</a></h2>
 <ol>
-<li>Sappiamo che l'anonimato degli utenti Tor pu&ograve; essere attaccato da
-javascript, java, activex, flash, etc, se non vengono disabilitati.
-Ci sono dei plugin (come NoScript per Firefox) che possono aiutare
-gli utenti a gestire questo rischio? E di che rischio si tratta esattamente?</li>
-<li>Esiste una suite completa di plugin che sostituisca tutte le funzioni di Privoxy
-per Firefox 1.5+? Sappiamo che Tor &egrave; molto pi&ugrave; veloce senza
-Privoxy.</li>
 <li>Aiuta Matt Edman con la documentazione e con le guide del suo
 Tor controller,
 <a href="http://vidalia-project.net/">Vidalia</a>.</li>
@@ -110,46 +103,12 @@ confusione e crash del sistema</a>. Probabilmente dovremmo usare overlapped IO.
 Una soluzione sarebbe far usare a <a
 href="http://www.monkey.org/~provos/libevent/">libevent</a> l'
 overlapped IO invece di select() su Windows, per poi adattare Tor
-alla nuova interfaccia libevent.</li>
-<li>Poich&eacute; i relay Tor devono fare store-and-forward di ogni cella che gestiscono
-i relay Tor a banda larga consumano molta memoria solo come
-buffer. Serve migliore conoscenza di quando restringere o espandere i
-buffer. Forse lo si potrebbe modellare seguendo il design buffer nel kernel
-Linux, in cui vi sono molto buffer pi&ugrave; piccoli linkati l'un l'altro,
-invece di un buffer monolitico.</li>
-<li>Serve un sito centrale per rispondere a domande come "Questo indirizzo IP &egrave; un
-exit relay Tor?". Il sito dovrebbe avere varie interfacce, compresa una interfaccia
-web e una interfaccia simile a DNSBL. Pu&ograve; fornire le risposte pi&ugrave;
-aggiornate tenendo un mirror locale delle informazioni di directory
-Tor. Essere un exit relay per&ograve; non &egrave; una condizione
-booleana: la domanda i realt&agrave; &egrave; "Questo indirizzo IP &egrave; un exit
-relay Tor in grado di collegarsi all'indirizzo:porta IP di destinazione?" L' interfaccia DNSBL
-ricever&agrave; probabilmente centinaia di richieste al minuto, per cui occorre
-qualche algoritmo efficiente. Bonus se effettua dei test attivi su
-ciascun exit node per scoprire da quale indirrizzo IP esce realmente.
-<a href="<svnsandbox>doc/contrib/torel-design.txt">Leggi qui per approfondire</a>.</li>
-<li>Talvolta i relay Tor vanno in crash o i computer su cui sono escono dalla
-rete, o capita qualche incidente. Alcuni gestori Tor si sono detti interessati
-a un servizio di notifica che verifichi periodicamente
-lo stato dei propri relay Tor ed invii una email in caso di problemi.
-C'&egrave; qualcuno che vuole scrivere qualche script cgi, delle pagine web
-e mettere in piedi un hack con wget oppure qualcosa di pi&ugrave; complesso come <a
-href="http://nagios.org/">Nagios</a> per il monitoraggio? La versione iniziale
-potrebbe controllare solo la directory port, ovvero leggere la pagina in cache
-con il network-status alla ricerca degli indirizzi Ip e delle porte per poi richiedere
-la pagina "/tor/server/authority".</li>
-<li>Sarebbe bello avere un CD live contenente le versioni
-pi&ugrave; recenti di Tor, Polipo o Privoxy, Firefox, Gaim+OTR, etc. Ci sono
-due problemi: il primo consiste nel documentare il sistema e le opzioni con chiarezza
-tale da permettere a chi si occupa di sicurezza di esprimere un giudizio sulla
-sua sicurezza complessiva; il secondo problema &egrave; trovare un modo per renderlo di facile manutenzione,
-cos&igrave; da non divenire obsoleto rapidamente come AnonymOS. Meglio ancora se
-l'immagine CD sta su un mini-D.</li>
-<li>A proposito di immagini CD live, ci vorrebbe una immagine USB per Tor e le applicazioni di supporto
-che sia intuitiva, sicura e ben documentata. Il grosso delle
-difficolt&agrave; &egrave; decidere quali sono le configurazioni sicure,
-documentare queste scelte e creare qualcosa di facile da
-mantenere in futuro.</li>
+alla nuova interfaccia libevent. Christian King ha dato un
+<a href="https://tor-svn.freehaven.net/svn/libevent-urz/trunk/">buon inizio
+al lavoro</a> la scorsa estate.</li>
+<li>Come possiamo fare in modo che l'<a
+href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
+sia pi&ugrave; facile da mantenere, migliorare e documentare?</li>
 <li>Il front-end grafico a Tot che preferiamo,
 <a href="http://vidalia-project.net/">Vidalia</a>, ha bisogno di vari
 lavori di sviluppo.</li>
@@ -167,16 +126,6 @@ adeguare? Questo potrebbe contribuire a molte nuove ricerche.
 Vedi la voce <a href="#Research">qui sotto</a> sui confirmation attack per
 maggior dettagli sulla ricerca in questo campo &mdash; chiss&agrave; forse al
 termine  potresti scrivere qualche paper sull'argomento.</li>
-<li>Abbiamo bisogno di uno studio quantitativo che confronti <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
-con <a href="http://www.privoxy.org/">Privoxy</a>. Polipo &egrave; veramente
-pi&ugrave; veloce anche contando il rallentamento dato da Tor? I risultati
-sono gli stessi su Linux e Windows? Inoltre Polipo gestisce bene un maggior
-numero di siti web di Privoxy, o viceversa? Ci sono problemi di
-stabilit&agrave; sulle piattaforme pi&ugrave; comuni, come, Windows?</li>
-<li>A questo proposito ti piacerebbe aiutare a portare <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> in modo che
-sia stabile ed efficiente su Windows?</li>
 <li>Ci serve un framework di testing distribuito. Abbiamo unit tests,
 ma sarebbe bello avere uno script che avvii una rete Tor, la usi per
 un po' e verifichi che almeno una parte di essa funzioni.</li>
@@ -187,25 +136,8 @@ href="https://torproject.org/svn/torflow/">TorFlow</a>
 href="https://torproject.org/svn/torctl/doc/howto.txt">Tor controller
 protocol</a> per fare costruire a Tor dei circuiti in vari modi,
 per poi misurarne le prestazioni e rilevarne le anomalie.</li>
-<!--
-<li>Per ora i descrittori dei hidden service sono contenuti in solo in
-pochi directory server. &#200; uno svantaggio per la privacy e per la robustezza. Per
-una maggiore robustezza dovremo rendere ancora meno privati i descrittori dei
-hidden service dato che dovremo duplicarli in
-molti mirror diversi. Idealmente vorremmo separare del tutto il sistema di storage/lookup dai
-directory server Tor. Il primo problema &egrave; che occorre
-disegnare un nuovo formato per i descrittori dei hidden service che a) sia ascii piuttosto che
-binario, per praticit&agrave;; b) tenga criptata la lista degli introduction point
-a meno di non conoscere l'indirizzo <tt>.onion</tt>, in modo che la directory
-non possa conoscerli; e c) permetta alle directory di verificare il timestamp
-e la firma su un descrittore di un hidden service in modo che non possano
-rivelarne uno falso. In secondo luogo, va bene qualsiasi sistema affidabile
-di storage distribuito, fintanto che permetta aggiornamenti automatici, ma per ora
-pare che nessun codice DHT implementato supporta gli aggiornamenti automatici.</li>
--->
 <li>Tor 0.1.1.x e successivi includono il supporto per acceleratori crittografici hardware
-tramite
-OpenSSL. Nessuno tuttavia lo ha ancora testato. C'&egrave; qualcuno che vuole
+tramite OpenSSL. Nessuno tuttavia lo ha ancora testato. C'&egrave; qualcuno che vuole
 prendere una scheda e farci sapere come va?</li>
 <li>Effettuare una analisi di sicurezza di Tor con <a
 href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determinare
@@ -225,7 +157,7 @@ UDP</a> &mdash; facci sapere se presentano dei problemi.</li>
 (sugli exit node). Se per te IPv6 &egrave; molto importante, questo &egrave;
 il punto da cui cominciare.</li>
 <li>Se nessuno dei punti qui sopra &egrave; di tuo gusto, dai un'occhiata alla <a
-href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">Tor development
+href="<svnsandbox>doc/design-paper/roadmap-future.pdf">Tor development
 roadmap</a> per ulteriori spunti.</li>
 <li>Se non vedi elencata qui la tua idea, forse &egrave; comunque importante e ne abbiamo bisogno! Contattaci
 e scoprilo.</li>
