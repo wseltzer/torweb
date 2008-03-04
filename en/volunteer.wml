@@ -68,13 +68,6 @@ much does this impact privacy, and do we have any other good options?</li>
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">Documentation</a></h2>
 <ol>
-<li>We hear that Tor users can fall victim to anonymity-breaking attacks
-from javascript, java, activex, flash, etc, if they don't disable
-them. Are there plugins out there (like NoScript for Firefox) that make
-it easier for users to manage this risk? What is the risk exactly?</li>
-<li>Is there a full suite of plugins that will replace all of Privoxy's
-functionality for Firefox 1.5+? We hear Tor is much faster when you take
-Privoxy out of the loop.</li>
 <li>Please help Matt Edman with the documentation and how-tos for his
 Tor controller,
 <a href="http://vidalia-project.net/">Vidalia</a>.</li>
@@ -106,46 +99,12 @@ havoc and system crashes</a>. We should probably be using overlapped IO
 instead. One solution would be to teach <a
 href="http://www.monkey.org/~provos/libevent/">libevent</a> how to use
 overlapped IO rather than select() on Windows, and then adapt Tor to
-the new libevent interface.</li>
-<li>Because Tor relays need to store-and-forward each cell they handle,
-high-bandwidth Tor relays end up using dozens of megabytes of memory
-just for buffers. We need better heuristics for when to shrink/expand
-buffers. Maybe this should be modelled after the Linux kernel buffer
-design, where we have many smaller buffers that link to each other,
-rather than monolithic buffers?</li>
-<li>We need an official central site to answer "Is this IP address a Tor
-exit relay?" questions. This should provide several interfaces, including
-a web interface and a DNSBL-style interface. It can provide the most
-up-to-date answers by keeping a local mirror of the Tor directory
-information. The tricky point is that being an exit relay is not a
-boolean: so the question is actually "Is this IP address a Tor exit
-relay that can exit to my IP address:port?" The DNSBL interface
-will probably receive hundreds of queries a minute, so some smart
-algorithms are in order. Bonus points if it does active testing through
-each exit node to find out what IP address it's really exiting from.
-<a href="<svnsandbox>doc/contrib/torel-design.txt">Read more here</a>.</li>
-<li>Sometimes Tor relays crash, or the computers they're on fall off the
-network, or other accidents happen. Some Tor operators have expressed
-an interest in signing up to a "notifying" service that periodically
-checks whether their Tor relay is healthy and sends them a reminder mail
-when it's not. Anybody want to write a few cgi scripts, a few web pages,
-and set up some sort of wget hack and/or something more complex like <a
-href="http://nagios.org/">Nagios</a> to do the monitoring? The first
-version could check just the directory port, e.g. looking through the
-cached network-status page for the right IP address and port and then
-asking for the "/tor/server/authority" page.</li>
-<li>It would be great to have a LiveCD that includes the latest
-versions of Tor, Polipo or Privoxy, Firefox, Gaim+OTR, etc. There are
-two challenges here: first is documenting the system and choices well
-enough that security people can form an opinion on whether it should be
-secure, and the second is figuring out how to make it easily maintainable,
-so it doesn't become quickly obsolete like AnonymOS. Bonus points if
-the CD image fits on one of those small-form-factor CDs.</li>
-<li>Related to the LiveCD image, we should work on an intuitively secure
-and well-documented USB image for Tor and supporting applications. A
-lot of the hard part here is deciding what configurations are secure,
-documentating these decisions, and making something that is easy to
-maintain going forward.</li>
+the new libevent interface. Christian King made a
+<a href="https://tor-svn.freehaven.net/svn/libevent-urz/trunk/">good
+start</a> on this last summer.</li>
+<li>How can we make the <a
+href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
+easier to maintain, improve, and document?</li>
 <li>Our preferred graphical front-end for Tor, named
 <a href="http://vidalia-project.net/">Vidalia</a>, needs all sorts
 of development work.</li>
@@ -163,16 +122,6 @@ giving a reasonable answer? This will spur a lot of new research.
 See the entry <a href="#Research">below</a> on confirmation attacks for
 details on the research side of this task &mdash; who knows, when it's
 done maybe you can help write a paper or three also.</li>
-<li>We need a measurement study of <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
-vs <a href="http://www.privoxy.org/">Privoxy</a>. Is Polipo in fact
-significantly faster, once you factor in the slow-down from Tor? Are the
-results the same on both Linux and Windows? Related, does Polipo handle
-more web sites correctly than Privoxy, or vice versa? Are there stability
-issues on any common platforms, e.g. Windows?</li>
-<li>Related on the above, would you like to help port <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> so it
-runs stably and efficiently on Windows?</li>
 <li>We need a distributed testing framework. We have unit tests,
 but it would be great to have a script that starts up a Tor network, uses
 it for a while, and verifies that at least parts of it are working.</li>
@@ -183,25 +132,8 @@ it's a python library that uses the <a
 href="https://www.torproject.org/svn/torctl/doc/howto.txt">Tor controller
 protocol</a> to instruct Tor to build circuits in a variety of ways,
 and then it measures performance and tries to detect anomalies.</li>
-<!--
-<li>Right now the hidden service descriptors are being stored on just a
-few directory servers. This is bad for privacy and bad for robustness. To
-get more robustness, we're going to need to make hidden service
-descriptors even less private because we're going to have to mirror them
-onto many places. Ideally we'd like to separate the storage/lookup system
-from the Tor directory servers entirely. The first problem is that we need
-to design a new hidden service descriptor format to a) be ascii rather
-than binary for convenience; b) keep the list of introduction points
-encrypted unless you know the <tt>.onion</tt> address, so the directory
-can't learn them; and c) allow the directories to verify the timestamp
-and signature on a hidden service descriptor so they can't be tricked
-into giving out fake ones. Second, any reliable distributed storage
-system will do, as long as it allows authenticated updates, but as far
-as we know no implemented DHT code supports authenticated updates.</li>
--->
 <li>Tor 0.1.1.x and later include support for hardware crypto accelerators
-via
-OpenSSL. Nobody has ever tested it, though. Does somebody want to get
+via OpenSSL. Nobody has ever tested it, though. Does somebody want to get
 a card and let us know how it goes?</li>
 <li>Perform a security analysis of Tor with <a
 href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determine
@@ -221,7 +153,7 @@ UDP</a> &mdash; please let us know what's wrong with it.</li>
 (at exit nodes). If you care strongly about IPv6, that's probably the
 first place to start.</li>
 <li>Don't like any of these? Look at the <a
-href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">Tor development
+href="<svnsandbox>doc/design-paper/roadmap-future.pdf">Tor development
 roadmap</a> for more ideas.</li>
 <li>Don't see your idea here? We probably need it anyway! Contact
 us and find out.</li>
