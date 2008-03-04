@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 13768
+# Based-On-Revision: 13843
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Tor: Wolontariusze" CHARSET="UTF-8"
@@ -66,14 +66,6 @@
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">Dokumentacja</a></h2>
 <ol>
-<li>Słyszeliśmy, że użytkownicy Tora mogą paść ofiarami ataków
- łamiących ich anonimowość ze strony JavaScriptu, Javy, Active'a, Flasha itp.,
- jeśli ich nie wyłączą. Czy są jakieś wtyczki/rozszerzenia (jak NoScript dla
- Firefoksa), które ułatwiają panowanie nad tym ryzykiem? Jakie dokładnie jest to ryzyko?
- </li>
-<li>Czy istnieje kompletny zestaw wtyczek/rozszerzeń, który zastąpi całą
- funkcjonalność Privoxy w Firefoksie 1.5+? Podobno Tor jest o wiele szybszy, gdy
- nie używa się Privoxy.</li>
 <li>Proszę pomóc Mattowi Edmanowi z dokumentacją i dokumentami jak-to-zrobić do
  jego projektu Tor Controller i <a href="http://vidalia-project.net/">Vidalia</a>.</li>
 <li>Przejrzyj i udokumentuj
@@ -108,7 +100,14 @@
  przyczyną dziwnych zachowań i padów systemu</a>. Powinniśmy raczej używać
  nakładającego IO. Jednym z rozwiązań byłoby nauczenie biblioteki <a
  href="http://www.monkey.org/~provos/libevent/">libevent</a>, jak używać nakładającego IO
- zamiast select() pod Windows, po czym zaadaptować Tora do nowego interfejsu.</li>
+ zamiast select() pod Windows, po czym zaadaptować Tora do nowego interfejsu.
+ Christian King zrobił
+ <a href="https://tor-svn.freehaven.net/svn/libevent-urz/trunk/">pierwszy dobry
+ krok</a> zeszłego lata.</li>
+
+<li>Jak można uczynić <a
+href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
+łatwiejszym w utrzymaniu, ulepszaniu i dokumentowaniu?</li>
 
 <li>Ponieważ przekaźniki sieci Tora muszą przechować i podać dalej każdą komórkę,
  którą obsługują, przekaźniki o wysokiej przepustowości zużywają wiele
@@ -170,19 +169,7 @@
  strony badawczej tego zadania &mdash; kto wie, może gdy będzie skończone, pomożesz nam też
  napisać dokumentację.</li>
 
-<li>Potrzebujemy badań pomiarowych/porównawczych <a
- href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
- vs <a href="http://www.privoxy.org/">Privoxy</a>. Czy Polipo jest rzeczywiście znacznie
- szybszy, po wliczeniu opóźnienia spowodowanego Torem? Czy wyniki są takie same na
- Linuksie i Windows? Związany z tym problem: czy Polipo obsługuje więcej stron poprawnie,
- niże Privoxy, czy na odwrót? Czy są problemy ze stabilnością na jednej z popularnych
- platform, np. Windows?</li>
-
-<li>W związku z powyższym, czy chciałbyś pomóc przenieść <a
- href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> tak, by działało
- stabilnie i wydajnie pod Windows?</li>
-
-<li>Potrzebujemy framework'a do testów rozproszonych. Mamy pojedyncze testy, ale byłoby
+<li>Potrzebujemy frameworka do testów rozproszonych. Mamy pojedyncze testy, ale byłoby
  wspaniale mieć skrypt, który uruchamia sieć Tora, używa jej przez chwilę i weryfikuje,
  że przynajmniej jej część działa.</li>
 
@@ -193,24 +180,6 @@
  href="https://www.torproject.org/svn/torctl/doc/howto.txt">protokołu kontroli Tora</a>,
  by instruować Tora do budowania obwodów na wiele różnych sposobów, po czym
  mierzy wydajność i próbuje wykryć anomalie.</li>
-  	 <!--
-
-<li>W tej chwili deskryptory usług ukrytych są przechowywane na zaledwie
- kilku serwerach katalogowych. To źle dla prywatności i wydajności. By to
- polepszyć, będziemy musieli uczynić deskryptory usług ukrytych jeszcze
- mniej prywatnymi, gdyż będziemy musieli je skopiować w wiele miejsc.
- Idealnie byłoby całkowicie oddzielić system przechowywania/pobierania od
- serwerów katalogowych Tora. Pierwszą rzeczą jest to, że musimy zaprojektować
- nowy format deskryptora usługi ukrytej tak, by a) dla wygody był w postaci ASCII,
- a nie binarnej b) przechowywać listę punktów przedstawiania w postaci zaszyfrowanej,
- chyba że zna się adres <tt>.onion</tt>, by katalog nie mógł ich pobrać, c)
- pozwolić katalogom na weryfikację znacznika czasu i podpisu na deskryptorze
- usługi ukrytej, żeby nie mogły zostać oszukane poprzez podanie im fałszywych.
- Po drugie, każdy wiarygodny system przechowywania sprawdzi się, dopóki
- umożliwia autentyfikowane aktualizacje, ale według naszych informacji,
- żaden zaimplementowany kod typu DHT (z dystrybuowaną tablicą haszowaną) nie
- obsługuje autentyfikowanych aktualizacji.</li>
--->
 
 <li>Tor 0.1.1.x i późniejsze zawiera obsługę sprzętowych akceleratorów kryptograficznych,
  poprzez OpenSSL. Ale nikt tego jeszcze nie przetestował. Czy ktoś chce
@@ -232,7 +201,7 @@
  wyjściowych). Jeśli mocno ci zależy na IPv6, to jest to chyba najlepszy punkt
  startu.</li>
 <li>Nie podoba ci się żaden z tych pomysłów? Spójrz na <a
- href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">plan rozwoju Tora</a> po więcej pomysłów.</li>
+ href="<svnsandbox>doc/design-paper/roadmap-future.pdf">plan rozwoju Tora</a> po więcej pomysłów.</li>
 <li>Nie widzisz tu swojego pomysłu? Prawdopodobnie i tak go potrzebujemy! Skontaktuj się
  z nami, by to sprawdzić.</li>
 </ol>
