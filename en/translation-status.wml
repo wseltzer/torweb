@@ -51,7 +51,8 @@ sub do_status($$) {
 	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'https://www.torproject.org/') . ($dir eq '.' ? '' : $dir.'/');
 
 
-	print "<h1>$dir</h1>\n";
+	print "<a id=\"$dir\"></a>\n";
+	print "<h1><a class=\"anchor\" href=\"#$dir\">$dir</a></h1>\n";
 
 	for my $priority (@priorities) {
 		print "<h2>Translation priority: $priority</h2>\n";
