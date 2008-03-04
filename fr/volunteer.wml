@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 13768
+# Based-On-Revision: 13843
 # Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Tor : Contribuer"
@@ -72,13 +72,6 @@ cela jouerait-il sur la confidentialité, et par ailleurs, existe-t-il des solut
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">Documentation</a></h2>
 <ol>
-<li>Nous avons des retours d'utilisateurs de Tor qui sont victimes d'attaques contre leur anonymat 
-à cause de javascript, java, activex, flash, etc, s'ils ne pensent pas à les désactiver. 
-Existe-t-il des greffons (comme NoScript pour Firefox) qui rendent la gestion 
-de ce risque plus facile pour les utilisateurs ? Et quel est ce risque exactement ?</li>
-<li>Existerait-il un ensemble de plugins qui remplacerait la totalité des fonctions de 
-Privoxy pour Firefox 1.5+ ? Il semblerait que Tor soit bien plus performant si l'on enlève 
-Privoxy du circuit.</li>
 <li>Aidez Matt Edman à documenter et à écrire des tutoriaux pour son 
 contrôleur Tor,
 <a href="http://vidalia-project.net/">Vidalia</a>.</li>
@@ -110,46 +103,12 @@ l'instabilité et le plantage du système</a>. Nous devrions probablement utilis
 à la place. Une solution pourrait-être d'apprendre à la <a
 href="http://www.monkey.org/~provos/libevent/">libevent</a> comment utiliser 
 les E/S recouvrables à la place de select() sous Windows, et alors d'adapter Tor à 
-la nouvelle interface libevent.</li>
-<li>Du fait que les serveurs Tor ont besoin du mecanisme de stockage-et-envoi pour chaque cellules envoyées, 
-les serveurs Tor ayant une grosse bande passante se retrouvent avec des douzaines de mégaoctets de mémoire 
-juste pour les mémoires tampons. Il nous est nécessaire d'avoir une meilleur approche pour savoir quand réduire/étendre
-la taille des tampons. Probablement que ceci devrait être calqué sur l'architecture de gestion des tampons Linux, 
-où nous avons des tampons réduits et se liant les un aux autre, 
-plutôt que des gros tampons monolithiques ?</li>
-<li>Nous avons besoin d'un site central officiel pour répondre à la question "Est-ce que cette adresse IP est 
-un serveur de sortie Tor ?". Ceci devrait fournir plusieurs interfaces, y compris 
-une interface Web et une interface type DNSBL. Il pourrait apporter la plus 
-à jour des réponses en conservant un miroir local des informations des répertoires 
-Tor. Le point délicat c'est qu'être un serveur de sortie n'est pas 
-booléen : ainsi la question devient "Est-ce que cette adresse est un serveur de sortie 
-Tor pouvant sortir sur mon adresse IP:port ?" L'interface DNSBL 
-recevra probablement plusieurs centaines de requêtes par minute, ainsi développer des algorithmes 
-robustes est de mise. La cerise sur le gateau s'ils font des tests actifs à travers 
-chaque noeud de sortie pour déterminer de quelle adresse IP elle sort vraiment.
-<a href="<svnsandbox>doc/contrib/torbl-design.txt">Lisez-en plus ici</a>.</li>
-<li>Parfois les serveurs Tor plantent, ou les ordinateurs sur lesquels ils tournent tombent ou quittent
-le réseau, ou d'autres incidents surviennent. Certains opérateurs de nœud Tor ont exprimés le 
-souhait de pouvoir souscrire à un service qui pourrait périodiquement
-scruter l'état du serveur Tor et déterminer s'il est en état de marche et envoyer une notification par mail
-lorsqu'il ne l'est pas. Quelqu'un pourrait écrire quelques scripts, quelques pages, 
-et programmer quelque chose comme des scripts à base de wget et/ou plus complexe comme <a
-href="http://nagios.org/">Nagios</a> pour faire la supervision ? La première 
-version pourrait juste contrôler le port « directory », p.ex. en cherchant dans la
-page de status du réseau mise en cache, la bonne adresse IP et le port et ensuite
-demander la page "/tor/server/authority".</li>
-<li>Il serait sympa d'avoir un LiveCD qui inclurait les dernières
-versions de Tor, Polipo ou Privoxy, Firefox, Gaim+OTR, etc. Il y a 
-deux défis ici : le premier de documenter le sytème et les choix suffisament
-bien pour que les personnes de sécurité puissent former une opinion sur la 
-robustesse, et le second est de trouver comment faire en sorte qu'il soit facilement maintenable, 
-pour qu'il ne devienne pas rapidement obsolète comme AnonymOS. Le plus, serait 
-que l'image du CD tienne sur des CDs de tailles réduites.</li>
-<li>Lié au LiveCD, nous devrions travailler sur une image bien documentée et intuitive 
-de Tor et d'un ensemble d'application supportée sur une clé USB. Le
-gros du travail ici est de décider quelles configurations sont sécurisées,
-documenter ces décisions, et faire quelque chose qui soit simple à 
-maintenir et faire aller de l'avant.</li>
+la nouvelle interface libevent.</li> Christian King à 
+<a href="https://tor-svn.freehaven.net/svn/libevent-urz/trunk/">bien
+démarré</a> sur ce point l'été dernier.</li>
+<li>Comment pouvons nous faire en sorte que <a
+href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
+soit plus simple à maintenir, étendre, et à documenter ?</li>
 <li>Notre interface graphique préférée pour Tor, nommée
 <a href="http://vidalia-project.net/">Vidalia</a>, nécessite toutes sortes 
 de dévelopments.</li>
@@ -167,16 +126,6 @@ donne une réponse raisonnable ? Ceci stimulera un grand nombre de nouvelles re
 Voyez l'entrée <a href="#Research">suivante</a> sur les confirmations d'attaque pour les 
 détails sur le coté recherche de cette tâche &mdash; qui sait, quand ceci sera 
 fait peut-être pouvez aider en écrivant un papier ou deux.</li>
-<li>Nous avons besoin d'une étude mesurée des performances de <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
-et <a href="http://www.privoxy.org/">Privoxy</a>. Est-ce que Polipo est en fait
-significativement plus rapide, une fois le ralentissement de Tor factorisé ? Est-ce que les 
-résultats sont les mêmes sous Linux et Windows ? Lié, est-ce que Polipo tient 
-plus de site Web correctement que Privoxy ou vice versa ? Y'a-t-il des 
-problèmes de stabilité sur les plateformes communes telles que Windows ?</li>
-<li>Lié à ce qui est dit au dessus, pouvez vous aider à porter <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> pour qu'il 
-tourne de manière stable et efficace sous Windows ?</li>
 <li>Nous avons besoin d'un banc de test distribué. Nous avons des unités de tests,
 mais il serait sympa d'avoir un script qui lance un réseau Tor, 
 l'utilise quelque temps, et vérifie que, au moins, quelques aspects fonctionnent.</li>
@@ -186,25 +135,8 @@ c'est une bibliothèque python qui utilise le <a
 href="https://www.torproject.org/svn/torctl/doc/howto.txt">protocole du contrôleur Tor
 </a> pour apprendre à Tor à construire des circuits de différentes manières,
 et ensuite mesure les performances et essaye de détecter les anomalies.</li>
-<!--
-<li>Pour l'instant, les descripteurs de services cachés sont stockés sur un 
-petit nombre de serveurs de répertoires seulement. Ceci est mauvais au niveau confidentialité des données privées et au niveau de la robustesse. Pour 
-améliorer la robustesse, nous allons affaiblir encore la protection des données sur les descripteurs de services cachés,
-car nous allons devoir multiplier les miroirs des serveurs de repértoires. Idéalement, nous aimerions que le système de stockage/recherche 
-soit entièrement séparé des serveurs de répertoires Tor. Le premier problème est que nous devons 
-concevoir un nouveau format de description des services cachés 
-a) qui soit ascii plutôt 
-que binaire pour en simplifier l'utilisation; b) qui garde chiffrée la liste des points d'entrée 
-à moins que l'on ne connaisse l'adresse <tt>.onion</tt>, de sorte que le répertoire ne 
-puisse les lister; et c) qui autorise les répertoires à vérifier la date et 
-la signature d'un descripteur de service caché de sorte que ces répertoires ne puissent être bidouillés 
-pour en do nner des faux. Deuxièmement, tout système de stockage distribué 
-sûr conviendra, du moment qu'il permette des mises à jour authentifiées. Mais pour autant 
-qu'on le sache, aucune implémentation de DHT ne supporte de mises à jour authentifées.</li>
--->
 <li>Tor 0.1.1.x inclut le support d'accélérateurs matériels de chiffrage 
-via 
-OpenSSL. Cependant, personne ne l'a jamais testé. Est-ce que quelqu'un voudrait se procurer 
+via OpenSSL. Cependant, personne ne l'a jamais testé. Est-ce que quelqu'un voudrait se procurer 
 une carte et nous dire ce qu'il en est ?</li>
 <li>Faire une analyse de sureté de Tor avec <a
 href="http://en.wikipedia.org/wiki/Fuzz_testing">du "fuzz"</a>. Déterminer 
@@ -223,7 +155,7 @@ UDP</a> &mdash; lisez-la et faites-nous part de vos remarques et critiques, s'il
 et les adresses finales. Si IPV6 vous tient à cœur, partir de là est sans doute 
 un premier pas.</li>
 <li>Quelque chose vous déplait ? Regardez la <a
-href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">planification du développement
+href="<svnsandbox>doc/design-paper/roadmap-future.pdf">planification du développement
 de Tor</a> pour plus d'idées.</li>
 <li>Vous ne voyez pas vos idées ici ? Nous en avons peut-être besoin ! Contactez
 nous et aidez.</li>
