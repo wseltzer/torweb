@@ -2,13 +2,91 @@
 # Revision: $Revision$
 # Translation-Priority: 1-high
 
-#include "head.wmi" TITLE="Tor: Download"
+#include "head.wmi" TITLE="Tor: Download" charset="UTF-8"
 
 <div class="main-column">
 
-<h2>Download current Tor version</h2>
+<h2>Available Tor Bundles</h2>
 
 <hr />
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr bgcolor="#e5e5e5">
+<th>Platform</th>
+<th>Download Stable</th>
+<th>Download Unstable</th>
+<th>Help</th>
+</tr>
+</thead>
+
+<tr>
+  <td>
+    Windows<br />
+    All Vista Versions, XP, 2000, 2003 Server, Millenium
+  </td>
+  <td>
+    <a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-windows>">Install &amp; configure guide</a>
+  <td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    Mac OS X<br />
+    Universal Binary (OSX 10.4 &amp; 10.5)
+  </td>
+  <td>
+    <a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-osx>">Install &amp; configure guide</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Mac OS X<br />
+    10.3 (Panther)
+  </td>
+  <td>
+    <a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a href="<package-oldosx-bundle-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a href="<package-oldosx-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-osx>">Install &amp; configure guide</a>
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    Linux/Unix packages<br />
+    Redhat/CentOS, Fedora, Debian, Ubuntu, SUSE
+  </td>
+  <td colspan="2">
+    <a href="<page download-unix>">Linux/Unix download page</a>
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-unix>">Install &amp; configure guide</a>
+  </td>
+</tr>
+</table>
+
+<br />
+
+<p>
+What's the <a href="#packagediff">difference between Stable &amp; Unstable</a>?
+</p>
 
 <p>
 Tor is distributed as <a href="http://www.fsf.org/">Free Software</a>
@@ -19,113 +97,10 @@ applications distributed under the GNU GPL.
 </p>
 
 <p>
-There is no fee for installing Tor or using the Tor network, but
+There is no fee for installing Tor, or using the Tor network, but
 if you want Tor to become faster and more usable please consider
 <a href="<page donate>">making a tax-deductible donation to The Tor Project</a>.
 </p>
-
-<table width="100%" border="1" cellspacing="0" cellpadding="2">
-<thead>
-<tr>
-<th>Platform</th>
-<th>Package</th>
-</tr>
-</thead>
-
-<tr>
-<td>Windows<br /><a href="<page docs/tor-doc-windows>">Install &amp; configure guide</a></td>
-<td>
-Tor &amp; Privoxy &amp; Vidalia &amp; Torbutton bundle:
-<a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>)
-</td>
-</tr>
-
-<tr>
-<td>
-Mac OS X<br />
-<a href="<page docs/tor-doc-osx>">Install &amp; configure guide</a>
-</td>
-
-<td>
-Tor &amp; Privoxy &amp; Vidalia &amp; Torbutton bundle:<br />
-&nbsp;&nbsp;&nbsp; Universal Binary (OSX 10.4 &amp; 10.5):
-<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>)
-
-<br />
-&nbsp;&nbsp;&nbsp; 10.3 (Panther):
-<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
-href="<package-oldosx-bundle-stable-sig>">sig</a>)
-</td>
-</tr>
-
-<tr>
-<td>
-Linux/Unix packages
-</td>
-<td><a href="<page download-unix>">Linux/Unix download page</a></td>
-</tr>
-
-</table>
-
-<br />
-
-<a id="Warning"></a>
-<h2><a class="anchor" href="#Warning">Warning: Want Tor to really
-work?</a></h2>
-
-<p>...then please don't just install it and go on.  You need to change
-some of your habits, and reconfigure your software!
-Tor by itself is <em>NOT</em> all you need to maintain your anonymity.
-There are several major pitfalls to watch out for:
-</p>
-
-<ol>
-<li>Tor only protects Internet applications that are configured to
-send their traffic through Tor &mdash; it doesn't magically anonymize
-all your traffic just because you install it.  We recommend you
-use <a href="http://www.mozilla.org/firefox">Firefox</a> with the <a
-href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> extension.
-</li>
-
-<li>Browser plugins such as Java, Flash, ActiveX, RealPlayer,
-Quicktime, Adobe's PDF plugin, and others can be manipulated
-into revealing your IP address. You should probably
-<a href="http://plugindoc.mozdev.org/faqs/uninstall.html">uninstall your
-plugins</a>
-(go to "about:plugins" to see what is installed), or investigate <a
-href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>, <a
-href="https://addons.mozilla.org/firefox/433/">FlashBlock</a>, and
-<a href="http://noscript.net/">NoScript</a>
-if you really need them. Consider removing extensions that look up
-more information about the websites you type in (like Google toolbar),
-as they may bypass Tor and/or broadcast sensitive information. Some
-people prefer using two browsers (one for Tor, one for unsafe browsing).
-</li>
-
-<li>Beware of cookies: if you ever browse without Tor and Privoxy
-and a site gives you a cookie, that cookie could identify you even when
-you start using Tor again. You should clear your cookies frequently. <a
-href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> can help
-protect any cookies you do not want to lose.
-</li>
-
-<li>Tor anonymizes the origin of your traffic,
-and it encrypts everything inside the Tor network, but <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">it
-can't encrypt your traffic between the Tor network and its final
-destination.</a>
-If you are communicating sensitive information, you should use as much
-care as you would on the normal scary Internet &mdash; use HTTPS or other
-end-to-end encryption and authentication.
-</li>
-
-<li>While Tor blocks attackers
-on your local network from discovering or influencing your destination,
-it opens new risks: malicious or misconfigured Tor exit nodes can send
-you the wrong page, or even send you embedded Java applets disguised as
-domains you trust.
-</li>
-</ol>
 
 <p>Be smart and learn more. Understand what Tor does and does not offer.
 This list of pitfalls isn't complete, and we need your
@@ -149,101 +124,186 @@ the list's RSS feed</a>.
 <input type="submit" value="subscribe to or-announce">
 </form>
 
-<hr />
+<br />
 
-<a id="Dev"></a>
-<h2><a class="anchor" href="#Dev">Development releases, packages for
-experts, and source code</a></h2>
+<a id="Warning"></a>
+<h2><a class="anchor" href="#Warning">Warning: Want Tor to really
+work?</a></h2>
 
-<p>
-These development snapshots are released so you can help us test new
-features and bugfixes. Even though they have a higher version number
-than the stable versions listed above, there is a much higher chance
-of serious reliability and security bugs in these downloads. Please be
-prepared to <a href="https://bugs.torproject.org/">report bugs</a>.
+<p>...then please don't just install it and go on.  You need to change
+some of your habits, and reconfigure your software!
+Tor by itself is <em>NOT</em> all you need to maintain your anonymity.
+There are several major pitfalls to watch out for:
 </p>
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2">
+<ol>
+<li>
+Tor only protects Internet applications that are configured to
+send their traffic through Tor &mdash; it doesn't magically anonymize
+all your traffic just because you install it.  We recommend you
+use <a href="http://www.mozilla.org/firefox">Firefox</a> with the <a
+href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> extension.
+</li>
+
+<li>
+Browser plugins such as Java, Flash, ActiveX, RealPlayer,
+Quicktime, Adobe's PDF plugin, and others can be manipulated
+into revealing your IP address. You should probably
+<a href="http://plugindoc.mozdev.org/faqs/uninstall.html">uninstall your
+plugins</a>
+(go to "about:plugins" to see what is installed), or investigate <a
+href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>, <a
+href="https://addons.mozilla.org/firefox/433/">FlashBlock</a>, and
+<a href="http://noscript.net/">NoScript</a>
+if you really need them. Consider removing extensions that look up
+more information about the websites you type in (like Google toolbar),
+as they may bypass Tor and/or broadcast sensitive information. Some
+people prefer using two browsers (one for Tor, one for unsafe browsing).
+</li>
+
+<li>
+Beware of cookies: if you ever browse without Tor and Privoxy
+and a site gives you a cookie, that cookie could identify you even when
+you start using Tor again. You should clear your cookies frequently. <a
+href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> can help
+protect any cookies you do not want to lose.
+</li>
+
+<li>
+Tor anonymizes the origin of your traffic,
+and it encrypts everything inside the Tor network, but <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">it
+can't encrypt your traffic between the Tor network and its final
+destination.</a>
+If you are communicating sensitive information, you should use as much
+care as you would on the normal scary Internet &mdash; use HTTPS or other
+end-to-end encryption and authentication.
+</li>
+
+<li>
+While Tor blocks attackers
+on your local network from discovering or influencing your destination,
+it opens new risks: malicious or misconfigured Tor exit nodes can send
+you the wrong page, or even send you embedded Java applets disguised as
+domains you trust.
+</li>
+</ol>
+
+<hr />
+
+<a id="packagediff"></a>
+<h2><a class="anchor" href="#packagediff"></a>What's the difference between Stable &amp; Unstable?</h2>
+
+<p>
+Stable packages are released when we believe the features and code will
+not change for many months. These typically include a stable version of Vidalia, Privoxy, and Torbutton.
+</p>
+<p>
+Unstable packages are released so you can help us test new features and bugfixes. Even though they have a higher version number
+than the stable versions listed above, there is a much higher chance of
+serious reliability and security bugs in these downloads. Newer,
+untested versions of Vidalia, Privoxy, and Torbutton are included in
+these unstable package. Please be prepared to <a href="https://bugs.torproject.org/">report bugs</a>.
+</p>
+
+<a id="Dev"></a>
+<h2><a class="anchor" href="#Dev">Expert Packages &amp; Source Code </a></h2>
+
+<p>
+Expert packages do not contain Vidalia.  Privoxy and Torbutton are installed pre-configured for you.  You must configure Tor itself through your own editor.
+</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
 <thead>
-<tr>
+<tr bgcolor="e5e5e5">
 <th>Platform</th>
-<th>Package</th>
+<th>Stable</th>
+<th>Unstable</th>
+<th>Help</th>
 </tr>
 </thead>
 
 <tr>
-<td>Windows<br /><a href="<page docs/tor-doc-windows>">Install &amp; configure guide</a></td>
-<td>
-Tor &amp; Privoxy &amp; Vidalia &amp; <a
-href="https://torbutton.torproject.org/dev/">Torbutton-dev</a> bundle
-(recommended):
-<a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>)
-<br />
-Expert install:
-<a href="<package-win32-stable>"><version-win32-stable></a>
-(<a href="<package-win32-stable-sig>">sig</a>),
-<a href="<package-win32-alpha>"><version-win32-alpha></a>
-(<a href="<package-win32-alpha-sig>">sig</a>)
-</td>
+  <td>
+    Windows<br />
+    All Vista Versions, XP, 2000, 2003 Server, Millenium
+  </td>
+  <td>
+    <a href="<package-win32-stable>"><version-win32-stable></a> (<a href="<package-win32-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-win32-alpha>"><version-win32-alpha></a> (<a href="<package-win32-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-windows>">Install &amp; configure guide</a>
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    Mac OS X<br />
+    Universal Binary (OSX 10.4 &amp; 10.5)
+  </td>
+  <td>
+    <a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-osx>">Install &amp; configure guide</a>
+  </td>
 </tr>
 
 <tr>
-<td>
-Mac OS X<br />
-<a href="<page docs/tor-doc-osx>">Install &amp; configure guide</a>
-</td>
+  <td>
+    Mac OS X<br />
+    10.3 (Panther)
+  </td>
+  <td>
+    <a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<ahref="<package-oldosx-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a href="<package-oldosx-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-osx>">Install &amp; configure guide</a>
+  </td>
+</tr>
 
-<td>
-Tor &amp; Privoxy &amp; Vidalia &amp; <a
-href="https://torbutton.torproject.org/dev/">Torbutton-dev</a> bundle
-(recommended):<br />
-&nbsp;&nbsp;&nbsp; Universal Binary (10.4 &amp; 10.5):
-<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>)
-
-<br />
-&nbsp;&nbsp;&nbsp; 10.3 (Panther):
-<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a
-href="<package-oldosx-bundle-alpha-sig>">sig</a>)
-
-<br />
-Packages for experts:
-Tor &amp; Privoxy &amp; Torbutton only:<br />
-&nbsp;&nbsp;&nbsp; Universal Binary (OSX 10.4 &amp; 10.5):
-<a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>),
-<a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>)
-
-<br />
-&nbsp;&nbsp;&nbsp; 10.3 (Panther):
-<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a
-href="<package-oldosx-stable-sig>">sig</a>),
-<a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a
-href="<package-oldosx-alpha-sig>">sig</a>)
-</td>
+<tr bgcolor="#e5e5e5">
+  <td>
+    Linux/Unix packages<br />
+    Redhat/CentOS, Fedora, Debian, Ubuntu, SUSE
+  </td>
+  <td colspan="2">
+    <a href="<page download-unix>">Linux/Unix download page</a>
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-unix>">Install &amp; configure guide</a>
+  </td>
 </tr>
 
 <tr>
-<td>
-Linux/Unix packages
-</td>
-<td><a href="<page download-unix>">Linux/Unix download page</a></td>
-</tr>
+  <td>
+    Source tarballs<br />
+    <kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd>
+  </td>
+  <td>
+    <a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)
+  </td>
+  <td>
 
-<tr>
-<td>
-Source tarballs<br />
-<kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd>
-</td>
-<td>
-Stable: <a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>)<br />
-Alpha: <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)
-</td>
 </tr>
-
 </table>
 
+<br />
+
 <p>
-See our <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">FAQ
+See our <a href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">FAQ
 entry on verifying package signatures</a>, which allows
 you to make sure you've downloaded the file we intended you to get.
 </p>
