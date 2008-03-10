@@ -159,7 +159,30 @@ over time, graphing it, etc. Better metrics for assessing network
 health and growth.</li>
 <li>vidalia and upnp</li>
 <li>nymble</li>
-<li>polipo on windows</li>
+
+<li>
+Help port <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> to
+Windows. 1) handle spaces in path names and understand the filesystem
+namespace &mdash; namespace meaning where application data, personal data,
+and program data typically reside in various versions of Windows. 2) the
+ability to handle ipv6 communications. 3) the ability to asynchronously
+query name servers, find the system nameservers, and manage netbios
+and dns queries. 4) use native regex capabilities of Windows, rather
+than using 3rd party GNU regex libraries. 5) manage events and buffers
+natively (i.e. in Unix-like OSes, Polipo defaults to 25% of ram, in
+Windows it's whatever the config specifies). 6) some sort of GUI config
+and reporting tool, bonus if it has a systray icon with right clickable
+menu options. Double bonus if it's cross-platform compatible.
+</li>
+
+<li>
+a way to generate the website diagrams from source, so we can translate
+them as utf-8 text rather than with gimp. (svg? or imagemagick?)
+integrate this with a wml file so translations are easy and images are
+generated in multiple languages at web publish
+</li>
+
 <li>How can we make the <a
 href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
 easier to maintain, improve, and document?</li>
