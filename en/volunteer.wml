@@ -217,6 +217,80 @@ design/Photoshop fu, since we might want/need some shiny new icons too.
 </li>
 
 <li>
+A translation wiki
+<br />
+We require a way to edit and translate sections of the website &mdash;
+possibly resulting in a patch for the official svn tree. The current
+"cost" of publication of website changes is quite high even for English
+language users. They need to check out our template files, translate them
+and send us the translation. For a single word change or any type of
+minor change, the page may never be corrected or translated.  It would
+be nice to have a wiki that was specifically geared towards translation
+and would somehow track the upstream (English) versions to indicate when
+a fresh translation is needed. This seems mostly like a job for a wiki
+integrator or wiki software author. Certainly the person would need to
+be interested in human languages and translation. They should at least
+be minimally familiar with what Tor is but would not have to interact
+with the software, only the documentation on the website.
+</li>
+
+<li>
+https://check.torproject.org
+<br />
+We currently have a functional web page to detect if Tor is working. It
+is has a few places where it falls short. It requires improvements with
+regard to default languages and functionality. It currently only responds
+in English. In addition, it is a hack of a perl script that should have
+never seen the light of day. It should probably be rewritten in python
+with multi-lingual support in mind. It currently uses the Tor DNS exit
+list and should continue to do so in the future. It may result in certain
+false positives and these should be discovered, documented, and fixed
+where possible. Anyone working on this project should be interested in
+DNS, basic perl or preferably python programming skills and will have
+to interact minimally with Tor to test their code.
+</li>
+
+<li>
+exitlist.torproject.org
+<br />
+The exitlist software is written by our fabulous anonymous
+contributer Tup. It's a haskel DNS server that supports part of our <a
+href="https://www.torproject.org/svn/trunk/doc/contrib/torel-design.txt">exitlist
+design document</a>. Currently, it's functional and it is used by
+check.torproject.org and other users. The issues that are outstanding
+are mostly aesthetic. This wonderful service could use a much better
+website using the common Tor theme. It would be best served with better
+documentation for common services that use an RBL. It could use more
+publicity. A person working on this project should be interested in DNS,
+basic RBL configuration for popular services, and writing documentation.
+The person would require minimal Tor interaction &mdash; testing their
+own documentation at the very least. Furthermore, it would be useful
+if they were interested in haskel and wanted to implement more of the
+torel-design.txt suggestions.
+</li>
+
+<li>
+Testing Tor for end users
+<br />
+The Tor project currently lacks a solid test to ensure that a
+user has a properly configured web browser. It should test for as
+many known issues as possible. It should attempt to decloak the
+user in any way possible.  Two current webpages that track these
+kinds of issues are run by Greg and HD Moore. Greg keeps a nice <a
+href="http://pseudo-flaw.net/tor/torbutton/">list of issues along
+with their proof of concept code, bug issues, etc</a>. HD Moore runs
+the <a href="http://metasploit.com/research/misc/decloak/">metasploit
+decloak website</a>. A person interested in attacking Tor could start
+by collecting as many workable and known methods for decloaking a
+Tor user. The person should be familiar with the common pitfalls but
+possibly have new methods in mind for implementing decloaking issues. The
+website should ensure that it tells a user what their problem is. It
+should help them to fix the problem or direct them to the proper support
+channels. The person should be closely familiar with using Tor and how
+to prevent Tor leakage.
+</li>
+
+<li>
 Tor needs even better censorship resistance mechanisms.  There are
 several mechanisms that can help.  Tor should be able listen on multiple
 addresses and ports, and allow clients to connect to all of them.
