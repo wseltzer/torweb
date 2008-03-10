@@ -94,6 +94,129 @@ Farsi translations, for the many Tor users in censored areas.</li>
 <ol>
 
 <li>
+Tor/Polipo/Vidalia Auto-Update Framework
+<br />
+Vidalia already has the ability to notice when the user is running an
+outdated or unrecommended version of Tor. Currently, Vidalia simply pops
+up a little message box that lets the user know they should manually
+upgrade. The goal of this project would be to extend Vidalia with the
+ability to also fetch and install the updated Tor software for the
+user. Time permitting, we would also like to be able to update other
+applications included in the bundled installers, such as Polipo and
+Vidalia itself.
+<br />
+To complete this project, the student will first need to first investigate
+the existing auto-update frameworks (e.g., Sparkle on OS X) to evaluate
+their strengths, weaknesses, security properties, and ability to be
+integrated into Vidalia. If none are found to be suitable, the student
+will design their own auto-update framework, document the design, and
+then discuss the design with other developers to assess any security
+issues. The student will then implement their framework (or integrate
+an existing one) and test it.
+<br />
+A student undertaking this project should have good C++ development
+experience. Previous experience with Qt is helpful, but not required. The
+student should also have a basic understanding of common security
+practices, such as package signature verification. Good writing ability
+is also important for this project, since a vital step of the project
+will be producing a design document for others to review and discuss
+with the student prior to implementation.
+</li>
+
+<li>
+An Improved and More Usable Network Map
+<br />
+One of Vidalia's existing features is a network map that shows the user
+the approximate geographic location of relays in the Tor network and
+plots the paths the user's traffic takes as it is tunneled through the
+Tor network. The map is currently not very interactive and has rather
+poor graphics. Instead, we would like to leverage KDE's Marble widget
+that gives us a better quality map and enables improved interactivity,
+such as allowing the user to click on individual relays or circuits to
+display additional information. We might also consider adding the ability
+for users to click on a particular relay or a country containing one or
+more Tor exit relays and say, ``I want my connections to foo.com to exit
+from here.''
+<br />
+This project will first involve the student getting familiar with Vidalia
+and the Marble widget's API. The student will then integrate the widget
+into Vidalia and customize Marble to be better suited for our application,
+such as making circuits clickable, storing cached map data in Vidalia's
+own data directory, and customizing some of the widget's dialogs.
+<br />
+A student undertaking this project should have good C++ development
+experience. Previous experience with Qt and CMake is helpful, but not
+required.
+</li>
+
+<li>
+Better Debian Support &amp; Packaging
+<br />
+Vidalia currently doesn't play nicely on Debian and Ubuntu with the
+default Tor packages. The current Tor packages automatically start Tor
+as a daemon running as the debian-tor user and (sensibly) do not have a
+CntrolPort defined in the default torrc. Consequently, Vidalia will try
+to start its own Tor process since it could not connect to the existing
+Tor, and then Vidalia's Tor process will then exit with an error message
+the user likely doesn't understand since Tor cannot bind its listening
+ports--they're already in use by the original Tor daemon.
+<br />
+The current solution involves either telling the user to stop the
+existing Tor daemon and let Vidalia start its own Tor process, or
+explaining to the user how to set a control port and password in their
+torrc. A better solution on Debian would be to use Tor's ControlSocket,
+which allows Vidalia to talk to Tor via a Unix domain socket, and could
+possibly be enabled by default in Tor's Debian packages. Vidalia can
+then authenticate to Tor using cookie authentication if the user running
+Vidalia is also in the debian-tor group.
+<br />
+This project will first involve adding support for Tor's ControlSocket
+to Vidalia. The student will then develop and test Debian and Ubuntu
+packages for Vidalia that conform to Debian's packaging standards and
+making sure it works well with the existing Tor packages. We can also
+set up an apt repository to host the new Vidalia packages.
+<br />
+A student undertaking this project should have prior knowledge of
+Debian package management and some C++ development experience. Previous
+experience with Qt is helpful, but not required.
+</li>
+
+<li>
+Tor Status Event Interface
+<br />
+There may are a number of status changes of which the user may need
+to be informed. For example, if the user is trying to set up a Tor
+relay and Tor decides the user's relay is not reachable from outside
+the user's network, we should alert the user. Currently, all the user
+gets is a couple log messages in Vidalia's 'message log', which they
+likely never see since they don't receive a notification that something
+has gone wrong. Even if the user does actually look at the message log,
+most of the messages make little sense to the novice user.
+<br />
+Tor has the ability to inform Vidalia of many such status changes, and
+we recently implemented support for a couple of these events. Still,
+there are many more status events the user should be informed of and we
+need a better UI for actually displaying them to the user.
+<br />
+The goal of this project then is to design and implement a UI for
+displaying Tor status events to the user. For example, we might put a
+little badge on Vidalia's tray icon that alerts the user to new status
+events they should look at. Double-clicking the icon could bring up a
+dialog that summarizes recent status events in simple terms and maybe
+suggests a remedy for any negative statuses if they can be corrected by
+the user. Of course, this is just an example and the student is free to
+suggest another approach.
+<br />
+A student undertaking this project should have good UI design and layout
+experience and some C++ development experience. Previous experience
+with Qt and Qt's Designer will be very helpful, but not required. Some
+English writing ability will also be useful, since this project will
+likely involve writing small amounts of help documentation that should
+be understandable by non-technical users. Bonus points for some graphic
+design/Photoshop fu, since we might want/need some shiny new icons too.
+</li>
+
+<li>
 Tor needs even better censorship resistance mechanisms.  There are
 several mechanisms that can help.  Tor should be able listen on multiple
 addresses and ports, and allow clients to connect to all of them.
