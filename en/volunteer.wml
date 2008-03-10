@@ -317,17 +317,37 @@ at the directory authorities.
 </li>
 
 <li>
+It would be useful to have automated build processes for Windows and
+probably other platforms. The purpose of having a continuous integration
+build environment is to ensure that Windows isn't left behind for any of
+the software projects used in the Tor project or its accompanying.<br />
+Buildbot may be a good choice for this as it appears to support all of
+the platforms Tor does. See the 
+<a href="http://en.wikipedia.org/wiki/BuildBot">wikipedia entry for 
+buildbot</a>.<br />
+There may be better options and the person undertaking this task should
+evaluate other options. Any person working on this automatic build
+process should have experience or be willing to learn how to build all
+of the respective Tor related code bases from scratch. Furthermore, the
+person should have some experience building software in Windows
+environments as this is the target audience we want to ensure we do not
+leave behind. It would require close work with the Tor source code but
+probably only in the form of building, not authoring.
+</li>
+
+<li>
 Tor needs to be far more tested.  This is a multi-part effort.  To start
 with, our unit test coverage should rise substantially, especially in
 the areas outside the utility functions.  This will require significant
 refactoring of some parts of Tor, in order to dissociate as much logic
 as possible from globals.<br />
 Additionally, we need to automate our performance testing.  We've got
-buildbot to automate our regular integration and compile testing already,
+buildbot (except on Windows &mdash; see above) to automate our regular 
+integration and compile testing already,
 but we need to get our network simulation tests (as built in torflow)
 updated for more recent versions of Tor, and designed to launch a test
 network either on a single machine, or across several, so we can test
-changes in performance on machines in different roles automatically.
+changes in performance on machines in different roles automatically.<br />
 </li>
 
 <li>
