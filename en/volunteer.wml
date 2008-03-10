@@ -94,6 +94,46 @@ Farsi translations, for the many Tor users in censored areas.</li>
 <ol>
 
 <li>
+Tor needs even better censorship resistance mechanisms.  There are
+several mechanisms that can help.  Tor should be able listen on multiple
+addresses and ports, and allow clients to connect to all of them.
+Tor should be able to appear like a webserver (HTTP or HTTPS) when
+contacted by port-scanning tools.
+</li>
+
+<li>
+Tor should make better use of the more recent features of Niels Provos's
+Libevent library.  Libevent already provides HTTP and socket buffers;
+Tor's code for those could be replaced.  We'll need to improve libevent's
+code as needed; particularly, to add good openssl support on top of
+libevent's buffer abstraction.
+</li>
+
+<li>
+Tor should possibly measure bandwidth in a distributed way, as in the
+<a href="http://freehaven.net/anonbib/">"A Tuneup for Tor"</a> paper
+by Snader and Borisov.  A student could use current testing code to
+double-check this paper's findings and verify the extent to which they
+dovetail with Tor in the wild, and determine good ways to incorporate them
+into the Tor network without adding undesirable n^2 traffic properties
+at the directory authorities.
+</li>
+
+<li>
+Tor needs to be far more tested.  This is a multi-part effort.  To start
+with, our unit test coverage should rise substantially, especially in
+the areas outside the utility functions.  This will require significant
+refactoring of some parts of Tor, in order to dissociate as much logic
+as possible from globals.<br />
+Additionally, we need to automate our performance testing.  We've got
+buildbot to automate our regular integration and compile testing already,
+but we need to get our network simulation tests (as built in torflow)
+updated for more recent versions of Tor, and designed to launch a test
+network either on a single machine, or across several, so we can test
+changes in performance on machines in different roles automatically.
+</li>
+
+<li>
 Reanimate one of the approaches to implement a Tor client in Java,
 e.g. the <a href="http://onioncoffee.sourceforge.net/">OnionCoffee
 project</a>, and make it run on <a
