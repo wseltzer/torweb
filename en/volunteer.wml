@@ -557,7 +557,7 @@ also requires a lot of coding.
 </li>
 
 <li>
-<b>Tor Exit Scanner Improvements</b>
+<b>Tor Exit Scanner improvements</b>
 <br />
 Priority: <i>High</i>
 <br />
@@ -581,17 +581,17 @@ Ideally, soat.pl would be reimplemented in a sane language with a
 robust html parser library (since the rest of Torflow is in Python,
 that would be nice, but not required), and calculate signatures only for
 tags and content likely to be targeted by a malicious attacker (script
-tags, object links, images). It should also be robust in the face of
+tags, object links, images, css). It should also be robust in the face of
 changes to content outside of Tor, and ultimately even GeoIP localized
 content.
 <br />
-This scanner would likely be run by the directory authorities and
+This scanner would likely be run by the Directory Authorities and
 report its results to the control port via the AuthDirBadExit config
 setting.
 <br />
 </li>
 <li>
-<b>Tor Node Scanner Improvements</b>
+<b>Tor Node Scanner improvements</b>
 <br />
 Priority: <i>Medium</i>
 <br />
@@ -620,7 +620,7 @@ Protocol</a> to
 report if a circuit extend through the node succeeds or fails, and
 passive statistics can be gathered on both bandwidth and reliability
 of other nodes via a node-based monitor using these events. Such a
-scanner which would also report information on oddly-behaving nodes to
+scanner would also report information on oddly-behaving nodes to
 the Directory Authorities, but a communication channel for this
 currently does not exist and would need to be developed as well.
 </li>
@@ -651,9 +651,9 @@ In addition, to improve path security, some elements from the <a
 href="http://www.torproject.org/svn/trunk/doc/spec/proposals/115-two-hop-paths.txt">Two
 Hop Paths proposal</a> could be done as part of this (since it will
 likely touch the same code anyways), regardless of the adoption of
-that proposal. In particular, clients probably should avoid guards thatseem to
+that proposal. In particular, clients probably should avoid guards that seem to
 fail an excessive percentage of their circuits through them, and non-bridged
-clients should issue a warn if they are only able toconnect to a limited set
+clients should issue a warn if they are only able to connect to a limited set
 of guard nodes.
 </li>
 <li>
@@ -673,10 +673,11 @@ timeframe. Most of these are documented as feature requests in the <a
 href="https://bugs.torproject.org/flyspray/index.php?tasks=all&project=5">Torbutton
 flyspray section</a>. Good examples include: stripping off node.exit on http
 headers, more fine-grained control over formfill blocking, improved referrer
-spoofing based on the domain of the site (a-la refspoof extension), tighter
-integration with Vidalia for reporting Tor status, a New Identity button with
-Tor integration and multiple identity management, and anything else you might
-think of. 
+spoofing based on the domain of the site (a-la <a
+href="http://addons.mozilla.org/firefox/addon/4513">refspoof extension</a>),
+tighter integration with Vidalia for reporting Tor status, a New Identity
+button with Tor integration and multiple identity management, and anything
+else you might think of. 
 
 <br />
 
