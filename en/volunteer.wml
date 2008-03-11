@@ -91,6 +91,16 @@ Farsi translations, for the many Tor users in censored areas.</li>
 <a id="Summer"></a>
 <a id="Projects"></a>
 <h2><a class="anchor" href="#Projects">Good Coding Projects</a></h2>
+
+<p>
+You may find some of these projects to be good <a href="<page
+gsoc>">Google Summer of Code 2008</a> ideas. We have labelled each idea
+with how important it is to the overall Tor project to get this started
+(priority), how much work we expect it would be (effort level), how much
+clue you should start with (skill level), and which of our <a href="<page
+people>#Core">core developers</a> would be good mentors.
+</p>
+
 <ol>
 
 <li>
@@ -102,15 +112,18 @@ Effort Level: <i>High</i>
 <br />
 Skill Level: <i>High</i>
 <br />
-Likely Mentors: <i>Matt, others</i>
+Likely Mentors: <i>Matt, Jacob</i>
 <br />
 We're in need of a good updating framework. 
 Vidalia already has the ability to notice when the user is running an
-outdated or unrecommended version of Tor. Currently, Vidalia simply pops
+outdated or unrecommended version of Tor, using signed statements inside
+the Tor directory information. Currently, Vidalia simply pops
 up a little message box that lets the user know they should manually
 upgrade. The goal of this project would be to extend Vidalia with the
 ability to also fetch and install the updated Tor software for the
-user. Time permitting, we would also like to be able to update other
+user. We should do the fetches via Tor when possible, but also fall back
+to direct fetches in a smart way. Time permitting, we would also like
+to be able to update other
 applications included in the bundled installers, such as Polipo and
 Vidalia itself.
 <br />
@@ -133,7 +146,7 @@ with the student prior to implementation.
 </li>
 
 <li>
-<b>An Improved and More Usable Network Map</b>
+<b>An Improved and More Usable Network Map in Vidalia</b>
 <br />
 Priority: <i>Medium</i>
 <br />
@@ -141,7 +154,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium to High</i>
 <br />
-Likely Mentors: <i>Matt, others</i>
+Likely Mentors: <i>Matt</i>
 <br />
 One of Vidalia's existing features is a network map that shows the user
 the approximate geographic location of relays in the Tor network and
@@ -152,8 +165,8 @@ that gives us a better quality map and enables improved interactivity,
 such as allowing the user to click on individual relays or circuits to
 display additional information. We might also consider adding the ability
 for users to click on a particular relay or a country containing one or
-more Tor exit relays and say, ``I want my connections to foo.com to exit
-from here.''
+more Tor exit relays and say, "I want my connections to foo.com to exit
+from here."
 <br />
 This project will first involve the student getting familiar with Vidalia
 and the Marble widget's API. The student will then integrate the widget
@@ -167,7 +180,7 @@ required.
 </li>
 
 <li>
-<b>Better Debian Packaging and Debian Packaging Support</b>
+<b>Better Debian Packaging for Tor+Vidalia</b>
 <br />
 Priority: <i>High</i>
 <br />
@@ -175,16 +188,17 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Weasel, Matt, others</i>
+Likely Mentors: <i>Peter, Matt</i>
 <br />
 Vidalia currently doesn't play nicely on Debian and Ubuntu with the
 default Tor packages. The current Tor packages automatically start Tor
 as a daemon running as the debian-tor user and (sensibly) do not have a
-CntrolPort defined in the default torrc. Consequently, Vidalia will try
+<a href="<svnsandbox>doc/spec/control-spec.txt">ControlPort</a> defined
+in the default torrc. Consequently, Vidalia will try
 to start its own Tor process since it could not connect to the existing
 Tor, and then Vidalia's Tor process will then exit with an error message
 the user likely doesn't understand since Tor cannot bind its listening
-ports--they're already in use by the original Tor daemon.
+ports &mdash; they're already in use by the original Tor daemon.
 <br />
 The current solution involves either telling the user to stop the
 existing Tor daemon and let Vidalia start its own Tor process, or
@@ -192,8 +206,8 @@ explaining to the user how to set a control port and password in their
 torrc. A better solution on Debian would be to use Tor's ControlSocket,
 which allows Vidalia to talk to Tor via a Unix domain socket, and could
 possibly be enabled by default in Tor's Debian packages. Vidalia can
-then authenticate to Tor using cookie authentication if the user running
-Vidalia is also in the debian-tor group.
+then authenticate to Tor using filesystem-based (cookie) authentication
+if the user running Vidalia is also in the debian-tor group.
 <br />
 This project will first involve adding support for Tor's ControlSocket
 to Vidalia. The student will then develop and test Debian and Ubuntu
@@ -201,13 +215,23 @@ packages for Vidalia that conform to Debian's packaging standards and
 making sure it works well with the existing Tor packages. We can also
 set up an apt repository to host the new Vidalia packages.
 <br />
+The next challenge would be to find an intuitive usable way for Vidalia
+to be able to change Tor's configuration (torrc) even though it is
+located in <code>/etc/tor/torrc</code> and thus immutable. The best
+idea we've come up with so far is to feed Tor a new configuration via
+the ControlSocket when Vidalia starts, but that's bad because Tor starts
+with a different configuration than the user wants. The second best idea
+we've come up with is for Vidalia to write out a temporary torrc file
+and ask the user to manually move it to <code>/etc/tor/torrc</code>,
+but that's bad because users shouldn't have to mess with files directly.
+<br />
 A student undertaking this project should have prior knowledge of
 Debian package management and some C++ development experience. Previous
 experience with Qt is helpful, but not required.
 </li>
 
 <li>
-<b>Tor Status Event Interface</b>
+<b>Tor Controller Status Event Interface</b>
 <br />
 Priority: <i>Medium</i>
 <br />
@@ -215,13 +239,13 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Matt, others</i>
+Likely Mentors: <i>Matt, Roger</i>
 <br />
-There are a number of status changes of which the user may need
+There are a number of status changes inside Tor of which the user may need
 to be informed. For example, if the user is trying to set up a Tor
 relay and Tor decides the user's relay is not reachable from outside
 the user's network, we should alert the user. Currently, all the user
-gets is a couple log messages in Vidalia's 'message log', which they
+gets is a couple log messages in Vidalia's 'message log' window, which they
 likely never see since they don't receive a notification that something
 has gone wrong. Even if the user does actually look at the message log,
 most of the messages make little sense to the novice user.
@@ -236,7 +260,7 @@ displaying Tor status events to the user. For example, we might put a
 little badge on Vidalia's tray icon that alerts the user to new status
 events they should look at. Double-clicking the icon could bring up a
 dialog that summarizes recent status events in simple terms and maybe
-suggests a remedy for any negative statuses if they can be corrected by
+suggests a remedy for any negative events if they can be corrected by
 the user. Of course, this is just an example and the student is free to
 suggest another approach.
 <br />
@@ -258,12 +282,12 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Jacob, others</i>
+Likely Mentors: <i>Jacob</i>
 <br />
-We require a way to edit and translate sections of the website &mdash;
+We need a way to edit and translate sections of the website &mdash;
 possibly resulting in a patch for the official svn tree. The current
 "cost" of publication of website changes is quite high even for English
-language users. They need to check out our template files, translate them
+language users. They need to check out our template files, translate them,
 and send us the translation. For a single word change or any type of
 minor change, the page may never be corrected or translated.  It would
 be nice to have a wiki that was specifically geared towards translation
@@ -285,7 +309,7 @@ Effort Level: <i>Low</i>
 <br />
 Skill Level: <i>Low to Medium</i>
 <br />
-Likely Mentors: <i>Jacob, others</i>
+Likely Mentors: <i>Jacob</i>
 <br />
 We currently have a functional web page to detect if Tor is working. It
 is has a few places where it falls short. It requires improvements with
@@ -310,7 +334,7 @@ Effort Level: <i>Low</i>
 <br />
 Skill Level: <i>Low</i>
 <br />
-Likely Mentors: <i>Jacob, Tup, others</i>
+Likely Mentors: <i>Jacob, Tup</i>
 <br />
 The exitlist software is written by our fabulous anonymous
 contributer Tup. It's a DNS server written in Haskell that supports part of our <a
@@ -337,7 +361,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Jacob, Mike, others</i>
+Likely Mentors: <i>Jacob, Mike</i>
 <br />
 The Tor project currently lacks a solid test to ensure that a
 user has a properly configured web browser. It should test for as
@@ -366,7 +390,7 @@ Effort Level: <i>High</i>
 <br />
 Skill Level: <i>Medium to High</i>
 <br />
-Likely Mentors: <i>Roger, others</i>
+Likely Mentors: <i>Roger</i>
 <br />
 Tor needs even better censorship resistance mechanisms.  There are
 several mechanisms that can help.  Tor should be able listen on multiple
@@ -384,7 +408,7 @@ Effort Level: <i>High</i>
 <br />
 Skill Level: <i>Medium to High</i>
 <br />
-Likely Mentors: <i>Nick, others</i>
+Likely Mentors: <i>Nick</i>
 <br />
 Tor should make better use of the more recent features of Niels Provos's
 Libevent library.  Libevent already provides HTTP and socket buffers;
@@ -402,7 +426,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium to High</i>
 <br />
-Likely Mentors: <i>Roger, others</i>
+Likely Mentors: <i>Roger</i>
 <br />
 Tor should possibly measure bandwidth in a distributed way, as in the
 <a href="http://freehaven.net/anonbib/">"A Tuneup for Tor"</a> paper
@@ -422,7 +446,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Jacob, Phobos, others</i>
+Likely Mentors: <i>Jacob, Andrew</i>
 <br />
 It would be useful to have automated build processes for Windows and
 probably other platforms. The purpose of having a continuous integration
@@ -430,7 +454,7 @@ build environment is to ensure that Windows isn't left behind for any of
 the software projects used in the Tor project or its accompanying.<br />
 Buildbot may be a good choice for this as it appears to support all of
 the platforms Tor does. See the 
-<a href="http://en.wikipedia.org/wiki/BuildBot">wikipedia entry for 
+<a href="http://en.wikipedia.org/wiki/BuildBot">wikipedia entry for
 buildbot</a>.<br />
 There may be better options and the person undertaking this task should
 evaluate other options. Any person working on this automatic build
@@ -458,7 +482,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Nick, others</i>
+Likely Mentors: <i>Nick</i>
 <br />
 Tor needs to be far more tested.  This is a multi-part effort.  To start
 with, our unit test coverage should rise substantially, especially in
@@ -477,13 +501,13 @@ changes in performance on machines in different roles automatically.<br />
 <li>
 <b>Help revive the Java community around Tor</b>
 <br />
-Priority: <i>High</i>
+Priority: <i>Medium</i>
 <br />
 Effort Level: <i>High</i>
 <br />
 Skill Level: <i>Medium to High</i>
 <br />
-Likely Mentors: <i>Karsten, others</i>
+Likely Mentors: <i>Karsten</i>
 <br />
 Reanimate one of the approaches to implement a Tor client in Java,
 e.g. the <a href="http://onioncoffee.sourceforge.net/">OnionCoffee
@@ -497,8 +521,8 @@ providing Tor hidden services would be neat, but not required. The
 student should be able to understand and write new Java code, including
 a Java cryptography API. Being able to read C code would be helpful,
 too. The student should be willing to read the existing documentation,
-implement code based on it, and, if required, refine the documentation
-if things are underdocumented. This project is mostly about coding and
+implement code based on it, and refine the documentation
+when things are underdocumented. This project is mostly about coding and
 to a small degree about design.
 </li>
 
@@ -511,7 +535,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Roger, others</i>
+Likely Mentors: <i>Karsten, Roger</i>
 <br />
 Write a tool that runs automatic system tests in addition
 to the existing unit tests. The Java-based Tor simulator <a
@@ -539,7 +563,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Low to Medium</i>
 <br />
-Likely Mentors: <i>Karsten, Jacob, others</i>
+Likely Mentors: <i>Karsten, Jacob</i>
 <br />
 Implement a <a href="http://www.ss64.com/bash/top.html">top-like</a>
 management tool for Tor relays. The purpose of such a tool would be
@@ -705,7 +729,7 @@ Effort Level: <i>High</i>
 <br />
 Skill Level: <i>Medium to High</i>
 <br />
-Likely Mentors: <i>Roger, others</i>
+Likely Mentors: <i>Steven, Roger</i>
 <br />
 Help port <a
 href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> to
@@ -731,7 +755,7 @@ Effort Level: <i>Low</i>
 <br />
 Skill Level: <i>Low</i>
 <br />
-Likely Mentors: <i>Roger, others</i>
+Likely Mentors: <i>Andrew</i>
 <br />
 a way to generate the website diagrams from source, so we can translate
 them as utf-8 text rather than with gimp. (svg? or imagemagick?)
@@ -748,7 +772,7 @@ Effort Level: <i>Low</i>
 <br />
 Skill Level: <i>Medium to High</i>
 <br />
-Likely Mentors: <i>Roger, others</i>
+Likely Mentors: <i>Anonym, Jacob, Roger</i>
 <br />
 How can we make the <a
 href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
@@ -906,8 +930,10 @@ puzzles the right answer? What other practical approaches are there? Bonus
 if they're backward-compatible with the current Tor protocol.</li>
 </ol>
 
+<p>
 <a href="<page contact>">Let us know</a> if you've made progress on any
 of these!
+</p>
 
   </div><!-- #main -->
 
