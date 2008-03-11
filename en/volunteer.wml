@@ -94,7 +94,7 @@ Farsi translations, for the many Tor users in censored areas.</li>
 <ol>
 
 <li>
-Tor/Polipo/Vidalia Auto-Update Framework
+<b>Tor/Polipo/Vidalia Auto-Update Framework</b>
 <br />
 Vidalia already has the ability to notice when the user is running an
 outdated or unrecommended version of Tor. Currently, Vidalia simply pops
@@ -124,7 +124,7 @@ with the student prior to implementation.
 </li>
 
 <li>
-An Improved and More Usable Network Map
+<b>An Improved and More Usable Network Map</b>
 <br />
 One of Vidalia's existing features is a network map that shows the user
 the approximate geographic location of relays in the Tor network and
@@ -150,7 +150,7 @@ required.
 </li>
 
 <li>
-Better Debian Support &amp; Packaging
+<b>Better Debian Support &amp; Packaging</b>
 <br />
 Vidalia currently doesn't play nicely on Debian and Ubuntu with the
 default Tor packages. The current Tor packages automatically start Tor
@@ -182,7 +182,7 @@ experience with Qt is helpful, but not required.
 </li>
 
 <li>
-Tor Status Event Interface
+<b>Tor Status Event Interface<b>
 <br />
 There may are a number of status changes of which the user may need
 to be informed. For example, if the user is trying to set up a Tor
@@ -217,7 +217,7 @@ design/Photoshop fu, since we might want/need some shiny new icons too.
 </li>
 
 <li>
-A translation wiki
+<b>A Translation Wiki</b>
 <br />
 We require a way to edit and translate sections of the website &mdash;
 possibly resulting in a patch for the official svn tree. The current
@@ -235,7 +235,8 @@ with the software, only the documentation on the website.
 </li>
 
 <li>
-https://check.torproject.org
+<b>Improvements on our active browser configuration tester</b> - 
+<a href="https://check.torproject.org">https://check.torproject.org</a>
 <br />
 We currently have a functional web page to detect if Tor is working. It
 is has a few places where it falls short. It requires improvements with
@@ -251,7 +252,8 @@ to interact minimally with Tor to test their code.
 </li>
 
 <li>
-exitlist.torproject.org
+<b>Improvements on our DNS Exit List service</b> - 
+<a href="http://exitlist.torproject.org">http://exitlist.torproject.org</a>
 <br />
 The exitlist software is written by our fabulous anonymous
 contributer Tup. It's a DNS server written in Haskell that supports part of our <a
@@ -270,7 +272,7 @@ torel-design.txt suggestions.
 </li>
 
 <li>
-Testing Tor for end users
+<b>Testing integration of Tor with web browsers for our end users</b>
 <br />
 The Tor project currently lacks a solid test to ensure that a
 user has a properly configured web browser. It should test for as
@@ -291,6 +293,8 @@ to prevent Tor leakage.
 </li>
 
 <li>
+<b>Improving our ability to be resistant to censorship</b>
+<br />
 Tor needs even better censorship resistance mechanisms.  There are
 several mechanisms that can help.  Tor should be able listen on multiple
 addresses and ports, and allow clients to connect to all of them.
@@ -299,6 +303,8 @@ contacted by port-scanning tools.
 </li>
 
 <li>
+<b>Libevent and Tor integration improvements</b>
+<br />
 Tor should make better use of the more recent features of Niels Provos's
 Libevent library.  Libevent already provides HTTP and socket buffers;
 Tor's code for those could be replaced.  We'll need to improve libevent's
@@ -307,6 +313,8 @@ libevent's buffer abstraction.
 </li>
 
 <li>
+<b>Tuneup Tor!</b>
+<br />
 Tor should possibly measure bandwidth in a distributed way, as in the
 <a href="http://freehaven.net/anonbib/">"A Tuneup for Tor"</a> paper
 by Snader and Borisov.  A student could use current testing code to
@@ -317,6 +325,8 @@ at the directory authorities.
 </li>
 
 <li>
+<b>Improving the Tor QA process: Continuous Integration for Windows builds</b>
+<br />
 It would be useful to have automated build processes for Windows and
 probably other platforms. The purpose of having a continuous integration
 build environment is to ensure that Windows isn't left behind for any of
@@ -332,10 +342,19 @@ of the respective Tor related code bases from scratch. Furthermore, the
 person should have some experience building software in Windows
 environments as this is the target audience we want to ensure we do not
 leave behind. It would require close work with the Tor source code but
-probably only in the form of building, not authoring.
+probably only in the form of building, not authoring.<br />
+Additionally, we need to automate our performance testing for all platforms.
+We've got buildbot (except on Windows &mdash; as noted above) to automate 
+our regular integration and compile testing already,
+but we need to get our network simulation tests (as built in torflow)
+updated for more recent versions of Tor, and designed to launch a test
+network either on a single machine, or across several, so we can test
+changes in performance on machines in different roles automatically.<br />
 </li>
 
 <li>
+<b>Improve our unit testing process</b>
+<br />
 Tor needs to be far more tested.  This is a multi-part effort.  To start
 with, our unit test coverage should rise substantially, especially in
 the areas outside the utility functions.  This will require significant
@@ -351,6 +370,8 @@ changes in performance on machines in different roles automatically.<br />
 </li>
 
 <li>
+<b>Help revive the Java community around Tor</b>
+<br />
 Reanimate one of the approaches to implement a Tor client in Java,
 e.g. the <a href="http://onioncoffee.sourceforge.net/">OnionCoffee
 project</a>, and make it run on <a
@@ -361,7 +382,7 @@ protocol versions like the <a href="<svnsandbox>doc/spec/dir-spec.txt">v3
 directory protocol</a>. Further, support for requesting or even
 providing Tor hidden services would be neat, but not required. The
 student should be able to understand and write new Java code, including
-a Java cryptography API. Being able to read C code would be helping,
+a Java cryptography API. Being able to read C code would be helpful,
 too. The student should be willing to read the existing documentation,
 implement code based on it, and, if required, refine the documentation
 if things are underdocumented. This project is mostly about coding and
@@ -369,6 +390,8 @@ to a small degree about design.
 </li>
 
 <li>
+<b>Become the PuppeTor Master</b>
+<br />
 Write a tool that runs automatic system tests in addition
 to the existing unit tests. The Java-based Tor simulator <a
 href="https://tor-svn.freehaven.net/svn/puppetor/trunk/">PuppeTor</a>
@@ -387,6 +410,8 @@ about design and partly about coding.
 </li>
 
 <li>
+<b>Bring moniTor to life</b>
+<br />
 Implement a <a href="http://www.ss64.com/bash/top.html">top-like</a>
 management tool for Tor relays. The purpose of such a tool would be
 to monitor a local Tor relay via its control port and include useful
@@ -402,22 +427,32 @@ tool and designing its interface; but on the other part, the project
 also requires a lot of coding.
 </li>
 
-<li>Help Mike Perry on his <a
+<li>
+<b>TorFlow improvements</b>
+<br />
+Help Mike Perry on his <a
 href="https://www.torproject.org/svn/torflow/">TorFlow</a>
 library (<a href="https://www.torproject.org/svn/torflow/TODO">TODO</a>):
 it's a python library that uses the <a
 href="https://www.torproject.org/svn/torctl/doc/howto.txt">Tor controller
 protocol</a> to instruct Tor to build circuits in a variety of ways,
-and then it measures performance and tries to detect anomalies.</li>
-<li>Torflow / soat to detect bad relays and automatically get that
-info to the directory authorities for realtime blacklisting</li>
-<li>Torstatus. Set up an automated system for tracking network health
+and then it measures performance and tries to detect anomalies.
+Help detect bad relays and automatically get that
+info to the directory authorities for realtime blacklisting.
+
+<li>
+<b>Help track the overall Tor Network status</b>
+Torstatus. Set up an automated system for tracking network health
 over time, graphing it, etc. Better metrics for assessing network
-health and growth.</li>
+health and growth. Make it short and simple. Unbloated and easy to audit.
+</li>
+
 <li>vidalia and upnp</li>
 <li>nymble</li>
 
 <li>
+<b>Porting Polipo to Windows</b>
+<br />
 Help port <a
 href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> to
 Windows. 1) handle spaces in path names and understand the filesystem
@@ -434,6 +469,8 @@ menu options. Double bonus if it's cross-platform compatible.
 </li>
 
 <li>
+<b></b>
+<br />
 a way to generate the website diagrams from source, so we can translate
 them as utf-8 text rather than with gimp. (svg? or imagemagick?)
 integrate this with a wml file so translations are easy and images are
