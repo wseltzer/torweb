@@ -436,18 +436,129 @@ also requires a lot of coding.
 </li>
 
 <li>
-<b>TorFlow improvements</b>
+<b>Tor Exit Scanner Improvements</b>
 <br />
-Help Mike Perry on his <a
-href="https://www.torproject.org/svn/torflow/">TorFlow</a>
-library (<a href="https://www.torproject.org/svn/torflow/TODO">TODO</a>):
-it's a python library that uses the <a
-href="https://www.torproject.org/svn/torctl/doc/howto.txt">Tor controller
-protocol</a> to instruct Tor to build circuits in a variety of ways,
-and then it measures performance and tries to detect anomalies.
-Help detect bad relays and automatically get that
-info to the directory authorities for realtime blacklisting.
+Priority: <i>High</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Likely Mentors: <i>Mike Perry</i>
 
+<br />
+The Tor exit node scanner 'SoaT', part of the <a
+href="https://www.torproject.org/svn/torflow/">Torflow project</a>, is
+currently written in rather rickety perl and relies on MD5sums of
+entire documents in order to determine if exit nodes are modifying
+content. The problem with this is threefold: 1) Perl sucks at life.
+2) The scanner can't verify pages that are dynamic, and attackers can
+focus malicious content injection on only those dynamic pages. 3)
+Pages change after a while (or based on GeoIP) and begin generating
+false positives.
+<br />
+Ideally, soat.pl would be reimplemented in a sane language with a
+robust html parser library (since the rest of Torflow is in Python,
+that would be nice, but not required), and calculate signatures only for
+tags and content likely to be targeted by a malicious attacker (script
+tags, object links, images). It should also be robust in the face of
+changes to content outside of Tor, and ultimately even GeoIP localized
+content.
+<br />
+This scanner would likely be run by the directory authorities and
+report its results to the control port via the AuthDirBadExit config
+setting.
+<br />
+</li>
+<li>
+<b>Tor Node Scanner Improvements</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>Medium-High</i>
+<br />
+Likely Mentors: <i>Mike Perry</i>
+<br />
+Similar to the exit scanner (or perhaps even during exit scanning),
+statistics can be gathered about the reliability of nodes. Nodes that
+fail a certain percentage of their circuits should not be used for
+Guard status, and perhaps should have their reported bandwidth
+penalized by some ratio as well, or just get marked as Invalid. In
+addition, nodes that exhibit a very low average stream capacity but
+advertise a very high node bandwidth can also be marked as Invalid.
+Much of this statistics gathering is already done, it just needs to be
+transformed into something that can be reported to the Directory
+Authorities to blacklist/penalize nodes in such a way that clients
+will listen.
+<br />
+In addition, these same statistics can be gathered about the traffic
+through a node. Events can be added to the <a
+href="https://www.torproject.org/svn/torctl/doc/howto.txt">Tor Control
+Protocol</a> to
+report if a circuit extend through the node succeeds or fails, and
+passive statistics can be gathered on both bandwidth and reliability
+of other nodes via a node-based monitor using these events. Such a
+scanner which would also report information on oddly-behaving nodes to
+the Directory Authorities, but a communication channel for this
+currently does not exist and would need to be developed as well.
+</li>
+<li>
+<b>Tor path selection improvements</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>Low-Medium</i>
+<br />
+Likely Mentors: <i>Mike Perry</i>
+<br />
+Some simple improvements can be made to Tor's path selection to vastly
+improve Tor speed. For instance, some of the (unofficial) <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/FireFoxTorPerf">Tor
+Performance Recommendations</a> on the wiki are to increase the number of
+guards and decrease the CircuitBuildTimeout. Ideally, the client would
+learn these values by gathering statistics on circuit construction
+time (and/or using values gained from Torflow), and set the timeouts
+low enough such that some high percentile (75%, 90%, 1-stddev?) of
+circuits succeed, yet extremely slow nodes are avoided. This would
+involve some statistics gathering+basic research, and some changes to 
+Tor path selection code.
+<br />
+
+In addition, to improve path security, some elements from the <a
+href="http://www.torproject.org/svn/trunk/doc/spec/proposals/115-two-hop-paths.txt">Two
+Hop Paths proposal</a> could be done as part of this (since it will
+likely touch the same code anyways), regardless of the adoption of
+thatproposal. In particular, clients probably should avoid guards thatseem to
+fail an excessive percentage of their circuits through them, and non-bridged
+clients should issue a warn if they are only able toconnect to a limited set
+of guard nodes.
+
+</li>
+<li>
+<b>Torbutton improvements</b>
+<br />
+Priority: <i>Low</i>
+<br />
+Effort Level: <i>Medium-High</i>
+<br />
+Likely Mentors: <i>Mike Perry</i>
+<br/>
+
+Torbutton has a number of improvements that can be made in the post-1.2
+timeframe. Most of these are documented as feature requests in the <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&project=5">Torbutton
+flyspray section</a>. Good examples include: stripping off node.exit on http
+headers, more fine-grained control over formfill blocking, improved referrer
+spoofing based on the domain of the site (a-la refspoof extension), tighter
+integration with Vidalia for reporting Tor status, a New Identity button with
+Tor integration and multiple identity management, and anything else you might
+think of. 
+
+<br />
+
+This work would be independent coding in Javascript and the fun world of <a
+href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
+with not too much involvement in the Tor internals.
+
+</li>
 <li>
 <b>Help track the overall Tor Network status</b>
 Torstatus. Set up an automated system for tracking network health
