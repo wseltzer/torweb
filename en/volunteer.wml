@@ -409,11 +409,11 @@ Likely Mentors: <i>Nick</i>
 The Tor 0.2.0.x series makes <a
 href="<svnsandbox>doc/design-paper/blocking.html">significant
 improvements</a> in resisting national and organizational censorship.
-But Tor still needs bettere mechanisms for some parts of its
+But Tor still needs better mechanisms for some parts of its
 anti-censorship design.  For example, current Tors can only listen on a
 single address/port combination at a time.  There's
 <a href="<svnsandbox>doc/spec/proposals/118-multiple-orports.txt">a
-proposal to address this limitation</a>, and allow clients to connect
+proposal to address this limitation</a> and allow clients to connect
 to any given Tor on multiple addresses and ports, but it needs more
 work.  Another anti-censorship project (far more difficult) is to try
 to make Tor more scanning-resistant.  Right now, an adversary can identify
@@ -443,11 +443,11 @@ Likely Mentors: <i>Nick</i>
 <br />
 Tor should make better use of the more recent features of Niels
 Provos's <a href="http://monkey.org/~provos/libevent/">Libevent</a>
-library.  Tor already, uses Libevent for its low-level asynchronous IO
+library.  Tor already uses Libevent for its low-level asynchronous IO
 calls, and could also use Libevent's increasingly good implementations
-of network buffers, and of HTTP.  This wouldn't be simply a matter of
+of network buffers and of HTTP.  This wouldn't be simply a matter of
 replacing Tor's internal calls with calls to Libevent: instead, we'll
-need to refactor Tor's to use Libevent calls that do not follow the
+need to refactor Tor to use Libevent calls that do not follow the
 same models as Tor's existing backends. Also, we'll need to add
 missing functionality to Libevent as needed &mdash; most difficult likely
 will be adding OpenSSL support on top of Libevent's buffer abstraction.
@@ -465,12 +465,14 @@ Skill Level: <i>Medium to High</i>
 <br />
 Likely Mentors: <i>Nick, Roger, Mike</i>
 <br />
-Right now, Tor servers measure and report their own bandwidth, and Tor
-clients choose which servers to use in part based on that bandwidth.
-This approach is vulnerable to attacks where servers lie about their
-abandwidth; to address this, Tor currently caps the maximum bandwidth
-it's willing to believe any server provides.  This is a limited fix, and
-a waste of bandwidth capacity to boot.  Instead, 
+Right now, Tor relays measure and report their own bandwidth, and Tor
+clients choose which relays to use in part based on that bandwidth.
+This approach is vulnerable to
+<a href="http://freehaven.net/anonbib/#bauer:wpes2007">attacks where
+relays lie about their bandwidth</a>;
+to address this, Tor currently caps the maximum bandwidth
+it's willing to believe any relay provides.  This is a limited fix, and
+a waste of bandwidth capacity to boot.  Instead,
 Tor should possibly measure bandwidth in a more distributed way, perhaps
 as described in the
 <a href="http://freehaven.net/anonbib/">"A Tuneup for Tor"</a> paper
@@ -478,7 +480,7 @@ by Snader and Borisov.  A student could use current testing code to
 double-check this paper's findings and verify the extent to which they
 dovetail with Tor as deployed in the wild, and determine good ways to
 incorporate them into their suggestions Tor network without adding too
-much communications overhead between servers and directory
+much communications overhead between relays and directory
 authorities.
 </li>
 
