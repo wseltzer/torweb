@@ -22,7 +22,7 @@ services. Get them to tell their friends.</li>
 <a id="Usability"></a>
 <h2><a class="anchor" href="#Usability">Supporting Applications</a></h2>
 <ol>
-<li>We need good ways to intercept DNS requests so they don't "leak" their
+<li>We need more good ways to intercept DNS requests so they don't "leak" their
 request to a local observer while we're trying to be anonymous. (This
 happens because the application does the DNS resolve before going to
 the SOCKS proxy.)</li>
@@ -396,7 +396,7 @@ to prevent Tor information leakage.
 </li>
 
 <li>
-<b>Improving our ability to be resistant to censorship</b>
+<b>Improving Tor's ability to resist censorship</b>
 <br />
 Priority: <i>High</i>
 <br />
@@ -406,16 +406,23 @@ Skill Level: <i>High</i>
 <br />
 Likely Mentors: <i>Nick</i>
 <br />
-Tor needs even better censorship resistance mechanisms.  There are
-several mechanisms that can help.  Tor should be able to
-<a href="<svnsandbox>doc/spec/proposals/118-multiple-orports.txt">listen
-on multiple
-addresses and ports</a>, and allow clients to connect to all of them.
-Tor relays and
+The Tor 0.2.0.x series makes <a
+href="<svnsandbox>doc/design-paper/blocking.html">significant
+improvements</a> in resisting national and organizational censorship.
+But Tor still needs bettere mechanisms for some parts of its
+anti-censorship design.  For example, current Tors can only listen on a
+single address/port combination at a time.  There's
+<a href="<svnsandbox>doc/spec/proposals/118-multiple-orports.txt">a
+proposal to address this limitation</a>, and allow clients to connect
+to any given Tor on multiple addresses and ports, but it needs more
+work.  Another anti-censorship project (far more difficult) is to try
+to make Tor more scanning-resistant.  Right now, an adversary can identify
 <a href="<svnsandbox>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
-should be able to
-<a href="<svnsandbox>doc/design-paper/blocking.html#tth_sEc9.3">appear like
-a webserver</a> (HTTP or HTTPS) when contacted by port-scanning tools.
+just by trying to connect to them, following the Tor protocol, and 
+seeing if they respond.  To solve this, bridges could
+<a href="<svnsandbox>doc/design-paper/blocking.html#tth_sEc9.3">act like
+webservers</a> (HTTP or HTTPS) when contacted by port-scanning tools,
+and not act like bridges until the user provides a bridge-specific key.
 <br />
 This project involves a lot of research and design. One of the big
 challenges will be identifying and crafting approaches that can still
@@ -434,11 +441,17 @@ Skill Level: <i>Medium to High</i>
 <br />
 Likely Mentors: <i>Nick</i>
 <br />
-Tor should make better use of the more recent features of Niels Provos's
-Libevent library.  Libevent already provides HTTP and socket buffers;
-Tor's code for those could be replaced.  We'll need to improve libevent's
-code as needed &mdash; in particular to add good openssl support on top of
-libevent's buffer abstraction.
+Tor should make better use of the more recent features of Niels
+Provos's <a href="http://monkey.org/~provos/libevent/">Libevent</a>
+library.  Tor already, uses Libevent for its low-level asynchronous IO
+calls, and could also use Libevent's increasingly good implementations
+of network buffers, and of HTTP.  This wouldn't be simply a matter of
+replacing Tor's internal calls with calls to Libevent: instead, we'll
+need to refactor Tor's to use Libevent calls that do not follow the
+same models as Tor's existing backends. Also, we'll need to add
+missing functionality to Libevent as needed &mdash; most difficult likely
+will be adding OpenSSL support on top of Libevent's buffer abstraction.
+Also tricky will be adding rate-limiting to Libevent.
 </li>
 
 <li>
@@ -452,13 +465,21 @@ Skill Level: <i>Medium to High</i>
 <br />
 Likely Mentors: <i>Nick, Roger, Mike</i>
 <br />
-Tor should possibly measure bandwidth in a distributed way, as in the
+Right now, Tor servers measure and report their own bandwidth, and Tor
+clients choose which servers to use in part based on that bandwidth.
+This approach is vulnerable to attacks where servers lie about their
+abandwidth; to address this, Tor currently caps the maximum bandwidth
+it's willing to believe any server provides.  This is a limited fix, and
+a waste of bandwidth capacity to boot.  Instead, 
+Tor should possibly measure bandwidth in a more distributed way, perhaps
+as described in the
 <a href="http://freehaven.net/anonbib/">"A Tuneup for Tor"</a> paper
 by Snader and Borisov.  A student could use current testing code to
 double-check this paper's findings and verify the extent to which they
-dovetail with Tor in the wild, and determine good ways to incorporate them
-into the Tor network without adding undesirable n^2 traffic properties
-at the directory authorities.
+dovetail with Tor as deployed in the wild, and determine good ways to
+incorporate them into their suggestions Tor network without adding too
+much communications overhead between servers and directory
+authorities.
 </li>
 
 <!--
