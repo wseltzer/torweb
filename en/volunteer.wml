@@ -47,7 +47,7 @@ during some part of the day, and a different BandwidthRate at other
 parts of the day. Rather than coding this inside Tor, we should have a
 little script that speaks via the <a href="<page gui/index>">Tor
 Controller Interface</a>, and does a setconf to change the bandwidth
-rate.  There is one for Unix and Mac already (it uses bash and cron),
+rate. There is one for Unix and Mac already (it uses bash and cron),
 but Windows users still need a solution.
 </li>
 <li>Tor can <a
@@ -196,7 +196,7 @@ as a daemon running as the debian-tor user and (sensibly) do not have a
 <a href="<svnsandbox>doc/spec/control-spec.txt">ControlPort</a> defined
 in the default torrc. Consequently, Vidalia will try
 to start its own Tor process since it could not connect to the existing
-Tor, and then Vidalia's Tor process will then exit with an error message
+Tor, and Vidalia's Tor process will then exit with an error message
 the user likely doesn't understand since Tor cannot bind its listening
 ports &mdash; they're already in use by the original Tor daemon.
 <br />
@@ -212,7 +212,7 @@ if the user running Vidalia is also in the debian-tor group.
 This project will first involve adding support for Tor's ControlSocket
 to Vidalia. The student will then develop and test Debian and Ubuntu
 packages for Vidalia that conform to Debian's packaging standards and
-making sure it works well with the existing Tor packages. We can also
+make sure they work well with the existing Tor packages. We can also
 set up an apt repository to host the new Vidalia packages.
 <br />
 The next challenge would be to find an intuitive usable way for Vidalia
@@ -266,8 +266,8 @@ the user. Of course, this is just an example and the student is free to
 suggest another approach.
 <br />
 A student undertaking this project should have good UI design and layout
-experience and some C++ development experience. Previous experience
-with Qt and Qt's Designer will be very helpful, but not required. Some
+and some C++ development experience. Previous experience with Qt and 
+Qt's Designer will be very helpful, but are not required. Some
 English writing ability will also be useful, since this project will
 likely involve writing small amounts of help documentation that should
 be understandable by non-technical users. Bonus points for some graphic
@@ -292,7 +292,7 @@ wml files, translate them in an editor, and either send us the translation
 or use svn to commit them back. The current "cost" of publication of
 website changes is quite high even for English language users. For a
 single word change or any type of
-minor change, the page may never be corrected or translated.  It would
+minor change, the page may never be corrected or translated. It would
 be nice to have a wiki that was specifically geared towards translation
 and would somehow track the upstream (English) versions to indicate when
 a fresh translation is needed, like our current
@@ -317,7 +317,7 @@ Skill Level: <i>Low to Medium</i>
 Likely Mentors: <i>Jacob, Steven</i>
 <br />
 We currently have a functional web page to detect if Tor is working. It
-is has a few places where it falls short. It requires improvements with
+has a few places where it falls short. It requires improvements with
 regard to default languages and functionality. It currently only responds
 in English. In addition, it is a hack of a perl script that should have
 never seen the light of day. It should probably be rewritten in python
@@ -326,7 +326,7 @@ href="http://exitlist.torproject.org/">Tor DNS exit list</a>
 and should continue to do so in the future. It currently result in certain
 false positives and these should be discovered, documented, and fixed
 where possible. Anyone working on this project should be interested in
-DNS, basic perl or preferably python programming skills and will have
+DNS, basic perl or preferably python programming skills, and will have
 to interact minimally with Tor to test their code.
 <br />
 If you want to make the project more exciting
@@ -378,7 +378,7 @@ Likely Mentors: <i>Jacob, Mike, Greg</i>
 The Tor project currently lacks a solid test suite to ensure that a
 user has a properly and safely configured web browser. It should test for as
 many known issues as possible. It should attempt to decloak the
-user in any way possible.  Two current webpages that track these
+user in any way possible. Two current webpages that track these
 kinds of issues are run by Greg Fleischer and HD Moore. Greg keeps a nice <a
 href="http://pseudo-flaw.net/tor/torbutton/">list of issues along
 with their proof of concept code, bug issues, etc</a>. HD Moore runs
@@ -477,7 +477,7 @@ Tor should possibly measure bandwidth in a more distributed way, perhaps
 as described in the
 <a href="http://freehaven.net/anonbib/author.html#snader08">"A Tune-up for
 Tor"</a> paper
-by Snader and Borisov.  A student could use current testing code to
+by Snader and Borisov. A student could use current testing code to
 double-check this paper's findings and verify the extent to which they
 dovetail with Tor as deployed in the wild, and determine good ways to
 incorporate them into their suggestions Tor network without adding too
@@ -534,13 +534,13 @@ Skill Level: <i>Medium</i>
 <br />
 Likely Mentors: <i>Nick</i>
 <br />
-Tor needs to be far more tested.  This is a multi-part effort.  To start
+Tor needs to be far more tested. This is a multi-part effort. To start
 with, our unit test coverage should rise substantially, especially in
-the areas outside the utility functions.  This will require significant
+the areas outside the utility functions. This will require significant
 refactoring of some parts of Tor, in order to dissociate as much logic
 as possible from globals.
 <br />
-Additionally, we need to automate our performance testing.  We've got
+Additionally, we need to automate our performance testing. We've got
 buildbot to automate our regular integration and compile testing already
 (though we need somebody to set it up on Windows),
 but we need to get our network simulation tests (as built in TorFlow: see
@@ -794,7 +794,7 @@ spoofing based on the domain of the site (a-la <a
 href="http://addons.mozilla.org/firefox/addon/4513">refspoof extension</a>),
 tighter integration with Vidalia for reporting Tor status, a New Identity
 button with Tor integration and multiple identity management, and anything
-else you might think of. 
+else you might think of.
 <br />
 This work would be independent coding in Javascript and the fun world of <a
 href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
@@ -887,7 +887,7 @@ href="http://www.monkey.org/~provos/libevent/">libevent</a> how to use
 overlapped IO rather than select() on Windows, and then adapt Tor to
 the new libevent interface. Christian King made a
 <a href="https://tor-svn.freehaven.net/svn/libevent-urz/trunk/">good
-start</a> on this last summer.</li>
+start</a> on this in the summer of 2007.</li>
 <li>We need to actually start building our <a href="<page
 documentation>#DesignDoc">blocking-resistance design</a>. This involves
 fleshing out the design, modifying many different pieces of Tor, adapting
@@ -993,7 +993,7 @@ few KB/s of traffic into the Tor network. (A few KB/s shouldn't be too
 much hassle, and there are few abuse issues since they're not being exit
 nodes.) But how do we distribute a list of these volunteer clients to the
 good dissidents in an automated way that doesn't let the country-level
-firewalls intercept and enumerate them? Probably needs to work on a
+firewalls intercept and enumerate them? This probably needs to work on a
 human-trust level. See our <a href="<page documentation>#DesignDoc">early
 blocking-resistance design document</a> and our
 <a
