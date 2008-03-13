@@ -949,6 +949,21 @@ much traffic of what sort of distribution is needed before the adversary
 is confident he has won? Are there scenarios (e.g. not transmitting much)
 that slow down the attack? Do some traffic padding or traffic shaping
 schemes work better than others?</li>
+<li>A related question is: Does running a relay/bridge provide additional
+protection against these timing attacks? Can an external adversary that can't
+see inside TLS links still recognize individual streams reliably? 
+Does the amount of traffic carried degrade this ability any? What if the
+client-relay deliberately delayed upstream relayed traffic to create a queue
+that could be used to mimic timings of client downstream traffic to make it
+look like it was also relayed? This same queue could also be used for masking
+timings in client upstream traffic with the techniques from <a
+href="http://www.freehaven.net/anonbib/#ShWa-Timing06">adaptive padding</a>,
+but without the need for additional traffic. Would such an interleaving of
+client upstream traffic obscure timings for external adversaries? Would the
+strategies need to be adjusted for asymmetric links? For example, on
+asymmetric links, is it actually possible to differentiate client traffic from
+natural bursts due to their asymmetric capacity? Or is it easier than
+symmetric links for some other reason?</li>
 <li>The "routing zones attack": most of the literature thinks of
 the network path between Alice and her entry node (and between the
 exit node and Bob) as a single link on some graph. In practice,
