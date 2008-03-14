@@ -88,6 +88,677 @@
 </ol>
 
 <a id="Coding"></a>
+<a id="Summer"></a>
+<a id="Projects"></a>
+<h2><a class="anchor" href="#Projects">Dobre Projekty Programistyczne</a></h2>
+<ol>
+
+<li>
+<b>Framework automatycznej aktualizacji programów Tor/Polipo/Vidalia.</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Wysoki</i>
+<br />
+Poziom umiejętności: <i>Wysoki</i>
+<br />
+Prawdopodobni prowadzący: <i>Matt, inni</i>
+<br />
+Potrzebujemy dobrego frameworka automatycznej aktualizacji.
+Vidalia już ma możliwość informowania, że użytkownik używa przestarzałej lub
+niezalecanej wersji Tora. W chwili obecnej Vidalia po prostu pokazuje małe
+okienko, które informuje użytkownika, że powinien dokonać ręcznej aktualizacji.
+Celem tego projektu jest rozszerzenie Vidalii o możliwość pobrania i
+zaktualizowania nowej wersji Tora za użytkownika. Jeśli czas pozwoli,
+chcielibyśmy móc aktualizować też inne aplikacje z paczek, jak Polipo czy
+Vidalia.
+<br />
+By wykonać ten projekt, student będzie musiał najpierw poznać istniejące
+mechanizmy aktualizacji (np. Sparkle na OS X), by zbadać ich mocne i słabe punkty,
+cechy bezpieczeństwa i możliwości zintegrowania z Vidalią. Jeśil żaden nie okaże
+się przydatny, student zaprojektuje własny framework aktualizacyjny,
+udokumentuje projekt i przedyskutuje go z innymi deweloperami na temat
+jesgo bezpieczeństwa. Potem zaimplementuje go (lub zintegruje istniejący)
+i przetestuje.
+<br />
+Student podejmujący się tego projektu powinien dobrze znać C++.
+Uprzednie doświadczenie z Qt będzie przydatne, ale nie jest wymagane.
+Student powinien mieć też podstawowe pojęcie o powszechnych praktykach
+bezpieczeństwa, jak weryfikacja podpisu paczki. Dobre zdolności w
+pisaniu też są ważne w tym projekcie, gdyż ważnym krokiem będzie
+zrobienie dokumentacji projektu dla innych do przejrzenia i przedyskutowania
+ze studentem przed implementacją.
+</li>
+
+<li>
+<b>Poprawiona i bardziej użyteczna mapa sieci</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni do Wysokiego</i>
+<br />
+Prawdopodobni prowadzący: <i>Matt, inni</i>
+<br />
+Jedną z istniejących cech Vidalii jest mapa sieci, która pokazuje użytkownikowi
+przybliżone lokalizacje geograficzne przekaźników sieci Tora i rysuje
+ścieżki, przez które przechodzi ruch użytkownika w sieci Tora.
+Mapa jest w tej chwili niezbyt interaktywna i ma raczej słabą grafikę.
+Wolelibyśmy użyć widgetu Marble z KDE, który daje mapę lepszej jakości i
+umożliwia lepszą interaktywność, jak na przykład pozwalanie użytkownikowi na
+klikanie w poszczególne przekaźniki lub obwody, by wyświetlić dodatkowe
+informacje. Moglibyśmy też rozważyć dodanie możliwości klikania przez
+użytkownika na dany przekaźnik lub kraj z co najmniej jedym przekaźnikiem i
+stwierdzenia "chcę, by moje połązcenia do foo.com wychodziły stąd."
+<br />
+Podczas tego projektu, student najpierw zapozna się z Vidalią i API widgetu
+Marble. Potem zintegruje widget z Vidalią i zmieni go, by bardziej pasował
+do naszych zastosowań, np. można było klikać w obwody, zapisywać mapy we
+własnym katalogu Vidalii i dostosować część okien dialogowych widgetu.
+<br />
+Student podejmujący się tego projektu powinien dobrze znać C++.
+Uprzednie doświadczenie z Qt i CMake będzie przydatne, ale nie jest wymagane.
+</li>
+
+<li>
+<b>Lepsze wsparcie i pakowanie dla Debiana</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni</i>
+<br />
+Prawdopodobni prowadzący: <i>Weasel, Matt, inni</i>
+<br />
+Vidalia obecnie nie współpracuje dobrze na Debianie i Ubuntu z domyślnymi
+paczkami Tora. Bieżące paczki Tora automatycznie uruchamiają Tora jako demona
+systemowego z konta użytkownika debian-tor i (rozsądnie) nie mają zdefiniowanego
+ControlPort w domyślnym torrc. Stąd Vidalia będzie próbować uruchomić własny
+proces Tora, bo nie może połączyć się z istniejącym, po czym proces Tora
+uruchomiony przez Vidalię zamknie się z błędem, którego użytkownik raczej nie zrozumie,
+jako że Tor nie będzie mógł podpiąć się pod swoje porty nasłuchowe, które są
+już zajęte przez pierwszy proces Tora.
+<br />
+Bieżące rozwiązanie to albo mówienie użytkownikowi, by zatrzymał istniejący
+proces Tora i pozwolił Vidalii uruchomić własny, albo tłumaczenie, jak ustawić
+port kontrolny i hasło w pliku torrc. Lepszym rozwiązaniem na Debianie byłoby używanie
+ControlSocket Tora, który umożliwia Vidalii komunikowanie się z Torem poprzez
+gniazdo w domenie Unix i mógłby być domyślnie włączony w paczkach Tora dla Debiana.
+Vidalia może wtedy uwierzytelnić się do Tora używając ciasteczek, jeśli użytkownik
+uruchamiający Vidalię jest w grupie debian-tor.
+<br />
+Pierwsza część tego projektu będzie polegała na dodaniu obsługi ControlSocket
+do Vidalii. Potem student stworzy i przetestuje paczki Vidalii na Debianie i
+Ubuntu, które będą zgodne ze standardami pakowania w Debianie, oraz upewni się,
+że działają dobrze z istniejacymi paczkami Tora. Możemy też stworzyć repozytorium
+apt zawierające nowe paczki Vidalia.
+<br />
+Student podejmujący się tego projektu powinien znać system pakowania Debiana i
+mieć trochę doświadczenia z C++. Uprzednie doświadczenie z Qt będzie przydatne,
+ale nie jest wymagane.
+</li>
+
+<li>
+<b>Tor Status Event Interface</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni</i>
+<br />
+Prawdopodobni prowadzący: <i>Matt, inni</i>
+<br />
+Jest pewna liczba zmian stanu, o których użytkownik powinien być może być
+informowany. Na przykład, jeśli użytkownik chce uruchomić przekaźnik sieci Tor,
+a Tor stwierdzi, że nie jest on osiągalny z zewnątrz, użytkownik powinien zostać
+o tym poinformowany. W tej chwili wszystko, co dostaje użytkownik, to kilka
+wiadomości w "dzienniku wiadomości" Vidalii, których pewnie nie zobaczy, gdyż
+nie dostaje informacji, że coś poszło nie tak. Nawet jeśli uzytkownik spojrzy na
+zapis logów, więszkość wiadomości będzie miała mały sens dla początkującego.
+<br />
+Tor ma możliwość informowania Vidalii o wielu takich zmianach stanu, a ostatnio
+zaimplementowaliśmy obsługę kilku takich zdarzeń. Jednak jest wiele więcej
+zdarzeń, o których użytkownik powinien być informowany i potrzebujemy
+lepszego interfejsu użytkownika do wyświetlania takich wiadomości.
+<br />
+Celem tego projektu jest zaprojektowanie i zaimplementowanie interfejsu
+użytkownika do wyświetlania wiadomości o stanie Tora. Na przykład, można
+byłoby umieścić mały znaczek na ikonie Vidalii w zasobniku, który alarmowałby
+użytkownika o nowych zmianach stanu, którympowinien się przyjrzeć.
+Podwójne kliknięcie tej ikonki pokazywałoby okienko dialogowe podsumowujące
+ostatnie zmiany stanu prostymi słowami i może sugerujące rozwiązania
+do negatywnych wiadomości, jeśli mogą one być naprawione przez użytkownika.
+Oczywiście to tylko przykład i student może zaproponować inne podejście.
+<br />
+Student podejmujący się tego projektu powinien dobrze znać projektowanie i
+tworzenie interfejsu użytkownika i mieć trochę doświadczenia z C++.
+Uprzednie doświadczenie z Qt i Qt Designer będzie przydatne, ale nie jest wymagane.
+Przydatne mogą być też pewne umiejętności w pisaniu po angielsku, gdyż
+ten projekt prawdopodobnie będzie wymagał napisania małej ilości dokumenacji
+pomocniczej, która powinna być zrozumiała dla nie-technicznych użytkowników.
+Dodatkowe punkty za jakiś projekt graficzny /Photoshop fu, gdyż moglibyśmy
+chcieć/potrzebować nowych ikonek.
+</li>
+
+<li>
+<b>Wiki do tłumaczenia</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni</i>
+<br />
+Prawdopodobni prowadzący: <i>Jacob, inni</i>
+<br />
+Potrzebujemy sopsobu na edycję i tłumaczenie sekcji strony &mdash;
+z możliwością, że stworzy to łatę na oficjalne drzewo svn. Bieżący
+"koszt" publikacji zmian na stronie jest dość wysoki nawet dla
+anglojęzycznych użytkowników. Muszą oni pobierać pliki z szablonami,
+tłumaczyć je i przysyłać tłumaczenia nam. JEśli trzeba zmienić pojedyncze słowo
+lub coś małego, strona może nigdy nie zostać poprawiona lub przetłumaczona.
+Dobrze byłoby mieć wiki nastawione specjalnie na tłumaczenia, które jakoś
+śledziłoby nowe (angielskie) wersje i pokazywałoby, kiedy potrzebne będzie
+świeże tłumaczenie. Wydaje się to zadaniem głównie dla integratorów wiki
+lub twórców oprogramowania wiki. Z pewnością osoba powinna interesować się
+językami i tłumaczeniem. Powinna być choć minimalnie zaznajomiona z tym,
+co to jest Tor, ale nie musiałaby stykać się z samym oprogramowaniem,
+tylko z dokumentacją na stronie.
+</li>
+
+<li>
+<b>Ulepszenia naszego aktywnego testera konfiguracji przeglądarek</b> -
+<a href="https://check.torproject.org">https://check.torproject.org</a>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Niski</i>
+<br />
+Poziom umiejętności: <i>Niski to Średniego</i>
+<br />
+Prawdopodobni prowadzący: <i>Jacob, inni</i>
+<br />
+Mamy w tej chwili funkcjonalną stronę www, która sprawdza, czy Tor działa.
+Ma jednak parę miejsc, w których działa źle. Wymaga ulepszeń dotyczących
+domyślnych języków i funkcjonalności. W chwili obecnej odpowiada tylko po angielsku.
+Ponadto, jest to kawał skryptu Perla, który nigdy nie powinien był ujrzeć światła
+dziennego. Strona powinna prawdopodobnie zostać przepisana w Pythonie
+z uwagą na wielojęzyczności. Teraz używa listy punktów wyjściowych Tor DNS
+i powinna to robić w przyszłości. Może to dawać fałszywe pozytywne wyniki - te
+powinny zostać wykryte, udokumentowane i naprawione, gdzie to będzie możliwe.
+Ktokolwiek pracujący nad tym projektem powinien interersować się DNS,
+znać podstawy Perla lub lepiej - Pythona. Będzie musiał tylko minimalnie
+stykać się z Torem, by testować swój kod.
+</li>
+
+<li>
+<b>Ulepszenia w naszej usłudze punktów wyjściowych Tora - DNS Exit List</b> -
+<a href="http://exitlist.torproject.org">http://exitlist.torproject.org</a>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Niski</i>
+<br />
+Poziom umiejętności: <i>Niski</i>
+<br />
+Prawdopodobni prowadzący: <i>Jacob, Tup, inni</i>
+<br />
+Oprogramowanie to zostało napisane przez naszego wspaniałego wolontariusza - Tup.
+Jest to serwer DNS napisany w języku Haskell, obsługujące część naszego <a
+href="https://www.torproject.org/svn/trunk/doc/contrib/torel-design.txt">dokumentu
+projektowania listy punktów wyjściowych</a>. W chwili obecnej, usługa jest
+funkcjonalna i używana przez check.torproject.org i innych użytkowników. Sprawy,
+które zostały do zrobienia to głównie estetyka. Tej wspaniałej usłudze przydałaby
+się o wiele lepsza strona z motywem wspólnym dla stron Tora. Lepiej by wyglądała
+z lepszą dokumentacją częstych usług korzystających z RBL. Przydałby się rozgłos.
+Osoba pracująca nad tym projektem powinna interesować się DNS, podstawową konfiguracją
+RBL dla popularnych usług i pisaniem dokumentacji. Osoba ta wymagałaby tylko minimalnego
+stykania się z Torem &mdash; co najmniej podczas testowania własnej dokumentacji.
+Ponadto, byłoby dobrze, gdyby insteresowała się Haskellem i chciała zaimplementować
+więcej z sugestii w dokumencie torel-design.txt.
+</li>
+
+<li>
+<b>Testowanie integracji Tora z przeglądarkami dla użytkowników końcowych</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni</i>
+<br />
+Prawdopodobni prowadzący: <i>Jacob, Mike, inni</i>
+<br />
+Projektowi Tor brakuje obecnie solidnego testu do upewnienia się, że
+użytkownik poprawnie skonfigurował przeglądrkę. Taki test powinien sprawdzać
+tyle elementów, ile się da. Powinien spróbować zdjąć ukrycie użytkownika
+na każdy możliwy sposób. Dwie aktualne strony śledzące takie sprawy są
+prowadzone przez Grega i HD Moore'a. Greg trzyma ładną <a
+href="http://pseudo-flaw.net/tor/torbutton/">listę problemów wraz z dowodami
+jak ich użyć oraz listę błedów itp.</a>. HD Moore prowadzi
+<a href="http://metasploit.com/research/misc/decloak/">stronę metasploit
+decloak</a>. Osoba zainteresowana atakiem na Tora mogłaby zacząć od
+zbierania jak największej liczby działających i znanych metod odkrywania
+użytkownika Tora. Ta osoba powinna znać częste pułapki, ale też myśleć o
+nowych metodach zdejmowania osłony użytkowników. Strona powinna
+informować uzytkownia, w czym ma problem. Powinna pomóc mu w naprawieniu
+problemu lub skierować go na właściwe kanały wsparcia. Osoba wykonująca powinna
+dobrze znać Tora i to, jak zapobiegać wyciekom.
+</li>
+
+<li>
+<b>Polepszanie naszych zdolności opierania się cenzurze</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Wysoki</i>
+<br />
+Poziom umiejętności: <i>Średni do Wysokiego</i>
+<br />
+Prawdopodobni prowadzący: <i>Roger, inni</i>
+<br />
+Tor potrzebuje jeszcze lepszych mechanizmów obrony przed cenzurą. Jest parę
+mechanizmów, które mogą pomóc. Tor powinien móc nasłuchiwać połączeń
+na wielu adresach i portach i pozwalać klientom łączyć się na nie wszystkie.
+Tor powinien móc pokazywać się jak serwer WWW (HTTP lub HTTPS), gdy
+łączą się z nim programy do skanowania portów.
+</li>
+
+<li>
+<b>Lepsza integracja Tora i Libevent</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Wysoki</i>
+<br />
+Poziom umiejętności: <i>Średni do Wysokiego</i>
+<br />
+Prawdopodobni prowadzący: <i>Nick, inni</i>
+<br />
+Tor powinien lepiej używać nowych cech biblioteki Libevent Nielsa Provosa.
+Libevent już zawiera bufory gniazd i HTTP; kod Tora ich używający mógłby zostać
+zmieniony. Będziemy musieli ulepszyć kod libevent, jeśli będzie taka potrzeba,
+szczególnie by dodać dobrą obsługę openssl w oparciu o abstrakcję buforów w libevent.
+</li>
+
+<li>
+<b>Tuneup Tor!</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni do Wysokiego</i>
+<br />
+Prawdopodobni prowadzący: <i>Roger, inni</i>
+<br />
+Tor powinien w miarę możliwości mierzyć przepustowość łączą w rozproszony sposób,
+jak jest napisane w dokumencie
+<a href="http://freehaven.net/anonbib/">"A Tuneup for Tor"</a> autorstwa
+Snadera Borisova. Student mógłby użyć bieżącego kodu testującego, by sprawdzić
+odkrycia napisane w tym dokumencie i zweryfikować, w jakim stopniu opisują one
+normalnie działającego Tora i określić dobre sposoby na wcielenie tych odkryć
+do sieci Tora bez dodawania niepożądanego ruchu wielkości n^2 na serwerach
+katalogowych.
+</li>
+
+<li>
+<b>Polepszenie procesu QA Tora: Ciągła integracja dla paczek pod Windows</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni</i>
+<br />
+Prawdopodobni prowadzący: <i>Jacob, Phobos, inni</i>
+<br />
+Przydałby się automatyczny system tworzenia paczek dla Windows i być może
+innych systemów. Celem posiadania środowiska ciągłej integracji jest
+upewnienie się, że Windows nie zostanie w tyle z żadnym z projektów
+używanych lub zwiazanych z projektem Tor. Buildbot
+może być dobrym rozwiązaniem, gdyż zdaje się obsługiwać te same platformy, co Tor.
+Przeczytaj (po angielsku) <a href="http://en.wikipedia.org/wiki/BuildBot">wpis na
+Wikipedii dotyczący Buildbota</a>.<br />
+Może jednak są lepsze rozwiązania, więc osoba podejmująca się tego zadania
+powinna rozważyć inne opcje. Jakakolwiek osoba pracująca nad tym systemem
+automatycznego budowania powinna mieć doświadczenie lub chęć do nauczenia
+się tego, jak buduje się wszystkie odpowiednie elementy Tora od zera.
+Ponadto, ta osoba opwinna mieć jakieś doświadczenie w kompilowaniu
+programów w Windows, jako że to jest ta część użytkowników, których nie chcemy
+zostawiać w tyle. Zadanie będzie wymagała bliskiej pracy z kodem Tora,
+ale prawdopodobnie tylko od strony kompilacji, nie pisania.
+Ponadto, musimy zautomatyzować nasze testy wydajności dla wszystkich systemów.
+Mamy już buildbota (za wyjątkiem Windows &mdash; jak napisane powyżej) do
+automatyzacji naszej zwyczajnej integracji i kompilacji testów, ale
+musimy zaktualizować nasze testy symulacji sieci (takie, jak w torfolw)
+do nowszych wersji Tora i zaprojektować je tak, by uruchamiać sieci testowe
+albo na jednej maszynie, albo na kilku, abyśmy mogli automatycznie
+badać zmiany wydajności na maszynach pełniących różne zadania.<br />
+</li>
+
+<li>
+<b>Polepszenie procesu testów jednostkowych</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni</i>
+<br />
+Prawdopodobni prowadzący: <i>Nick, inni</i>
+<br />
+Tor musi zostać znaczniej barzdiej przetestowany. To jest projekt wieloczęściowy.
+Na początek, nasze testy jednostkowe powinny znacznie się wzbogacić, zwłaszcza
+w obszarach poza funkcjami narzędziowymi. Będzie to wymagało poważnych zmian
+niektórych części Tora, aby oddzielić jak najwięcej programu od zmiennych
+globalnych.<br />
+Ponadto, musimy zautomatyzować nasze testy wydajności dla wszystkich systemów.
+Mamy już buildbota (za wyjątkiem Windows &mdash; jak napisane powyżej) do
+automatyzacji naszej zwyczajnej integracji i kompilacji testów, ale
+musimy zaktualizować nasze testy symulacji sieci (takie, jak w torfolw)
+do nowszych wersji Tora i zaprojektować je tak, by uruchamiać sieci testowe
+albo na jednej maszynie, albo na kilku, abyśmy mogli automatycznie
+badać zmiany wydajności na maszynach pełniących różne zadania.<br />
+</li>
+
+<li>
+<b>Pomóż wznowić działalność społeczeństwa Javy wokół Tora</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Wysoki</i>
+<br />
+Poziom umiejętności: <i>Średni do Wysokiego</i>
+<br />
+Prawdopodobni prowadzący: <i>Karsten, inni</i>
+<br />
+Reanimuj jedno z podejść do implementacji klienta Tora w Javie, np.
+<a href="http://onioncoffee.sourceforge.net/">projekt OnionCoffee</a>
+i spraw, by działał pod <a href="http://code.google.com/android/">Androidem</a>.
+Pierwszym krokiem byłoby przeniesienie istniejącego kodu i uruchomienie go
+w środowisku Android. Potem kod powinien zostać zaktualizowany, by obsługiwać
+nowsze wersje protokołu Tora, jak na przykład
+<a href="<svnsandbox>doc/spec/dir-spec.txt">protokół katalogowy w wersji 3</a>.
+Poza tym, obsługa żądań lub choćby dostarczania usług ukrytych Tora byłaby fajna,
+choć nie wymagana. Student powinien rozumieć i pisać nowy kod w Javie, łącznie
+z korzystaniem z kryptograficznego API Javy. Umiejętność czytania kodu w C
+też byłaby przydatna. Student powinien być chętny do czytania istniejącej dokumentacji,
+implementacji kodu w oparciu o nią oraz, jeśli będzie to potrzebne, poprawiać
+dokumentację, jeśli jest niejasna. Ten projekt składa się w dużym stopniu z
+pisania kodu i w mniejszym - z projektowania.
+</li>
+
+<li>
+<b>Zostań Mistrzem PuppeTora</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Średni</i>
+<br />
+Prawdopodobni prowadzący: <i>Roger, inni</i>
+<br />
+Napisz narzędzie, które uruchamia automatyczne testy systemu, poza
+istniejącymi testami jednostkowymi. Oparty na Javie symulator Tora - <a
+href="https://tor-svn.freehaven.net/svn/puppetor/trunk/">PuppeTor</a>
+może służyć za dobry początek do uruchomienia prywatnej sieci Tora,
+używaniu jej przez jakiś czas i sprawdzeniu, czy choć części jej działają.
+Projekt ten wymaga przygotowania planu przeprowadzenia testów systemu
+prywatnych sieci Tora przed zaczęciem pisania kodu. Typowe typy testów
+obejmują zakres od wykonywania pojedynczych żądań w prywatnej sieci
+do manipulowania wymienianymi wiadomościami i sprawdzaniu, czy węzły
+prawidłowo reagują na uszkodzone wiadomości. Student powinien móc
+zdobyć dobrą wiedzę na temat działania Tora i tego, jakie problemy i
+błędy mogą wyjść na jaw, by zaprojektować dobre przypadki testowe.
+Niezbędne jest zrozumienie istniejącego kodu i dokumentacji Tora.
+Jeśli używany będzie PuppeTor, student powinien też móc zrozumieć
+i być może rozszerzyć istniejącą aplikację w Javie. Ten projekt to
+po części projektowanie, a po części - pisanie kodu.
+</li>
+
+<li>
+<b>Ożywienie projektu moniTor</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Średni</i>
+<br />
+Poziom umiejętności: <i>Niski do Średniego</i>
+<br />
+Prawdopodobni prowadzący: <i>Karsten, Jacob, inni</i>
+<br />
+Zaimplementuj narzędzie <a href="http://www.ss64.com/bash/top.html">podobne do top</a>
+dla przekaźników siei Tora. Celem takiego narzędzia byłoby monitorowanie lokalnego przekaźnika
+sieci poprzez jego port kontrolny i dołaczanie użytecznych informacji systemowych
+samej maszyny. Podczas działania, narzędzie to dynamicznie aktualizowałoby
+swoje informacje, tak jak program top robi to dla procesów linuksowych.
+<a href="http://archives.seul.org/or/dev/Jan-2008/msg00005.html">Ta
+wiadomość na or-dev</a> może być dobrą lekturą na początek. Student powinien znać lub
+być chętnym do nauki administrowania przekaźnikiem Tora i konfigurowania go
+za pomocą portu kontroli. Jako że wstępny prototyp jest napisany w Pythonie,
+pewna wiedza na temat pisania programów w tym języku też byłaby przydatna.
+Ten projekt z jednej strony opiera się na określeniu wymagań dla takiego
+narzędzia i zaprojektowania dla niego interfejsu, a z drugiej strony
+wymaga również dużo programowania.
+</li>
+
+<li>
+<b>Ulepszenie Skanera Wyjściowego Tora (Tor Exit Scanner)</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Wysoki</i>
+<br />
+Poziom umiejętności: <i>Wysoki</i>
+<br />
+Prawdopodobni prowadzący: <i>Mike Perry</i>
+<br />
+Skaner węzłów wyjściowych Tora, 'SoaT', część <a
+href="https://www.torproject.org/svn/torflow/">projektu Torflow</a>, jest
+w chwili obecnej napisany w chwiejnym Perlu i opiera się na sumach
+kontrolnych MD5 dla całych dokumentów w celu stwierdzenia, czy
+węzły wyjściowe zmieniają zawartość. Problem z tym składa się z 3 części:
+1) Perl jest do bani 2) skaner nie umie weryfikować stron dynamicznych, a
+atakujący mogą skupić się na umieszczaniu złośliwego oprogramowania
+tylko na stronach dynamicznych 3) strony zmieniają się raz na jakiś czas
+(lub opierając się na GeoIP) i zaczynają generować fałszywe pozytywne wyniki.
+<br />
+Najlepiej byłoby reimplementować soat.pl w jakimś normalnym języku z
+dobrą biblioteką do parsowania HTML (dobry byłby Python, jako że reszta Torflow
+jest w nim napisana, lecz nie jest to wymagane) i wyliczać sygnatury stron
+tylko dla znaczników i zawartości, która może stać się celem ataku (znaczniki
+skryptów, linki do obiektów, obrazki). Program powinien też działać dobrze
+w obliczu zewnętrznych w stosunku do Tora zmian zawartości, a docelowo nawet
+z lokalizowaną zawartością poprzez GeoIP.
+<br />
+Skaner ten prawdopodobnie byłby uruchamiany przez serwery katalogowe i
+zgłaszał swoje wyniki na port kontroli poprzez zmienną konfiguracji AuthDirBadExit.
+<br />
+</li>
+
+<li>
+<b>Ulepszenie Skanera Węzłów Tora (Tor Node Scanner)</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Średni do Wysokiego</i>
+<br />
+Poziom umiejętności: <i>Średni do Wysokiego</i>
+<br />
+Prawdopodobni prowadzący: <i>Mike Perry</i>
+<br />
+Podobnie do skanera wyjściowego (lub może nawet w czasie jego działania),
+można gromadzić statystyki odnośnie wiarygodności węzłów. Te węzły, które
+źle działają dla pewnej części swoich obwodów nie powinny być używane do
+statusu Strażnika, i być może powinny też mieć zmniejszoną swoją zgłaszaną
+przepustowość, lub po prostu być oznaczane jako Nieważne. Dodatkowo,
+węzły wykazujące bardzo niską średnią przepustowość strumienia,
+lecz zgłaszają bardzo wysoką, też mogą być oznaczone jako Nieważne.
+Większość zbierania statystyk już jest zrobiona, dane te muszą tylko
+zostać przetworzone na coś, co może być wysłane Serwerom Katalogowym,
+by ukarały/wyłączyły ze swoich list te węzły w taki sposób, że klienci
+się o tym dowiedzą.
+<br />
+Dodatkowo, te same statystyki mogą być zbierane odnośnie ruchu przechodzącego
+przez węzeł. Do <a
+href="https://www.torproject.org/svn/torctl/doc/howto.txt">Protokołu Kontroli
+Tora</a> można dodać zdarzenia mówiące, czy udaje się stworzyć obwód
+przechodzący przez ten węzeł, oraz można zbierać pasywne statystyki dotyczace
+zarówno przepustowości, jak i wiarygodności innych węzłów, poprzez oparty
+na węzłach program monitorujący takie zdarzenia. Taki skaner zgłaszałby też
+informacje o dziwnie zachowujących się węzłach do Serwerów Katalogowych,
+ale kanałą łączności do tych celów jeszcze nie istnieje i też musiałby
+zostać stworzony.
+</li>
+
+<li>
+<b>Polepszenia w wybieraniu ścieżki przez Tora</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Niski do Średniego</i>
+<br />
+Poziom umiejętności: <i>Wysoki</i>
+<br />
+Prawdopodobni prowadzący: <i>Roger, Nick, Mike</i>
+<br />
+Można dokonać pewnych prostych ulepszeń do algorytmu wyboru ścieżki przez Tora,
+by znacznie zwiększyć jego szybkość. Na przykład, kilka (nieoficjalnych)  <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/FireFoxTorPerf">Zaleceń
+Wydajnosci Tora</a> na wiki to zwiększenie liczby strażników i zmniejszenie
+CircuitBuildTimeout. Najlepiej by było, gdyby klient sam uczył się tych
+wartości poprzez zbieranie statystyk dotyczących czasu budowania obwodów
+(lub używać wartości uzyskanych z Torflow) i ustawiał czasy dość nisko, by
+wysoki procent (75%, 90%) obwodów uległ stworzeniu, lecz by
+strasznie wolne węzły były unikane. Wymagałoby to pewnego zbierania
+statystyk i podstawowych badań oraz pewnych zmian w kodzie Tora dotyczącym
+wyboru ścieżki.
+<br />
+Dodatkowo, by zwiększyć bezpieczeństwo ścieżek, można byłoby dołączyć niektóre
+elementy z <a
+href="http://www.torproject.org/svn/trunk/doc/spec/proposals/115-two-hop-paths.txt"
+>Propozycji Ścieżek 2-Skokowych</a> (jako że będzie to i tak dotyczyć tego samego kodu),
+bez uwagi na to, czy ta Propozycja będzie przyjęta. W szczególności, klienci powinni
+unikać strażników, którzy zdają się mieć problem ze zbudowaniem znacznej części
+swoich obwodów, a nie-mostowi klienci powinni pokazywać ostrzeżenia, że udało im
+się połączyć tylko z ograniczoną liczbą węzłów-strażników.
+</li>
+
+<li>
+<b>Ulepszenia w Torbutton</b>
+<br />
+Priorytet: <i>Średni</i>
+<br />
+Poziom wysiłku: <i>Wysoki</i>
+<br />
+Poziom umiejętności: <i>Wysoki</i>
+<br />
+Prawdopodobni prowadzący: <i>Mike Perry</i>
+<br/>
+Jest parę ulepszeń, które można byłoby wprowadzić do Torbutton w wersji po 1.2.
+Większość z nich jest pisana jako prośby o ulepszenia w <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">sekcji
+flyspray Torbuttona</a>. Dobrymi przykładami są: wycinanie node.exit z nagłówków
+HTTP, lepsza kontorla blokowania wypełniania formularzy, ulepszone imitowanie
+odnośników do stron poprzednich (tzw. referrers) w oparciu o domenę strony
+(coś jak rozszerzenie refspoof), bliższa integracja z Vidalią do zgłaszania
+stanu Tora, przycisk Nowa Tożsamość z integracją z Torem i zarządzanie
+wieloma tozsamościami, i cokolwiek jeszcze, co zdołasz wymyśleć.
+
+<br />
+To zadanie skłądałoby się z niezależnego pisania w Javascripcie i miłym
+świecie <a
+href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
+bez zbytniego zagłębiania się do wnętrzności Tora.
+
+</li>
+
+<li>
+<b>Pomóż śledzić ogólny status Sieci Tora</b>
+Torstatus. Uruchomienie automatycznego systemu śledzenia stanu sieci w czasie,
+wyświetlanie wykresów itp. Lepsze miary do oceny stanu i wzrostu sieci.
+Niech będzie to krótkie i proste. Nieprzepełnione funkcjami i proste w sprawdzaniu.
+</li>
+
+<li>vidalia and upnp</li>
+<li>nymble</li>
+
+<li>
+<b>Przeniesienie Polipo na Windows</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Wysoki</i>
+<br />
+Poziom umiejętności: <i>Średni do Wysokiego</i>
+<br />
+Prawdopodobni prowadzący: <i>Roger, inni</i>
+<br />
+Pomóż przenieść <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> na Windows.
+1) obsługa spacji w ścieżkach i zrozumienie przestrzeni nazw systemu plików
+&mdash; przestrzeń nazw tu oznacza gdzie dane aplikacji, dane osobiste i
+program zwykle się znajdują w różnych wersjach Windows. 2) zdolność obsługi
+połączeń przez IPv6. 3) zdolność do asynchronicznego wysyłania zapytań do
+serwerów nazw. 4) używanie natywnych zdolności Windows odnośnie wyrażeń regularnych
+zamiast używania bibliotek GNU. 5) natywna obsługa zdarzeń i buforów (tj. w
+systemach uniksopodobnych Polipo domyślnie używa 25% pamięci RAM, a pod Windows
+jest to cokolwiek wpisane w plik konfiguracyjny). 6) jakieś narzędzie z
+graficznym interfejsem do konfiguracji i raportowania, dodatkowe punkty, jeśli
+ma ikonkę w zasobniku z opcjami menu po kliknięciu prawym przyciskiem myszy.
+Podwójny bonus, jeśli działa na wielu platformach.
+</li>
+
+<li>
+<b>Zrobienie naszych diagramów pięknymi i zautomatyzowanymi</b>
+<br />
+Priorytet: <i>Wysoki</i>
+<br />
+Poziom wysiłku: <i>Niski</i>
+<br />
+Poziom umiejętności: <i>Niski</i>
+<br />
+Prawdopodobni prowadzący: <i>Roger, inni</i>
+<br />
+Sposób na generowanie diagramów na stronie ze źródeł, byśmy mogli je tłumaczyć
+jako tekst w UTF-8 zamiast używać GIMPa. (svg? lub imagemagick?).
+Należy zintegrować to z plikiem WML, by tłumaczenie było proste, a obrazki
+generowane w wielu językach w czasie publikacji strony.
+</li>
+
+<li>
+<b>Ulepszenie oferty LiveCD dla społeczeństwa Tora</b>
+<br />
+Priorytet: <i>Niski</i>
+<br />
+Poziom wysiłku: <i>Niski</i>
+<br />
+Poziom umiejętności: <i>Średni do Wysokiego</i>
+<br />
+Prawdopodobni prowadzący: <i>Roger, inni</i>
+<br />
+<li>Jak można uczynić <a
+href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
+łatwiejszym w utrzymaniu, ulepszaniu i dokumentowaniu?</li>
+
+<li>Potrzebujemy frameworka do testów rozproszonych. Mamy pojedyncze testy, ale byłoby
+ wspaniale mieć skrypt, który uruchamia sieć Tora, używa jej przez chwilę i weryfikuje,
+ że przynajmniej jej część działa.</li>
+
+<li>
+<b>Przynieś nowe pomysły!</b>
+<br />
+<li>Nie podoba ci się żaden z tych pomysłów? Spójrz na <a
+ href="<svnsandbox>doc/design-paper/roadmap-future.pdf">plan rozwoju Tora</a> po więcej pomysłów.</li>
+<li>Nie widzisz tu swojego pomysłu? Prawdopodobnie i tak go potrzebujemy! Skontaktuj się
+ z nami, by to sprawdzić.</li>
+</ol>
+
 <h2><a class="anchor" href="#Coding">Programowanie i Projektowanie</a></h2>
 
 <ol>
@@ -104,10 +775,6 @@
  Christian King zrobił
  <a href="https://tor-svn.freehaven.net/svn/libevent-urz/trunk/">pierwszy dobry
  krok</a> zeszłego lata.</li>
-
-<li>Jak można uczynić <a
-href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
-łatwiejszym w utrzymaniu, ulepszaniu i dokumentowaniu?</li>
 
 <li>Ponieważ przekaźniki sieci Tora muszą przechować i podać dalej każdą komórkę,
  którą obsługują, przekaźniki o wysokiej przepustowości zużywają wiele
@@ -150,10 +817,6 @@ href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
  częścią tutaj jest zdecydowanie, jakie konfiguracje są bezpieczne, dokumentowanie
  tych decyzji i zrobienie czegoś, co łatwo będzie utrzymać w przyszłości.</li>
 
-<li>Nasz preferowany interfejs graficzny dla Tora, o nazwie
- <a href="http://vidalia-project.net/">Vidalia</a>, potrzebuje różnego rodzaju pracy włożonej
- w rozwój.</li>
-
 <li>Musimy zacząć budować nasz <a href="<page
  documentation>#DesignDoc">projekt odporny na blokowanie</a>. Wchodzi w to
  przemyślenie projektu, zmiana wielu różnych elementów Tora, zaadaptowanie
@@ -168,18 +831,6 @@ href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
  badań. Spójrz na wpis <a href="#Research">poniżej</a> o atakach potwierdzenia po szczegóły
  strony badawczej tego zadania &mdash; kto wie, może gdy będzie skończone, pomożesz nam też
  napisać dokumentację.</li>
-
-<li>Potrzebujemy frameworka do testów rozproszonych. Mamy pojedyncze testy, ale byłoby
- wspaniale mieć skrypt, który uruchamia sieć Tora, używa jej przez chwilę i weryfikuje,
- że przynajmniej jej część działa.</li>
-
-<li>Pomóżcie Mike'owi Perry z jego biblioteką <a
- href="https://www.torproject.org/svn/torflow/">TorFlow</a>
- (<a href="https://www.torproject.org/svn/torflow/TODO">lista rzeczy do zrobienia</a>):
- jest to biblioteka napisana w Pythonie, która używa <a
- href="https://www.torproject.org/svn/torctl/doc/howto.txt">protokołu kontroli Tora</a>,
- by instruować Tora do budowania obwodów na wiele różnych sposobów, po czym
- mierzy wydajność i próbuje wykryć anomalie.</li>
 
 <li>Tor 0.1.1.x i późniejsze zawiera obsługę sprzętowych akceleratorów kryptograficznych,
  poprzez OpenSSL. Ale nikt tego jeszcze nie przetestował. Czy ktoś chce
@@ -200,10 +851,6 @@ href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
 <li>Jesteśmy wcale niedaleko od obsługi adresów IPv6 jako docelowych (na węzłach
  wyjściowych). Jeśli mocno ci zależy na IPv6, to jest to chyba najlepszy punkt
  startu.</li>
-<li>Nie podoba ci się żaden z tych pomysłów? Spójrz na <a
- href="<svnsandbox>doc/design-paper/roadmap-future.pdf">plan rozwoju Tora</a> po więcej pomysłów.</li>
-<li>Nie widzisz tu swojego pomysłu? Prawdopodobnie i tak go potrzebujemy! Skontaktuj się
- z nami, by to sprawdzić.</li>
 </ol>
 
 <a id="Research"></a>
