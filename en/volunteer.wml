@@ -865,6 +865,61 @@ easier to maintain, improve, and document?
 </li>
 
 <li>
+<b>Rework and extend Blossom</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium to High</i>
+<br />
+Skill Level: <i>Medium to High</i>
+<br />
+Likely Mentors: <i>Goodell</i>
+<br />
+Rework and extend Blossom (a tool for monitoring and
+selecting appropriate Tor circuits based upon exit node requirements
+specified by the user) to gather data in a self-contained way, with
+parameters easily configurable by the user.  Blossom is presently
+implemented as a single Python script that interfaces with Tor using the
+Controller interface and depends upon metadata about Tor nodes obtained
+via external processes, such as a webpage indicating status of the nodes
+plus publically available data from DNS, whois, etc.  This project has
+two parts: (1) Determine which additional metadata may be useful and
+rework Blossom so that it cleanly obtains the metadata on its own rather
+than depend upon external scripts (this may, for example, involve
+additional threads or inter-process communication), and (2) develop a
+means by which the user can easily configure Blossom, starting with a
+configuration file and possibly working up to a web configuration engine.
+</li>
+
+<li>
+<b>Improve Blossom: Allow users to qualitatively describe exit nodes they desire</b>
+<br />
+Priority: <i>Low</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Goodell</i>
+<br />
+Develop and implement a means of affording Blossom
+users the ability to qualitatively describe the exit node that they
+want.  The Internet is an inconsistent place: some Tor exit nodes see
+the world differently than others.  As presently implemented, Blossom (a
+tool for monitoring and selecting appropriate Tor circuits based upon
+exit node requirements specified by the user) lacks a sufficiently rich
+language to describe how the different vantage points are different.
+For example, some exit nodes may have an upstream network that filters
+certain kinds of traffic or certain websites.  Other exit nodes may
+provide access to special content as a result of their location, perhaps
+as a result of discrimination on the part of the content providers
+themselves.  This project has two parts: (1) develop a language for
+describing characteristics of networks in which exit nodes reside, and
+(2) incorporate this language into Blossom so that users can select Tor
+paths based upon the description.
+</li>
+
+<li>
 <b>Bring up new ideas!</b>
 <br />
 Don't like any of these? Look at the <a
