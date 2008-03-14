@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 13989
+# Based-On-Revision: 14019
 # Last-Translator: jan at seul dot org
 
 #include "head.wmi" TITLE="Tor: partecipa" CHARSET="UTF-8"
@@ -186,55 +186,55 @@ Cmake.
 </li>
 
 <li>
-<b>Better Debian Packaging for Tor+Vidalia</b>
+<b>Una migliore gestione dei pacchetti Debian per Tor e Vidalia</b>
 <br />
-Priority: <i>High</i>
+Priorit&agrave;: <i>Alta</i>
 <br />
-Effort Level: <i>Medium</i>
+Impeglo: <i>Medio</i>
 <br />
-Skill Level: <i>Medium</i>
+Competenze: <i>Medie</i>
 <br />
-Likely Mentors: <i>Peter, Matt</i>
+Possibili mentori: <i>Peter, Matt</i>
 <br />
-Vidalia currently doesn't play nicely on Debian and Ubuntu with the
-default Tor packages. The current Tor packages automatically start Tor
-as a daemon running as the debian-tor user and (sensibly) do not have a
-<a href="<svnsandbox>doc/spec/control-spec.txt">ControlPort</a> defined
-in the default torrc. Consequently, Vidalia will try
-to start its own Tor process since it could not connect to the existing
-Tor, and Vidalia's Tor process will then exit with an error message
-the user likely doesn't understand since Tor cannot bind its listening
-ports &mdash; they're already in use by the original Tor daemon.
+Vidalia al momento non funziona bene su Debian e Ubuntu con i pacchetti
+standard di Tor. Gli attuali pacchetti Tor fanno partire automaticamente Tor
+come demone sotto l'utente debian-tor e (giustamente) senza una
+<a href="<svnsandbox>doc/spec/control-spec.txt">ControlPort</a> definita
+del file torrc. Di conseguenza, Vidalia cerca di far 
+partire il suo processo Tor, dato che non riesce a connettersi a un processo
+Tor esistente, col risulato che il processo Tor di Vidalia termina con un messaggio di errore
+che l'utente probabilmente non capisce, dato che non pu&ograve; collegarsi alle sue
+porte in ascolto &mdash; che sono gi&agrave; utilizzate dal demone Tor originale.
 <br />
-The current solution involves either telling the user to stop the
-existing Tor daemon and let Vidalia start its own Tor process, or
-explaining to the user how to set a control port and password in their
-torrc. A better solution on Debian would be to use Tor's ControlSocket,
-which allows Vidalia to talk to Tor via a Unix domain socket, and could
-possibly be enabled by default in Tor's Debian packages. Vidalia can
-then authenticate to Tor using filesystem-based (cookie) authentication
-if the user running Vidalia is also in the debian-tor group.
+La soluzione attuale prevede o di dire all'utente di fermare il demone
+Tor esistente e farne partire uno da Vidalia, oppure di spiegare all'utente
+come definire una port e una password nel file di configurazione
+torrc. Su Debian una soluzione migliore sarebbe usare il ControlSocket di Tor,
+che permetterebbe a Vidalia di parlare con Tor attraverso un Unix domain socket, e potrebbe
+essere abilitata di default nei pacchetti Debian di Tor. Vidalia potrebbe 
+quindi autenticarsi a Tor con una autenticazione basata sul filesystem (cookie),
+usa Vidalia fa parte del gruppo debian-tor.
 <br />
-This project will first involve adding support for Tor's ControlSocket
-to Vidalia. The student will then develop and test Debian and Ubuntu
-packages for Vidalia that conform to Debian's packaging standards and
-make sure they work well with the existing Tor packages. We can also
-set up an apt repository to host the new Vidalia packages.
+Questo progetto richiede di aggiungere a Vidalia il supporto per ControlSocket
+di Tor. Lo studente svilupper&agrave; e tester&agrave; i pacchetti Vidalia
+per Debian e Ubuntu in conformit&agrave; agli standard di pacchetto Debian,
+e verificher&agrave; che essi funzionino bene con  i pacchetti Tor esistenti. Possiamo anche
+creare un repository apt per ospitare i nuovi pacchetti Vidalia.
 <br />
-The next challenge would be to find an intuitive usable way for Vidalia
-to be able to change Tor's configuration (torrc) even though it is
-located in <code>/etc/tor/torrc</code> and thus immutable. The best
-idea we've come up with so far is to feed Tor a new configuration via
-the ControlSocket when Vidalia starts, but that's bad because Tor starts
-each boot with a different configuration than the user wants. The second
-best idea
-we've come up with is for Vidalia to write out a temporary torrc file
-and ask the user to manually move it to <code>/etc/tor/torrc</code>,
-but that's bad because users shouldn't have to mess with files directly.
+Il prossimo passo sar&agrave; trovare un metodo intuitivo e facile perch&eacute; Vidalia
+possa modificare la configurazione di Tor (torrc) anche se si trova
+in <code>/etc/tor/torrc</code> ed &egrave; quindi non modificabile. Finora la cosa
+migliore che abbiamo pensato &egrave; fornire a Tor una nuova configurazione tramite
+il ControlSocket quando Vidalia si avvia, ma ha il difetto di far partire Tor
+ad ogni boot con una configurazione diversa da quella desiderata dall'utente. L'alternativa
+che
+ci &egrave; venuta in mente &egrave; che Vidalia scriva un file torrc temporaneo
+e chieda all'utente di spostarlo manualmente in <code>/etc/tor/torrc</code>,
+ha il difetto di fare interagire l'utente direttamente con i file.
 <br />
-A student undertaking this project should have prior knowledge of
-Debian package management and some C++ development experience. Previous
-experience with Qt is helpful, but not required.
+Studenti interessati a questo progetto dovrebbero conoscere bene il
+Debian package management ed avere qualche esperienza di sviluppo in C++. Apprezzata,
+ma non obbligatoria, dell'esperienza con Qt.
 </li>
 
 <li>
@@ -871,6 +871,61 @@ easier to maintain, improve, and document?
 </li>
 
 <li>
+<b>Rework and extend Blossom</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium to High</i>
+<br />
+Skill Level: <i>Medium to High</i>
+<br />
+Likely Mentors: <i>Goodell</i>
+<br />
+Rework and extend Blossom (a tool for monitoring and
+selecting appropriate Tor circuits based upon exit node requirements
+specified by the user) to gather data in a self-contained way, with
+parameters easily configurable by the user.  Blossom is presently
+implemented as a single Python script that interfaces with Tor using the
+Controller interface and depends upon metadata about Tor nodes obtained
+via external processes, such as a webpage indicating status of the nodes
+plus publically available data from DNS, whois, etc.  This project has
+two parts: (1) Determine which additional metadata may be useful and
+rework Blossom so that it cleanly obtains the metadata on its own rather
+than depend upon external scripts (this may, for example, involve
+additional threads or inter-process communication), and (2) develop a
+means by which the user can easily configure Blossom, starting with a
+configuration file and possibly working up to a web configuration engine.
+</li>
+
+<li>
+<b>Improve Blossom: Allow users to qualitatively describe exit nodes they desire</b>
+<br />
+Priority: <i>Low</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Goodell</i>
+<br />
+Develop and implement a means of affording Blossom
+users the ability to qualitatively describe the exit node that they
+want.  The Internet is an inconsistent place: some Tor exit nodes see
+the world differently than others.  As presently implemented, Blossom (a
+tool for monitoring and selecting appropriate Tor circuits based upon
+exit node requirements specified by the user) lacks a sufficiently rich
+language to describe how the different vantage points are different.
+For example, some exit nodes may have an upstream network that filters
+certain kinds of traffic or certain websites.  Other exit nodes may
+provide access to special content as a result of their location, perhaps
+as a result of discrimination on the part of the content providers
+themselves.  This project has two parts: (1) develop a language for
+describing characteristics of networks in which exit nodes reside, and
+(2) incorporate this language into Blossom so that users can select Tor
+paths based upon the description.
+</li>
+
+<li>
 <b>Contribuisci con delle nuove idee!</b>
 <br />
 Nessuna di queste proposte ti piace? Dai un'occhiata alla <a
@@ -955,6 +1010,21 @@ che in ogni caso questo attacco &egrave; triviale. Ma &egrave; davvero cos&igrav
 sia certo di aver vinto? Ci sono situazioni che rallentano l'attacco (es. trasmissioni modeste)?
 Il traffic padding o il traffic shaping
 funzionano meglio di altri sistemi?</li>
+<li>Un altro problema collegato &egrave;: Creare un relay/bridge offre qualche 
+protezione in pi&ugrave; contro questi timing attacks? Un avversario esterno che non pu&ograve;
+leggere dentro i link TLS pu&ograve; riuscire a riconoscere i singoli flussi in modo affidabile?
+La quantit&agrave; di traffico trasportato limita in qualche modo questa eventualit&agrave;? Cosa accadrebbe se
+il client-relay ritardasse apposta il traffico upstream creando una coda
+che potrebbe essere usata per simulare il timing dal client downstream cos&igrave; da fingere
+che sia traffico relayed anch'esso? Questa stessa coda potrebbe essere usata per mascherare
+i timing nel traffico upstream monte dai client con tecniche di <a
+href="http://www.freehaven.net/anonbib/#ShWa-Timing06">adaptive padding</a>,
+ma senza aver bisogno di traffico addizionale. Una simile miscela di
+traffico upstream monte dal client potrebbe forse offuscare il timing per un avversario esterno? Questa strategia
+deve essere modificata in caso di link asimmetrici? Ad esempio, su
+link asimmentrici si riesce a distinguere il traffico del client dai
+picchi naturali dovuti all'asimmetria della capacit&agrave; del link? Od &egrave; pi&ugrave;
+facile sui link asimmetrici, per qualche altro motivo?</li>
 <li>Attacco di tipo "routing zones": gli studi attuali considerano
 il percorso di rete tra Alice e il suo entry node (e tra
 l'exit node e Bob) come un singolo collegamento in un grafico. In realt&agrave;
