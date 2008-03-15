@@ -1,0 +1,47 @@
+﻿#!/usr/bin/wml
+
+## translation metadata
+# Based-On-Revision: 12223
+# Last-Translator: bdaylik .-AT-. hotmail.com
+
+#use "functions.wmi"
+
+</div>
+  <div class="bottom" id="bottom">
+     <p>
+     <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
+# please also translate "last modified" and "last compiled"
+      Son değiştirilme: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      -
+      Son derleme: <: print scalar localtime(); :>
+     </p>
+     <p>"Tor" ve "Onion Logo", The Tor Project, Inc.'in <a href="<page
+     trademark-faq>">tescilli markasıdır</a>.
+     </p>
+
+# Uncomment this in your translation:  (and translate it)
+#####################################
+   <: unless (translation_current()) { :>
+     <p>
+      Uyarı: Bu çeviri eskimiş olabilir. Orijinal İngilizcesinin revizyon numarası
+      <:= translation_get_masterrevision() :> iken bu çeviri
+      <:= translation_get_basedonrevision() :> nolu revizyonu temel almıştır.
+     </p>
+   <: } :>
+
+   <: if (has_translations()) {  :>
+     <p>
+       Bu sayfa şu dillerde de mevcuttur:
+       <: print list_translations() :>.<br>
+       <a href="http://www.debian.org/intro/cn#howtoset">Varsayılan belge dili</a> nasıl ayarlanır.
+     </p>
+   <: }; :>
+
+# Uncomment this in your translation: (and translate it)
+#####################################
+   <p>Tor geliştiricileri bu çeviriyi doğruluğu yönünden incelemediler. Eski veya yanlış olabilir. Resmi Tor sitesi İngilizce olandır ve <a href="https://www.torproject.org/">https://www.torproject.org/</a> adresinde yer almaktadır.
+   </p>
+
+  </div>
+</body>
+</html>
