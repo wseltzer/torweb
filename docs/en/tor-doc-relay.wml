@@ -86,7 +86,6 @@ of OS X Tor installation howto.  Linux/BSD/Unix users should do at least
 <a href="<page docs/tor-doc-unix>#installing">step one</a>
 of the Unix Tor installation howto.
 </p>
-
 <p>If it's convenient, you might also want to use it as a client for a
 while to make sure it's actually working.</p>
 
@@ -221,10 +220,15 @@ or restore your Tor relay</a> if something goes wrong.
 </p>
 
 <p>
-12. If you control the name servers for your domain, consider setting
-your hostname to 'anonymous' or 'proxy' or 'tor-proxy', so when other
-people see the address in their web logs, they will more quickly
-understand what's going on.
+
+12. If you control the name servers for your domain, consider setting your
+reverse DNS hostname to 'anonymous-relay', 'proxy' or 'tor-proxy', so when
+other people see the address in their web logs, they will more quickly
+understand what's going on. Adding the <a
+href="https://tor-svn.freehaven.net/svn/tor/trunk/contrib/tor-exit-notice.html">Tor
+exit notice</a> on a vhost for this name can go a long way to deterring abuse
+complaints to you and your ISP if you are running an exit node.
+
 </p>
 
 <p>
@@ -278,7 +282,18 @@ you launch Tor.
 </p>
 
 <p>
-17. If you installed Tor via some package or installer, it probably starts
+
+17. (Unix only.) You may also want to improve accessibility of your node in
+censored locations by dropping TCP resets to its IP. Many national and
+institutional firewalls operate by killing TCP connections that contain
+censored keywords or byte patterns. On Linux, blocking these connection 
+resets is accomplished by running 
+'iptables -I INPUT -d your.tor.ip -p tcp --tcp-flags RST RST -j DROP'.
+
+</p>
+
+<p>
+18. If you installed Tor via some package or installer, it probably starts
 Tor for you automatically on boot. But if you installed from source,
 you may find the initscripts in contrib/tor.sh or contrib/torctl useful.
 </p>
