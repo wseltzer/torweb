@@ -175,6 +175,87 @@ about censorship.  Nobody would be able to determine who was offering
 the site, and nobody who offered the site would know who was posting to it.
 </p>
 
+<!-- TO TRANSLATORS: this section might still need some review and
+corrections! better wait at least one week from today (2008-03-29) before
+starting translation -->
+
+<p>
+A hidden service needs to advertise its existence in the Tor network before
+clients will be able to contact it. Therefore, the service randomly picks
+some relays, builds circuits to them, and asks them to act as introduction
+points telling them its public key. Note that in the following figures the
+green links are circuits rather than direct connections. This makes it
+impossible for anyone to associate the introduction points with the hidden
+service's IP address. This is important, because although the introduction
+points and others are told the hidden service's identity (public key), they
+must not learn about the hidden server's identity (IP address).
+</p>
+
+<img alt="Tor hidden service step one" src="$(IMGROOT)/THS-1.png" />
+<!-- maybe add a speech bubble containing "PK" to Bob, because that's what
+Bob tells to his introduction points -->
+
+<p>
+In a second step, the hidden service assembles a hidden service descriptor
+containing the introduction points' addresses and its public key and signs
+it with its private key. It stores that descriptor on a set of directory
+servers, again using a circuit that hides the link between storing the
+descriptor with the hidden service's IP address. The descriptor will be
+found by clients requesting XYZ.onion where XYZ is uniquely derived from
+the service's public key. After this step, the hidden service is set up.
+</p>
+
+<img alt="Tor hidden service step two" src="$(IMGROOT)/THS-2.png" />
+<!-- maybe replace "database" with "directory servers"; further: how
+incorrect is it to *not* add DB to the Tor cloud, now that begin dir cells
+are in use? -->
+
+<p>
+A client that wants to contact a hidden service needs to learn about its
+onion address first. After that, the client can initiate connection
+establishment by downloading the descriptor from the directory servers. If
+there is a descriptor for XYZ.onion (the hidden service could also be
+offline or have left long ago, or there could be a typo in the onion
+address), the client creates a circuit to another randomly picked relay and
+asks it to act as rendezvous point, telling it a one-time secret.
+</p>
+
+<img alt="Tor hidden service step three" src="$(IMGROOT)/THS-3.png" />
+<!-- maybe add "cookie" to speech bubble, separated from the surrounded
+"IP1-3" and "PK" -->
+
+<p>
+Upon setting up the rendezvous point, the client assembles an introduce
+message (encrypted to the hidden service's public key) including the
+address of the rendezvous point and the one-time secret. The client sends
+this message to one of the introduction points, requesting it to deliver it
+to the hidden service. Again, communication takes place via a circuit, so
+that nobody can relate sending the introduce message to the client's IP
+address, ensuring the client's anonymity.
+</p>
+
+<img alt="Tor hidden service step four" src="$(IMGROOT)/THS-4.png" />
+
+<p>
+The hidden service decrypts the client's introduce message and finds the
+address of the rendezvous point and the one-time secret in it. The service
+creates a circuit to the rendezvous point and sends the one-time secret to
+it in a rendezvous message.
+</p>
+
+<img alt="Tor hidden service step five" src="$(IMGROOT)/THS-5.png" />
+<!-- it should say "Bob connects to Alice's ..." -->
+
+<p>
+In the last step, the rendezvous point notifies the client about successful
+connection establishment. After that, both, client and hidden service can
+use their circuits to the rendezvous point for communicating with each
+other. The rendezvous point simply relays (end-to-end encrypted) messages
+from client to service and vice versa.
+</p>
+
+<img alt="Tor hidden service step six" src="$(IMGROOT)/THS-6.png" />
+
 <h3>Staying anonymous</h3>
 
 <p>
