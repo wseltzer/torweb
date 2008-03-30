@@ -1,14 +1,93 @@
 ## translation metadata
-# Based-On-Revision: 13194
+# Based-On-Revision: 14183
 # Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
-#include "head.wmi" TITLE="Download"
+#include "head.wmi" TITLE="Tor: Download"
 
 <div class="main-column">
 
-<h2>Lade die aktuelle Tor-Version herunter</h2>
+<h2>Verfügbare Tor-Pakete</h2>
 
 <hr />
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<thead>
+<tr bgcolor="#e5e5e5">
+<th>Plattform</th>
+<th>stabile Versionen</th>
+<th>Entwicklerversionen</th>
+<th>Hilfe</th>
+</tr>
+</thead>
+
+<tr>
+  <td>
+    Windows<br />
+    <small><em>Vista, XP, 2000, 2003 Server, Millenium, 98SE</em></small>
+  </td>
+  <td>
+    <a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-windows>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    Mac<br />
+    <small><em>Universal Binary (OSX 10.4 &amp; 10.5)</em></small>
+  </td>
+  <td>
+    <a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-osx>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Mac<br />
+    <small><em>Nur PowerPC (OSX 10.3)</em></small>
+  </td>
+  <td>
+    <a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a href="<package-oldosx-bundle-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a href="<package-oldosx-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-osx>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    Pakete für Linux/Unix<br />
+    <small><em>Redhat/CentOS, Fedora, Debian, Ubuntu, SUSE</em></small>
+  </td>
+  <td colspan="2">
+    <a href="<page download-unix>">Downloadseite für Linux/Unix</a>
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-unix>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
+</tr>
+</table>
+
+<p>Was ist der Unterschied zwischen der <a
+href="#packagediff">stabilen und der Entwicklerversion</a>?</p>
 
 <p>Tor wird als <a href="http://www.fsf.org/">Freie Software</a> unter der
 <a href="<svnsandbox>LICENSE">3-clause-BSD-Lizenz</a> verteilt. Die Pakete
@@ -21,52 +100,20 @@ nutzen. Aber wenn du möchtest, dass Tor schneller und besser benutzbar wird,
 überlege dir, eine <a href="<page donate>">Spende an das Tor-Projekt</a> zu
 geben.</p>
 
+<p>Um jederzeit über Sicherheitslücken und neue Versionen informiert zu sein,
+solltest du der Mailingliste <a
+href="http://archives.seul.org/or/announce/">or-announce</a> beitreten.
+Weiterhin kannst du den <a
+href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS-Feed</a>
+verfolgen.</p>
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2">
-<thead>
-<tr>
-<th>Plattform</th>
-<th>Paket</th>
-</tr>
-</thead>
-
-<tr>
-<td>Windows<br />
-<a href="<page docs/tor-doc-windows>">Installationsanleitung</a></td>
-<td>
-Paket aus Tor &amp; Privoxy &amp; Vidalia &amp; Torbutton:
-<a href="<package-win32-bundle-stable>"><version-win32-bundle-stable></a> (<a href="<package-win32-bundle-stable-sig>">sig</a>)
-</td>
-</tr>
-
-<tr>
-<td>
-Mac OS X<br />
-<a href="<page docs/tor-doc-osx>">Installationsanleitung</a>
-</td>
-
-<td>
-Paket aus Tor &amp; Privoxy &amp; Vidalia &amp; Torbutton<br />
-&nbsp;&nbsp;&nbsp; Universal Binary (OSX 10.4 &amp; 10.5):
-<a href="<package-osx-bundle-stable>"><version-osx-bundle-stable></a> (<a href="<package-osx-bundle-stable-sig>">sig</a>)
-
-<br>
-&nbsp;&nbsp;&nbsp; 10.3 (Panther):
-<a href="<package-oldosx-bundle-stable>"><version-oldosx-bundle-stable></a> (<a
-href="<package-oldosx-bundle-stable-sig>">sig</a>)
-</td>
-</tr>
-
-<tr>
-<td>
-Linux/Unix
-</td>
-<td><a href="<page download-unix>">Downloadseite für Linux/Unix</a></td>
-</tr>
-
-</table>
-
-<hr />
+<form action="http://freehaven.net/cgi-bin/majordomo.cgi">
+<input type="hidden" name="mlist" value="or-announce">
+<input type="hidden" name="subscribe" value="1">
+<input type="hidden" name="host" value="freehaven.net">
+<input name="email" size="15">
+<input type="submit" value="subscribe to or-announce">
+</form>
 
 <a id="Warning"></a>
 <h2><a class="anchor" href="#Warning">Warnung: Du möchtest, dass Tor wirklich
@@ -118,113 +165,135 @@ Die Liste von Fallstricken ist nicht komplett und wir brauchen deine Hilfe, um
 <a href="https://www.torproject.org/volunteer.html.en#Documentation">alles zu finden und
 zu dokumentieren</a>.</p>
 
-<p>Um jederzeit über Sicherheitslücken und neue Versionen informiert zu sein,
-solltest du der Mailingliste <a
-href="http://archives.seul.org/or/announce/">or-announce</a> beitreten.
-Weiterhin kannst du den <a
-href="http://rss.gmane.org/gmane.network.onion-routing.announce">RSS-Feed</a>
-verfolgen.</p>
-
-<form action="http://freehaven.net/cgi-bin/majordomo.cgi">
-<input type="hidden" name="mlist" value="or-announce">
-<input type="hidden" name="subscribe" value="1">
-<input type="hidden" name="host" value="freehaven.net">
-<input name="email" size="15">
-<input type="submit" value="subscribe to or-announce">
-</form>
-
 <hr />
 
+<a id="packagediff"></a>
+<h2><a class="anchor" href="#packagediff" >Was ist der Unterschied
+zwischen stabiler und Entwicklerversion?</a></h2>
+
+<p>Stabile Versionen werden veröffentlicht, wenn wir glauben, dass
+sich die Eigenschaften und der Code in den kommenden Monaten nicht
+weiter ändert. Diese beinhalten typischerweise eine stabile Version
+von Vidalia, Privoxy und Torbutton.</p>
+
+<p>Entwicklerversion werden veröffentlicht, damit du uns helfen
+kannst, neue Merkmale und Berichtigungen an der Software zu
+testen. Obwohl die Versionsnummern höher als die der stabilen Version
+sind, ist hier die Wahrscheinlichkeit, schwere Sicherheitsfehler
+anzutreffen, wesentlich höher. In den Paketen sind auch ungetestete
+Versionen von Vidalia, Privoxy und Torbutton enthalten. Sei darauf
+vorbereitet, <a href="https://bugs.torproject.org/" >Bugs zu
+melden</a>.</p>
+
 <a id="Dev"></a>
-<h2><a class="anchor" href="#Dev">Entwicklerversionen, Pakete für Experten und
+<h2><a class="anchor" href="#Dev">Expertenpakete und
 Quellcode</a></h2>
 
-<p>Diese Schnappschüsse werden herausgebracht, damit du beim Test neuer
-Versionen und der Fehlersuche helfen kannst. Obwohl die Versionsnummern
-größer sind, als bei den obigen stabilen Paketen, besteht hier eine große
-Wahrscheinlichket von
-Fehler bezüglich Sicherheitslücken etc. Bitte <a
-href="https://bugs.torproject.org/">berichte</a> uns diese, wenn du sie
-findest.</p>
+<p>Die Pakete für Experten enthalten kein Vidalia und die für Windows
+enthalten ausschließlich Tor. In OSX wird Privoxy und Torbutton für
+dich vorkonfiguriert. In allen Fällen musst du Tor selbst mit deinem
+Editor konfigurieren.</p>
 
-
-<table width="100%" border="1" cellspacing="0" cellpadding="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
 <thead>
-<tr>
-<th>Plattform</th>
-<th>Paket</th>
+<tr bgcolor="e5e5e5">
+<th>Platform</th>
+<th>Download Stable</th>
+<th>Download Unstable</th>
+<th>Help</th>
 </tr>
 </thead>
 
 <tr>
-<td>Windows<br />
-<a href="<page docs/tor-doc-windows>">Installationsanleitung</a></td>
-<td>
-Paket aus Tor &amp; Privoxy &amp; Vidalia &amp; <a
-href="https://torbutton.torproject.org/dev/">Torbutton-dev</a> (empfohlen):
-<a href="<package-win32-bundle-alpha>"><version-win32-bundle-alpha></a> (<a href="<package-win32-bundle-alpha-sig>">sig</a>)
-<br />
-Installation für Experten:
-<a href="<package-win32-stable>"><version-win32-stable></a>
-(<a href="<package-win32-stable-sig>">sig</a>),
-<a href="<package-win32-alpha>"><version-win32-alpha></a>
-(<a href="<package-win32-alpha-sig>">sig</a>)
-</td>
+  <td>Browserpaket für Windows (enthält Tor, Torbutton, Polipo und Firefox)
+  </td>
+  <td>
+  </td>
+  <td>
+# Translators should link to the Browser Bundle for their language,
+# e.g. Russian, Deutsch, etc.
+    <a href="torbrowser/dist/tor-browser-<version-torbrowserbundle>_de-DE.exe">Deutsch</a> (<a href="torbrowser/dist/tor-browser-<version-torbrowserbundle>_de-DE.exe.asc">sig</a>)
+  <td>
+    <a href="<page torbrowser/index>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>Windows (enthält nur Tor)<br />
+    <small><em>Vista, XP, 2000, 2003 Server, Millenium, 98SE</em></small>
+  </td>
+  <td>
+    <a href="<package-win32-stable>"><version-win32-stable></a> (<a href="<package-win32-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-win32-alpha>"><version-win32-alpha></a> (<a href="<package-win32-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-windows>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
 </tr>
 
 <tr>
-<td>
-Mac OS X<br />
-<a href="<page docs/tor-doc-osx>">Installationsanleitung</a>
-</td>
+  <td>Mac (enthält Tor, Torbutton und Privoxy)<br />
+    <small><em>Universal Binary (OSX 10.4 &amp; 10.5)</em></small>
+  </td>
+  <td>
+    <a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-osx>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
+</tr>
 
-<td>
-Paket aus Tor &amp; Privoxy &amp; Vidalia &amp; <a
-href="https://torbutton.torproject.org/dev/">Torbutton-dev</a>
-(empfohlen):<br />
-&nbsp;&nbsp;&nbsp; Universal Binary (10.4 &amp; 10.5):
-<a href="<package-osx-bundle-alpha>"><version-osx-bundle-alpha></a> (<a href="<package-osx-bundle-alpha-sig>">sig</a>)
-
-<br />
-&nbsp;&nbsp;&nbsp; 10.3 (Panther):
-<a href="<package-oldosx-bundle-alpha>"><version-oldosx-bundle-alpha></a> (<a
-href="<package-oldosx-bundle-alpha-sig>">sig</a>)
-
-<br />
-Pakete für Experten:
-nur Tor &amp; Privoxy &amp; nur Torbutton:<br />
-&nbsp;&nbsp;&nbsp; Universal Binary (OSX 10.4 &amp; 10.5):
-<a href="<package-osx-stable>"><version-osx-stable></a> (<a href="<package-osx-stable-sig>">sig</a>),
-<a href="<package-osx-alpha>"><version-osx-alpha></a> (<a href="<package-osx-alpha-sig>">sig</a>)
-
-<br />
-&nbsp;&nbsp;&nbsp; 10.3 (Panther):
-<a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a
-href="<package-oldosx-stable-sig>">sig</a>),
-<a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a
-href="<package-oldosx-alpha-sig>">sig</a>)
-</td>
+<tr bgcolor="#e5e5e5">
+  <td>Mac (enthält Tor, Torbutton und Privoxy)<br />
+    <small><em>Nur PowerPC (OSX 10.3)</em></small>
+  </td>
+  <td>
+    <a href="<package-oldosx-stable>"><version-oldosx-stable></a> (<a href="<package-oldosx-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-oldosx-alpha>"><version-oldosx-alpha></a> (<a href="<package-oldosx-alpha-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-osx>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
 </tr>
 
 <tr>
-<td>
-Linux/Unix
-</td>
-<td><a href="<page download-unix>">Downloadseite für Linux/Unix</a></td>
+  <td>Pakete für Linux/Unix (enthalten nur Tor)<br />
+    <small><em>Redhat/CentOS, Fedora, Debian, Ubuntu, SUSE</em></small>
+  </td>
+  <td colspan="2">
+    <a href="<page download-unix>">Downloadseite für Linux/Unix</a>
+  </td>
+  <td>
+    <a href="<page docs/tor-doc-unix>">Anleitung zur Installation
+  und Einrichtung</a>
+  </td>
 </tr>
 
-<tr>
-<td>
-Quellcode<br />
-<kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd>
-</td>
-<td>
-stabil: <a href="<package-source-stable>"><version-stable></a> (<a
-href="<package-source-stable-sig>">sig</a>)<br />
-alpha: <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)
-</td>
-</tr>
+<tr bgcolor="#e5e5e5">
+  <td>Quellcode<br />
+    <kbd>./configure &amp;&amp; make &amp;&amp; src/or/tor</kbd>
+  </td>
+  <td>
+    <a href="<package-source-stable>"><version-stable></a> (<a href="<package-source-stable-sig>">sig</a>)
+  </td>
+  <td>
+    <a href="<package-source-alpha>"><version-alpha></a> (<a href="<package-source-alpha-sig>">sig</a>)
+  </td>
+  <td>
+  </td>
 
+</tr>
 </table>
 
   <p>Schaue dir diesen <a
