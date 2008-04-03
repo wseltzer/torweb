@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 14055
+# Based-On-Revision: 14272
 # Last-Translator: jan at seul dot org
 
 #include "head.wmi" TITLE="Tor: partecipa" CHARSET="UTF-8"
@@ -102,12 +102,281 @@ gsoc>">Google Summer of Code 2008</a>. Abbiamo classificato ogni idea
 secondo l'utilit&agrave; complessiva al progetto Tor
 (priorit&agrave;), quanto lavoro stimiamo sia necessario (livello d'impegno), quante
 conoscenze servono per iniziare (livello di competenze), e quali dei nostri <a href="<page
-people>#Core">principali programmatori</a> potrebbero essere dei buoni mentori.
+people>#Core">principali programmatori</a> potrebbero essere dei buoni mentori. Ci sono molte
+altre buone idee su cui lavorare &mdash; vedi per esempio la lista delle <a
+href="<svnsandbox>doc/spec/proposals/">proposte correnti</a>, o
+pensa a una tua idea personale.
+
 </p>
 <p>
 (NdT: Le  schede di alcuni progetti sono in inglese e verranno tradotte man mano.)
 </p>
 <ol>
+
+<li>
+<b>Tor Exit Scanner improvements</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Mike</i>
+<br />
+Applications as of 1 Apr 00:00 UTC: <i>5</i>
+<br/>
+The Tor exit node scanner 'SoaT', part of the <a
+href="<svnsandbox>torflow/">Torflow project</a>, makes connections out
+of each Tor exit node and compares the content it gets back with what it
+"should" get back. The goal is to notice misconfigured, broken, and even
+malicious exit relays. Alas, the code is
+currently written in rather rickety perl and relies on MD5sums of
+entire documents in order to determine if exit nodes are modifying
+content. The problem with this is threefold: 1) Perl sucks at life.
+2) The scanner can't verify pages that are dynamic, and attackers can
+focus malicious content injection on only those dynamic pages. 3)
+Pages change after a while (or based on GeoIP) and begin generating
+false positives.
+<br />
+Ideally, soat.pl would be reimplemented in a sane language with a
+robust html parser library (since the rest of Torflow is in Python
+that would be nice, but it is not required), and calculate signatures only for
+tags and content likely to be targeted by a malicious attacker (script
+tags, object links, images, css). It should also be robust in the face of
+changes to content outside of Tor, and ultimately even GeoIP localized
+content.
+<br />
+This scanner would likely be run by the Directory Authorities and
+report its results to the control port via the AuthDirBadExit config
+setting.
+<br />
+</li>
+
+<li>
+<b>Tor Node Scanner improvements</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>Medium to High</i>
+<br />
+Skill Level: <i>Medium to High</i>
+<br />
+Likely Mentors: <i>Mike</i>
+<br />
+Applications as of 1 Apr 00:00 UTC: <i>1</i>
+<br />
+Similar to the exit scanner (or perhaps even during exit scanning),
+statistics can be gathered about the reliability of nodes. Nodes that
+fail too high a percentage of their circuits should not be given
+Guard status. Perhaps they should have their reported bandwidth
+penalized by some ratio as well, or just get marked as Invalid. In
+addition, nodes that exhibit a very low average stream capacity but
+advertise a very high node bandwidth can also be marked as Invalid.
+Much of this statistics gathering is already done, it just needs to be
+transformed into something that can be reported to the Directory
+Authorities to blacklist/penalize nodes in such a way that clients
+will listen.
+<br />
+In addition, these same statistics can be gathered about the traffic
+through a node. Events can be added to the <a
+href="https://www.torproject.org/svn/torctl/doc/howto.txt">Tor Control
+Protocol</a> to
+report if a circuit extend attempt through the node succeeds or fails, and
+passive statistics can be gathered on both bandwidth and reliability
+of other nodes via a node-based monitor using these events. Such a
+scanner would also report information on oddly-behaving nodes to
+the Directory Authorities, but a communication channel for this
+currently does not exist and would need to be developed as well.
+</li>
+
+<li>
+<b>Help track the overall Tor Network status</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Roger, Nick, Mike</i>
+<br />
+Applications as of 1 Apr 00:00 UTC: <i>1</i>
+<br />
+It would be great to set up an automated system for tracking network
+health over time, graphing it, etc. Part of this project would involve
+inventing better metrics for assessing network health and growth. Is the
+average uptime of the network increasing? How many relays are qualifying
+for Guard status this month compared to last month? What's the turnover
+in terms of new relays showing up and relays shutting off? Periodically
+people collect brief snapshots, but where it gets really interesting is
+when we start tracking data points over time.
+<br />
+Data could be collected from the "Tor Node Scanner" item above, from
+the server descriptors that each relay publishes, and from other
+sources. Results over time could be integrated into one of the <a
+href="https://torstatus.blutmagie.de/">Tor Status</a> web pages, or be
+kept separate. Speaking of the Tor Status pages, take a look at Roger's
+<a href="http://archives.seul.org/or/talk/Jan-2008/msg00300.html">Tor
+Status wish list</a>.
+</li>
+
+<li>
+<b>Tor path selection improvements</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>Low to Medium</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Roger, Nick, Mike</i>
+<br />
+Applications as of 1 Apr 00:00 UTC: <i>3</i>
+<br />
+Some simple improvements can be made to Tor's path selection to vastly
+improve Tor speed. For instance, some of the (unofficial) <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/FireFoxTorPerf">Tor
+Performance Recommendations</a> on the wiki are to increase the number of
+guards and decrease the CircuitBuildTimeout. Ideally, the client would
+<a href="http://archives.seul.org/or/talk/Feb-2008/msg00012.html">learn
+these values by gathering statistics on circuit construction
+time</a> (and/or using values gained from Torflow), and set the timeouts
+low enough such that some high percentile (75%, 90%, 1-stddev?) of
+circuits succeed, yet extremely slow nodes are avoided. This would
+involve some statistics gathering+basic research, and some changes to 
+Tor path selection code.
+<br />
+In addition, to improve path security, some elements from the <a
+href="http://www.torproject.org/svn/trunk/doc/spec/proposals/115-two-hop-paths.txt">Two
+Hop Paths proposal</a> could be done as part of this (since it will
+likely touch the same code anyways), regardless of the adoption of
+that proposal. In particular, clients probably should avoid guards that
+seem to fail an excessive percentage of their circuits through them,
+and non-firewalled clients should issue a warning if they are only able
+to connect to a limited set of guard nodes. See also
+<a href="http://archives.seul.org/or/dev/Feb-2008/msg00003.html">this
+or-dev post</a>.
+</li>
+
+<li>
+<b>Un wiki per la traduzione</b>
+<br />
+Priorit&agrave;: <i>Alta</i>
+<br />
+Impegno: <i>Medio</i>
+<br />
+Competenze: <i>Medie</i>
+<br />
+Possibili mentori: <i>Jacob</i>
+<br />
+Ci serve un sistema per modificare e tradurre il nostro sito web. Ad oggi
+il sito &egrave; fatto con alcuni <a href="<svnwebsite>en/">file
+wml</a> ed i <a href="<page translation>">traduttori</a> scaricano i file
+wml, li traducono in un editor e ci spediscono la traduzione oppure
+usano svn per fare un commit direttamente. Il "costo" attuale per pubblicare
+modifiche al sito web &egrave; abbastanza alto anche per utenti di lingua inglese. Una
+modifica di una sola parola o per qualsiasi modifica minore,
+pu&ograve; capitare che la pagina non venga mai aggiornata o tradotta. Sarebbe
+bello avere un wiki rivolto specificamente alla traduzione,
+che in qualche modo seguisse le versioni upstream (in inglese) per segnalare
+quando serve una nuova traduzione, analogamente alla nostra
+<a href="<page translation-status>">pagina sullo stato delle traduzioni</a>. Sembra
+probabilmente un lavoro per un integratore di
+wiki o per l'autore di un software per wiki. Di certo la persona dovrebbe essere
+interessata alle lingue e alla traduzione. Il candidato dovrebbe avere una
+certa familiarit&agrave; di base con Tor, ma non dovrebbe interagire col
+software, bens&igrave; solo con la documentazione e con il sito web.
+</li>
+
+<li>
+<b>Una migliore gestione dei pacchetti Debian/Ubuntu per Tor e Vidalia</b>
+<br />
+Priorit&agrave;: <i>Alta</i>
+<br />
+Impeglo: <i>Medio</i>
+<br />
+Competenze: <i>Medie</i>
+<br />
+Possibili mentori: <i>Peter, Matt</i>
+<br />
+Applications as of 1 Apr 00:00 UTC: <i>1</i>
+<br />
+Vidalia al momento non funziona bene su Debian e Ubuntu con i pacchetti
+standard di Tor. Gli attuali pacchetti Tor fanno partire automaticamente Tor
+come demone sotto l'utente debian-tor e (giustamente) senza una
+<a href="<svnsandbox>doc/spec/control-spec.txt">ControlPort</a> definita
+del file torrc. Di conseguenza, Vidalia cerca di far 
+partire il suo processo Tor, dato che non riesce a connettersi a un processo
+Tor esistente, col risulato che il processo Tor di Vidalia termina con un messaggio di errore
+che l'utente probabilmente non capisce, dato che non pu&ograve; collegarsi alle sue
+porte in ascolto &mdash; che sono gi&agrave; utilizzate dal demone Tor originale.
+<br />
+La soluzione attuale prevede o di dire all'utente di fermare il demone
+Tor esistente e farne partire uno da Vidalia, oppure di spiegare all'utente
+come definire una port e una password nel file di configurazione
+torrc. Su Debian una soluzione migliore sarebbe usare il ControlSocket di Tor,
+che permetterebbe a Vidalia di parlare con Tor attraverso un Unix domain socket, e potrebbe
+essere abilitata di default nei pacchetti Debian di Tor. Vidalia potrebbe 
+quindi autenticarsi a Tor con una autenticazione basata sul filesystem (cookie),
+usa Vidalia fa parte del gruppo debian-tor.
+<br />
+Questo progetto richiede di aggiungere a Vidalia il supporto per ControlSocket
+di Tor. Lo studente svilupper&agrave; e tester&agrave; i pacchetti Vidalia
+per Debian e Ubuntu in conformit&agrave; agli standard di pacchetto Debian,
+e verificher&agrave; che essi funzionino bene con  i pacchetti Tor esistenti. Possiamo anche
+creare un repository apt per ospitare i nuovi pacchetti Vidalia.
+<br />
+Il prossimo passo sar&agrave; trovare un metodo intuitivo e facile perch&eacute; Vidalia
+possa modificare la configurazione di Tor (torrc) anche se si trova
+in <code>/etc/tor/torrc</code> ed &egrave; quindi non modificabile. Finora la cosa
+migliore che abbiamo pensato &egrave; fornire a Tor una nuova configurazione tramite
+il ControlSocket quando Vidalia si avvia, ma ha il difetto di far partire Tor
+ad ogni boot con una configurazione diversa da quella desiderata dall'utente. L'alternativa
+che
+ci &egrave; venuta in mente &egrave; che Vidalia scriva un file torrc temporaneo
+e chieda all'utente di spostarlo manualmente in <code>/etc/tor/torrc</code>,
+ha il difetto di fare interagire l'utente direttamente con i file.
+<br />
+Studenti interessati a questo progetto dovrebbero conoscere bene il
+Debian package management ed avere qualche esperienza di sviluppo in C++. Apprezzata,
+ma non obbligatoria, dell'esperienza con Qt.
+</li>
+
+<li>
+<b>Improving Tor's ability to resist censorship</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Nick</i>
+<br />
+The Tor 0.2.0.x series makes <a
+href="<svnsandbox>doc/design-paper/blocking.html">significant
+improvements</a> in resisting national and organizational censorship.
+But Tor still needs better mechanisms for some parts of its
+anti-censorship design.  For example, current Tors can only listen on a
+single address/port combination at a time.  There's
+<a href="<svnsandbox>doc/spec/proposals/118-multiple-orports.txt">a
+proposal to address this limitation</a> and allow clients to connect
+to any given Tor on multiple addresses and ports, but it needs more
+work.  Another anti-censorship project (far more difficult) is to try
+to make Tor more scanning-resistant.  Right now, an adversary can identify
+<a href="<svnsandbox>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
+just by trying to connect to them, following the Tor protocol, and 
+seeing if they respond.  To solve this, bridges could
+<a href="<svnsandbox>doc/design-paper/blocking.html#tth_sEc9.3">act like
+webservers</a> (HTTP or HTTPS) when contacted by port-scanning tools,
+and not act like bridges until the user provides a bridge-specific key.
+<br />
+This project involves a lot of research and design. One of the big
+challenges will be identifying and crafting approaches that can still
+resist an adversary even after the adversary knows the design, and
+then trading off censorship resistance with usability and robustness.
+</li>
 
 <li>
 <b>Framework per l'aggiornamento automatico di Tor/Polipo/Vidalia Framework</b>
@@ -185,57 +454,6 @@ di sviluppo C++. Utile, ma non obbligatorio, avere avuto esperienza con Qt e
 Cmake.
 </li>
 
-<li>
-<b>Una migliore gestione dei pacchetti Debian per Tor e Vidalia</b>
-<br />
-Priorit&agrave;: <i>Alta</i>
-<br />
-Impeglo: <i>Medio</i>
-<br />
-Competenze: <i>Medie</i>
-<br />
-Possibili mentori: <i>Peter, Matt</i>
-<br />
-Vidalia al momento non funziona bene su Debian e Ubuntu con i pacchetti
-standard di Tor. Gli attuali pacchetti Tor fanno partire automaticamente Tor
-come demone sotto l'utente debian-tor e (giustamente) senza una
-<a href="<svnsandbox>doc/spec/control-spec.txt">ControlPort</a> definita
-del file torrc. Di conseguenza, Vidalia cerca di far 
-partire il suo processo Tor, dato che non riesce a connettersi a un processo
-Tor esistente, col risulato che il processo Tor di Vidalia termina con un messaggio di errore
-che l'utente probabilmente non capisce, dato che non pu&ograve; collegarsi alle sue
-porte in ascolto &mdash; che sono gi&agrave; utilizzate dal demone Tor originale.
-<br />
-La soluzione attuale prevede o di dire all'utente di fermare il demone
-Tor esistente e farne partire uno da Vidalia, oppure di spiegare all'utente
-come definire una port e una password nel file di configurazione
-torrc. Su Debian una soluzione migliore sarebbe usare il ControlSocket di Tor,
-che permetterebbe a Vidalia di parlare con Tor attraverso un Unix domain socket, e potrebbe
-essere abilitata di default nei pacchetti Debian di Tor. Vidalia potrebbe 
-quindi autenticarsi a Tor con una autenticazione basata sul filesystem (cookie),
-usa Vidalia fa parte del gruppo debian-tor.
-<br />
-Questo progetto richiede di aggiungere a Vidalia il supporto per ControlSocket
-di Tor. Lo studente svilupper&agrave; e tester&agrave; i pacchetti Vidalia
-per Debian e Ubuntu in conformit&agrave; agli standard di pacchetto Debian,
-e verificher&agrave; che essi funzionino bene con  i pacchetti Tor esistenti. Possiamo anche
-creare un repository apt per ospitare i nuovi pacchetti Vidalia.
-<br />
-Il prossimo passo sar&agrave; trovare un metodo intuitivo e facile perch&eacute; Vidalia
-possa modificare la configurazione di Tor (torrc) anche se si trova
-in <code>/etc/tor/torrc</code> ed &egrave; quindi non modificabile. Finora la cosa
-migliore che abbiamo pensato &egrave; fornire a Tor una nuova configurazione tramite
-il ControlSocket quando Vidalia si avvia, ma ha il difetto di far partire Tor
-ad ogni boot con una configurazione diversa da quella desiderata dall'utente. L'alternativa
-che
-ci &egrave; venuta in mente &egrave; che Vidalia scriva un file torrc temporaneo
-e chieda all'utente di spostarlo manualmente in <code>/etc/tor/torrc</code>,
-ha il difetto di fare interagire l'utente direttamente con i file.
-<br />
-Studenti interessati a questo progetto dovrebbero conoscere bene il
-Debian package management ed avere qualche esperienza di sviluppo in C++. Apprezzata,
-ma non obbligatoria, dell'esperienza con Qt.
-</li>
 
 <li>
 <b>Tor Controller Status Event Interface</b>
@@ -280,35 +498,6 @@ comprensibile per degli utenti non tecnici. Molto apprezzate le capacit&agrave; 
 design, grafica, Photoshop dato che potremmo anche avere bisogno di nuove icone.
 </li>
 
-<li>
-<b>Un wiki per la traduzione</b>
-<br />
-Priorit&agrave;: <i>Alta</i>
-<br />
-Impegno: <i>Medio</i>
-<br />
-Competenze: <i>Medie</i>
-<br />
-Possibili mentori: <i>Jacob</i>
-<br />
-Ci serve un sistema per modificare e tradurre il nostro sito web. Ad oggi
-il sito &egrave; fatto con alcuni <a href="<svnwebsite>en/">file
-wml</a> ed i <a href="<page translation>">traduttori</a> scaricano i file
-wml, li traducono in un editor e ci spediscono la traduzione oppure
-usano svn per fare un commit direttamente. Il "costo" attuale per pubblicare
-modifiche al sito web &egrave; abbastanza alto anche per utenti di lingua inglese. Una
-modifica di una sola parola o per qualsiasi modifica minore,
-pu&ograve; capitare che la pagina non venga mai aggiornata o tradotta. Sarebbe
-bello avere un wiki rivolto specificamente alla traduzione,
-che in qualche modo seguisse le versioni upstream (in inglese) per segnalare
-quando serve una nuova traduzione, analogamente alla nostra
-<a href="<page translation-status>">pagina sullo stato delle traduzioni</a>. Sembra
-probabilmente un lavoro per un integratore di
-wiki o per l'autore di un software per wiki. Di certo la persona dovrebbe essere
-interessata alle lingue e alla traduzione. Il candidato dovrebbe avere una
-certa familiarit&agrave; di base con Tor, ma non dovrebbe interagire col
-software, bens&igrave; solo con la documentazione e con il sito web.
-</li>
 
 <li>
 <b>Migliorare il nostro test di configurazione del browser</b> - 
@@ -321,6 +510,8 @@ Impegno: <i>Basso</i>
 Competenze: <i>Medio basse</i>
 <br />
 Possibili mentori: <i>Jacob, Steven</i>
+<br />
+Applications as of 1 Apr 00:00 UTC: <i>1</i>
 <br />
 Abbiamo in funzione una pagina web che rileva se Tor funziona. Ha
 un po' di difetti e richiede migliorie sulle lingue e sulle 
@@ -381,6 +572,8 @@ Skill Level: <i>Medium</i>
 <br />
 Likely Mentors: <i>Jacob, Mike, Greg</i>
 <br />
+Applications as of 1 Apr 00:00 UTC: <i>1</i>
+<br />
 The Tor project currently lacks a solid test suite to ensure that a
 user has a properly and safely configured web browser. It should test for as
 many known issues as possible. It should attempt to decloak the
@@ -401,40 +594,6 @@ channels. The student should be closely familiar with using Tor and how
 to prevent Tor information leakage.
 </li>
 
-<li>
-<b>Improving Tor's ability to resist censorship</b>
-<br />
-Priority: <i>High</i>
-<br />
-Effort Level: <i>High</i>
-<br />
-Skill Level: <i>High</i>
-<br />
-Likely Mentors: <i>Nick</i>
-<br />
-The Tor 0.2.0.x series makes <a
-href="<svnsandbox>doc/design-paper/blocking.html">significant
-improvements</a> in resisting national and organizational censorship.
-But Tor still needs better mechanisms for some parts of its
-anti-censorship design.  For example, current Tors can only listen on a
-single address/port combination at a time.  There's
-<a href="<svnsandbox>doc/spec/proposals/118-multiple-orports.txt">a
-proposal to address this limitation</a> and allow clients to connect
-to any given Tor on multiple addresses and ports, but it needs more
-work.  Another anti-censorship project (far more difficult) is to try
-to make Tor more scanning-resistant.  Right now, an adversary can identify
-<a href="<svnsandbox>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
-just by trying to connect to them, following the Tor protocol, and 
-seeing if they respond.  To solve this, bridges could
-<a href="<svnsandbox>doc/design-paper/blocking.html#tth_sEc9.3">act like
-webservers</a> (HTTP or HTTPS) when contacted by port-scanning tools,
-and not act like bridges until the user provides a bridge-specific key.
-<br />
-This project involves a lot of research and design. One of the big
-challenges will be identifying and crafting approaches that can still
-resist an adversary even after the adversary knows the design, and
-then trading off censorship resistance with usability and robustness.
-</li>
  
 <li>
 <b>Libevent and Tor integration improvements</b>
@@ -567,6 +726,8 @@ Skill Level: <i>Medium to High</i>
 <br />
 Likely Mentors: <i>Karsten, Nick</i>
 <br />
+Applications as of 1 Apr 00::00 UTC: <i>4</i>
+<br />
 Reanimate one of the approaches to implement a Tor client in Java,
 e.g. the <a href="http://onioncoffee.sourceforge.net/">OnionCoffee
 project</a>, and make it run on <a
@@ -595,6 +756,8 @@ Effort Level: <i>Medium</i>
 Skill Level: <i>Medium</i>
 <br />
 Likely Mentors: <i>Karsten, Nick, Roger</i>
+<br />
+Applications as of 1 Apr 00:00 UTC: <i>2</i>
 <br />
 Write a tool that runs automatic system tests in addition
 to the existing unit tests. The Java-based Tor simulator <a
@@ -626,6 +789,8 @@ Skill Level: <i>Low to Medium</i>
 <br />
 Likely Mentors: <i>Karsten, Jacob</i>
 <br />
+Applications as of 1 Apr 00::00 UTC: <i>2</i>
+<br />
 Implement a <a href="http://www.ss64.com/bash/top.html">top-like</a>
 management tool for Tor relays. The purpose of such a tool would be
 to monitor a local Tor relay via its control port and include useful
@@ -640,144 +805,6 @@ it via its control port. As an initial prototype is written in Python,
 some knowledge about writing Python code would be helpful, too. This
 project is one part about identifying requirements to such a
 tool and designing its interface, and one part lots of coding.
-</li>
-
-<li>
-<b>Tor Exit Scanner improvements</b>
-<br />
-Priority: <i>High</i>
-<br />
-Effort Level: <i>High</i>
-<br />
-Skill Level: <i>High</i>
-<br />
-Likely Mentors: <i>Mike</i>
-<br />
-The Tor exit node scanner 'SoaT', part of the <a
-href="<svnsandbox>torflow/">Torflow project</a>, makes connections out
-of each Tor exit node and compares the content it gets back with what it
-"should" get back. The goal is to notice misconfigured, broken, and even
-malicious exit relays. Alas, the code is
-currently written in rather rickety perl and relies on MD5sums of
-entire documents in order to determine if exit nodes are modifying
-content. The problem with this is threefold: 1) Perl sucks at life.
-2) The scanner can't verify pages that are dynamic, and attackers can
-focus malicious content injection on only those dynamic pages. 3)
-Pages change after a while (or based on GeoIP) and begin generating
-false positives.
-<br />
-Ideally, soat.pl would be reimplemented in a sane language with a
-robust html parser library (since the rest of Torflow is in Python
-that would be nice, but it is not required), and calculate signatures only for
-tags and content likely to be targeted by a malicious attacker (script
-tags, object links, images, css). It should also be robust in the face of
-changes to content outside of Tor, and ultimately even GeoIP localized
-content.
-<br />
-This scanner would likely be run by the Directory Authorities and
-report its results to the control port via the AuthDirBadExit config
-setting.
-<br />
-</li>
-
-<li>
-<b>Tor Node Scanner improvements</b>
-<br />
-Priority: <i>High</i>
-<br />
-Effort Level: <i>Medium to High</i>
-<br />
-Skill Level: <i>Medium to High</i>
-<br />
-Likely Mentors: <i>Mike</i>
-<br />
-Similar to the exit scanner (or perhaps even during exit scanning),
-statistics can be gathered about the reliability of nodes. Nodes that
-fail too high a percentage of their circuits should not be given
-Guard status. Perhaps they should have their reported bandwidth
-penalized by some ratio as well, or just get marked as Invalid. In
-addition, nodes that exhibit a very low average stream capacity but
-advertise a very high node bandwidth can also be marked as Invalid.
-Much of this statistics gathering is already done, it just needs to be
-transformed into something that can be reported to the Directory
-Authorities to blacklist/penalize nodes in such a way that clients
-will listen.
-<br />
-In addition, these same statistics can be gathered about the traffic
-through a node. Events can be added to the <a
-href="https://www.torproject.org/svn/torctl/doc/howto.txt">Tor Control
-Protocol</a> to
-report if a circuit extend attempt through the node succeeds or fails, and
-passive statistics can be gathered on both bandwidth and reliability
-of other nodes via a node-based monitor using these events. Such a
-scanner would also report information on oddly-behaving nodes to
-the Directory Authorities, but a communication channel for this
-currently does not exist and would need to be developed as well.
-</li>
-
-<li>
-<b>Help track the overall Tor Network status</b>
-<br />
-Priority: <i>High</i>
-<br />
-Effort Level: <i>Medium</i>
-<br />
-Skill Level: <i>Medium</i>
-<br />
-Likely Mentors: <i>Roger, Nick, Mike</i>
-<br />
-It would be great to set up an automated system for tracking network
-health over time, graphing it, etc. Part of this project would involve
-inventing better metrics for assessing network health and growth. Is the
-average uptime of the network increasing? How many relays are qualifying
-for Guard status this month compared to last month? What's the turnover
-in terms of new relays showing up and relays shutting off? Periodically
-people collect brief snapshots, but where it gets really interesting is
-when we start tracking data points over time.
-<br />
-Data could be collected from the "Tor Node Scanner" item above, from
-the server descriptors that each relay publishes, and from other
-sources. Results over time could be integrated into one of the <a
-href="https://torstatus.blutmagie.de/">Tor Status</a> web pages, or be
-kept separate. Speaking of the Tor Status pages, take a look at Roger's
-<a href="http://archives.seul.org/or/talk/Jan-2008/msg00300.html">Tor
-Status wish list</a>.
-</li>
-
-<li>
-<b>Tor path selection improvements</b>
-<br />
-Priority: <i>High</i>
-<br />
-Effort Level: <i>Low to Medium</i>
-<br />
-Skill Level: <i>High</i>
-<br />
-Likely Mentors: <i>Roger, Nick, Mike</i>
-<br />
-Some simple improvements can be made to Tor's path selection to vastly
-improve Tor speed. For instance, some of the (unofficial) <a
-href="http://wiki.noreply.org/noreply/TheOnionRouter/FireFoxTorPerf">Tor
-Performance Recommendations</a> on the wiki are to increase the number of
-guards and decrease the CircuitBuildTimeout. Ideally, the client would
-<a href="http://archives.seul.org/or/talk/Feb-2008/msg00012.html">learn
-these values by gathering statistics on circuit construction
-time</a> (and/or using values gained from Torflow), and set the timeouts
-low enough such that some high percentile (75%, 90%, 1-stddev?) of
-circuits succeed, yet extremely slow nodes are avoided. This would
-involve some statistics gathering+basic research, and some changes to 
-Tor path selection code.
-<br />
-In addition, to improve path security, some elements from the <a
-href="http://www.torproject.org/svn/trunk/doc/spec/proposals/115-two-hop-paths.txt">Two
-Hop Paths proposal</a> could be done as part of this (since it will
-likely touch the same code anyways), regardless of the adoption of
-that proposal. In particular, clients probably should avoid guards that
-seem to fail an excessive percentage of their circuits through them,
-and non-firewalled clients should issue a warning if they are only able
-to connect to a limited set of guard nodes. See also
-<a href="http://archives.seul.org/or/dev/Feb-2008/msg00003.html">this
-or-dev post</a>.
 </li>
 
 <li>
@@ -797,7 +824,7 @@ href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">To
 flyspray section</a>. Good examples include: stripping off node.exit on http
 headers, more fine-grained control over formfill blocking, improved referrer
 spoofing based on the domain of the site (a-la <a
-href="http://addons.mozilla.org/firefox/addon/4513">refspoof extension</a>),
+href="https://addons.mozilla.org/en-US/firefox/addon/953">refcontrol extension</a>),
 tighter integration with Vidalia for reporting Tor status, a New Identity
 button with Tor integration and multiple identity management, and anything
 else you might think of.
@@ -1096,6 +1123,25 @@ sicurezza e prestazioni.</li>
 <li>Non &egrave; difficile effettuare un DoS ai Tor relay o alle autorit&agrave di directory. I client
 puzzle sono la soluzione giusta? Quali altri approcci pratici esistono? Un premio
 se sono compatibili col protocollo Tor attuale.</li>
+
+<li>Programs like <a
+href="https://torbutton.torproject.org/dev/">Torbutton</a> aim to hide
+your browser's UserAgent string by replacing it with a uniform answer for
+every Tor user. That way the attacker can't splinter Tor's anonymity set
+by looking at that header. It tries to pick a string that is commonly used
+by non-Tor users too, so it doesn't stand out. Question one: how badly
+do we hurt ourselves by periodically updating the version of Firefox
+that Torbutton claims to be? If we update it too often, we splinter the
+anonymity sets ourselves. If we don't update it often enough, then all the
+Tor users stand out because they claim to be running a quite old version
+of Firefox. The answer here probably depends on the Firefox versions seen
+in the wild. Question two: periodically people ask us to cycle through N
+UserAgent strings rather than stick with one. Does this approach help,
+hurt, or not matter? Consider: cookies and recognizing Torbutton users
+by their rotating UserAgents; malicious websites who only attack certain
+browsers; and whether the answers to question one impact this answer.
+</li>
+
 </ol>
 
 <p>
