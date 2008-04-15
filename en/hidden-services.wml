@@ -9,10 +9,6 @@
 <h2>Tor: Hidden Service Protocol</h2>
 <hr />
 
-# TO TRANSLATORS: this page might still need some review and corrections!
-# better wait at least one week from today (2008-03-29) before starting
-# translation
-
 <p>
 A hidden service needs to advertise its existence in the Tor network before
 clients will be able to contact it. Therefore, the service randomly picks
@@ -35,8 +31,13 @@ containing the introduction points' addresses and its public key and signs
 it with its private key. It stores that descriptor on a set of directory
 servers, again using a circuit that hides the link between storing the
 descriptor with the hidden service's IP address. The descriptor will be
-found by clients requesting XYZ.onion where XYZ is uniquely derived from
-the service's public key. After this step, the hidden service is set up.
+found by clients requesting XYZ.onion where XYZ is a 16 characters long
+name that can be uniquely derived from the service's public key. Although
+it might seem impractical to use an automatically-generated service name,
+it serves an important goal: Everyone -- including the introduction points,
+the directory servers, and of course the clients -- can verify that they
+are talking to the hidden service. After this step, the hidden service is
+set up.
 </p>
 
 <img alt="Tor hidden service step two" src="$(IMGROOT)/THS-2.png" />
@@ -77,6 +78,16 @@ creates a circuit to the rendezvous point and sends the one-time secret to
 it in a rendezvous message.
 </p>
 
+<p>
+At this point it is of special importance that the hidden service sticks to
+the same set of guard nodes for creating new circuits. Otherwise an attacker
+could run an own relay and force a hidden service to create an arbitrary
+number of circuits in the hope of the corrupt relay to be picked as entry
+node and learn the hidden service's IP address via timing analysis. This
+attack was described by &Oslash;verlier and Syverson in their paper titled
+Locating Hidden Services.
+</p>
+
 <img alt="Tor hidden service step five" src="$(IMGROOT)/THS-5.png" />
 # it should say "Bob connects to Alice's ..."
 
@@ -88,7 +99,30 @@ other. The rendezvous point simply relays (end-to-end encrypted) messages
 from client to service and vice versa.
 </p>
 
+<p>
+One of the reasons for not using the earlier created connection via the
+introduction point for actual communication is that no single relay should
+appear to be responsible for a given hidden service. This is why the
+rendezvous point never learns about the hidden service's identity.
+</p>
+
+<p>
+In general, the complete connection between client and hidden service
+consists of 6 relays: 3 of them were picked by the client with the third
+being the rendezvous point and the other 3 were picked by the hidden
+service.
+</p>
+
 <img alt="Tor hidden service step six" src="$(IMGROOT)/THS-6.png" />
+
+<p>
+There are more detailed descriptions about the hidden service protocol than
+this one. See the
+<a href="<svnsandbox>doc/design-paper/tor-design.pdf">Tor design paper</a>
+for an in-depth design description and the
+<a href="<svnsandbox>doc/spec/rend-spec.txt">rendezvous specification</a>
+for the message formats.
+</p>
 
   </div><!-- #main -->
 
