@@ -1050,6 +1050,21 @@ strategies need to be adjusted for asymmetric links? For example, on
 asymmetric links, is it actually possible to differentiate client traffic from
 natural bursts due to their asymmetric capacity? Or is it easier than
 symmetric links for some other reason?</li>
+<li>Repeat Murdoch and Danezis's <a
+href="http://www.cl.cam.ac.uk/~sjm217/projects/anon/#torta">attack from
+Oakland 05</a> on the current Tor network. See if you can learn why it
+works well on some nodes and not well on others. (My theory is that the
+fast nodes with spare capacity resist the attack better.) If that's true,
+then experiment with the RelayBandwidthRate and RelayBandwidthBurst
+options to run a relay that is used as a client while relaying the
+attacker's traffic: as we crank down the RelayBandwidthRate, does the
+attack get harder? What's the right ratio of RelayBandwidthRate to
+actually capacity? Or is it a ratio at all? While we're at it, does a
+much larger set of candidate relays increase the false positive rate
+or other complexity for the attack? (The Tor network is now almost two
+orders of magnitude larger than it was when they wrote their paper.) Be
+sure to read <a href="http://freehaven.net/anonbib/#clog-the-queue">Don't
+Clog the Queue</a> too.</li>
 <li>The "routing zones attack": most of the literature thinks of
 the network path between Alice and her entry node (and between the
 exit node and Bob) as a single link on some graph. In practice,
