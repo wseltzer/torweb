@@ -1117,6 +1117,17 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#BlockingResistan
 entry</a> on this, and then read the <a
 href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">censorship
 resistance section of anonbib</a>.</li>
+<li>Our censorship-resistance goals include preventing
+an attacker who's looking at Tor traffic on the wire from <a
+href="https://www.torproject.org/svn/trunk/doc/design-paper/blocking.html#sec:network-fingerprint">distinguishing
+it from normal SSL traffic</a>. Obviously we can't achieve perfect
+steganography and still remain usable, but for a first step we'd like to
+block any attacks that can win by observing only a few packets. One of
+the remaining attacks we haven't examined much is that Tor cells are 512
+bytes, so the traffic on the wire may well be a multiple of 512 bytes.
+How much does the batching and overhead in TLS records blur this on the
+wire? Do different buffer flushing strategies in Tor affect this? Could
+a bit of padding help a lot, or is this an attack we must accept?</li>
 <li>Tor circuits are built one hop at a time, so in theory we have the
 ability to make some streams exit from the second hop, some from the
 third, and so on. This seems nice because it breaks up the set of exiting
