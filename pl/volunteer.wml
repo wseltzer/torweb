@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 14272
+# Based-On-Revision: 14482
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Tor: Wolontariusze" CHARSET="UTF-8"
@@ -1064,6 +1064,21 @@ na łączu asymetrycznym odróżnienie ruchu klienta od naturalnego wzmożenia r
 względu na ich asymetryczną pojemność? Czy jest to jednak łatwiejsze niż dla łączy
 symetrycznych z innych przyczyn?</li>
 
+<li>Powtórzcie <a
+href="http://www.cl.cam.ac.uk/~sjm217/projects/anon/#torta">atak z
+Oakland 05</a> Murdocha i Danezisa na bieżącej sieci Tora. Sprawdźcie, czy możecie
+dowiedzieć się, czemu działa on dobrze na niektórych węzłach, a gorzej na innych.
+(Moja teoria mówi, że szybkie węzły mające trochę wolnego pasma lepiej opierają się
+atakowi.) Jeśli to prawda, poeksperymentujcie z opcjami RelayBandwidthRate i
+RelayBandwidthBurst prowadząc węzeł używany jako klient do przekierowywania
+ruchu atakującego: jeśli zmniejszamy RelayBandwidthRate, czy atak jest trudniejszy?
+Jaki jest najwłaściwszy stosunek RelayBandwidthRate do rzeczywistej szybkości
+łącza? Czy to w ogóle jest jakiś stosunek? Skoro już przy tym jesteśmy, czy znacznie
+większy zbiór węzłów kandydujących zwiększa odsetek fałszywych wyników pozytywnych
+lub innych trudności dla tego rodzaju ataku? (Sieć Tora jest teraz większa o prawie
+dwa rzędy wielkości niż wtedy, gdy napisano ten dokument.) Przeczytaj też
+<a href="http://freehaven.net/anonbib/#clog-the-queue">Nie zapychaj kolejki</a>.</li>
+
 <li>"Atak stref trasowania" (routing zones attack): większość literatury
  mówi o ścieżce sieciowej między Alicją a jej węzłem wejściowym (i między
  węzłem wyjściowym a Bobem) jako o pojedynczej ścieżce na jakimś grafie.
@@ -1120,6 +1135,20 @@ symetrycznych z innych przyczyn?</li>
  o tym, a potem przeczytaj <a
  href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">sekcję w anonbib o
  przeciwstawianiu się cenzurze</a>.</li>
+
+<li>Nasze cele w opieraniu się cenzurze to m.in. zapobieganie temu, by napastnik
+podglądający ruch Tora mógł <a
+href="https://www.torproject.org/svn/trunk/doc/design-paper/blocking.html#sec:network-fingerprint"
+>odróżnić go od normalnego ruchu SSL</a>. Oczywiście, nie możemy osiągnąć idealnej
+steganografii i dalej mieć użyteczną i działającą sieć, ale w pierwszym kroku
+chcielibyśmy blokować jakiekolwiek ataki, które mogą się udać po obserwacji tylko
+kilku pakietów. Jednym z pozostałych ataków, którego nie zbadaliśmy za bardzo,
+polega na tym, że komórki Tora mają 512 bajtów, więc ruch w sieci może mieć długość
+będącą wielokrotnością 512 bajtów. Jak bardzo wkładanie nowych danych
+w nagłówkach TLS rozmywa ten fakt w transmisji? Czy inne strategie opróżniania bufora
+w Torze mają na to wpływ? Czy trochę dokładania może bardzo pomóc, czy jest o atak,
+z którym musimy żyć?</li>
+
 <li>Obwody Tora są budowane po jednym elemencie na raz, więc teoretycznie
  możemy uczynić, aby część strumieni wychodziła z drugiego węzła, część z
  trzeciego itd. To wydaje się dobre, bo ogranicza zbiór strumieni wychodzących,
