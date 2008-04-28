@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 14272
+# Based-On-Revision: 14482
 # Last-Translator: jan at seul dot org
 
 #include "head.wmi" TITLE="Tor: partecipa" CHARSET="UTF-8"
@@ -1062,6 +1062,21 @@ deve essere modificata in caso di link asimmetrici? Ad esempio, su
 link asimmentrici si riesce a distinguere il traffico del client dai
 picchi naturali dovuti all'asimmetria della capacit&agrave; del link? Od &egrave; pi&ugrave;
 facile sui link asimmetrici, per qualche altro motivo?</li>
+<li>Ripetere l' <a
+href="http://www.cl.cam.ac.uk/~sjm217/projects/anon/#torta">attacco da
+Oakland 05</a> di Murdoch e Danezi sull'attuale rete Tor. Provare a capire perch&eacute;
+funziona bene contro alcuni nodi e non su altri. /La mia teoria &egrave; che
+i nodi veloci con capacit&agrave; aggiuntiva resistono meglio al'attacco) Se questo &egrave; vero
+allora bisogna provare con le opzioni RelayBandwidthRate e RelayBandwidthBurst
+per gestire un relay usato come client mentre si fa da relay al traffico
+dell'attaccante: riducendo RelayBandwidthRate, forse l'attacco
+diventa pi&grave; difficile? Quale &egrace; il rapporto ideale tra RelayBandwidthRate e
+capacit&agrave; reale? Ma &egrave; poi un rapporto? Gi&agrave; che ci siamo, un numero
+maggiore di potenziali relay aumenta forse il tasso di falsi positivi
+o altri fattori complessi per l'attacco? (La rete Tor oggi &egrave; di quasi due
+ordini di grandezza maggiore rispetto a quando fu scritto il paper.) Leggi anche
+<a href="http://freehaven.net/anonbib/#clog-the-queue">Don't
+Clog the Queue</a>.</li>
 <li>Attacco di tipo "routing zones": gli studi attuali considerano
 il percorso di rete tra Alice e il suo entry node (e tra
 l'exit node e Bob) come un singolo collegamento in un grafico. In realt&agrave;
@@ -1113,6 +1128,17 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#BlockingResistan
 </a> sull'argomento e poi leggi la <a
 href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">sezione
 di anonbib sulla resistenza alla censura</a>.</li>
+<li>Uno degli obiettivi per resistere alla censura &egrave; impedire
+ad un attaccante che osservi il traffico Tor su una connessione di <a
+href="https://www.torproject.org/svn/trunk/doc/design-paper/blocking.html#sec:network-fingerprint">distinguerlo
+dal normale traffico SSL</a>. Non possiamo ovviamente ottenere perfetta
+steganografia e al contempo essere ancora utilizzabili, ma come primo passo ci
+bloccare tutti quegli attacchi che funzionano solo osservando pochi pacchetti. Uno degli
+altri attacchi che non abbiamo esaminato ancora a fondo &egrave; che le celle Tor sono di 512
+byte, e quindi il traffico sulla connessione potrebbe essere di multipli di 512 byte.
+Batching e overhead nei record TLS modificano questo dato sulla connessione?
+Ci sono altre strategie di buffer flushing in Tor che influiscono su questo dato? Possiamo
+aspettarci dei risultati usando un po' di padding, o si tratta di un attacco che dobbiamo accettare cos&igrave; com'&egrave;?</li>
 <li>I circuiti Tor si stabiliscono un nodo alla volta, per cui potremmo
 fare uscire alcuni flussi dal secondo nodo, altri dal terzo e cos&igrave; via.
 Sembra una buona idea, dato che riduce i flussi in uscita
@@ -1120,7 +1146,7 @@ che ciascun relay pu&ograve; vedere. Se per&ograve; vogliamo assicurare la sicur
 il percorso pi&ugrave; breve dovrebbe essere almeno di tre nodi, secondo i criteri correnti, e
 gli altri dovrebbero essere anche pi&ugrave; lunghi. Dobbiamo valutare questo compromesso tra
 sicurezza e prestazioni.</li>
-<li>Non &egrave; difficile effettuare un DoS ai Tor relay o alle autorit&agrave di directory. I client
+<li>Non &egrave; difficile effettuare un DoS ai Tor relay o alle autorit&agrave; di directory. I client
 puzzle sono la soluzione giusta? Quali altri approcci pratici esistono? Un premio
 se sono compatibili col protocollo Tor attuale.</li>
 
