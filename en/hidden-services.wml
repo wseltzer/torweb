@@ -16,9 +16,9 @@ some relays, builds circuits to them, and asks them to act as introduction
 points telling them its public key. Note that in the following figures the
 green links are circuits rather than direct connections. This makes it
 impossible for anyone to associate the introduction points with the hidden
-service's IP address. This is important, because although the introduction
+server's IP address. This is important, because although the introduction
 points and others are told the hidden service's identity (public key), they
-must not learn about the hidden server's identity (IP address).
+must not learn about the hidden server's location (IP address).
 </p>
 
 <img alt="Tor hidden service step one" src="$(IMGROOT)/THS-1.png" />
@@ -29,8 +29,9 @@ must not learn about the hidden server's identity (IP address).
 In a second step, the hidden service assembles a hidden service descriptor
 containing the introduction points' addresses and its public key and signs
 it with its private key. It stores that descriptor on a set of directory
-servers, again using a circuit that hides the link between storing the
-descriptor with the hidden service's IP address. The descriptor will be
+servers, again using a circuit that hides the link between the directory
+server storing the
+descriptor with the hidden server's IP address. The descriptor will be
 found by clients requesting XYZ.onion where XYZ is a 16 characters long
 name that can be uniquely derived from the service's public key. Although
 it might seem impractical to use an automatically-generated service name,
@@ -83,9 +84,9 @@ At this point it is of special importance that the hidden service sticks to
 the same set of guard nodes for creating new circuits. Otherwise an attacker
 could run an own relay and force a hidden service to create an arbitrary
 number of circuits in the hope of the corrupt relay to be picked as entry
-node and learn the hidden service's IP address via timing analysis. This
+node and learn the hidden server's IP address via timing analysis. This
 attack was described by &Oslash;verlier and Syverson in their paper titled
-Locating Hidden Services.
+Locating Hidden Servers.
 </p>
 
 <img alt="Tor hidden service step five" src="$(IMGROOT)/THS-5.png" />
