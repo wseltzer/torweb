@@ -1,0 +1,84 @@
+## translation metadata
+# Revision: $Revision: 13768 $
+# Translation-Priority: 1-high
+
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h1><a class="anchor" href="#BridgeIntroduction">Tor: Bridges</a></h1>
+<hr />
+
+<p>
+Bridge relays (or "bridges" for short) are Tor relays that aren't listed in 
+the main directory. Since there is no complete public list of them, even if 
+your ISP is filtering connections to all the known Tor relays, they probably 
+won't be able to block all the bridges.
+</p>
+
+<p>
+To use a bridge, you'll need to locate one. Furthermore, you'll need to 
+configure Tor with whatever bridge address you intend to use.
+</p>
+
+<p>
+At the moment, you can get a bridge by visiting 
+<a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a> 
+with your web browser.
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">Understanding bridges</a></h2>
+<hr />
+
+<p>
+As an example exercise, you'll get a bridge entry that looks like the 
+following:<br>
+<pre>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</pre>
+</p>
+
+<p>
+Understanding the above example isn't strictly required but may prove useful. 
+You can skip this section if you'd like.
+The first element is the name: <tt>'bridge'</tt>.<br>
+The second element is the IP address: <tt>'141.201.27.48'</tt><br>
+The third element is the port: <tt>'443'</tt><br>
+The fourth element is the fingerprint: 
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br>
+</p>
+
+<a id="UsingBridges"></a>
+<h3><a class="anchor" href="#UsingBridges">Using bridges with Tor and Vidalia</a></h3>
+<hr />
+
+<p>
+To use the example bridge address above, go to Vidalia's Network settings 
+page, and click "My ISP blocks connections to the Tor network". You'll want 
+to add as many bridge addresses as you know about. Regardless of how many 
+bridges you intend to use, the process for use is the same. Add each bridge 
+address one at a time in the Vidalia Network settings page. One bridge should 
+be enough for general use. However, in the event of using a single bridge, 
+one bridge failing will cause loss of access to the Tor network. Adding 
+additional bridges will increase reliability. This is pictured below:<br><br>
+<img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalia's Network settings page" />
+<br><br>
+</p>
+
+<a id="FindingMore"></a>
+<h4><a class="anchor" href="#FindingMore">Finding more bridges with Tor</a></h4>
+<hr />
+
+<p>
+Another way to find public bridge addresses is to send mail to 
+bridges@torproject.org with the line "get bridges" by itself in the body of the 
+mail. However, so we can make it harder for an attacker to learn lots of bridge 
+addresses, you must send this request from a gmail or yahoo account.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
