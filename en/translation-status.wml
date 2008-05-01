@@ -77,7 +77,7 @@ sub do_status($$) {
 			print "<tr>";
 			printf "<th>%s</th>", $file;
 			printf '<td%s>Revision %s%s<br>
-				<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;view=markup">HEAD</a>
+				<a href="https://svn.torproject.org/cgi-bin/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;view=markup">HEAD</a>
 				%s',
 				($obs ? ' bgcolor="#D3D3D3"' : ''),
 				$files{'en'}->{$file}->{'rev'},
@@ -107,7 +107,7 @@ sub do_status($$) {
 					} else {
 						$status='not current';
 						if ($files{$lang}->{$file}->{'based'} ne 'unknown') {
-							$difflink=sprintf '<br><a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;r1=%s&amp;r2=%s">changes in original</a>',
+							$difflink=sprintf '<br><a href="https://svn.torproject.org/cgi-bin/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;r1=%s&amp;r2=%s">changes in original</a>',
 								($dir eq '.' ? '' : $dir.'/'), $file, $files{$lang}->{$file}->{'based'}, $files{'en'}->{$file}->{'rev'};
 							$color='yellow';
 						} else {
@@ -116,7 +116,7 @@ sub do_status($$) {
 						};
 					};
 					printf '<td bgcolor="%s">%s<br>
-						<a href="http://cvs.seul.org/viewcvs/viewcvs.cgi/website/trunk/%s%s/%s?root=Tor&amp;view=markup">HEAD</a><br>
+						<a href="https://svn.torproject.org/cgi-bin/viewcvs.cgi/website/trunk/%s%s/%s?root=Tor&amp;view=markup">HEAD</a><br>
 						%s
 						%s
 						%s</td>',
