@@ -1,0 +1,85 @@
+## translation metadata
+# Revision: $Revision: 14182 $
+# Translation-Priority: 1-high
+
+#include "head.wmi" TITLE="A public TorDNSEL service"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h1>A public TorDNSEL service</h1>
+
+<h2>What is TorDNSEL?</h2>
+
+<p>TorDNSEL is an active testing, DNS-based list of Tor exit nodes. Since Tor
+supports exit policies, a network service's Tor exit list is a function of its
+IP address and port. Unlike with traditional DNSxLs, services need to provide
+that information in their queries.</p>
+
+<p>Previous DNSELs scraped Tor's network directory for exit node IP addresses,
+but this method fails to list nodes that don't advertise their exit address in
+the directory. TorDNSEL actively tests through these nodes to provide a more
+accurate list.</p> 
+
+<p>The full background and rationale for TorDNSEL is described in the official
+<a href="https://tor.eff.org/svn/trunk/doc/contrib/torel-design.txt">design
+document</a>. The current service only supports the first query type mentioned
+in that document.</p>
+
+<h2>How can I query the public TorDNSEL service?</h2>
+
+<p>Using the command line tool dig, users can ask type 1 queries like so:</p>
+
+<pre>dig 209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org</pre>
+
+<h2>What do the received answers mean?</h2>
+
+<p>A request for the A record
+"209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org" would return
+127.0.0.2 if there's a Tor node that can exit through 81.169.137.209 to port
+6667 at 1.2.3.4. If there isn't such an exit node, the DNSEL returns
+NXDOMAIN.</p>
+
+<p>Other A records inside net 127/8, except 127.0.0.1, are reserved for future
+use and should be interpreted by clients as indicating an exit node. Queries
+outside the DNSEL's zone of authority result in REFUSED. Ill-formed queries
+inside its zone of authority result in NXDOMAIN.</p>
+
+<h2>How do I configure software with DNSBL support?</h2>
+
+<p>Users of software with built-in support for DNSBLs can configure the
+following zone as a DNSBL:</p>
+
+<pre>[service port].[reversed service
+address].ip-port.exitlist.torproject.org</pre>
+
+<p>An example for an IRC server running on port 6667 at IP address 1.2.3.4:</p>
+<pre>6667.4.3.2.1.ip-port.exitlist.torproject.org</pre>
+
+<h2>How reliable are the answers returned by TorDNSEL?</h2>
+
+<p>The current public service is operating on an experimental basis and hasn't
+been well tested by real services. Reports of erroneous answers or service
+interruption would be appreciated. Future plans include building a fault
+tolerant pool of DNSEL servers. TorDNSEL is currently under active
+development.</p>
+
+<h2>How can I run my own private TorDNSEL?</h2>
+
+<p>You can learn all about the code for TorDNSEL by visiting the <a
+href="http://p56soo2ibjkx23xo.onion/">official hidden service</a> through
+Tor.</p>
+
+<p>You can download the latest source release from the <a
+href="http://p56soo2ibjkx23xo.onion/dist/tordnsel-0.0.6.tar.gz">hidden
+service</a> or from a <a href="tordnsel-0.0.6.tar.gz">local mirror</a>. It's
+probably wise to check out the current revision from the darcs repository
+hosted on the aforementioned hidden service.</p>
+
+<p>For more information or to report something useful, please email tordnsel AT
+torproject.org</p>
+
+</div> <!-- #main -->
+
+#include <foot.wmi>
+
