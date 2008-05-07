@@ -1,0 +1,146 @@
+## translation metadata
+# Based-On-Revision: 13768
+# Translation-Priority: 1-high
+# Last-Translator: bogdandr_at_op . pl
+
+#include "head.wmi" TITLE="Tor: Mostki" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h1><a class="anchor" href="#BridgeIntroduction">Tor: Mostki</a></h1>
+<hr />
+
+<p>
+Mostkowe przekaźniki sieci (lub po prostu "mostki") to węzły sieci Tora, które nie
+są wpisane do głównego katalogu. Jako że nie ma pełnej publicznej listy mostków,
+to nawet jeśli Twój dostawca internetu blokuje połączenia do wszystkich znanych
+węzłów Tora, prawdopodobnie nie będzie mógł zablokować wszystkich mostków.
+Jeśli podejrzewasz, że masz zablokowany dostęp do sieci Tor, możesz skorzystać
+z mostków Tora.
+</p>
+
+<p>
+Dodanie mostków do Tora jest krokiem naprzód w opieraniu się blokowaniu.
+Jest całkiem możliwe, że nie musisz mieć mostka, by używać Tora. Spróbuj najpierw
+poużywać Tora, a jeśli masz kłopoty z używaniem sieci Tora, to możliwe, że
+potrzebujesz mostka, by obejść blokadę. Jest też możliwe, że Tor nie działa z
+innych powodów. Zrozumienie, czemu sieć Tora jest niedostępna może być trudne nawet
+dla ekspertów. Jeśli masz problemy z Torem, ważne jest przeczytanie
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork"
+>najczęściej zadawanych pytań o problemach z prawidłowym działaniem Tora</a>.
+Jeśli Twoim zdaniem problem polega na blokowaniu lub po prostu chcesz spróbować,
+bo czujesz się niepewnie lub jesteś żądny przygód, czytaj dalej. Upewnij się, że
+masz <a href="<page download>">najnowszą wersję 0.2.0.x na swój system</a>.
+</p>
+
+<p>
+Wiele programów filtrujących szuka żądań kierowanych do serwerów katalogowych Tora,
+by stwierdzić, czy używasz Tora. Począwszy od wersji 0.2.0.22-rc te programy
+prawdopodobnie już nie działają na Tora. Zmieniliśmy sposób, w jaki Tor poznaje
+sieć. Te zmiany są tylko na lepsze i nie wprowadzają nowych trudności do nauki
+obsługi. Tor po prostu lepiej teraz działa.
+</p>
+
+<p>
+By korzystać z mostka, musisz najpierw jakiś znaleźć. Ponadto, będziesz musiał
+skonfigurować Tora, podając adres mostka, którego zamierzasz używać. Robi się to
+w kontrolerze Tora - programie Vidalia. Jeśli Twoje połączenie z internetem wymaga
+serwera pośredniczącego (proxy), musisz od tego zacząć konfigurację Vidalii.
+Jeśli uważasz, że nie musisz konfigurować serwera pośredniczącego do swojego
+połączenia, to pewnie nie musisz. Spróbuj, a w razie problemów poproś nas o pomoc.
+</p>
+
+<p>
+W chwili obecnej, możesz dostać mostek, odwiedzając
+<a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+swoją przeglądarką.
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">Zrozumienie jak działają mostki</a></h2>
+<hr />
+
+<p>
+Przykładowo, możesz dostać informacje o mostku wyglądające tak:<br>
+<pre>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</pre>
+</p>
+
+<p>
+Zrozumienie powyższego przykładu nie jest wymagane, ale może się przydać.
+Możesz pominąć tę sekcję, jeśli chcesz.
+Pierwszym elementem jest nazwa: <tt>'bridge'</tt>.<br>
+Drugim elementem jest adres IP: <tt>'141.201.27.48'</tt><br>
+Trzeci element to port: <tt>'443'</tt><br>
+Czwarty element to odcisk palca:
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br>
+</p>
+
+<a id="UsingBridges"></a>
+<h3><a class="anchor" href="#UsingBridges">Korzystanie z mostków w Torze i Vidalii</a></h3>
+<hr />
+
+<p>
+By skorzystać z powyższego przykładowego adresu mostka, wejdź do ustawień sieciowych
+programu Vidalia i kliknij "Mój dostawca blokuje połączenia do sieci Tor"
+("My ISP blocks connections to the Tor network"). Powinieneś dodać tyle adresów
+mostków, ile znasz. Niezależnie od tego, z ilu mostków masz zamiar korzystać,
+proces jest taki sam. Dodawaj adresy jeden po drugim na stronie ustawień sieciowych
+Vidalii. Do ogólnego użytku wystarczy jeden mostek. Jednak w takim przypadku
+zerwanie połączenia oznacza odcięcie od sieci Tora. Dodanie dodatkowych mostków
+zwiększy niezawodność. To wszystko ujęte jest na obrazku:<br><br>
+<img src="$(IMGROOT)/vidalia-bridges.png" alt="Strona Ustawień sieciowych Vidalii" />
+<br><br>
+</p>
+
+<a id="FindingMore"></a>
+<h4><a class="anchor" href="#FindingMore">Znajdowanie dalszych mostków</a></h4>
+<hr />
+
+<p>
+Innym sposobem na znalezienie publicznych adresów mostków jest wysłanie listu
+e-mail na adres bridges@torproject.org o treści zawierającej tylko jedną linię
+mówiącą "get bridges". Jednak, by utrudnić napastnikom poznanie dużej liczby
+adresów mostków, musisz wysłać swój list z konta gmail lub yahoo.
+Prawie natychmiast otrzymasz odpowiedź wyglądającą tak:
+</p>
+<p>
+<pre>
+[This is an automated message; please do not reply.]
+
+Here are your bridge relays:
+
+ bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+ bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+ bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+
+Bridge relays (or "bridges" for short) are Tor relays that aren't listed
+in the main directory. Since there is no complete public list of them,
+even if your ISP is filtering connections to all the known Tor relays,
+they probably won't be able to block all the bridges.
+
+To use the above lines, go to Vidalia's Network settings page, and click
+"My ISP blocks connections to the Tor network". Then add each bridge
+address one at a time.
+
+Configuring more than one bridge address will make your Tor connection
+more stable, in case some of the bridges become unreachable.
+
+Another way to find public bridge addresses is to visit
+https://bridges.torproject.org/. The answers you get from that page
+will change every few days, so check back periodically if you need more
+bridge addresses.
+</pre>
+</p>
+<p>
+Po otrzymaniu takiego listu z informacją o mostkach, możesz dalej konfigurować
+Vidalię według powyższych kroków.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
