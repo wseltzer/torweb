@@ -1,0 +1,130 @@
+## translation metadata
+# Based-On-Revision: 14229
+# Last-Translator: jens@kubieziel.de
+
+#include "head.wmi" TITLE="Tor: Protokoll für versteckte Dienste"
+
+<div class="main-column">
+
+<h2>Tor: Protokoll für versteckte Dienste</h2>
+<hr />
+
+<p>Ein versteckter Service muss seine Existenz im Tor-Netzwerk bekannt
+  machen, bevor er kontaktiert werden kann. Daher wählt der Service
+  zufällig einige Tor-Server aus, baut Verbindungsstrecken auf und
+  bittet diese, als Einführungspunkte (introduction point) zu
+  agieren. Beachte bitte, dass in den folgenden Abildungen die grünen
+  Verweise eher Verbindungsstrecken von mehreren beteilten Rechnern
+  meint, als direkte Verbindungen. Das macht es für jeden unmöglich,
+  den Einführungspunkt mit der IP-Adresse des versteckten Servers in
+  Verbindung zu bringen. Dies ist wichtig, denn obwohl die
+  Einführungspunkte und andere die Identität des versteckten Services
+  (öffentlicher Schlüssel) kennen, dürfen sie nicht dessen Ort
+  (IP-Adresse) erfahren.
+</p>
+
+<img alt="Tor hidden service step one" src="$(IMGROOT)/THS-1.png" />
+# maybe add a speech bubble containing "PK" to Bob, because that's what
+# Bob tells to his introduction points
+
+<p>Im zweiten Schritt generiert der versteckte Service einen
+  Deskriptor. Dieser enthält die Adresse des Einführungspunktes und
+  seinen öffentlichen Schlüssel. Der versteckte Service signiert die
+  Informationen mit seinem privaten Schlüssel. Es speichert den
+  Deskriptor bei Verzeichnisservern, indem er wieder eine
+  Verbindungsstrecke nutzt. Wenn nun ein Client die Adresse XYZ.onion
+  bei einem Verzeichnisserver nachfragt, wird der Deskriptor dort
+  gefunden. Die Adresse XYZ ist dabei ein 16&nbsp;Zeichen langer Name,
+  der in eindeutiger Weise vom öffentlichen Schlüssel des versteckten
+  Service abgeleitet wurde. Obwohl dieses Verfahren zunächst
+  unpraktisch aussieht, dient es einem wichtigen Ziel: Jedermann &ndash;
+  auch Einführungspunkte, Verzeichnisserver und natürlich Tor-Proxys
+  &ndash; kann prüfen, ob sie wirklich mit dem versteckten Dienst
+  reden. Nach diesem Schritt ist der versteckte Dienst bereit.
+</p>
+
+<img alt="Tor hidden service step two" src="$(IMGROOT)/THS-2.png" />
+# maybe replace "database" with "directory servers"; further: how incorrect
+# is it to *not* add DB to the Tor cloud, now that begin dir cells are in
+# use?
+
+<p>Ein Programm, welches sich mit dem versteckten Dienst verbinden
+möchte, muss zuerst von der Onionadresse wissen. Danach kann sich das
+Programm verbinden. Es lädt den Deskriptor von den Verzeichnisservern
+herunter. Wenn ein Deskriptor existiert (Der Dienst könnte auch
+offline sein oder ein Fehler in der Onionadresse ist möglich.), baut
+der Client eine Strecke zu einem Tor-Server auf und bittet es, als
+Rendezvouspunkt zu agieren. Dazu teilt er ihm ein einmaliges Geheimnis
+mit.
+</p>
+
+<img alt="Tor hidden service step three" src="$(IMGROOT)/THS-3.png" />
+# maybe add "cookie" to speech bubble, separated from the surrounded
+# "IP1-3" and "PK"
+
+<p>Neben dem Aufbau der Verbindung zum Rendezvouspunkt muss das
+Clientprogramm eine Nachricht an den Einführungspunkt erstellen
+(verschlüsselt mit dem öffentlichen Schlüssel des versteckten
+Dienstes.). Diese Nachricht schließt die Adresse des Rendezvouspunktes
+und das Geheimnis ein. Das Programm sendet die Nachricht an einen der
+Einführungspunkte und bittet, diese an den versteckten Dienst zu
+leiten. Wieder wird alle Kommunikation über Verbindungsstrecken im
+Tor-Netzwerk abgewickelt. Damit wird die Anonymität des Clients
+gesichert.
+</p>
+
+<img alt="Tor hidden service step four" src="$(IMGROOT)/THS-4.png" />
+
+<p>Der versteckte Dienst entschlüsselt die Nachricht des Clienten und
+findet dort die Adresse des Rendezvouspunktes sowie das Geheimnis. Der
+Dienst baut eine Strecke zum Rendezvouspunkt auf und sendet das
+Geheimnis in einer Rendezvousnachricht.
+</p>
+
+<p>An diesem Punkt ist es besonders wichtig, dass der versteckte
+Dienst dieselben Knoten zum Anlegen neuer Strecken verwendet. Sonst
+könnte ein Angreifer einen eigenen Server betreiben und den
+versteckten Dienst zwingen, eine Anzahl an Verbindungsstrecken über
+ihn auszurichten. Über eine Analyse der Laufzeiten der Internetpakete
+kann man so die IP-Adresse des Dienstes herausfinden. Der Angriff
+wurde von &Oslash;verlier und Syverson in der Veröffentlichung
+"Locating Hidden Servers" beschrieben.
+</p>
+
+<img alt="Tor hidden service step five" src="$(IMGROOT)/THS-5.png" />
+# it should say "Bob connects to Alice's ..."
+
+<p>Im letzten Schritt informiert der Rendezvouspunkt den Clienten über
+den erfolgreichen Verbindungsaufbau. Danach können sowohl Client wie
+auch der versteckte Service ihre Verbindungsstrecken zum
+Rendezvouspunkt nutzen, um miteinander zu kommunizieren. Der
+Rendezvouspunkt leitet die Nachrichten vom Client zum Service und
+zurück weiter.
+</p>
+
+<p>Eine der Gründe, nicht eher aufgebaute Strecken zu nutzen, ist die
+Tatsache, dass kein einzelner Server verantwortlich für einen
+bestimmten versteckten Dienst sein soll. Darum lernt der
+Rendezvouspunkt nie die Identität des versteckten Dienstes kennen.
+</p>
+
+<p>Im Allgemeinen besteht die komplette Verbindung zwischen dem Client
+und dem versteckten Dienst aus sechs Tor-Servern. Drei wurden vom
+Client und drei vom versteckten Dienst gewählt.
+</p>
+
+<img alt="Tor hidden service step six" src="$(IMGROOT)/THS-6.png" />
+
+<p>Es gibt detailliertere Beschreibungen zu dem Protokoll als diese
+Seite. Schaue dir hierzu die
+<a
+href="<svnsandbox>doc/design-paper/tor-design.pdf">Designbeschreibung
+von Tor</a> und die
+<a
+href="<svnsandbox>doc/spec/rend-spec.txt">Rendezvous-Spezifikation</a>
+an. Dort findest du genauere Informationen.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
