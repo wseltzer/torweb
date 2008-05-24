@@ -1,8 +1,8 @@
 ## translation metadata
-# Based-On-Revision: 11511
+# Based-On-Revision: 14657
 # Last-Translator: ruben at ugr es
 
-#include "head.wmi" TITLE="anonimato online" CHARSET="UTF-8"
+#include "head.wmi" TITLE="Tor: anonimato online" CHARSET="UTF-8"
 
 <!-- SIDEBAR (OPTIONAL) -->
 <div class="sidebar">
@@ -25,57 +25,101 @@
 <h2>Tor: Anonimato online</h2>
 <hr />
 
-<p>
-Tor es un conjunto de herramientas para un amplio abanico de organizaciones
-y personas que quieren mejorar su seguridad en Internet. Usar Tor puede
-ayudarte haciendo anónima la navegación y publicación web, mensajería
-instantánea, IRC, SSH y demás aplicaciones que usan el protocolo TCP.
-Tor tambien proporciona una plataforma sobre la cual los desarrolladores
-de programas pueden construir nuevas aplicaciones que incorporen
-características de anonimato, seguridad y privacidad.
+<p>Tor es un proyecto software que le ayuda a defenderse contra el <a
+href="<page overview>">análisis de tráfico</a>, una forma de vigilancia
+de la red que amenaza la libertad personal y la privacidad, la confidencialidad 
+en los negocios y relaciones, y la seguridad
+del estado. Tor le protege transmitiendo sus comunicaciones a través
+de una red distribuída de repetidores llevados por voluntarios de todo el
+mundo: evita que alguien que observa su conexión a Internet aprenda qué
+sitios visita, y evita que los sitios que visita aprendan su posición física.
+Tor funciona con muchas de sus aplicaciones existentes, incluyendo navegadores
+web, clientes de mensajería instantánea, acceso remoto, y otras aplicaciones
+basadas en el protocolo TCP.
+</p>
+<p> Cientos de miles de personas de todo el mundo usan Tor para una gran
+variedad de razones: periodistas y bloggers, trabajadores por los derechos 
+humanos, fuerzas del orden, soldados, corporaciones, ciudadanos de regímenes
+represivos, y ciudadanos ordinarios. Vea la página <a href="<page torusers>">¿Quién 
+usa Tor?</a> para ejemplos de usuarios Tor típicos.
+Vea la <a href="<page overview>">página de perspectiva</a> para una explicación
+más detallada de lo que hace Tor, por qué esta diversidad de usuarios es importante,
+y cómo funciona Tor.
 </p>
 
 <p>
-Tor tiene el propósito de servir de defensa contra el <a href="<page overview>">análisis de tráfico</a>,
-una forma de vigilancia que amenaza el anonimato y la privacidad personal,
-la confidencialidad en los negocios y la seguridad del estado.
-Las comunicaciones se transmiten a lo largo de una red distribuida
-de servidores llamados enrutadores cebolla, <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#WhatProtections">protegiéndote</a>
-de sitios web que crean perfiles con tus intereses, espían tus datos o
-aprenden qué sitios visitas.
+Hay tres apartados en la letra pequeña de los que debe saber.
 </p>
+<ol>
+<li>Tor no le protege si no lo usa correctamente.
+Lea <a href="<page download>#Warning">nuestra lista de advertencias</a> y 
+asegúrese de seguir las 
+<a href="<page documentation>#RunningTor">instrucciones para su plataforma</a>
+con cuidado.</li>
+<li> Aunque configure y use Tor correctamente, hay también 
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RemainingAttacks">
+ataques potenciales que podrían comprometer la capacidad de Tor para 
+protegerle</a>.</li>
+<li>Ningún sistema de anonimato es perfecto hoy en día, y Tor no es la
+excepción: no debería confiar sólamente en la red Tor actual si realmente
+necesita un gran anonimato.</li>
+</ol>
 
 <p>
 La seguridad de Tor se ve mejorada a medida que crece su base de
-usuarios y aumenta el número de voluntarios que ejecuta servidores.
-Por favor considera <a href="<page volunteer>">colaborar con tu tiempo</a> o
-con <a href="<page docs/tor-doc-server>">tu ancho de banda</a>.
-Ten presente que se trata de código en desarrollo por lo que, si
-realmente necesitas un anonimato fuerte, no es
-una buena idea basarse sólamente en la actual red Tor.
+usuarios y aumenta el número de voluntarios que 
+<a href="<page docs/tor-doc-relay>">ejecuta repetidores</a>.
+(No es tan difícil de configurar como podría pensar, y puede
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">
+mejorar de forma significativa su propia seguridad contra algunos ataques</a>.)
+Si ejecutar un repetidor no es lo suyo, necesitamos
+<a href="<page volunteer>">ayuda con muchos otros aspectos del proyecto</a>,
+y necesitamos fondos para<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Funding">continuar
+haciendo la red Tor más rápida y fácil de usar manteniendo una buena seguridad</a>.
+<a href="<page donate>">Por favor done.</a>
 </p>
 
 <a id="News"></a>
 <h2><a class="anchor" href="#News">Noticias:</a></h2>
 <ul>
-<li>Sep 2007: Si ha recibido email diciendo ser de Tor, no era nuestro.
-Los <a href="<page download>">paquetes Tor oficiales</a> pueden ser
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">verificados
-como auténticos</a>.</li>
-<li>Ago 2007: <strong>¡Por favor actualice su software Tor!</strong>  Las
-últimas versiones (estable: 0.1.2.17; desarrollo: 0.2.0.6-alpha)
-arreglan una vulnerabilidad de seguridad importante. Vea el <a
- href="http://archives.seul.org/or/announce/Aug-2007/msg00000.html">anuncio de
-la versión</a> para más información.</li>
+
+<li>13 de Mayo de 2008: <a href="http://archives.seul.org/or/talk/May-2008/msg00048.html">Tor 0.2.0.26-rc</a>
+cambia varias claves de autoridad de directorio V3 afectadas por un <a
+href="http://lists.debian.org/debian-security-announce/2008/msg00152.html">fallo de 
+OpenSSL en Debian</a> reciente.  <strong>Esta es una versión crítica de seguridad.</strong>
+Todo el mundo que ejecute una versión de la serie 0.2.0.x debería actualizarse, 
+tanto si usan Debian como si no. También, todos los servidores que ejecuten una
+versión de Tor cuyas claves fueron generadas por Debian, Ubuntu, o cualquier
+otra distribución derivada puede que tengan que reemplazar sus claves de identidad.
+Vea nuestro <a href="http://archives.seul.org/or/announce/May-2008/msg00000.html">aviso 
+de seguridad</a> o el <a
+href="https://blog.torproject.org/blog/debian-openssl-flaw%3A-what-does-it-mean-tor-clients%3F">comentario
+en el blog</a> para todos los detalles. Como siempre, puede encontrar Tor 0.2.0.26-rc en 
+la <a href="https://www.torproject.org/download#Dev">página de descargas</a>.</li>
+
+<li>Marzo de 2008: <a
+href="https://blog.torproject.org/blog/tor-project-google-summer-code-2008!">¡El Proyecto Tor
+está en el Google Summer of Code 2008!</a></li>
+
+<li>Enero de 2008: <a href="<page download>">Tor 0.1.2.19</a> (la última
+versión estable) arregla una enorme fuga de memoria en repetidores de salida, 
+hace que la política de salida por defecto sea un poco más conservadora para que
+sea más seguro tener un repetidor de salida en un sistema en la casa, y arregla
+varias cosas menores. Por favor actualícese. Todas las <a
+href="http://archives.seul.org/or/announce/Jan-2008/msg00000.html">notas de la 
+versión</a> están disponibles.</li>
+
 
 <li><b>Estamos buscando activamente financiación y nuevos patrocinadores.</b>
 Si su organización tiene interés en mantener rápida y útil la red Tor, por favor
-<a href="<page contact>">contacte con nosotros</a>. Los patrocinadores de Tor
+<a href="<page contact>">contacte con nosotros</a>. <a href="<page sponsors>">Los patrocinadores de Tor</a>
 tendrán atención personalizada, mejor soporte, publicidad (si la desean) e influirán
-en la dirección de nuestra investigación y desarrollo.</li>
+en la dirección de nuestra investigación y desarrollo.
+<a href="<page donate>">Por favor done.</a>
+</li>
 </ul>
-
+<p><a href="<page news>">Más noticias</a></p>
   </div><!-- #main -->
 
 #include <foot.wmi>
