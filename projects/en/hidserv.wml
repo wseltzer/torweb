@@ -1,0 +1,187 @@
+## translation metadata
+# Revision: $Revision: 14486 $
+# Translation-Priority: 3-low
+
+#include "head.wmi" TITLE="NLnet Project: Speed Up Tor Hidden Services"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>NLnet Project: Speed Up Tor Hidden Services</h2>
+<hr />
+
+<p>
+Tor Hidden Services allow users to set up anonymous information services,
+like websites, that can only be accessed through the Tor network and are
+protected against identification of the host that runs the services.
+The most critical limitation of Tor Hidden Services is the time it takes
+until a Hidden Service is registered in the network and the latency of
+contact establishment when accessed by a user.
+Due to design issues in the original Tor protocol,
+the connection to a new Hidden Service can take several minutes, which
+leads most users to give up before the connection has been established.
+Using Tor Hidden Services for direct interactive user-to-user
+communication (e.g. messaging) is nearly impossible due to the high latency
+of Hidden Service circuit setup.
+</p>
+
+<p>
+This project aims at speeding up Tor Hidden Services by improving the way
+Tor circuits are set up between the user and the Hidden Service as well as
+the way a Hidden Service is registered in the Tor network.
+In a first step precise diagnostics of the behavior of the Hidden Services
+in lab setups and real world situations will be conducted to find the
+root causes of the bad timing effects.
+Based on these diagnostics, optimization strategies will be designed and
+verified for unwanted implications for the security and anonymity of the
+Tor network.
+The most promising optimizations will then be implemented to achieve a
+notable improvement for the users. Precise success metrics will be
+developed in the diagnostics phase, after it becomes clear where the time
+is lost and what improvements are realistic.
+The ultimate goal is to have the Hidden Services protocol change production
+ready and propagated to the Tor users within a timeframe of less than
+12 months.
+</p>
+
+<p>
+This project is generously funded by the
+<a href="http://www.nlnet.nl/news/2008/20080514-awards.html">NLnet foundation</a>.
+</p>
+
+<a id="Timetable"></a>
+<h2><a class="anchor" href="#Timetable">Timetable</a></h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<!-- <thead>
+<tr bgcolor="#e5e5e5">
+<th>Deliverable</th>
+<th>Due Date</th>
+</tr>
+</thead> -->
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Deliverable A:</b> Analysis, measurements and problem
+    clarification<br />
+    <small><em>As Tor Hidden Services have not been actively developed
+    further in the last year or so of Tor development, certain aspects of
+    the problems are under-diagnosed. To identify the precise sources of
+    latency and time loss, an extensive analysis of the deeper reasons for
+    them needs to be conducted. Deliverable A will require about one month
+    of work. The results of the analysis will influence the design
+    decisions to be taken in Deliverable B.</em></small>
+  </td>
+  <td>
+    June 15, 2008
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Deliverable B:</b> Design and evaluation of the necessary
+    changes<br />
+    <small><em>The changes to Tor Hidden Services will affect core
+    functionality of the protocol and therefore require a careful
+    evaluation of possible repercussions for the security and anonymity. A
+    two-month period is planned for the design and evaluation phase, which
+    concludes with an extensive peer review.</em></small>
+  </td>
+  <td>
+    August 15, 2008
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Deliverable C:</b> Implementation<br />
+    <small><em>After design, evaluation and peer review the modifications
+    need to be implemented and integrated with the current Tor code base.
+    The actual implementation of the necessary changes will take
+    approximately two months.</em></small>
+  </td>
+  <td>
+    October 15, 2008
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Deliverable D:</b> Implementation and test of the change up to
+    release state<br />
+    <small><em>The modification is highly critical to the security and
+    anonymity of the Tor network, it requires extensive testing and
+    debugging in laboratory and real life conditions. A period of three
+    months is projected for testing and debugging, where the responsible
+    developer is committed to the testing effort with 1/3 of its time. Part
+    of the testing phase will be a public beta period.</em></small>
+  </td>
+  <td>
+    January 15, 2009
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Deliverable E:</b> Rollout<br />
+    <small><em>The actual rollout to the Tor server network will be
+    conducted in sync with the regular Tor release schedule. As this
+    schedule is dependent on a number of external factors, like the
+    completion of other software projects that should go into the same
+    release, the actual release time and the time until this release has
+    been accepted and installed by most Tor server operators can vary. From
+    experience a period of three to four months can be
+    expected.</em></small>
+  </td>
+  <td>
+    May 15, 2009
+  </td>
+</tr>
+</table>
+
+<br />
+
+<a id="Reports"></a>
+<h2><a class="anchor" href="#Reports">Monthly Status Reports</a></h2>
+<p>
+There will be in total eight monthly status reports beginning with the
+first deliverable on June 15, 2008 and ending with completion of
+implementation and testing work on January 15, 2009.
+</p>
+
+<!-- Where do we put status reports? The idea here is to create separate pages.
+<ul>
+<li><a href="<page projects/hidserv-2008-06>">June 2008 monthly status
+report</a></li>
+</ul>
+-->
+
+<!-- Do we want a people section? If so, would it make sense to write what
+these people will be doing? And---what exactly are these people going to
+do? :)
+<a id="People"></a>
+<h2><a class="anchor" href="#People">People</a></h2>
+<ul>
+<li><a href="<page people>#Core">Karsten Loesing</a></li>
+<li><a href="<page people>#Core">Steven Murdoch</a></li>
+</ul>
+-->
+
+<a id="Links"></a>
+<h2><a class="anchor" href="#Links">Links</a></h2>
+<ul>
+<li>Research paper on <b>Performance Measurements and Statistics of Tor
+Hidden Services</b>
+(<a href="http://www.uni-bamberg.de/fileadmin/uni/fakultaeten/wiai_lehrstuehle/praktische_informatik/Dateien/Publikationen/loesing2008performance.pdf">PDF</a>)
+by Karsten Loesing, Werner Sandmann, Christian Wilms, and Guido Wirtz. In
+the Proceedings of the 2008 International Symposium on Applications and the
+Internet (SAINT), Turku, Finland, July 2008.
+
+<!-- In the future, put links to proposal, preliminary results, etc. here -->
+
+</ul>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
+
