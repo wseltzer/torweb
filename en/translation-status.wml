@@ -17,10 +17,11 @@
 <hr />
 
 <:
-sub do_status($$) {
-	my ($dir, $may_miss_dir) = @_;
-
+sub do_status(\%$$) {
+	my $dir = $_[1];
+	my $may_miss_dir = $_[2];
 	my %files;
+
 	my @warnings;
 	for my $lang (@LANGUAGES) {
 		opendir(DIR, "$dir/$lang") or
@@ -50,22 +51,12 @@ sub do_status($$) {
 
 	my $HTMLBASE = (defined $ENV{'HTMLBASE'} ? $ENV{'HTMLBASE'} : 'https://www.torproject.org/') . ($dir eq '.' ? '' : $dir.'/');
 
-
-	print "<a id=\"$dir\"></a>\n";
-	print "<h1><a class=\"anchor\" href=\"#$dir\">$dir</a></h1>\n";
-
 	for my $priority (@priorities) {
-		print "<h2>Translation priority: $priority</h2>\n";
-		print "<table border=1>\n";
-		print "<tr>\n";
-		print "<th>File</th>\n";
-		printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for ('en', grep { $_ ne 'en' } @LANGUAGES);
-		print "</tr>\n";
-
 		for my $file (sort {$a cmp $b} keys %{$files{'en'}}) {
 			my $file_priority = $files{'en'}->{$file}->{'all'}->{'Translation-Priority'};
 			next if (defined $file_priority && $priority ne $file_priority);
 			next if (!defined $file_priority && $priority ne 'none');
+			my $path = ($dir eq '.' ? '' : $dir.'/') . $file;
 
 			my $obs = file_is_obsolete($dir, 'en', $file);
 			my $validatorlink = '';
@@ -73,22 +64,27 @@ sub do_status($$) {
 			if ($htmlfile =~ s/\.wml/.html/) {
 				$validatorlink = sprintf '<br><a href="http://validator.w3.org/check?uri=%s%s.en">validator</a>',
 					$HTMLBASE, $htmlfile;
-			}
-			print "<tr>";
-			printf "<th>%s</th>", $file;
-			printf '<td%s>Revision %s%s<br>
+			};
+
+			${$_[0]}{$priority}->{$path}->{'data'} = sprintf '<th>%s</th>
+				<td%s>Revision %s%s<br>
 				<a href="https://svn.torproject.org/cgi-bin/viewcvs.cgi/website/trunk/%sen/%s?root=Tor&amp;view=markup">HEAD</a>
 				%s',
+				$path,
 				($obs ? ' bgcolor="#D3D3D3"' : ''),
 				$files{'en'}->{$file}->{'rev'},
 				($obs ? ' (obsolete)' :''),
 				($dir eq '.' ? '' : $dir.'/'),
 				$file,
 				$validatorlink;
+
+			${$_[0]}{$priority}->{$path}->{'urgency'} = 0;
+
 			for my $lang (@LANGUAGES) {
 				next if $lang eq 'en';
 				my $color;
 				my $status;
+				#my $path = ($dir eq '.' ? '' : $dir.'/') . $file;
 				if ($validatorlink) {
 					$validatorlink = sprintf '<br><a href="http://validator.w3.org/check?uri=%s%s.%s">validator</a>',
 						$HTMLBASE, $htmlfile, $lang;
@@ -96,6 +92,7 @@ sub do_status($$) {
 				if (exists $files{$lang}->{$file}) {
 					my $all_info = '';
 					for my $key (sort {$a cmp $b} keys %{$files{$lang}->{$file}->{'all'}}) {
+						next if $key eq 'Translation-Priority';
 						$all_info .= sprintf "%s: %s<br>", $key, $files{$lang}->{$file}->{'all'}->{$key};
 					};
 
@@ -114,8 +111,11 @@ sub do_status($$) {
 							$difflink='';
 							$color='#FFA500';
 						};
+
+						${$_[0]}{$priority}->{$path}->{'urgency'} += 1;
 					};
-					printf '<td bgcolor="%s">%s<br>
+
+					${$_[0]}{$priority}->{$path}->{'data'} .= sprintf '<td bgcolor="%s">%s<br>
 						<a href="https://svn.torproject.org/cgi-bin/viewcvs.cgi/website/trunk/%s%s/%s?root=Tor&amp;view=markup">HEAD</a><br>
 						%s
 						%s
@@ -128,16 +128,17 @@ sub do_status($$) {
 						$difflink,
 						$validatorlink;
 				} else {
+					#my $path = ($dir eq '.' ? '' : $dir.'/') . $file;
 					$color=(($obs or $priority eq 'none') ?
 						'#90EE90' : 'red');
 					$status='missing';
-					printf '<td bgcolor="%s">%s</td>', $color, $status;
+
+					${$_[0]}{$priority}->{$path}->{'data'} .= sprintf '<td bgcolor="%s">%s</td>', $color, $status;
+					${$_[0]}{$priority}->{$path}->{'urgency'} += ($obs or $priority eq 'none') ? 0 : 2;
 				};
 				delete $files{$lang}->{$file};
 			};
-			print "</tr>\n\n";
 		};
-		print "</table>\n\n\n";
 	};
 
 	for my $lang (@LANGUAGES) {
@@ -167,11 +168,38 @@ sub do_status($$) {
 	};
 };
 
-do_status('.', 0);
-do_status('docs', 1);
-do_status('torbrowser', 1);
-#do_status('eff', 1);
-#do_status('gui', 1);
+sub sort_and_print(\%) {
+	my %rows = %{$_[0]};
+
+	for my $priority (sort {$a cmp $b} keys %rows) {
+		print "<h2>Translation priority: $priority</h2>\n";
+
+		print "<table border=1>\n";
+		print "<tr>\n";
+		print "<th>File</th>\n";
+		printf("<th>%s (%s)</th>\n", $_, $LANGUAGES{$_}) for ('en', grep { $_ ne 'en' } @LANGUAGES);
+		print "</tr>\n";
+
+		for my $row (sort {$rows{$priority}->{$b}->{'urgency'} <=> $rows{$priority}->{$a}->{'urgency'}} keys %{$rows{$priority}}) {
+			print "<tr>";
+			print $rows{$priority}->{$row}->{'data'};
+			delete ${$_[0]}{$priority}->{$row};
+			print "</tr>\n\n";
+		};
+
+		print "</table><br>\n\n\n";
+	};
+};
+
+# accumulate the table rows, then sort and print them
+my %table_rows;
+do_status(%table_rows, '.', 0);
+do_status(%table_rows, 'docs', 1);
+do_status(%table_rows, 'torbrowser', 1);
+#do_status(%table_data, 'eff', 1);
+#do_status(%table_data, 'gui', 1);
+sort_and_print(%table_rows);
+
 
 :>
 
