@@ -4,9 +4,6 @@
 
 #include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
 
-# Please don't translate this page quite yet. It's still undergoing
-# revision. -RD
-
 <div class="main-column">
 
 <a id="BridgeIntroduction"></a>
@@ -14,53 +11,53 @@
 <hr />
 
 <p>
-Bridge relays (or "bridges" for short) are Tor relays that aren't listed in 
-the main Tor directory. Since there is no complete public list of them, even if 
-your ISP is filtering connections to all the known Tor relays, they probably 
-won't be able to block all the bridges. If you suspect your access to the 
+Bridge relays (or "bridges" for short) are Tor relays that aren't listed in
+the main Tor directory. Since there is no complete public list of them, even if
+your ISP is filtering connections to all the known Tor relays, they probably
+won't be able to block all the bridges. If you suspect your access to the
 Tor network is being blocked, you may want to use the bridge feature of Tor.
 </p>
 
 <p>
-The addition of bridges to Tor is a step forward in the blocking resistance 
-race. It is perfectly possible that you do not require a bridge to use Tor.
-Please try to use Tor first and if you have issues using the Tor network, 
-it is possible that you're in need of a bridge to circumvent filtering. 
-It is also possible that Tor is non-functional for other reasons.
-Even for experts it can be difficult to understand why the Tor network is hard 
-to reach.
-It's important to read 
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">
-the FAQ about problems with running Tor properly</a> when you have issues. 
-If you feel that the issue is clearly blocking, or you'd simply like to try 
-because you're unsure or feeling adventurous, please read on. Ensure that 
-you're using the <a href="<page download>">latest 0.2.0.x bundle for 
-your platform</a>.
+The addition of bridges to Tor is a step forward in the blocking
+resistance race. It is perfectly possible that even if your ISP filters
+the Internet, you do not require a bridge to use Tor. Many filtering
+programs look for unencrypted Tor directory requests to recognize that
+you're using Tor, but Tor version 0.2.0.23-rc and later use encrypted
+directory queries by default. This change means that most filtering
+programs are now unable to recognize Tor connections. So you should try
+to use Tor without bridges first, since it might work.
 </p>
 
 <p>
-Many filtering programs look for unencrypted Tor directory requests to decide 
-if you're using Tor. As of Tor version 0.2.0.23-rc, those filtering programs 
-probably don't work on Tor. We've changed how Tor learns about the network.
-These newer versions of Tor now use encrypted directory queries by default.
-These changes are only positive and have no new learning curves associated 
-with them. Tor simply works better now.
+Note that it's also possible that Tor is non-functional for other
+reasons. The latest version of <a href="<page torbrowser/index>">The
+Tor Browser Bundle</a> on Windows tries to give you better hints about
+why Tor is having problems connecting. You should also read <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">the
+FAQ about problems with running Tor properly</a> when you have issues.
+If you feel that the issue is clearly blocking, or you'd simply like to try
+because you're unsure or feeling adventurous, please read on. Ensure
+that you're using the <a href="<page download>#Dev">latest 0.2.0.x or
+0.2.1.x bundle for your platform</a>.
 </p>
 
 <p>
-To use a bridge, you'll need to locate one. Furthermore, you'll need to 
-configure Tor with whatever bridge address you intend to use. You'll do this 
+To use a bridge, you'll need to locate one. Furthermore, you'll need to
+configure Tor with whatever bridge address you intend to use. You'll do this
 with Vidalia, the Tor controller.
-In the event of your internet connection requiring the use of a proxy, you'll 
-probably need to configure Vidalia to do so first. If you don't think you need 
+If your Internet connection requires the use of a proxy, you'll probably
+need to configure Vidalia to do so first. If you don't think you need
 to configure a proxy for your internet connection, you probably don't.
 Give it a try and if you have issues, ask us for help.
 </p>
 
 <p>
-At the moment, you can get a bridge by visiting 
-<a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a> 
-with your web browser.
+At the moment, you can get a bridge by visiting
+<a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+with your web browser. If this page is filtered for you, and you
+don't have any other proxies or ways to reach it, there are <a
+href="#FindingMore">other ways to find bridges</a> too.
 </p>
 
 <a id="Understanding"></a>
@@ -68,49 +65,60 @@ with your web browser.
 <hr />
 
 <p>
-As an example exercise, you'll get a bridge entry that looks like the 
-following:<br>
+As an example, you'll get a bridge entry that looks like the
+following:<br />
 <pre>
 bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
 </pre>
 </p>
 
 <p>
-Understanding the above example isn't strictly required but may prove useful. 
-You can skip this section if you'd like.
-The first element is the name: <tt>'bridge'</tt>.<br>
-The second element is the IP address: <tt>'141.201.27.48'</tt><br>
-The third element is the port: <tt>'443'</tt><br>
-The fourth element is the fingerprint: 
-<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br>
+Understanding the components of a bridge line isn't strictly required
+but may prove useful. You can skip this section if you'd like.<br />
+The first element is the IP address: <tt>'141.201.27.48'</tt><br />
+The second element is the port: <tt>'443'</tt><br />
+The third element, the fingerprint, is optional:
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br />
 </p>
 
 <a id="UsingBridges"></a>
-<h3><a class="anchor" href="#UsingBridges">Using bridges with Tor and Vidalia</a></h3>
+<h2><a class="anchor" href="#UsingBridges">Using bridges with Tor and
+Vidalia</a></h2>
 <hr />
 
 <p>
-To use the example bridge address above, go to Vidalia's Network settings 
-page, and click "My ISP blocks connections to the Tor network". You'll want 
-to add as many bridge addresses as you know about. Regardless of how many 
-bridges you intend to use, the process for use is the same. Add each bridge 
-address one at a time in the Vidalia Network settings page. One bridge should 
-be enough for general use. However, in the event of using a single bridge, 
-one bridge failing will cause loss of access to the Tor network. Adding 
-additional bridges will increase reliability. This is pictured below:<br><br>
+To use the example bridge address above, go to Vidalia's Network settings
+page, and click "My ISP blocks connections to the Tor network".  Add each
+bridge address one at a time in the Vidalia Network settings page,
+by pasting it into the "Add a Bridge" window and then clicking the "+"
+sign. Adding a bridge is pictured below:
+</p>
+
+# XXX Todo: This image would work better if it had a bridge line in the
+# 'add a bridge' window, and had a cursor hovering over the + sign. -RD
+<br /><br />
 <img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalia's Network settings page" />
-<br><br>
+<br /><br />
+</p>
+
+<p>
+You'll want to add as many bridge addresses as you know about, since
+additional bridges will increase reliability. One bridge should be enough
+to reach the Tor network, but if you only have one bridge and it goes
+down, you will be cut off from the Tor network.
 </p>
 
 <a id="FindingMore"></a>
-<h4><a class="anchor" href="#FindingMore">Finding more bridges for Tor</a></h4>
+<h2><a class="anchor" href="#FindingMore">Finding more bridges for Tor</a></h2>
 <hr />
 
 <p>
-Another way to find public bridge addresses is to send mail to 
-bridges@torproject.org with the line "get bridges" by itself in the body of the 
-mail. However, so we can make it harder for an attacker to learn lots of bridge 
-addresses, you must send this request from a gmail or yahoo account. Almost instantly, you'll receive a reply that looks like the following:
+Another way to find public bridge addresses is to send mail to
+bridges@torproject.org with the line "get bridges" by itself in the
+body of the mail. You'll need to send this request from a gmail or yahoo
+account, though &mdash; otherwise we make it too easy for an attacker
+to make a lot of email addresses and learn about all the bridges.
+Almost instantly, you'll receive a reply that starts with the following:
 </p>
 <p>
 <pre>
@@ -122,27 +130,12 @@ Here are your bridge relays:
  bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
  bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
 
-
-Bridge relays (or "bridges" for short) are Tor relays that aren't listed
-in the main directory. Since there is no complete public list of them,
-even if your ISP is filtering connections to all the known Tor relays,
-they probably won't be able to block all the bridges.
-
-To use the above lines, go to Vidalia's Network settings page, and click
-"My ISP blocks connections to the Tor network". Then add each bridge
-address one at a time.
-
-Configuring more than one bridge address will make your Tor connection
-more stable, in case some of the bridges become unreachable.
-
-Another way to find public bridge addresses is to visit
-https://bridges.torproject.org/. The answers you get from that page
-will change every few days, so check back periodically if you need more
-bridge addresses.
 </pre>
 </p>
 <p>
-Once you've recived the email with bridge information, you can continue the Vidalia configuration steps outlined above.
+Once you've received the email with bridge information,
+you can continue the Vidalia configuration steps outlined <a
+href="#UsingBridges">above</a>.
 </p>
 
   </div><!-- #main -->
