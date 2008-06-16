@@ -150,7 +150,7 @@ implementation and testing work on February 15, 2009.
   <td>
     <small><em>We did some initial measuring of Tor clients
     bootstrapping. The results are not very surprising: a client
-    fetches about 10k of certs, one consensus for 140k (now 90k, see
+    fetches about 10KB of certs, one consensus for 140KB (now 90KB, see
     next paragraph), and about 1.5 megs of Server Descriptors (after
     half of which it starts building circuits).</small></em>
     <br />
@@ -158,8 +158,8 @@ implementation and testing work on February 15, 2009.
     138</a> shrinks consensus documents by 30% to
     40% and has already been implemented and merged into the spec.
     Implementation is part of the 0.2.1.x-alpha tree and the code will
-    take effect used once two-thirds of the authorities have
-    upgraded.</small></em>
+    take effect used once over two-thirds of the directory authorities
+    (i.e. 5 out of 6) have upgraded.</small></em>
     <br />
     <small><em><a href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/140-consensus-diffs.txt">Proposal
     140</a> does not directly relate to reducing initial download size,
@@ -174,12 +174,12 @@ implementation and testing work on February 15, 2009.
     of server descriptors. <a href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/141-jit-sd-downloads.txt">Proposal
     141</a> has been <a
     href="http://archives.seul.org/or/dev/Jun-2008/msg00017.html">sent
-    to the or-dev list</a>. There are basically 3 things to it, as
+    to or-dev</a>. There are basically 3 things to it, as
     far as I can see at the moment: move load balancing info into the
     consensus (should not be hard), implement something so that Tor
     clients can fetch SDs on demand from routers along their circuit
     while they are buliding it (described in the draft), and deal with
-    exit selection. We're developing ideas for the last part, although
+    exit selection. We're still developing ideas for the last part;
     some possibilities are mentioned in the draft.</small></em>
   </td>
 </tr>
