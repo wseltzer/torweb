@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 13768
+# Based-On-Revision: 15353
 # Translation-Priority: 1-high
 # Last-Translator: bogdandr_at_op . pl
 
@@ -23,23 +23,23 @@ z mostków Tora.
 <p>
 Dodanie mostków do Tora jest krokiem naprzód w opieraniu się blokowaniu.
 Jest całkiem możliwe, że nie musisz mieć mostka, by używać Tora. Spróbuj najpierw
-poużywać Tora, a jeśli masz kłopoty z używaniem sieci Tora, to możliwe, że
-potrzebujesz mostka, by obejść blokadę. Jest też możliwe, że Tor nie działa z
-innych powodów. Zrozumienie, czemu sieć Tora jest niedostępna może być trudne nawet
-dla ekspertów. Jeśli masz problemy z Torem, ważne jest przeczytanie
+poużywać Tora, a jeśli masz kłopoty, to możliwe, że potrzebujesz mostka, by obejść blokadę.
+Wiele programów filtrujących szuka nieszyfrowanych żądań pobrania katalogu Tora, by
+poznać, że używasz Tora, ale od wersji 0.2.0.23-rc Tor wysyła szyfrowane zapytania
+do katalogu. Ta zmiana oznacza, że wiele programów filtrujących nie potrafi rozpoznać
+połączenia Tora. Powinieneś/aś więc najpierw spróbować użyć Tora bez mostków, gdyż
+jest możliwe, że będzie działał.
+</p>
+<p>
+Jest też możliwe, że Tor nie działa z innych powodów. Najnowsza wersja
+<a href="<page torbrowser/index>">Paczki Tora z przeglądarką</a> pod Windows próbuje
+podać Ci lepsze wskazówki czemu Tor może mieć problem z połączeniem. Przeczytaj też
 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork"
->najczęściej zadawanych pytań o problemach z prawidłowym działaniem Tora</a>.
+>najczęściej zadawane pytania o problemach z prawidłowym działaniem Tora</a>, jeśli
+masz problemy.
 Jeśli Twoim zdaniem problem polega na blokowaniu lub po prostu chcesz spróbować,
 bo czujesz się niepewnie lub jesteś żądny przygód, czytaj dalej. Upewnij się, że
-masz <a href="<page download>">najnowszą wersję 0.2.0.x na swój system</a>.
-</p>
-
-<p>
-Wiele programów filtrujących szuka żądań kierowanych do serwerów katalogowych Tora,
-by stwierdzić, czy używasz Tora. Począwszy od wersji 0.2.0.22-rc te programy
-prawdopodobnie już nie działają na Tora. Zmieniliśmy sposób, w jaki Tor poznaje
-sieć. Te zmiany są tylko na lepsze i nie wprowadzają nowych trudności do nauki
-obsługi. Tor po prostu lepiej teraz działa.
+masz <a href="<page download>">najnowszą wersję 0.2.0.x lub 0.2.1.x na swój system</a>.
 </p>
 
 <p>
@@ -54,7 +54,9 @@ połączenia, to pewnie nie musisz. Spróbuj, a w razie problemów poproś nas o
 <p>
 W chwili obecnej, możesz dostać mostek, odwiedzając
 <a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
-swoją przeglądarką.
+swoją przeglądarką. Jeśli ta strona jest filtrowana i nie masz żadnych innych serwerów
+proxy, by się do niej dostać, są <a href="#FindingMore">inne sposoby na
+znalezienie mostka</a>.
 </p>
 
 <a id="Understanding"></a>
@@ -71,10 +73,9 @@ bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
 <p>
 Zrozumienie powyższego przykładu nie jest wymagane, ale może się przydać.
 Możesz pominąć tę sekcję, jeśli chcesz.
-Pierwszym elementem jest nazwa: <tt>'bridge'</tt>.<br>
-Drugim elementem jest adres IP: <tt>'141.201.27.48'</tt><br>
-Trzeci element to port: <tt>'443'</tt><br>
-Czwarty element to odcisk palca:
+Pierwszym elementem jest adres IP: <tt>'141.201.27.48'</tt><br>
+Drugi element to port: <tt>'443'</tt><br>
+Trzeci, opcjonalny element to odcisk palca:
 <tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br>
 </p>
 
@@ -85,14 +86,20 @@ Czwarty element to odcisk palca:
 <p>
 By skorzystać z powyższego przykładowego adresu mostka, wejdź do ustawień sieciowych
 programu Vidalia i kliknij "Mój dostawca blokuje połączenia do sieci Tor"
-("My ISP blocks connections to the Tor network"). Powinieneś dodać tyle adresów
-mostków, ile znasz. Niezależnie od tego, z ilu mostków masz zamiar korzystać,
-proces jest taki sam. Dodawaj adresy jeden po drugim na stronie ustawień sieciowych
-Vidalii. Do ogólnego użytku wystarczy jeden mostek. Jednak w takim przypadku
-zerwanie połączenia oznacza odcięcie od sieci Tora. Dodanie dodatkowych mostków
-zwiększy niezawodność. To wszystko ujęte jest na obrazku:<br><br>
+("My ISP blocks connections to the Tor network").
+Dodawaj adresy mostków jeden po drugim na stronie ustawień sieciowych
+Vidalii, wklejając je do okienka "Dodaj mostek" ("Add a Bridge") i klikając znak "+".
+Wszystko to ujęte jest na obrazku:
+</p>
+<br /><br />
 <img src="$(IMGROOT)/vidalia-bridges.png" alt="Strona Ustawień sieciowych Vidalii" />
-<br><br>
+<br /><br />
+</p>
+
+<p>
+Powinieneś dodać tyle adresów mostków, ile znasz, gdyż zwiększy to niezawodność.
+Do połączenia z siecią Tora wystarczy jeden mostek, ale po jego wyłączeniu
+tracisz połączenie z siecią.
 </p>
 
 <a id="FindingMore"></a>
@@ -102,42 +109,24 @@ zwiększy niezawodność. To wszystko ujęte jest na obrazku:<br><br>
 <p>
 Innym sposobem na znalezienie publicznych adresów mostków jest wysłanie listu
 e-mail na adres bridges@torproject.org o treści zawierającej tylko jedną linię
-mówiącą "get bridges". Jednak, by utrudnić napastnikom poznanie dużej liczby
-adresów mostków, musisz wysłać swój list z konta gmail lub yahoo.
-Prawie natychmiast otrzymasz odpowiedź wyglądającą tak:
+mówiącą "get bridges". Musisz jednak wysłać swój list z konta gmail lub yahoo
+&mdash; w innym przypadku zbyt łatwo byłoby napastnikom utworzyć wiele adresów e-mail
+i poznać wszystkie mostki.
+Prawie natychmiast otrzymasz odpowiedź zawierającą:
 </p>
 <p>
 <pre>
-[This is an automated message; please do not reply.]
-
 Here are your bridge relays:
 
  bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
  bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
  bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
 
-
-Bridge relays (or "bridges" for short) are Tor relays that aren't listed
-in the main directory. Since there is no complete public list of them,
-even if your ISP is filtering connections to all the known Tor relays,
-they probably won't be able to block all the bridges.
-
-To use the above lines, go to Vidalia's Network settings page, and click
-"My ISP blocks connections to the Tor network". Then add each bridge
-address one at a time.
-
-Configuring more than one bridge address will make your Tor connection
-more stable, in case some of the bridges become unreachable.
-
-Another way to find public bridge addresses is to visit
-https://bridges.torproject.org/. The answers you get from that page
-will change every few days, so check back periodically if you need more
-bridge addresses.
 </pre>
 </p>
 <p>
 Po otrzymaniu takiego listu z informacją o mostkach, możesz dalej konfigurować
-Vidalię według powyższych kroków.
+Vidalię według <a href="#UsingBridges">powyższych</a> kroków.
 </p>
 
   </div><!-- #main -->
