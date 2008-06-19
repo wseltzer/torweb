@@ -1,8 +1,8 @@
 ## translation metadata
-# Based-On-Revision: 13768
-# Last-Translator: fredzupy@gmail.com
+# Based-On-Revision: 14160
+# Last-Translator: mfr(ät]misericordia.be,fredzupy@gmail.com
 
-#include "head.wmi" CHARSET="UTF-8" TITLE="Tor : Instruction de configuration d'un relais"
+#include "head.wmi" CHARSET="UTF-8" TITLE="Tor : Instructions de configuration d'un relais"
 
 <div class="center">
 
@@ -13,11 +13,11 @@
 
 <p>
 Le réseau Tor repose sur des contributeurs qui offrent de leur bande passante. Plus
-il y'aura de gens à faire tourner un relais, plus le réseau sera rapide. Si vous avez
-au moins 20 kilo octets/s dans chaque sens, aidez Tor en le configurant 
+il y aura de gens à faire tourner un relais, plus le réseau sera rapide. Si vous avez
+au moins 20 kilo-octets/s dans chaque sens, aidez Tor en le configurant 
 comme relais. Nous avons plusieurs options qui rendent Tor facile 
 et agréable, par exemple la limitation de bande passante consommée, les contrôles sur ports de sortie 
-pour que vous puissiez limiter votre expositions aux plaintes, et le support des 
+pour que vous puissiez limiter votre exposition aux plaintes, et le support des 
 adresses dynamiques.</p>
 
 <p>Avoir des relais dans plein de lieux différents sur Internet c'est
@@ -40,8 +40,8 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hib
 </li>
 <li>Chaque relais Tor a <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">une politique 
-de sortie</a> qui spécifie quelles sortes de trafic sortant sont autorisées
-ou refusées depuis ce relais. Si vous êtes géné à l'idée de laisser des gens
+de sortie</a> qui spécifie quelle sortes de trafic sortant sont autorisées
+ou refusées depuis ce relais. Si vous êtes gêné à l'idée de laisser des gens
 sortir par votre connexion, vous pouvez paramétrer Tor pour qu'il ne se connecte 
 qu'à d'autres relais Tor.
 </li>
@@ -154,12 +154,12 @@ Si vous utilisez la version de développement de Tor, le manuel est disponible
 <br />
 
 <p>Dès que votre relais va tenter de se connecter au réseau, il va 
-essayer de déterminer si le port que vous avez configuré est atteignable de
+essayer de déterminer si le port que vous avez configuré est joignable de
 l'extérieur. Ceci peut prendre jusqu'à 20 minutes. Jetez un œil sur les
 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">traces
 </a> du genre
 <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
-Si vous ne voyez pas ce message, ça signifie que votre relais n'est pas atteignable
+Si vous ne voyez pas ce message, ça signifie que votre relais n'est pas joignable
 de l'extérieur &mdash; vous devriez revérifier vos pare-feux, vérifier qu'il
 teste l'adresse IP et le port que vous penser qu'il devrait tester, etc.
 </p>
@@ -226,8 +226,10 @@ ou restorer votre relais Tor</a> si quelque chose se passe mal.
 paramétrer votre nom d'hôte avec 'anonymous' or 'proxy' or 'tor-proxy', pour que les
 autres personnes voyant l'adresse dans les traces web puissent facilement comprendre
 ce qui se passe.
-</p>
-
+Ajouter une <a
+href="https://tor-svn.freehaven.net/svn/tor/trunk/contrib/tor-exit-notice.html">Note de Sortie Tor</a> sur un hôte virtuel du même nom peut simplement décourager l'envoi de plaintes à vous
+  et votre fournisseur d'accès Internet si vous utilisez un noeud de sortie.
+	 
 <p>
 13. Si votre ordinateur ne fait pas tourner un serveur web, envisagez de 
 changer l'option ORPort à 443 et votre DirPort à 80. Un certain nombre d'utilisateur
@@ -281,7 +283,7 @@ de lancer Tor.
 <p>
 17. Si vous installez Tor à partir d'une installation automatisée, il le lance probablement
 automatiquement pour vous au démarrage du système. Mais si vous l'installez par les sources,
-vous trouverez surement les scripts de demarrage situés dans contrib/tor.sh ou contrib/torctl utiles.
+vous trouverez surement les scripts de démarrage situés dans contrib/tor.sh ou contrib/torctl utiles.
 </p>
 
 <p>

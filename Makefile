@@ -6,7 +6,7 @@
 # 5. scp *.html.* arma@tor.eff.org:/www/tor.eff.org/docs/
 
 TORSVNSTABLE = ../tor-stable
-TORSVNHEAD = ../tor-head
+TORSVNHEAD = ../tor
 #TORSVNSTABLE = /home/arma/work/onion/tor-012x/tor/
 #TORSVNHEAD = /home/arma/work/onion/svn/trunk
 
