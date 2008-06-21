@@ -1,0 +1,78 @@
+#!/usr/bin/wml
+
+## translation metadata
+# Based-On-Revision:  14229
+# Last-Translator: mederic point ribreux chez gmail point com
+# Revision: $Revision: 14229 $
+# Translation-Priority: 3-low
+#include "head.wmi" CHARSET="UTF-8" TITLE="Tor: Protocole de Service Caché"
+
+<div class="main-column">
+
+<h2>Tor: Protocole de Service Caché</h2>
+<hr />
+
+<p>
+Un service caché doit afficher son existence dans le réseau Tor avant de des clients soient capables de le contacter. Par conséquent, le service récupère au hasard des relais, construit des circuits vers eux et leur demande d'agir comme des points d'introduction en leur donnant sa clef publique. Notez que dans le schéma suivant, les liens verts représentent des circuits plutot que des connexions directes. Cela rend impossible pour quiconque d'associer les points d'introduction avec l'adresse IP du serveur caché. C'est important du fait que bien que les points d'introduction et les autres disposent de l'identité (la clef publique) du service caché, ils ne doivent rien savoir de l'emplacement du serveur caché (Adresse IP).
+</p>
+
+<img alt="Tor hidden service step one" src="$(IMGROOT)/THS-1.png" />
+# maybe add a speech bubble containing "PK" to Bob, because that's what
+# Bob tells to his introduction points
+
+<p>
+Dans un second temps, le service caché créé un descripteur de service caché contenant les adresses des points d'introduction et sa clef publique et le signe avec sa clef privée. Il stocke ce descripteur sur un ensemble de serveurs de répertoires, encore une fois en utilisant un circuit qui cache le lien entre le serveur de répertoire et l'adresse IP du serveur caché. Le descripteur seraa trouvé par des clients qui recherchent XYZ.onion où XYZ est un nom de 16 caractères de long qui peut seulement etre dérivé de la clef publique du service. Bien que cela semble peu pratique d'utiliser un nom de service automatiquement généré, cela permet d'atteindre l'objectif suivant: Tout le monde &ndash; y compris les points d'introduction, les serveurs de répertoire et bien sur les clients &ndash; peuvent vérifier qu'ils communiquent avec le service caché. Une fois cette étape achevée, le service caché est démarré.
+</p>
+
+<img alt="Tor hidden service step two" src="$(IMGROOT)/THS-2.png" />
+# maybe replace "database" with "directory servers"; further: how incorrect
+# is it to *not* add DB to the Tor cloud, now that begin dir cells are in
+# use?
+
+<p>
+Un client qui voudrait contacter un service caché doit d'abord connaître sont adresse onion. Après cela, le client peut lancer une tentative de connexion en téléchargeant le descripteur des serveurs de répertoire. S'il y a un descripteur pour XYZ.onion (le service secret peut aussi bien etre arreté ou avoir disparu depuis longtemps ou bien il peuyt y avoir une erreur de frappe dans l'adresse onion), le client créé un circuit vers un autre relais au hasard et lui demande d'agir comme un point de rendez-vous en lui communiquant un secret partagé.
+</p>
+
+<img alt="Tor hidden service step three" src="$(IMGROOT)/THS-3.png" />
+# maybe add "cookie" to speech bubble, separated from the surrounded
+# "IP1-3" and "PK"
+
+<p>
+Une fois que le point de rendez-vous est créé, le client génère un message de bienvenue (chiffré avec la clef publique du service caché), incluant l'adresse du point de rendez-vous et le secret partagé. Le client envoie ce message à l'un des points d'introduction en lui demandant de le délivrer au service caché. Encore une fois, la communication a lieu dans un circuit de manière à ce que personne ne puisse faire le lien entre le message de bienvenue et l'adresse IP du client, assurant l'anonymat du client.
+</p>
+
+<img alt="Tor hidden service step four" src="$(IMGROOT)/THS-4.png" />
+
+<p>
+Le service caché déchiffre le message de bienvenue du client et y trouve l'adresse du point de rendez-vous ainsi que le secret partagé. Le service créé alors un circuit vers le point de rendez-vous et lui envoie le secret partagé dans un message rendez-vous.
+</p>
+
+<p>
+A ce moment, il est primordial que le service caché conserve le même ensemble de noeuds gardiens pour créer de nouveaux circuits. Autrement , un attaquant pourrait utiliser son propre relais et forcer le service caché à créer un nombre de circuits arbitraire dans l'espoir que le relais corrompu puisse être désigné comme un noeud d'entrée et récupérer l'adresse IP du serveur en faisant de l'analyse temporelle. Cette attage a été décrite par &Oslash;verlier et Syverson dans leur document intitulé Trouver des Serveurs Cachés.
+</p>
+
+<img alt="Tor hidden service step five" src="$(IMGROOT)/THS-5.png" />
+# it should say "Bob connects to Alice's ..."
+
+<p>
+Dans la dernière étape, le point de rendez-vous indique au client que la connexion a bien été mise en en place. Après cela, le client comme le service caché peuvent utiliser leurs circuits au point de rendez-vous pour communiquer l'un avec l'autre. Le point de rendez-vous relais simplement (chiffé d'un bout à l'autre) les messages du client vers le service et vice versa.
+</p>
+
+<p>
+Une des raisons pour ne pas réutiliser la connexion créé auparavant via le point d'introduction pour une communication réelle et que aucun relais unique ne doit apparaître comme responsable d'un service caché donné. C'est pourquoi le point de rendez-vous ne sait jamais rien à propos de l'identité du service caché.
+</p>
+
+<p>
+En général, la connexion complète entre le client et le service caché est constituée de 6 relais: 3 d'entre eux sont choisis par le client avec le troisième comme point de rendez-vous, les 3 autres étant affectés par le service caché.
+</p>
+
+<img alt="Tor hidden service step six" src="$(IMGROOT)/THS-6.png" />
+
+<p>
+Il existe davantage de documentations détaillées sur le protocole de service caché que celle-ci. Voir le <a href="<svnsandbox>doc/design-paper/tor-design.pdf">document de spécification de Tor</a> pour une description plus approfondie ainsi que la<a href="<svnsandbox>doc/spec/rend-spec.txt">spécification rendez-vous</a>pour le format de messages.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
