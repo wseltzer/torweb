@@ -13,12 +13,12 @@
 
 <p>
 Le réseau Tor repose sur des contributeurs qui offrent de leur bande passante. Plus
-il y aura de gens à faire tourner un relais, plus le réseau sera rapide. Si vous avez
+il y aura de personnes à faire tourner un relais, plus le réseau sera rapide. Si vous avez
 au moins 20 kilo-octets/s dans chaque sens, aidez Tor en le configurant 
-comme relais. Nous avons plusieurs options qui rendent Tor facile 
-et agréable, par exemple la limitation de bande passante consommée, les contrôles sur ports de sortie 
+comme relais. Nous avons plusieurs options qui rendent l'usage de Tor facile 
+et agréable, par exemple la limitation de bande passante consommée, le contrôle sur ports de sortie 
 pour que vous puissiez limiter votre exposition aux plaintes, et le support des 
-adresses dynamiques.</p>
+adresses IP dynamiques.</p>
 
 <p>Avoir des relais dans plein de lieux différents sur Internet c'est
 ce qui sécurise les utilisateurs. <a
@@ -33,20 +33,20 @@ ordinateur ou si elle est relayée d'un autre.</p>
 <li>Tor a des fonctions intégrées pour <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">la limitation
 de bande passante</a>. De plus, si vous avez une ligne rapide
-mais souhaitez limiter le nombre d'octets échangés par jour
-(ou semaine ou mois) que vous offrez, regardez la fonctionnalité d'<a
+mais souhaitez limiter le nombre d'octets échangés que vous offrez par jour
+( semaine ou mois) , regardez la fonctionnalité d'<a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
 </a>.
 </li>
 <li>Chaque relais Tor a <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">une politique 
-de sortie</a> qui spécifie quelle sortes de trafic sortant sont autorisées
+de sortie</a> qui spécifie quelles sortes de trafic sortantes sont autorisées
 ou refusées depuis ce relais. Si vous êtes gêné à l'idée de laisser des gens
 sortir par votre connexion, vous pouvez paramétrer Tor pour qu'il ne se connecte 
 qu'à d'autres relais Tor.
 </li>
 <li>Ce n'est pas grave que le relais soit coupé de temps en temps. Les annuaires
-le note rapidement et stoppent la propagation du relais. Assurez vous simplement 
+le notent rapidement et stoppent la propagation du relais. Assurez vous simplement 
 que ça n'arrive pas trop souvent, puisque les connexions en cours dans le 
 relais seront coupées.
 </li>
@@ -57,7 +57,7 @@ simplement à laisser l'option de configuration « Address » à vide, et Tor 
 publique (par exemple si l'IP est 192.168.x.y), vous aurez à paramétrer une 
 translation de port. La translation de port est dépendante du système mais cette <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">entrée 
-de la FAQ</a> offre quelques exemple sur comment le faire.
+de la FAQ</a> offre quelques exemples sur comment le faire.
 </li>
 <li>Votre relais va de manière passive estimer et propager sa capacité récente 
 en terme de bande passante, ainsi les relais à fort débit attireront davantage d'utilisateurs que
@@ -169,7 +169,7 @@ de relais » aux annuaires. Ceci permettra aux clients de connaitre
 quelle adresse, ports, clé, etc votre relais utilise. Vous pouvez <a
 href="http://moria.seul.org:9032/tor/status/authority">charger l'un des états 
 du réseau</a> et
-voir si vous trouvez dedans le nickname que vous avez configuré, pour être certain qu'il
+voir si vous trouvez dedans le nom que vous avez configuré, pour être certain qu'il
 est là. Vous aurez probablement à attendre quelques secondes pour avoir un 
 rafraichissement du répertoire.</p>
 
@@ -198,7 +198,7 @@ href="<page faq-abuse>#TypicalAbuses">les problèmes que vous seriez suceptible
 de rencontrer si vous utilisez la politique par défaut</a>.
 Si vous choisissez une politique de sortie particulièrement ouverte, assurez vous
 que votre fournisseur d'accès est d'accord avec ce choix.
-S'il y'a des ressources que votre ordinateur ne peux atteindre (par exemple,
+S'il y a des ressources que votre ordinateur ne peut atteindre (par exemple,
 vous êtes derrière un pare-feu restrictif ou un filtrage applicatif, prenez soin
 de les rejeter explicitement dans votre politique de sortie &mdash; sinon les utilisateurs de Tor
 seront également impactés.
@@ -206,10 +206,10 @@ seront également impactés.
 
 <p>
 10. Décidez de la limitation de débit. Le cable, les xDSL, et les utilisateurs
-qui ont une bande passante asymétrique (par exemple : plus de débit en téléchargement qu'en envoi) devraient
+qui ont une bande passante asymétrique (par exemple : plus de débit en téléchargement qu'en envoi) doivent
 limiter leur débit à la plus petite bande passante pour éviter les congestions. Voyez l'entrée <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">FAQ sur 
-la limitation de débit</a> pour plus de détails.
+la limitation du débit</a> pour plus de détails.
 </p>
 
 <p>
@@ -232,7 +232,7 @@ href="https://tor-svn.freehaven.net/svn/tor/trunk/contrib/tor-exit-notice.html">
 	 
 <p>
 13. Si votre ordinateur ne fait pas tourner un serveur web, envisagez de 
-changer l'option ORPort à 443 et votre DirPort à 80. Un certain nombre d'utilisateur
+changer l'option ORPort à 443 et votre DirPort à 80. Un certain nombre d'utilisateurs
  Tor sont cloitrés derrière des pare-feux qui ne leur permettent que d'aller sur le
 web, et ce changement leur permettra d'atteindre votre relais Tor. Les relais
 Windows peuvent simplement changer leurs options ORPort et DirPort directement
@@ -241,7 +241,7 @@ directement ces ports (puisqu'ils doivent être lancé en root), alors ils doive
 paramétrer une sorte de <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
 translation de port</a> pour que les connections puissent atteindre leur relais Tor. Si vos ports
-80 et 443 sont déjà utilisés mais que vous souhaitez quand même aider, d'autres sont interessant comme
+80 et 443 sont déjà utilisés mais que vous souhaitez quand même aider, d'autres sont interessants comme
 les ports 22, 110, et 143.
 </p>
 
@@ -283,7 +283,7 @@ de lancer Tor.
 <p>
 17. Si vous installez Tor à partir d'une installation automatisée, il le lance probablement
 automatiquement pour vous au démarrage du système. Mais si vous l'installez par les sources,
-vous trouverez surement les scripts de démarrage situés dans contrib/tor.sh ou contrib/torctl utiles.
+vous trouverez sûrement les scripts de démarrage situés dans contrib/tor.sh ou contrib/torctl utiles.
 </p>
 
 <p>
@@ -294,7 +294,7 @@ pour que nous puissions vous contacter en cas de mise à jour ou si quelque chos
 Si vous avez des problèmes ou des questions, voyez
 la <a href="<page documentation>#Support">section d'aide</a> ou
 <a href="<page contact>">contactez nous</a> sur la liste tor-ops. Merci
-de nous aider à faire croitre le réseau Tor !
+de nous aider à faire croître le réseau Tor !
 
 </p>
 
