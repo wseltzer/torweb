@@ -11,26 +11,26 @@
 
 <h2> Qu'est ce que la TorDNSEL?</h2>
 
-<p>TorDNSEL est une liste de test actif, basée sur les DNS des noeuds de sortie de Tor. Depuis que Tor supporte des règles de sortie, la liste de sortie du réseau Tor dépends de l'adresse IP et du port.  Contrairement aux traditionnelles DNSxLs, les services doivent donc fournir des informations dans leurs requêtes.</p>
+<p>TorDNSEL est une liste de test actif, des noeuds de sortie de Tor, basée sur les DNS. Depuis que Tor supporte des règles de sortie, la liste de sortie du réseau Tor dépend de l'adresse IP et du port.  Contrairement aux traditionnelles DNSxLs, les services doivent donc fournir des informations dans leurs requêtes.</p>
 
-<p>Auparavent les DNSELs extrayaient de l'annuaire du réseau Tor les adresses IP des noeuds,
-mais cette méthode échoue pour les noeuds qui ne publient pas leur adresse de sortie dans l'annuaire. TorDNSEL teste donc activement ces noeuds pour fournir une liste plus précise.</p> 
+<p>Auparavant les DNSELs extrayaient de l'annuaire du réseau Tor les adresses IP des noeuds,
+mais cette méthode ne fonctionne pas pour les noeuds qui ne publient pas leur adresse de sortie dans l'annuaire. TorDNSEL teste donc activement ces noeuds pour fournir une liste plus précise.</p> 
 
 <p>L'historique complet et la raison d'être TorDNSEL est décrite dans le 
 <a href="https://www.torproject.org/svn/trunk/doc/contrib/torel-design.txt">document de conception</a> officiel.  Le service actuel ne prend en charge que le premier type de requête mentionné dans ce document.</p>
 
 <h2>Comment puis-je interroger le service public TorDNSEL?</h2>
 
-<p>En utilisant la commande outil en ligne <code>dig</code>, les utilisateurs peuvent poser une question de type 1 comme suit:</p>
+<p>En utilisant la commande outil en ligne <code>dig</code>, les utilisateurs peuvent poser une question du premier type comme suit:</p>
 
 <pre>dig 209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org</pre>
 
-<h2>Qu'est ce que signifie les réponses?</h2>
+<h2>Que signifient les réponses?</h2>
 
 <p>La demande d'un enregistrement A 
-"209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org" repondra 127.0.0.2 si il y a un noeud Tor qui peut sortir de l'IP 81.169.137.209 vers le port 6667 à l'adresse 1.2.3.4. S'il n'est pas un noeud de sortie, le DNSEL réponds NXDOMAIN</p>
+"209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org" répondra 127.0.0.2 si il y a un noeud Tor qui peut sortir de l'IP 81.169.137.209 vers le port 6667 à l'adresse 1.2.3.4. S'il n'est pas un noeud de sortie, le DNSEL réponds NXDOMAIN</p>
 
-<p>Les autres enregistrements A dans le sous-réseau 127/8, excepté 127.0.0.1, sont réservé pour un usage futuret doivent être interprété par les clients comme indiquant un noeud de sortie. Les demandes hors de l'autorité de la zone DNSEL renvoient REFUSED. Les requêtes malformées recues à l'intérieur de la zone d'authorité renvoient NXDOMAIN.</p>
+<p>Les autres enregistrements A dans le sous-réseau 127/8, excepté 127.0.0.1, sont réservé pour un usage futur et doivent être interprété par les clients comme indiquant un noeud de sortie. Les demandes hors de l'autorité de la zone DNSEL renvoient REFUSED. Les requêtes malformées reçues à l'intérieur de la zone d'autorité renvoient NXDOMAIN.</p>
 
 <h2>Comment puis-je configurer le logiciel qui supporte le DNSBL?</h2>
 
@@ -41,9 +41,9 @@ mais cette méthode échoue pour les noeuds qui ne publient pas leur adresse de 
 <p>Exemple pour un serveur IRC tournat sur port 6667 à l'adresse IP 1.2.3.4:</p>
 <pre>6667.4.3.2.1.ip-port.exitlist.torproject.org</pre>
 
-<h2>Dans quelle mesure, sont fiables les réponses renvoyées par TorDNSEL?</h2>
+<h2>Dans quelle mesure, les réponses renvoyées par TorDNSEL sont fiables ?</h2>
 
-<p> L'actuel service public fonctionne sur une base expérimentale et n'a pas été bien testés par de vrais services. Des rapports de réponse erronée ou d'interruption de service serait appréciés. Les projets futurs incluent la construction d'un pool à tolérance de panne de serveurs DNSEL. TorDNSEL est actuellement en cours de développement.</p>
+<p> L'actuel service public fonctionne sur une base expérimentale et n'a pas été bien testé pour un service réel. Des rapports de réponses erronées ou d'interruptions de service seraient appréciés. Les projets futurs incluent la construction d'un pool de serveurs DNSEL à tolérance de panne. TorDNSEL est actuellement en cours de développement.</p>
 
 <h2>Comment puis-je utiliser mon propre TorDNSEL?</h2>
 
@@ -54,9 +54,9 @@ Tor.</p>
 <p>Vous pouvez télécharger la dernière version source à partir du<a
 href="http://p56soo2ibjkx23xo.onion/dist/tordnsel-0.0.6.tar.gz">service caché</a> ou du  
 <a href="https://www.torproject.org/tordnsel/dist/tordnsel-0.0.6.tar.gz">
-mirroir local</a>.  Il est probablement plus sage de vérifier la révision en cours du darcs repository hébergé sur le service caché ci-dessus.</p>
+mirroir local</a>. Il est probablement plus sage de vérifier la version en cours du darcs repository hébergé sur le service caché ci-dessus.</p>
 
-<p>Pour de plus amples renseignements ou pour signaler quelque chose d'utile, s’il vous plaît envoyez un courriel à l'alias 
+<p>Pour de plus amples renseignements ou pour signaler quelque chose d'utile, merci de nous envoyer un courriel à l'alias 
 <tt>tordnsel</tt> sur notre <a href="<page contact>">page contact</a>.</p>
 
 </div> <!-- #main -->
