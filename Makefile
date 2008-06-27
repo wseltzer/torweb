@@ -28,6 +28,8 @@ tordnsel:
 	$(MAKE) -C "$@" WMLBASE=..
 projects:
 	$(MAKE) -C "$@" WMLBASE=..
+mirrors:
+	./update-mirrors.pl
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
