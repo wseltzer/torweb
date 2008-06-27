@@ -1,0 +1,183 @@
+## translation metadata
+# Last-Translator: unknown
+# Based-On-Revision: 8988
+
+#include "head.wmi" TITLE="Tor: Installations-Anweisungen für Microsoft Windows"
+
+<div class="center">
+<div class="main-column">
+<h1>Tor unter Microsoft Windows benutzen</h1>
+
+<p> <b>Bitte beachte, das diese Anleitung die Installation für MS
+Windows (98, 98SE, NT4, 2000, XP, Vista, Server) enthält. Wenn Sie
+Netzverkehr für andere Benutzer weiterleiten und beim Ausbau des
+Tor-Netzwerks mithelfen wollen (Sie sind herzlich eingeladen!), lesen
+Sie bitte die <a href="<page tor-doc->"> Anleitung zum Einrichten
+eines Servers</a>.</b> </p>
+
+<hr />
+<a id="installing"></a>
+<h2><a class="anchor" href="#installing">Schritt Eins: Download und Installation von Tor</a></h2>
+
+<p>Das Installationspaket für MS Windows enthält <a href="<page
+  index>">Tor</a>, <a
+  href="http://www.vidalia-project.net/">Vidalia</a> (eine
+  Benutzeroberfläche für Tor), und <a
+  href="http://www.privoxy.org/">Privoxy</a> (ein lokaler Proxy zum
+  Filtern von Webseiten). Die drei Programme sind für die gemeinsame
+  Arbeit vorkonfiguriert. Bitte lade entweder das stabile oder das
+  Eintwicklerpaket von der <a href="<page
+  download>">Download-Seite</a> herunter.</p>
+
+  <p>Falls die kombinierten Installationspakete nicht funktionieren,
+  kannst du die Software auch von der<a href="<page
+  download-windows>">Windows-Downloadseite</a> beziehen und dann <a
+  href="<page tor-doc-unix>#privoxy">Privoxy installieren und einrichten</a>.
+</p>
+  
+<p><img alt="tor installer splash page"
+  src="../img/screenshot-win32-installer-splash.png" height="386"
+  width="503" /></p>
+  
+  <p>Wenn Tor, Vidalia oder Privoxy bereits zuvor installiert wurde,
+  kannst du mit dem unten dargestellten Dialog wählen, welche
+  Komponenten aus dem kombinierten Softwarepaket nicht installiert
+  werden sollen.</p>
+
+  <p><img alt="select components to install"
+  src="../img/screenshot-win32-installer-components.png" height="386"
+  width="503" /></p>
+
+  <p>Nach der erfolgreichen Installation werden alle ausgewählten
+Programme automatisch gestartet.</p>
+
+<!--
+<p>
+Voreingestellt ist die Installation von Tor als Dienst (client).
+Die Vorgaben sind in einer eingebaute Konfigurations-Datei abgelegt.
+Die meisten Anwender werden keine Änderungen an den Vorgaben vornehmen müssen.
+Tor ist jetzt installiert.
+</p>
+-->
+
+<hr />
+<a id="using"></a>
+<h2><a class="anchor" href="#using">Schritt Zwei: Programme einrichten</a></h2>
+
+<p>Nach der Installation von Tor und Privoxy müssen die Programme
+eingestellt werden. Zuerst wird der Web-Browser angepasst.</p>
+
+<p>Wenn du Firefox nutzt (den wir empfehlen), installiere <a
+href="https://torbutton.torproject.org/">Torbutton</a> und starte
+Firefox neu:
+</p>
+
+<p>
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png" border="1" height="78"
+width="161" /></p>
+
+<p>Mehr über Torbutton wird auf (<a
+href="https://torbutton.torproject.org/">eigenen Seiten</a>
+erklärt. Wenn du vorhast, Firefox auf einem anderen Computer zu
+benutzen als dem Computer, wo Tor installiert ist, lies den Eintrag in
+der <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">FAQ
+zum Betrieb von Tor auf einem anderen Computer</a>. Wenn du einen
+anderen Browser als Firefox benutzt, musst du <a href="<page
+tor-doc-web>">die Proxy-Einstellung selbst einrichten</a>.)  </p>
+
+<p>Die Benutzung von Privoxy ist <strong>notwendig</strong>, weil <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">Browser
+die DNS-Anfragen unverschlüsselt senden, wenn du einen SOCKS-Proxy
+direkt benutzt</a>. Dies gefährdet Ihre Anonymität. Privoxy entfernt
+auch verschiedene Daten aus Anfragen, die die Anonymität gefährden und
+blockiert unbeliebte Schnüffelseiten.</p>
+
+<p>Andere Programme, die HTTP-Proxys unterstützen, können Tor nutzen,
+wenn Privoxy als HTTP-Proxy eingerichtet ist (einfach "localhost" und
+"port 8118" eingeben). Bei Programmen, die SOCKS direkt nutzen
+(z.B. Instant-Messaging, Jabber, IRC usw.), trage Tor als Proxy ein
+("localhost" und "port 9050"). Beachte aber diesen <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">Eintrag
+in der FAQ</a>, der erklärt, warum dies die Anommität gefährdet. Bei
+Programmen, die weder SOCKS- noch HTTP-Proxys nutzen, könnte <a
+href="http://www.socks.permeo.com/Download/SocksCapDownload/index.asp">SocksCap</a>
+oder <a href="http://www.freecap.ru/eng/">FreeCap</a> helfen.
+(FreeCap ist freie Software; SocksCap ist kommerziell.)</p>
+
+<p>Weitere Informationen findest du im
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+HOWTO</a>.
+</p>
+
+<hr />
+<a id="verify"></a>
+<h2><a class="anchor" href="#verify">Schritt Drei: Prüfen Sie, ob alles läuft</a></h2>
+
+<p>
+Prüfe, ob Privoxy und Vidalia in der Task-Leiste aktiv sind. Das Icon
+von Privoxy ist ein blauer oder grüner Kreis mit einem "P"
+darin. Vidalia zeigt eine kleine grüne Zwiebel, wenn Tor aktiv ist
+oder eine dunkle Zwiebel mit einem roten Kreuz, wenn Tor inaktiv
+ist. Du kannst Tor starten oder anhalten, wenn du das Vidalia-Icon in
+der Taskleiste mit der rechten Maustaste anklickst und "Start" oder
+"Stopp" aus dem Menü (unten) auswählst.
+</p>
+
+<p>
+<img alt="Vidalia Tray Icon" src="../img/screenshot-win32-vidalia.png"
+height="215" width="161" /></p>
+
+<p>
+Dann solltest du prüfen, ob der Browser Tor benutzt und die IP-Adresse
+anonymisiert. Klicke auf <a
+href="http://lefkada.eecs.harvard.edu/cgi-bin/ipaddr.pl?tor=1">Tordetektor</a>
+und schaue, ob er der Meinung ist, dass Tor genutzt wird.
+(Wenn die Seite nicht erreichbar ist, findest du <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate"> in diesem
+FAQ Eintrag</a> weitere Vorschläge, Tor zu testen.)
+</p>
+
+<p> Wenn deine Personal Firewall auch Verbindungen des Computers mit
+den eigenen Programmen blockiert, erlaube Verbindungen mit "localhost"
+auf Port 8118 und Port 9050. Wenn die Personal Firewall ausgehende
+Verbindungen blockiert, erlaube Verbindungen auf den TCP-Ports 80 und
+443 und lese diesen <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">Eintrag
+in der FAQ</a>.  </p>
+
+<p>Wenn es immer noch nicht funktioniert, lies <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">weitere
+Hinweise in der FAQ</a>.</p>
+
+<hr />
+<a id="server"></a>
+<h2><a class="anchor" href="#server">Schritt Vier: Tor als Server einrichten</a></h2>
+
+<p>
+Das Tor-Netzwerk ist auf Freiwillige angewiesen, die Bandbreite spenden.
+Je mehr Menschen einen Tor-Server betreiben, desto schneller wird das
+Tor-Netzwerk. Wenn du über mindestens 20 KBytes/s verfügst, hilf bitte
+dem Tor-Netzwerk, indem du auch einen Tor-Server einrichtest. Server
+haben viele Eigenschaften, die ihren Betrieb einfach und bequem
+machen. Dazu gehöret die Begrenzung der Bandbreite, ExitPolicys, die
+das Risiko von Mißbrauch eingrenzen und Unterstützung von dynamischen
+IP-Adressen.</p>
+
+<p>Viele Server an unterschiedlichen Stellen im Internet macht die
+Tor-Benutzer erst sicher. Du erhälst selbst eine <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerAnonymity">stärkere
+Anonymität</a>, weil fremde Webseiten nicht feststellen können, ob
+eine Verbindung von deinem Computer ausgeht oder ob sie für andere
+weitergeleitet wird.</p>
+
+<p>Lies mehr in unserer Anleitung, wie man einen <a href="<page
+tor-doc-relay>">Tor-Server konfiguriert</a>.</p>
+
+<hr />
+<p> Sende Verbesserungsvorschläge für dieses Dokument bitte an
+<a href="<page contact>">uns</a>. Vielen Dank!</p>
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
