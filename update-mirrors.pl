@@ -4,6 +4,7 @@ use strict;
 use LWP::Simple;
 use LWP;
 use Date::Parse;
+use Date::Format;
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
@@ -75,22 +76,6 @@ my %m = (
             rsyncWebsiteMirror => "rsync://tor.cypherpunks.at/tor",
             httpDistMirror => "http://tor.cypherpunks.at/dist/",
             rsyncDistMirror => "rsync: tor.cypherpunks.at::tor/dist/",
-            updateDate => "",
-        },
-
-       mirror001 => {
-            orgName => "depthstrike.com",
-            isoCC => "CA",
-            subRegion => "NS",
-            region => "North America",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.depthstrike.com/",
-            ftpWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            httpDistMirror => "http://tor.depthstrike.com/dist/",
-            rsyncDistMirror => "",
             updateDate => "",
         },
 
@@ -563,7 +548,7 @@ my %m = (
        mirror028 => {
             adminContact => "jeroen\@unfix.org",
             orgName => "sixx",
-            isoCC => "",
+            isoCC => "CH",
             subRegion => "",
             region => "Europe",
             ipv4 => "True",
@@ -624,19 +609,29 @@ open(OUT, "> $outFile") or die "Can't open $outFile: $!";
 # This is storted from last known recent update to unknown update times
 foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys %m ) {
 
-     # Country    Organisation    website mirror      dist/ mirror
-     print OUT "\n<tr>\n";
-     print OUT "    <td>$m{$server}{'isoCC'}</td>\n";
-     print OUT "    <td>$m{$server}{'orgName'}</td>\n";
-     print OUT "    <td>$m{$server}{'updateDate'}</td>\n";
+     my $time = ctime($m{$server}{'updateDate'});
+     chomp($time);
+print OUT <<"END";
+     \n<tr>\n
+         <td>$m{$server}{'isoCC'}</td>\n
+         <td>$m{$server}{'orgName'}</td>\n
+         <td>$time</td>\n
+END
 
-     foreach my $precious ( "httpWebsiteMirror", "ftpWebsiteMirror", 
-                            "rsyncWebsiteMirror","httpDistMirror",
-                            "rsyncDistMirror" )
+     my %prettyNames = (
+                        httpWebsiteMirror => "http",
+                        httpsWebsiteMirror => "https",
+                        ftpWebsiteMirror => "ftp",
+                        rsyncWebsiteMirror => "rsync",
+                        httpDistMirror => "http",
+                        httpsDistMirror => "https",
+                        rsyncDistMirrors => "rsync", );
+
+     foreach my $precious ( sort keys %prettyNames )
      {
         if ($m{$server}{"$precious"}) {
             print OUT "    <td><a href=\"" . $m{$server}{$precious} . "\">" .
-                      "$m{$server}{$precious}</a></td>\n";
+                      "$prettyNames{$precious}</a></td>\n";
         } else { print OUT "    <td> - </td>\n"; }
      }
 
