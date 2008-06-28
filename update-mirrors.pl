@@ -41,8 +41,10 @@ sub FetchDate {
 
     my $request = new HTTP::Request GET => "$url";
     my $result = $lua->request($request);
+    my $code = $result->code();
+    print "Result code $code\n";
 
-    if ($result->is_success){
+    if ($result->is_success && $code eq "200"){
        my $taint = $result->content;
        my $content = sanitize($taint);
        if ($content) {
@@ -66,6 +68,8 @@ sub FetchDate {
        print "Our request failed, we had no result.\n";
        return "Unknown";
     }
+
+    return "Unknown";
 }
 
 # This is the list of all known Tor mirrors
@@ -83,7 +87,7 @@ my %m = (
             rsyncWebsiteMirror => "rsync://tor.cypherpunks.at/tor",
             httpDistMirror => "http://tor.cypherpunks.at/dist/",
             rsyncDistMirror => "rsync: tor.cypherpunks.at::tor/dist/",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror001 => {
@@ -99,7 +103,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.depthstrike.com/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror002 => {
@@ -114,7 +118,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.hermetix.org/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror003 => {
@@ -130,7 +134,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.boinc.ch/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror004 => {
@@ -146,7 +150,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.anonymity.cn/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror004 => {
@@ -162,7 +166,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.blingblingsquad.net/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror005 => {
@@ -178,7 +182,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror006 => {
@@ -194,7 +198,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.cybermirror.org/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror007 => {
@@ -210,7 +214,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror008 => {
@@ -226,7 +230,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://mirror.bsdhost.eu/www.torproject.org/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror009 => {
@@ -242,7 +246,7 @@ my %m = (
             rsyncWebsiteMirror => "rsync: mirror.onionland.org::tor/",
             httpDistMirror => "http://mirror.onionland.org/dist/",
             rsyncDistMirror => "rsync: mirror.onionland.org::tor/dist/",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror010 => {
@@ -259,7 +263,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.plentyfact.net/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror011 => {
@@ -275,7 +279,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor-anonymizer.mirror.loxal.net/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror012 => {
@@ -291,7 +295,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://www.centervenus.com/mirrors/tor/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror013 => {
@@ -307,7 +311,7 @@ my %m = (
             rsyncWebsiteMirror => "", 
             httpDistMirror => "http://tor.zdg-gmbh.eu/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror014 => {
@@ -323,7 +327,7 @@ my %m = (
             ftpWebsiteMirror => "ftp://miroir-francais.fr/pub/tor/",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror015 => {
@@ -339,7 +343,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror016 => {
@@ -355,7 +359,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.amorphis.eu/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror017 => {
@@ -371,7 +375,7 @@ my %m = (
             ftpWebsiteMirror => "ftp://ftp.bit.nl/mirror/tor/",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror018 => {
@@ -387,7 +391,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.ccc.de/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror018 => {
@@ -403,7 +407,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.kamagurka.org/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror019 => {
@@ -419,7 +423,7 @@ my %m = (
             ftpWebsiteMirror => "ftp://ftp.osmirror.nl/pub/tor/",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
 
@@ -436,7 +440,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror021 => {
@@ -452,7 +456,7 @@ my %m = (
             ftpWebsiteMirror => "ftp://ftp.se.linux.org/pub/crypto/tor/",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror022 => {
@@ -468,7 +472,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror023 => {
@@ -484,7 +488,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror024 => {
@@ -500,7 +504,7 @@ my %m = (
             ftpWebsiteMirror => "ftp://libertarianactivism.com/tor.eff.org/dist/",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror025 => {
@@ -516,7 +520,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "http://www.theonionrouter.com/dist/",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror026 => {
@@ -532,7 +536,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror027 => {
@@ -549,7 +553,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 
        mirror028 => {
@@ -566,7 +570,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "",
             rsyncDistMirror => "",
-            updateDate => "",
+            updateDate => "Unknown",
         },
 );
 
