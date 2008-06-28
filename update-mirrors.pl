@@ -616,8 +616,12 @@ open(OUT, "> $outFile") or die "Can't open $outFile: $!";
 # This is storted from last known recent update to unknown update times
 foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys %m ) {
 
-     my $time = ctime($m{$server}{'updateDate'});
-     chomp($time);
+     my $time;
+     if( "$m{$server}{'updateDate'}" ne "Unknown") {
+        $time = ctime($m{$server}{'updateDate'});
+        chomp($time);
+     } else { $time = "Unknown"; }
+
 print OUT <<"END";
      \n<tr>\n
          <td>$m{$server}{'isoCC'}</td>\n
