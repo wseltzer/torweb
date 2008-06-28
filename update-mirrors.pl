@@ -482,7 +482,7 @@ my %m = (
 
        mirror024 => {
             orgName => "Libertarian Action Network",
-            isoCC => "",
+            isoCC => "US",
             subRegion => "",
             region => "North America",
             ipv4 => "True",
