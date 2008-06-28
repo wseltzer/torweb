@@ -6,6 +6,13 @@ use LWP;
 use Date::Parse;
 use Date::Format;
 
+#
+# A quick hack by Jacob Appelbaum <jacob@appelbaum.net>
+# LWP suggestions by Leigh Honeywell 
+# This is Free Software (GPLv3)
+# http://www.gnu.org/licenses/gpl-3.0.txt
+#
+
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
     keep_alive => 1,
