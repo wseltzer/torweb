@@ -572,6 +572,24 @@ my %m = (
             rsyncDistMirror => "",
             updateDate => "Unknown",
         },
+
+       mirror029 => {
+            adminContact => "",
+            orgName => "crypto.nsa.org",
+            isoCC => "US",
+            subRegion => "",
+            region => "North America",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "Unknown",
+            httpWebsiteMirror => "http://crypto.nsa.org/tor/",
+            rsyncWebsiteMirror => "", 
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://crypto.nsa.org/tor/dist/",
+            rsyncDistMirror => "",
+            updateDate => "Unknown",
+        },
+
 );
 
 my $count = values %m;
