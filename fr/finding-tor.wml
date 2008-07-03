@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 15427
+# Based-On-Revision: 15569
 # Last-Translator: mfr(ät]misericordia.be
 
 #include "head.wmi" TITLE="Tor: Trouver Tor" CHARSET="UTF-8"
@@ -8,8 +8,7 @@
 <h1>Tor: Trouver Tor</h1>
 <hr />
 <p>
-Parfois, il n'est pas possible d'atteindre directement le <a
-href="https://www.torproject.org/">site Web du projet Tor</a>. Nous travaillons actuellement sur les moyens d'aider les utilisateurs à trouver, télécharger et installer une version actuelle de Tor sans avoir déjà Tor. Nous savons que ces suggestions sont imparfaites, mais nous espérons que les utilisateurs seront en mesure de trouver Tor indirectement si notre site est bloqué. Si vous êtes en train de lire ce la cache depuis un moteur de recherche, directement sur notre site, ou par toute autre méthode, nous espérons que ces suggestions sont utiles. De plus, si vous avez des idées pour savoir comment améliorer ces instructions, s’il vous plaît <a href="<page contact>">contactez-nous</a> et transmettez-nous les.</p>
+Parfois, il n'est pas possible d'atteindre directement le site Web du projet Tor. Nous travaillons actuellement sur les moyens d'aider les utilisateurs à trouver, télécharger et installer une version actuelle de Tor sans avoir déjà Tor. Nous savons que ces suggestions sont imparfaites, mais nous espérons que les utilisateurs seront en mesure de trouver Tor indirectement si notre site est bloqué. Si vous êtes en train de lire ce la cache depuis un moteur de recherche, directement sur notre site, ou par toute autre méthode, nous espérons que ces suggestions sont utiles. De plus, si vous avez des idées pour savoir comment améliorer ces instructions, s’il vous plaît <a href="<page contact>">contactez-nous</a> et transmettez-nous les.</p>
 
 <h2>Récupération de Tor avec Tor: Utilisation de votre navigateur Web</h2>
 <hr />
@@ -31,7 +30,55 @@ href="http://wiki.noreply.org/noreply/TheOnionRouter/VerifyingSignatures">vérif
 <p>
 Il est possible d'obtenir une copie de Tor par l'envoi d'un courriel à l'adresse courriel: '<tt>gettor AT torproject.org</tt>'. Ce système de messagerie est une passerelle qui permet à toute personne qui peut envoyer un courriel pour obtenir une copie de Tor. Actuellement, nous ne supportons les systèmes de courrier qui n'ont pas de problème avec les grandes pièces jointes. Gmail et Yahoo! sont deux services de courrier qui sont connus pour fonctionner. Ceci est utile pour les utilisateurs qui peuvent envoyer des e-mails, mais n'ont pas d'autre méthode directe de téléchargement de Tor. L'utilisateur n'a besoin que nous transmettre son système d'exploitation (Windows XP? Mac OS X? Linux?). Un e-mail avec le paquet demandé est envoyé peu de tmeps après.
 </p>
-
+<h2>Recupération de Tor par IRC: gettor</h2>
+<hr />
+<p>
+Il est possible de récupérer le code source, les binaires et d'autres fichiers liés à
+Tor en utilisant le protocole de transfert de fichier IRC XDCC. Il est préférable de fare cela seulement si vous vous connectez au serveur IRC utilisant le protocole SSL. Actuellement <tt>gettor</tt> 
+est présent sur Freenode, 2600, Indymedia and OFTC.
+<br><br>
+Si vous êtes actuellement en mesure de vous connecter à l'un de ces réseaux IRC, recherchez un
+utilisateur nommé '<tt>gettor</tt>' qui est connecté à partir de l'hôte 
+'<tt>check.torproject.org</tt>'. Envoyez à l'utilisateur un message privé comme suit:
+<br>
+<br>
+'<tt>/msg gettor xdcc list</tt>'
+<br>
+<br>
+L'utilisateur <tt> gettor </tt> doit répondre à une liste de fichiers
+disponible pour téléchargement. S'il n'y a pas de réponse, quelque chose a mal tourné. 
+Quelques réseaux IRC exigent que vous soyez inscrit avant de pouvoir envoyer des messages en privé
+ à d'autres utilisateurs (il s'agit souvent de réduire les spams). Vous pouvez devoir vous enregister
+avec NickServ avant de pouvoir parler à l'utilisateur <tt>'gettor'</tt>.
+<br>
+Un exemple de réponse renvoyée par <tt>gettor</tt> est présentée ci dessous:<br>
+<tt>
+<pre>
+-gettor- ** 14 packs **  20 of 20 slots open, Record: 6397.1KB/s
+-gettor- ** Bandwidth Usage ** Current: 0.0KB/s, Record: 10.3KB/s
+-gettor- ** To request a file, type "/msg gettor xdcc send #x" **
+-gettor- ** To request details, type "/msg gettor xdcc info #x" **
+-gettor- #1  1x [1.2M] tor-0.1.2.19.tar.gz
+-gettor- #2  0x [ <1K] tor-0.1.2.19.tar.gz.asc
+</pre>
+</tt>
+<br>
+Pour télécharger le code source de Tor et le fichier de signature, il suffit pour l'utilisateur d'envoyer les commandes suivantes: <br>
+<tt>
+<pre>
+/msg gettor xdcc send #1
+/msg gettor xdcc send #2
+</pre>
+</tt>
+<br>
+Après l'envoi des commandes, l'utilisateur <tt>gettor</tt> répondra. Il enverra chaque fichier en transfert de fichiers XDCC. Selon le client IRC que vous utilisez, vous pouvez avoir a accepter manuellement le fichier, merci de consulter la documentation de votre logiciel ou 
+<a href="<page contact>">contactez nous pour avoir de l'aide</a>.<br>
+<br>
+Il est très important de <a
+href="http://wiki.noreply.org/noreply/TheOnionRouter/VerifyingSignatures">vérifier
+les signatures cryptographiques</a> de notre logiciel quand vous utilisez le transfert de fichier DCC comme dans chaque type de miroirs.Quelqu'un pourrait facilement usurper l'identité de l'utilisateur IRC et envoyer un programme trojan. Il faut toujours valider la signature cryptographique
+de tout package avant d'essayer de faire une installation du logiciel.
+</p>
   </div><!-- #main -->
 
 #include <foot.wmi>
