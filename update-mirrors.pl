@@ -153,7 +153,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror004 => {
+       mirror005 => {
             orgName => "bbs",
             isoCC => "DE",
             subRegion => "",
