@@ -589,6 +589,7 @@ my %m = (
             rsyncDistMirror => "",
             updateDate => "Unknown",
         },
+
        mirror030 => {
             adminContact => "web2005a\@year2005a.wiretapped.net",
             orgName => "Wiretapped",
@@ -605,6 +606,26 @@ my %m = (
             rsyncDistMirror => "",
             updateDate => "Unknown",
         },								
+
+        mirror031 => {
+            adminContact => "tormaster\@xpdm.us",
+            orgName => "xpdm",
+            isoCC => "US",
+            subRegion => "",
+            region => "North America",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "Unknown",
+            httpWebsiteMirror => "http://torproj.xpdm.us/",
+            rsyncWebsiteMirror => "", 
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://torproj.xpdm.us/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "http://h3prhz46uktgm4tt.onion/",
+            updateDate => "Unknown",
+        },								
+
+
 
 );
 
