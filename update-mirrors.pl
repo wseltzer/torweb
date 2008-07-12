@@ -262,6 +262,7 @@ my %m = (
             httpsWebsiteMirror => "https://tor.plentyfact.net/",
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.plentyfact.net/dist/",
+            httpsDistMirror => "https://tor.plentyfact.net/dist/",												
             rsyncDistMirror => "",
             updateDate => "Unknown",
         },
