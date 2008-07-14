@@ -1,0 +1,53 @@
+#!/usr/bin/wml
+
+## translation metadata
+# Based-On-Revision: 12223
+# Last-Translator: saakan99@jinbo.net
+
+#use "functions.wmi"
+
+</div>
+  <div class="bottom" id="bottom">
+     <p>
+     <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
+# please also translate "last modified" and "last compiled"
+      최종 수정일: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      -
+      최종 컴파일: <: print scalar localtime(); :>
+     </p>
+     <p>"Tor"와 "Onion Logo"는 The Tor Project. Inc.의 <a href="<page
+     trademark-faq>">트레이드 마크</a>입니다.      </p>
+
+# Uncomment this in your translation:  (and translate it)
+#####################################
+   <: unless (translation_current()) { :>
+     <p>
+      경고:  이 번역은 오래된 버전일 수도 있습니다.  원본인 영어버전은
+      <:= translation_get_masterrevision() :>번째 버전이고,  
+	이 번역은 
+      <:= translation_get_basedonrevision() :>번째 영어버전을 번역한 것입니다.
+     </p>
+
+   <: } :>
+
+   <: if (has_translations()) {  :>
+     <p>
+       이 페이지는 아래의 언어들로도 읽어보실 수 있습니다:
+       <: print list_translations() :>.<br>
+       <a href="http://www.debian.org/intro/cn#howtoset">기본언어를 설정하는 방법</a>.
+     </p>
+   <: }; :>
+
+# Uncomment this in your translation: (and translate it)
+#####################################
+   <p>Tor 개발자들이 이 번역본의 정확성을 검증한 것은 아닙니다. 
+   이 번역본은 옛 버전의 번역일 수도 있고, 잘못된 부분이 있을 수도 있습니다.
+   공식적인 Tor 웹사이트는 영어 버전입니다. 영어버전은
+   <a href="https://www.torproject.org/">https://www.torproject.org/</a>에서
+   확인할 수 있습니다.
+   </p>
+
+
+  </div>
+</body>
+</html>

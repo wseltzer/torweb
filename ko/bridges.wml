@@ -1,0 +1,138 @@
+## translation metadata
+# Based-On-Revision: 15396
+# Last-Translator: saakan99@jinbo.net
+
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h1><a class="anchor" href="#BridgeIntroduction">Tor: 브릿지</a></h1>
+<hr />
+
+<p>
+중계 브릿지(혹은 줄여서 "브릿지")는 Tor 디렉토리에 보이지 않는 Tor 중계서버입니다.
+그들에 대한 공식적인 리스트가 없는 이상, 당신의 ISP가 Tor 중계서버에 대한 접속을
+차단하고 있더라도, 모든 브릿지들을 차단할 수는 없을 것입니다.
+만약에 Tor 네트워크에 대한 당신의 접속이 차단되고 있다고 의심이 된다면,
+당신은 Tor 브릿지들을 이용할 수 있습니다. 
+</p>
+
+<p>
+당신의 ISP가 인터넷을 필터링하더라도, Tor를 사용하기 위해서 브릿지가 꼭 필요한 것은 아닙니다.
+많은 필터필 프로그램은 당신이 Tor를 사용하는지 판단하기 위해서 암호화되지 않은 Tor 디렉토리 요청을 
+찾아봅니다. 그러나 0.2.0.23-rc 버전 이상의 Tor들은 기본적으로 암호화된 디렉터리 쿼리를 사용합니다.
+이것은 거의 모든 필터링 프로그램들이 Tor 연결을 알아채는 것이 불가능해졌다는 것을 의미합니다.
+그러므로 브릿지 사용없이 Tor를 사용하는 것을 먼저 시도하는 것이 좋습니다.
+</p>
+
+<p>
+다른 이유로 Tor가 작동하지 않을 가능성도 따져봐야 합니다. 
+윈도우의 <a href="<page torbrowser/index>">Tor 브라우저 통합배포판</a>의 
+최신 버전은 왜 Tor가 연결되는데 문제가 있는지에 대해 좀 더 많은 힌트를
+알려줍니다. 또 문제가 있을 경우에는
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork"> 
+Tor를 잘 작동시키는 것에 대한 FAQ</a>를 참고할 수 있습니다.
+만약에 문제가 누군가에 의해 차단되는 것이 분명하다면, 혹은 확실치 않거나
+한 번 알아보고 싶다면, FAQ를 참고하기 바랍니다.
+운영체제에 맞는 버전을 사용 중인지 또 최신 버전인 0.2.0.x나 0.2.1.x 배포판을 
+사용하고 있는지도 꼭 확인해야 합니다.
+</p>
+
+<p>
+브릿지를 사용하지 위해서, 당신은 최소한 브릿지 한 개를 알아야 됩니다. 그 다음, 
+당신이 사용하려는 브릿지 주소로 Tor를 설정해야 합니다.
+이 작업은 Tor 컨트롤러인, Vidalia를 통해 진행됩니다. 
+만약에 당신의 인터넷 연결이 프록시 사용을 요구한다면,
+Vidalia가 그렇게 하도록 먼저 설정해야 합니다. 
+만약에 당신의 인터넷 연결을 위해 프록시 설정이 필요없다고 생각된다면,
+할 필요가 없습니다. 잘 모르겠다면, 한번 시도해보고, 도움을 요청할 수 있습니다.
+</p>
+
+<p>
+현재로서는 당신의 브라우저로 
+<a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>에
+방문해서 Tor 브릿지를 얻을 수 있습니다. 만약에 이 페이지가 차단되고 있다면,
+그리고 당신이 다른 프록시 서버를 통해서나, 혹은 다른 방법을 통해서
+이 페이지를 열어볼 수 있는 방법이 없다면,  <a
+href="#FindingMore">브릿지를 찾는 또 다른 방법들</a>도 있습니다.
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">브릿지가 무엇인가</a></h2>
+<hr />
+
+<p>
+예를 들어, 브릿지 정보는 아래와 같이 생겼습니다:<br />
+<pre>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</pre>
+</p>
+
+<p>
+브릿지의 구성요소들을 이해하는 것은 꼭 필요한 것은 아니지만, 유용할 수도 있습니다.
+원한다면 이 부분은 읽지 않고 넘어가도 상관 없습니다.<br />
+첫번째 구성요소는 IP주소입니다:<tt>'141.201.27.48'</tt><br />
+두번째 구성요소는 포트입니다: <tt>'443'</tt><br />
+세번째 구성요소는, 확인용 꼬리표인데, 이것은 옵션입니다:
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br />
+
+</p>
+
+<a id="UsingBridges"></a>
+<h2><a class="anchor" href="#UsingBridges">Tor, Vidalia와 브릿지 함께 사용하기
+</a></h2>
+<hr />
+
+<p>
+위에 나와있는 브릿지 주소를 사용하려면, Vidalia의 네트워크 설정 페이지로 가서,
+"My ISP blocks connections to the Tor network(ISP가 Tor네트워크로의 접속을 차단하는 경우)"
+를 클릭하세요. 그리고 Vidalia 네트워크 설정 페이지에서 각각의 브릿지 주소를 하나씩 입력해야 합니다.
+브릿지 주소를 "Add a Bridge" 창에 복사하고, "+" 버튼을 클릭하면 입력이 됩니다.
+브릿지를 추가하는 모습은 아래와 같습니다:
+</p>
+
+<br /><br />
+<img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalia's Network settings page" />
+<br /><br />
+
+
+<p>
+브릿지 주소가 많을 수록 신뢰성이 높아지므로, 당신이 알고 있는 모든 브릿지 주소를 
+입력하면 좋습니다. 하나의 브릿지만으로도 Tor 네트워크에 접속하기에 충분하지만,
+하나의 브릿지만 가지고 있다면, 브릿지가 다운되었을 때, Tor 네트워크에 접속하지 못할 수도 있습니다.
+
+</p>
+
+<a id="FindingMore"></a>
+<h2><a class="anchor" href="#FindingMore">더 많은 Tor 브릿지 찾기</a></h2>
+<hr />
+
+<p>
+공개된 브릿지 주소를 찾는 또 다른 방법은 메일 내용에 "get bridges"라고 입력하고 
+bridges@torproject.org로 메일을 보내는 것입니다.
+이 메일은 gmail(구글메일)이나 야후 메일 계정을 사용할 필요가 있습니다. 그렇지 않다면
+악의를 가지고 있는 공격자들이 많은 이메일 계정을 만들고 모든 브릿지를 알아가 버릴 수도 
+있기 때문입니다. 메일을 보낸 즉시, 당신은 다음과 같은 내용이 포함된 답장을 받게 됩니다: 
+
+</p>
+<p>
+<pre>
+Here are your bridge relays:
+(당신의 중계 브릿지는 다음과 같습니다:)
+
+ bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+ bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+ bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+</pre>
+</p>
+<p>
+브릿지 정보가 포함된 메일을 수신한 다음, 
+ <a href="#UsingBridges">위에 나와있는 대로 Vidalia 설정</a>을 계속 진행할 수 있습니다.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+

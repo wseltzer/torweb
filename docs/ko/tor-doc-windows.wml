@@ -1,0 +1,206 @@
+## translation metadata
+# Based-On-Revision: 14961
+# Last-Translator: saakan99@jinbo.net
+
+
+#include "head.wmi" TITLE="Tor: MS Windows Install Instructions" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>윈도우에서 <a href="<page index>">Tor</a> 운영하기</h1>
+<br />
+
+<p>
+<b>이 안내서는 윈도우(98m 98SE, NT4, 2000, XP, Vista, Server)에서의 Tor 클라이언트 
+운영울 위한 설치 매뉴얼 입니다. 혹시 다른 이용자들에게 중계 트래픽을 제공해서 
+Tor 네트워크가 더 커지도록 돕고싶다면(꼭 해주세요),
+<a href="<page docs/tor-doc-relay>">중계서버 설정하기</a>를 읽어주세요.</b>
+</p>
+
+<hr />
+<a id="installing"></a>
+<h2><a class="anchor" href="#installing">1단계: Tor 다운받아 설치하기</a></h2>
+<br />
+
+<p>
+윈도우 버전 통합배포판은 Tor, Vidalia, <a
+href="http://www.privoxy.org">Privoxy</a>(웹 필터핑 프록시)를 포함하고 있습니다.
+그리고 이것들은 함께 작동하도록 설정되어 있습니다.
+<a href="../<package-win32-bundle-stable>">안정화된 버전</a>이나 
+<a href="../<package-win32-bundle-alpha>">개발 버전</a> 중 하나를 다운받을 수도 있고,
+<a href="<page download>">다운로드 페이지</a>에서 다른 버전들을 찾아볼 수도 있습니다.
+</p>
+
+<img alt="tor installer splash page"
+src="../img/screenshot-win32-installer-splash.png" />
+
+<p>
+만약에 당신 컴퓨터에 기존에 설치해 놓은 Tor, Vidalia, Privoxy가 있다면
+아래에 보이는 대화창에서처럼 설치할 필요가 없는 프로그램을 제외시킬 수 있습니다.
+</p>
+
+<img alt="select components to install"
+src="../img/screenshot-win32-installer-components.png" />
+
+<p>설치가 끝나면, 당신이 선택한 프로그램이 자동적으로 실행될 것입니다.
+</p>
+
+<!--
+<p>
+Tor는 기본적으로 클라이언트로 설정 되어 있습니다. 기본 설정 파일이 내장되어 있는데,
+대부분의 경우 이 설정을 변경할 필요가 없습니다. 이제 Tor가 설치된 것입니다.
+</p>
+-->
+
+<hr />
+<a id="using"></a>
+<h2><a class="anchor" href="#using">2단계: 당신의 프로그램이 Tor를 사용하도록 설정하기</a></h2>
+<br />
+
+<p>Tor와 Privoxy를 설치한 후에, 당신이 운영중인 프로그램들이 Tor를 사용하도록 설정해야 합니다.
+가장 먼저 할 일은 웹브라우저 설정을 변경하는 것입니다.</p>
+
+<p>
+만약에 당신이 파이어폭스를 사용중이라면(파이어폭스를 권장합니다), Vidalia 통합배포판이 
+<a href="https://addons.mozilla.org/firefox/2275/">Torbutton
+플러그인</a>을 자동으로 설치할 것입니다. 설치 후 파이어폭스를 다시 시작하면, 모든 설정이 끝난 것입니다:
+</p>
+
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1">
+
+<br />
+
+<p>
+(<a href="https://torbutton.torproject.org/">Torbutton에 대해 더 알고 싶으면 여기를 클릭하세요</a>.
+만약에 다른 컴퓨터에서도 파이어폭스와 Tor를 사용할 계획이라면, 다음의
+<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
+FAQ</a>를 참고하세요.
+만약에 파이어폭스가 아닌 다른 브라우저를 사용해야 한다면,
+<a href="<pagedocs/tor-doc-web>">프록시 설정을 직접 해줘야 합니다</a>.)
+</p>
+
+<p>Using Privoxy is <strong>necessary</strong> because <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">browsers
+leak your DNS requests when they use a SOCKS proxy directly</a>, which
+is bad for your anonymity. Privoxy also removes certain dangerous
+headers from your web requests, and blocks obnoxious ad sites like
+Doubleclick.</p>
+
+<p>Privoxy는 <strong>반듯이 사용해야 합니다</strong>. 왜냐하면 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">브라우저들은
+SOCKS 프록시를 직접 운영하면서 당신이 보내는 DNS 요청을 곳곳에 흘리기 때문입니다</a>. 
+이것은 당신의 익명성에 안 좋은 영향을 줍니다. 또 Privoxy는 당신의 통신요청에서
+위험한 헤더들을 제거하고, Doubleclick같은 불쾌한 광고사이트를 차단해주는 일도 합니다.</p>
+
+
+
+
+<p>HTTP 프록시를 사용하는 다른 프로그램에서도 Tor를 사용하려면, 
+그들이 Privoxy를 가르키도록 설정하면 됩니다(즉, localhost 포트 8118로 연결). 
+SOCKS를 직접 연결해서 사용하려면(메신저, Jabber, IRC 등), 당신의 프로그램이
+Tor를 가르키도록 직접 설정할 수 있습니다(localhost 포트 9050), 
+그러나 이것이 왜 위험한지 알기 위해서 다음의<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">
+FAQ</a>를 한 번 볼 필요가 있습니다. SOCKS나 HTTP가 사용불가능한 프로그램을 위해선
+<a
+href="http://www.socks.permeo.com/Download/SocksCapDownload/index.asp">SocksCap</a> 이나 
+<a href="http://www.freecap.ru/eng/">FreeCap</a>을 참고하세요.
+(FreeCap는 자유소프트웨어이고, SocksCap은 상용프로그램입니다.)</p>
+
+
+<p>이밖에 다른 프로그램들에서 어떻게 Tor를 사용할 수 있는지에 대한 정보가 필요하다면,
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+HOWTO</a>를 참고하세요.
+</p>
+
+<hr />
+<a id="verify"></a>
+<h2><a class="anchor" href="#verify">3단계: 제대로 작동하는지 확인하기</a></h2>
+<br />
+
+<p>
+설치를 한 후에 Privoxy와 Vidalia가 잘 작동하고 있는지 확인이 필요합니다. 
+파란색이나 녹색 원 안에  "P"가 쓰여져 있는 것이 Privoxy 아이콘입니다.
+Vidalia 아이콘은 Tor가 작동중일 때는 녹색 양파로 나타나며,
+작동중이지 않을 때는 빨간색 "X"가 새겨진 검정색 양파로 나타납니다.
+시스템 트레이에 있는 Vidalia 아이콘을 마우스 오른쪽 버튼으로 클릭한 후
+아래 그림에 보이는 메뉴에서 "Start"나 "Stop"을 선택해서 
+Tor를 시작하거나 끝낼 수 있습니다. 
+</p>
+
+<img alt="Vidalia Tray Icon"
+src="../img/screenshot-win32-vidalia.png">
+
+<p>
+다음으로, Tor를 사용하도록 설정된 브라우저를 통해 통신을 할 때 IP주소가 제대로 익명화되고 있는지 확인해야 합니다.
+<a href="https://check.torproject.org/">Tor 확인기</a>를 클릭한 후
+당신이 Tor를 사용하고 있는지 아닌지 결과를 확인하세요.
+#<a href="http://ipchicken.com/">이 사이트</a>
+#에서는 당신이 사용하고 있다고 생각되는 IP주소를 알려줍니다. 
+(만약 이 사이트가 안 열린다면, Tor를 테스트할 수 있는 다른 방법들이 나와있는 다음의<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate"> 
+FAQ</a>를 확인하세요.)
+</p>
+
+<p>만약에 접속제한을 하는 개인 파이어월을 사용 중이라면,
+당신이 사용하는 프로그램들이 당신 컴퓨터의 8118 포트와 9050 포트에 접근을 
+할 수 있도록 되어있는지 확인해야 합니다. 만약에 파이어월이
+밖으로 나가는 연결을 차단한다면, 최소한 TCP 포트 80번과 443번은 
+연결이 되도록 허용해야 합니다. 그리고나서 다음의 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">
+FAQ</a>를 참고하세요.
+</p>
+
+
+<p>그래도 작동하지 않는다면, 다음의<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">
+FAQ</a>에서 몇가지 힌트를 얻을 수 있습니다.</p>
+
+<p>
+일단 Tor가 작동하기 시작했다면,
+<a href="<page download>#Warning">Tor가 무엇을 하고 무엇을 할 수 없는지</a> 
+확인해보는 것이 좋습니다.
+</p>
+
+<hr />
+<a id="server"></a>
+<a id="relay"></a>
+<h2><a class="anchor" href="#relay">4단계: 중계서버로 설정하기</a></h2>
+<br />
+
+<p>
+Tor 네트워크는 자발적으로 대역폭을 제공하는 자원자들에 의해 운영됩니다. 중계서버를
+운영하는 사람이 많아질수록, Tor 네트워크가 더 빨라질 것입니다.
+만약에 당신이 양방향으로 최소 20Kilobytes/s의 대역폭을 가지고 있다면,
+당신의 Tor도 중계서버로 운영되도록 설정할 것을 부탁드립니다.
+제공되는 대역폭을 제한하는 것, 당신의 컴퓨터를 이용해 인터넷을
+사용하는 사람들이 그것을 악용할 수 없도록 Exit 정책을 설정하는 것,
+그리고 동적 IP 주소를 지원하는 것 등, Tor중계서버를 설정하는 것은 아주 간단합니다.
+</p>
+
+<p>광활한 네트의 곳곳에서 중계서버가 운영되는 것이 Tor 이용자들을 안전하게 해줍니다.
+또 당신이 중계서버를 운영하는 경우, 웹사이트들은 당신의 컴퓨터에서 온 통신요청이 당신이 보낸 것인지
+아니면 다른 이의 통신요청을 중계해주는 것인지 알 수 없기 때문에<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">
+당신에게는 더욱 강한 익명성이 만들어질 수도 있습니다</a>
+.</p>
+
+
+<p><a href="<page docs/tor-doc-relay>">중계서버 설정하기</a>
+를 참고하시면, 더 많은 정보들을 얻을 수 있습니다.</p>
+
+<hr />
+
+<p>이 문서를 개선시킬 수 있는 제안이 있다면,  <a
+href="<page contact>">우리에게 보내주세요</a>. 감사합니다!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+
