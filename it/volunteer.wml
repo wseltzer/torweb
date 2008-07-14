@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 15123
+# Based-On-Revision: 15882
 # Last-Translator: jan at seul dot org
 
 #include "head.wmi" TITLE="Tor: partecipa" CHARSET="UTF-8"
@@ -1117,21 +1117,6 @@ di finestre di ampiezza fissa? Questo sembrava funzionare bene in un <a
 href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">esperimento
 di throughput ssh</a>. Dovremmo misurare e provare, e forse applicare il metodo
 se i risultati fossero soddisfacenti.</li>
-<li>Per permettere ai dissidenti in tutto il mondo di usare Tor senza essere
-bloccati dai firewall del loro paese, serve un sistema per avere decine di migliaia
-di relay, non qualche centinaio. Potremmo immaginare la GUI di un client Tor con
-un pulsante "Tor for Freedom" che apre una porta e fa il relay di pochi
-KB/s di traffico verso la rete Tor. (Pochi KB/s non dovrebbero essere un problema,
-e ci sarebbero pochi abusi, dato che non sarebbero degli exit
-node.) Ma come si fa a distribuire automaticamente ai dissidenti
-la lista di questi client volontari ed ad impedire ai firewall nazionali di
-intercettarli ed enumerarli? Forse si dovrebbe lavorare a livello di
-fiducia personale. Vedi il nostro <a href="<page documentation>#DesignDoc">early
-blocking-resistance design document</a> e la nostra <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance">FAQ
-</a> sull'argomento e poi leggi la <a
-href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">sezione
-di anonbib sulla resistenza alla censura</a>.</li>
 <li>Uno degli obiettivi per resistere alla censura &egrave; impedire
 ad un attaccante che osservi il traffico Tor su una connessione di <a
 href="https://www.torproject.org/svn/trunk/doc/design-paper/blocking.html#sec:network-fingerprint">distinguerlo
@@ -1153,23 +1138,40 @@ sicurezza e prestazioni.</li>
 <li>Non &egrave; difficile effettuare un DoS ai Tor relay o alle autorit&agrave; di directory. I client
 puzzle sono la soluzione giusta? Quali altri approcci pratici esistono? Un premio
 se sono compatibili col protocollo Tor attuale.</li>
-
-<li>Programs like <a
-href="https://torbutton.torproject.org/dev/">Torbutton</a> aim to hide
-your browser's UserAgent string by replacing it with a uniform answer for
-every Tor user. That way the attacker can't splinter Tor's anonymity set
-by looking at that header. It tries to pick a string that is commonly used
-by non-Tor users too, so it doesn't stand out. Question one: how badly
-do we hurt ourselves by periodically updating the version of Firefox
-that Torbutton claims to be? If we update it too often, we splinter the
-anonymity sets ourselves. If we don't update it often enough, then all the
-Tor users stand out because they claim to be running a quite old version
-of Firefox. The answer here probably depends on the Firefox versions seen
-in the wild. Question two: periodically people ask us to cycle through N
-UserAgent strings rather than stick with one. Does this approach help,
-hurt, or not matter? Consider: cookies and recognizing Torbutton users
-by their rotating UserAgents; malicious websites who only attack certain
-browsers; and whether the answers to question one impact this answer.
+<li>Programmi come <a
+href="https://torbutton.torproject.org/dev/">Torbutton</a> cercano di nascondere
+la stringa UserAgent del tuo browser sostituendola con una risposta uniforme
+per ogni utente Tor. In questo modo un attaccante non pu&ograve; ridurre l'anonymity set
+in base a questo header. Torbutton cerca di usare una stringa comunemente usata anche
+da utenti non-Tor in modo da non dare nell'occhio. Prima domanda: quanto
+&egrave; dannoso aggiornare periodicamente la versione di Firefox che
+Torbutton dichiara? Se la aggiorniamo troppo spessp suddividiamo da soli
+l'anonymity set. se non l'aggiorniamo abbastanza spesso allora tutti gli
+utenti di Tor spiccano dato che dichiarano una versione obsoleta di
+Firefox. La risposta dipende probabilmente dalle versioni di Firefox osservabili
+dal vivo. Seconda domanda: ci viene regolarmente chiesto di ruotare N stringhe
+UserAgent invece di usarne una sola. &Egrave; un approccio utile, dannoso
+o indifferente? Considera per esempio: uso di cookie e riconoscimento di utenti
+Torbutton dai loro UserAgent; siti web maliziosi che attaccano solo certi
+browser; e se le risposte alla domanda numero uno hanno in impatto sulla seconda domanda.
+</li>
+<li>Per ora i client Tor riutilizzano un circuito per dieci minuti
+da quando &egrave; stato stabilito. Lo scopo &egrave; di evitare il sovraccarico
+della rete con troppe operazioni di estensione di circuito, e di evitare al contempo
+che i client usino lo stesso circuito troppo a lungo, tanto da permettere a un exit node
+di realizzare un profilo pseudonimo utile su di essi. Purtroppo 10 minuti sono
+troppo, specie se vengono fatte sullo stesso circuto connessioni per protocolli multipli (come IM e
+web browsing). Se manteniamo fisso il numero totale di
+circuit extend che la rete deve compiere, esistono altri metodi
+pi&ugrave; efficienti o sicuri perch&eacute; i client allochino flussi ai circuiti,
+o perch&eacute; i client costruiscano preventivamente dei circuiti? Forse un punto di partenza in
+questa ricerca &egrave; la raccolta di informazioni su che genere di connessioni
+vengono tipicamente lanciate dai client, in modo da disporre di un quadro realistico su cui lavorare.
+</li>
+<li>Quanti bridge relay occorre conoscere per mantenere una raggiungibilit&agrave;
+ottimale? Bisognerebbe misurare il tasso di esaurimento dei nostri bridge. Se questo &egrave;
+alto, ci sono dei modi per mantenere meglio connessi gli utenti dei
+bridge?
 </li>
 
 </ol>
