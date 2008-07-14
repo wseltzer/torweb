@@ -1105,22 +1105,6 @@ than fixed-size windows? That seemed to go well in an <a
 href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh
 throughput experiment</a>. We'll need to measure and tweak, and maybe
 overhaul if the results are good.</li>
-<li>To let dissidents in remote countries use Tor without being blocked
-at their country's firewall, we need a way to get tens of thousands of
-relays, not just a few hundred. We can imagine a Tor client GUI that
-has a "Tor for Freedom" button at the top that opens a port and relays a
-few KB/s of traffic into the Tor network. (A few KB/s shouldn't be too
-much hassle, and there are few abuse issues since they're not being exit
-nodes.) But how do we distribute a list of these volunteer clients to the
-good dissidents in an automated way that doesn't let the country-level
-firewalls intercept and enumerate them? This probably needs to work on a
-human-trust level. See our <a href="<page documentation>#DesignDoc">early
-blocking-resistance design document</a> and our
-<a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance">FAQ
-entry</a> on this, and then read the <a
-href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">censorship
-resistance section of anonbib</a>.</li>
 <li>Our censorship-resistance goals include preventing
 an attacker who's looking at Tor traffic on the wire from <a
 href="https://www.torproject.org/svn/trunk/doc/design-paper/blocking.html#sec:network-fingerprint">distinguishing
@@ -1158,6 +1142,24 @@ UserAgent strings rather than stick with one. Does this approach help,
 hurt, or not matter? Consider: cookies and recognizing Torbutton users
 by their rotating UserAgents; malicious websites who only attack certain
 browsers; and whether the answers to question one impact this answer.
+</li>
+<li>Right now Tor clients are willing to reuse a given circuit for ten
+minutes after it's first used. The goal is to avoid loading down the
+network with too many circuit extend operations, yet to also avoid having
+clients use the same circuit for so long that the exit node can build a
+useful pseudonymous profile of them. Alas, ten minutes is probably way
+too long, especially if connections from multiple protocols (e.g. IM and
+web browsing) are put on the same circuit. If we keep fixed the overall
+number of circuit extends that the network needs to do, are there more
+efficient and/or safer ways for clients to allocate streams to circuits,
+or for clients to build preemptive circuits? Perhaps this research item
+needs to start with gathering some traces of what connections typical
+clients try to launch, so you have something realistic to try to optimize.
+</li>
+<li>How many bridge relays do you need to know to maintain
+reachability? We should measure the churn in our bridges. If there is
+lots of churn, are there ways to keep bridge users more likely to stay
+connected?
 </li>
 </ol>
 
