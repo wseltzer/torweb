@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 15123
+# Based-On-Revision: 15882
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Tor: Wolontariusze" CHARSET="UTF-8"
@@ -1124,22 +1124,6 @@ dwa rzędy wielkości niż wtedy, gdy napisano ten dokument.) Przeczytaj też
  przepustowości SSH</a>. Będziemy musieli mierzyć i podkręcać, i być może
  wykonać poprawki, jeśli wyniki okażą się dobre.
  </li>
-<li>Aby umożliwić dysydentom w innych krajach używanie Tora bez bycia
- zablokowanym przez zaporę ogniową w ich kraju, potrzebujemy sposobu na
- zdobycie dziesiątek tysięcy serwerów pośredniczących, nie zaledwie kilkuset.
- Wyobrażamy sobie GUI klienta Tora, które na górze ma przycisk "Tor dla wolności",
- który otwiera port i przekierowuje kilka kB/s ruchu do sieci Tor. (Kilka kB/s
- nie powinno być dużym kłopotem i nie będzie wiele spraw o nadużycia, gdyż
- nie będą to węzły wyjściowe.) Ale jak rozpowszechniać listę tych
- klientów-wolontariuszy do dobrych dysydentów automatycznie w taki sposób, który
- nie pozwoli krajowym zaporom ogniowym przechwycić i zliczyć ich? To prawdopodobnie
- musi działać poziomie zaufania ludzkiego. Spójrz na nasz
- <a href="<page documentation>#DesignDoc">wstępny dokument o
- ochronie przed blokowaniem</a> i na nasz <a
- href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance">wpis w FAQ</a>
- o tym, a potem przeczytaj <a
- href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">sekcję w anonbib o
- przeciwstawianiu się cenzurze</a>.</li>
 
 <li>Nasze cele w opieraniu się cenzurze to m.in. zapobieganie temu, by napastnik
 podglądający ruch Tora mógł <a
@@ -1182,6 +1166,23 @@ z którym musimy żyć?</li>
  ich zmieniające się nagłówki UserAgent, złe strony atakujące tylko określone
  przeglądarki; oraz to, czy odpowiedź na pytanie 1 wpływa na tę odpowiedź.
 </li>
+<li>W chwili obecnej klienci Tora mogą używać tego samego obwodu w ciągu dziesięciu
+minut od jego pierwszego użycia. Celem tego jest uniknięcie przeładowania sieci
+zbyt wielką liczbą operacji przedłużania obwodów, równocześnie unikając używania
+obwodu tak długo, że węzeł wyjściowy mógłby stworzyć przydatny profil pseudonimowy
+użytkownika. Dziesięć minut to jednak prawdopodobnie znacznie za dużo, zwłaszcza
+gy przez ten sam obwód prowadzone sa połączenia różnych protokołów (np. IM i przeglądanie
+sieci). Jeśli nie zmienimy całkowitej liczby obwodów, które należy utrzymywać, to czy
+będą jakieś wydajniejsze lub bezpieczniejsze metody alokcaji strumieni do obwodów,
+lub do tworzenia wywłaszczających obwodów? Być może ten temat badań powinien być rozpoczęty
+poprzez zebranie śladów, jakie połączenia typowy użytkownik otwiera, by mieć coś
+realistycznego do optymalizacji.
+</li>
+<li>Ile przekaźników mostkowych potrzeba, by utrzymać osiągalność? Powinniśmy zmierzyć
+zajętość w naszych mostkach. Jeśli jest duża, czy są jakieś sposoby na zwiększenie
+szans użytkowników mostków na pozostanie połączonymi?
+</li>
+
 </ol>
 
 <p>
