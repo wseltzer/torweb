@@ -76,6 +76,7 @@ sub FetchDate {
 # Add new mirrors to the bottom!
 my %m = ( 
        mirror000 => {
+            adminContact => "",							
             orgName => "cypherpunks.at",
             isoCC => "AT",
             subRegion => "",
@@ -91,6 +92,7 @@ my %m = (
         },
 
        mirror001 => {
+            adminContact => "",							
             orgName => "depthstrike.com",
             isoCC => "CA",
             subRegion => "NS",
@@ -107,6 +109,7 @@ my %m = (
         },
 
        mirror002 => {
+            adminContact => "",							
             orgName => "hermetix.org",
             isoCC => "CA",
             subRegion => "QC",
@@ -122,6 +125,7 @@ my %m = (
         },
 
        mirror003 => {
+            adminContact => "",							
             orgName => "Boinc.ch",
             isoCC => "CH",
             subRegion => "",
@@ -138,6 +142,7 @@ my %m = (
         },
 
        mirror004 => {
+            adminContact => "",							
             orgName => "anonymity.cn",
             isoCC => "CN",
             subRegion => "",
@@ -154,6 +159,7 @@ my %m = (
         },
 
        mirror005 => {
+            adminContact => "",							
             orgName => "bbs",
             isoCC => "DE",
             subRegion => "",
@@ -186,6 +192,7 @@ my %m = (
         # },
 
        mirror006 => {
+            adminContact => "",							
             orgName => "cybermirror",
             isoCC => "DE",
             subRegion => "",
@@ -202,6 +209,7 @@ my %m = (
         },
 
        mirror007 => {
+            adminContact => "",							
             orgName => "Spline",
             isoCC => "DE",
             subRegion => "FU",
@@ -218,6 +226,7 @@ my %m = (
         },
 
        mirror008 => {
+            adminContact => "",							
             orgName => "mirror.bsdhost.eu",
             isoCC => "DE",
             subRegion => "",
@@ -234,6 +243,7 @@ my %m = (
         },
 
        mirror009 => {
+            adminContact => "",							
             orgName => "onionland",
             isoCC => "DE",
             subRegion => "",
@@ -250,6 +260,7 @@ my %m = (
         },
 
        mirror010 => {
+												adminContact => "contact\@plentyfact.net",
             orgName => "plentyfact",
             isoCC => "DE",
             subRegion => "",
@@ -300,6 +311,7 @@ my %m = (
         # },
 
        mirror013 => {
+            adminContact => "",							
             orgName => "zdg-gmbh.eu",
             isoCC => "DK",
             subRegion => "",
@@ -316,6 +328,7 @@ my %m = (
         },
 
        mirror014 => {
+            adminContact => "",							
             orgName => "CRAN",
             isoCC => "FR",
             subRegion => "",
@@ -348,6 +361,7 @@ my %m = (
         # },
 
        mirror016 => {
+            adminContact => "",							
             orgName => "amorphis.eu",
             isoCC => "NL",
             subRegion => "",
@@ -364,6 +378,7 @@ my %m = (
         },
 
        mirror017 => {
+            adminContact => "",							
             orgName => "BIT BV",
             isoCC => "NL",
             subRegion => "",
@@ -380,6 +395,7 @@ my %m = (
         },
 
        mirror018 => {
+            adminContact => "",							
             orgName => "CCC",
             isoCC => "NL",
             subRegion => "",
@@ -396,6 +412,7 @@ my %m = (
         },
 
        mirror018 => {
+            adminContact => "",							
             orgName => "kamagurka.org",
             isoCC => "NL",
             subRegion => "Haarlem",
@@ -412,6 +429,7 @@ my %m = (
         },
 
        mirror019 => {
+            adminContact => "",							
             orgName => "OS Mirror",
             isoCC => "NL",
             subRegion => "",
@@ -429,6 +447,7 @@ my %m = (
 
 
        mirror020 => {
+            adminContact => "",							
             orgName => "Meulie.net",
             isoCC => "NO",
             subRegion => "",
@@ -461,6 +480,7 @@ my %m = (
         # },
 
        mirror022 => {
+            adminContact => "",							
             orgName => "Ghirai.com",
             isoCC => "UK",
             subRegion => "London",
@@ -477,6 +497,7 @@ my %m = (
         },
 
        mirror023 => {
+							     adminContact => "",
             orgName => "BJWOnline.com",
             isoCC => "US",
             subRegion => "California",
@@ -509,6 +530,7 @@ my %m = (
         # },
 
        mirror025 => {
+							     adminContact => "",
             orgName => "TheOnionRouter.com",
             isoCC => "US",
             subRegion => "Texas",
@@ -628,7 +650,25 @@ my %m = (
             updateDate => "Unknown",
         },								
 
-
+        mirror032 => {
+            adminContact => "abuse\@misericordia.be",
+            orgName => "misericordia",
+            isoCC => "FR",
+            subRegion => "France",
+            region => "Europe",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://mirror.misericordia.be/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "", 
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://mirror.misericordia.be/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },		
 
 );
 
