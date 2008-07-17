@@ -76,7 +76,7 @@ sub FetchDate {
 # Add new mirrors to the bottom!
 my %m = ( 
        mirror000 => {
-            adminContact => "or-assistants\@local",							
+            adminContact => "or-assistants.local",							
             orgName => "Cypherpunks",
             isoCC => "AT",
             subRegion => "",
@@ -92,7 +92,7 @@ my %m = (
         },
 
        mirror001 => {
-            adminContact => "webmaster\@depthstrike.com",							
+            adminContact => "webmaster.depthstrike.com",							
             orgName => "Depthstrike",
             isoCC => "CA",
             subRegion => "NS",
@@ -109,7 +109,7 @@ my %m = (
         },
 
        mirror002 => {
-            adminContact => "operator\@hermetix.org",							
+            adminContact => "operator.hermetix.org",							
             orgName => "Hermetix",
             isoCC => "CA",
             subRegion => "QC",
@@ -142,7 +142,7 @@ my %m = (
         },
 
        mirror004 => {
-            adminContact => "peihanru\@yahoo.com.cn",							
+            adminContact => "peihanru.yahoo.com.cn",							
             orgName => "Anonymity",
             isoCC => "CN",
             subRegion => "",
@@ -159,7 +159,7 @@ my %m = (
         },
 
        mirror005 => {
-            adminContact => "citizen428\@gmail.com",							
+            adminContact => "citizen428.gmail.com",							
             orgName => "Bbs",
             isoCC => "DE",
             subRegion => "",
@@ -192,7 +192,7 @@ my %m = (
         # },
 
        mirror006 => {
-            adminContact => "cm\@cybermirror.org",							
+            adminContact => "cm.cybermirror.org",							
             orgName => "Cybermirror",
             isoCC => "DE",
             subRegion => "",
@@ -209,7 +209,7 @@ my %m = (
         },
 
        mirror007 => {
-            adminContact => "contact\@algorithmus.com",							
+            adminContact => "contact.algorithmus.com",							
             orgName => "Spline",
             isoCC => "DE",
             subRegion => "FU",
@@ -243,7 +243,7 @@ my %m = (
         },
 
        mirror009 => {
-            adminContact => "beaver\@trash.net",							
+            adminContact => "beaver.trash.net",							
             orgName => "Onionland",
             isoCC => "DE",
             subRegion => "",
@@ -260,7 +260,7 @@ my %m = (
         },
 
        mirror010 => {
-												adminContact => "contact\@plentyfact.org",
+												adminContact => "contact.plentyfact.org",
             orgName => "Plentyfact",
             isoCC => "DE",
             subRegion => "",
@@ -311,7 +311,7 @@ my %m = (
         # },
 
        mirror013 => {
-            adminContact => "info\@zentrum-der-gesundheit.de",							
+            adminContact => "info.zentrum-der-gesundheit.de",							
             orgName => "Zentrum der Gesundheit",
             isoCC => "DK",
             subRegion => "",
@@ -328,7 +328,7 @@ my %m = (
         },
 
        mirror014 => {
-            adminContact => "kurt\@miroir-francais.fr",							
+            adminContact => "kurt.miroir-francais.fr",							
             orgName => "CRAN",
             isoCC => "FR",
             subRegion => "Ile de France",
@@ -361,7 +361,7 @@ my %m = (
         # },
 
        mirror016 => {
-            adminContact => "root\@amorphis.eu",							
+            adminContact => "root.amorphis.eu",							
             orgName => "Amorphis",
             isoCC => "NL",
             subRegion => "",
@@ -378,7 +378,7 @@ my %m = (
         },
 
        mirror017 => {
-            adminContact => "mirror\@bit.nl",							
+            adminContact => "mirror.bit.nl",							
             orgName => "BIT BV",
             isoCC => "NL",
             subRegion => "",
@@ -395,7 +395,7 @@ my %m = (
         },
 
        mirror018 => {
-            adminContact => "webmaster\@ccc.de",							
+            adminContact => "webmaster.ccc.de",							
             orgName => "CCC",
             isoCC => "NL",
             subRegion => "",
@@ -429,7 +429,7 @@ my %m = (
         },
 
        mirror019 => {
-            adminContact => "mirrors\@osmirror.nl",							
+            adminContact => "mirrors.osmirror.nl",							
             orgName => "OS Mirror",
             isoCC => "NL",
             subRegion => "",
@@ -447,7 +447,7 @@ my %m = (
 
 
        mirror020 => {
-            adminContact => "evert\@meulie.net",							
+            adminContact => "evert.meulie.net",							
             orgName => "Meulie",
             isoCC => "NO",
             subRegion => "",
@@ -480,7 +480,7 @@ my %m = (
         # },
 
        mirror022 => {
-            adminContact => "ghirai\@ghirai.com",							
+            adminContact => "ghirai.ghirai.com",							
             orgName => "Ghirai",
             isoCC => "UK",
             subRegion => "London",
@@ -530,7 +530,7 @@ my %m = (
         # },
 
        mirror025 => {
-							     adminContact => "hostmaster\@zombiewerks.com",
+							     adminContact => "hostmaster.zombiewerks.com",
             orgName => "TheOnionRouter.com",
             isoCC => "US",
             subRegion => "Texas",
@@ -563,7 +563,7 @@ my %m = (
         # },
 
        mirror027 => {
-            adminContact => "jeroen\@unfix.org",
+            adminContact => "jeroen.unfix.org",
             orgName => "unfix",
             isoCC => "CH",
             subRegion => "",
@@ -580,7 +580,7 @@ my %m = (
         },
 
        mirror028 => {
-            adminContact => "jeroen\@unfix.org",
+            adminContact => "jeroen.unfix.org",
             orgName => "sixx",
             isoCC => "CH",
             subRegion => "",
@@ -614,7 +614,7 @@ my %m = (
         },
 
        mirror030 => {
-            adminContact => "web2005a\@year2005a.wiretapped.net",
+            adminContact => "web2005a.year2005a.wiretapped.net",
             orgName => "Wiretapped",
             isoCC => "AU",
             subRegion => "Sydney",
@@ -631,7 +631,7 @@ my %m = (
         },								
 
         mirror031 => {
-            adminContact => "tormaster\@xpdm.us",
+            adminContact => "tormaster.xpdm.us",
             orgName => "xpdm",
             isoCC => "US",
             subRegion => "",
@@ -651,7 +651,7 @@ my %m = (
         },								
 
         mirror032 => {
-            adminContact => "abuse\@misericordia.be",
+            adminContact => "abuse.misericordia.be",
             orgName => "misericordia",
             isoCC => "FR",
             subRegion => "France",
