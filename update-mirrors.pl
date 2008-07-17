@@ -77,7 +77,7 @@ sub FetchDate {
 my %m = ( 
        mirror000 => {
             adminContact => "",							
-            orgName => "cypherpunks.at",
+            orgName => "Cypherpunks",
             isoCC => "AT",
             subRegion => "",
             region => "Europe",
@@ -92,8 +92,8 @@ my %m = (
         },
 
        mirror001 => {
-            adminContact => "",							
-            orgName => "depthstrike.com",
+            adminContact => "webmaster\@depthstrike.com",							
+            orgName => "Depthstrike",
             isoCC => "CA",
             subRegion => "NS",
             region => "North America",
@@ -109,8 +109,8 @@ my %m = (
         },
 
        mirror002 => {
-            adminContact => "",							
-            orgName => "hermetix.org",
+            adminContact => "operator\@hermetix.org",							
+            orgName => "Hermetix",
             isoCC => "CA",
             subRegion => "QC",
             region => "North America",
@@ -126,7 +126,7 @@ my %m = (
 
        mirror003 => {
             adminContact => "",							
-            orgName => "Boinc.ch",
+            orgName => "Boinc",
             isoCC => "CH",
             subRegion => "",
             region => "Europe",
@@ -142,8 +142,8 @@ my %m = (
         },
 
        mirror004 => {
-            adminContact => "",							
-            orgName => "anonymity.cn",
+            adminContact => "peihanru\@yahoo.com.cn",							
+            orgName => "Anonymity",
             isoCC => "CN",
             subRegion => "",
             region => "Asia",
@@ -159,8 +159,8 @@ my %m = (
         },
 
        mirror005 => {
-            adminContact => "",							
-            orgName => "bbs",
+            adminContact => "citizen428\@gmail.com",							
+            orgName => "Bbs",
             isoCC => "DE",
             subRegion => "",
             region => "Europe",
@@ -192,8 +192,8 @@ my %m = (
         # },
 
        mirror006 => {
-            adminContact => "",							
-            orgName => "cybermirror",
+            adminContact => "cm\@cybermirror.org",							
+            orgName => "Cybermirror",
             isoCC => "DE",
             subRegion => "",
             region => "Europe",
@@ -209,7 +209,7 @@ my %m = (
         },
 
        mirror007 => {
-            adminContact => "",							
+            adminContact => "contact\@algorithmus.com",							
             orgName => "Spline",
             isoCC => "DE",
             subRegion => "FU",
@@ -226,8 +226,8 @@ my %m = (
         },
 
        mirror008 => {
-            adminContact => "",							
-            orgName => "mirror.bsdhost.eu",
+            adminContact => "lechtermann\bsdhost.eu",							
+            orgName => "Bsdhost",
             isoCC => "DE",
             subRegion => "",
             region => "Europe",
@@ -243,8 +243,8 @@ my %m = (
         },
 
        mirror009 => {
-            adminContact => "",							
-            orgName => "onionland",
+            adminContact => "beaver\@trash.net",							
+            orgName => "Onionland",
             isoCC => "DE",
             subRegion => "",
             region => "Europe",
@@ -261,7 +261,7 @@ my %m = (
 
        mirror010 => {
 												adminContact => "contact\@plentyfact.org",
-            orgName => "plentyfact",
+            orgName => "Plentyfact",
             isoCC => "DE",
             subRegion => "",
             region => "Europe",
@@ -311,8 +311,8 @@ my %m = (
         # },
 
        mirror013 => {
-            adminContact => "",							
-            orgName => "zdg-gmbh.eu",
+            adminContact => "info\@zentrum-der-gesundheit.de",							
+            orgName => "Zentrum der Gesundheit",
             isoCC => "DK",
             subRegion => "",
             region => "Europe",
@@ -328,10 +328,10 @@ my %m = (
         },
 
        mirror014 => {
-            adminContact => "",							
+            adminContact => "kurt\@miroir-francais.fr",							
             orgName => "CRAN",
             isoCC => "FR",
-            subRegion => "",
+            subRegion => "Ile de France",
             region => "Europe",
             ipv4 => "True",
             ipv6 => "False",
@@ -361,8 +361,8 @@ my %m = (
         # },
 
        mirror016 => {
-            adminContact => "",							
-            orgName => "amorphis.eu",
+            adminContact => "root\@amorphis.eu",							
+            orgName => "Amorphis",
             isoCC => "NL",
             subRegion => "",
             region => "Europe",
@@ -378,7 +378,7 @@ my %m = (
         },
 
        mirror017 => {
-            adminContact => "",							
+            adminContact => "mirror\@bit.nl",							
             orgName => "BIT BV",
             isoCC => "NL",
             subRegion => "",
@@ -395,7 +395,7 @@ my %m = (
         },
 
        mirror018 => {
-            adminContact => "",							
+            adminContact => "webmaster\@ccc.de",							
             orgName => "CCC",
             isoCC => "NL",
             subRegion => "",
@@ -412,8 +412,8 @@ my %m = (
         },
 
        mirror018 => {
-            adminContact => "",							
-            orgName => "kamagurka.org",
+            adminContact => "root@kamagurka.org",							
+            orgName => "Kamagurka",
             isoCC => "NL",
             subRegion => "Haarlem",
             region => "Europe",
@@ -429,7 +429,7 @@ my %m = (
         },
 
        mirror019 => {
-            adminContact => "",							
+            adminContact => "mirrors\@osmirror.nl",							
             orgName => "OS Mirror",
             isoCC => "NL",
             subRegion => "",
@@ -447,8 +447,8 @@ my %m = (
 
 
        mirror020 => {
-            adminContact => "",							
-            orgName => "Meulie.net",
+            adminContact => "evert\@meulie.net",							
+            orgName => "Meulie",
             isoCC => "NO",
             subRegion => "",
             region => "Europe",
@@ -480,8 +480,8 @@ my %m = (
         # },
 
        mirror022 => {
-            adminContact => "",							
-            orgName => "Ghirai.com",
+            adminContact => "ghirai\@ghirai.com",							
+            orgName => "Ghirai",
             isoCC => "UK",
             subRegion => "London",
             region => "Europe",
@@ -530,7 +530,7 @@ my %m = (
         # },
 
        mirror025 => {
-							     adminContact => "",
+							     adminContact => "hostmaster\@zombiewerks.com",
             orgName => "TheOnionRouter.com",
             isoCC => "US",
             subRegion => "Texas",
