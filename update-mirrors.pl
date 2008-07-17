@@ -412,7 +412,7 @@ my %m = (
         },
 
        mirror018 => {
-            adminContact => "root@kamagurka.org",							
+            adminContact => "root.kamagurka.org",
             orgName => "Kamagurka",
             isoCC => "NL",
             subRegion => "Haarlem",
