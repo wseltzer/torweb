@@ -498,7 +498,7 @@ my %m = (
 
        mirror023 => {
 							     adminContact => "",
-            orgName => "BJWOnline.com",
+            orgName => "BJWOnline",
             isoCC => "US",
             subRegion => "California",
             region => "North America",
@@ -531,7 +531,7 @@ my %m = (
 
        mirror025 => {
 							     adminContact => "hostmaster.zombiewerks.com",
-            orgName => "TheOnionRouter.com",
+            orgName => "TheOnionRouter",
             isoCC => "US",
             subRegion => "Texas",
             region => "North America",
@@ -564,7 +564,7 @@ my %m = (
 
        mirror027 => {
             adminContact => "jeroen.unfix.org",
-            orgName => "unfix",
+            orgName => "Unfix",
             isoCC => "CH",
             subRegion => "",
             region => "Europe",
@@ -581,7 +581,7 @@ my %m = (
 
        mirror028 => {
             adminContact => "jeroen.unfix.org",
-            orgName => "sixx",
+            orgName => "Sixx",
             isoCC => "CH",
             subRegion => "",
             region => "Europe",
@@ -598,7 +598,7 @@ my %m = (
 
        mirror029 => {
             adminContact => "",
-            orgName => "crypto.nsa.org",
+            orgName => "Crypto",
             isoCC => "US",
             subRegion => "",
             region => "North America",
@@ -632,7 +632,7 @@ my %m = (
 
         mirror031 => {
             adminContact => "tormaster.xpdm.us",
-            orgName => "xpdm",
+            orgName => "Xpdm",
             isoCC => "US",
             subRegion => "",
             region => "North America",
@@ -652,7 +652,7 @@ my %m = (
 
         mirror032 => {
             adminContact => "abuse.misericordia.be",
-            orgName => "misericordia",
+            orgName => "Misericordia",
             isoCC => "FR",
             subRegion => "France",
             region => "Europe",
