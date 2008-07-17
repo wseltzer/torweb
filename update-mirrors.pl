@@ -260,7 +260,7 @@ my %m = (
         },
 
        mirror010 => {
-												adminContact => "contact\@plentyfact.net",
+												adminContact => "contact\@plentyfact.org",
             orgName => "plentyfact",
             isoCC => "DE",
             subRegion => "",
