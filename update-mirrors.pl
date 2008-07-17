@@ -76,7 +76,7 @@ sub FetchDate {
 # Add new mirrors to the bottom!
 my %m = ( 
        mirror000 => {
-            adminContact => "",							
+            adminContact => "or-assistants\@local",							
             orgName => "Cypherpunks",
             isoCC => "AT",
             subRegion => "",
