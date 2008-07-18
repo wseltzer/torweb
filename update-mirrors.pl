@@ -142,7 +142,7 @@ my %m = (
         },
 
        mirror004 => {
-            adminContact => "peihanru.yahoo.com.cn",							
+            adminContact => "peihanru.gmail.com",							
             orgName => "Anonymity",
             isoCC => "CN",
             subRegion => "",
@@ -497,7 +497,7 @@ my %m = (
         },
 
        mirror023 => {
-							     adminContact => "",
+							     adminContact => "bjw.bjwonline.com",
             orgName => "BJWOnline",
             isoCC => "US",
             subRegion => "California",
