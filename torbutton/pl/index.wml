@@ -1,0 +1,562 @@
+## translation metadata
+# Based-On-Revision: 15985
+# Translation-Priority: 3-low
+# Last-Translator: bogdandr_at_op . pl
+
+#include "head.wmi" TITLE="Torbutton - Szybko zmieniaj korzystanie Firefoksa z sieci Tora" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<link rel="search" type="application/opensearchdescription+xml" title="Google Canada" href="search/google-ca.xml">
+<link rel="search" type="application/opensearchdescription+xml" title="Google UK" href="search/google-uk.xml">
+<link rel="search" type="application/opensearchdescription+xml" title="Google USA" href="search/google-us.xml">
+<script>
+
+function addSearchProvider(prov) {
+
+try {
+window.external.AddSearchProvider(prov);
+}
+
+catch (e) {
+alert("Wtyczki wyszukiwania wymagają przeglądarki Firefox 2");
+return;
+}
+}
+
+function addEngine(name,ext,cat,pid)
+{
+  if ((typeof window.sidebar == "object") && (typeof window.sidebar.addSearchEngine == "function")) {
+    window.sidebar.addSearchEngine(
+      "http://mycroft.mozdev.org/install.php/" + pid + "/" + name + ".src",
+      "http://mycroft.mozdev.org/install.php/" + pid + "/" + name + "."+ ext, name, cat );
+  } else {
+    alert("Do instalacji tej wtyczki wymagana jest przeglądarka obsługująca Sherlock.");
+  }
+}
+
+function addOpenSearch(name,ext,cat,pid,meth)
+{
+  if ((typeof window.external == "object") && ((typeof window.external.AddSearchProvider == "unknown") || (typeof window.external.AddSearchProvider == "function"))) {
+    if ((typeof window.external.AddSearchProvider == "unknown") && meth == "p") {
+      alert("Ta wtyczka korzysta z POST, który nie jest obsługiwany przez implementację OpenSearch w Internet Explorerze.");
+    } else {
+      window.external.AddSearchProvider(
+        "http://mycroft.mozdev.org/installos.php/" + pid + "/" + name + ".xml");
+    }
+  } else {
+    alert("Do instalacji tej wtyczki wymagana jest przeglądarka obsługująca OpenSearch.");
+  }
+}
+
+function addOpenSearch2(name,ext,cat,pid,meth)
+{
+  if ((typeof window.external == "object") && ((typeof window.external.AddSearchProvider == "unknown") || (typeof window.external.AddSearchProvider == "function"))) {
+    if ((typeof window.external.AddSearchProvider == "unknown") && meth == "p") {
+      alert("Ta wtyczka korzysta z POST, który nie jest obsługiwany przez implementację OpenSearch w Internet Explorerze.");
+    } else {
+      window.external.AddSearchProvider(
+        "http://torbutton.torproject.org/dev/search/" + name + ".xml");
+    }
+  } else {
+    alert("Do instalacji tej wtyczki wymagana jest przeglądarka obsługująca OpenSearch.");
+  }
+}
+
+function install (aEvent)
+{
+  var params = {
+    "Torbutton": { URL: aEvent.target.href,
+             Hash: aEvent.target.getAttribute("hash"),
+             toString: function () { return this.URL; }
+    }
+  };
+  InstallTrigger.install(params);
+
+  return false;
+}
+
+
+</script>
+
+<h2>Torbutton</h2>
+<hr>
+
+<strong>Bieżąca wersja:</strong><version-torbutton><br/>
+<br/>
+<strong>Autorzy:</strong> Scott Squires &amp; Mike Perry<br>
+<strong>Email:</strong> squires at freehaven dot net, mikeperry (o) fscked/org<br/>
+<br/>
+<strong>Instalacja:</strong>
+<a href="http://www.torproject.org/torbutton/torbutton-current.xpi"
+  hash="<version-hash-torbutton>"
+  onclick="return install(event);">Lokalna (zweryfikowany Javascript)</a><br/>
+<strong>Poprzednie wydania:</strong> <a href="releases/">Lokalnie</a><br/>
+<strong>Dokumentacja dla deweloperów:</strong> <a href="design/">Dokument projektowy Torbuttona</a>
+ i <a href="design/MozillaBrownBag.pdf">Slajdy (Nie aktualizowane często)</a><br/>
+<strong>Dodatki:</strong>
+
+Wtyczki wyszukiwania Google dla
+
+<a href="/jsreq.html" title="Ref: 14938 (googleCA)"
+ onClick="addOpenSearch('GoogleCanada','ico','General','14937','g');return false">Google CA</a> i
+
+<a href="/jsreq.html" title="Ref: 14938 (googleCA)"
+ onClick="addOpenSearch('googleuk_web','png','General','14445','g');return false">Google UK</a>.
+<br/>
+<!--
+<strong>Instalacja:</strong> <a href="torbutton-1.0.4.xpi">torbutton-1.0.4.xpi</a><br/>
+-->
+<strong>Kod źródłowy:</strong> Możesz <a
+href="https://svn.torproject.org/svn/torbutton/trunk/">przeglądać
+repozytorium</a> lub po prostu rozpakować plik xpi.
+<br/>
+<strong>Zgłaszanie błędów:</strong> <a href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">Torproject flyspray</a><br/>
+<strong>Dokumenty:</strong> <b>[</b> <a href="#FAQ">FAQ</a> <b>|</b>
+<a href="https://svn.torproject.org/svn/torbutton/trunk/src/CHANGELOG">zmiany</a> <b>|</b>
+<a href="https://svn.torproject.org/svn/torbutton/trunk/src/LICENCE">licencja</a> <b>|</b>
+<a href="https://svn.torproject.org/svn/torbutton/trunk/src/CREDITS">podziękowania</a> <b>]</b><br/>
+<h2>Opis</h2>
+<p>
+Torbutton jest 1-kliknięciowym sposobem dla użytkowników Firefoksa na włączanie lub
+wyłączanie tego, czy przeglądarka korzysta z <a href="<page index>">Tora</a>.
+Rozszerzenie to dodaje panel do paska stanu, który mówi "Tor włączony" (na zielono)
+lub "Tor wyłączony" (na czerwono). Użytkownik może kliknąć na panel, by zmienić status.
+Jeśli użytkownik (lub jakieś inne rozszerzenie) zmieni ustawienia proxy, zmiana ta
+jest automatycznie odzwierciedlana na pasku stanu.
+</p><p>
+Niektórzy użytkownicy mogą woleć przycisk na pasku narzędziowym zamiast panelu na pasku
+stanu. Taki przycisk jest załączony, dodać go można klikając prawym klawiszem na
+żądany pasek, wybierając "Dostosuj..." i przeciągając ikonkę Torbutton na pasek narzędziowy.
+Jest opcja w preferencjach pozwalająca na ukrycie panelu na pasku stanu
+(Narzędzia-&gt;Rozszerzenia, wybierz Torbutton i kliknij Preferencje).
+</p>
+<p>
+Nowsze wersje Firefoksa mają możliwość wysyłania żądań DSN przez proxy socks, i
+Torbutton skorzysta z tej możliwości, jeśli jest dostępna w Twojej wersji Firefoksa.
+</p>
+
+<a id="FAQ"></a><h2>FAQ</h2>
+
+<strong>Nie mogę klikać na linki lub przeładować strony po przełączeniu Tora. Dlaczego?</strong>
+<p>
+
+W związku z <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=409737">błędem Firefoksa
+numer 409737</a>, strony dalej mogą otwierać okienka wyskakujące i wykonywać przekierowania
+Javascript oraz mieć dostęp do historii po zmianie stanu Tora. Te okienka i przekierowania
+mogą być blokowane, ale niestety nie można ich odróżnić od normalnych działań użytkownika
+z taką stroną (takich jak kliknie na linki, otwieranie ich w nowych kartach/oknach, czy
+używanie przycisków historii), więc te są też blokowane, jako skutek uboczny. Po naprawie
+tego błędu w Firefoksie, ten stopień izolacji stanie się opcjonalny (dla ludzi, którzy nie chcą
+przypadkowo klikać na linki i przekazywać informacji poprzez adres zwrotny). Sposobem na
+obejście tego jest kliknięcie prawym klawiszem na link i otwarcie go w nowej karcie lub oknie.
+Karta lub okno nie załadują automatycznie strony, ale można nacisnąć Enter w pasku adresu
+i strona zacznie się ładować. Naciśnięcie Entera w pasku adresu przeładuje stronę, bez
+klikania w przycisk odświeżenia.
+
+</p>
+
+<strong>Moja przeglądarka jest w jakimś dziwnym stanie, gdzie nic nie działa dobrze!</strong>
+<p>
+
+Spróbuj wyłączyć Tora klikając na przycisk, po czym otwórz nowe okno. Jeśli to nie pomoże,
+otwórz preferencje i kliknij 'Restore Defaults' ("Przywróć ustawienia domyślne"). To
+powinno zresetować rozszerzenie i Firefoksa do znanej działającej konfiguracji.
+Jeśli umiesz powtórzyć ten problem, podaj szczegóły na <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">stronie
+śledzenia błędów</a>.
+
+</p>
+
+<strong>Gdy przełączam Tora, moje strony używające javascriptu przestają działać. Dlaczego?</strong>
+<p>
+
+Javascript może robić takie rzeczy jak czekanie aż wyłączysz Tora, zanim połączy się
+ze swoją stroną źródłową, tym samym odkrywając Twój adres IP. W związku z tym, Torbutton
+musi wyłączyć Javascript, znaczniki Meta-Refresh i niektóre zachowania CSS, gdy zmieni
+się stan Tora na inny niż ten, który był użyty do załadowania strony. Wszystkie te cechy
+zostają ponownie włączone, gdy Torbutton wraca do stanu, w którym był w czasie ładowania
+strony, ale w niektórych przypadkach (zwłaszcza z Javascriptem i CSS) nie jest
+możliwe całkowite cofnięcie się z powstałych błędów i strona pozostaje zepsuta.
+Niestety, jedyną rzeczą, jaką możesz zrobić (i dalej obronić się przed ujawnieniem
+swojego adresu IP), jest przeładowanie strony po przełączeniu Tora lub wykonanie całej
+pracy przed zmianą stanu Tora.
+
+</p>
+
+
+<strong>Gdy używam Tora, Firefox już nie uzupełnia za mnie pól logowania/wyszukiwania. Dlaczego?</strong>
+<p>
+
+W chwili obecnej jest to związane z ustawieniem "<b>Block history writes during Tor</b>"
+("Blokuj zapisy do historii w trybie Tora"). Jeśli masz włączoną tę opcję, cała
+funkcjonalność związana z uzupełnianiem formularzy (zarówno zapis, jak i odczyt)
+jest zablokowana. Jeśli Ci to przeszkadza, możesz wyłączyć tę opcję, ale zapisywane
+będą zarówno dane historii, jak i formularzy. By zapobiec atakom odkrywającym
+historię w trybie bez Tora, zalecane jest wyłączenie odczytu historii w trybie
+bez Tora, jeśli pozwalasz na zapis historii w trybie Tora.
+
+</p>
+
+
+<strong>Których rozszerzeń do Firefoksa powinno się unikać?</strong>
+<p>
+
+To jest trudne pytanie. Rozszerzeń Firefoksa są tysiące, stworzenie pełnej listy
+tych, które zagrażają anonimowości, jest prawie niemożliwe. Jednakże, oto kilka
+przykładów, które powinny dać Ci pojęcie co do tego, jakie zachowania są niebezpieczne.
+
+<ol>
+ <li>StumbleUpon, itp.</li>
+ Te rozszerzenia wysyłają mnóstwo informacji o stronach, które odwiedzasz, do serwerów
+ stumbleupon i łączą te informacje z unikalnym identyfikatorem. To jest oczywiście
+ straszne dla anonimowości. Ogólnie mówiąc, jakiekolwiek rozszerzenie wymagające
+ rejestracji, a nawet rozszerzenia dostarczające informacji o odwiedzanych stronach
+ powinny być uznane za podejrzane.
+
+ <li>FoxyProxy</li>
+
+ Podczas gdy w teorii FoxyProxy jest niezłym pomysłem, to w praktyce nie można go
+ skonfigurować bezpiecznie do Tora bez Torbuttona. Jak we wszystkich innych
+ rozszerzeniach proxy, głównymi zagrożeniami są <a
+ href="http://www.metasploit.com/research/projects/decloak/">wyciek wtyczek</a>
+ i <a href="http://ha.ckers.org/weird/CSS-history.cgi">odkrycie historii</a>,
+ zaraz za nimi są kradzieże ciasteczek przez węzły wyjściowe i śledzenie przez
+ serwery z reklamami (przeczytaj <a href="design/index.html#adversary">Torbutton Adversary
+ Model</a>, by poznać szczegóły). Lecz nawet z zainstalowanym i zawsze włączonym
+ Torbuttonem, ciągle bardzo trudno (lecz nie jest to niemożliwe) jest bezpiecznie
+ skonfigurować FoxyProxy. Jako że tryb wzorców (Patterns) w FoxyProxy odnosi się
+ tylko do specyficznych adresów, a nie do całej karty, ustawienie FoxyProxy tak, by
+ tylko niektóre strony były odwiedzane przez Tora, dalej pozwala napastnikom na
+ poznanie Twojego prawdziwego IP. Co gorsza, jeśli te strony używają usług logowania
+ na innych stronach jak Google Analytics, możesz wylądować w ich logach ze swoim
+ prawdziwym adresem IP. Złośliwe węzły wyjściowe też mogą współpracować ze stronami,
+ by wklejać obrazki do stron nie filtrowanych. Ustawienie FoxyProxy tak, by tylko
+ część adresów wysyła nie przez Tora jest znacznie łatwiejsze, ale trzeba być ostrożnym
+ z filtrami, na które się pozwala. Na przykład ustawienie czegoś tak prostego jak
+ *google*, by szło nie przez Tora dalej będzie powodować, że znajdziesz się we
+ wszystkich logach wszystkich stron używających Google Analytics! Przeczytaj
+ <a href="http://foxyproxy.mozdev.org/faq.html#privacy-01">to
+ pytanie</a> na FAQ FoxyProxy dla dalszych szczegółów.
+
+ <li>NoScript</li>
+ Torbutton w chwili obecnej łagodzi wszystkie znane problemy anonimowości związane
+ z Javascriptem. Wyłączanie Javascriptu tylko dla niektórych stron może kusić, że
+ posiada się lepszą ochronę, ale znacznie lepsze jest podejście wszystko-albo-nic.
+ NoScript jest za bardzo skomplikowany i posiada wiele subtelności mogących
+ zaskoczyć nawet zaawansowanych użytkowników. Na przykład, addons.mozilla.org
+ weryfikuje integralność rozszerzenia używając Javascriptu przez HTTPS, ale
+ pobiera je połączeniem jawnym. Nie dodanie tego do listy oznacza efektywnie, że
+ pobierasz niezweryfikowane rozszerzenia. Co gorsza, używanie NoScript może
+ wyłączyć ochronę dawaną przez Torbutton poprzez Javascript, lecz w dalszym
+ ciągu pozwoli złośliwym węzłom wyjściowym na pozbawienie Cie anonimowości
+ poprzez domyślną listę stron z pozwoleniem (za które mogą się podszyć, by dodać
+ jaki tylko skrypt zechcą).
+
+</ol>
+
+</p>
+
+<strong>Które rozszerzenia do Firefoksa polecacie?</strong>
+<p>
+<ol>
+ <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a></li>
+ Wspomniane wcześniej, to rozszerzenie pozwala na lepszą kontrolę adresów zwrotnych
+ niż Torbutton w tej chwili. Powinno psuć mniej stron niż kontrola adresu zwrotnego
+ w Torbuttonie.
+ <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a></li>
+ Jeśli dużo używasz Tora i rzadko go wyłączasz, prawodpodobnie przyda Ci się to
+ rozszerzenie, by zminimalizować możliwości stron internetowych odnośnie przechowywania
+ długotrwałych identyfikatorów w pamięci podręcznej. To rozszerzenie stosuje polityki
+ adresu pochodzenia w pamięci podręcznej, więc elementy są z niej pobierane tylko jeśli są
+ pobierane z dokumentu w tej samej strefie pochodzenia jak element w pamięci podręcznej.
+</ol>
+
+</p>
+
+<strong>Czy sa jeszcze jakieś sprawy, o których powinno się wiedzieć?</strong>
+<p>
+
+W chwili obecnej jest jeden niepoprawiony błąd bezpieczeństwa w Torbuttonie:
+jest możliwe odmaskowanie funkcji owijających obiekt Date tak, by zdradziły twoją
+strefę czasową w Firefoksie 2, a kod maskujący strefę czasową w ogóle nie działa w
+Firefoksie 3. Współpracujemy z ludźmi od Firefoksa, by naprawić jeden z błędów <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=392274">399274</a> lub
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=419598">419598</a>,
+co naprawiłoby ten problem. W międzyczasie, można ustawić zmienną środowiskową
+<b>TZ</b> na wartość <b>UTC</b>, by przeglądarka używała czasu UTC jako strefy
+czasowej. Pod Linuksem możesz dodać <b>export TZ=UTC</b> do skryptu /usr/bin/firefox
+lub zrobić to samo w systemowym pliku bashrc. Pod Windowsem można jedną ze <a
+href="http://support.microsoft.com/kb/310519">Zmiennych Środowiskowych
+Użytkownika lub Systemu</a> na TZ korzystając z właściwości Mojego Komputera. Pod
+MacOS, sytuacja jest
+<a
+href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html#//apple_ref/doc/uid/20002093-BCIJIJBH"
+>znacznie bardziej skomplikowana</a>, niestety.
+
+</p>
+
+<p>
+
+Ponadto, czytniki RSS takie jak Firefox Livemarks mogą przeprowadzać
+okresowe pobierania. W związku z  <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=436250">błędem Firefoksa
+436250</a>, nie ma sposobu na wyłączenie tego pobierania w trybie Tora. To może być
+problem, jeśli posiada się dużo własnych adresów kanałów informacyjnych, które mogą
+przekazywać informacje o Twojej tożsamości.
+
+</p>
+
+<h2>Opis Opcji</h2>
+
+<p>Gałąź rozwojowa Torbuttona dodaje wiele nowych opcji bezpieczeństwa do
+ochrony Twojej anonimowości przed wszystkimi głównymi zagrożeniami, o których
+autorzy wiedzą. Ustawienia domyślne powinny być dobre dla większości ludzi,
+ale jeśli jesteś osobą lubiąca mieć wszystko dopasowane lub wolisz wynieść
+jakieś opcje do bardziej elastycznych rozszerzeń, oto jest pełna lista.
+(W idealnym świecie, te opisy powinny być opisami w samym rozszerzeniu, ale
+błędy Firefoksa numer <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=45375">45375</a> i <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=218223">218223</a> w tej chwili
+to uniemożliwiają).</p>
+
+<ul>
+ <li>Wyłącz wtyczki w czasie używania Tora (ważne)</li>
+
+  Ta opcja jest kluczowa dla bezpieczeństwa Tora. Wtyczki przeprowadzają własne
+  operacje sieciowe niezależne od przeglądarki, a wiele wtyczek tylko częściowo
+  podporządkowuje się nawet własnym ustawieniom proxy.
+
+  <li>Izoluj zawartość dynamiczną do stanu Tora (ważne)</li>
+
+  Kolejna ważna opcja, to ustawienie powoduje, że rozszerzenie wyłącza Javascript
+  na kartach wczytywanych w innym stanie Tora niż obecny, by zapobiec opóźnionym
+  pobieraniom wstrzykniętych adresów zawierających unikalne identyfikatory, oraz
+  by zapobiec odkryciu Twojego adres IP za pomocą znaczników meta-refresh, gdy
+  wyłączasz Tora. Zapobiega to także wszystkim transferom z kart załadowanym
+  w innym stanie Tora. To służy blokowaniu dynamicznej, nie-Javascriptowej
+  zawartości, takiej jak okienka wyskakujące CSS, przed odkryciem Twojego IP,
+  jeśli wyłączysz Tora.
+
+  <li>Podpinaj się pod niebezpieczny kod Javascript (ważne)</li>
+
+  To ustawienie włącza kod podpinania się pod Javascript. Do stron wstrzykiwany jest
+  kod Javascript, by podpiąć się pod obiekt Date, by zamaskować Twoją strefę czasową,
+  oraz by podpiąć się pod obiekt navigator, by zamaskować system operacyjny oraz
+  przeglądarkę, co nie jest robione przez standardowe ustawienia Firefoksa
+  odnośnie wysyłanych informacji o przeglądarce.
+
+  <li>Zmień rozmiar okna do wielokrotności 50px w czasie przełączania Tora (zalecane)</li>
+
+  By zmniejszyć ilość dostępnych informacji o stanie pozwalających na unikalne
+  rozpoznawanie użytkowników, ta opcja sprawia, że okna zmieniają rozmiar do
+  wielokrotności 50 pikseli z każdej strony, gdy Tor jest włączony i strony są załadowane.
+
+  <li>Wyłącz aktualizacje w czasie używania Tora (zalecane)</li>
+
+  Pod Firefoksem 2 wielu autorów rozszerzeń nie aktualizowało swoich rozszerzeń ze
+  stron z SSL. Możliwe jest, że złośliwe węzły Tora przechwytują te rozszerzenia i
+  zastępują je złośliwymi lub dodają złośliwy kod do istniejących rozszerzeń.
+  Jako że Firefox 3 wymusza szyfrowane lub autentyfikowane aktualizacje, to ustawienie
+  nie jest już tak ważne, jak to było kiedyś (mimo iż aktualizacje wysyłają informacje
+  o posiadanych rozszerzeniach, jest to raczej rzadkie).
+
+  <li>Wyłącz podpowiedzi wyszukiwania w czasie używania Tora (zalecane)</li>
+
+  To opcjonalne ustawienie zarządza tym, czy dostaje się sugestie wyszukiwania
+  od Google w czasie używania Tora. Jako że przy sugestiach nie są przesyłane
+  ciasteczka, jest to raczej niezłośliwe zachowanie.
+
+  <li>Blokuj dostęp do sieci z URLi file:// w trybie z Torem/bez Tora (zalecane)</li>
+
+  Te ustawienia zapobiegają wysyłaniu lokalnych plików przez lokalne
+  dokumenty HTML do dowolnych stron <a href="http://www.gnucitizen.org/blog/content-disposition-hacking/"
+  >pod Firefoksem 2</a>. Jako że węzły wyjściowe mogą umieszczać nagłówki
+  zmuszające przeglądarkę do zachowania lokalnie dowolnych stron (jak również
+  wstrzykiwać skrypty do dowolnych plików HTML zachowywanych na dysku w czasie
+  używania Tora), pozostawienie tej opcji włączonej jest raczej dobrym pomysłem.
+
+  <li>Zamknij wszystkie karty i okna trybu z Torem/bez Tora w czasie przełączania Tora (opcjonalne)</li>
+
+  Te dwie opcje pozwalają lepiej upewnić się, że po wyłączeniu Tora strony naprawdę
+  zniknęły i nie mogą wykonywać żadnej dodatkowej aktywności sieciowej. W chwili obecnej
+  nie ma żadnego znanego sposobu na to, by strony mogły dalej coś robić po przełączeniu,
+  ale te opcje istnieją jako środek wspierający w razie odkrycia błędu. Mogą też służyć
+  jako przydatny "Przycisk szefa" do szybkiego czyszczenia całego przeglądania z Torem
+  z ekranu.
+
+  <li>Izoluj dostęp do nawigacji historii do stanu Tora (ważne)</li>
+
+  Ta opcja uniemożliwia zarówno Javascriptowi jak i przypadkowym kliknięciom
+  użytkownika otwarcie stron pobranych w innym stanie Tora niż bieżący. Jako że to może
+  być wykorzystane do skojarzenia działalności w stanie Tora z działalnością bez Tora
+  i w związku z tym umożliwić ustalenie Twojego adresu IP, opcja ta zaznaczona jest
+  jako ważna.
+
+  <li>Blokuj odczyt historii w czasie używania Tora (ważne)</li>
+
+  Opierając się na kodzie przysłanym przez <a href="http://www.collinjackson.com/">Collina
+  Jacksona</a>, gdy ta opcja jet włączona i Tor jest używany, opcja ta uniemożliwia
+  silnikowi renderującemu dowiedzenie się, czy pewne linki były odwiedzone. Ten mechanizm
+  pokonuje wszystkie ataki odkrycia historii opierające się na dokumencie, w tym
+  ataki z wykorzystaniem tylko CSS.
+
+  <li>Blokuj odczyt historii, gdy Tor nie jest używany (opcjonalne)</li>
+
+  Ta opcja robi to samo, ale w trybie z wyłączonym Torem.
+
+  <li>Blokuj zapis do historii w czasie używania Tora (zalecane)</li>
+
+  Ta opcja uniemożliwia silnikowi renderującemu zapisywanie odwiedzonych adresów
+  i wyłącza historię menadżera pobieranie. Jeśli umożliwisz zapis historii Tora,
+  zaleca się wyłączenie odczytu historii w trybie bez Tora, gdyż złośliwe strony,
+  które odwiedzasz, mogą przeszukiwać Twoją historię w poszukiwaniu adresów .onion
+  i innych zapisów historii z trybu Tora (jak na przykład zapytania do Google).
+
+  <li>Blokuj zapis do historii, gdy Tor nie jest używany (opcjonalne)</li>
+
+  Ta opcja wyłącza zapisywanie jakichkolwiek informacji do historii w trybie bez Tora.
+
+  <li>Czyść historię w czasie przełączania Tora (opcjonalne)</li>
+
+  To jest alternatywna opcja do używania zamiast (lub oprócz) blokowania zapisów i
+  odczytów z historii.
+
+  <li>Blokuj zachowywanie haseł i formularzy w trybie Tora/bez Tora</li>
+
+  Te opcje zarządzają tym, czy przeglądarka zapisuje Twoje hasła i zapytania
+  wyszukiwania na dysk w danym stanie Tora.
+
+  <li>Blokuj pamięć podręczną na dysku w czasie używania Tora i czyść całą pamięć podręczną w czasie przełączania Tora</li>
+
+  Jako że pamięć podręczna przeglądarki może być użyta do zachowania unikalnych
+  identyfikatorów, nie może ona przetrwać między sesjami Tora. Ta opcja sprawia, że
+  pamięć podręczna w pamięci komputera jest aktywna w czasie używania Tora ze
+  względów wydajności, ale blokuje dostęp do dysku w celach zapisania tam pamięci
+  podręcznej.
+
+  <li>Blokuj pamięć podręczną na dysku i w pamięci w czasie używania Tora</li>
+
+  Ta opcja całkowicie blokuje pamięć podręczną w czasie używania Tora, ale
+  zostawia ją dla trybu bez Tora.
+
+  <li>Czyść ciasteczka w czasie przełączania Tora</li>
+
+  Całkowicie czyści wszystkie ciasteczka w czasie przełączania Tora.
+
+  <li>Zachowuj ciasteczka z trybu bez Tora w chronionym pliku jar</li>
+
+  Ta opcja zachowuje Twoje trwałe ciasteczka trybu bez Tora w specjalnym pliku
+  jar, w razie gdyby była potrzeba zachowania jakichkolwiek ciasteczek. Oparta na
+  kodzie przysłanym przez <a href="http://www.collinjackson.com/">Collina Jacksona</a>.
+  Jest zgodna z innymi rozszerzeniami, których używasz do zarządzania ciasteczkami trybu
+  bez Tora. Twoje ciasteczka Tora będą oczywiście czyszczone w czasie przełączania Tora.
+
+  <li>Przechowuj zarówno ciasteczka trybu Tor i trybu bez Tora w chronionym pliku jar (niebezpieczne)</li>
+
+  Ta opcja przechowuje Twoje trwałe ciasteczka trybu Tora i trybu bez Tora
+  w oddzielnych plikach jar z ciasteczkami. Dłuższe przechowywanie ciasteczek
+  trybu Tora jest złym pomysłem, jako że mogą być one pobrane przez węzły
+  wyjściowe, które wstrzykują fałszywe formularze do czysto tekstowych stron,
+  które pobierasz.
+
+  <li>Będę ręcznie zarządzał swoimi ciasteczkami (niebezpieczne)</li>
+
+  Ta opcja pozwala Ci na zarządzanie swoimi ciasteczkami innym rozszerzeniem,np.
+  <a href="https://addons.mozilla.org/firefox/addon/82">CookieCuller</a>. Jest to
+  szczególnie niebezpieczne, gdyż złośliwe węzły wyjściowe mogą fałszować elementy
+  dokumentów, które zdają się pochodzić od stron, od których masz ciasteczka (i mogą
+  wtedy robić różne rzeczy, jak np. pobrać całą Twoją skrzynkę gmail, nawet jeśli
+  w danej chwili nie używałeś gmail ani nie odwiedzałeś żadnych stron google!).
+
+  <li>Nie zapisuj ciasteczek trybu Tora/bez Tora na dysk</li>
+
+  Te opcje uniemożliwiają Firefoksowi zapisanie jakichkolwiek ciasteczek na dysk
+  w  danym trybie Tora. Jeśli pliki jar z ciasteczkami byłyby włączone, istniałyby
+  tylko w pamięci i byłyby wyczyszczone w czasie zamykania Firefoksa.
+
+  <li>Wyłącz DOM Storage w czasie używania Tora (ważne)</li>
+
+  Firefox ostatnio dodał możliwość zapisywania dodatkowych informacji o stanie
+  i identyfikatorów w trwałych tabelach, zwanych <a
+  href="http://developer.mozilla.org/docs/DOM:Storage">DOM Storage</a>.
+  Oczywistym jest, że może to pozbawić Cię anonimowości, jeśli zachowane dane
+  mogą być odczytane po zmianie stanu Tora.
+
+  <li>Czyść uwierzytelnione sesje HTTP (zalecane)</li>
+
+  Dane do autoryzacji HTTP mogą być badane przez węzły wyjściowe i wykorzystane
+  zarówno do stwierdzenia, że odwiedzasz pewną stronę wymagając autentyfikacji HTTP,
+  jak i do podszywania się pod Ciebie na tej stronie.
+
+  <li>Czyść ciasteczka Tora w czasie wyłączania przeglądarki w trybie Tora/bez Tora</li>
+
+  Te opcje instalują funkcję uruchamianą przy wyłączaniu przeglądarki do czyszczenia
+  ciasteczek trybu Tora/bez Tora w czasie wyłączania przeglądarki. Jest to niezależne
+  od Twojego ustawienia Czyść Prywatne Dane i istotnie czyści odpowiednie pliki
+  jar z ciasteczkami.
+
+  <li>Zapobiegaj zachowywaniu kart otwartych z Torem w czasie zachowywania sesji (zalecane)</li>
+
+  Ta opcja sprawia, że mechanizm zachowywania sesji nie zapisze na dysk kart
+  otwartych w trybie Tora. Niestety, to też uniemożliwia ponowne otwarcie
+  zamkniętych kart. Przyczyną, dla której ta opcja jest zalecana jest to, że po
+  padzie programu, Twoja przeglądarka będzie w nieokreślonym stanie Tora i mogłaby
+  potencjalnie załadować kilka kart otwartych przed padem w trybie Tora,
+  tym razem bez Tora. Następująca opcja jest alternatywnym sposobem ochrony przed tym.
+
+  <li>Przy normalnym uruchomieniu, ustaw tryb na: Tor, Nie-Tor, Stan przy wyłączeniu</li>
+
+  Ta opcja pozwala na określenie, w którym trybie przeglądarka ma normalnie
+  startować: Tor, tryb bez Tora i cokolwiek było w chwili zamykania.
+
+  <li>W czasie odzyskiwania po padzie lub starcie z przywróconej sesji, uruchom w trybie: Tor, Nie-Tor</li>
+
+  Gdy Firefox pada (zostaje zamknięty z powodu błędu w programie/wyjątku),
+  tryb Tora po restarcie jest zazwyczaj całkowicie losowy, i w zależności od
+  Twojego wyboru dla powyższej opcji, może załadować kilka kart w niewłaściwym
+  trybie. Ta opcja pozwala na określenie, do którego trybu powrócić po padzie.
+
+  <li>Zapobiegaj zachowywaniu kart trybu Tora/bez Tora w czasie zachowywania sesji</li>
+
+  Te dwie opcje pozwalają kontrolować, co jest zapisywane na dysk przez
+  mechanizm zapisywania sesji. Jako że zapisanie sesji służy do automatycznego
+  ładowania stron po padzie lub aktualizacji, zalecane jest nie zezwalanie na
+  zapis kart trybu Tora na dysk, gdyż po padzie mogą zostać załadowane w trybie
+  bez Tora (lub na odwrót, w zależności od ustawienia odzyskiwania po awarii, oczywiście).
+
+  <li>Ustaw przeglądarkę użytkownika w czasie używania Tora (ważne)</li>
+
+  Maskowanie przeglądarki użytkownika ma na celu sprawienie, by wszyscy użytkownicy
+  Firefoksa zdawali się jednakowi. Do udawania tego napisu i obsługi właściwości
+  navigator.* została wybrana niedawna wersja Firefox 2.0.0.4 na Windows i będzie ona
+  taka sama dla wszystkich wersji Torbuttona do chwili, gdy wystąpią problemy z
+  niekompatybilnością. Jednakowość tej wartości jest oczywiście bardzo ważna dla
+  anonimowości. Aby ta opcja w pełni działała, użytkownik musi też włączyć opcję
+  "Podpinaj się pod niebezpieczny kod Javascript", by wartości navigator.* były
+  ustawiane prawidłowo. Przeglądarka nie ustawia niektórych z nich poprzez
+  preferencje zmiany przedstawiania się.
+
+  <li>Udawaj przeglądarkę z ustawionym językiem angielskim</li>
+
+  Ta opcja sprawia, że Firefox wysyła takie nagłówki HTTP, jakby był angielską
+  przeglądarką. Przydatne dla użytkowników z innych krajów.
+
+  <li>Nie wysyłaj odnośnika zwrotnego w czasie używania Tora</li>
+
+  Ta opcja wyłącza nagłówek Referrer (adres poprzedniej strony), uniemożliwiając
+  stronom dowiedzenie się, skąd do nich trafiłeś/aś. To jednak może przeszkadzać
+  niektórym stronom w działaniu. W szczególności, serwis <a
+  href="http://www.digg.com">Digg</a> zdaje się nie działać z tej przyczyny.
+  Docelowo powinna być dostępna mniej inwazyjna i bardziej efektywna wersja tej opcji.
+  W międzyczasie, <a
+  href="https://addons.mozilla.org/firefox/addon/953">RefControl</a> dostarcza tej
+  funkcjonalności poprzez domyślną opcję <b>Forge</b>.
+</ul>
+
+    </div><!-- #main -->
+
+#include <foot.wmi>
+
