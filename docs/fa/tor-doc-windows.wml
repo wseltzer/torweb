@@ -1,0 +1,113 @@
+﻿## translation metadata
+# Revision: $Revision$
+# Translation-Priority: 1-high
+
+#include "head.wmi" TITLE="Tor: دستورالعمل های نصب MS Windows
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>اجرای سرويس گيرنده <a href="<page index>">Tor</a> روی MS Windows</h1>
+<br />
+
+<p>
+
+<b>توجه داشته باشيد که اين دستورالعمل های نصب برای اجرای سرويس گيرنده Tor روی ويندوز MS (98، 98SE، NT4، 2000 ،XP، ويستا، سررو) است. اگر می خواهيد برای کمک به توسعه شبکه، ترافيک را برای ديگران تقويت کنيد (لطفاً اين کار را بکنيد)، راهنماي<a href="<page docs/tor-doc-relay>">پيکربندی ايستگاه واسطه</a> را مطالعه کنيد.</b>
+</p>
+
+<hr />
+<a id="installing"></a>
+<h2><a class="anchor" href="#installing">گام اول: بارگيری و نصب Tor</a></h2>
+<br />
+
+<p>
+نصب برای ويندوز MS شامل <a href="<page index>">Tor</a> <a href="http://www.vidalia-project.net/">Vidalia</a> (يک GUI برای Tor) و <a href="http://www.privoxy.org">Privoxy</a> (يک پروکسی فيلترينگ وب) در يک بسته، با سه برنامه از قبل پيکربندی شده برای کار با يکديگر، می باشد. نسخه <a href="../<package-win32-bundle-stable>">ثابت</a> يا <a href="../<package-win32-bundle-alpha>">آزمايشي</a> vبسته نرم افزاری ويندوز را بارگيری کنيد، يا برای گزينه های ديگر در <a href="<page download>">صفحه بارگيري</a> جستجو کنيد.
+
+</p>
+
+<img alt="صفحه شروع نصب کننده Tor" src="../img/screenshot-win32-installer-splash.png" />
+
+<p>اگر قبلاً Tor، Vidalia، يا Privoxy را نصب کرده ايد، می توانيد هريک از مؤلفه هايی را که لازم نداريد را در کادر گفتگوی زير از حالت انتخاب بيرون آوريد.
+</p>
+
+<img alt="مؤلفه های مورد نظر را جهت نصب انتخاب کنيد" src="../img/screenshot-win32-installer-components.png" />
+
+<p>پس از کامل کردن نصب کننده، مؤلفه هايی که انتخاب کرده ايد به طور خودکار شروع خواهند شد.
+</p>
+
+<!-- <p>Tor comes configured as a client by default. It uses a built-in default configuration file, and most people won't need to change any of the settings. Tor is now installed. </p> -->
+
+<hr />
+<a id="using"></a>
+<h2><a class="anchor" href="#using">گام دوم: پيکربندی برنامه ها برای استفاده از Tor</a></h2>
+
+<br />
+
+<p>پس از نصب Tor و Privoxy، بايد برنامه های خود را برای استفاده از آنها پيکربندی کنيد. گام اول راه اندازی مرورگر وب است.</p>
+
+<p>اگر از Privoxy استفاده می کنيد (ما توصيه می کنيم از ان استفاده کنيد)، بسته نرم افزاری Vidalia  <a href="https://addons.mozilla.org/firefox/2275/">پلاگين Torbutton </a> را برای شما نصب می کند. Firefox را دوباره شروع کنيد، اکنون همه را تنظيم کرده ايد:
+</p>
+
+<img alt="پلاگين Torbutton برای Firefox" src="../img/screenshot-torbutton.png" border="1">
+
+<br />
+
+<p>
+(<a href="https://torbutton.torproject.org/">اطلاعات بيشتر درباره Torbutton را در اينجا مشاهده کنيد</a>. اگر می خواهيد Firefox را روی رايانه ديگری غير از آنکه Tor روی آن است، اجرا کنيد، به <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">مدخل سؤالات متدوال درمورد اجرای Tor روی رايانه متفاوت</a> مراجعه کنيد. اگر لازم است از مرورگر ديگری غير از Firefox استفاده کنيد، بايد <a href="<page docs/tor-doc-web>">تنظيمات پروکسی را خودتان پيکربندی کنيد</a>.)
+
+</p>
+
+<p>استفاده از Privoxy <strong>ضروری است</strong> زيرا <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">اگر مرورگرها مستقيماً از پروکسی SOCKS استفاده کنند، درخواست های DNS شما را فاش می کنند</a> و اين برای گمنام ماندن شما بد است. Privoxy همچنين سرصفحه های خطرناک خاص را از درخواست های وب شما حذف می کند و سايت های تبليغی مضر مانند Doubleclick را مسدود می کند.</p>
+
+<p>برای Torify ساير برنامه هايی که از پروکسی های HTTP پشتيبانی می کنند، فقط آنها را به Privoxy (يعنی درگاه ميزبان محلی 8118) دلالت دهيد. برای استفاده از SOCKS به طور مستقيم (برای پيام رسانی فوری، Jabber، IRC و غيره) می توانيد برنامه خود را مستقيماً در Tor (يدرگاه ميزبان محلی 9050) دلالت دهيد، اما به<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">اين مدخل سؤالات متداول</a> مراجعه کنيد تا ببينيد چرا ممکن است اين کار خطرناک باشد.  در خصوص برنامه هايی که نه از SOCKS و نه از HTTP پشتيبانی می کنند به <a href="http://www.socks.permeo.com/Download/SocksCapDownload/index.asp">SocksCap</a> يا <a href="http://www.freecap.ru/eng/">FreeCap</a> مراجعه کنيد. (FreeCap يک نرم افزار رايگان است؛ SocksCap اختصاصی است.)</p>
+
+<p>برای کسب اطلاعات در مورد نحوه Torify ساير برنامه ها، <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify HOWTO</a> را بررسی کنيد.
+</p>
+
+<hr />
+<a id="verify"></a>
+<h2><a class="anchor" href="#verify">گام سوم: کسب اطمينان از اينکه برنامه کار می کند</a></h2>
+<br />
+
+<p>
+بررسی کنيد که Privoxy و Vidalia در حال اجرا باشند. نماد Privoxy يک دايره آبی يا سبز با يک "P" در آن است، Vidalia برای نشان دادن اينکه Tor در حال اجرا است از يک پياز سبز کوچک و برای نشان دادن اينکه  در حال اجرا نيست از يک پياز تيره با يک "X" قرمز استفاده می کند. با کليک راست بر نماد Vidalia در سينی سيستم خود و انتخاب "شروع" يا "توقف" از منو (همانطور که در زير نشان داده شده است)، می توانيد Tor را شروع يا متوقف کنيد.
+
+</p>
+
+<img alt="نماد صفحه Vidalia" src="../img/screenshot-win32-vidalia.png">
+
+<p>
+بعد، بايد می توانيد با Tor از مرورگر خود استفاده کنيد و اطمينان حاصل کنيد که آدرس IP شما ناشناخته خواهد ماند. بر روی <a href="https://check.torproject.org/">تشخيص دهنده Tor</a> کليک کنيد و ببينيد آيا فکر می کند شما از Tor استفاده می کنيد يا خير. #<a href="http://ipchicken.com/">اين سايت</a> #برای مشاهده اينکه فکر می کند شما از چه آدرس IP استفاده می کنيد. (اگر آن سايت فعال نيست، درخصوص پيشنهادات ديگر در مورد نحوه آزمايش Tor خود، به <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">اين مدخل سؤالات متداول</a> مراجعه کنيد.)
+</p>
+
+<p>اگر از يک ديوار آتش شخصی استفاده می کنيد که قابليت رايانه شما را به اتصال به خودش محدود می کند، دقت کنيد که اتصالات از برنامه های محلی را به درگاه محلی 8118 و 9050 مجاز کنيد. اگر ديوار آتش شما اتصالات خروجی را مسدود می کند، يک منفذ ايجاد کنيد تا بتواند حداقل به درگاه های TCP 80 و 443 متصل شود، سپس به <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">اين مدخل سؤالات متداول</a> مراجعه کنيد.
+</p>
+
+<p>اگر هنوز کار نمی کند، برای تذکرات به <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">اين مدخل سؤالات متداول</a> مراجعه کنيد.</p>
+
+<p>
+اگر کار می کند، برای اطلاعات بيشتر به <a href="<page download>#Warning">Tor چه چيزهای ارائه می کند و چه چيزهايی ارائه نمی کند</a> مراجعه کنيد.
+
+</p>
+
+<hr />
+<a id="server"></a> <a id="relay"></a>
+<h2><a class="anchor" href="#relay">گام چهارم: پيکربندی Tor به عنوان ايستگاه واسطه</a></h2>
+<br />
+
+<p>شبکه Tor برای اهدای پهنای باند بر داوطلبان متکی است. هرچه تعداد کسانی که ايستگاه های واسطه را اداره می کنند بيستر باشد، شبکه Tor سريع تر خواهد بود. اگر به هر طريق حداقل 20 کيلوبايت داريد، لطفاً با پيکربندی Tor خود به عنوان يک ايستگاه واسطه، کمک کنيد. استفاده از ايستگاه های واسطه Tor به دليل ويژگی های زيادی آسان و راحت است، از جمله محدودکردن سرعت پهنای باند، روش های خروج، بنابراين می توانيد خود از معرض شکايات سوء استفاده محدود کنيد، و آدرس های IP پويا را پشتيبانی کنيد.</p>
+
+<p>آنچه کاربران Tor را ايمن نگه می دارد، داشتن ايستگاه های واسطه در مکان های مختلف در اينترنت است. ازآنجاکه سايت های دور نمی توانند بفهمند که اتصالات از رايانه شما ايجاد شده يا توسط ديگران، <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">شما همچنين می توانيد خودتان گمنامی قوی تری داشته باشيد</a>. </p>
+
+<p>موارد بيشتر را در راهنمای <a href="<page docs/tor-doc-relay>">پيکربندی ايستگاه واسطه</a> مطالعه کنيد.</p>
+
+<hr />
+
+<p>اگر پيشنهاداتی برای بهبود اين سند داريد، لطفاً <a href="<page contact>">آنها را برای ما ارسال کنيد</a>. سپاسگزاريم!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+
