@@ -1,21 +1,21 @@
 ## translation metadata
-# last-translator: michael.sacher @hispeed.ch, jens@kubieziel.de
-# Based-On-Revision: 11724
+# last-translator: michael.sacher@hispeed.ch, jens@kubieziel.de
+# Based-On-Revision: 14160
 
-#include "head.wmi" TITLE="Konfigurationsanleitung für Server"
+#include "head.wmi" TITLE="Tor: Konfigurationsanleitung für Server"
 
 <div class="center">
 
 <div class="main-column">
 
-<h1 class="western">Torserver konfigurieren</h1>
+<h1 class="western">Tor-Server konfigurieren</h1>
 
-<p>Das Tornetzwerk beruht auf Freiwilligen, die Bandbreite zur
-  Verfügung stellen. Je mehr Leute einen Torserver betreiben, desto
-  schneller wird das Tornetzwerk. Wenn du wenigstens 20&nbsp;kB/s in
+<p>Das Tor-Netzwerk beruht auf Freiwilligen, die Bandbreite zur
+  Verfügung stellen. Je mehr Leute einen Tor-Server betreiben, desto
+  schneller wird das Netzwerk. Wenn du wenigstens 20&nbsp;kB/s in
   eine Richtung hast, bitte hilf uns und konfiguriere Tor auch als
-  Server.  Wir haben viele Merkmale, die den Betrieb eines Servers
-  einfach und bequem machen. Dazu gehören u.a. Bandbreitenlimitierung,
+  Server.  Wir haben vieles, was den Betrieb eines Servers
+  einfach und bequem macht. Dazu gehören u.a. Bandbreitenlimitierung,
   flexible Exitpolicies und Unterstützung für dynamische
   IP-Adressen.</p>
 
@@ -26,7 +26,7 @@
   können, ob die Verbindung von deinem Computer stammt oder ob sie nur
   durch andere dorthin weitergeleitet wurde.</p>
 
-<p>Die Einrichtung eines Torservers ist einfach und bequem:</p>
+<p>Die Einrichtung eines Tor-Servers ist einfach und bequem:</p>
 <ul>
   <li>Tor hat eine eingebaute <a
     href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">Bandbreitenbegrenzung</a>. Mehr
@@ -36,18 +36,18 @@
   href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation</a>
   in der Dokumentation an.</li>
 
-  <li>Jeder Torserver hat eine so genannte <a
+  <li>Jeder Tor-Server hat eine so genannte <a
   href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunAServerBut">Exitpolicy</a>. Diese
   legt fest, welche Art abgehender Verbindungen von diesem Server
   erlaubt oder gesperrt sind. Wenn du nicht möchtest, dass sich Leute
-  von deinem Server aus mit dem Internet verbinden, hast du die
-  Möglichkeit, nur Verbindungen zu anderen Torservern zuzulassen.</li>
+  von deinem Server mit dem Internet verbinden, hast du die
+  Möglichkeit, nur Verbindungen zu anderen Tor-Servern zuzulassen.</li>
 
   <li>Es ist in Ordnung, wenn der Server manchmal offline ist. Die
-  Verzeichnisserver bemerken dies schnell und geben den Server nicht
-  mehr als online an.  Du solltest versuchen, es in Grenzen zu halten.
+  Verzeichnisserver bemerken dies schnell und entfernen den Server aus
+  dem Verzeichnis.  Du solltest versuchen, dies in Grenzen zu halten.
   Denn bestehende Verbindungen, welche über diesen Server laufen, sind dann
-  unterbrochen.</li>
+  unterbrochen und andere Benutzer erleiden Nachteile.</li>
 
   <li>Wir können mit Servern, die dynamische IP-Adressen nutzen, gut
   umgehen. Dazu ist es wichtig, dass die Server ihre eigene IP-Adresse
@@ -82,7 +82,7 @@ eignen und welche Probleme auftreten könnten.</p>
 läuft.</p>
 
 <p>Für Windowsnutzer bedeutet das, dass mindestens <a href="<page
-docs/tor-doc-win32>#installing">Schritt Eins</a> der
+docs/tor-doc-windows>#installing">Schritt Eins</a> der
 Installationsanleitung für Tor auf Windows ausgeführt sein muss. Nutzer
 von Mac OS X müssen mindestens <a href="<page
 docs/tor-doc-osx>#installing">Schritt Eins</a> der Installationsanleitung
@@ -104,7 +104,8 @@ verwenden, um sicher zu gehen, dass es auch richtig funktioniert.</p>
   es möglich ist, synchronisiere sie mit einem Zeitserver (<abbr title="Network
   Time Protocol">NTP</abbr>) im Internet.</li>
 
-  <li>Stelle sicher, dass die Namensauflösung (DNS) korrekt funktioniert.</li>
+  <li>Stelle sicher, dass die Namensauflösung (<abbr title="Domain
+  Name Service">DNS</abbr>) korrekt funktioniert.</li>
 
   <li>Editiere den unteren Teil deiner <var>torrc</var> (in <a
   href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">diesem
@@ -151,8 +152,8 @@ verwenden, um sicher zu gehen, dass es auch richtig funktioniert.</p>
 <p>Sobald sich dein Server zum Netzwerk verbinden kann, wird er versuchen
 herauszufinden, ob die Ports, die du konfiguriert hast, von außen erreichbar
 sind. Dies kann bis zu 20&nbsp;Minuten dauern. Halte nach Logeinträgen wie
-<samp>self-testing indicates your orport is reachable from the outside.
-excellent</samp> Ausschau. Wenn du diese Nachricht nicht siehst, bedeutet dies,
+<samp>self-testing indicates your ORPort is reachable from the outside.
+Excellent</samp> Ausschau. Wenn du diese Nachricht nicht siehst, bedeutet dies,
 dass dein Server von außen nicht erreichbar ist.  Stelle sicher, dass die
 Angaben zu IP-Adresse und Port richtig sind.</p>
 
@@ -176,8 +177,8 @@ erhöhen kannst.</p>
 
 <p>Entscheide dich, welche Exitpolicy du willst. Standardmäßig
 gewährt dein Server den Zugriff auf viele bekannte Dienste. Einige
-(z.b. Port 25) werden jedoch eingeschränkt, aufgrund von vorhandenem
-Missbrauchspotential. Vielleicht möchtest du eine restriktivere oder
+(z.B. Port 25) werden jedoch eingeschränkt, aufgrund von vorhandenem
+Missbrauchpotential. Vielleicht möchtest du eine restriktivere oder
 weniger restriktive Exitpolicy wählen. Editiere dazu deine
 <var>torrc</var> entsprechend. Lies die FAQ über <a href="<page
 faq-abuse>#typicalabuses">Probleme, die bei der Verwendung der
@@ -194,23 +195,25 @@ Bandbreite limitieren, um so Blockaden zu vermeiden. Dieser <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">FAQ-Eintrag</a>
 enthält weitere Details.</p>
 
-<ol start="11">
-<li>Mache ein Backup vom privaten Schlüssel deines Torservers
-(gespeichert in <var>keys/secret_id_key</var> in deinem Datenverzeichnis). Dies
-ist die &bdquo;Identität&ldquo; deines Servers. Halte sie geheim, damit niemand
-deinen Server abhören kann. Das ist die kritische Datei, um deinen Server <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">zu
-verschieben oder wiederherzustellen</a> wenn etwas schief geht.</li>
+<ol start="11"> <li>Mache ein Backup vom privaten Schlüssel deines
+Torservers (gespeichert in <var>keys/secret_id_key</var> in deinem
+Datenverzeichnis). Dies ist die &bdquo;Identität&ldquo; deines
+Servers. Halte sie geheim, damit niemand deinen Server abhören
+kann. Das ist die kritische Datei, um deinen Server <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#UpgradeServer">zu
+verschieben oder wiederherzustellen</a>, wenn etwas schief geht.</li>
 
-<li>Wenn du die Nameserver für deine Domain kontrollierst,
-überlege dir, ob du nicht deinen Hostnamen auf <samp>anonymous</samp> oder
-<samp>proxy</samp> oder <samp>tor-proxy</samp> setzt. Wenn die Leute die Adresse
-in ihren Logdateien sehen, wissen sie schneller was los ist.</li>
+<li>Wenn du die Nameserver für deine Domain kontrollierst, überlege
+dir, ob du nicht deinen Hostnamen auf <samp>anonymous</samp> oder
+<samp>proxy</samp> oder <samp>tor-proxy</samp> setzt. Wenn die Leute
+die Adresse in ihren Logdateien sehen, wissen sie schneller, was los
+ist.</li>
 
 <li>Wenn dein Server nicht als Webserver fungiert, erwäge
 doch deinen ORport auf 443 und deinen DirPort auf 80 zu ändern.
-Viele Tor benutzer stecken hinter Firewalls fest, welche sie nur
+Viele Tor-Benutzer stecken hinter Firewalls fest, welche sie nur
 surfen lassen. Diese Änderungen würden auch den
-Benutzern Zugang zu deinem Torserver ermöglichen. Auf einem
+Benutzern Zugang zu deinem Tor-Server ermöglichen. Auf einem
 Win32-Server kann einfach der ORPort und DirPort direkt in der
 <var>torrc</var>
 geändert und Tor neu gestartet werden.  Auf OS X oder Unixservern
@@ -222,31 +225,33 @@ einrichten, damit Verbindungen zum Tor-Server gemacht werden können.
 Falls du die Ports 80 und 443 schon benutzt, aber trotzdem helfen willst, öffne
 Port 22, 110, und 143.</li>
 
-<li>Falls dein Torserver noch andere Dienste auf der selben Adresse
-anbietet &mdash; wie z.b. einen Webserver &mdash; vergewissere dich,
+<li>Falls dein Tor-Server noch andere Dienste auf der selben Adresse
+anbietet &mdash; wie z.B. einen Webserver &mdash; vergewissere dich,
 dass Verbindungen zum Webserver auch vom localhost zugelassen werden.
-Diese Verbindungen müssen klappen, da Torclients erkennen, dass
-dein Torserver der <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">sicherste
-Weg ist, deinen Webserver zu erreichen</a>. Daher bauen sie immer Verbindungen, die bei
-deinem Server aufhören. Wenn du diese Verbindungen nicht erlauben willst, dann musst
-die sie direkt in deiner Exitpolicy verbieten.</li>
+Diese Verbindungen müssen klappen, da Torclients erkennen, dass dein
+Torserver der <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">sicherste
+Weg ist, deinen Webserver zu erreichen</a>. Daher bauen sie immer
+Verbindungen, die bei deinem Server aufhören. Wenn du diese
+Verbindungen nicht erlauben willst, dann musst die sie direkt in
+deiner Exitpolicy verbieten.</li>
 
 <li>(nur Unix). Lege einen neuen Nutzer an, welcher das Programm
 ausführt. Wenn du das OS X, deb oder rpm installiert hast, so
 wurde dies bereits erledigt. Ansonsten kannst du dies per Hand
-erledigen. (Der Torserver muss nicht als root laufen, es ist also
+erledigen. (Der Tor-Server muss nicht als root laufen, es ist also
 eine gute Idee das auch nicht zu tun. Ausführen als 'tor'
 Benutzer erübrigt Probleme mit inetd und anderen Diensten, welche
 auf Nutzernamen prüfen. wenn du ein paranoider Zeitgenosse bist
 kannst du <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">Tor
-im jail ausführen</a>.)</lI>
+in einer chroot-Jail ausführen</a>.)</lI>
 
 <li>(nur Unix). Vermutlich limitiert dein Betriebssystem die Anzahl offener
 Dateien pro Prozess auf 1024 (oder noch weniger). Wenn du vorhast, einen
 schnellen Exitknoten zu betreiben, wird das vermutlich nicht reichen. Unter
 Linux solltest du eine Zeile wie <var>toruser hard nofile 8192</var> zu deiner
 <var>/etc/security/limits.conf</var>
-hinzufügen (toruser ist hier der Benutzer, unter dem der Prozess läuft).
+hinzufügen (<var>toruser</var> ist hier der Benutzer, unter dem der Prozess läuft).
 Anschließend musst du Tor neu starten. Wenn das nicht funktioniert,
 lies die bitte <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">diesen
 Eintrag in unserer FAQ</a> durch. Er beschreibt andere Möglichkeiten, wie
