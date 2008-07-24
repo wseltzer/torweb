@@ -1,8 +1,8 @@
 ## translation metadata
-# Based-On-Revision: 15123
+# Based-On-Revision: 15882
 # Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
-#include "head.wmi" TITLE="Mithelfen"
+#include "head.wmi" TITLE="Tor: Mithelfen"
 
 <div class="main-column">
 
@@ -1176,33 +1176,16 @@ roadmap</a> for more ideas.
     href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">Experiment
     mit dem SSH-Durchsatz</a> gut zu funktionieren. Wir müssen das
     messen und verbessern und bei guten Resultaten Tor überholen.</li>
-  <li>Damit Dissidenden in fernen Ländern Tor nutzen können, ohne von
-    der Firewall des Landes geblockt zu werden, brauchen wir einen
-    Weg, um zehntausende von Relays zu bekommen anstatt nur einigen
-    hundert. Wir können uns eine GUI vorstellen, die einen "Tor for
-    Freedom"-Button (Tor für die Freiheit) hat. Dieser öffnet einen
-    Port und verteilt ein paar
-    Kilobyte Traffic ins Tornetzwerk. Wie verteilen wir eine Liste
-    dieser Freiwilligen in einer automatischen Art und Weise? Dies
-    muss so passieren, dass die Firewalls auf Landesebene diese nicht
-    erkennen. Wahrscheinlich muss das auf einem Niveau persönlichen
-    Vertrauens funktionieren. Siehe unseren <a href="<page
-  documentation>#DesignDoc">Designdokument hierzu</a> sowie den <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance"
-    >Eintrag in der FAQ</a> und lies dann <a
-    href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship"
-    >die Zensurwiderstandssektion der AnonBib</a>.
-    </li>
-    <li>Unsere Ziele zum Schutz vor Zensur schließen ein, dass ein
-  Angreifer Tor-Verkehr von <a
-  href="https://www.torproject.org/svn/trunk/doc/design-paper/blocking.html#sec:network-fingerprint">normalem
-  SSL-Verkehr unterscheiden</a> kann. Offensichtlich können wir keine
-  perfekte Steganographie erreichen und dabei benutzbar bleiben. Aber
-  wir möchten gern Angriffen, die nur wenige Pakete betrachten,
-  überwinden. Eine der verbliebenen Angriffe, die wir nicht sehr geprüft
-  haben, ist das Verhältnis von der Größe der Tor-Zellen (512 Byte)
-  zum restlichen Verkehr. Wieviel erkennt man davon, haben die
-  Leerungsmechanismen der Buffer einen Einfluss, könnte Padding helfen?</li>
+  <li>Unsere Ziele zum Schutz vor Zensur schließen ein, dass ein
+    Angreifer Tor-Verkehr von <a
+    href="https://www.torproject.org/svn/trunk/doc/design-paper/blocking.html#sec:network-fingerprint">normalem
+    SSL-Verkehr unterscheiden</a> kann. Offensichtlich können wir keine
+    perfekte Steganographie erreichen und dabei benutzbar bleiben. Aber
+    wir möchten gern Angriffen, die nur wenige Pakete betrachten,
+    überwinden. Eine der verbliebenen Angriffe, die wir nicht sehr geprüft
+    haben, ist das Verhältnis von der Größe der Tor-Zellen (512 Byte)
+    zum restlichen Verkehr. Wieviel erkennt man davon, haben die
+    Leerungsmechanismen der Buffer einen Einfluss, könnte Padding helfen?</li>
   <li>Tor-Verbindungen werden schrittweise aufgebaut, ein Knoten nach
     dem anderen.  Also haben wir theoretisch die Möglichkeit, manche
     Ströme schon nach dem zweiten Knoten die Tor-Wolke verlassen zu
@@ -1217,23 +1200,41 @@ roadmap</a> for more ideas.
     richtige Anwort?  Welche anderen praktischen Herangehensweisen gibt es?
     Bonuspunkte, wenn diese mit dem aktuellen Tor-Protokoll abwärtskompatibel
     sind.</li>
-    <li>Programme, wie <a
-  href="https://torbutton.torproject.org/dev/">Torbutton</a>,
-  versuchen den User-Agent des Browsers zu verstecken, indem sie
-  diesen durch eine gewöhnliche Angabe ersetzen. Dadurch kann ein
-  Angreifer Tor-Nutzer nicht durch einen Blick auf die
-  Nachrichtenköpfe erkennen. Die Software versucht einen, allgemein
-  genutzten Wert zu nehmen. Frage 1: Wie sehr schaden wir uns, wenn
-  wir die Firefox-Version periodisch anpassen? Wenn wir zu oft
-  updaten, kann man es unterscheiden. Machen wir es nicht, findet man
-  Tor-Nutzer heraus, da sie sehr alte Versionen nutzen. Die Antwort
-  hängt wahrscheinlich von den Firefox-Versionen, die es gibt,
-  ab. Frage 2: Die Leute fragen immer wieder, zwischen n verschiedenen
-  User-Agents zu wechseln. Hilft der Ansatz oder macht das keinen
-  Unterschied? Betrachte dabei Cookies und Tor-Nutzer, die periodisch
-  den User-Agent wechseln. Bösartige Webseiten greifen nur bestimmte
-  Browser an. Wie beeinflussen die Antworten auf diese Fragen diese
-  Antwort.</li>
+  <li>Programme, wie <a
+    href="https://torbutton.torproject.org/dev/">Torbutton</a>,
+    versuchen den User-Agent des Browsers zu verstecken, indem sie
+    diesen durch eine gewöhnliche Angabe ersetzen. Dadurch kann ein
+    Angreifer Tor-Nutzer nicht durch einen Blick auf die
+    Nachrichtenköpfe erkennen. Die Software versucht einen, allgemein
+    genutzten Wert zu nehmen. Frage 1: Wie sehr schaden wir uns, wenn
+    wir die Firefox-Version periodisch anpassen? Wenn wir zu oft
+    updaten, kann man es unterscheiden. Machen wir es nicht, findet man
+    Tor-Nutzer heraus, da sie sehr alte Versionen nutzen. Die Antwort
+    hängt wahrscheinlich von den Firefox-Versionen, die es gibt,
+    ab. Frage 2: Die Leute fragen immer wieder, zwischen n verschiedenen
+    User-Agents zu wechseln. Hilft der Ansatz oder macht das keinen
+    Unterschied? Betrachte dabei Cookies und Tor-Nutzer, die periodisch
+    den User-Agent wechseln. Bösartige Webseiten greifen nur bestimmte
+    Browser an. Wie beeinflussen die Antworten auf diese Fragen diese
+    Antwort.</li>
+  <li>Momentan benutzen Tor-Clients eine aufgebaute Verbindungsstrecke
+    für zehn Minuten, nachdem diese aufgebaut wurde. Das Ziel hierfür
+    ist, das Netzwerk nicht mit Nachrichten zum Verbindungsaufbau zu
+    überlasten. Außerdem kann der Austrittsknoten dadurch kein Profil
+    über den Nutzer bilden. Es hat sich herausgestellt, dass zehn
+    Minuten zu lang sind. Insbesondere dann, wenn Verbindungen von
+    verschiedenen Protokollen (IM und HTTP) benutzt werden. Wenn wir
+    die Gesamtzahl an Erweiterungen der Verbindungsstrecke beibehalten,
+    gibt es effizientere/sichere Wege, Streams zu den
+    Verbindungsstrecken zu alloziieren oder präemptiv Strecken
+    aufzubauen? Natürlich muss dieser Punkt damit beginnen, dass
+    erforscht wird, welche Verbindungen die Programme typischerweise
+    benutzen. Damit hast du dann einen realistischen Ansatz, den du
+    optimierst.</li>
+  <li>Wie viele Brückenserver benötigt man, um die Verfügbarkeit zu
+    garantieren? Wir sollten die Abwanderung unseren Brückenservern messen.
+    Wenn es viel davon gibt, gibt es Möglichkeiten, dass die Nutzer
+    länger verbunden bleiben?</li>
   </ol>
 
 <p><a href="<page contact>">Lass uns wissen</a>, wenn du bei einem
