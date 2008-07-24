@@ -9,15 +9,20 @@
 </div>
   <div class="bottom" id="bottom">
      <p>
-     <i><a href="<page contact>" class="smalllink">Webmaster</a></i> - # لطفاً "آخرين تصحيح" و "آخرين جمع آوری"  را نيز ترجمه کنيد آخريم تصحيح: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:> - آخرين گردآوری: <: print scalar localtime(); :>
+     <i><a href="<page contact>" class="smalllink">Webmaster</a></i> - 
+					را نيز ترجمه کنيد آخريم تصحيح: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:> - آخرين گردآوری: <: print scalar localtime(); :>
      </p>
      <p>"Tor" و "Onion Logo" <a href="<page      trademark-faq>">مارک های تجاري</a> The Tor Project, Inc می باشند.
      </p>
 
-# ابن را در ترجمه خود توضيح ندهيد:  (و آن را ترجمه کنيد) ##################################### # <: مگر اينکه (ترجمه _ فعلی () ){ :> #     <p>
-
-# اخطار:  اين ترجمه ممکن است منسوخ باشد.  نسخه اصلی انگليسی #در مرحله ويرايش است# <:= translation_get_masterrevision() :> در حالی که اين ترجمه # بر اساس # <:= translation_get_basedonrevision() :>. #     </p>
-#   <: } :>
+		<: unless (translation_current()) { :>
+			<p>
+			اخطار:  اين ترجمه ممکن است منسوخ باشد.  نسخه اصلی انگليسی در مرحله ويرايش است 
+			<:= translation_get_masterrevision() :> 
+			در حالی که اين ترجمه # بر اساس 
+			<:= translation_get_basedonrevision() :>.
+			</p>
+  <: } :>
 
    <: if (has_translations()) {  :>
      <p>
