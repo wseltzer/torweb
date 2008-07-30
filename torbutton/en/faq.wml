@@ -11,6 +11,21 @@
 <h2>Torbutton FAQ</h2>
 <hr />
 
+<strong>When I toggle Tor, my sites that use javascript stop working. Why?</strong>
+
+<p>
+Javascript can do things like wait until you have disabled Tor before trying
+to contact its source site, thus revealing your IP address. As such, Torbutton
+must disable Javascript, Meta-Refresh tags, and certain CSS behavior when Tor
+state changes from the state that was used to load a given page. These features 
+are re-enabled when Torbutton goes back into the state that was used to load
+the page, but in some cases (particularly with Javascript and CSS) it is
+sometimes not possible to fully recover from the resulting errors, and the
+page is broken. Unfortunately, the only thing you can do (and still remain
+safe from having your IP address leak) is to reload the page when you toggle
+Tor, or just ensure you do all your work in a page before switching tor state.
+</p>
+
 <strong>I can't click on links or hit reload after I toggle Tor! Why?</strong>
 
 <p>
@@ -29,6 +44,49 @@ loading. Hitting enter in the URL bar will also reload the page without
 clicking the reload button.
 </p>
 
+
+<strong>I can't view videos on youtube and other flash-based sites. Why?</strong>
+
+<p>
+
+Plugins are binary blobs that get inserted into Firefox, can perform
+arbitrary activity on your computer. This includes but is not limited to: <a
+href="http://www.metasploit.com/research/projects/decloak/">completely
+disregarding proxy settings</a>, querying your <a
+href="http://forums.sun.com/thread.jspa?threadID=5162138&messageID=9618376">local
+IP address</a>, and <a
+href="http://epic.org/privacy/cookies/flash.html">storing their own
+cookies</a>. It is possible to use a LiveCD or VMWare-based solution such as
+<a href="http://anonymityanywhere.com/incognito/">Incognito</a> that creates a
+secure, transparent proxy to protect you from proxy bypass, however issues
+with local IP address discovery and Flash cookies potentially remain.
+
+</p>
+
+<strong>Torbutton sure seems to do a lot of things, some of which I find
+annoying. Can't I just use the old version?</strong>
+
+<p> 
+
+<b>No.</b> Use of the old version, or any other vanilla proxy changer
+(including FoxyProxy -- see below) is actively discouraged. Seriously. Using a
+vanilla proxy switcher by itself is so insecure that you are not only just
+wasting your time, you are also actually endangering yourself. Simply do not
+use Tor and you will have the same (or perhaps better!) security. For more
+information on the types of attacks you are exposed to with a "homegrown"
+solution, please see <a
+href="https://www.torproject.org/torbutton/design/#adversary">The Torbutton
+Adversary Model</a>, in particular the <b>Adversary Capabilities - Attacks</b>
+subsection. If there are any specific Torbutton behaviors that you do not
+like, please file a bug on <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">the
+bug tracker.</a> Most of Torbutton's security features can also be disabled
+via its preferences, if you think you have your own protection for those
+specific cases.
+
+</p>
+
+
 <strong>My browser is in some weird state where nothing works right!</strong>
 
 <p>
@@ -41,20 +99,6 @@ href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">th
 bug tracker</a>.
 </p>
 
-<strong>When I toggle Tor, my sites that use javascript stop working. Why?</strong>
-
-<p>
-Javascript can do things like wait until you have disabled Tor before trying
-to contact its source site, thus revealing your IP address. As such, Torbutton
-must disable Javascript, Meta-Refresh tags, and certain CSS behavior when Tor
-state changes from the state that was used to load a given page. These features 
-are re-enabled when Torbutton goes back into the state that was used to load
-the page, but in some cases (particularly with Javascript and CSS) it is
-sometimes not possible to fully recover from the resulting errors, and the
-page is broken. Unfortunately, the only thing you can do (and still remain
-safe from having your IP address leak) is to reload the page when you toggle
-Tor, or just ensure you do all your work in a page before switching tor state.
-</p>
 
 <strong>When I use Tor, Firefox is no longer filling in logins/search boxes
 for me. Why?</strong>
@@ -66,6 +110,26 @@ saving and reading) is disabled. If this bothers you, you can uncheck that
 option, but both history and forms will be saved. To prevent history
 disclosure attacks via Non-Tor usage, it is recommended you disable Non-Tor
 history reads if you allow history writing during Tor.
+</p>
+
+<strong>What about Thunderbird support? I see a page, but it is the wrong
+version?</strong>
+
+<p>
+Torbutton used to support basic proxy switching on Thunderbird back in the 1.0
+days, but that support has been removed because it has not been analyzed for
+security. My developer tools page on addons.mozilla.org clearly lists Firefox
+support only, so I don't know why they didn't delete that Thunderbird listing.
+I am not a Thunderbird user and unfortunately, I don't have time to analyze
+the security issues involved with toggling proxy settings in that app. It
+likely suffers from similar (but not identical) state and proxy leak issues
+with html mail, embedded images, javascript, plugins and automatic network
+access. My recommendation is to create a completely separate Thunderbird
+profile for your Tor accounts and use that instead of trying to toggle proxy
+settings. But if you really like to roll fast and loose with your IP, you
+could try another proxy switcher like ProxyButton, SwitchProxy or FoxyProxy
+(if any of those happen to support thunderbird).
+
 </p>
 
 <strong>Which Firefox extensions should I avoid using?</strong>
@@ -137,12 +201,21 @@ install this extension to minimize the ability of sites to store long term
 identifiers in your cache. This extension applies same origin policy to the
 cache, so that elements are retrieved from the cache only if they are fetched
 from a document in the same origin domain as the cached element. 
+ <li><a href="https://crypto.stanford.edu/forcehttps/">ForceHTTPS</a></li>
+Many sites on the Internet are <a
+href="http://www.defcon.org/html/defcon-16/dc-16-speakers.html#Perry">sloppy
+about their use of HTTPS</a> and secure
+cookies. This addon can help you ensure that you always use HTTPS for sites
+that support it, and reduces the chances of your cookies being stolen for
+sites that do not secure them.
 </ol>
 
 <strong>Are there any other issues I should be concerned about?</strong>
 
 <p>
-There is currently one known unfixed security issue with Torbutton: it is
+There are a few known security issues with Torbutton (all of which are due to
+<a href="https://www.torproject.org/torbutton/design/#FirefoxBugs">unfixed
+Firefox security bugs</a>). The most important for anonymity is that it is
 possible to unmask the javascript hooks that wrap the Date object to conceal
 your timezone in Firefox 2, and the timezone masking code does not work at all
 on Firefox 3. We are working with the Firefox team to fix one of <a
