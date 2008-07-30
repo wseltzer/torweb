@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16108
+# Based-On-Revision: 16239
 # Last-Translator: mfr(ät]misericordia.be
 
 #include "head.wmi" TITLE="Torbutton - Basculez rapidement sur le réseau Tor avec Firefox" CHARSET="UTF-8"
@@ -85,7 +85,7 @@ function install (aEvent)
 
 <strong>Version Actuelle:</strong><version-torbutton><br/>
 <br/>
-<strong>Auteurs:</strong> Scott Squires &amp; Mike Perry<br>
+<strong>Auteurs:</strong> Scott Squires &amp; Mike Perry<br/>
 <strong>Courriel:</strong> squires at freehaven dot net, mikeperry (o) fscked/org<br/>
 <br/>
 <strong>Installation:</strong> 
@@ -137,8 +137,8 @@ Les nouveaux Firefoxs ont la capacité d'envoyer les requêtes DNS à travers le
 <a id="FAQ"></a><h2>FAQ</h2>
 
 <strong>I can't click on links or hit reload after I toggle Tor! Why?</strong>
-<p>
 
+<p>
 Due to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=409737">Firefox
 Bug 409737</a>, pages can still open popups and perform Javascript redirects
 and history access after Tor has been toggled. These popups and redirects can
@@ -152,12 +152,11 @@ link, and open it in a new tab or window. The tab or window won't load
 automatically, but you can hit enter in the URL bar, and it will begin
 loading. Hitting enter in the URL bar will also reload the page without
 clicking the reload button.
-
 </p>
 
 <strong>My browser is in some weird state where nothing works right!</strong>
-<p>
 
+<p>
 Try to disable Tor by clicking on the button, and then open a new window. If
 that doesn't fix the issue, go to the preferences page and hit 'Restore
 Defaults'. This should reset the extension and Firefox to a known good
@@ -165,10 +164,10 @@ configuration.  If you can manage to reproduce whatever issue gets your
 Firefox wedged, please file details at <a
 href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">the
 bug tracker</a>.
-
 </p>
 
 <strong>When I toggle Tor, my sites that use javascript stop working. Why?</strong>
+
 <p>
 Javascript can do things like wait until you have disabled Tor before trying
 to contact its source site, thus revealing your IP address. As such, Torbutton
@@ -185,6 +184,7 @@ Tor, or just ensure you do all your work in a page before switching tor state.
 
 <strong>When I use Tor, Firefox is no longer filling in logins/search boxes
 for me. Why?</strong>
+
 <p>
 Currently, this is tied to the "<b>Block history writes during Tor</b>"
 setting. If you have enabled that setting, all formfill functionality (both
@@ -196,11 +196,13 @@ history reads if you allow history writing during Tor.
 
 
 <strong>Which Firefox extensions should I avoid using?</strong>
+
 <p>
 This is a tough one. There are thousands of Firefox extensions: making a
 complete list of ones that are bad for anonymity is near impossible. However,
 here are a few examples that should get you started as to what sorts of
 behavior are dangerous.
+</p>
 
 <ol>
  <li>StumbleUpon, et al</li>
@@ -248,7 +250,7 @@ question</a> on the FoxyProxy FAQ for more information.
  Javascript, yet still allow malicious exit nodes to compromise your
  anonymity via the default whitelist (which they can spoof to inject any script  they want). 
 </ol>
-</p>
+
 
 <strong>Which Firefox extensions do you recommend?</strong>
 <p>
@@ -264,12 +266,10 @@ identifiers in your cache. This extension applies same origin policy to the
 cache, so that elements are retrieved from the cache only if they are fetched
 from a document in the same origin domain as the cached element. 
 </ol>
-
 </p>
 
 <strong>Are there any other issues I should be concerned about?</strong>
 <p>
-
 There is currently one known unfixed security issue with Torbutton: it is
 possible to unmask the javascript hooks that wrap the Date object to conceal
 your timezone in Firefox 2, and the timezone masking code does not work at all
@@ -286,18 +286,15 @@ Variable</a> for TZ via My Computer's properties. In MacOS, the situation is
 <a
 href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html#//apple_ref/doc/uid/20002093-BCIJIJBH">a
 lot more complicated</a>, unfortunately.
-
 </p>
 
 <p>
-
 In addition, RSS readers such as Firefox Livemarks can perform
 periodic fetches. Due to <a
 href="https://bugzilla.mozilla.org/show_bug.cgi?id=436250">Firefox Bug
 436250</a>, there is no way to disable Livemark fetches during Tor. This can
 be a problem if you have a lot of custom Livemark urls that can give away
 information about your identity.
-
 </p>
 
 <h2>Description des Options</h2>
