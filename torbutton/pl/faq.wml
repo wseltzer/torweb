@@ -1,0 +1,209 @@
+## translation metadata
+# Based-On-Revision: 16271
+# Translation-Priority: 3-low
+# Last-Translator: bogdandr_at_op . pl
+
+#include "head.wmi" TITLE="Torbutton: Najczęściej zadawane pytania" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>Torbutton: Najczęściej zadawane pytania</h2>
+<hr />
+
+<strong>Gdy przełączam Tora, moje strony używające javascriptu przestają działać. Dlaczego?</strong>
+
+<p>
+Javascript może robić takie rzeczy jak czekanie aż wyłączysz Tora, zanim połączy się
+ze swoją stroną źródłową, tym samym odkrywając Twój adres IP. W związku z tym, Torbutton
+musi wyłączyć Javascript, znaczniki Meta-Refresh i niektóre zachowania CSS, gdy zmieni
+się stan Tora na inny niż ten, który był użyty do załadowania strony. Wszystkie te cechy
+zostają ponownie włączone, gdy Torbutton wraca do stanu, w którym był w czasie ładowania
+strony, ale w niektórych przypadkach (zwłaszcza z Javascriptem i CSS) nie jest
+możliwe całkowite cofnięcie się z powstałych błędów i strona pozostaje zepsuta.
+Niestety, jedyną rzeczą, jaką możesz zrobić (i dalej obronić się przed ujawnieniem
+swojego adresu IP), jest przeładowanie strony po przełączeniu Tora lub wykonanie całej
+pracy przed zmianą stanu Tora.
+</p>
+
+<strong>Nie mogę klikać na linki lub przeładować strony po przełączeniu Tora. Dlaczego?</strong>
+
+<p>
+W związku z <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=409737">błędem Firefoksa
+numer 409737</a>, strony dalej mogą otwierać okienka wyskakujące i wykonywać przekierowania
+Javascript oraz mieć dostęp do historii po zmianie stanu Tora. Te okienka i przekierowania
+mogą być blokowane, ale niestety nie można ich odróżnić od normalnych działań użytkownika
+z taką stroną (takich jak kliknie na linki, otwieranie ich w nowych kartach/oknach, czy
+używanie przycisków historii), więc te są też blokowane, jako skutek uboczny. Po naprawie
+tego błędu w Firefoksie, ten stopień izolacji stanie się opcjonalny (dla ludzi, którzy nie chcą
+przypadkowo klikać na linki i przekazywać informacji poprzez adres zwrotny). Sposobem na
+obejście tego jest kliknięcie prawym klawiszem na link i otwarcie go w nowej karcie lub oknie.
+Karta lub okno nie załadują automatycznie strony, ale można nacisnąć Enter w pasku adresu
+i strona zacznie się ładować. Naciśnięcie Entera w pasku adresu przeładuje stronę, bez
+klikania w przycisk odświeżenia.
+</p>
+
+<strong>Nie mogę oglądać filmów na youtube i innych stronach opartych na flashu. Dlaczego?</strong>
+
+<p>
+
+Wtyczki to pliki binarne uruchamiane w Firefoksie, mogą przeprowadzać dowolne działania
+na Twoim komputerze, łącznie z, lecz nie ograniczając się do: <a
+href="http://www.metasploit.com/research/projects/decloak/">nie brania
+pod uwagę ustawień proxy</a>, sprawdzania Twojego <a
+href="http://forums.sun.com/thread.jspa?threadID=5162138&amp;messageID=9618376">lokalnego
+adresu IP</a>, i <a
+href="http://epic.org/privacy/cookies/flash.html">zapisywania własnych
+ciasteczek</a>. Jest możliwe skorzystanie z LiveCD lub rozwiązania opartego na VMWare,
+takiego jak
+<a href="http://anonymityanywhere.com/incognito/">Incognito</a>, które tworzy
+bezpieczne, przezroczyste proxy, by chronić Cię przed omijaniem proxy, lecz
+problemy związane z lokalnym adresem IP i ciasteczkami Flash potencjalnie pozostają groźne.
+
+</p>
+
+<strong>Torbutton zdaje się robić wiele rzeczy, ale część z nich mi przeszkadza.
+Nie mogę po prostu używać starej wersji?</strong>
+
+<p>
+
+<b>Nie.</b> Korzystanie ze starej wersji lub innego rozszerzenia do zmiany proxy
+(łącznie z FoxyProxy -- patrz niżej) jest mocno niezalecane. Na prawdę. Używanie
+samego innego rozszerzenia jest o tyle niebezpieczne, że nie tylko tracisz swój
+czas, ale także się narażasz. Po prostu nie używaj Tora i będziesz mieć takie
+samo (lub lepsze!) zabezpieczenie. By dowiedzieć się więcej o typach ataków,
+na jakie może Cię narazić "domowe" rozwiązanie, przeczytaj <a
+href="https://www.torproject.org/torbutton/design/#adversary">The Torbutton
+Adversary Model (Model Napastnika)</a>, a w szczególności podrozdział
+<b>Adversary Capabilities - Attacks (Możliwości napastnika - Ataki)</b>.
+Jeśli są jakieś określone zachowania Torbuttona, które Ci się nie podobają, wypełnij
+zgłoszenie na <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">stronie
+zgłaszania błędów.</a> Większość cech Torbuttona zapewniających bezpieczeństwo można
+wyłączyć poprzez jego preferencje, jeśli zdaje Ci się, że masz własne zabezpieczenia
+na te przypadki.
+
+</p>
+
+<strong>Moja przeglądarka jest w jakimś dziwnym stanie, gdzie nic nie działa dobrze!</strong>
+
+<p>
+Spróbuj wyłączyć Tora klikając na przycisk, po czym otwórz nowe okno. Jeśli to nie pomoże,
+otwórz preferencje i kliknij 'Restore Defaults' ("Przywróć ustawienia domyślne"). To
+powinno zresetować rozszerzenie i Firefoksa do znanej działającej konfiguracji.
+Jeśli umiesz powtórzyć ten problem, podaj szczegóły na <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">stronie
+śledzenia błędów</a>.
+</p>
+
+<strong>Których rozszerzeń do Firefoksa powinno się unikać?</strong>
+
+<p>
+To jest trudne pytanie. Rozszerzeń Firefoksa są tysiące, stworzenie pełnej listy
+tych, które zagrażają anonimowości, jest prawie niemożliwe. Jednakże, oto kilka
+przykładów, które powinny dać Ci pojęcie co do tego, jakie zachowania są niebezpieczne.
+</p>
+
+<ol>
+ <li>StumbleUpon, itp.<br>
+ Te rozszerzenia wysyłają mnóstwo informacji o stronach, które odwiedzasz, do serwerów
+ stumbleupon i łączą te informacje z unikalnym identyfikatorem. To jest oczywiście
+ straszne dla anonimowości. Ogólnie mówiąc, jakiekolwiek rozszerzenie wymagające
+ rejestracji, a nawet rozszerzenia dostarczające informacji o odwiedzanych stronach
+ powinny być uznane za podejrzane.
+ </li>
+
+ <li>FoxyProxy<br>
+
+ Podczas gdy w teorii FoxyProxy jest niezłym pomysłem, to w praktyce nie można go
+ skonfigurować bezpiecznie do Tora bez Torbuttona. Jak we wszystkich innych
+ rozszerzeniach proxy, głównymi zagrożeniami są <a
+ href="http://www.metasploit.com/research/projects/decloak/">wyciek wtyczek</a>
+ i <a href="http://ha.ckers.org/weird/CSS-history.cgi">odkrycie historii</a>,
+ zaraz za nimi są kradzieże ciasteczek przez węzły wyjściowe i śledzenie przez
+ serwery z reklamami (przeczytaj <a href="design/index.html#adversary">Torbutton Adversary
+ Model</a>, by poznać szczegóły). Lecz nawet z zainstalowanym i zawsze włączonym
+ Torbuttonem, ciągle bardzo trudno (lecz nie jest to niemożliwe) jest bezpiecznie
+ skonfigurować FoxyProxy. Jako że tryb wzorców (Patterns) w FoxyProxy odnosi się
+ tylko do specyficznych adresów, a nie do całej karty, ustawienie FoxyProxy tak, by
+ tylko niektóre strony były odwiedzane przez Tora, dalej pozwala napastnikom na
+ poznanie Twojego prawdziwego IP. Co gorsza, jeśli te strony używają usług logowania
+ na innych stronach jak Google Analytics, możesz wylądować w ich logach ze swoim
+ prawdziwym adresem IP. Złośliwe węzły wyjściowe też mogą współpracować ze stronami,
+ by wklejać obrazki do stron nie filtrowanych. Ustawienie FoxyProxy tak, by tylko
+ część adresów wysyła nie przez Tora jest znacznie łatwiejsze, ale trzeba być ostrożnym
+ z filtrami, na które się pozwala. Na przykład ustawienie czegoś tak prostego jak
+ *google*, by szło nie przez Tora dalej będzie powodować, że znajdziesz się we
+ wszystkich logach wszystkich stron używających Google Analytics! Przeczytaj
+ <a href="http://foxyproxy.mozdev.org/faq.html#privacy-01">to
+ pytanie</a> na FAQ FoxyProxy dla dalszych szczegółów.
+ </li>
+
+ <li>NoScript<br>
+ Torbutton w chwili obecnej łagodzi wszystkie znane problemy anonimowości związane
+ z Javascriptem. Wyłączanie Javascriptu tylko dla niektórych stron może kusić, że
+ posiada się lepszą ochronę, ale znacznie lepsze jest podejście wszystko-albo-nic.
+ NoScript jest za bardzo skomplikowany i posiada wiele subtelności mogących
+ zaskoczyć nawet zaawansowanych użytkowników. Na przykład, addons.mozilla.org
+ weryfikuje integralność rozszerzenia używając Javascriptu przez HTTPS, ale
+ pobiera je połączeniem jawnym. Nie dodanie tego do listy oznacza efektywnie, że
+ pobierasz niezweryfikowane rozszerzenia. Co gorsza, używanie NoScript może
+ wyłączyć ochronę dawaną przez Torbutton poprzez Javascript, lecz w dalszym
+ ciągu pozwoli złośliwym węzłom wyjściowym na pozbawienie Cie anonimowości
+ poprzez domyślną listę stron z pozwoleniem (za które mogą się podszyć, by dodać
+ jaki tylko skrypt zechcą).
+ </li>
+
+</ol>
+
+<strong>Które rozszerzenia do Firefoksa polecacie?</strong>
+<ol>
+ <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a><br>
+ Wspomniane wcześniej, to rozszerzenie pozwala na lepszą kontrolę adresów zwrotnych
+ niż Torbutton w tej chwili. Powinno psuć mniej stron niż kontrola adresu zwrotnego
+ w Torbuttonie.
+ </li>
+ <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a><br>
+ Jeśli dużo używasz Tora i rzadko go wyłączasz, prawodpodobnie przyda Ci się to
+ rozszerzenie, by zminimalizować możliwości stron internetowych odnośnie przechowywania
+ długotrwałych identyfikatorów w pamięci podręcznej. To rozszerzenie stosuje polityki
+ adresu pochodzenia w pamięci podręcznej, więc elementy są z niej pobierane tylko jeśli są
+ pobierane z dokumentu w tej samej strefie pochodzenia jak element w pamięci podręcznej.
+ </li>
+</ol>
+
+<strong>Czy sa jeszcze jakieś sprawy, o których powinno się wiedzieć?</strong>
+
+<p>
+W chwili obecnej jest jeden niepoprawiony błąd bezpieczeństwa w Torbuttonie:
+jest możliwe odmaskowanie funkcji owijających obiekt Date tak, by zdradziły twoją
+strefę czasową w Firefoksie 2, a kod maskujący strefę czasową w ogóle nie działa w
+Firefoksie 3. Współpracujemy z ludźmi od Firefoksa, by naprawić jeden z błędów <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=392274">399274</a> lub
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=419598">419598</a>,
+co naprawiłoby ten problem. W międzyczasie, można ustawić zmienną środowiskową
+<b>TZ</b> na wartość <b>UTC</b>, by przeglądarka używała czasu UTC jako strefy
+czasowej. Pod Linuksem możesz dodać <b>export TZ=UTC</b> do skryptu /usr/bin/firefox
+lub zrobić to samo w systemowym pliku bashrc. Pod Windowsem można jedną ze <a
+href="http://support.microsoft.com/kb/310519">Zmiennych Środowiskowych
+Użytkownika lub Systemu</a> na TZ korzystając z właściwości Mojego Komputera. Pod
+MacOS, sytuacja jest
+<a
+href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html#//apple_ref/doc/uid/20002093-BCIJIJBH"
+>znacznie bardziej skomplikowana</a>, niestety.
+</p>
+
+<p>
+Ponadto, czytniki RSS takie jak Firefox Livemarks mogą przeprowadzać
+okresowe pobierania. W związku z  <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=436250">błędem Firefoksa
+436250</a>, nie ma sposobu na wyłączenie tego pobierania w trybie Tora. To może być
+problem, jeśli posiada się dużo własnych adresów kanałów informacyjnych, które mogą
+przekazywać informacje o Twojej tożsamości.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
