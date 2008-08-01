@@ -45,11 +45,11 @@ clicking the reload button.
 </p>
 
 
-<strong>I can't view videos on youtube and other flash-based sites. Why?</strong>
+<strong>I can't view videos on YouTube and other flash-based sites. Why?</strong>
 
 <p>
 
-Plugins are binary blobs that get inserted into Firefox, can perform
+Plugins are binary blobs that get inserted into Firefox and can perform
 arbitrary activity on your computer. This includes but is not limited to: <a
 href="http://www.metasploit.com/research/projects/decloak/">completely
 disregarding proxy settings</a>, querying your <a
@@ -69,16 +69,17 @@ annoying. Can't I just use the old version?</strong>
 <p> 
 
 <b>No.</b> Use of the old version, or any other vanilla proxy changer
-(including FoxyProxy -- see below) is actively discouraged. Seriously. Using a
-vanilla proxy switcher by itself is so insecure that you are not only just
-wasting your time, you are also actually endangering yourself. Simply do not
-use Tor and you will have the same (or perhaps better!) security. For more
-information on the types of attacks you are exposed to with a "homegrown"
-solution, please see <a
+(including FoxyProxy -- see below) without Torbutton is actively discouraged.
+Seriously. Using a vanilla proxy switcher by itself is so insecure that you
+are not only just wasting your time, you are also actually endangering
+yourself. Simply do not use Tor and you will have the same (and in some cases,
+better) security.  For more information on the types of attacks you are
+exposed to with a "homegrown" solution, please see <a
 href="https://www.torproject.org/torbutton/design/#adversary">The Torbutton
-Adversary Model</a>, in particular the <b>Adversary Capabilities - Attacks</b>
-subsection. If there are any specific Torbutton behaviors that you do not
-like, please file a bug on <a
+Adversary Model</a>, in particular the 
+<a href="https://www.torproject.org/torbutton/design/#attacks">Adversary
+Capabilities - Attacks</a> subsection. If there are any specific Torbutton
+behaviors that you do not like, please file a bug on <a
 href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">the
 bug tracker.</a> Most of Torbutton's security features can also be disabled
 via its preferences, if you think you have your own protection for those
@@ -159,20 +160,19 @@ href="http://www.metasploit.com/research/projects/decloak/">plugin leakage</a>
 and <a href="http://ha.ckers.org/weird/CSS-history.cgi">history
 disclosure</a>, followed closely by cookie theft by exit nodes and tracking by
 adservers (see the <a href="design/index.html#adversary">Torbutton Adversary
-Model</a> for more information). However, even with Torbutton installed in
-tandem and always enabled, it is still very difficult (though not impossible)
-to configure FoxyProxy securely. Since FoxyProxy's 'Patterns' mode only
-applies to specific urls, and not to an entire tab, setting FoxyProxy to only
-send specific sites through Tor will still allow adservers to still learn your
-real IP. Worse, if those sites use offsite logging services such as Google
-Analytics, you may still end up in their logs with your real IP. Malicious
-exit nodes can also cooperate with sites to inject images into pages that
-bypass your filters. Setting FoxyProxy to only send certain URLs via Non-Tor
-is much more viable, but be very careful with the filters you allow. For
-example, something as simple as allowing *google* to go via Non-Tor will still
-cause you to end up in all the logs of all websites that use Google Analytics!
-See <a href="http://foxyproxy.mozdev.org/faq.html#privacy-01">this
-question</a> on the FoxyProxy FAQ for more information.
+Model</a> for more information). However, with Torbutton installed in tandem
+and always enabled, it is possible to configure FoxyProxy securely (though it
+is tricky). Since FoxyProxy's 'Patterns' mode only applies to specific urls,
+and not to an entire tab, setting FoxyProxy to only send specific sites
+through Tor will still allow adservers (whose hosts don't match your filters) to learn your real IP. Worse, when
+sites use offsite logging services such as Google Analytics, you will
+still end up in their logs with your real IP. Malicious exit nodes can also
+cooperate with sites to inject images into pages that bypass your filters.
+Setting FoxyProxy to only send certain URLs via Non-Tor is much more secure in
+this regard, but be very careful with the filters you allow. For example, something as simple as allowing *google* to go via Non-Tor will still cause you to end up
+in all the logs of all websites that use Google Analytics!  See <a
+href="http://foxyproxy.mozdev.org/faq.html#privacy-01">this question</a> on
+the FoxyProxy FAQ for more information.
 
  <li>NoScript</li>
  Torbutton currently mitigates all known anonymity issues with Javascript.
@@ -191,6 +191,13 @@ question</a> on the FoxyProxy FAQ for more information.
 
 <strong>Which Firefox extensions do you recommend?</strong>
 <ol>
+ <li><a href="https://crypto.stanford.edu/forcehttps/">ForceHTTPS</a></li>
+Many sites on the Internet are <a
+href="http://www.defcon.org/html/defcon-16/dc-16-speakers.html#Perry">sloppy
+about their use of HTTPS</a> and secure
+cookies. This addon can help you ensure that you always use HTTPS for sites
+that support it, and reduces the chances of your cookies being stolen for
+sites that do not secure them.
  <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a></li>
  Mentioned above, this extension allows more fine-grained referrer spoofing
 than Torbutton currently provides. It should break less sites than Torbutton's
@@ -201,13 +208,6 @@ install this extension to minimize the ability of sites to store long term
 identifiers in your cache. This extension applies same origin policy to the
 cache, so that elements are retrieved from the cache only if they are fetched
 from a document in the same origin domain as the cached element. 
- <li><a href="https://crypto.stanford.edu/forcehttps/">ForceHTTPS</a></li>
-Many sites on the Internet are <a
-href="http://www.defcon.org/html/defcon-16/dc-16-speakers.html#Perry">sloppy
-about their use of HTTPS</a> and secure
-cookies. This addon can help you ensure that you always use HTTPS for sites
-that support it, and reduces the chances of your cookies being stolen for
-sites that do not secure them.
 </ol>
 
 <strong>Are there any other issues I should be concerned about?</strong>
