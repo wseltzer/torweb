@@ -53,7 +53,7 @@ Plugins are binary blobs that get inserted into Firefox and can perform
 arbitrary activity on your computer. This includes but is not limited to: <a
 href="http://www.metasploit.com/research/projects/decloak/">completely
 disregarding proxy settings</a>, querying your <a
-href="http://forums.sun.com/thread.jspa?threadID=5162138&messageID=9618376">local
+href="http://forums.sun.com/thread.jspa?threadID=5162138&amp;messageID=9618376">local
 IP address</a>, and <a
 href="http://epic.org/privacy/cookies/flash.html">storing their own
 cookies</a>. It is possible to use a LiveCD or VMWare-based solution such as
@@ -130,7 +130,6 @@ profile for your Tor accounts and use that instead of trying to toggle proxy
 settings. But if you really like to roll fast and loose with your IP, you
 could try another proxy switcher like ProxyButton, SwitchProxy or FoxyProxy
 (if any of those happen to support thunderbird).
-
 </p>
 
 <strong>Which Firefox extensions should I avoid using?</strong>
@@ -143,16 +142,17 @@ behavior are dangerous.
 </p>
 
 <ol>
- <li>StumbleUpon, et al</li>
+ <li>StumbleUpon, et al
+	<p>
  These extensions will send all sorts of information about the websites you
  visit to the stumbleupon servers, and correlate this information with a
  unique identifier. This is obviously terrible for your anonymity.
  More generally, any sort of extension that requires registration, or even
  extensions that provide information about websites you visit should be
  suspect.
-
- <li>FoxyProxy</li>
-
+ </p>	</li>
+ <li>FoxyProxy
+<p>
 While FoxyProxy is a nice idea in theory, in practice it is impossible to
 configure securely for Tor usage without Torbutton. Like all vanilla third
 party proxy plugins, the main risks are <a
@@ -169,12 +169,14 @@ sites use offsite logging services such as Google Analytics, you will
 still end up in their logs with your real IP. Malicious exit nodes can also
 cooperate with sites to inject images into pages that bypass your filters.
 Setting FoxyProxy to only send certain URLs via Non-Tor is much more secure in
-this regard, but be very careful with the filters you allow. For example, something as simple as allowing *google* to go via Non-Tor will still cause you to end up
+this regard, but be very careful with the filters you allow. For example, 
+something as simple as allowing *google* to go via Non-Tor will still cause you to end up
 in all the logs of all websites that use Google Analytics!  See <a
 href="http://foxyproxy.mozdev.org/faq.html#privacy-01">this question</a> on
 the FoxyProxy FAQ for more information.
 
- <li>NoScript</li>
+ <li>NoScript
+ <p>
  Torbutton currently mitigates all known anonymity issues with Javascript.
  While it may be tempting to get better security by disabling Javascript for
  certain sites, you are far better off with an all-or-nothing approach.
@@ -186,28 +188,29 @@ the FoxyProxy FAQ for more information.
  can actually disable protections that Torbutton itself provides via
  Javascript, yet still allow malicious exit nodes to compromise your
  anonymity via the default whitelist (which they can spoof to inject any script  they want). 
-
+</p></li>
 </ol>
 
 <strong>Which Firefox extensions do you recommend?</strong>
 <ol>
- <li><a href="https://crypto.stanford.edu/forcehttps/">ForceHTTPS</a></li>
+ <li><a href="https://crypto.stanford.edu/forcehttps/">ForceHTTPS</a><p>
 Many sites on the Internet are <a
 href="http://www.defcon.org/html/defcon-16/dc-16-speakers.html#Perry">sloppy
 about their use of HTTPS</a> and secure
 cookies. This addon can help you ensure that you always use HTTPS for sites
 that support it, and reduces the chances of your cookies being stolen for
-sites that do not secure them.
+sites that do not secure them.</p></li>
  <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a></li>
  Mentioned above, this extension allows more fine-grained referrer spoofing
 than Torbutton currently provides. It should break less sites than Torbutton's
-referrer spoofing option.
- <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a></li>
+referrer spoofing option.</p></li>
+ <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a> <p>
  If you use Tor excessively, and rarely disable it, you probably want to
 install this extension to minimize the ability of sites to store long term
 identifiers in your cache. This extension applies same origin policy to the
 cache, so that elements are retrieved from the cache only if they are fetched
 from a document in the same origin domain as the cached element. 
+</p></li>
 </ol>
 
 <strong>Are there any other issues I should be concerned about?</strong>
