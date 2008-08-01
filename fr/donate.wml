@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 15530
+# Based-On-Revision: 16310
 # Last-Translator: mfr(ät]misericordia.be, fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Tor : Faites un don !"
@@ -60,10 +60,15 @@ Le meilleur moyen de nous soutenir est de devenir un « membre » du projet To
 <b>versement mensuel</b>. Des dons suffisants nous permettent de nous soucier moins des finances et de nous concentrer davantage
 sur le développement. Vous pouvez devenir membre en cliquant sur l'un de ces boutons (Vous aurez besoin d'un compte <a
 href="http://paypal.com/">PayPal</a>):<br />
-<input type="radio" name="a3" value="50.00" />$50
-<input type="radio" name="a3" value="20.00" checked="checked" />$20
-<input type="radio" name="a3" value="10.00" />$10
-<input type="radio" name="a3" value="5.00" />$5
+<input type="radio" name="a3" value="50.00" />50
+<input type="radio" name="a3" value="20.00" checked="checked" />20
+<input type="radio" name="a3" value="10.00" />10
+<input type="radio" name="a3" value="5.00" />5
+<SELECT name="currency_code">
+	<OPTION value="USD" selected>$
+	<OPTION value="EUR">€
+	<OPTION value="GBP">£
+</SELECT>
 <input type="hidden" name="p3" value="1" />
 <input type="hidden" name="t3" value="M" />
 <input type="hidden" name="sra" value="1" />
@@ -82,11 +87,16 @@ value="https://www.torproject.org/donate">
 
 <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
   <p>Vous pouvez aussi faire un <b>don unique</b> (via PayPal, mais ne nécessitant pas de compte):<br />
-<input type="radio" name="amount" value="100.00" />$100
-<input type="radio" name="amount" value="50.00" />$50
-<input type="radio" name="amount" value="20.00" checked="checked" />$20
-<input type="radio" name="amount" value="10.00" />$10
-<input type="radio" name="amount" value="" />other
+<input type="radio" name="amount" value="100.00" />100
+<input type="radio" name="amount" value="50.00" />50
+<input type="radio" name="amount" value="20.00" checked="checked" />20
+<input type="radio" name="amount" value="10.00" />10
+<input type="radio" name="amount" value="" />other amount
+<SELECT name="currency_code">
+	<OPTION value="USD" selected>$
+	<OPTION value="EUR">€
+	<OPTION value="GBP">£
+</SELECT>
 <input type="hidden" name="no_shipping" value="1" />
 <input type="image" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_donateCC_LG.gif" name="submit" alt="Faites des paiements avec PayPal - c'est rapide, libre et sécurisé !">
 <input type="hidden" name="cmd" value="_xclick" />
