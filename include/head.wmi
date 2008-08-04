@@ -15,7 +15,8 @@
   <meta name="Author" content="Roger Dingledine" />
   <ifneq "$(CHARSET)" "" "<meta http-equiv="content-type" content="text/html; charset=$(CHARSET)" />">
   <ifeq "$(CHARSET)" "" "<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />">
-  <link rel="stylesheet" type="text/css" href="$(DOCROOT)/stylesheet.css" />
+  <ifneq "$(STYLESHEET)" "" "<link rel="stylesheet" type="text/css" href="$(DOCROOT)/$(STYLESHEET)" />">
+  <ifeq "$(STYLESHEET)" "" "<link rel="stylesheet" type="text/css" href="$(DOCROOT)/stylesheet-ltr.css" />">
   <link rel="shortcut icon" type="image/x-icon" href="$(DOCROOT)/favicon.ico" />
   <ifneq "$(REDIRECT)" "" "<meta http-equiv="refresh" content="0;url=$(DOCROOT)/$(REDIRECT)" />">
 </head>
