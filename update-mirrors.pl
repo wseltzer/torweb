@@ -670,6 +670,28 @@ my %m = (
             updateDate => "Unknown",
         },		
 
+        mirror033 => {
+            adminContact => "internetfreebeijing\@gmail.com",
+            orgName => "Unknown",
+            isoCC => "CN",
+            subRegion => "China",
+            region => "Asia",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://free.be.ijing2008.cn/tor/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "", 
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://free.be.ijing2008.cn/tor/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },		
+
+
+
 );
 
 my $count = values %m;
