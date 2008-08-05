@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 15733
+# Based-On-Revision: 16392
 # Translation-Priority: 1-high
 # Last-Translator: bogdandr_at_op . pl
 
@@ -64,10 +64,11 @@ znalezienie mostka</a>.
 <hr />
 
 <p>
-Przykładowo, możesz dostać informacje o mostku wyglądające tak:<br>
+Przykładowo, możesz dostać informacje o mostku wyglądające tak:
 </p>
-<pre>
+<pre><samp>
 bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
 </pre>
 
 <p>
@@ -125,6 +126,47 @@ Here are your bridge relays:
 Po otrzymaniu takiego listu z informacją o mostkach, możesz dalej konfigurować
 Vidalię według <a href="#UsingBridges">powyższych</a> kroków.
 </p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Prowadzenie Mostka Tor</a></h2>
+<hr />
+
+<p>
+Jeśli jesteś operatorem serwera, to może chcesz też prowadzić węzeł mostkowy.
+Poniżej jest minimalna konfiguracja <tt>torrc</tt>, która pozwala na wpisanie mostka
+do sieci Tora:
+</p>
+
+<pre><code>
+SocksPort 0
+Nickname BridgeExample
+ORPort 443
+BridgeRelay 1
+PublishServerDescriptor bridge
+Exitpolicy reject *:*
+</code>
+</pre>
+
+<p>
+Gdy skonfigurowany jako mostek, Twój serwer <b>nie</b> będzie widoczny w publicznej
+sieci Tora.
+</p>
+
+<p>
+Jeśli chcesz, by użytkownicy korzystali z Twojego mostka, po prostu daj im adres
+IP węzła, port TCP skonfigurowany w <tt>ORPort</tt> i odcisk palca serwera.
+Odcisk palca powinien znajdować się w Twoich logach lub w <tt>/var/lib/tor/fingerprint</tt>,
+w zależności od systemu.
+</p>
+
+<p>
+Jeśli chcesz się dowiedzieć więcej o mostkach z technicznego punktu widzenia,
+przeczytaj <a
+href="https://tor-svn.freehaven.net/svn/tor/trunk/doc/spec/bridges-spec.txt">specyfikację
+mostków Tora</a>. Jeśli chcesz prowadzić prywatny mostek lub masz jakieś inne
+specyficzne zastosowania, przeczytaj specyfikację.
+</p>
+
 
   </div><!-- #main -->
 
