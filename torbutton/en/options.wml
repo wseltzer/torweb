@@ -22,13 +22,13 @@ href="https://bugzilla.mozilla.org/show_bug.cgi?id=218223">218223</a> currently
 prevent this.)</p>
 
 <ul>
- <li>Disable plugins on Tor Usage (crucial)</p> 
+ <li>Disable plugins on Tor Usage (crucial)<p> 
 
   This option is key to Tor security. Plugins perform their own networking
 independent of the browser, and many plugins only partially obey even their own
 proxy settings.
 </p></li>
-  <li>Isolate Dynamic Content to Tor State (crucial)</p> 
+  <li>Isolate Dynamic Content to Tor State (crucial)<p> 
 
   Another crucial option, this setting causes the plugin to disable Javascript
   on tabs that are loaded during a Tor state different than the current one,
@@ -38,20 +38,20 @@ proxy settings.
   state. This serves to block non-Javascript dynamic content such as CSS
   popups from revealing your IP address if you disable Tor.
 </p></li>
-  <li>Hook Dangerous Javascript (crucial)</p> 
+  <li>Hook Dangerous Javascript (crucial)<p> 
 
 This setting enables the Javascript hooking code. Javascript is injected into
 pages to hook the Date object to mask your timezone, and to hook the navigator
 object to mask OS and user agent properties not handled by the standard
 Firefox user agent override settings.
 </p></li>
-  <li>Resize window dimensions to multiples of 50px on toggle (recommended)</p> 
+  <li>Resize window dimensions to multiples of 50px on toggle (recommended)<p> 
 
 To cut down on the amount of state available to fingerprint users uniquely, 
 this pref causes windows to be resized to a multiple of 50 pixels on each
 side when Tor is enabled and pages are loaded.
 </p></li>
-  <li>Disable Updates During Tor (recommended)</p> 
+  <li>Disable Updates During Tor (recommended)<p> 
 
 Under Firefox 2, many extension authors did not update their extensions from 
 SSL-enabled websites. It is possible for malicious Tor nodes to hijack these extensions and replace them with malicious ones, or add malicious code to 
@@ -60,13 +60,13 @@ authenticated updates, this setting is no longer as important as it once
 was (though updates do leak information about which extensions you have, it is
 fairly infrequent).
 </p></li>
-  <li>Disable Search Suggestions during Tor (optional)</p> 
+  <li>Disable Search Suggestions during Tor (optional)<p> 
 
 This optional setting governs if you get Google search suggestions during Tor
 usage. Since no cookie is transmitted during search suggestions, this is a
 relatively benign behavior.
 </p></li>
-  <li>Block Tor/Non-Tor access to network from file:// urls (recommended)</p> 
+  <li>Block Tor/Non-Tor access to network from file:// urls (recommended)<p> 
 
 These settings prevent local html documents from transmitting local files to
 arbitrary websites <a href="http://www.gnucitizen.org/blog/content-disposition-hacking/">under Firefox 2</a>. Since exit nodes can insert headers that
@@ -74,7 +74,7 @@ force the browser to save arbitrary pages locally (and also inject script into
 arbitrary html files you save to disk via Tor), it is probably a good idea to
 leave this setting on.
 </p></li>
-  <li>Close all Non-Tor/Tor windows and tabs on toggle (optional)</p> 
+  <li>Close all Non-Tor/Tor windows and tabs on toggle (optional)<p> 
 
 These two settings allow you to obtain a greater degree of assurance that
 after you toggle out of Tor, the pages are really gone and can't perform any
@@ -83,7 +83,7 @@ perform activity after toggle, but these options exist as a backup measure
 just in case a flaw is discovered. They can also serve as a handy 'Boss
 Button' feature for clearing all Tor browsing off your screen in a hurry.
 </p></li>
-  <li>Isolate access to history navigation to Tor state (crucial)</p> 
+  <li>Isolate access to history navigation to Tor state (crucial)<p> 
 
 This setting prevents both Javascript and accidental user clicks from causing
 the session history to load pages that were fetched in a different Tor state
@@ -91,7 +91,7 @@ than the current one. Since this can be used to correlate Tor and Non-Tor
 activity and thus determine your IP address, it is marked as a crucial 
 setting.
 </p></li>
-  <li>Block History Reads during Tor (crucial)</p> 
+  <li>Block History Reads during Tor (crucial)<p> 
 
   Based on code contributed by <a href="http://www.collinjackson.com/">Collin
   Jackson</a>, when enabled and Tor is enabled, this setting prevents the
@@ -99,11 +99,11 @@ rendering engine from knowing if certain links were visited.  This mechanism
 defeats all document-based history disclosure attacks, including CSS-only
 attacks.
 </p></li>
-  <li>Block History Reads during Non-Tor (recommended)</p> 
+  <li>Block History Reads during Non-Tor (recommended)<p> 
 
   This setting accomplishes the same but for your Non-Tor activity.
 </p></li>
-  <li>Block History Writes during Tor (recommended)</p> 
+  <li>Block History Writes during Tor (recommended)<p> 
 
   This setting prevents the rendering engine from recording visited URLs, and
 also disables download manager history. Note that if you allow writing of Tor history,
@@ -111,37 +111,37 @@ it is recommended that you disable non-Tor history reads, since malicious
 websites you visit without Tor can query your history for .onion sites and
 other history recorded during Tor usage (such as Google queries).
 </p></li>
-  <li>Block History Writes during Non-Tor (optional)</p> 
+  <li>Block History Writes during Non-Tor (optional)<p> 
 
 This setting also disables recording any history information during Non-Tor
 usage.
 </p></li>
-<li>Clear History During Tor Toggle (optional)</p> 
+<li>Clear History During Tor Toggle (optional)<p> 
 
   This is an alternate setting to use instead of (or in addition to) blocking
 history reads or writes.
 </p></li>
-  <li>Block Password+Form saving during Tor/Non-Tor</p> 
+  <li>Block Password+Form saving during Tor/Non-Tor<p> 
 
   These options govern if the browser writes your passwords and search
   submissions to disk for the given state.
 </p></li>
-  <li>Block Tor disk cache and clear all cache on Tor Toggle</p> 
+  <li>Block Tor disk cache and clear all cache on Tor Toggle<p> 
 
   Since the browser cache can be leveraged to store unique identifiers, cache
 must not persist across Tor sessions. This option keeps the memory cache active
 during Tor usage for performance, but blocks disk access for caching.
 </p></li>
-  <li>Block disk and memory cache during Tor</p> 
+  <li>Block disk and memory cache during Tor<p> 
 
   This setting entirely blocks the cache during Tor, but preserves it for
 Non-Tor usage.
 </p></li>
-  <li>Clear Cookies on Tor Toggle</p> 
+  <li>Clear Cookies on Tor Toggle<p> 
 
   Fully clears all cookies on Tor toggle.
 </p></li>
-  <li>Store Non-Tor cookies in a protected jar</p> 
+  <li>Store Non-Tor cookies in a protected jar<p> 
 
   This option stores your persistent Non-Tor cookies in a special cookie jar
   file, in case you wish to preserve some cookies. Based on code contributed
@@ -149,14 +149,14 @@ Non-Tor usage.
   compatible with third party extensions that you use to manage your Non-Tor
   cookies. Your Tor cookies will be cleared on toggle, of course.
 </p></li>
-  <li>Store both Non-Tor and Tor cookies in a protected jar (dangerous)</p> 
+  <li>Store both Non-Tor and Tor cookies in a protected jar (dangerous)<p> 
 
   This option stores your persistent Tor and Non-Tor cookies 
   separate cookie jar files. Note that it is a bad idea to keep Tor
   cookies around for any length of time, as they can be retrieved by exit
   nodes that inject spoofed forms into plaintext pages you fetch.
 </p></li>
-  <li>Manage My Own Cookies (dangerous)</p> 
+  <li>Manage My Own Cookies (dangerous)<p> 
 
   This setting allows you to manage your own cookies with an alternate
 extension, such as <a href="https://addons.mozilla.org/firefox/addon/82">CookieCuller</a>. Note that this is particularly dangerous,
@@ -165,13 +165,13 @@ sites you have preserved cookies for (and can then do things like fetch your
 entire gmail inbox, even if you were not using gmail or visiting any google
 pages at the time!).
 </p></li>
-  <li>Do not write Tor/Non-Tor cookies to disk</p> 
+  <li>Do not write Tor/Non-Tor cookies to disk<p> 
 
   These settings prevent Firefox from writing any cookies to disk during the
   corresponding Tor state. If cookie jars are enabled, those jars will
   exist in memory only, and will be cleared when Firefox exits.
 </p></li>
-  <li>Disable DOM Storage during Tor usage (crucial)</p> 
+  <li>Disable DOM Storage during Tor usage (crucial)<p> 
 
   Firefox has recently added the ability to store additional state and
   identifiers in persistent tables, called <a
@@ -179,17 +179,17 @@ pages at the time!).
   Obviously this can compromise your anonymity if stored content can be
   fetched across Tor-state.
 </p></li>
-  <li>Clear HTTP auth sessions (recommended)</p> 
+  <li>Clear HTTP auth sessions (recommended)<p> 
 
   HTTP authentication credentials can be probed by exit nodes and used to both confirm that you visit a certain site that uses HTTP auth, and also impersonate you on this site. 
 </p></li>
-  <li>Clear cookies on Tor/Non-Tor shutdown</p> 
+  <li>Clear cookies on Tor/Non-Tor shutdown<p> 
 
   These settings install a shutdown handler to clear cookies on Tor
 and/or Non-Tor browser shutdown. It is independent of your Clear Private Data
 settings, and does in fact clear the corresponding cookie jars.
 </p></li>
-  <li>Prevent session store from saving Tor-loaded tabs (recommended)</p> 
+  <li>Prevent session store from saving Tor-loaded tabs (recommended)<p> 
 
   This option augments the session store to prevent it from writing out
   Tor-loaded tabs to disk. Unfortunately, this also disables your ability to 
@@ -198,19 +198,19 @@ settings, and does in fact clear the corresponding cookie jars.
   can potentially load a bunch of Tor tabs without Tor. The following option
   is another alternative to protect against this.
 </p></li>
-  <li>On normal startup, set state to: Tor, Non-Tor, Shutdown State</p> 
+  <li>On normal startup, set state to: Tor, Non-Tor, Shutdown State<p> 
 
   This setting allows you to choose which Tor state you want the browser to
   start in normally: Tor, Non-Tor, or whatever state the browser shut down in.
 </p></li>
-  <li>On crash recovery or session restored startup, restore via: Tor, Non-Tor</p> 
+  <li>On crash recovery or session restored startup, restore via: Tor, Non-Tor<p> 
 
   When Firefox crashes, the Tor state upon restart usually is completely
   random, and depending on your choice for the above option, may load 
   a bunch of tabs in the wrong state. This setting allows you to choose
   which state the crashed session should always be restored in to.
 </p></li>
-  <li>Prevent session store from saving Non-Tor/Tor-loaded tabs</p> 
+  <li>Prevent session store from saving Non-Tor/Tor-loaded tabs<p> 
 
   These two settings allow you to control what the Firefox Session Store
   writes to disk. Since the session store state is used to automatically
@@ -219,7 +219,7 @@ settings, and does in fact clear the corresponding cookie jars.
   after a crash (or the reverse, depending upon the crash recovery setting, 
   of course).
 </p></li>
-  <li>Set user agent during Tor usage (crucial)</p> 
+  <li>Set user agent during Tor usage (crucial)<p> 
 
   User agent masking is done with the idea of making all Tor users appear
 uniform. A recent Firefox 2.0.0.4 Windows build was chosen to mimic for this
@@ -231,12 +231,12 @@ must also allow Hook Dangerous Javascript ensure that the navigator.*
 properties are reset correctly.  The browser does not set some of them via the
 exposed user agent override preferences.
 </p></li>
-  <li>Spoof US English Browser</p> 
+  <li>Spoof US English Browser<p> 
 
 This option causes Firefox to send http headers as if it were an English
 browser. Useful for internationalized users.
 </p></li>
-  <li>Don't send referrer during Tor Usage</p> 
+  <li>Don't send referrer during Tor Usage<p> 
 
 This option disables the referrer header, preventing sites from determining
 where you came from to visit them. This can break some sites, however. <a
