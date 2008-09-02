@@ -1,0 +1,319 @@
+## translation metadata
+# Revision: $Revision: 14160 $
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor: Relay Configuration Instructions" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1><a href="<page index>">Tor</a> 중계서버 설정하기</h1>
+<br />
+
+<p>
+Tor 네트워크는 자발적으로 대역폭을 제공하는 자원자들에 의해 운영됩니다. 중계서버를
+운영하는 사람이 많아질수록, Tor 네트워크가 더 빨라질 것입니다.
+만약에 당신이 양방향으로 최소 20Kilobytes/s의 대역폭을 가지고 있다면,
+당신의 Tor도 중계서버로 운영되도록 설정할 것을 부탁드립니다.
+제공되는 대역폭을 제한하는 것, 당신의 컴퓨터를 이용해 인터넷을
+사용하는 사람들이 그것을 악용할 수 없도록 Exit 정책을 설정하는 것,
+그리고 동적 IP 주소를 지원하는 것 등, Tor중계서버를 설정하는 것은 아주 간단합니다.
+</p>
+
+
+<p> 광활한 네트의 곳곳에서 중계서버가 운영되는 것이 Tor 이용자들을 안전하게 해줍니다.
+또 당신이 중계서버를 운영하는 경우, 웹사이트들은 당신의 컴퓨터에서 온 통신요청이 당신이 보낸 것인지
+아니면 다른 이의 통신요청을 중계해주는 것인지 알 수 없기 때문에<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">
+당신에게는 더욱 강한 익명성이 만들어질 수 있습니다</a>
+.</p>
+
+
+<p>Tor 중계서버를 설정하는 것은 쉽고 간단합니다:
+<ul>
+
+<li>Tor 중계서버에는<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">
+대역폭 제한기능</a>이 내장되어 있습니다. 또, 당신이 충분한 대역폭을 가지고 있지만 
+하루(혹은 일주일, 한달)에 제공하는 byte를 제한하고 싶다면
+<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
+기능</a>을 이용할 수 있습니다.
+</li>
+
+<li>각각의 Tor 중계서버는 어떤 종류의 통신을 허용/거부하는지 설정하는
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">
+출구 정책(exit policy)</a>을 가지고 있습니다.
+만약에 사람들이 당신의 중계서버를 통해 Tor 네트워크를 빠져나가는 것이 불편하다면
+다른 Tor 중계서버로 연결되는 것만을 허용하도록 설정할 수도 있습니다.
+</li>
+
+<li>때때로 중계서버가 꺼지는 것은 괜찮습니다. Tor 디렉토리가 이러한 상태를
+재빠르게 공지하고 중지된 중계서버를 홍보하는 것을 그만둘 것입니다. 다만 
+통신이 오가는 와중에 중계서버가 꺼진다면 통신이 날아가므로,
+너무 자주 꺼지는 것은 곤란합니다.
+</li>
+
+<li>동적 IP주소로 운영되는 중계서버도 가능합니다. &mdash; IP주소
+설정칸을 빈칸으로 남겨놓기만 하면, Tor가 IP주소를 찾아낼 것입니다.
+</li>
+
+
+<li>만약에 당신의 중계서버가 공유기에 연결되어 있고, 공적 IP주소가 무엇인지 모른다면 
+(예를 들어 IP주소 192.168.x.y), 포트 포워딩을 설정해야 합니다. 
+TCP 연결을 포워딩하는 것은 시스템마다 다르지만 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">이
+FAQ</a>를 보면 몇가지 방법을 확인할 수 있습니다.
+</li>
+
+<li>Tor 중계서버는 최신의 가능한 대역폭을 측정하고 공지/홍보할 것입니다.
+따라서 높은 대역폭의 중계서버가 더 많은 사용자들을 끌어들이게 됩니다. 그러므로
+낮은 대역폭의 중계서버들도 매우 유용합니다.
+</li>
+
+</ul>
+
+<p>Tor 중계서버는 어떤 운영체제에서도 운영이 가능합니다만 
+어느 운영체제에서 더 잘 작동하는지 어떤 문제가 있을 수 있는지에 대한 조언들을  
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">이 FAQ</a> 
+에서 확인할 수 있습니다.</p>
+
+
+<hr />
+<a id="zero"></a>
+<h2><a class="anchor" href="#zero">0단계: Tor를 다운받아 설치하기</a></h2>
+<br />
+
+<p>시작하기 전에, Tor가 설치되어 있고, 운영되고 있는지 확인해야 합니다.</p>
+
+<p>윈도우 사용자들은 윈도우 Tor 설치매뉴얼에서 최소한<a
+href="<page docs/tor-doc-windows>#installing">1단계</a>
+까지 완료가 된 상태여야 합니다.  맥 OS X 사용자들도 최소한
+설치매뉴얼의 <a href="<page docs/tor-doc-osx>#installing">1단계</a>
+까지 진행된 상태여야 하고,  리눅스/BSD/유닉스 사용자들도
+유닉스 설치설명서에서
+<a href="<page docs/tor-doc-unix>#installing">1단계</a>
+까지 진행된 상태여야 합니다.
+</p>
+
+<p>제대로 작동하는지 확인하기 위해 당분간은 Tor를 클라이언트로 사용해볼 수도 있습니다.</p>
+
+<hr />
+<a id="setup"></a>
+<h2><a class="anchor" href="#setup">1단계: 중계서버로 설정하기</a></h2>
+<br />
+
+<p>
+1. 컴퓨터의 시계가 정확한 시각을 가르키고 있는지 확인합니다. 가능하다면, 공공
+시계 서버들과 당신 컴퓨터의 시계를 일치시켜야 합니다.
+</p>
+
+<p>
+2. 도메인 연결 시스템이 제대로 작동하고 있어야 합니다. (당신의
+컴퓨터가 인터넷 도메인 주소들을 제대로 찾아가고 있으면 된 것입니다.)
+</p>
+
+<p>
+3. torrc의 아랫부분을 수정해야 합니다. (도움말을 위해<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">이 
+FAQ</a>를 보세요.)
+최소한 별명Nickname과 ORPort는 입력해야 합니다. 필요하다면 데이터 디렉토리DataDirectory를
+생성하고, 그 디렉토리가 Tor를 운영하는 사용자의 소유가 되도록 해야합니다.
+<em>만약 당신이 한 개 이상의 Tor 중계서버를 운영하길 원한다면 정말 대환영입니다. 하지만 
+당신이 운영하는 모든 중계서버에서 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">MyFamily 옵션</a>을 설정해줘야 합니다.</em>
+</p>
+
+
+<p>
+4. 만약에 당신이 파이어월을 사용하고 있다면, 연결요청들이 당신이 설정한 포트(ORPort, DirPort)
+에 도달할 수 있도록 파이어월을 열어줘야 합니다. 나가는 연결들은 모두 허용되도록 해야합니다.
+그래야만 당신의 중계서버가 다른 중계서버로 통신들을 전달할 수 있습니다.
+</p>
+
+
+<p>
+5. 이제 중계서버를 다시 시작하세요. 만약에 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">경고메세지</a>가 
+나온다면, 기록해 두세요.
+</p>
+
+<p>
+6. <a
+href="http://archives.seul.org/or/announce/">or-announce</a>
+메일링리스트에 가입하세요. 이 메일링리스트는 아주 가끔 사용됩니다.
+안정화된 새로운 버전이 출시되는 것을 알려줄 것입니다. 
+또는 새로운 개발버전이 나올 때마다 알려주는<a
+href="http://archives.seul.org/or/talk/">or-talk</a> 메일링리스트에 가입할 수도 있습니다
+(이 메일링리스트는 좀 더 자주 사용됩니다).
+</p>
+
+<p>
+7. 매뉴얼을 읽어보세요.
+최신의 안정화된 버전에 대한 <a href="<page tor-manual>">매뉴얼</a>은
+클라이언트와 중계서버 모두에 해당하는 모든 설정옵션을 알려줍니다.
+만약에 당신이 Tor의 개발버전을 사용중이라면,
+<a href="<page tor-manual-dev>">여기</a>에 있는 매뉴얼을 보면 됩니다.
+</p>
+
+
+
+<hr />
+<a id="check"></a>
+<h2><a class="anchor" href="#check">2단계: 제대로 작동하는지 확인하기</a></h2>
+<br />
+
+<p>Tor 중계서버가 네트워크에 연결을 시도하자 마자, 설정된 포트가
+바깥쪽에서 접속가능한지 스스로 확인할 것입니다. 이 과정은 최대 20분정도 걸릴 수 있습니다.
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">로그기록</a>에서
+다음과 같은 문장이 있는지 찾아보세요
+<tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
+만약에 위와 같은 메세지가 없다면, 중계서버가 바깥쪽에서 접속할 수 없다는 뜻입니다
+&mdash; 이럴 경우 파이어월을 다시 한번 확인해야 합니다. 테스트해야한다고 생각하는
+IP주소와 포트를 테스트하고 있는지 확인하세요.
+</p>
+
+<p>일단 접속이 가능하다고 판단이 되면, 디렉토리에 "server
+descriptor"를 올릴 것입니다.  이것을 통해 클라이언트들이 
+Tor 중계서버의 주소, 포트, 키, 등의 정보를 알게 될 것입니다. 중계서버가 올라왔는지 확인하기 위해, <a
+href="http://moria.seul.org:9032/tor/status/authority">네트워크 상태 중 하나를 
+보고</a> 앞에서 입력한 별명Nickname을 찾아볼 수도 있습니다. 
+최신의 디렉토리 상태로 새로고침 하기 위해서 몇 초간 기다려야 합니다. 
+</p>
+
+
+<hr />
+<a id="after"></a>
+<h2><a class="anchor" href="#after">3단계: 제대로 작동을 시작한 후에</a></h2>
+<br />
+
+<p>
+아래의 단계들도 진행할 것을 권장합니다:
+</p>
+
+<p>
+8. Tor 중계서버의 보안을 어떻게 강화할 수 있는지 
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">이 문서</a>
+를 읽어보세요.
+</p>
+
+<p>
+9. 어떤 출구정책을 원하는지 결정하세요. 몇 가지를 제외하고(예를 들어 포트 25) 
+기본적으로 Tor 중계서버는 대부분의 서비스를 허용합니다. 출구정책이 좀 더 
+많은 제한을 하게 하거나, 혹은 좀 더 적은 제한을 하게 할 수 있습니다; 
+torrc 파일을 적당하게 수정하면 됩니다.
+<a
+href="<page faq-abuse>#TypicalAbuses">기본 출구정책을 사용할 때 발생할 수 있는 문제들
+에 대한 FAQ</a>를 읽어보세요.
+만약에 개방된 출구정책을 정한다면, 당신이 사용하는 ISP가 그런 결정을 
+수용할 수 있는지 확인해야 합니다.
+만약에 컴퓨터에 특정 접속제한이 있다면 (예를 들어,
+파이어월이나 콘테트 필터를 사용중이라면), 출구정책에도 그것들을 반영해야 합니다 &mdash; 
+그렇지 않다면 Tor 이용자들이 영향을 받을 것입니다.
+</p>
+
+<p>
+10. 대역폭 제한 문제도 결정해야 합니다. 케이블 모뎀 , DSL, 그리고 
+비대칭적 대역폭을 가지고 있는 사용자들은 
+(예를 들어, 다운로드 대역폭이 업로드 대역폭보다 큰 경우) 
+통신이 느려지거나 혼잡해지는 것을 방지하기 위해 대역폭 제한 설정을 해줘야 합니다. 
+구체적인 내용들은 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">대역폭 제한 FAQ</a>에서 확인할 수 있습니다.
+</p>
+
+<p>
+11. Tor 중계서버의 비밀키를 백업해야 합니다 (데이터디렉토리DataDirectory의 "keys/secret_id_key"
+에 저장되어 있습니다). 이것이 Tor 중계서버의 "identity"입니다. 그리고 
+중계서버를 지나가는 트래픽들을 아무도 읽을 수 없도록 하기 위해서 이것을
+안전하게 보관해야 합니다. 이것은 무언가 잘못되어서 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#UpgradeRelay">Tor 중계서버를 옮기거나 
+복구</a>해야할 때 필요한 매우 중요한 파일입니다.</p>
+
+<p>
+12. 만약 당신의 도메인이 설정되어 있는 네임서버를 직접 관리한다면, 역 DNS 호스트네임을 
+ 'anonymous-relay', 'proxy' 혹은 'tor-proxy'로 설정하는 것을 고려해 주세요. 이럴 경우
+다른 사람들이 그들의 웹로그에서 주소를 볼 때, 그들은 무슨 일이 일어나고 있는지
+더 빨리 이해할 수 있을 것입니다. 당신이 출구노드로서 Tor 중계서버를 운영하고 있는 경우,
+이러한 이름으로 가상 호스트vhost 에<a
+href="https://tor-svn.freehaven.net/svn/tor/trunk/contrib/tor-exit-notice.html">Tor
+출구 공지</a>를 추가하는 것은 당신과 당신의 ISP에 악의적인 불평을 하려는 시도들을
+막는데 큰 도움이 됩니다.
+</p>
+
+
+<p>
+13. 만약 당신의 컴퓨터가 웹서버를 운영하는 것이 아니라면, 
+ORPort를 443으로, DirPort를  80으로 바꾸는 것을 고려해주세요.
+많은 Tor 이용자들 웹브라우징만 허용하는 파이어월 뒤에 갇히게 되는데, 
+이 변화가 그들로 하여금 당신의 Tor 중계서버에 접속할 수 있도록 해줄 것입니다.  
+윈도우 중계서버들은 torrc에서 ORPort 와 DirPort 수정해준 다음에
+Tor를 다시 시작하면 됩니다. OS X 나 Unix 중계서버들은  (루트가 아닌 이상) 이 포트들에 직접 
+연결될 수 없습니다, 그래서 통신요청들이 Tor 중계서버에 도달할 수 있도록 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
+포트 포워딩</a>같은 설정이 필요합니다. 만약 당신이 포트 80과 443을 사용중인데도, 
+제대로 작동하지 않는다면, 포트 22, 110, 143을 사용해보는 것도 할 수 있습니다.</p>
+
+<p>
+14. 만약 당신의 Tor 중계서버가 같은 IP주소에서 다른 서비스를 제공하고 있다면 
+&mdash; 예를 들어 웹서버 &mdash; 로컬호스트를 통해서도 웹서버에 
+연결될 수 있도록 해야합니다. Tor 클라이언트가 Tor 중계서버를 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">
+웹서버에 접속하는 가장 안전한 방법</a>으로 
+인식하기 때문에 이러한 연결을 허용해줘야 합니다. 
+그리고 중계서버로 끝나는 회로를 꼭 구성해야 합니다.
+만약에 연결을 허용하고 싶지 않다면,
+출구정책에서 그것들을 명확하게 차단해야 합니다.
+</p>
+
+<p>
+15. (유닉스만 해당). 중계서버를 운영하는 별도의 계정을 만드세요.
+만약에 OS x 패키지나 deb나 rpm 을 설치했다면, 이 작업은 이미 되어 
+있을 것입니다. 
+그렇지않다면, 직접할 수 있습니다. (Tor 중계서버는 루트계정으로
+운영되어야 할 필요가 없습니다. 
+그러므로 루트계정으로 운영하지 않는 것이 좋습니다. 'tor' 계정으로
+중계서버를 운영하는 것은  identd 데몬과 사용자 이름과 관련된 몇가지 
+문제들을 해결해줍니다. 만약에 당신이 걱정이 많은 사람이라면, <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">
+chroot jail에 Tor를 놓을 수도 있습니다</a>.)
+</p>
+
+<p>
+16. (유닉스만 해당) 당신의 운영체제는
+아마도 프로세스당 열려있는 파일 디스크립터의 갯수를 1024개로 제한하고 있을 것입니다.(때로는 더 적게)
+만약에 빠른 출구 노드를 운영할 계획이라면, 이 갯수는 충분하지 않습니다.
+리눅스에서는, /etc/security/limits.conf 파일에  "toruser hard nofile 8192"
+라고 추가해야 합니다. (toruser는 Tor 프로세스를 운영하는 계정을 말합니다)
+그리고 패키지 상태로 설치가 되었다면 Tor를 재시작해야 합니다.
+만약에 이것이 적용되지 않는다면, 
+Tor를 시작하기 전에 "ulimit -n 8192"를 실행시킬 수 있는 다른 방법들이 나와있는<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">이 FAQ</a>
+를 참고하세요. </p>
+
+
+<p>
+17. 만약에 당신이 패키지나 인스톨러를 통해 Tor를 설치했다면, 
+Tor는 컴퓨터가 켜질 때 자동으로 실행될 것입니다. 그러나 만약에 소스에서 직접 설치했다면
+contrib/tor.sh나 contrib/torctl의 스크립트를 유용하게 사용할 수 있을 것입니다.
+</p>
+
+<p>
+Tor 설정을 변경할 때는, 변경이 후에도 Tor 중계서버가 잘 작동하고 있는지
+꼭 확인해야 합니다. 만약에 당신의 Tor 중계서버가 업그레이드가 필요하거나
+무언가 잘못되고 있을 때 우리가 당신에게 연락할 수 있도록 torrc 파일에서 
+"ContactInfo" 라인을 설정/유지하는 것을 잊지마세요.
+문제나 질문이 있다면, <a href="<page documentation>#Support">지원 섹션</a>을 보거나 
+tor-ops 리스트에서 <a href="<page contact>">contact us</a> 부분을 참고하세요. 
+Tor 네트워크가 자랄 수 있도록 도와주셔서 감사합니다!</p>
+
+
+<hr />
+
+<p>이 문서를 개선하기 위한 제안이 있다면, <a
+href="<page contact>">우리에게 보내주세요</a>.감사합니다!</p>
+
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+
