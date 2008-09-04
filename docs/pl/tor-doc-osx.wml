@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16011
+# Based-On-Revision: 16748
 # Translation-Priority: 2-medium
 # Last-Translator: bogdandr_at_op . pl
 
@@ -26,8 +26,9 @@
 <p>Wersje instalacyjne dla Macintosh OS X zawierają
  <a href="<page index>">Tora</a>,
  <a href="http://www.vidalia-project.net/">Vidalia</a> (GUI dla Tora),
+ <a href="<page torbutton/index>">Torbutton</a>,
  i <a href="http://www.privoxy.org/">Privoxy</a> (filtrujący serwer pośredniczący proxy)
- w jednej paczce, ze wszystkimi trzema programami prekonfigurowanymi do współpracy ze sobą.
+ w jednej paczce, ze wszystkimi czterema programami prekonfigurowanymi do współpracy ze sobą.
 
  Pobierz albo <a href="../<package-osx-bundle-stable>">stabilną</a>
  albo <a href="../<package-osx-bundle-alpha>">eksperymentalną</a> wersję
@@ -70,9 +71,8 @@ border="1"></p>
 <p>Po instalacji Tora i Privoxy musisz skonfigurować swoje aplikacje, by ich używały.
  Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW.</p>
 
-<p>Jeśli używasz przeglądarki Firefox (co zalecamy), po prostu zainstaluj <a
- href="https://addons.mozilla.org/firefox/2275/">rozszerzenie Torbutton</a>,
- ponownie uruchom Firefoksa, kliknij na czerwony przycisk "Tor Disabled"
+<p>Powinieneś/aś używać Tora z Firefoksem i Torbuttonem, dla najlepszego bezpieczeństwa.
+ Torbutton został zainstalowany za Ciebie. Kliknij na czerwony przycisk "Tor Disabled"
  ("Tor wyłączony"), by włączyć Tora i gotowe:
 </p>
 
@@ -83,49 +83,10 @@ border="1"></p>
 <br />
 
 <p>
-(<a href="https://torbutton.torproject.org/">Dowiedz się więcej o
- rozszerzeniu Torbutton</a>.
  Jeśli masz zamiar używać Firefoksa na innym komputerze niż tam, gdzie jest Tor, spójrz na <a
  href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">wpis w FAQ
- na temat uruchamiania Tora na innym komputerze</a>. Jeśli musisz używać innej
- przeglądarki niż Firefox, musisz <a href="<page docs/tor-doc-web>">samodzielnie
- skonfigurować jej ustawienia proxy</a>.)
+ na temat uruchamiania Tora na innym komputerze</a>.
 </p>
-
-<h3>Apple Safari</h3>
-
-<p>Jeśli chcesz używać Tora z przeglądarką Safari, musisz zmienić swoje
- ustawienia sieci. Wybierz Ustawienia Sieci (Network Preferences) z menu Apple |
- Location:</p>
-
-<p><img alt="Ustawienia wyboru sieci"
- src="../img/screenshot-osx-choose-network.png"
- border="1"></p>
-
-<p>Wybierz interfejs sieciowy, na którym chcesz uruchomić Tora. Jeśli używasz
- więcej niż jednego interfejsu, musisz zmienić ustawienia proxy dla każdego
- z nich osobno.</p>
-
-<p><img alt="Ustawienia wyboru interfejsu"
- src="../img/screenshot-osx-choose-interface.png"
- border="1"></p>
-
-<p>Wpisz 127.0.0.1 i port 8118 zarówno do serwera proxy WWW (HTTP), jak i
- do bezpiecznego WWW (HTTPS). Powinieneś to zrobić także dla serwerów
- proxy dla FTP i protokołu Gopher, zobacz <a
- href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">tę
- informację</a> na temat Tora i serwerów FTP proxy. Pozostaw ustawienie
- trybu pasywnego FTP (PASV) bez zmian.</p>
-
-<p><img alt="Ustawienia Proxy"
- src="../img/screenshot-osx-proxy-settings.png"
- border="1"></p>
-
-<p>Korzystanie z Privoxy jest <strong>konieczne</strong>, gdyż <a
- href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">żądania DNS
- z przeglądarek wyciekają, gdy przeglądarki używają bezpośrednio serwera pośredniczącego SOCKS</a>,
- co uniemożliwia zachowanie pełnej anonimowości. Privoxy usuwa również pewne
- niebezpieczne nagłówki z żądań WWW i blokuje okropne serwisy z banerami, jak Doubleclick.</p>
 
 <p>By "storyfikować" inne aplikacje, które używają proxy dla HTTP, po prostu
  skieruj je na Privoxy (czyli localhost, port 8118). By aplikacje bezpośrednio używały
@@ -235,8 +196,10 @@ przekaźnika sieci Tor</a>.</p>
 <li>/Library/Receipts/privoxyconf.pkg/</li>
 <li>/Library/Receipts/Tor.pkg/</li>
 <li>/Library/Receipts/torstartup.pkg/</li>
+<li>/Library/Receipts/torbutton.pkg/</li>
 <li>/Library/StartupItems/Tor</li>
 <li>/Library/StartupItems/Privoxy</li>
+<li>/Library/Torbutton/</li>
 </ul>
 
 <hr />
