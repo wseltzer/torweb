@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16011
+# Based-On-Revision: 16748
 # Last-Translator: jens@kubieziel.de
 
 #include "head.wmi" TITLE="Tor: Anweisungen zur INstallation auf Mac OS X"
@@ -25,7 +25,7 @@
 <p>Die Installationsdatei für  Mac OS X fasst <a href="<page
   index>">Tor</a>, <a
   href="http://www.vidalia-project.net/">Vidalia</a> (eine grafische
-  Oberfläche für Tor) und <a
+  Oberfläche für Tor), <a href="<page torbutton/index>">Torbutton</a> und <a
   href="http://www.privoxy.org/">Privoxy</a> (einen filternden Proxy)
   in ein Paket zusammen. Alle Anwendungen sind vorkonfiguriert und
   sollten direkt nach der Installation laufen. Lade entweder die <a
@@ -69,66 +69,18 @@
 Anwendungen so anpassen, dass diese Tor nutzen. Wir fangen mit dem
 Browser an.</p>
 
-<p>Falls du Firefox benutzt (wir empfehlen dir das), installiere
-einfach die Erweiterung <a
-href="https://addons.mozilla.org/firefox/2275/">Torbutton</a>. Danach
-startest du Firefox neu, klickst auf die rote Schaltfläche "Tor
-Disabled", um Tor zu aktivieren und bist fertig: </p>
+<p>Du solltest für die beste Sicherheit Tor mit Firefox und Torbutton benutzen.
+Torbutton ist für dich installiert worden. Klicke auf den roten Knopf <q>Tor
+Disabled</q>, um Tor zu aktivieren und du bist fertig: </p>
 
 <p><img alt="Torbutton plugin for Firefox"
 src="../img/screenshot-torbutton.png" border="1" /></p>
 
 <p>
-(<a href="https://torbutton.torproject.org/">Mehr zu
-Torbutton</a>. Wenn Firefox auf einem anderen Rechner als Tor laufen
+Wenn Firefox auf einem anderen Rechner als Tor laufen
 soll, schaue dir den <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">Eintrag
-in der FAQ dazu</a> an. Wenn du einen anderen Browser als Firefox
-benutzt, musst du die <a href="<page
-docs/tor-doc-web>">Proxyeinstellungen selbst setzen</a>.)
-</p>
-
-<h3>Apple Safari</h3>
-
-<p>Wenn du Tor mit Safari benutzen willst, musst du die
-Netzwerkeinstellungen ändern. Wähle Netzwerkeinstellungen aus dem Menü
-aus:</p>
-
-<p><img alt="Network settings"
-src="../img/screenshot-osx-choose-network.png" border="1" /></p>
-
-<p>Wähle die Netzwerkschnittstelle für die du Tor aktivieren
-willst. Falls du mehr als eine Änderung machen möchtest, musst du jede
-einzeln auswählen.</p>
-
-<p><img alt="Network preferences"
-src="../img/screenshot-osx-choose-interface.png" border="1" /></p>
-
-<p>Gib 127.0.0.1 und Port 8118 sowohl für den Web Proxy (HTTP) wie
-auch für den Secure Web Proxy (HTTPS) ein. Du solltest das auch für
-"FTP Proxy" und "Gopher Proxy" tun. Der <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">Eintrag
-in der FAQ</a> sagt warum. Lasse die Einstellung Use Passive FTP Mode
-(PASV)  wie sie ist.</p>
-
-<p><img alt="Proxy settings"
-src="../img/screenshot-osx-proxy-settings.png" border="1" /></p>
-
-<p>Die Benutzung von Privoxy ist <strong>notwendig</strong>, weil <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">Browser
-deine DNS-Anfragen an Tor vorbei leiten</a>, was schlecht für deine
-Anonymität ist. Weiterhin entfernt Privoxy einige gefährliche
-Header von deinen Webanfragen und blockiert Seiten wie Doubleclick.</p>
-
-<p>Insofern andere Anwendungen HTTP-Proxy unterstützen, weise diese
-an, Verbindungen über localhost mit Port 8118 zu senden. Um SOCKS
-direkt zu nutzen (für Instantmessaging, Jabber, IRC etc.), kannst du
-das Programm mit localhost Port 9050 verbinden. Schaue dir jedoch den <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">Eintrag
-in der FAQ</a> an. Er beschreibt, warum das gefährlich sein
-kann. Programme, die weder SOCKS noch HTTP nutzen, wirf einen Blick auf <a
-href="http://www.taiyo.co.jp/~gotoh/ssh/connect.html">connect</a> oder
-<a href="http://www.dest-unreach.org/socat/">socat</a>.</p>
+in der FAQ dazu</a> an.</p>
 
 <p>Wir man andere Anwendungen torifiziert, ist in einem
 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
@@ -227,8 +179,10 @@ uninstall_tor_bundle-Skript hat, musst du folgendes manuell löschen:</p>
 <li>/Library/Receipts/privoxyconf.pkg/</li>
 <li>/Library/Receipts/Tor.pkg/</li>
 <li>/Library/Receipts/torstartup.pkg/</li>
+<li>/Library/Receipts/torbutton.pkg/</li>
 <li>/Library/StartupItems/Tor</li>
 <li>/Library/StartupItems/Privoxy</li>
+<li>/Library/Torbutton/</li>
 </ul>
 
 <hr />
