@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 15733
+# Based-On-Revision: 16661
 # Last-Translator: jan at seul . org
 
 #include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
@@ -66,10 +66,11 @@ href="#FindingMore">altri modi per trovare dei bridge</a>.
 
 <p>
 Poniamo per esempio che tu ottenga un bridge cos&igrave; 
-composto:<br />
+composto:
 </p>
-<pre>
+<pre><samp>
 bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
 </pre>
 
 <p>
@@ -129,6 +130,52 @@ Here are your bridge relays:
 Una volta ricevuta l'email con le informazioni sui bridge
 puoi continuare con la configurazione di Vidalia indicata <a
 href="#UsingBridges">sopra</a>.
+</p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Gestire un Bridge Tor</a></h2>
+<hr />
+
+<p>
+Se gestisci un server potresti essere interessato a gestire anche un nodo 
+bridge. Qui sotto c'&egrave; la configurazione minima <tt>torrc</tt> per l'inserimento di un bridge 
+nella rete Tor:
+</p>
+
+<pre><code>
+SocksPort 0
+Nickname BridgeExample
+ORPort 443
+BridgeRelay 1
+PublishServerDescriptor bridge
+Exitpolicy reject *:*
+</code>
+</pre>
+
+<p>
+(Se non sai come modificare il tuo file <tt>torrc</tt>, vedi
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">questa
+FAQ</a>.)
+</p>
+
+<p>
+Una volta configurato come bridge il tuo server <b>non</b> comparir&agrave; nela rete pubblica
+Tor.
+</p>
+
+<p>
+Se vuoi dire ad un utente di usare il tuo bridge, dagli semplicemente l'indirizzo
+Ip del nodo Tor, la porta TCP configurata come <tt>ORPort</tt> ed il
+fingerprint del server. Il fingerprint si trova nei file di log di Tor oppure
+in <tt>/var/lib/tor/fingerprint</tt> a seconda del tuo sistema opetativo.
+</p>
+
+<p>
+Se ti interessa saperne di pi&ugrave; sui bridge da un punto di vista tecnico,
+leggi le <a
+href="https://svn.torproject.org/svn/tor/trunk/doc/spec/bridges-spec.txt">Tor
+bridges specification</a>. Se vuoi gestire un bridge privato o usarlo
+in altri modi particolari, leggi le specifiche.
 </p>
 
   </div><!-- #main -->
