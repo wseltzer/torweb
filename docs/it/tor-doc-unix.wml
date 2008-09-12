@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 14172
+# Based-On-Revision: 16763
 # Last-Translator: jan at seul org
 
 #include "head.wmi" TITLE="Tor: istruzioni per installare Tor su Linux/BSD/Unix" CHARSET="UTF-8"
@@ -71,18 +71,18 @@ Privoxy a mano seguendo le istruzioni qui sotto.
 <p>
 Apri il file 'config' di Privoxy (cerca in /etc/privoxy/ o /usr/local/etc/)
 e aggiungi questa riga <br>
-<tt>forward-socks4a / 127.0.0.1:9050 .</tt><br>
+<tt>forward-socks4a / 127.0.0.1:9050 .</tt><br />
 in cima al file di configurazione. Non dimenticare il punto a fine riga.
 </p>
 
 <p>Privoxy conserva un file di log per tutto ci&ograve; che vi passa attraverso.  Per
 impedirlo occorre commentare via tre righe inserendo un 
-\# a inizio linea. Le tre righe sono:<br>
-<tt>logfile logfile</tt><br>
-e<br>
-<tt>jarfile jarfile</tt><br>
-e (su alcuni sistemi) la riga <br>
-<tt>debug 1  # show each GET/POST/CONNECT request</tt><br>
+\# a inizio linea. Le tre righe sono:<br />
+<tt>logfile logfile</tt><br />
+e<br />
+<tt>jarfile jarfile</tt><br />
+e (su alcuni sistemi) la riga <br />
+<tt>debug 1  # show each GET/POST/CONNECT request</tt><br />
 </p>
 <p>A seconda del tuo config file di default per Privoxy,
 dovresti anche disabilitare <tt>enable-remote-toggle</tt>,
@@ -99,9 +99,10 @@ dovresti anche disabilitare <tt>enable-remote-toggle</tt>,
 <p>Dopo aver installato Tor e Privoxy, devi configurare i tuoi programmi per
 usarli. Il primo passo è la configurazione della navigazione web.</p>
 
-<p>Se usi Firefox (l consigliamo), basta installare il <a
+<p>Per una protezione ottimale dovresti usare Tor con Firefox e Torbutton.
+Installa semplicemente il <a
 href="https://addons.mozilla.org/firefox/2275/">plugin Torbutton
-</a> e riavviare Firefox:
+</a> e riavvia Firefox:
 </p>
 
 <img alt="Torbutton plugin for Firefox"
@@ -111,22 +112,11 @@ border="1">
 <br />
 
 <p>
-(<a href="https://torbutton.torproject.org/">Maggiori informazioni su
-Torbutton</a>.
 Se vuoi usare Firefox su un computer diverso da quello su cui gira Tor, leggi la <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
 FAQ
-per usare Tor su un pc diversor</a>. Se devi usare un
-browser diverso da Firefox, dovrai <a href="<page
-docs/tor-doc-web>">configurare il proxy da te</a>.)
+per usare Tor su un pc diversor</a>. 
 </p>
-
-<p>&#200; <strong>necessario</strong> usare privoxy perch&eacute; <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">i browser
-rivelano le tue richieste DNS se usano un SOCKS proxy direttamente</a>, cosa
-che riduce il tuo anonimato. Privoxy rimuove inoltre certi header
-pericolosi dalle tue richieste web, e blocca certi fastidiosi siti
-pubblicitari come Doubleclick.</p>
 
 <p>Per torificare altri programmi che supportino un proxy HTTP, basta
 farli puntare a Privoxy (ovvero, a localhost porta 8118). Per usare SOCKS
