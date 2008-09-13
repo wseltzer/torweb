@@ -7,7 +7,422 @@
 
 <!-- PUT CONTENT AFTER THIS TAG -->
 
+<h2>Tor FAQ</h2>
+<hr />
 
+<ul>
+<li><a href="#General">General questions</a></li>
+<li><a href="#foo">Compilation and Installation</a></li>
+<li><a href="#foo">Running Tor</a></li>
+<li><a href="#foo">Running a Tor client</a></li>
+<li><a href="#foo">Running a Tor relay</a></li>
+<li><a href="#foo">Running a Tor hidden service</a></li>
+<li><a href="#foo">What happens to my donation?</a></li>
+</ul>
+
+<hr />
+
+<a id="General"></a>
+
+<a id="WhatIsTor"></a>
+<h3><a class="anchor" href="#WhatIsTor">What is Tor?</a></h3>
+
+<p>
+Tor is an anonymity network.  It protects your privacy on the
+internet.  Tor uses a series of three proxies - computers (or
+nodes) which communicate on your behalf using their own identifying
+information - in such a way that none of them know both your identifying
+information and your destination.  Tor can also help people get around
+restrictive firewalls which censor web content.  Read the <a href="<page
+overview>">Tor overview</a> to learn more about Tor and what it can do
+for you.
+</p>
+
+<a id="CompatibleApplications"></a>
+<h3><a class="anchor" href="#CompatibleApplications">What programs and
+applications work with Tor?</a></h3>
+
+<p>
+Tor presents a SOCKS proxy interface to applications, so any application that
+supports SOCKS (versions 4, 4a and 5) can be anonymized using Tor. Most
+web browsers, many instant messaging and IRC clients, SSH clients and
+email clients already have built-in support for SOCKS.  However, not all SOCKS 
+interfaces are equal.  See [#SOCKSAndDNS below] for information about how some 
+SOCKS interfaces may leak information via DNS about where you are going on the 
+internet, and how you can avoid this.
+</p>
+
+<p>
+Since Tor does not filter message content, additional software
+agents should be used to filter content. For example, <a
+href="http://www.privoxy.org/">Privoxy</a> is a good HTTP proxy for
+filtering dangerous or annoying web content, such as tracking scripts
+and ads.
+</p>
+
+<p>
+We have compiled a <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">list
+of applications that help you direct your traffic
+through Tor</a>, and a list of instructions for <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torifying
+specific applications</a>. Please add to these lists and help us keep
+them accurate!
+</p>
+
+<a id="Volunteer"></a>
+<h3><a class="anchor" href="#Volunteer">How can I help?</a></h3>
+
+<p>
+We've set up a preliminary <a href="<page volunteer>">"volunteer"
+page</a>, which lists a few ways to help. If you have something to
+contribute that we haven't listed there, chances are we still need it.
+</p>
+
+<p>
+There are also more answers in the <a href="#WhySlow">Why is Tor slow?</a>
+answer and the <a href="#Funding">What we need to work on</a> answer.
+</p>
+
+<a id="WhyCalledTor"></a>
+<h3><a class="anchor" href="#WhyCalledTor">Why is it called Tor?</a></h3>
+
+<p>
+Because Tor is the onion routing network. I kept telling people I was
+working on onion routing, and they said "Neat. Which one?" Even if onion
+routing has become a standard household term, this is the actual onion
+routing project, started out of the Naval Research Lab.
+</p>
+
+<p>
+(Theories about recursive acronyms are ok too. It's also got a fine
+translation into German.)
+</p>
+
+<p>
+Note: even though it comes from an acronym, Tor is not spelled "TOR".
+Only the first letter is capitalized.
+</p>
+
+<a id="Backdoor"></a>
+<h3><a class="anchor" href="#Backdoor">Is there a backdoor in Tor?</a></h3>
+
+<p>
+There is absolutely no backdoor in Tor.  Nobody has asked us to put one
+in, and we know some smart lawyers who say that it's unlikely that anybody
+will try to make us add one in our jurisdiction (U.S.).  If they do
+ask us, we will fight them, and (the lawyers say) probably win.
+</p>
+
+<p>
+We think that putting a backdoor in Tor would be tremendously
+irresponsible to our users, and a bad precedent for security software
+in general.  If we ever put a deliberate backdoor in our security
+software, it would ruin our professional reputations.  Nobody would
+trust our software ever again &mdash; for excellent reason!
+</p>
+
+<p>
+But that said, there are still plenty of subtle attacks
+people might try.  Somebody might impersonate us, or break into our
+computers, or something like that.  Tor is open source, and you should
+always check the source (or at least the diffs since the last release)
+for suspicious things.  If we (or the distributors) don't give you
+source, that's a sure sign something funny might be going on. You
+should also check the GPG signatures on the releases, to make sure
+nobody messed with the distribution sites.
+</p>
+
+<p>
+Also, there might be accidental bugs in Tor that could affect your
+anonymity.  We don't know of such bugs right now.  If we learn of any,
+we will let you know.
+</p>
+
+<a id="DistributingTor"></a>
+<h3><a class="anchor" href="#DistributingTor">Can I distribute Tor on
+my magazine's CD??</a></h3>
+
+<p>
+Yes.
+</p>
+
+<p>
+The Tor software is <a href="http://www.fsf.org/">free software</a>. This
+means we give you the rights to redistribute the Tor software, either
+modified or unmodified, either for a fee or gratis. You don't have to
+ask us for specific permission.
+</p>
+
+<p>
+However, if you want to redistribute the Tor software you must follow our
+<a href="https://svn.torproject.org/svn/trunk/LICENSE">LICENSE</a>.
+Essentially this means that you need to include our LICENSE file along
+with whatever part of the Tor software you're distributing.
+</p>
+
+<p>
+Most people who ask us this question don't want to distribute just the
+Tor software, though. They want to distribute the Tor bundles, which
+typically include <a href="http://www.privoxy.org/">Privoxy</a>
+and <a href="http://www.vidalia-project.net/">Vidalia</a>.
+You will need to follow the licenses for those programs
+as well. Both of them are distributed under the <a
+href="http://www.fsf.org/licensing/licenses/gpl.html">GNU General
+Public License</a>. The simplest way to obey their licenses is to
+include the source code for these programs everywhere you include
+the bundles themselves. Look for "source" packages on the <a
+href="http://www.vidalia-project.net/download.php">Vidalia
+download page</a> and the <a
+href="http://sourceforge.net/project/showfiles.php?group_id=11118">Privoxy
+download page</a>.
+</p>
+
+<p>
+Also, you should make sure not to confuse your users about what Tor is,
+who makes it, and what properties it provides (and doesn't provide). See
+our <a href="<page trademark-faq>">trademark FAQ</a> for details.
+</p>
+
+<p>
+Lastly, you should realize that we release new versions of the
+Tor software frequently, and sometimes we make backward incompatible
+changes. So if you distribute a particular version of the Tor software, it
+may not be supported &mdash; or even work &mdash; six months later. This
+is a fact of life for all security software under heavy development.
+</p>
+
+<a id="SupportMail"></a>
+<h3><a class="anchor" href="#SupportMail">How can I get an answer to my
+Tor support mail?</a></h3>
+
+<p>
+Many people send the Tor developers mail privately, or send mail to
+our internal aliases like tor-webmaster, with questions about their
+specific setup -- they can't get their firewall working right,
+they can't configure Privoxy correctly, or so on. Sometimes our
+volunteers can answer these mails, but typically they need to spend
+most of their time on development tasks that will benefit more people.
+This is especially true if your question is already covered in the <a
+href="<page documentation>">documentation</a> or on this FAQ. We don't
+hate you; we're just busy.
+</p>
+
+<p>
+So if we don't answer your mail, first check the <a href="<page
+documentation>">documentation</a> page, along with this FAQ,
+to make sure your question isn't already answered.  Then read <a
+href="http://www.catb.org/~esr/faqs/smart-questions.html">"How to ask
+questions the smart way"</a>. If this doesn't help you, note that we
+have <a href="<page documentation>#Support">an IRC channel</a> where you
+can ask your questions (but if they are still open-ended, ill-formed,
+or not about Tor, you likely won't get much help there either). Lastly,
+people on the <a href="<page documentation>#MailingLists">or-talk
+mailing list</a> may be able to provide some hints for you, if
+others have experienced your problems too. Be sure to look over <a
+href="http://archives.seul.org/or/talk/">the archives</a> first.
+</p>
+
+<p>
+Another strategy is to <a href="<page docs/tor-doc-relay>">run a Tor
+relay for a while</a>, and/or <a href="<page donate>">donate money</a>
+<a href="<page volunteer>">or time</a> to the effort. We're more likely
+to pay attention to people who have demonstrated interest and commitment
+to giving back to the Tor community.
+</p>
+
+<p>
+If you find an answer, please stick around on the IRC channel or the
+mailing list and answer questions from others.
+</p>
+
+<a id="WhySlow"></a>
+<h3><a class="anchor" href="#WhySlow">Why is Tor so slow?</a></h3>
+
+<p>
+There are many reasons why the Tor network is currently slow.
+</p>
+
+<p>
+Before we answer, though, you should realize that Tor is never going to
+be blazing fast. Your traffic is bouncing through volunteers' computers
+in various parts of the world, and some bottlenecks and network latency
+will always be present. You shouldn't expect to see university-style
+bandwidth through Tor.
+</p>
+
+<p>
+But that doesn't mean that it can't be improved. The current Tor network
+is quite small compared to the number of people trying to use it, and
+many of these users don't understand or care that Tor can't currently
+handle file-sharing traffic load.
+</p>
+
+<p>
+What can you do to help?
+</p>
+
+<ul>
+
+<li>
+<a href="<page docs/tor-doc-relay>">Configure your Tor to relay traffic
+for others</a>. Help make the Tor network large enough that we can handle
+all the users who want privacy and security on the Internet.
+</li>
+
+<li>
+<a href="<page gui/index>">Help us make Tor more usable</a>. We
+especially need people to help make it easier to configure your Tor
+as a relay. Also, we need help with clear simple documentation to
+walk people through setting it up.
+</li>
+
+<li>
+There are some bottlenecks in the current Tor network. Help us design
+experiments to track down and demonstrate where the problems are, and
+then we can focus better on fixing them.
+</li>
+
+<li>
+There are some steps that individuals
+can take to improve their Tor performance. <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/FireFoxTorPerf">You
+can configure your Firefox to handle Tor better</a>, <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/tor.html">you can use
+Polipo with Tor</a>, or you can try <a href="<page download>">upgrading
+to the latest version of Tor</a>.  If this works well, please help by
+documenting what you did, and letting us know about it.
+</li>
+
+<li>
+Tor needs some architectural changes too. One important change is to
+start providing <a href="#EverybodyARelay">better service to people who
+relay traffic</a>. We're working on this, and we'll finish faster if we
+get to spend more time on it.
+</li>
+
+<li>
+Help do other things so we can do the hard stuff. Please take a moment
+to figure out what your skills and interests are, and then <a href="<page
+volunteer>">look at our volunteer page</a>.
+</li>
+
+<li>
+Help find sponsors for Tor. Do you work at a company or government agency
+that uses Tor or has a use for Internet privacy, e.g. to browse the
+competition's websites discreetly, or to connect back to the home servers
+when on the road without revealing affiliations? If your organization has
+an interest in keeping the Tor network working, please contact them about
+supporting Tor. Without sponsors, Tor is going to become even slower.
+</li>
+
+<li>
+If you can't help out with any of the above, you can still help out
+individually by <a href="<page donate>">donating a bit of money to the
+cause</a>. It adds up!
+</li>
+
+</ul>
+
+<a id="Funding"></a>
+<h3><a class="anchor" href="#Funding">What would the Tor project do with
+more funding?</a></h3>
+
+<p>
+We have about 1500 relays right now, pushing over 150 MB/s average
+traffic. We have several hundred thousand active users. But the Tor
+network is not yet self-sustaining.
+</p>
+
+<p>
+There are six main development/maintenance pushes that need attention:
+</p>
+
+<ul>
+
+<li>
+Scalability: We need to keep scaling and decentralizing the Tor
+architecture so it can handle thousands of relays and millions of
+users. The upcoming stable release is a major improvement, but there's
+lots more to be done next in terms of keeping Tor fast and stable.
+</li>
+
+<li>
+User support: With this many users, a lot of people are asking questions
+all the time, offering to help out with things, and so on. We need good
+clean docs, and we need to spend some effort coordinating volunteers.
+</li>
+
+<li>
+Relay support: the Tor network is run by volunteers, but they still need
+attention with prompt bug fixes, explanations when things go wrong,
+reminders to upgrade, and so on. The network itself is a commons, and
+somebody needs to spend some energy making sure the relay operators stay
+happy. We also need to work on <a href="#RelayOS">stability</a> on some
+platforms &mdash; e.g., Tor relays have problems on Win XP currently.
+</li>
+
+<li>
+Usability: Beyond documentation, we also need to work on usability of the
+software itself. This includes installers, clean GUIs, easy configuration
+to interface with other applications, and generally automating all of
+the difficult and confusing steps inside Tor. We've got a start on this
+with the <a href="<page gui/index>">GUI Contest</a>, but much more work
+remains &mdash; usability for privacy software has never been easy.
+</li>
+
+<li>
+Incentives: We need to work on ways to encourage people to configure
+their Tors as relays and exit nodes rather than just clients.
+<a href="#EverybodyARelay">We need to make it easy to become a relay,
+and we need to give people incentives to do it.</a>
+</li>
+
+<li>
+Research: The anonymous communications field is full
+of surprises and gotchas. In our copious free time, we
+also help run top anonymity and privacy conferences like <a
+href="http://petsymposium.org/">PETS</a>. We've identified a set of
+critical <a href="<page volunteer>#Research">Tor research questions</a>
+that will help us figure out how to make Tor secure against the variety of
+attacks out there. Of course, there are more research questions waiting
+behind these.
+</li>
+
+</ul>
+
+<p>
+We're continuing to move forward on all of these, but at this rate
+<a href="#WhySlow">the Tor network is growing faster than the developers
+can keep up</a>.
+Now would be an excellent time to add a few more developers to the effort
+so we can continue to grow the network.
+</p>
+
+<p>
+We are also excited about tackling related problems, such as
+censorship-resistance.
+</p>
+
+<p>
+We are proud to have <a href="<page sponsors>">sponsorship and support</a>
+from the Omidyar Network, the International Broadcasting Bureau, Bell
+Security Solutions, the Electronic Frontier Foundation, several government
+agencies and research groups, and hundreds of private contributors.
+</p>
+
+<p>
+However, this support is not enough to keep Tor abreast of changes in the
+Internet privacy landscape. Please <a href="<page donate>">donate</a>
+to the project, or <a href="<page contact>">contact</a> our executive
+director for information on making grants or major donations.
+</p>
+
+
+<hr />
+
+<a id="question"></a>
+<h3><a class="anchor" href="#question">Question?</a></h3>
 
   </div><!-- #main -->
 
