@@ -7,7 +7,7 @@
 
 TORSVNSTABLE = ../tor-stable
 TORSVNHEAD = ../tor
-#TORSVNSTABLE = /home/arma/work/onion/tor-012x/tor/
+#TORSVNSTABLE = /home/arma/work/onion/tor-020x/tor/
 #TORSVNHEAD = /home/arma/work/onion/svn/trunk
 
 WMLBASE = .
