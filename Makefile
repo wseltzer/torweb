@@ -3,7 +3,7 @@
 # 2. edit the two lines below to point to them.
 # 3. (edit include/versions.wmi or others if you like)
 # 4. make
-# 5. scp *.html.* arma@tor.eff.org:/www/tor.eff.org/docs/
+# 5. ./publish
 
 TORSVNSTABLE = ../tor-stable
 TORSVNHEAD = ../tor
