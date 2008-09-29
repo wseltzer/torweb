@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 14172
+# Based-On-Revision: 16763
 # Translation-Priority: 3-low
 # Last-Translator: peihanru AT gmail.com
 
@@ -71,7 +71,7 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">Privoxy
 <p>
 打开 Privoxy 的“config”文件（位于 /etc/privoxy 或 /usr/local/etc），
 在配置文件的开始添加一行<br />
-<tt>forward-socks4a / 127.0.0.1:9050 .</tt><br>
+<tt>forward-socks4a / 127.0.0.1:9050 .</tt><br />
 别忘了最后那个点。
 </p>
 
@@ -79,11 +79,11 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">Privoxy
 Privoxy 保留了一个日志文件记录所有通过它的东西。
 为了阻止这个你需要注释掉三行（在行前添加一个 #）。
 这三行是：<br />
-<tt>logfile logfile</tt><br>
-和<br>
-<tt>jarfile jarfile</tt><br>
-和（在某些系统上）<br>
-<tt>debug 1  # show each GET/POST/CONNECT request</tt><br>
+<tt>logfile logfile</tt><br />
+和<br />
+<tt>jarfile jarfile</tt><br />
+和（在某些系统上）<br />
+<tt>debug 1  # show each GET/POST/CONNECT request</tt><br />
 </p>
 
 <p>取决于你所使用的是哪一个 Privoxy 默认配置文件，你也许还需要取消
@@ -104,7 +104,7 @@ Privoxy 保留了一个日志文件记录所有通过它的东西。
 </p>
 
 <p>
-如果你使用 Firefox（这是我们所推荐的），安装
+为了取得最佳的安全性，你应该使用 Firefox 和 Torbutton。安装
 <a href="https://addons.mozilla.org/firefox/2275/">Torbutton 插件</a>，
 然后重新启动 Firefox，就这么简单：
 </p>
@@ -116,18 +116,9 @@ border="1">
 <br />
 
 <p>
-（<a href="https://torbutton.torproject.org/">更多关于 Torbutton</a>。
 如果你打算在没有安装 Tor 的计算机上使用 Firefox，
-请阅读<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">在另一台计算机上运行 Tor 的 FAQ 条目</a>。
-如果你需要使用除 Firefox 以外的其他浏览器，
-你就得<a href="<page docs/tor-doc-web>">自己配置代理设置</a>。）
-</p>
-
-<p>
-使用 Privoxy 是<strong>必要的</strong>，
-因为<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">当直接使用 SOCKS 代理时，浏览器会泄露你的 DNS 请求</a>，
-这于你的匿名不利。
-同时，Privoxy 会删除 Web 请求中危险的报头并且阻挡 Doubleclick 之类的令人厌恶的广告站点。
+请阅读<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">在
+另一台计算机上运行 Tor 的 FAQ 条目</a>。
 </p>
 
 <p>
