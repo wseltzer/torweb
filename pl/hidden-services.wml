@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16828
+# Based-On-Revision: 17024
 # Translation-Priority: 3-low
 # Last-Translator: bogdandr _at_op.pl
 
@@ -11,14 +11,25 @@
 <hr />
 
 <p>
+Tor umożliwia użytkownikom ukrywanie swojego miejsca pobytu podczas oferowania
+różnych rodzajów usług, jak publikowanie w sieci czy serwer wiadomości.
+Korzystając z "punktów spotkania" Tora, inni użytkownicy Tora mogą łączyć się z
+tymi usługami i żadna ze stron nie będzie znała tożsamości sieciowej drugiej
+strony. Ta strona opisuje techniczne szczegóły protokołu spotkania. Bardziej
+bezpośrednie jak-to-zrobić znajduje się na naszej stronie <a
+href="<page docs/tor-hidden-service>">konfiguracji usług ukrytych</a>.
+</p>
+
+<p>
 Usługa ukryta musi ogłosić swoje istnienie w sieci Tora zanim klienci będą mogli
 się z nią skontaktować. W tym celu usługa wybiera losowo kilka przekaźników
-sieci, tworzy do nich obwody i prosi, by stały się one punktami przedstawiającymi
+sieci, tworzy do nich obwody i prosi, by stały się one <em>punktami przedstawiającymi</em>
 ją, poprzez przekazanie im swojego klucza publicznego. Na poniższych obrazkach linki
-zielone to linki obwodu, a nie połączenia bezpośrednie. Uniemożliwia to komukolwiek
-powiązanie punktów przedstawiających z adresem IP usługi ukrytej. Jest to ważne, gdyż
-pomimo tego, że punktom przedstawiającym i innym przekazywana jest tożsamość
-usługi ukrytej (klucz publiczny), to nie mogą one znać tożsamości serwera tej usługi
+zielone to linki obwodu, a nie połączenia bezpośrednie. Używanie pełnych obwodów Tora
+utrudnia komukolwiek
+powiązanie punktów przedstawiających z adresem IP usługi ukrytej.Podczas gdy
+punktom przedstawiającym i innym przekazywana jest tożsamość
+usługi ukrytej (klucz publiczny), nie chcemy, by znały tożsamość serwera tej usługi
 (adresu IP).
 </p>
 
@@ -27,17 +38,24 @@ usługi ukrytej (klucz publiczny), to nie mogą one znać tożsamości serwera t
 # Bob tells to his introduction points
 
 <p>
-W kolejnym kroku usługa ukryta tworzy deskryptor usługi ukrytej, zawierający adresy jej
-punktów przedstawiających i je klucz publiczny, oraz podpisuje go swoim kluczem
-prywatnym. Deskryptor ten jest zachowywany na kilku serwerach katalogowych, ponownie
+Krok drugi: usługa ukryta tworzy <em>deskryptor usługi ukrytej</em>, zawierający podsumowanie jej
+punktów przedstawiających i jej klucz publiczny, oraz podpisuje go swoim kluczem
+prywatnym. Deskryptor ten jest wysyłany do kilku serwerów katalogowych, ponownie
 z użyciem obwodu ukrywającego powiązanie między zapisywaniem deskryptora a adresem
 IP usługi ukrytej. Deskryptor ten będzie znajdowany przez klientów żądających
 połączenia z XYZ.onion, gdzie XYZ jest składającą się z 16 znaków nazwą
 w sposób jednoznaczny otrzymaną z klucza publicznego usługi ukrytej.
+ Po wykonaniu tego kroku, usługa ukryta jest uruchomiona.
+</p>
+<p>
 Mimo iż używanie nazwy wygenerowanej automatycznie wydaje się niepraktyczne,
 ma to ważny cel: wszyscy -- łącznie z punktami przedstawiającymi, serwerami katalogowymi,
 i oczywiście klientami -- mogą sprawdzić, że faktycznie łączą się z tą usługą ukrytą.
- Po wykonaniu tego kroku, usługa ukryta jest uruchomiona.
+Przeczytaj też <a href="https://zooko.com/distnames.html">Domniemanie Zooko</a>
+mówiące, że spośród Zdecentralizowanego, Bezpiecznego i Czytelnego-dla-ludzi
+można uzyskać co najwyżej dwa. Może jednego dnia ktoś zaimplementuje projekt <a
+href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html">Petname</a>
+dla nazw usług ukrytych?
 </p>
 
 <img alt="Usługi ukryte Tora, krok 2" src="$(IMGROOT)/THS-2.png" />
@@ -46,12 +64,13 @@ i oczywiście klientami -- mogą sprawdzić, że faktycznie łączą się z tą 
 # use?
 
 <p>
-Klient chcący połączyć się z usługą ukrytą musi najpierw poznać jej adres onion.
+Krok trzeci: Klient chcący połączyć się z usługą ukrytą musi najpierw poznać jej adres onion.
 Po zrobieniu tego, klient może zacząć połączenie od pobrania deskryptora z
 serwerów katalogowych. Jeśli istnieje deskryptor dla XYZ.onion (usługa ukryta
-może być offline, dawno nieaktualna lub może być błąd w adresie), klient tworzy
-obwód do innego losowo wybranego przekaźnika i prosi go, by stał się punktem
-spotkania, przekazując mu jednorazowy klucz.
+może być offline, dawno nieaktualna lub może być błąd w adresie), klient zna zestaw
+punktów przedstawiających i klucz publiczny, którego ma używać. W tym czasie klient tworzy
+obwód do innego losowo wybranego przekaźnika i prosi go, by stał się <em>punktem
+spotkania</em>, przekazując mu jednorazowy klucz.
 </p>
 
 <img alt="Usługi ukryte Tora, krok 3" src="$(IMGROOT)/THS-3.png" />
@@ -59,30 +78,33 @@ spotkania, przekazując mu jednorazowy klucz.
 # "IP1-3" and "PK"
 
 <p>
-Po ustawieniu punktu spotkania, klient tworzy wiadomość początkową (zaszyfrowaną
+Kork czwarty: Gdy deskryptor jest obecny i punkt spotkania jest gotowy,
+klient tworzy wiadomość <em>początkową</em> (zaszyfrowaną
 kluczem publicznym usługi ukrytej), zawierającą adres punku spotkania i ten
 sam klucz jednorazowy. Klient wysyła tę wiadomość do jednego z punktów
 przedstawiających z prośbą o dostarczenie jej do usługi ukrytej. Tu także
-cała komunikacja odbywa się przez obwody, więc nikt nie może powiązać wysłanie
-wiadomości początkowej do adresu IP klienta, zapewniając mu anonimowość.
+cała komunikacja odbywa się przez obwody Tora: nikt nie może powiązać wysłania
+wiadomości początkowej do adresu IP klienta, więc klient pozostaje anonimowy.
 </p>
 
 <img alt="Usługi ukryte Tora, krok 4" src="$(IMGROOT)/THS-4.png" />
 
 <p>
-Usługa ukryta odszyfrowuje wiadomość początkową klienta i znajduje adres punktu
+Krok piąty: Usługa ukryta odszyfrowuje wiadomość początkową klienta i znajduje adres punktu
 spotkania wraz z kluczem jednorazowym. Usługa tworzy obwód do punktu spotkania
 i wysyła do niego klucz jednorazowy w wiadomości spotkania.
 </p>
 
 <p>
 W tym momencie ważny jest fakt, że usługa ukryta trzyma się ciągle tych samych
-węzłów-strażników w czasie tworzenia nowych obwodów. W innym przypadku napastnik
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards"
+>wejściowych węzłów-strażników</a> w czasie tworzenia nowych obwodów. W innym przypadku napastnik
 mógłby prowadzić własny przekaźnik sieci i zmusić usługę ukrytą do tworzenia
 dowolnej liczby obwodów z nadzieją, że jego przekaźnik zostałby wybrany na
 punkt wejścia i poznałby adres IP usługi ukrytej poprzez analizę czasów.
 Ten atak został opisany przez &Oslash;verlier'a i Syversona w ich dokumencie
-pod tytułem Znajdowanie Usług Ukrytych (Locating Hidden Services).
+pod tytułem <a href="http://freehaven.net/anonbib/#hs-attack06"
+>Znajdowanie Usług Ukrytych (Locating Hidden Services)</a>.
 </p>
 
 <img alt="Usługi ukryte Tora, krok 5" src="$(IMGROOT)/THS-5.png" />
@@ -97,8 +119,8 @@ usługi ukrytej i na odwrót.
 </p>
 
 <p>
-Jednym z powodów niekorzystania z uprzednio stworzonego połączenia poprzez
-punkt przedstawiający jest to, że żaden węzeł nie powinien wydawać się
+Jednym z powodów niekorzystania z obwodu przedstawiającego do właściwego połączenia
+jest to, że żaden węzeł nie powinien wydawać się
 być odpowiedzialnym za daną usługę ukrytą. To dlatego punkty spotkania
 nigdy nie poznają tożsamości usługi ukrytej.
 </p>
