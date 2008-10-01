@@ -10,15 +10,27 @@
 <hr />
 
 <p>
+Tor makes it possible for users to hide their locations while offering
+various kinds of services, such as web publishing or an instant
+messaging server.  Using Tor "rendezvous points," other Tor users can
+connect to these hidden services, each without knowing the other's
+network identity. This page describes the technical details of how
+this rendezvous protocol works. For a more direct how-to, see our <a
+href="<page docs/tor-hidden-service>">configuring hidden services</a>
+page.
+</p>
+
+<p>
 A hidden service needs to advertise its existence in the Tor network before
 clients will be able to contact it. Therefore, the service randomly picks
-some relays, builds circuits to them, and asks them to act as introduction
-points telling them its public key. Note that in the following figures the
-green links are circuits rather than direct connections. This makes it
-impossible for anyone to associate the introduction points with the hidden
-server's IP address. This is important, because although the introduction
-points and others are told the hidden service's identity (public key), they
-must not learn about the hidden server's location (IP address).
+some relays, builds circuits to them, and asks them to act as
+<em>introduction points</em> by telling them its public key. Note
+that in the following figures the green links are circuits rather
+than direct connections. By using a full Tor circuit, it's hard for
+anyone to associate an introduction point with the hidden server's IP
+address. While the introduction points and others are told the hidden
+service's identity (public key), we don't want them to learn about the
+hidden server's location (IP address).
 </p>
 
 <img alt="Tor hidden service step one" src="$(IMGROOT)/THS-1.png" />
@@ -26,19 +38,27 @@ must not learn about the hidden server's location (IP address).
 # Bob tells to his introduction points
 
 <p>
-In a second step, the hidden service assembles a hidden service descriptor
-containing the introduction points' addresses and its public key and signs
-it with its private key. It stores that descriptor on a set of directory
-servers, again using a circuit that hides the link between the directory
-server storing the
-descriptor with the hidden server's IP address. The descriptor will be
-found by clients requesting XYZ.onion where XYZ is a 16 characters long
-name that can be uniquely derived from the service's public key. Although
-it might seem impractical to use an automatically-generated service name,
-it serves an important goal: Everyone &ndash; including the introduction points,
-the directory servers, and of course the clients &ndash; can verify that they
-are talking to the hidden service. After this step, the hidden service is
-set up.
+Step two: the hidden service assembles a <em>hidden service
+descriptor</em>, containing its public key and a summary of each
+introduction point, and signs this descriptor with its private key.
+It uploads that descriptor to a set of directory servers, again using a
+full Tor circuit to hide the link between the directory server storing
+the descriptor and the hidden server's IP address. The descriptor will be
+found by clients requesting XYZ.onion where XYZ is a 16 character
+name that can be uniquely derived from the service's public key. After
+this step, the hidden service is set up.
+</p>
+
+<p>
+Although it might seem impractical to use an automatically-generated
+service name, it serves an important goal: Everyone &ndash; including
+the introduction points, the directory servers, and of course the
+clients &ndash; can verify that they are talking to the right hidden
+service. See also <a href="https://zooko.com/distnames.html">Zooko's
+conjecture</a> that out of Decentralized, Secure, and Human-Meaningful,
+you can achieve at most two. Perhaps one day somebody will implement a <a
+href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html">Petname</a>
+design for hidden service names?
 </p>
 
 <img alt="Tor hidden service step two" src="$(IMGROOT)/THS-2.png" />
@@ -47,13 +67,16 @@ set up.
 # use?
 
 <p>
-A client that wants to contact a hidden service needs to learn about its
+Step three: A client that wants to contact a hidden service needs to
+learn about its
 onion address first. After that, the client can initiate connection
 establishment by downloading the descriptor from the directory servers. If
 there is a descriptor for XYZ.onion (the hidden service could also be
 offline or have left long ago, or there could be a typo in the onion
-address), the client creates a circuit to another randomly picked relay and
-asks it to act as rendezvous point, telling it a one-time secret.
+address), the client now knows the set of introduction points and the
+right public key to use. Around this time, the client also creates
+a circuit to another randomly picked relay and asks it to act as
+<em>rendezvous point</em> by telling it a one-time secret.
 </p>
 
 <img alt="Tor hidden service step three" src="$(IMGROOT)/THS-3.png" />
@@ -61,19 +84,21 @@ asks it to act as rendezvous point, telling it a one-time secret.
 # "IP1-3" and "PK"
 
 <p>
-Upon setting up the rendezvous point, the client assembles an introduce
+Step four: When the descriptor is present and the rendezvous point is
+ready, the client assembles an <em>introduce</em>
 message (encrypted to the hidden service's public key) including the
 address of the rendezvous point and the one-time secret. The client sends
-this message to one of the introduction points, requesting it to deliver it
-to the hidden service. Again, communication takes place via a circuit, so
-that nobody can relate sending the introduce message to the client's IP
-address, ensuring the client's anonymity.
+this message to one of the introduction points, requesting it be delivered
+to the hidden service. Again, communication takes place via a Tor circuit:
+nobody can relate sending the introduce message to the client's IP
+address, so the client remains anonymous.
 </p>
 
 <img alt="Tor hidden service step four" src="$(IMGROOT)/THS-4.png" />
 
 <p>
-The hidden service decrypts the client's introduce message and finds the
+Step five: The hidden service decrypts the client's introduce message
+and finds the
 address of the rendezvous point and the one-time secret in it. The service
 creates a circuit to the rendezvous point and sends the one-time secret to
 it in a rendezvous message.
@@ -81,12 +106,15 @@ it in a rendezvous message.
 
 <p>
 At this point it is of special importance that the hidden service sticks to
-the same set of guard nodes for creating new circuits. Otherwise an attacker
-could run an own relay and force a hidden service to create an arbitrary
-number of circuits in the hope of the corrupt relay to be picked as entry
-node and learn the hidden server's IP address via timing analysis. This
+the same set of <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards">entry
+guards</a> when creating new circuits. Otherwise an attacker
+could run his own relay and force a hidden service to create an arbitrary
+number of circuits in the hope that the corrupt relay is picked as entry
+node and he learns the hidden server's IP address via timing analysis. This
 attack was described by &Oslash;verlier and Syverson in their paper titled
-Locating Hidden Servers.
+<a href="http://freehaven.net/anonbib/#hs-attack06">Locating Hidden
+Servers</a>.
 </p>
 
 <img alt="Tor hidden service step five" src="$(IMGROOT)/THS-5.png" />
@@ -94,15 +122,15 @@ Locating Hidden Servers.
 
 <p>
 In the last step, the rendezvous point notifies the client about successful
-connection establishment. After that, both, client and hidden service can
+connection establishment. After that, both client and hidden service can
 use their circuits to the rendezvous point for communicating with each
 other. The rendezvous point simply relays (end-to-end encrypted) messages
 from client to service and vice versa.
 </p>
 
 <p>
-One of the reasons for not using the earlier created connection via the
-introduction point for actual communication is that no single relay should
+One of the reasons for not using the introduction circuit
+for actual communication is that no single relay should
 appear to be responsible for a given hidden service. This is why the
 rendezvous point never learns about the hidden service's identity.
 </p>
