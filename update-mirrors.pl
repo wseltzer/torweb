@@ -170,7 +170,7 @@ my %m = (
             httpWebsiteMirror => "http://tor.blingblingsquad.net/",
             ftpWebsiteMirror => "",
             rsyncWebsiteMirror => "",
-            httpDistMirror => "http://tor.blingblingsquad.net/dist/",
+            httpDistMirror => "",
             rsyncDistMirror => "",
             updateDate => "Unknown",
         },
