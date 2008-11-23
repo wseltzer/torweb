@@ -456,44 +456,66 @@ director for information on making grants or major donations.
 used for?</a></h3>
 
 <p>
-Every Tor relay has a public decryption key (rotated once a
-week). When the Tor clients establish circuits, at each step they <a
-href="<svnsandbox>doc/design-paper/tor-design.html#subsec:circuits">demand
-that the Tor relay prove knowledge of its private key</a>. That way
+Tor uses a variety of different keys, with three goals in mind: 1)
+encryption (inside the Tor network), 2) authentication so you know you're
+talking to the relays you meant to talk to, and 3) signatures to make
+sure all users know the same set of relays.
+</p>
+
+<p>
+<b>Encryption</b>: first, all connections in Tor use TLS link encryption,
+so observers can't look inside to see which circuit a given cell is
+intended for. Further, the Tor client establishes an ephemeral encryption
+key with each relay in the circuit, so only the exit relay can read
+the cells. Both sides discard the circuit key when the circuit ends,
+so logging traffic and then breaking into the relay to discover the key
+won't work.
+</p>
+
+<p>
+<b>Authentication</b>:
+Every Tor relay has a public decryption key called the "onion key".
+When the Tor client establishes circuits, at each step it <a
+href="<svnsandbox>doc/design-paper/tor-design.html#subsec:circuits">demands
+that the Tor relay prove knowledge of its onion key</a>. That way
 the first node in the path can't just spoof the rest of the path.
+Each relay rotates its onion key once a week.
 </p>
 
 <p>
+<b>Coordination</b>:
 How do clients know what the relays are, and how do they know that they
-have the right keys for them? The directory servers provide a signed list
-of all the approved relays, and in that list are a set of self-signed
-certificates from each relay, specifying their keys, locations, exit
-policies, and so on. So unless the adversary can control a directory
-server (and starting in Tor 0.1.1.x, a threshold of the directory
-servers), he can't trick the Tor client into using other Tor relays.
+have the right keys for them? Each relay has a long-term public signing
+key called the "identity key". Each directory authority additionally has a
+"directory signing key". The directory authorities provide a signed list
+of all the known relays, and in that list are a set of certificates from
+each relay (self-signed by their identity key) specifying their keys,
+locations, exit policies, and so on. So unless the adversary can control
+a threshold of the directory authorities, he can't trick the Tor client
+into using other Tor relays.
 </p>
 
 <p>
-How do clients know what the directory servers are? The list comes with
-the Tor distribution. It hard-codes their locations and their public
-keys. So the only way to trick the user into using a fake Tor network
+How do clients know what the directory authorities are? The Tor software
+comes with a built-in list of location and public key for each directory
+authority. So the only way to trick users into using a fake Tor network
 is to give them a specially modified version of the software.
 </p>
 
 <p>
 How do users know they've got the right software? When we distribute
 the source code or a package, we digitally sign it with <a
-href="http://www.gnupg.org/">GNU Privacy Guard</a>. Also see the <a
+href="http://www.gnupg.org/">GNU Privacy Guard</a>. See the <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">instructions
 on how to check Tor's signatures</a>.
 </p>
 
 <p>
-In order to be absolutely certain that it's signed by the developers,
-you need to have met them in person and gotten a copy of their key
-fingerprint, or you need to know somebody who has. If you're concerned
-about an attack on this level, we recommend you get involved with the
-security community and start meeting people.
+In order to be certain that it's really signed by us, you need to have
+met us in person and gotten a copy of our GPG key fingerprint, or you
+need to know somebody who has. If you're concerned about an attack on
+this level, we recommend you get involved with the security community
+and start meeting people.
 </p>
 
 <hr />
