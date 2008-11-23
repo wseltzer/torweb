@@ -39,6 +39,11 @@ funding?</a></li>
 
 <p>Running a Tor hidden service:</p>
 
+<p>Anonymity and Security:</p>
+<ul>
+<li><a href="#KeyManagement">What are all these keys used for?</a></li>
+</ul>
+
 <hr />
 
 <a id="General"></a>
@@ -444,14 +449,54 @@ to the project, or <a href="<page contact>">contact</a> our executive
 director for information on making grants or major donations.
 </p>
 
-
 <hr />
 
-<a id="question"></a>
-<h3><a class="anchor" href="#question">Question?</a></h3>
+<a id="KeyManagement"></a>
+<h3><a class="anchor" href="#KeyManagement">What are all these keys
+used for?</a></h3>
 
+<p>
+Every Tor relay has a public decryption key (rotated once a
+week). When the Tor clients establish circuits, at each step they <a
+href="<svnsandbox>doc/design-paper/tor-design.html#subsec:circuits">demand
+that the Tor relay prove knowledge of its private key</a>. That way
+the first node in the path can't just spoof the rest of the path.
+</p>
 
+<p>
+How do clients know what the relays are, and how do they know that they
+have the right keys for them? The directory servers provide a signed list
+of all the approved relays, and in that list are a set of self-signed
+certificates from each relay, specifying their keys, locations, exit
+policies, and so on. So unless the adversary can control a directory
+server (and starting in Tor 0.1.1.x, a threshold of the directory
+servers), he can't trick the Tor client into using other Tor relays.
+</p>
 
+<p>
+How do clients know what the directory servers are? The list comes with
+the Tor distribution. It hard-codes their locations and their public
+keys. So the only way to trick the user into using a fake Tor network
+is to give them a specially modified version of the software.
+</p>
+
+<p>
+How do users know they've got the right software? When we distribute
+the source code or a package, we digitally sign it with <a
+href="http://www.gnupg.org/">GNU Privacy Guard</a>. Also see the <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">instructions
+on how to check Tor's signatures</a>.
+</p>
+
+<p>
+In order to be absolutely certain that it's signed by the developers,
+you need to have met them in person and gotten a copy of their key
+fingerprint, or you need to know somebody who has. If you're concerned
+about an attack on this level, we recommend you get involved with the
+security community and start meeting people.
+</p>
+
+<hr />
 
   </div><!-- #main -->
 
