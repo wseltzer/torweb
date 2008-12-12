@@ -24,12 +24,42 @@ download everything a dist mirror should share with the world:
 <tt>
 rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
 </tt>
+<br /><br />
+<p>
+An example cronjob to update a full mirror once a day may look like so:
+<tt>
+<pre>
+# m h  dom mon dow   command
+1 4 * * * rsync -av --delete rsync://rsync.torproject.org/tor /var/www/mirrors/torproject.org/
+</pre>
+</tt>
+</p>
+<br/>
+For mirror operators that use Apache, we've created a sample virtual host
+configuration file to use:
+<tt>
+<pre>
+&lt;VirtualHost 1.2.3.4:80&gt;
+        ServerAdmin youremail@example.com
+        ServerName  1.2.3.4
+
+        DocumentRoot /var/www/mirrors/torproject.org
+
+        &lt;Directory /var/www/mirrors/torproject.org/&gt;
+                Options MultiViews
+                DirectoryIndex index
+                AllowOverride None
+        &lt;/Directory&gt;
+
+&lt;VirtualHost&gt;
+</pre>
+</tt>
 <br/> <br/>
 Please ensure that you keep your mirror updated (we suggest automating this
 task with something like '<tt>cron</tt>'). Our website, source code and
 binary releases change often. Tor users everywhere will thank you.
 </p>
-
+<br/>
 <p>
 If you are running a mirror, please email
 <a href="<page contact>">tor-webmaster</a> and we'll add it to the list.
