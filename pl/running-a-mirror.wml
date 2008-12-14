@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16291
+# Based-On-Revision: 17606
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Tor: Prowadzenie Mirrora" CHARSET="UTF-8"
@@ -27,6 +27,38 @@ wszystko, czym taki mirror powinien dzielić się ze światem:
 rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
 </tt>
 <br/> <br/>
+<p>
+Przykładowe zadanie crona do aktualizacji całego mirrora raz na tydzień może
+wyglądać następująco:
+<tt>
+<pre>
+# m h  dom mon dow   command
+1 4 * * * rsync -av --delete rsync://rsync.torproject.org/tor /var/www/mirrors/torproject.org/
+</pre>
+</tt>
+</p>
+<br/>
+Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy przykładowy
+plik konfiguracji wirtualnego hosta:
+<tt>
+<pre>
+&lt;VirtualHost 1.2.3.4:80&gt;
+	ServerAdmin youremail@example.com
+	ServerName  1.2.3.4
+
+	DocumentRoot /var/www/mirrors/torproject.org
+
+	&lt;Directory /var/www/mirrors/torproject.org/&gt;
+		Options MultiViews
+		DirectoryIndex index
+		AllowOverride None
+	&lt;/Directory&gt;
+
+&lt;VirtualHost&gt;
+</pre>
+</tt>
+<br/> <br/>
+
 Prosimy upewniaj się, że Twój mirror jest aktualny (sugerujemy zautomatyzowanie
 tego zadania za pomocą czegoś podobnego do '<tt>cron</tt>'). Nasza strona, kod
 źródłowy i wydania binarne często się zmieniają. Użytkownicy Tora na całym świecie
