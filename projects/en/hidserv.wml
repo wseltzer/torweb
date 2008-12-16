@@ -348,9 +348,51 @@ implementation and testing work on January 15, 2009.
 
 <tr bgcolor="#e5e5e5">
   <td>
-    Dec 08
+    <a id="Dec08"></a>
+    <a class="anchor" href="#Dec08">Dec 08</a>
   </td>
   <td>
+    <small><em>Part of the last 30 days has been used to fix bugs that have
+    influenced the previous hidden service measurements. The first <a
+    href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">bugfix</a>
+    corrects a possible segmentation fault that was very likely responsible
+    for a number of failed measurement runs. Another <a
+    href="https://bugs.torproject.org/flyspray/index.php?id=847&do=details">bug</a>
+    could be explained that lead to significant delays in bootstrapping:
+    Very slow directory authorities occupied bootstrapping clients for
+    a long time before clients finally gave up and bootstrapped using
+    another authority. As a result, the slowest two directory authorities
+    have dedicated more bandwidth to their nodes, so that the effect is
+    mitigated. A third <a
+    href="https://bugs.torproject.org/flyspray/index.php?id=874&do=details">bug</a>
+    has been introduced with the hidden service performance improvements in
+    November; the effect was that Tor processes running hidden services
+    would stop advertising their service upon reloading their
+    configuration. Further, this bug has uncovered that Tor has
+    re-established its introduction points upon reloading, which might have
+    affected hidden service stability. This bug has been fixed and will be
+    included in the upcoming version 0.2.1.9-alpha.</em></small>
+    <br/>
+    <small><em>Apart from fixing bugs, new measurements have been performed
+    between December 8 and 10. These will very likely be the final
+    measurements to compare hidden service performance now with the
+    beginning of the project. The data have not been completely evaluated,
+    so it is difficult to make a statement about improvements at this
+    point. However, a <a
+    href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">preliminary
+    evaluation</a> shows that service publication times have improved
+    significantly. This is a result of Tor clients bootstrapping faster and
+    of the performance improvements added in November. In contrast to this,
+    the results for establishing a connection to a hidden service are less
+    promising. While the improvements added in November seem to have a
+    positive effect on performance, some substeps exhibit significantly
+    worse performance. One example is fetching hidden service descriptors
+    in order to contact a hidden service. A possible explanation is that
+    the sudden increase in the number of hidden service directory nodes in
+    September has had a negative effect on performance. Part of the work in
+    the final 31 days will be to evaluate these data in more detail and
+    make a final conclusion on the achievements of this
+    project.</em></small>
   </td>
 </tr>
 
