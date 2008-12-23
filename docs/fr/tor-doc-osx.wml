@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16011
+# Based-On-Revision: 16748
 # Last-Translator: fredzupy@gmail.com
 
 #include "head.wmi" CHARSET="UTF-8" TITLE="Tor : Mac OS X : Installation"
@@ -20,13 +20,14 @@ href="<page docs/tor-doc-relay>">Configurer un serveur</a>.</b>
 
 <hr />
 <a id="installing"></a>
-<h2><a class="anchor" href="#installing">Etape Un : Télécharger et installer Tor</a></h2>
+<h2><a class="anchor" href="#installing">Étape une : Télécharger et installer Tor</a></h2>
 <br />
 <p>
 L'installation pour Macintosh OS X contient <a href="<page index>">Tor</a>,
 <a href="http://www.vidalia-project.net/">Vidalia</a> (une interface graphique pour Tor),
+<a href="<page torbutton/index>">Torbutton</a>,
 et <a href="http://www.privoxy.org/">Privoxy</a> (un proxy web filtrant)
-dans un seul paquet, avec les trois applications préconfigurées pour fonctionner ensemble.
+dans un seul paquet, avec les quatre applications préconfigurées pour fonctionner ensemble.
 Téléchargez soit la version <a href="../<package-osx-bundle-stable>">stable</a>
 soit la version <a href="../<package-osx-bundle-alpha>">expérimentale</a> 
 du « tout en un » OS X, ou regardez d'autres options sur la <a href="<page
@@ -62,15 +63,14 @@ Il n'est pas nécessaire de configurer Privoxy pour utiliser Tor &mdash; une ver
 
 <hr />
 <a id="using"></a>
-<h2><a class="anchor" href="#using">Etape Deux : Configurer vos applications pour utiliser Tor</a></h2>
+<h2><a class="anchor" href="#using">Étape deux : Configurer vos applications pour utiliser Tor</a></h2>
 <br />
 
 <p>Après avoir installé Tor et Privoxy, vous devez configurer vos 
 applications pour les utiliser. La prochaine action consiste à configurer le navigateur web.</p>
 
-<p>Si vous utilisez Firefox (ce que nous vous recommandons), installez simplement  <a
-href="https://addons.mozilla.org/firefox/2275/">l'extension Torbutton</a>, 
-redémarrez votre Firefox, cliquez sur le bouton rouge « Tor Disabled » 
+<p>Vous devriez utiliser Tor avec Firefox et Torbutton, pour une meilleur sécurité.
+Torbutton a été installé pour vous. Cliquez sur le bouton rouge "Tor Disabled" 
 pour l'activer, et vous êtes prêt : </p>
 
 <p><img alt="Module Torbutton pour Firefox"
@@ -78,51 +78,10 @@ src="../img/screenshot-torbutton.png"
 border="1"></p>
 
 <p>
-(<a href="https://torbutton.torproject.org/">En savoir plus sur 
-Torbutton ici</a>.
 Si vous envisagez de faire tourner Firefox sur un ordinateur différent de Tor, jetez un œil à l'entrée <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">FAQ
-traitant de l'utilisation de Tor sur un ordinateur différent</a>. Si vous avez besoin 
-d'utiliser un navigateur autre que Firefox, vous aurez à <a href="<page
-docs/tor-doc-web>">configurer son proxy vous même</a>.)
+traitant de l'utilisation de Tor sur un ordinateur différent</a>.
 </p>
-
-<h3>Apple Safari</h3>
-
-<p>Si vous souhaitez utiliser Tor avec Safari, vous aurez à changer 
-la configuration du réseau. Selectionnez  « Préférences Réseau» depuis le menu Apple |
-Réseau :</p>
-
-<p><img alt="Network settings"
-src="../img/screenshot-osx-choose-network.png"
-border="1"></p>
-
-<p>Sélectionnez l'interface réseau pour laquelle vous souhaitez utiliser Tor. Si vous utilisez 
-plus d'une seule interface, vous devez changer les paramètres Proxy pour 
-chacune.</p>
-
-<p><img alt="Preferences reseau"
-src="../img/screenshot-osx-choose-interface.png"
-border="1"></p>
-
-
-<p>Sélectionnez et entrez 127.0.0.1 et le port 8118 pour 
-"Proxy Web (HTTP)" et "Proxy Web sécurisé (HTTPS)". 
-Vous devriez en faire de même pour "Proxy FTP" et "Proxy Gopher" ; regardez <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FtpProxy">cette 
-note</a> à propos de Tor et des mandataires ftp. Conservez votre paramètre "Utiliser le mode FTP passif (PASV)" 
-tel qu'il était.</p>
-
-<p><img alt="Parametres du proxy"
-src="../img/screenshot-osx-proxy-settings.png"
-border="1"></p>
-
-<p>L'utilisation de privoxy est <strong>nécessaire</strong> parceque <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">les navigateurs
-laisse filtrer vos
-requètes DNS quand ils utilisent le proxy socks directement</a>, ce qui est domageable pour
-votre anonymat. Privoxy retire également, certains entêtes dangereux de vos 
-requêtes web, et bloque certains sites pénibles comme Doubleclick.</p>
 
 <p>Pour torréfier d'autres applications qui savent utiliser des proxys HTTP, il suffit 
 de leur indiquer de passer par Privoxy (c'est à dire "localhost" sur le port "8118"). Pour celles qui utilisent SOCKS 
@@ -141,7 +100,7 @@ HOWTO</a>.
 
 <hr />
 <a id="verify"></a>
-<h2><a class="anchor" href="#verify">Étape trois : s'assurer que ça fonctionne</a></h2>
+<h2><a class="anchor" href="#verify">Étape trois : s'assurer que ça fonctionne</a></h2>
 <br />
 
 <p>
@@ -178,7 +137,7 @@ Une fois que tout fonctionne, allez voir la page concernant
 <hr />
 <a id="server"></a>
 <a id="relay"></a>
-<h2><a class="anchor" href="#relay">Étape quatre : configurer Tor comme relais</a></h2>
+<h2><a class="anchor" href="#relay">Étape quatre : configurer Tor comme relais</a></h2>
 <br />
 
 <p>Le réseau Tor repose sur des contributeurs qui donnent de la bande passante. Plus il
