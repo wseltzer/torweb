@@ -30,6 +30,15 @@ funding?</a></li>
 </ul>
 
 <p>Compilation and Installation:</p>
+<ul>
+<li><a href="#HowUninstallTor">How do I uninstall Tor?</a></li>
+<li><a href="#WhatIsAsc">What are these ".asc" signature files in the dist/
+directory?</a></li>
+<li><a href="#CompileTorWindows">How do I compile Tor under Windows?</a></li>
+<li><a href="#Virus">Why does my Tor executable appear to have a virus or
+spyware?</a></li>
+<li><a href="#LiveCD">Is there a LiveCD or other bundle that includes Tor?</li>
+</ul>
 
 <p>Running Tor:</p>
 
@@ -455,6 +464,169 @@ Internet privacy landscape. Please <a href="<page donate>">donate</a>
 to the project, or <a href="<page contact>">contact</a> our executive
 director for information on making grants or major donations.
 </p>
+
+<hr />
+
+<a id="HowUninstallTor"></a>
+<h3><a class="anchor" href="#HowUninstallTor">How do I uninstall Tor?</a></h3>
+
+<p>
+This depends entirely on how you installed it and which operating system you
+have. If you installed a package, then hopefully your package has a way to
+uninstall itself. Windows has the uninstaller functionality. The proper way to
+completely remove Tor, Vidalia, Torbutton for Firefox, and Privoxy on any
+version of Windows is as follows:
+</p>
+
+<ol>
+<li>In your taskbar, right click on Privoxy (the blue icon with a white "P")
+and choose exit.</li>
+<li>In your taskbar, right click on Vidalia (the green onion or the black head)
+and choose exit.</li>
+<li>Right click on the taskbar to bring up TaskManager. Look for tor.exe in the
+Process List. If it's running, right click and choose End Process.</li>
+<li>Click the Start button, go to Programs, go to Vidalia, choose Uninstall.
+This will remove the Vidalia bundle, which includes Tor and Privoxy.</li>
+<li>Start Firefox. Go to the Tools menu, choose Add-ons. Select Torbutton.
+Click the Uninstall button.</li>
+
+<p>
+If you do not follow these steps, and merely try to uninstall Vidalia, Tor, and
+Privoxy, while they are still running, you need to reboot and manually remove
+the directory "Program Files\Vidalia Bundle".
+</p>
+
+<p>
+For Mac OS X, follow the <a
+href="https://www.torproject.org/docs/tor-doc-osx#uninstall">uninstall
+directions</a>.
+</p>
+
+<p>
+If you installed by source, I'm afraid there is no easy uninstall method. But
+on the bright side, by default it only installs into /usr/local/ and it should
+be pretty easy to notice things there.
+</p>
+
+<hr />
+
+<a id="WhatIsAsc"></a>
+<h3><a class="anchor" href="#WhatIsAsc">What are these ".asc" signature files
+in the dist/ directory?</a></h3>
+
+<p>
+These are PGP signatures, so you can verify that the file you've downloaded is
+exactly the one that we intended you to get.
+</p>
+
+<p>
+Please read the <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">verifying
+signatures</a> page for details.
+</p>
+
+<hr />
+
+<a id="CompileTorWindows"></a>
+<h3><a class="anchor" href="#CompileTorWindows">How do I compile Tor under
+Windows?</a></h3>
+
+<p>
+Try following the steps at <a
+href="https://www.torproject.org/svn/trunk/doc/tor-win32-mingw-creation.txt">https://www.torproject.org/svn/trunk/doc/tor-win32-mingw-creation.txt</a>.
+</p>
+
+<p>
+You can also try following the (somewhat outdated) instructions at <a href="https://tor.addicts.nl/windows/">https://tor.addicts.nl/windows/</a>.
+</p>
+
+<hr />
+
+<a id="Virus"></a>
+<h3><a class="anchor" href="#Virus">Why does my Tor executable appear to have a
+virus or spyware?</a></h3>
+
+<p>
+Sometimes, overzealous Windows virus and spyware detectors trigger on some
+parts of the Tor Windows binary. Our best guess is that these are false
+positives --- after all, the anti-virus and anti-spyware business is just a
+guessing game anyway. You should contact your vendor and explain that you have
+a program that seems to be triggering false positives. Or pick a better vendor.
+</p>
+
+<p>
+In the meantime, we encourage you to not just take our word for it. Our job is
+to provide the source; please do recompile it yourself.
+</p>
+
+<hr />
+
+<a id="LiveCD"></a>
+<h3><a class="anchor" href="#LiveCD">Is there a LiveCD or other bundle that
+includes Tor?</a></h3>
+
+<p>
+There isn't any official LiveCD at this point. We're still trying to find good
+solutions and trying to understand the security and anonymity implications of
+the various options. In the mean time, feel free to check out the list below
+and use your best judgement:
+</p>
+
+<p>
+Maintained:
+</p>
+
+<ol>
+<li><a href="http://janusvm.com/">JanusVM</a> is a Linux kernel and software
+running in VMWare that sits between your Windows computer and the Internet,
+making sure that your Internet traffic is scrubbed and anonymized.</li>
+<li><a href="http://www.xerobank.com/xB_browser.html">xB Browser</a>,
+previously known as Torpark, is a Firefox+Tor package for Win32 that can
+installed on a USB key. It needs a host Win32 operating system.</li>
+<li><a href="http://tork.sourceforge.net/wiki/index.php/LiveCD">TorK LiveCD</a>
+is Knoppix-based with an emphasis on user-friendliness. You can work
+anonymously or non-anonymously while TorK tries to keep you informed of the
+consequences of your activity. The TorK LiveCD is experimental, so the aim is
+to provide regular releases through 2007 and beyond.</li>
+<li>Polippix / Privatlivets Fred is a Danish Knoppix-based LiveCD with Tor
+and utilities to encrypt IP-telephony. <a href="http://polippix.org/">Info and
+download</a>.</li>
+<li><a href="http://incognito.anonymityanywhere.com/">Incognito LiveCD/USB</a>
+is a CD you can boot that has several Internet applications (Firefox, IRC,
+Mail, etc) pre-configured to use Tor. For most computers everything is
+automatically configured and you're ready to go. You can even copy the CD to a
+USB drive. Includes TorK.</li>
+<li><a href="http://mandalka.name/privatix/">Privatix LiveCD/USB</a> is a
+debian based live-system including tor, firefox and torbutton which can save
+bookmarks and other settings or data on an encrypted usb-key</li>
+<li>[add yours here!]</li>
+</ol>
+
+<p>
+Not currently maintained as far as we know:
+</p>
+
+<ol>
+<li>ELE is a Linux LiveCD which is focused on privacy related
+software. It includes Tor and you can download it at
+<a
+href="http://www.northernsecurity.net/download/ele/">http://www.northernsecurity.net/download/ele/</a>.</li>
+<li>Virtual Privacy Machine is a Linux LiveCD that includes Firefox, Privoxy,
+Tor, some IRC and IM applications, and a set of ipchains rules aimed to prevent
+non-Tor traffic from accidentally leaving your computer. More information at
+<a
+href="http://wiki.noreply.org/noreply/VirtualPrivacyMachine">http://wiki.noreply.org/noreply/VirtualPrivacyMachine</a>.</li>
+<li>Anonym.OS is a LiveCD similar to the above but is based on OpenBSD rather
+than Linux for maximum security. It was designed to be anonymous and secure
+from the ground up, and thus has some features and limitations not found in
+other LiveCDs (Tor related or otherwise). You can obtain more information and
+download Anonym.OS from <a
+href="http://theory.kaos.to/projects.html">Kaos.Theory</a>.</li>
+<li>Phantomix is a LiveCD for anonymous surfing and chatting based on the most
+recent KNOPPIX release. It comes preconfigured with tor and privoxy. You can
+get it from the <a href="http://phantomix.ytternhagen.de/">Phantomix
+Website</a>.</li>
+</ol>
 
 <hr />
 
