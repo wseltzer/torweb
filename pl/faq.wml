@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 17653
+# Based-On-Revision: 17902
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="FAQ Tora" CHARSET="UTF-8"
@@ -30,6 +30,14 @@ list o Torze?</a></li>
 </ul>
 
 <p>Kompilacja i instalacja:</p>
+<ul>
+<li><a href="#HowUninstallTor">Jak odinstalować Tora?</a></li>
+<li><a href="#PGPSigs">Czym są te pliki "sig" na stronie pobierania?</a></li>
+<li><a href="#CompileTorWindows">Jak skompilować Tora pod Windows?</a></li>
+<li><a href="#VirusFalsePositives">Czemu mój program Tor zdaje się
+mieć wirusa lub oprogramowanie szpiegujące?</a></li>
+<li><a href="#LiveCD">Czy jest LiveCD lub inna dystrybucja/paczka zawierająca Tora?</li>
+</ul>
 
 <p>Uruchamianie Tora:</p>
 
@@ -42,6 +50,13 @@ list o Torze?</a></li>
 <p>Anonimowość i bezpieczeństwo:</p>
 <ul>
 <li><a href="#KeyManagement">Opowiedzcie mi o kluczach używanych przez Tora.</a></li>
+</ul>
+
+<p>Nadużycie</p>
+<ul>
+<li><a href="#Criminals">Czy Tor nie umożliwia przestępcom robienia złych rzeczy?</a></li>
+<li><a href="#RespondISP">Jak odpowiadać mojemu dostawcy internetu o moim przekaźniku
+wyjściowym?</a></li>
 </ul>
 
 <p>Jeśli chcecie poznać odpowiedzi na inne pytania, nie znajdujące się jeszcze
@@ -447,6 +462,191 @@ do projektu lub <a href="<page contact>">skontaktuj się</a> z naszym dyrektorem
 wykonawczym, by dowiedzieć się, jak dokonywać większych wpłat lub grantów.
 </p>
 
+<hr />
+
+<a id="HowUninstallTor"></a>
+<h3><a class="anchor" href="#HowUninstallTor">Jak odinstaloawć Tora?</a></h3>
+
+<p>
+To zależy całkowicie od tego, jak go zainstalowano i jaki posiadasz system operacyjny.
+Jeśli zainstalowałeś/aś paczkę, to ta paczka zna sposób, by się odinstalować.
+Paczki dla Windows zawierają programy odinstalowujące. Prawidłowy sposób na
+całkowite usunięcie Tora, Vidalii, Torbuttona dla Firefoksa i Privoxy na dowolnym
+systemie Windows jest następujący:
+</p>
+
+<ol>
+<li>Na pasku zadań kliknij prawym klawiszem na Privoxy (niebieska ikonka z "P")
+i wybierz wyjście.</li>
+<li>Na pasku zadań kliknij prawym klawiszem na Vidalię (zielona cebula z czarną główką)
+i wybierz wyjście.</li>
+<li>Kliknij prawym klawiszem na pasek zadań i uruchom Menadżera Zadań. Szukaj tor.exe
+na liście procesów. Jeśli działa, kliknij go prawym klawiszem i wybierz Zakończ Proces.</li>
+<li>Kliknij przycisk Start, przejdź do Programy, Vidalia, wybierz Odinstaluj (Uninstall).
+To usunie dystrybucję Vidalii, która zawiera Tora i Privoxy.</li>
+<li>Uruchom Firefoksa. Przejdź do menu Narzędzia, wybierz Dodatki. Wybierz Torbutton.
+Kliknij przycisk Odinstaluj.</li>
+</ol>
+
+<p>
+Jeśli nie będziesz trzymać tych kroków (na przykład próbując odinstalować Vidalia, Tor
+i Privoxy gdy jeszcze działają), będziesz musiał/a ponownie uruchomić komputer i ręcznie
+usunąć katalog "Program Files\Vidalia Bundle".
+</p>
+
+<p>
+Na systemie Mac OS X, trzymaj się <a
+href="<page docs/tor-doc-osx>#uninstall">instrukcji odinstalowania</a>.
+</p>
+
+<p>
+Jeśli instalowałeś/aś ze źródła, obawiam się, że może nie być łatwego sposobu na
+odinstalowanie. Ale patrząc z jasnej strony, domyślnie wszystko instaluję się do
+/usr/local/, a tam powinno łatwo być zauważyć nowe rzeczy.
+</p>
+
+<hr />
+
+<a id="PGPSigs"></a>
+<h3><a class="anchor" href="#PGPSigs">Czym są te pliki "sig" na stronie pobierania?</a></h3>
+
+<p>
+To są podpisy PGP, byście mogli zweryfikować, że plik, który pobraliście jest dokładnie
+tym, który daliśmy do ściągnięcia.
+</p>
+
+<p>
+Proszę przeczytać stronę o <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/VerifyingSignatures">weryfikacji
+podpisów</a>, by dowiedzieć się więcej.
+</p>
+
+<hr />
+
+<a id="CompileTorWindows"></a>
+<h3><a class="anchor" href="#CompileTorWindows">Jak skompilować Tora pod Windows?</a></h3>
+
+<p>
+Spróbuj wykonać kroki podane w <a
+href="<svnsandbox>doc/tor-win32-mingw-creation.txt"><svnsandbox>doc/tor-win32-mingw-creation.txt</a>.
+</p>
+
+<p>
+(Ale zauważ, że nie musisz własnoręcznie kompilować Tora, by go używać.
+Większość ludzi po prostu używa paczek dostępnych na <a href="<page
+download>">stronie pobierania</a>.)
+</p>
+
+<hr />
+
+<a id="VirusFalsePositives"></a>
+<h3><a class="anchor" href="#VirusFalsePositives">Czemu mój program Tor zdaje się
+mieć wirusa lub oprogramowanie szpiegujące?</a></h3>
+
+<p>
+Czasami przesadnie czułe wykrywacze wirusów i programów szpiegujących pod Windows
+podnoszą alarm na niektórych częściach binarki Tora dla Windows. Według nas to są
+prawdopodobnie fałszywe pozytywne wyniki &mdash; w końcu rynek antywirusowy i
+antyszpiegowski to i tak gra w zgadywanie. Skontaktuj się z producentem swojego
+oprogramowania i wytłumacz, że masz program, która daje fałszywe pozytywne wyniki.
+Albo wybierz lepszego producenta.
+</p>
+
+<p>
+W międzyczasie, zachęcamy nie brać tego tylko na nasze słowo. Naszym zadaniem jest
+dawanie kodu źródłowego; jeśli jesteś zaniepokojony/a, proszę <a
+href="#CompileTorWindows">skompiluj program własnoręcznie</a>.
+</p>
+
+<hr />
+
+<a id="LiveCD"></a>
+<h3><a class="anchor" href="#LiveCD">Czy jest LiveCD lub inna dystrybucja/paczka
+zawierająca Tora?</a></h3>
+
+<p>
+W chwili obecnej nie ma żadnego oficjalnego LiveCD. Ciągle szukamy dobrych rozwiązań
+i próbujemy zrozumieć implikacje różnych rozwiązań na bezpieczeństwo i anonimowość.
+W międzyczasie przejrzyj poniższą listę i wybierz według własnego uznania:
+</p>
+
+<p>
+LiveCD:
+</p>
+
+<ol>
+<li><a href="http://incognito.anonymityanywhere.com/">Incognito LiveCD/USB</a>
+to płyta, z której można uruchomić komputer, posiadająca kilka aplikacji
+internetowych (Firefox, IRC, poczta, itp.) prekonfigurowanych do korzystania z Tora.
+Dla większości komputerów wszystko jest automatycznie skonfigurowane i możesz
+od razu używać. Możesz nawet skopiować płytę na dysk USB. Zawiera TorK.</li>
+
+<li><a href="http://tork.sourceforge.net/wiki/index.php/LiveCD">TorK LiveCD</a>
+jest oparta na Knoppiksie z naciskiem na przyjazność dla użytkownika. Możesz pracować
+anonimowo lub nie-anonimowo, podczas gdy TorK próbuje ciągle Cię informować o
+konsekwencjach Twoich działań. TorK LiveCD jest eksperymentalne, więc celem jest
+dostarczanie regularnie kolejnych wersji przez rok 2007 i później.</li>
+
+<li><a href="http://mandalka.name/privatix/">Privatix LiveCD/USB</a> jest opartym
+na Debianie systemem zawierającym Tora, Firefoksa i Torbuttona, które mogą
+zapisywać ulubione strony i inne ustawienia lub dane na zaszyfrowanym kluczu USB</li>
+</ol>
+
+<p>
+Paczki dla Windows:
+</p>
+
+<ol>
+<li><a href="<page torbrowser/index>">Paczka Tora z przeglądarką</a>
+dla Windows zawiera prekonfigurowaną przeglądarkę internetową i zawiera wszystkie
+niezbędne elementy, więc możesz jej używać z dysku USB.</li>
+
+<li><a href="http://www.janusvm.com/tor_vm/">Tor VM</a> jest następcą
+JanusVM. Wymaga twojego testowania!</li>
+
+<li><a href="http://janusvm.com/">JanusVM</a> to jądro Linuksa i oprogramowanie
+działającej w VMWare, które siedzi między Twoim komputerem z Windowsem a Internetem,
+upewniając się, że Twój ruch internetowy jest wymazywany i anonimizowany.</li>
+
+<li><a href="http://www.xerobank.com/xB_browser.html">xB Browser</a>,
+znane dawniej jako Torpark jest paczką Firefox+Tor dla Win32, którą można
+zainstalować na dysku USB. Wymaga systemu Win32, na którym będzie działać.</li>
+</ol>
+
+<p>
+Aktualnie nieutrzymywane, według naszej wiedzy:
+</p>
+
+<ol>
+<li>Polippix / Privatlivets Fred jest duńskim, opartym na Knoppiksie LiveCD z Torem
+i programami do szyfrowania telefonii IP. <a href="http://polippix.org/">Informacje i
+pobieranie</a>.</li>
+
+<li>ELE to Linux LiveCD skupione na oprogramowaniu związanym z prywatnością.
+Zawiera Tora, a możesz go pobrać z
+<a
+href="http://www.northernsecurity.net/download/ele/">http://www.northernsecurity.net/download/ele/</a>.</li>
+
+<li>Virtual Privacy Machine to Linux LiveCD zawierające Firefoksa, Privoxy,
+Tor, klika aplikacji do IRC i IM, i zestaw regułek ipchains mających na celu uniemożliwienie
+danym nie chronionym Torem na opuszczenie Twojego komputera. Więcej informacji na
+<a
+href="https://wiki.torproject.org/noreply/VirtualPrivacyMachine">https://wiki.torproject.org/noreply/VirtualPrivacyMachine</a>.</li>
+
+<li>Anonym.OS to LiveCD podobne do powyższych, ale oparte na OpenBSD zamiast na Linuksie,
+by zapewnić maksymalne bezpieczeństwo. Zostało zaprojektowane od podstaw, by zapewniać
+anonimowość i bezpieczeństwo, ma więc kilka cech i ograniczeń niespotykanych w
+innych LiveCD (związanych z Torem lub nie). Więcej informacji i pobieranie jest na stronie <a
+href="http://theory.kaos.to/projects.html">Kaos.Theory</a>.</li>
+
+<li>Phantomix to LiveCD do anonimowego surfowania i czatowania, oparte na najnowszej
+wersji systemu KNOPPIX. Zawiera prekonfigurowanego Tora i Privoxy. Można je pobrać ze
+<a href="http://phantomix.ytternhagen.de/">strony Phantomix</a>.</li>
+</ol>
+
+<p>
+Proszę się z nami skontaktować, jeśli znacie jakieś inne.
+</p>
 
 <hr />
 
@@ -512,6 +712,28 @@ Aby być pewnym, że coś naprawdę jest podpisane przez nas, powinieneś/aś sp
 z nami osobiście i otrzymać kopię odcisku palca naszego klucza GPG, lub powinieneś/aś
 znać kogoś, kto tak zrobił. Jeśli martwisz się atakiem na tym poziomie, zalecamy
 zaangażować się ze społecznością związaną z bezpieczeństwem i zacząć poznawać ludzi.
+</p>
+
+<hr />
+
+<a id="Criminals"></a>
+<h3><a class="anchor" href="#Criminals">Czy Tor nie umożliwia przestępcom robienia złych rzeczy?</a></h3>
+
+<p>
+By poznać odpowiedź na to i inne pytania, odwiedź nasze nowe <a
+href="<page faq-abuse>">FAQ o nadużyciach Tora</a>.
+</p>
+
+<hr />
+
+<a id="RespondISP"></a>
+<h3><a class="anchor" href="#RespondISP">Jak odpowiadać mojemu dostawcy internetu o moim przekaźniku
+wyjściowym?</a></h3>
+
+<p>
+Zestaw szablonów dobrych odpowiedzi dostawcom internetu został <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorAbuseTemplates">zebrany
+tutaj</a>.
 </p>
 
 <hr />
