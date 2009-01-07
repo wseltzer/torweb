@@ -2,7 +2,7 @@
 # Based-On-Revision: 16742
 # Last-Translator: jens@kubieziel.de, peter@palfrader.org
 
-#include "head.wmi" TITLE="Tor: Mithelfen"
+#include "head.wmi" TITLE="Tor: Mithelfen" CHARSET="UTF-8"
 
 <div class="main-column">
 
@@ -11,123 +11,123 @@
 <h2>Einige Dinge, die jeder tun kann</h2>
 
 <ol>
-  <li>Bitte überlege dir,
+  <li>Bitte Ã¼berlege dir,
     einen <a href="<page docs/tor-doc-relay>">Server zu
-    betreiben</a>, damit das Netzwerk weiter wächst.</li>
-  <li>Erzähl es deinen Freunden! Bringe sie dazu, auch Server zu
+    betreiben</a>, damit das Netzwerk weiter wÃ¤chst.</li>
+  <li>ErzÃ¤hl es deinen Freunden! Bringe sie dazu, auch Server zu
     betreiben.  Bringe sie dazu, auch versteckte Services zu
     betreiben. Bringe sie dazu, es wieder ihren Freunden zu
-    erzählen.</li>
+    erzÃ¤hlen.</li>
   <li>Wenn du die Ziele von Tor magst, bitte nimm dir einen Moment
-  Zeit, um für das <a href="<page donate>">Projekt zu spenden</a>. Wir
+  Zeit, um fÃ¼r das <a href="<page donate>">Projekt zu spenden</a>. Wir
   sind auch auf der Suche nach weiteren Sponsoren &mdash; wenn du
-  Firmen, NGOs oder andere Organisationen kennst, die Anonymität,
-  Privatsphäre und die Sicherheit der Kommunikation schätzen, dann
+  Firmen, NGOs oder andere Organisationen kennst, die AnonymitÃ¤t,
+  PrivatsphÃ¤re und die Sicherheit der Kommunikation schÃ¤tzen, dann
   lass sie von uns wissen.</li>
   <li>Wir suchen nach weiteren <a href="<page torusers>">guten
-  Beispielen für Nutzer von Tor oder von Anwendungsfällen</a>. Falls
-  du Tor für ein bestimmtes Szenario verwendest und uns davon erzählen
-  möchtest, freuen wir uns, darüber zu hören.</li>
+  Beispielen fÃ¼r Nutzer von Tor oder von AnwendungsfÃ¤llen</a>. Falls
+  du Tor fÃ¼r ein bestimmtes Szenario verwendest und uns davon erzÃ¤hlen
+  mÃ¶chtest, freuen wir uns, darÃ¼ber zu hÃ¶ren.</li>
   </ol>
 
 <a id="Usability"></a>
-<h2><a class="anchor" href="#Usability">unterstützende Anwendungen</a></h2>
+<h2><a class="anchor" href="#Usability">unterstÃ¼tzende Anwendungen</a></h2>
 
 <ol>
   <li>Wir brauchen gute Methoden, um DNS-Abfragen abzufangen, damit diese
-  nicht an einen lokalen Beobachter dringen, während wir versuchen, anonym zu
+  nicht an einen lokalen Beobachter dringen, wÃ¤hrend wir versuchen, anonym zu
   bleiben. (Dies passiert, weil die Anwendung selbst DNS-Anfragen
-  stellt, anstatt diese über Tor zu leiten.).
+  stellt, anstatt diese Ã¼ber Tor zu leiten.).
   <ul>
-    <li>Wir müssen <a
+    <li>Wir mÃ¼ssen <a
     href="https://wiki.torproject.org/noreply/TheOnionRouter/TSocksPatches">all
-    unsere Patches für tsocks</a> einspielen und einen Fork
-    betreuen. Wir würden diesen auch auf unserem Server mit anbieten, wenn
-    du möchtest.</li>
+    unsere Patches fÃ¼r tsocks</a> einspielen und einen Fork
+    betreuen. Wir wÃ¼rden diesen auch auf unserem Server mit anbieten, wenn
+    du mÃ¶chtest.</li>
     <li>Wir sollten das Programm dsocks von Dug Song patchen, so dass es
     das Kommando <code>mapaddress</code> von der Controllerschnittstelle
     nutzt. Somit verschwenden wir nicht einen gesamten Round-trip
-    innerhalb von Tor, um die Auflösung vor der Verbindung zu
+    innerhalb von Tor, um die AuflÃ¶sung vor der Verbindung zu
     machen.</li>
-    <li>Wir müssen unser <kbd>torify</kbd>-Skript so umgestalten, dass
+    <li>Wir mÃ¼ssen unser <kbd>torify</kbd>-Skript so umgestalten, dass
     es erkennt, welches tsocks oder dsocks installiert ist und dieses
     dann richtig aufruft. Das bedeutet wahrscheinlich, dass deren
-    Schnittstellen vereinheitlicht werden müssen und führt wahrscheinlich
+    Schnittstellen vereinheitlicht werden mÃ¼ssen und fÃ¼hrt wahrscheinlich
     dazu, dass Code zwischen beiden geteilt werden muss oder dass eines
     komplett nicht mehr benutzt wird.</li>
   </ul></li>
   <li>Leute, die einen Server betreiben, teilen uns immer wieder mit,
-    dass sie <var>BandwidthRate</var> in Abhängigkeit von der Uhrzeit setzen
+    dass sie <var>BandwidthRate</var> in AbhÃ¤ngigkeit von der Uhrzeit setzen
     wollen. Anstatt das
     direkt in Tor zu implementieren, sollten wir lieber ein kleines
-    Skript haben, das über die <a href="<page gui/index>">Torschnittstelle</a>
-    spricht und ein <code>setconf</code> macht, um die Änderungen
-    herbeizuführen. Natürlich würde es durch Cron ausgeführt oder es
-    schläft eine bestimmte Zeit und macht dann die Änderungen. Kann
-    das jemand für uns schreiben und wir packen das dann
-    nach <a href="<svnsandbox>contrib/">contrib</a>? Das wäre
-  eine gute Möglichkeit für den <a href="<page gui/index>">Tor GUI
+    Skript haben, das Ã¼ber die <a href="<page gui/index>">Torschnittstelle</a>
+    spricht und ein <code>setconf</code> macht, um die Ã„nderungen
+    herbeizufÃ¼hren. NatÃ¼rlich wÃ¼rde es durch Cron ausgefÃ¼hrt oder es
+    schlÃ¤ft eine bestimmte Zeit und macht dann die Ã„nderungen. Kann
+    das jemand fÃ¼r uns schreiben und wir packen das dann
+    nach <a href="<svnsandbox>contrib/">contrib</a>? Das wÃ¤re
+  eine gute MÃ¶glichkeit fÃ¼r den <a href="<page gui/index>">Tor GUI
   Wettbewerb</a>.</li>
   <li>Wir haben eine Vielzahl von Wegen, um
     das <a
     href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">Tornetzwerk
     in einem bestimmten Land zu verlassen</a>. Aber all diese Wege
-    brauchen den Namen eines speziellen Torservers. Es wäre schön,
+    brauchen den Namen eines speziellen Torservers. Es wÃ¤re schÃ¶n,
     wenn man nur ein Land angeben muss und automatisch wird ein
-    Server ausgewählt. Der beste Weg ist wahrscheinlich, Blossoms
+    Server ausgewÃ¤hlt. Der beste Weg ist wahrscheinlich, Blossoms
   Verzeichnis herunterzuladen und einen lokalen Blossomclient laufen
-  zu lassen, der die Verzeichnisse sicher lädt, die
+  zu lassen, der die Verzeichnisse sicher lÃ¤dt, die
   <code>.country.blossom</code>-Hostnamen mitschneidet und dann das
   richtige tut.</li>
-  <li>Wenn wir gerade bei Geolocation sind, wäre es schön, wenn
+  <li>Wenn wir gerade bei Geolocation sind, wÃ¤re es schÃ¶n, wenn
     jemand eine Karte anfertigt, die die Standorte der Torserver
-    anzeigt. Bonuspunkte gibt es, wenn es sich bei Änderungen am
+    anzeigt. Bonuspunkte gibt es, wenn es sich bei Ã„nderungen am
     Netzwerk auf den neuesten Stand bringt. Der leichteste Weg, um
-  dies zu erreichen, wäre alle Daten zu Google zu schicken und diese
-  machen dann die Karte für uns. Wie sehr beeinflusst dies die
-  Privatsphäre und haben wir noch andere gute Optionen?</li>
+  dies zu erreichen, wÃ¤re alle Daten zu Google zu schicken und diese
+  machen dann die Karte fÃ¼r uns. Wie sehr beeinflusst dies die
+  PrivatsphÃ¤re und haben wir noch andere gute Optionen?</li>
   <li>Tor bietet anonyme Verbindungen. Wenn du jedoch verschiedene
-    Pseudonyme haben möchtest (z.B. rufst du desöfteren zwei Webseiten
-    auf und wenn das jemand weiß, kann er auf dich schliessen.),
-    unterstützen wir das nicht sehr gut.  Wir sollten einen guten
+    Pseudonyme haben mÃ¶chtest (z.B. rufst du desÃ¶fteren zwei Webseiten
+    auf und wenn das jemand weiÃŸ, kann er auf dich schliessen.),
+    unterstÃ¼tzen wir das nicht sehr gut.  Wir sollten einen guten
     Ansatz und eine Schnittstelle zur Handhabung von pseudonymen
     Profilen finden. Schaue dir
     den <a
     href="http://archives.seul.org/or/talk/Dec-2004/msg00086.html">Beitrag
     </a> und den <a
     href="http://archives.seul.org/or/talk/Jan-2005/msg00007.html">Followup</a>
-    für mehr Details an.</li>
+    fÃ¼r mehr Details an.</li>
 </ol>
 
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">Dokumentation</a></h2>
 
 <ol>
-  <li>Bitte hilf Matt Edman mit der Dokumentation und HOWTOs für
+  <li>Bitte hilf Matt Edman mit der Dokumentation und HOWTOs fÃ¼r
   seinen <a href="http://vidalia-project.net/">Vidalia</a>.</li>
   <li>Kommentiere und dokumentiere unsere <a
     href="https://wiki.torproject.org/wiki/TheOnionRouter/TorifyHOWTO">Liste
-    von Programmen, die durch Tor geroutet werden können</a>.</li>
-  <li>Wir brauchen bessere Dokumentation für Programme, die dynamisch
-    in Verbindungen eingreifen und diese durch Tor schicken. Für Linux
+    von Programmen, die durch Tor geroutet werden kÃ¶nnen</a>.</li>
+  <li>Wir brauchen bessere Dokumentation fÃ¼r Programme, die dynamisch
+    in Verbindungen eingreifen und diese durch Tor schicken. FÃ¼r Linux
     und Windows scheinen tsocks (Linux), dsocks (BSD), und freecap gute Kandidaten.</li>
   <li>Wir haben eine riesige
-    Liste <a href="<page support>">potentiell nützlicher Programme,
+    Liste <a href="<page support>">potentiell nÃ¼tzlicher Programme,
     die eine Schnittstelle zu Tor haben</a>. Welche sind in welchen
     Situationen gut? Bitte hilf uns, diese zu testen und dokumentiere
     die Ergebnisse.</li>
   <li>Hilf, die Webseite und die Dokumentation in andere Sprachen zu
-  übersetzen. Schaue dir die <a href="<page translation>">Richtlinien
-  zur Übersetzung</a> an, wenn du gern helfen möchtest. Wir brauchen
-  auch Leute, um die Seiten in Arabisch oder Farsi zu übersetzen. Einen
-  Überblick gibt
+  Ã¼bersetzen. Schaue dir die <a href="<page translation>">Richtlinien
+  zur Ãœbersetzung</a> an, wenn du gern helfen mÃ¶chtest. Wir brauchen
+  auch Leute, um die Seiten in Arabisch oder Farsi zu Ã¼bersetzen. Einen
+  Ãœberblick gibt
   es bei der <a href="<page translation-status>">Statusseite der
-  Übersetzungen</a>.</li>
+  Ãœbersetzungen</a>.</li>
   </ol>
 
 <a id="Coding"></a>
   <p>Die untenstehenden Angaben wurden in der Originalsprache
-  belassen. Da diese sich ausschließlich auf englischsprachige
+  belassen. Da diese sich ausschlieÃŸlich auf englischsprachige
   Bewerber beziehen.</p>
 
   <a id="Summer"></a>
@@ -670,71 +670,71 @@ roadmap</a> for more ideas.
 
 <ol>
   <li>Torserver funktionieren unter Windows XP nicht sehr gut. Wir
-  verwenden auf Windows den standardmäßigen <code>select</code>-Systemaufruf.
-  Dies bereitet gerade auf mittelgroßen Servern <a
+  verwenden auf Windows den standardmÃ¤ÃŸigen <code>select</code>-Systemaufruf.
+  Dies bereitet gerade auf mittelgroÃŸen Servern <a
   href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">Probleme</a>.
-  Wahrscheinlich sollten wir hier besser Overlapped I/O nutzen. Eine Lösung
-  wäre, <a href="http://www.monkey.org/~provos/libevent/">libevent</a>
-  beizubringen, Overlapped I/O statt <code>select()</code> zu wählen. Tor muss
+  Wahrscheinlich sollten wir hier besser Overlapped I/O nutzen. Eine LÃ¶sung
+  wÃ¤re, <a href="http://www.monkey.org/~provos/libevent/">libevent</a>
+  beizubringen, Overlapped I/O statt <code>select()</code> zu wÃ¤hlen. Tor muss
   dann an die neue libevent-Schnittstelle angepasst werden. Christian
   King hat
   <a href="https://svn.torproject.org/svn/libevent-urz/trunk/">einen guten
   Anfang</a> gemacht.</li>
-  <li>Wie können wir die <a
+  <li>Wie kÃ¶nnen wir die <a
   href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a> leichter
   zu warten, verbessern und zu dokumentieren machen?</li>
   <li>Wir sollten damit anfangen unser <a href="<page
-  documentation>#DesignDoc">gegen Blockierungen geschütztes Design</a> zu
+  documentation>#DesignDoc">gegen Blockierungen geschÃ¼tztes Design</a> zu
   implementieren. Dies beinhaltet die Ausarbeitung des Designs, die
   Modifizierung diverser Teile von Tor, die Arbeit an einer <a
   href="http://vidalia-project.net/">GUI</a>, die intuitiv ist und die Planung
-  für den Einsatz.</li>
-  <li>Wir brauchen ein flexibles Gerüst, um Ende-zu-Ende Attacken des
+  fÃ¼r den Einsatz.</li>
+  <li>Wir brauchen ein flexibles GerÃ¼st, um Ende-zu-Ende Attacken des
   Netzverkehrs zu simulieren. Viele Forscher haben Simulatoren geschaffen, die
-  ihre Intuition, ob ein Angriff oder Verteidigung funktioniert, unterstützt.
-  Können wir einen Simulator bauen, der offen und gut dokumentiert ist? Dies
+  ihre Intuition, ob ein Angriff oder Verteidigung funktioniert, unterstÃ¼tzt.
+  KÃ¶nnen wir einen Simulator bauen, der offen und gut dokumentiert ist? Dies
   wird eine Menge neuer Forschung anregen. Schaue auch auf den <a
   href="#Research">Eintrag unten</a>, um Details zu dieser Aufgabe zu entdecken.
-  Wenn es fertig ist, könntest du helfen, eine Veröffentlichung  dazu zu schreiben.</li>
+  Wenn es fertig ist, kÃ¶nntest du helfen, eine VerÃ¶ffentlichung  dazu zu schreiben.</li>
   <li>Momentan werden die Deskriptoren der versteckten Services nur
   auf einigen wenigen Verzeichnisservern gespeichert. Dies ist
-  schlecht für die Privatsphäre und die Robustheit. Um mehr Robustheit
+  schlecht fÃ¼r die PrivatsphÃ¤re und die Robustheit. Um mehr Robustheit
   zu erlangen, sollten wir die privaten Daten aus den Deskriptoren
-  entfernen, um diese auf verschiedenen Plätzen spiegeln zu
-  können. Idealerweise hätten wir gern ein Speicher-/Backupsystem, das
+  entfernen, um diese auf verschiedenen PlÃ¤tzen spiegeln zu
+  kÃ¶nnen. Idealerweise hÃ¤tten wir gern ein Speicher-/Backupsystem, das
   verschieden zu den Verzeichnisservern ist. Das erste Problem ist,
-  das wir Format für die versteckten Services schaffen müssen, welches
-  a) ASCII statt binär ist, b) die Liste der Introductionpoints
-  verschlüsselt, solange man nicht die <tt>.onion</tt>-Adresse kennt
+  das wir Format fÃ¼r die versteckten Services schaffen mÃ¼ssen, welches
+  a) ASCII statt binÃ¤r ist, b) die Liste der Introductionpoints
+  verschlÃ¼sselt, solange man nicht die <tt>.onion</tt>-Adresse kennt
   und c) den Verzeichnissen erlaubt, den Zeitstempel und die Signatur
   eines Deskriptors zu verifizieren, so dass diese nicht mit falschen
-  überrumpelt werden. Zweitens wird es jedes verteilte Speichersystem
+  Ã¼berrumpelt werden. Zweitens wird es jedes verteilte Speichersystem
   tun, solange es authentifizierte Updates erlaubt.</li>
-  <li>Torversionen ab 0.1.1.x unterstützen Cryptohardwarebeschleuniger
-    via OpenSSL. Bisher hat das niemand getestet. Möchte jemand gern
+  <li>Torversionen ab 0.1.1.x unterstÃ¼tzen Cryptohardwarebeschleuniger
+    via OpenSSL. Bisher hat das niemand getestet. MÃ¶chte jemand gern
     eine Karte haben und schauen, ob das funktioniert?</li>
   <li>Eine Sicherheitsanalyse mit
     "<a href="http://en.wikipedia.org/wiki/Fuzz_testing">Fuzz</a>"
-    machen.  Herausfinden, ob es da draußen gute Bibliotheken dafür
+    machen.  Herausfinden, ob es da drauÃŸen gute Bibliotheken dafÃ¼r
     gibt. Gewinne Ruhm und Ehre, wenn wir nur wegen dir ein neues
     Release herausbringen!</li>
-  <li>Tor nutzt TCP für den Transport und TLS für die Verschlüsselung
+  <li>Tor nutzt TCP fÃ¼r den Transport und TLS fÃ¼r die VerschlÃ¼sselung
     der Verbindungen. Dies ist einfach. Es bedeutet aber auch, dass
-    alle Zellen Verspätungen erfahren, wenn nur ein Paket verworfen
-    wird. Daher können wir nur bedingt TCP-Streams unterstützen. Es
+    alle Zellen VerspÃ¤tungen erfahren, wenn nur ein Paket verworfen
+    wird. Daher kÃ¶nnen wir nur bedingt TCP-Streams unterstÃ¼tzen. Es
     gibt eine <a
     href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">Liste
-    von Gründen</a>, warum wir nicht zu Transport per UDP gewechselt
-    sind. Es wäre schön, wenn diese Liste kürzer werden würde. Wir
+    von GrÃ¼nden</a>, warum wir nicht zu Transport per UDP gewechselt
+    sind. Es wÃ¤re schÃ¶n, wenn diese Liste kÃ¼rzer werden wÃ¼rde. Wir
   haben auch eine <a
-  href="<svnsandbox>doc/100-tor-spec-udp.txt">Spezifikation für Tor
+  href="<svnsandbox>doc/100-tor-spec-udp.txt">Spezifikation fÃ¼r Tor
   und UDP</a> &mdash; bitte lass uns wissen, wenn damit etwas nicht
   stimmt.</li>
-  <li>Wir sind nicht weit davon entfernt, Unterstützung für IPv6 bei
-    Exitknoten zu haben. Falls du dich stark um IPv6 kümmerst, ist
+  <li>Wir sind nicht weit davon entfernt, UnterstÃ¼tzung fÃ¼r IPv6 bei
+    Exitknoten zu haben. Falls du dich stark um IPv6 kÃ¼mmerst, ist
     das wahrscheinlich der Platz, um zu starten.</li>
   <li>Du magst keinen von den obigen Punkten? Schaue dir die <a
-  href="<svnsandbox>doc/design-paper/roadmap-future.pdf">weiteren Pläne</a> für
+  href="<svnsandbox>doc/design-paper/roadmap-future.pdf">weiteren PlÃ¤ne</a> fÃ¼r
   weitere Ideen an.</li>
 </ol>
 
@@ -743,58 +743,58 @@ roadmap</a> for more ideas.
 
 <ol>
   <li>Die Fingerprintattacken gegen Webseiten machen eine Liste von
-    einigen wenigen populären Webseiten, laden die Inhalte herunter
-    und machen einen Satz von Signaturen für jede Seite. Danach
-    beobachten sie den Verkehr des Torclients. Währenddessen gelangen sie
+    einigen wenigen populÃ¤ren Webseiten, laden die Inhalte herunter
+    und machen einen Satz von Signaturen fÃ¼r jede Seite. Danach
+    beobachten sie den Verkehr des Torclients. WÃ¤hrenddessen gelangen sie
     schnell zu einer Vermutung, welche Seite gerade besucht wird. Wie
-    effektiv ist dieser Angriff bezüglich der aktuellen Codebasis von
-    Tor? Beginne danach Verteidigungsmöglichkeiten auszuloten. Wir
-    könnten beispielsweise die Zellgröße von 512 Bytes auf 1024 Bytes
+    effektiv ist dieser Angriff bezÃ¼glich der aktuellen Codebasis von
+    Tor? Beginne danach VerteidigungsmÃ¶glichkeiten auszuloten. Wir
+    kÃ¶nnten beispielsweise die ZellgrÃ¶ÃŸe von 512 Bytes auf 1024 Bytes
     anheben und Techniken wie <a
     href="http://freehaven.net/anonbib/#timing-fc2004">defensives
-    Verwerfen</a> anwenden. Wir könnten auch künstliche Verspätungen
-    einarbeiten. Welchen Einfluss haben diese Massnahmen und wie groß
+    Verwerfen</a> anwenden. Wir kÃ¶nnten auch kÃ¼nstliche VerspÃ¤tungen
+    einarbeiten. Welchen Einfluss haben diese Massnahmen und wie groÃŸ
     ist der Einfluss auf die Benutzbarkeit?</li>
-  <li>Eine weitere Angriffsmöglichkeit (end-to-end traffic
+  <li>Eine weitere AngriffsmÃ¶glichkeit (end-to-end traffic
     confirmation attack) basiert darauf, dass der Verkehr zwischen
     Alice und Bob beobachtet wird. Durch den <a
     href="http://freehaven.net/anonbib/#danezis:pet2004">Vergleich
     der Signaturen des Netzverkehrs kann man herausfinden, on man
     denselben Stream verfolgt</a>. Bis jetzt akzeptiert Tor dies als
-    Fakt und nimmt an, dass dies in allen Fällen trivial ist. Ist das
+    Fakt und nimmt an, dass dies in allen FÃ¤llen trivial ist. Ist das
     wahr? Wieviel Verkehr von welcher Sorte braucht man, um sicher zu
     sicher, dass es funktioniert? Gibt es Szenarien, die die Attacke
     ausbremsen? Funktioniert Padding besser als anderes?</li>
     <li>Eine verwandte Frage: Bringt der Betrieb eines Relays oder
-  eines Brückenservers zusätzlichen Schutz gegen Timingangriffe? Kann
-  ein externer Angreifer individuelle Ströme erkennen, obwohl er nicht
-  in die TLS-Ströme sehen kann? Hat die Höhe des durchgeleiteten
-  Verkehrs Einfluss? Was wäre, wenn der Client anderen Verkehr
+  eines BrÃ¼ckenservers zusÃ¤tzlichen Schutz gegen Timingangriffe? Kann
+  ein externer Angreifer individuelle StrÃ¶me erkennen, obwohl er nicht
+  in die TLS-StrÃ¶me sehen kann? Hat die HÃ¶he des durchgeleiteten
+  Verkehrs Einfluss? Was wÃ¤re, wenn der Client anderen Verkehr
   verlangsamt, um es so aussehen zu lassen, dass er auch
-  weitergeleitet wird? Die selbe Queue könnte auch zur Maskierung der
+  weitergeleitet wird? Die selbe Queue kÃ¶nnte auch zur Maskierung der
   Timings mit Techniken von <a
   href="http://www.freehaven.net/anonbib/#ShWa-Timing06" >adaptivem
-  Padding</a> genutzt werden, aber ohne zusätzlich Traffic zu
-  erzeugen. Würde das das Timing für externe Angreifer verschleiern?
-  Müssten die Strategien für assymetrische Knoten angepasst werden?
-  Wäre es dort beispielsweise möglich, den Clienttraffic von anderem
-  zu unterscheiden? Oder ist das vielleicht für symmetrische
+  Padding</a> genutzt werden, aber ohne zusÃ¤tzlich Traffic zu
+  erzeugen. WÃ¼rde das das Timing fÃ¼r externe Angreifer verschleiern?
+  MÃ¼ssten die Strategien fÃ¼r assymetrische Knoten angepasst werden?
+  WÃ¤re es dort beispielsweise mÃ¶glich, den Clienttraffic von anderem
+  zu unterscheiden? Oder ist das vielleicht fÃ¼r symmetrische
   Verbindungen leichter?</li>
   <li>Wiederhole die <a
   href="http://www.cl.cam.ac.uk/~sjm217/projects/anon/#torta"
   >Angriffe von Murdoch und Danezis von der Oakland 05</a> im
   aktuellen Tor-Netzwerk. Schaue, ob du herausfinden kannst, warum das
   bei einigen gut und bei anderen schlecht funktioniert. (Meine
-  Theorie ist, dass schnelle Knoten mit Restkapazität dem Angriff
+  Theorie ist, dass schnelle Knoten mit RestkapazitÃ¤t dem Angriff
   besser widerstehen.) Wenn das wahr ist, experimentiere mit
   <var>RelayBandwidthRate</var> und
   <var>RelayBandwidthBurst</var>. Dabei betreibst du ein Relay,
   welches als Client genutzt wird, um den Verkehr des Angreifers
-  weiterzuleiten. Was ist das richtige Verhältnis von
-  <var>RelayBandwidthRate</var> zu aktueller Kapazität? Gibt es
-  überhaupt ein Verhältnis? Wenn wir dabei sind, erhöht eine große
+  weiterzuleiten. Was ist das richtige VerhÃ¤ltnis von
+  <var>RelayBandwidthRate</var> zu aktueller KapazitÃ¤t? Gibt es
+  Ã¼berhaupt ein VerhÃ¤ltnis? Wenn wir dabei sind, erhÃ¶ht eine groÃŸe
   Zahl von Relays die Fehlerrate des Angriffs? (Das Tor-Netzwerk ist
-  nun fast zwei Größenordnungen gewachsen, seit die Veröffentlichung
+  nun fast zwei GrÃ¶ÃŸenordnungen gewachsen, seit die VerÃ¶ffentlichung
   geschrieben wurde.) Lies auf jeden Fall auch <a
   href="http://freehaven.net/anonbib/#clog-the-queue">Don't Clog the
   Queue</a>.</li>
@@ -802,103 +802,103 @@ roadmap</a> for more ideas.
     Alice und dem Eingangsknoten (bzw. zwischen dem Exitknoten und
     Bob). In der Literatur wird dies als einfache Verbindung auf
     einem Graph dargestellt. In der Praxis durchquert der Pfad viele
-    autonome Systeme. Es ist nicht ungewöhnlich, dass dasselbe
+    autonome Systeme. Es ist nicht ungewÃ¶hnlich, dass dasselbe
     <a href="http://freehaven.net/anonbib/#feamster:wpes2004">autonome
     System sowohl beim Eingangs- wie auch beim Ausgangspfad
     erscheint</a>. Um nun herauszufinden, ob ein spezielles Alice-,
-    Eingangs-, Ausgangs-, Bobviereck gefährlich ist, müssten wir die
+    Eingangs-, Ausgangs-, Bobviereck gefÃ¤hrlich ist, mÃ¼ssten wir die
     gesamte Routingzone des Internet herunterladen und Operationen
-    darauf ausführen. Gibt es praktische Abschätzungen, die die
-    Arbeit erleichtern können?</li>
+    darauf ausfÃ¼hren. Gibt es praktische AbschÃ¤tzungen, die die
+    Arbeit erleichtern kÃ¶nnen?</li>
     <li>Andere Fragen in der Forschung, die die geografische
     Verteilung betreffen, betrachten einen Kompromiss zwischen der Wahl
-    einer effizienten Route und einer zufälligen Route. Wirf einen Blick
+    einer effizienten Route und einer zufÃ¤lligen Route. Wirf einen Blick
     auf das <a
     href="http://swiki.cc.gatech.edu:8080/ugResearch/uploads/7/ImprovingTor.pdf">Positionspapier</a>
     von Stephen Rollyson. Es diskutiert, wie man langsame Leitungen
-    auschalten kann, ohne die Anonymität zu stark einzuschränken. Die
-    Begründungen machen einen guten Eindruck, brauchen aber noch mehr
+    auschalten kann, ohne die AnonymitÃ¤t zu stark einzuschrÃ¤nken. Die
+    BegrÃ¼ndungen machen einen guten Eindruck, brauchen aber noch mehr
     Arbeit.</li>
   <li>Tor funktioniert nicht sehr gut, wenn Server eine asymmetrische
     Bandbreite (Kabel oder DSL) haben. Tor hat separate
     TCP-Verbindungen zwischen jedem Hop. Wenn nun die einkommenden
     Pakete gut ankommen und die ausgehenden alle verworfen werden,
-    übertragen die die TCP-Pushback-Mechanismen diese Informationen
+    Ã¼bertragen die die TCP-Pushback-Mechanismen diese Informationen
     nicht gut hin zu den eingehenden Verbindungen. Eventuell sollte
     Tor feststellen, wenn eine Menge an ausgehenden Verbindungen
     verworfen werden und dann die eigehenden Verbindungen selbst
-    herunterregeln? Ich könnte mir ein Schema vorstellen, wo wir ein
-    konservatives Ratelimit suchen und das langsam vergrößern, bis
+    herunterregeln? Ich kÃ¶nnte mir ein Schema vorstellen, wo wir ein
+    konservatives Ratelimit suchen und das langsam vergrÃ¶ÃŸern, bis
     Pakete verworfen werden. Wir brauchen jemanden, der sich gut mit
-    Netzwerken auskennt, um dies zu simulieren und eine Lösung zu
-    finden. Wir müssen die Erosion in der Performance verstehen und
-    das als Motivation für Transport per UDP verstehen.</li>
-  <li>Ein verwandtes Thema ist die Kontrolle bei Netzüberlastung. Ist
+    Netzwerken auskennt, um dies zu simulieren und eine LÃ¶sung zu
+    finden. Wir mÃ¼ssen die Erosion in der Performance verstehen und
+    das als Motivation fÃ¼r Transport per UDP verstehen.</li>
+  <li>Ein verwandtes Thema ist die Kontrolle bei NetzÃ¼berlastung. Ist
     unser Design ausreichend, um hohe Netzlast auszuhalten?
-    Vielleicht sollten wir mit Fenstern von variabler Größe
+    Vielleicht sollten wir mit Fenstern von variabler GrÃ¶ÃŸe
     experimentieren? Das schien im <a
     href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">Experiment
-    mit dem SSH-Durchsatz</a> gut zu funktionieren. Wir müssen das
-    messen und verbessern und bei guten Resultaten Tor überholen.</li>
-  <li>Unsere Ziele zum Schutz vor Zensur schließen ein, dass ein
+    mit dem SSH-Durchsatz</a> gut zu funktionieren. Wir mÃ¼ssen das
+    messen und verbessern und bei guten Resultaten Tor Ã¼berholen.</li>
+  <li>Unsere Ziele zum Schutz vor Zensur schlieÃŸen ein, dass ein
     Angreifer Tor-Verkehr von <a
     href="https://www.torproject.org/svn/trunk/doc/design-paper/blocking.html#sec:network-fingerprint">normalem
-    SSL-Verkehr unterscheiden</a> kann. Offensichtlich können wir keine
+    SSL-Verkehr unterscheiden</a> kann. Offensichtlich kÃ¶nnen wir keine
     perfekte Steganographie erreichen und dabei benutzbar bleiben. Aber
-    wir möchten gern Angriffen, die nur wenige Pakete betrachten,
-    überwinden. Eine der verbliebenen Angriffe, die wir nicht sehr geprüft
-    haben, ist das Verhältnis von der Größe der Tor-Zellen (512 Byte)
+    wir mÃ¶chten gern Angriffen, die nur wenige Pakete betrachten,
+    Ã¼berwinden. Eine der verbliebenen Angriffe, die wir nicht sehr geprÃ¼ft
+    haben, ist das VerhÃ¤ltnis von der GrÃ¶ÃŸe der Tor-Zellen (512 Byte)
     zum restlichen Verkehr. Wieviel erkennt man davon, haben die
-    Leerungsmechanismen der Buffer einen Einfluss, könnte Padding helfen?</li>
+    Leerungsmechanismen der Buffer einen Einfluss, kÃ¶nnte Padding helfen?</li>
   <li>Tor-Verbindungen werden schrittweise aufgebaut, ein Knoten nach
-    dem anderen.  Also haben wir theoretisch die Möglichkeit, manche
-    Ströme schon nach dem zweiten Knoten die Tor-Wolke verlassen zu
+    dem anderen.  Also haben wir theoretisch die MÃ¶glichkeit, manche
+    StrÃ¶me schon nach dem zweiten Knoten die Tor-Wolke verlassen zu
     lassen, andere nach dem dritten Knoten, und so weiter.  Dies erscheint
-    nett, weil es die Menge der austretenden Ströme, welcher ein bestimmter
+    nett, weil es die Menge der austretenden StrÃ¶me, welcher ein bestimmter
     Server sieht, begrenzt.  Wenn wir diesen Strom jedoch sicher haben wollen,
-    dann, laut unserer aktuellen Logik,  sollte der kürzeste Pfad mindestens 3
-    Knoten lang sein.  Das heisst, die anderen Ströme wären noch länger.  Wir
-    müssen diese Performance/Sicherheitsabwägung untersuchen.</li>
+    dann, laut unserer aktuellen Logik,  sollte der kÃ¼rzeste Pfad mindestens 3
+    Knoten lang sein.  Das heisst, die anderen StrÃ¶me wÃ¤ren noch lÃ¤nger.  Wir
+    mÃ¼ssen diese Performance/SicherheitsabwÃ¤gung untersuchen.</li>
    <li>Es ist nicht schwer, DoS Angriffe auf Tor-Server oder
-    Tor-Verzeischnisserver erfolgreich durchzuführen.  Sind Client-Puzzles die
+    Tor-Verzeischnisserver erfolgreich durchzufÃ¼hren.  Sind Client-Puzzles die
     richtige Anwort?  Welche anderen praktischen Herangehensweisen gibt es?
-    Bonuspunkte, wenn diese mit dem aktuellen Tor-Protokoll abwärtskompatibel
+    Bonuspunkte, wenn diese mit dem aktuellen Tor-Protokoll abwÃ¤rtskompatibel
     sind.</li>
   <li>Programme, wie <a
     href="<page torbutton/index>">Torbutton</a>,
     versuchen den User-Agent des Browsers zu verstecken, indem sie
-    diesen durch eine gewöhnliche Angabe ersetzen. Dadurch kann ein
+    diesen durch eine gewÃ¶hnliche Angabe ersetzen. Dadurch kann ein
     Angreifer Tor-Nutzer nicht durch einen Blick auf die
-    Nachrichtenköpfe erkennen. Die Software versucht einen, allgemein
+    NachrichtenkÃ¶pfe erkennen. Die Software versucht einen, allgemein
     genutzten Wert zu nehmen. Frage 1: Wie sehr schaden wir uns, wenn
     wir die Firefox-Version periodisch anpassen? Wenn wir zu oft
     updaten, kann man es unterscheiden. Machen wir es nicht, findet man
     Tor-Nutzer heraus, da sie sehr alte Versionen nutzen. Die Antwort
-    hängt wahrscheinlich von den Firefox-Versionen, die es gibt,
+    hÃ¤ngt wahrscheinlich von den Firefox-Versionen, die es gibt,
     ab. Frage 2: Die Leute fragen immer wieder, zwischen n verschiedenen
     User-Agents zu wechseln. Hilft der Ansatz oder macht das keinen
     Unterschied? Betrachte dabei Cookies und Tor-Nutzer, die periodisch
-    den User-Agent wechseln. Bösartige Webseiten greifen nur bestimmte
+    den User-Agent wechseln. BÃ¶sartige Webseiten greifen nur bestimmte
     Browser an. Wie beeinflussen die Antworten auf diese Fragen diese
     Antwort.</li>
   <li>Momentan benutzen Tor-Clients eine aufgebaute Verbindungsstrecke
-    für zehn Minuten, nachdem diese aufgebaut wurde. Das Ziel hierfür
+    fÃ¼r zehn Minuten, nachdem diese aufgebaut wurde. Das Ziel hierfÃ¼r
     ist, das Netzwerk nicht mit Nachrichten zum Verbindungsaufbau zu
-    überlasten. Außerdem kann der Austrittsknoten dadurch kein Profil
-    über den Nutzer bilden. Es hat sich herausgestellt, dass zehn
+    Ã¼berlasten. AuÃŸerdem kann der Austrittsknoten dadurch kein Profil
+    Ã¼ber den Nutzer bilden. Es hat sich herausgestellt, dass zehn
     Minuten zu lang sind. Insbesondere dann, wenn Verbindungen von
     verschiedenen Protokollen (IM und HTTP) benutzt werden. Wenn wir
     die Gesamtzahl an Erweiterungen der Verbindungsstrecke beibehalten,
     gibt es effizientere/sichere Wege, Streams zu den
-    Verbindungsstrecken zu alloziieren oder präemptiv Strecken
-    aufzubauen? Natürlich muss dieser Punkt damit beginnen, dass
+    Verbindungsstrecken zu alloziieren oder prÃ¤emptiv Strecken
+    aufzubauen? NatÃ¼rlich muss dieser Punkt damit beginnen, dass
     erforscht wird, welche Verbindungen die Programme typischerweise
     benutzen. Damit hast du dann einen realistischen Ansatz, den du
     optimierst.</li>
-  <li>Wie viele Brückenserver benötigt man, um die Verfügbarkeit zu
-    garantieren? Wir sollten die Abwanderung unseren Brückenservern messen.
-    Wenn es viel davon gibt, gibt es Möglichkeiten, dass die Nutzer
-    länger verbunden bleiben?</li>
+  <li>Wie viele BrÃ¼ckenserver benÃ¶tigt man, um die VerfÃ¼gbarkeit zu
+    garantieren? Wir sollten die Abwanderung unseren BrÃ¼ckenservern messen.
+    Wenn es viel davon gibt, gibt es MÃ¶glichkeiten, dass die Nutzer
+    lÃ¤nger verbunden bleiben?</li>
   </ol>
 
 <p><a href="<page contact>">Lass uns wissen</a>, wenn du bei einem
