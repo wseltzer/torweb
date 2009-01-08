@@ -11,7 +11,7 @@ TORSVNHEAD = ../tor
 #TORSVNHEAD = /home/arma/work/onion/svn/trunk
 
 WMLBASE = .
-SUBDIRS=docs eff gui torbrowser torbutton tordnsel projects torvm press
+SUBDIRS=docs eff gui torbrowser torbutton tordnsel projects torvm press gettor
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
@@ -34,10 +34,12 @@ torvm:
 	$(MAKE) -C "$@" WMLBASE=..
 press:
 	$(MAKE) -C "$@" WMLBASE=..
+gettor:
+	$(MAKE) -C "$@" WMLBASE=..
 mirrors:
 	./update-mirrors.pl
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
 
-.PHONY: docs eff gui torbrowser torbutton tordnsel projects torvm press
+.PHONY: docs eff gui torbrowser torbutton tordnsel projects torvm press gettor
