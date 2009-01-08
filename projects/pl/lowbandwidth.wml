@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 17312
+# Based-On-Revision: 18017
 # Translation-Priority: 3-low
 # Last-Translator: bogdandr_at_op . pl
 
@@ -220,25 +220,80 @@ Ten projekt jest hojnie sponsorowany przez:
 
 <tr>
   <td>
-    Wrzesień 08
+   <a id="Sep08"></a>
+   <a class="anchor" href="#Sep08">Wrzesień 08</a>
   </td>
   <td>
+   <small><em>We wrześniu nie było żadnych aktualizacji.</em></small>
   </td>
 </tr>
 
 <tr bgcolor="#e5e5e5">
   <td>
-    Październik 08
+   <a id="Oct08"></a>
+   <a class="anchor" href="#Oct08">Październik 08</a>
   </td>
   <td>
+   <small><em><p>Nie osiągnęliśmy naszego kroku milowego "skończenia implementacji"
+    w tym miesiącu, gdyż deweloper prowadzący ten projekt ma zbyt dużo zajęć.
+    Dobrą wiadomością jest to, że zrobiliśmy całkiem sporą część implementacji,
+    a było to kilka miesięcy temu (od etapu sierpniowego), więc zdążyliśmy już ją
+    nieźle przetestować. Pozostałe kroki implementacji to nauczenie przekaźników,
+    jak otrzymywać żądania pobierania deskryptorów przekaźników z wewnątrz obwodów
+    (prawdopodobnie potrzebujemy nowego typu komórki specjalnie do tych celów,
+    abyśmy mogli wyciąć drogę naokoło), a potem nauczyć klientów, by robiły to,
+    gdy używany przez nich przekaźnik używa dostatecznie nowej wersji. Te dwa
+    kroki są szczegółowo opisane w
+    <a href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/141-jit-sd-downloads.txt"
+    >Sekcji 3.2 propozycji 141</a></p>
+
+    <p>Nasz nowy plan czasowy to zrobienie tych dwóch rzeczy do połowy listopada,
+    a jeśli to zacznie wyglądać na coraz mniej prawdopodobne, zrobimy większe zmiany
+    planu i być może też projektu.</p>
+
+    <p>Jest kilka innych komponentów, którymi chcielibyśmy się zająć potem --
+    jeden, o którym dużo ostatni myśleliśmy, to pobieranie różnic ostatnich
+    konsensusów:
+    <a href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/140-consensus-diffs.txt"
+    >140-consensus-diffs.txt</a>.
+    Po pierwsze, to mogłoby zaoszczędzić przepustowość łącza, co zawsze jest dobre,
+    gdy pomnożyć je przez liczbę klientów, ale to też oznacza, że możemy użyć
+    tej zaoszczędzonej przepustowości do pobierania różnic częściej niż bieżące
+    "co 3-4 godziny". Jeśli klienci poznają bardziej aktualne informacje katalogowe,
+    mogą budować szybsze ścieżki, gdyż mają lepsze dane o przepustowości każdego
+    przekaźnika (co wiąże się z projektem NLnet), ale głównym nowym pomysłem jest
+    to, że lepiej korzystamy z przelotnych przekaźników: w chwili obecnej przekaźnik
+    musi działać przez 3-4 godziny, zanim zobaczy jakichkolwiek użytkowników, a to
+    wyklucza wielu wolontariuszy chcących prowadzić przekaźniki tylko przez kilka
+    godzin na raz.</p>
+    <p>Kolejnym krokiem jest skończenie implementacji propozycji 141, byśmy mogli
+    przedstawić ją użytkownikom do testów. Mamy nadzieję, że wkrótce!</p></em></small>
   </td>
 </tr>
 
 <tr>
   <td>
-    Listopad 08
+   <a id="Nov08"></a>
+   <a class="anchor" href="#Nov08">Listopad 08</a>
   </td>
   <td>
+   <small><em><p>Zdaje się, że pierwszy plan, który mieliśmy na ostatnią fazę
+   rozwoju jest zarówno a) znacznie trudniejszy, niż myśleliśmy i b) przypuszczalnie
+   przesadny w stosunku do tego, czego potrzebujemy.</p>
+
+  	 <p> Roger wznowił dyskusję projektową na or-dev:
+  	 <a href="http://archives.seul.org/or/dev/Nov-2008/threads.html">http://archives.seul.org/or/dev/Nov-2008/threads.html</a>.</p>
+
+  	 <p>Myślę, że teraz mamy lepsze rozeznanie w możliwościach i ich kosztach:
+  	 <a href="http://archives.seul.org/or/dev/Nov-2008/msg00007.html">http://archives.seul.org/or/dev/Nov-2008/msg00007.html</a>.</p>
+
+  	 <p>Nick został zasypany innymi projektami deweloperskimi (miejmy nadzieję, że
+  	 zacznie kończenie ich w tym miesiącu), a ja chcę znać jego zdanie na temat
+  	 kontynuacji; mam nadzieję, że wybierzemy jedno z prostszych podejść.</p>
+
+  	 <p>Z drugiej strony, te najprostsze rozwiązania dają też mniejszą skalowalność.
+  	 Ale moim zdaniem będą dobrymi rozwiązaniami tymczasowymi na pewien czas
+  	 -- a gdy nadejdzie ta chwila, kto wie, co jeszcze zostanie zmienione.</p></em></small>
   </td>
 </tr>
 
