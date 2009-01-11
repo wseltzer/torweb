@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 14229
+# Based-On-Revision: 17024
 # Last-Translator: jens@kubieziel.de
 
 #include "head.wmi" TITLE="Tor: Protokoll für versteckte Dienste" CHARSET="UTF-8"
@@ -9,10 +9,19 @@
 <h2>Tor: Protokoll für versteckte Dienste</h2>
 <hr />
 
+<p>Tor macht es Benutzern möglich, den Ort der Dienste zu verstecken. Dies kann
+die Publikation von Webseiten oder ein Server für Instant-Nachrichten wie auch
+anderes sein. Andere Nutzer können sich über so genannte Rendezvouspunkte mit
+den versteckten Diensten verbinden ohne deren Identität zu kennen. Die Seite
+beschreibt die technischen Details zu dem Protokoll. Eine eher praktische
+Anleitung kannst du auf der Seite <a href="<page
+docs/tor-hidden-service>">Versteckte Dienste konfigurieren</a> finden.</p>
+
+
 <p>Ein versteckter Service muss seine Existenz im Tor-Netzwerk bekannt
   machen, bevor er kontaktiert werden kann. Daher wählt der Service
   zufällig einige Tor-Server aus, baut Verbindungsstrecken auf und
-  bittet diese, als Einführungspunkte (introduction point) zu
+  bittet diese, als <em>Einführungspunkte (introduction point)</em> zu
   agieren. Beachte bitte, dass in den folgenden Abildungen die grünen
   Verweise eher Verbindungsstrecken von mehreren beteilten Rechnern
   meint, als direkte Verbindungen. Das macht es für jeden unmöglich,
@@ -28,7 +37,7 @@
 # Bob tells to his introduction points
 
 <p>Im zweiten Schritt generiert der versteckte Service einen
-  Deskriptor. Dieser enthält die Adresse des Einführungspunktes und
+  <em>Deskriptor</em>. Dieser enthält die Adresse des Einführungspunktes und
   seinen öffentlichen Schlüssel. Der versteckte Service signiert die
   Informationen mit seinem privaten Schlüssel. Es speichert den
   Deskriptor bei Verzeichnisservern, indem er wieder eine
@@ -43,6 +52,17 @@
   reden. Nach diesem Schritt ist der versteckte Dienst bereit.
 </p>
 
+<p>Auf den ersten Blick ist die Benutzung einen generierten Servicenamens
+unpraktisch. Es dient jedoch einem wichtigen Ziel: Jeder &ndash; auch die
+Einführungspunkte, Verzeichnisserver und natürlich auch die Clientprogramme
+&ndash; können feststellen, ob sie mit dem richtigen Dienst kommunizieren.
+Schaue dir dazu <a href="https://zooko.com/distnames.html">Zookos Vermutung</a>
+an. Sie besagt, dass du bei der Wahl der Eigenschaften dezentralisiert, sicher
+und menschenlesbar maxmimal zwei Eigenschaften ereichen kannst. Vielleicht wird
+irgendwann jemand das Design der <a
+href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html">Petnamen</a>
+implementieren?</p>
+
 <img alt="Tor hidden service step two" src="$(IMGROOT)/THS-2.png" />
 # maybe replace "database" with "directory servers"; further: how incorrect
 # is it to *not* add DB to the Tor cloud, now that begin dir cells are in
@@ -54,7 +74,7 @@ Programm verbinden. Es lädt den Deskriptor von den Verzeichnisservern
 herunter. Wenn ein Deskriptor existiert (Der Dienst könnte auch
 offline sein oder ein Fehler in der Onionadresse ist möglich.), baut
 der Client eine Strecke zu einem Tor-Server auf und bittet es, als
-Rendezvouspunkt zu agieren. Dazu teilt er ihm ein einmaliges Geheimnis
+<em>Rendezvouspunkt zu</em> agieren. Dazu teilt er ihm ein einmaliges Geheimnis
 mit.
 </p>
 
@@ -63,7 +83,7 @@ mit.
 # "IP1-3" and "PK"
 
 <p>Neben dem Aufbau der Verbindung zum Rendezvouspunkt muss das
-Clientprogramm eine Nachricht an den Einführungspunkt erstellen
+Clientprogramm eine Nachricht an den <em>Einführungspunkt</em> erstellen
 (verschlüsselt mit dem öffentlichen Schlüssel des versteckten
 Dienstes.). Diese Nachricht schließt die Adresse des Rendezvouspunktes
 und das Geheimnis ein. Das Programm sendet die Nachricht an einen der
@@ -82,13 +102,15 @@ Geheimnis in einer Rendezvousnachricht.
 </p>
 
 <p>An diesem Punkt ist es besonders wichtig, dass der versteckte
-Dienst dieselben Knoten zum Anlegen neuer Strecken verwendet. Sonst
+Dienst <a href="<page faq>#EntryGuards">dieselben Knoten</a> zum Anlegen
+neuer Strecken verwendet. Sonst
 könnte ein Angreifer einen eigenen Server betreiben und den
 versteckten Dienst zwingen, eine Anzahl an Verbindungsstrecken über
 ihn auszurichten. Über eine Analyse der Laufzeiten der Internetpakete
 kann man so die IP-Adresse des Dienstes herausfinden. Der Angriff
 wurde von &Oslash;verlier und Syverson in der Veröffentlichung
-"Locating Hidden Servers" beschrieben.
+"<a href="http://freehaven.net/anonbib/#hs-attack06">Locating Hidden
+Servers</a>" beschrieben.
 </p>
 
 <img alt="Tor hidden service step five" src="$(IMGROOT)/THS-5.png" />
