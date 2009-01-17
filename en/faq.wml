@@ -53,6 +53,12 @@ have a virus or spyware?</a></li>
 <li><a href="#KeyManagement">Tell me about all the keys Tor uses.</a></li>
 </ul>
 
+<p>Alternate designs that we don't do (yet):</p>
+<ul>
+<li><a href="#EverybodyARelay">You should make every Tor user be a
+relay.</a></li>
+</ul>
+
 <p>Abuse</p>
 <ul>
 <li><a href="#Criminals">Doesn't Tor enable criminals to do bad things?</a></li>
@@ -722,6 +728,77 @@ met us in person and gotten a copy of our GPG key fingerprint, or you
 need to know somebody who has. If you're concerned about an attack on
 this level, we recommend you get involved with the security community
 and start meeting people.
+</p>
+
+<hr />
+
+<a id="EverybodyARelay"></a>
+<h3><a class="anchor" href="#EverybodyARelay">You should make every Tor
+user be a relay.</a></h3>
+
+<p>
+Requiring every Tor user to be a relay would help with scaling the
+network to handle all our users, and [#RelayAnonymity running a Tor
+relay may help your anonymity]. However, many Tor users cannot be good
+relays -- for example, some Tor clients operate from behind restrictive
+firewalls or could be subject to penalties for relaying traffic (e.g.,
+potentially questionable exit connections, encrypted connections, or any
+connections at all). Providing service to these clients is a critical
+part of providing effective anonymity for everyone, since many Tor users
+are subject to these or similar constraints and including these clients
+increases the size of the anonymity set.
+</p>
+
+<p>
+That said, we do want to encourage Tor users to run relays, so what we
+really want to do is simplify the process of setting up and maintaining
+a relay.
+</p>
+
+<p>
+There are five steps we need to address before we can do this though:
+</p>
+
+<p>
+First, we need to make Tor stable as a relay on all common operating
+systems. [:TheOnionRouter/WindowsBufferProblems:We haven't achieved this
+on Windows XP yet, and we need your help.]
+</p>
+
+<p>
+Second, we need easy configuration -- requiring users to edit text files
+is bad for adoption. The [http://vidalia-project.net/ Vidalia project]
+is making great progress on this part.
+</p>
+
+<p>
+Third, Tor needs to do more tasks automatically: we need it to
+automatically detect appropriate bandwidth, help you with opening ports
+in your firewall, et cetera. We need to let people rate-limit outside
+connections without limiting their own connections -- this is hard because
+Tor puts traffic from different people on the same TCP stream, so we can't
+tell whether we should read it off the network without first reading it.
+</p>
+
+<p>
+Fourth, we need to work on scalability, both of the network (how
+to stop requiring that all Tor relays be able to connect to all
+Tor relays) and of the directory (how to stop requiring that all
+Tor users know about all Tor relays). Changes like this can have
+large impact on potential and actual anonymity. See Section 5 of the
+[https://www.torproject.org/svn/trunk/doc/design-paper/challenges.pdf
+Challenges] paper for details.
+</p>
+
+<p>
+Fifth, we might need some sort of incentive scheme to encourage people
+to relay traffic for others, and/or to become exit nodes. Here are our
+[https://www.torproject.org/svn/trunk/doc/contrib/incentives.txt early
+thoughts on Tor incentives].
+</p>
+
+<p>
+Please help on all of these!
 </p>
 
 <hr />
