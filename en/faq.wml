@@ -738,12 +738,11 @@ user be a relay.</a></h3>
 
 <p>
 Requiring every Tor user to be a relay would help with scaling the
-network to handle all our users, and [#RelayAnonymity running a Tor
-relay may help your anonymity]. However, many Tor users cannot be good
-relays -- for example, some Tor clients operate from behind restrictive
-firewalls or could be subject to penalties for relaying traffic (e.g.,
-potentially questionable exit connections, encrypted connections, or any
-connections at all). Providing service to these clients is a critical
+network to handle all our users, and <a href="#RelayAnonymity">running a Tor
+relay may help your anonymity</a>. However, many Tor users cannot be good
+relays &mdash; for example, some Tor clients operate from behind restrictive
+firewalls, connect via modem, or otherwise aren't in a position where they
+can relay traffic. Providing service to these clients is a critical
 part of providing effective anonymity for everyone, since many Tor users
 are subject to these or similar constraints and including these clients
 increases the size of the anonymity set.
@@ -752,7 +751,10 @@ increases the size of the anonymity set.
 <p>
 That said, we do want to encourage Tor users to run relays, so what we
 really want to do is simplify the process of setting up and maintaining
-a relay.
+a relay. We've made a lot of progress with easy configuration in the past
+few years: Vidalia has an easy relay configuration interface, and supports
+uPnP too. Tor is good at automatically detecting whether it's reachable and
+how much bandwidth it can offer.
 </p>
 
 <p>
@@ -760,41 +762,54 @@ There are five steps we need to address before we can do this though:
 </p>
 
 <p>
-First, we need to make Tor stable as a relay on all common operating
-systems. [:TheOnionRouter/WindowsBufferProblems:We haven't achieved this
-on Windows XP yet, and we need your help.]
+First, we need to make Tor stable as a relay on all common
+operating systems. The main remaining platform is Windows,
+and we plan to finally address that in 2009. See Section 4.1 of <a
+href="https://www.torproject.org/press/2008-12-19-roadmap-press-release">our
+development roadmap</a>.
 </p>
 
 <p>
-Second, we need easy configuration -- requiring users to edit text files
-is bad for adoption. The [http://vidalia-project.net/ Vidalia project]
-is making great progress on this part.
+Second, we still need to get better at automatically estimating
+the right amount of bandwidth to allow. See item #7 on the
+<a href="<page volunteer>#Research">research section of the
+volunteer page</a>: "Tor doesn't work very well when relays
+have asymmetric bandwidth (e.g. cable or DSL)". It might be that <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">switching
+to UDP transport</a> is the simplest answer here &mdash; which alas is
+not a very simple answer at all.
 </p>
 
 <p>
-Third, Tor needs to do more tasks automatically: we need it to
-automatically detect appropriate bandwidth, help you with opening ports
-in your firewall, et cetera. We need to let people rate-limit outside
-connections without limiting their own connections -- this is hard because
-Tor puts traffic from different people on the same TCP stream, so we can't
-tell whether we should read it off the network without first reading it.
+Third, we need to work on scalability, both of the network (how to
+stop requiring that all Tor relays be able to connect to all Tor
+relays) and of the directory (how to stop requiring that all Tor
+users know about all Tor relays). Changes like this can have large
+impact on potential and actual anonymity. See Section 5 of the <a
+href="<svnsandbox>doc/design-paper/challenges.pdf">Challenges</a> paper
+for details. Again, UDP transport would help here.
 </p>
 
 <p>
-Fourth, we need to work on scalability, both of the network (how
-to stop requiring that all Tor relays be able to connect to all
-Tor relays) and of the directory (how to stop requiring that all
-Tor users know about all Tor relays). Changes like this can have
-large impact on potential and actual anonymity. See Section 5 of the
-[https://www.torproject.org/svn/trunk/doc/design-paper/challenges.pdf
-Challenges] paper for details.
+Fourth, we need to better understand the risks from
+letting the attacker send traffic through your relay while
+you're also initiating your own anonymized traffic. <a
+href="http://freehaven.net/anonbib/#back01">Three</a> <a
+href="http://freehaven.net/anonbib/#clog-the-queue">different</a>
+<a href="http://freehaven.net/anonbib/#torta05">research</a> papers
+describe ways to identify the relays in a circuit by running traffic
+through candidate relays and looking for dips in the traffic while the
+circuit is active. These clogging attacks are not that scary in the Tor
+context so long as relays are never clients too. But if we're trying to
+encourage more clients to turn on relay functionality too (whether as
+<a href="<page bridges>">bridge relays</a> or as normal relays), then
+we need to understand this threat better and learn how to mitigate it.
 </p>
 
 <p>
 Fifth, we might need some sort of incentive scheme to encourage people
 to relay traffic for others, and/or to become exit nodes. Here are our
-[https://www.torproject.org/svn/trunk/doc/contrib/incentives.txt early
-thoughts on Tor incentives].
+<a href="cite-upcoming-blog-post">current thoughts on Tor incentives</a>.
 </p>
 
 <p>
