@@ -1,0 +1,92 @@
+## translation metadata
+# Based-On-Revision: 16901
+# Last-Translator: mail a/t oliverknapp dot de
+
+#include "head.wmi" TITLE="Ein öffentlicher TorDNSEL Service" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h1>Der öffentliche TorDNSEL Service</h1>
+
+<h2>Was ist TorDNSEL?</h2>
+
+<p>TorDNSEL ist eine aktiv testende, DNS-basierte Liste von Tor Exitknoten.
+Seit Tor Exit Regeln unterstützt, ist die Tor Exitliste eines bestimmten
+Netzwerkdienstes eine Funktion aus seiner IP Adresse und seinem Port. Im
+Gegensatz zu traditionellen DNSxLs, müssen Dienste diese Informationen in Ihren
+Anfragen daher mitliefern.</p>
+
+<p>Frühere DNSELs durchsuchten das Tor Netzwerkverzeichnis nach IPs von
+Exitknoten, aber diese Methode konnte Knoten, die ihre Adresse nicht im
+Verzeichnis veröffentlichen, nicht finden. TorDNSEL testet diese Knoten aktiv,
+um eine genauere Liste zu liefern.</p>
+
+<p>Den gesamten Hintergrund und die Argumente für TorDNSEL sind im offiziellen
+<a href="<svnsandbox>doc/contrib/torel-design.txt">Design Dokument</a>
+beschrieben. Der aktuelle Dienst unterstützt nur den ersten Anfragetyp der in
+diesem Dokument erwähnt wird.</p>
+
+<h2>Wie kann ich den öffentlichen TorDNSEL Dienst befragen?</h2>
+
+<p>Mittels des Kommandozeilenprogramms dig können Anfragen vom Typ I
+folgendermaßen gestellt werden:</p>
+
+<pre>dig 209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org</pre>
+
+<h2>Was sagen die Antworten aus?</h2>
+
+<p>Eine Anfrage für den A Record
+"209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org" würde 127.0.0.2
+zurückliefern, wenn dort ein Tor Knoten läuft, der via 81.169.137.209 zum Port
+6667 bei 1.2.3.4 verbinden kann. Wenn dort kein solcher Knoten ist, gibt die
+TorDNSEL NXDOMAIN zurück.</p>
+
+<p>Andere A records innerhalb des 127/8 Netzblocks, mit Ausnahme von 127.0.0.1,
+ sind für zukünftige Anwendungen reserviert und sollten vom Client als
+positive Antwort (es existiert ein Exit) interpretiert werden. Anfragen
+außerhalb der autoritativen Zone von DNSEL werden mit REFUSED beantwortet.
+Nicht wohlgeformte Anfragen die in der Zone liegen werden mit NXDOMAIN
+beantwortet.</p>
+
+<h2>Wie richte ich Software mit DNSBL Unterstützung ein?</h2>
+
+<p>Nutzer von Software mit eingebauter DNSBL Unterstützung können die folgende
+Zone als DNSBL einrichten:</p>
+
+<pre>[service port].[reversed service
+address].ip-port.exitlist.torproject.org</pre>
+
+<p>Ein Beispiel für einen IRC Server der auf der IP Adresse 1.2.3.4 und dem
+Port 6667 läuft:</p> <pre>6667.4.3.2.1.ip-port.exitlist.torproject.org</pre>
+
+<h2>Wie verlässlich sind die Antworten von TorDNSBL?</h2>
+
+<p>Der aktuelle, öffentliche Service arbeitet auf einer experimentellen Basis
+und wurde nicht sehr intensiv von echten Diensten geprüft. Berichte über
+fehlerhaften Antworten oder Unerreichbarkeiten werden gerne gesehen.
+Zukünftige Pläne beinhalten einen fehlertoleranten Pool an DNSEL Servern.
+TorDNSEL wird momentan aktiv weiterentwickelt.</p>
+
+<h2>Wie kann ich meine eigene, private TorDNSEL betreiben?</h2>
+
+<p>Du kannst alles über den Code von TorDNSEL lernen, wenn du den <a
+href="http://p56soo2ibjkx23xo.onion/">offiziellen versteckten Dienst</a> mit
+Tor besuchst.</p>
+
+<p>Den zuletzt veröffentlichten Quellcode kannst du vom <a
+href="http://p56soo2ibjkx23xo.onion/dist/tordnsel-0.0.6.tar.gz">versteckten
+Dienst</a> oder von einem <a
+href="https://www.torproject.org/tordnsel/dist/tordnsel-0.0.6.tar.gz">lokalen
+Spiegelserver</a> beziehen. Es ist wahrscheinlich sinnvoll, die aktuellen
+Quellen aus dem Darcs Repository zu holen, welches unter dem zuvorgenannten
+versteckten Dienst gehostet wird.</p>
+
+<p>Für weitere Informationen oder um etwas sinnvolles beizutragen, schreibe
+bitte eine Email an den <tt>tordnsel</tt> Alias auf unserer <a href="<page
+contact>">Kontaktseite</a>.</p>
+
+</div> <!-- #main -->
+
+#include <foot.wmi>
+
