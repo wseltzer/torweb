@@ -1,0 +1,141 @@
+## translation metadata
+# Based-On-Revision: 16323
+# Last-Translator: mail (a t) oliverknapp .de
+
+#include "head.wmi" TITLE="Torbutton - Die intelligente Erweiterung für Tornutzer mit Firefox" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<link rel="search" type="application/opensearchdescription+xml" title="Google Canada" href="search/google-ca.xml">
+<link rel="search" type="application/opensearchdescription+xml" title="Google UK" href="search/google-uk.xml">
+<link rel="search" type="application/opensearchdescription+xml" title="Google USA" href="search/google-us.xml">
+<script type="text/javascript">
+
+function addSearchProvider(prov) {
+
+try {
+window.external.AddSearchProvider(prov);
+}
+
+catch (e) {
+alert("Such-Plugins benötigen mindestens Firefox 2");
+return;
+}
+}
+
+function addEngine(name,ext,cat,pid)
+{
+  if ((typeof window.sidebar == "object") && (typeof window.sidebar.addSearchEngine == "function")) {
+    window.sidebar.addSearchEngine(
+      "http://mycroft.mozdev.org/install.php/" + pid + "/" + name + ".src",
+      "http://mycroft.mozdev.org/install.php/" + pid + "/" + name + "."+ ext, name, cat );
+  } else {
+    alert("Du benötigst einen Browser der Sherlock unterstützt um diesen Plugin zu installieren.");
+  }
+}
+
+function addOpenSearch(name,ext,cat,pid,meth)
+{
+  if ((typeof window.external == "object") && ((typeof window.external.AddSearchProvider == "unknown") || (typeof window.external.AddSearchProvider == "function"))) {
+    if ((typeof window.external.AddSearchProvider == "unknown") && meth == "p") {
+      alert("Dieses Plugin benutzt POST, was die OpenSearch Implemetation des InternetExplorers aktuell nicht unterstützt.");
+    } else {
+      window.external.AddSearchProvider(
+        "http://mycroft.mozdev.org/installos.php/" + pid + "/" + name + ".xml");
+    }
+  } else {
+    alert("Für dieses Plugin brauchst du einen Browser der OpenSearch unterstützt.");
+  }
+}
+
+function addOpenSearch2(name,ext,cat,pid,meth)
+{
+  if ((typeof window.external == "object") && ((typeof window.external.AddSearchProvider == "unknown") || (typeof window.external.AddSearchProvider == "function"))) {
+    if ((typeof window.external.AddSearchProvider == "unknown") && meth == "p") {
+      alert("Dieses Plugin benutzt POST, was die OpenSearch Implemetation des InternetExplorers aktuell nicht unterstützt.");
+    } else {
+      window.external.AddSearchProvider(
+        "http://torbutton.torproject.org/dev/search/" + name + ".xml");
+    }
+  } else {
+    alert("Für dieses Plugin brauchst du einen Browser der OpenSearch unterstützt.");
+  }
+}
+
+function install (aEvent)
+{
+  var params = {
+    "Torbutton": { URL: aEvent.target.href,
+             Hash: aEvent.target.getAttribute("hash"),
+             toString: function () { return this.URL; }
+    }
+  };
+  InstallTrigger.install(params);
+
+  return false;
+}
+
+
+</script>
+
+<h2>Torbutton</h2>
+<hr />
+
+<strong>Aktuelle Version:</strong><version-torbutton><br/>
+<br/>
+<strong>Autoren:</strong> Mike Perry &amp; Scott Squires<br/>
+<br/>
+<strong>Installation:</strong>
+<a href="http://www.torproject.org/torbutton/torbutton-current.xpi"
+  hash="<version-hash-torbutton>"
+  onclick="return install(event);">Lokal (Javascript gesichert)</a><br/>
+<strong>Frühere Versionen:</strong> <a href="releases/">Lokal</a><br/>
+<strong>Entwickler Dokumentation:</strong> <a href="design/">Torbutton Design Dokument</a> and <a href="design/MozillaBrownBag.pdf">Vortragsfolien (Möglicherweise nicht aktuell)</a><br/>
+<strong>Extras:</strong>
+
+Google Suchplugins für
+
+<a href="/jsreq.html" title="Ref: 14938 (googleCA)"
+ onClick="addOpenSearch('GoogleCanada','ico','General','14937','g');return false">Google CA</a> und
+
+<a href="/jsreq.html" title="Ref: 14938 (googleCA)"
+ onClick="addOpenSearch('googleuk_web','png','General','14445','g');return false">Google UK</a>.
+<br/>
+<strong>Quellcode:</strong> Du kannst das <a
+href="https://svn.torproject.org/svn/torbutton/trunk/">Repository durchsuchen</a> oder einfach die xpi entzippen.
+<br/>
+<strong>Fehlerberichte:</strong> <a href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">Torprojekt Flyspray</a><br/>
+<strong>Dokumente:</strong> <b>[</b> <a href="<page torbutton/faq>">FAQ</a> <b>|</b>
+<a href="https://svn.torproject.org/svn/torbutton/trunk/src/CHANGELOG">Versionshinweise (Changelog)</a> <b>|</b>
+<a href="https://svn.torproject.org/svn/torbutton/trunk/src/LICENSE">Lizenz</a> <b>|</b>
+<a href="https://svn.torproject.org/svn/torbutton/trunk/src/CREDITS">Credits</a> <b>]</b><br/>
+
+<br/>
+
+<p>Torbutton ist eine 1-Klick Möglichkeit für Firefox Benutzer, die Benutzung
+des <a href="<page index>">Tor-Netzwerks</a> an- und auszuschalten. Die
+Erweiterung fügt ein Feld in der Statusleiste hinzu, dass entweder "Tor
+Enabled" (in grün) oder "Tor Disabled" (in rot) anzeigt. Der Benutzer kann auf
+das Feld klicken, um den Status zu ändern. Wenn der Benutzer oder eine andere
+Erweiterung die Proxyeinstellungen ändert, wird die Veränderung im Feld
+angezeigt.</p>
+
+<p> Damit du sicher bist, deaktiviert Torbutton viele Arten von aktivem
+Webseiteninhalt. Du kannst darüber mehr in der <a href="<page torbutton/faq>">
+Torbutton FAQ</a> oder in den <a href="<page torbutton/options>">Torbutton
+Optionen</a> lernen.</p>
+
+<p> Einige Nutzer ziehen einen Knopf in der Werkzeugleiste dem Feld in der
+Statusleiste vor. Torbutton ermöglich das Hinzufügen eines solchen Knopfes in
+die Werkzeugleiste. Dazu musst du mit der rechten Maustaste auf die gewünschte
+Werkzeugleiste klicken, dort dann "Anpassen..." wählen und das Torbuttonlogo
+in die Werkzeugleiste ziehen. Es gibt eine Option in den
+Torbutton-Einstellungen das Feld in der Statusleiste auszuschalten. (Extras,
+Erweiterungen, wähle Torbutton und klicke auf Einstellungen)</p>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
+
