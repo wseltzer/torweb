@@ -8,29 +8,35 @@
 
 <div class="main-column">
 
-<h1>Versteckte Dienste bei <a href="<page index>">Tor</a> einrichten</h1> <hr
-/>
+<h1>Versteckte Dienste bei Tor einrichten</h1>
+<hr />
 
-<p>Mit Tor ist es möglich, versteckte Dienste, die sogenannten Hidden Services,
+<p>Mit Tor ist es möglich, versteckte Dienste, so genannte Hidden Services,
 anzubieten. Dies funktioniert sowohl mit einem Tor-Knoten, als auch mit einem
 Client. Damit kann man zum Beispiel einen Webserver, einen Mailserver oder
 einen SSH-Server anbieten, ohne die Identität preiszugeben. Es ist sogar
 möglich, solch einen Dienst hinter einer Firewall zu betreiben. </p>
 
-<p>Wenn du bereits Tor installiert hast, kannst du einen Versteckten Dienst
+<p>Wenn du bereits Tor installiert hast, kannst du einen versteckten Dienst
 live unter <a href="http://duskgytldkxiuqc6.onion/">duskgytldkxiuqc6.onion</a>
 erleben. </p>
 
 <p>In diesem HowTo erfährst du, wie du eine eigene, versteckte Webseite
 betreiben kannst.</p>
 
-<hr /> <a id="zero"></a> <h2><a class="anchor" href="#zero">Schritt Null:
-Bekomme Tor und Privoxy zum Laufen</a></h2> <br />
+<hr />
+<a id="zero"></a>
+<h2><a class="anchor" href="#zero">Schritt Null: Bekomme Tor und Privoxy zum
+Laufen</a></h2>
+<br />
 
-<p>Bevor es losgeht, überprüfe folgendes:</p> <ol> <li>Tor ist installiert und
-läuft,</li> <li>Privoxy installiert und läuft,</li> <li>Privoxy ist richtig
-eingerichtet und benutzt Tor und</li> <li>alles funktioniert so wie es
-soll.</li> </ol>
+<p>Bevor es losgeht, überprüfe folgendes:</p>
+<ol>
+<li>Tor ist installiert und läuft.</li>
+<li>Privoxy installiert und läuft.</li>
+<li>Privoxy ist richtig eingerichtet und benutzt Tor und</li>
+<li>alles funktioniert so wie es soll.</li>
+</ol>
 
 <p>Windows Nutzer sollten dem <a href="<page docs/tor-doc-windows>">Windows
 HowTo</a>, OS X Nutzer dem <a href="<page docs/tor-doc-osx>">OS X HowTo</a>,
@@ -38,18 +44,21 @@ und Linux/BSD/Unix Nutzer dem <a href="<page docs/tor-doc-unix>">Unix HowTo</a>
  folgen.</p>
 
 <p>Wenn du alles eingerichtet hast, versuche nochmal den oben erwähnten
-Versteckten Dienst unter <a href="http://duskgytldkxiuqc6.onion/">
+versteckten Dienst unter <a href="http://duskgytldkxiuqc6.onion/">
 duskgytldkxiuqc6.onion</a> zu erreichen. Normalerweise dauert es zwischen
-10-60 Sekunden, bis die Seite geladen ist (oder bis sich herausstellt, dass
-die Seite gerade unerreichbar ist) Wenn es gleich zu Beginn fehlschlägt und
+10&mdash;60 Sekunden, bis die Seite geladen ist (oder bis sich herausstellt, dass
+sie gerade unerreichbar ist). Wenn es gleich zu Beginn fehlschlägt und
 dein Browser eine Meldung bringt wie "www.duskgytldkxiuqc6.onion could not be
 found, please check the name and try again" scheinst du Tor und Privoxy nicht
-richtig konfiguriert zu haben; Es gibt einen <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">
-Es-geht-nicht FAQ Eintrag</a>, der dir vielleicht weiterhelfen kann. </p>
+richtig konfiguriert zu haben. Zum dem Problem gibt es einen <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">Eintrag
+in der FAQ</a>, der dir vielleicht weiterhelfen kann. </p>
 
-<hr /> <a id="one"></a> <h2><a class="anchor" href="#one">Schritt Eins:
-Installiere einen lokalen Webserver</a></h2> <br />
+<hr />
+<a id="one"></a>
+<h2><a class="anchor" href="#one">Schritt Eins: Installiere einen lokalen
+Webserver</a></h2>
+<br />
 
 <p>Als Erstes musst du einen lokalen Webserver einrichten. Das kann durchaus
 kompliziert sein, daher können wir nur ganz grundlegende Hilfestellung geben.
@@ -65,7 +74,7 @@ ihn. Mittels <kbd>./configure &amp;&amp; make</kbd> wird der Server
 installiert. Danach musst du noch <kbd>mkdir hidserv; cd hidserv</kbd>
 eingeben und danach mittels <kbd>../thttpd -p 5222 -h localhost</kbd> den
 Server starten. Du landest wieder auf der Kommandozeile, hast aber jetzt einen
-Webserver auf Port 5222 laufen. Du kannst Dateien die er ausliefern soll
+Webserver auf Port 5222 laufen. Du kannst Dateien, die er ausliefern soll,
 einfach in das hidserv Verzeichnis legen. </p>
 
 <p>Wenn du unter Windows arbeitest, wählst du am Besten <a
@@ -81,50 +90,58 @@ des versteckten Dienstes enttarnen.) </p>
 <p>Wenn du den Server eingerichtet hast, solltest du dich davon überzeugen,
 dass er funktioniert: starte deinen Browser und besuche <a
 href="http://localhost:5222/">http://localhost:5222/</a>. 5222 ist der Port, an
-dem dein Webserver lauscht. Wenn das geht, versuche eine Datei in das
-Verzeichniss zu legen und schaue ob sie im Browser auftaucht, wenn du die
+dem dein Webserver lauscht. Wenn das geht, versuche eine Datei, in das
+Verzeichnis zu legen und schaue, ob sie im Browser auftaucht, wenn du die
 Ansicht aktualisierst. </p>
 
-<hr /> <a id="two"></a> <h2><a class="anchor" href="#two">Schritt Zwei:
-Einrichtung des versteckten Dienstes</a></h2> <br />
+<hr />
+<a id="two"></a>
+<h2><a class="anchor" href="#two">Schritt Zwei:
+Einrichtung des versteckten Dienstes</a></h2>
+<br />
 
 <p>Als nächsten Schritt musst du deinen versteckten Dienst einrichten, damit
 er auf deinen Webserver zeigt. </p>
 
 <p>Erstens: Öffne deine torrc in einem Text-Editor. (Unter <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">torrc
-FAQ Eintrag</a> steht was das bedeutet.) Scrolle etwa in die Mitte und suche
-nach der folgenden Zeile:</p>
+FAQ Eintrag</a> steht, was das bedeutet.) Etwa in der Mitte der Datei steht
+die folgende Zeile:</p>
 
-<pre> \############### This section is just for location-hidden services ###
+<pre><p> \############### This section is just for location-hidden services ###</p>
 </pre>
 
 <p> Dieser Abschnitt besteht aus Zeilengruppen. Jede steht für einen
 versteckten Dienst. Zu Beginn sind alle auskommentiert (haben also ein # als
 erstes Zeichen), versteckte Dienste sind also nicht aktiv. Jede Zeilengruppe
-besteht aus einer <var>HiddenServiceDir</var> Zeile und einer oder mehreren
-<var> HiddenServicePort</var> Zeilen:</p> <ul> <li><var>HiddenServiceDir</var>
-ist ein Verzeichniss in dem Tor Informationen über den Hidden Service
+besteht aus einer <var>HiddenServiceDir</var>-Zeile und einer oder mehreren
+<var>HiddenServicePort</var>-Zeilen:</p>
+<ul>
+<li><var>HiddenServiceDir</var>
+ist ein Verzeichnis, in dem Tor Informationen über den Hidden Service
 speichert. Genauer gesagt: Tor wird hier eine Datei namens <var>hostname</var>
-erstellen, in der die onion URL des versteckte Dienste steht. Du musst keine
-Dateien in das Verzeichniss legen.</li> <li><var>HiddenServicePort</var> lässt
+erstellen, in der die URL des versteckte Dienste steht. Du musst keine
+Dateien in das Verzeichnis legen.</li>
+<li><var>HiddenServicePort</var> lässt
 dich einen virtuellen Port (das ist der Port, mit dem Nutzer auf deinen
 versteckten Dienst zugreifen können) und eine IP-Adresse sowie Port (an welche
-die Anfragen dann weitergeleitet werden) festlegen. </li> </ul>
+die Anfragen dann weitergeleitet werden) festlegen. </li>
+</ul>
 
 <p>Damit unser Beispiel-Webserver funktioniert, musst du die folgenden Zeilen
 in deine torrc hinzufügen: </p>
 
-<pre> HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
-HiddenServicePort 80 127.0.0.1:5222 </pre>
+<pre><p>HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/<br />
+HiddenServicePort 80 127.0.0.1:5222</p></pre>
 
-<p>Du solltest das <var>HiddenServiceDir</var> so wählen, dass der Nutzer der
-Tor laufen lässt darauf Lese- und Schreibzugriff besitzt. Die Zeile oben
-sollte für das OS X Paket funktionieren. Unter Unix, müsste
+<p>Du solltest die Variable <var>HiddenServiceDir</var> so wählen, dass der
+Nutzer der
+Tor laufen lässt, darauf Lese- und Schreibzugriff besitzt. Die Zeile oben
+sollten auch für das OS X Paket funktionieren. Unter Unix, müsste
 "/home/username/hidserv/" gehen (natürlich musst du "username" mit deinem
 eigenen Benutzernamen ersetzen). Unter Windows sollte folgendes funktionieren
-(auch mit richtigem username natürlich):</p> <pre> HiddenServiceDir
-C:\Documents and Settings\username\Application Data\hidden_service\\
+(natürlich auch mit dem richtigen Benutzernamen):</p>
+<pre>HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
 HiddenServicePort 80 127.0.0.1:5222 </pre>
 
 <p>Jetzt musst du deine veränderte torrc speichern und Tor neustarten. </p>
@@ -139,45 +156,55 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">Der
 Logfile FAQ Eintrag</a> findest du weitere Hilfe, wenn du Probleme hast die
 Logs zu finden oder zu aktivieren. </p>
 
-<p>Wenn Tor startet wird es automatisch das <var>HiddenServiceDir</var>, das du
-angegeben hast, erstellen (wenn nötig) und darin 2 Dateien ablegen.</p>
+<p>Wenn Tor startet wird es automatisch das Verzeichnis in
+<var>HiddenServiceDir</var>, falls nötig, anlegen und darin 2 Dateien
+ablegen.</p>
 
-<dl> <dt><var>private_key</var></dt> <dd>Als Erstes wird Tor ein neues
+<dl>
+<dt><var>private_key</var></dt>
+<dd>Als Erstes wird Tor ein neues
 Schlüsselpaar mit öffentlichem und privatem Schlüssel für deinen versteckten
 Dienst erzeugen. Dieses Paar wird in die Datei namens "private_key"
 geschrieben. Diese Datei darfst du unter keinen Umständen weitergeben,
-ansonsten könnten andere deine Identität annehmen.</dd> <dt><var>hostname</var>
- </dt> <dd>Die andere Datei die Tor erstellt nennt sich "hostname". Dabei
+ansonsten könnten andere deine Identität annehmen.</dd>
+<dt><var>hostname</var></dt>
+<dd>Die andere Datei die Tor erstellt nennt sich "hostname". Dabei
 handelt es sich um eine kurze Zusammenfassung deines öffentlichen Schlüssels.
 Diese Zusammenfassung sieht etwa folgendermaßen aus: <tt>
 duskgytldkxiuqc6.onion</tt>. Dabei handelt es sich gleichzeitig auch um die
 Adresse deines versteckte Dienste, die du an andere Menschen weitergeben oder
-z.B. im Internet veröffentlichen kannst. </dd> </dl>
+z.B. im Internet veröffentlichen kannst.</dd>
+</dl>
 
-<p>Wenn Tor unter einem anderen Benutzeraccount läuft musst du möglicherweise
-root Rechte haben, damit du die Dateien anschauen kannst.</p>
+<p>Wenn Tor unter einem anderen Benutzeraccount läuft, musst du möglicherweise
+die Rechte des Hauptnutzers (root, Administrator) haben, damit du die Dateien
+anschauen kannst.</p>
 
-<p>Nach einem Neustart ist Tor erstmal damit beschäftigt sogenannte
+<p>Nach einem Neustart ist Tor erstmal damit beschäftigt, sogenannte
 Introduction Points auszuwählen und einen <em>hidden service descriptor</em>
-zu generieren. Dabei handelt es sich um eine unterschriebene Liste von
+zu erzeugen. Dabei handelt es sich um eine unterschriebene Liste von
 Introduction Points mit dem vollständigen öffentlichen Schlüssel des
 versteckten Dienstes. Diese Beschreibung veröffentlicht dein Client dann
-anonym auf den Verzeichnis Servern wo andere Leute, die deinen versteckten
+anonym auf den Verzeichnisservern, wo andere Leute, die deinen versteckten
 Dienst besuchen wollen, ihn dann ebenfalls anonym abrufen. </p>
 
-<p>Jetzt kannst du es versuchen: Kopiere den Inhalt der hostname Datei in
-deinen Webbrowser. Wenn es klappt solltest du die lokale HTML-Seite bekommen,
-die du in Schritt Eins eingerichtet hast. Wenn es nicht geht, schau in deinen
-Logs nach Hinweisen und versuche diesen Nachzugehen, bis es klappt. </p>
+<p>Jetzt kannst du es versuchen: Kopiere den Inhalt der hostname-Datei in
+deinen Webbrowser. Wenn es klappt, solltest du die vorher eingerichtete
+HTML-Seite bekommen. Wenn es nicht geht, schau in deinen
+Logs nach Hinweisen und versuche diesen nachzugehen, bis es klappt. </p>
 
-<hr /> <a id="three"></a> <h2><a class="anchor" href="#three">Schritt Drei:
-Tipps für Fortgeschrittene</a></h2> <br />
+<hr />
+<a id="three"></a>
+<h2><a class="anchor" href="#three">Schritt Drei:
+Tipps für Fortgeschrittene</a></h2>
+<br />
 
 <p>Wenn du vor hast deinen versteckten Dienst über längere Zeit anzubieten,
 solltest du den privaten Schlüssel des Dienstes, also die
 <var>private_key</var> Datei redundant sichern. </p>
 
-<p>Wir haben weiter oben bewusst nicht Apache empfohlen, weil er a) vielleicht
+<p>Wir haben weiter oben bewusst nicht den Webserver Apache empfohlen, weil er
+a) vielleicht
 schon für andere Webseiten auf dem Rechner eingesetzt wird und er b) sehr groß
 und kompliziert ist und an vielen Stellen deine wirkliche IP verraten könnte
 (z.B. auf 404 Seiten). Für Leute, die etwas mehr Funktionalität brauchen,
@@ -187,12 +214,13 @@ Dienste nutzen willst. Es wäre toll, wenn die uns jemand erstellen könnte.
 Savant hat möglicherweise ähnliche Probleme. </p>
 
 <p>Wenn du mehrere virtuelle Adressen an einen einzelnen versteckten Dienst
-weiterleiten willst, musst du einfach mehr <var>HiddenServicePort</var> Zeilen
-einfügen. Wenn du mehrere versteckte Dienste mit dem gleichen Tor Client
-anbieten möchtest, must du einfach eine weitere <var>HiddenServiceDir</var>
-Zeile einfügen. Alle danach folgenden <var>HiddenServicePort</var> Zeilen
-beziehen sich dann auf diese <var>HiddenServiceDir</var> Zeile bis du eine
-neue <var>HiddenServiceDir</var> Zeile einfügst: </p>
+weiterleiten willst, musst du einfach mehr <var>HiddenServicePort</var>-Zeilen
+einfügen. Wenn du mehrere versteckte Dienste mit dem gleichen Tor-Client
+anbieten möchtest, must du einfach eine weitere
+<var>HiddenServiceDir</var>-Zeile einfügen. Alle danach folgenden
+<var>HiddenServicePort</var>-Zeilen
+beziehen sich dann auf diese <var>HiddenServiceDir</var>-Zeile, bis du eine
+neue <var>HiddenServiceDir</var>-Zeile einfügst: </p>
 
 <pre> HiddenServiceDir /usr/local/etc/tor/hidden_service/ HiddenServicePort 80
 127.0.0.1:8080
@@ -200,14 +228,18 @@ neue <var>HiddenServiceDir</var> Zeile einfügst: </p>
 HiddenServiceDir /usr/local/etc/tor/other_hidden_service/ HiddenServicePort
 6667 127.0.0.1:6667 HiddenServicePort 22 127.0.0.1:22 </pre>
 
-<p>Du solltest dir ein paar Gedanken über deine Anonymität machen: </p> <ul>
-<li>Wie bereits erwähnt solltest du aufpassen, dass dein Webserver keine
+<p>Du solltest dir ein paar Gedanken über deine Anonymität machen: </p>
+
+<ul>
+<li>Wie bereits erwähnt, solltest du aufpassen, dass dein Webserver keine
 Informationen über dich, deinen Computer oder deinen Aufenthaltsort
-herausgibt. Zum Beispiel könnte jemand herausfinden ob du thttpd oder Apache
+herausgibt. Zum Beispiel könnte jemand herausfinden, ob du thttpd oder Apache
 einsetzt und könnte dann auch noch etwas über dein Betriebssystem
-herausfinden.</li> <li>Wenn dein Rechner nicht immer online ist, ist es auch
+herausfinden.</li>
+<li>Wenn dein Rechner nicht immer online ist, ist es auch
 dein verstecker Dienst nicht. Dadurch hinterlässt du Spuren, die jemand
-interessieren könnten.</li> <!-- increased risks over time --> </ul>
+interessieren könnten.</li> <!-- increased risks over time -->
+</ul>
 
 <hr />
 
