@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 18114
+# Based-On-Revision: 18158
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="FAQ Tora" CHARSET="UTF-8"
@@ -51,6 +51,12 @@ mieć wirusa lub oprogramowanie szpiegujące?</a></li>
 <ul>
 <li><a href="#KeyManagement">Opowiedzcie mi o kluczach używanych przez Tora.</a></li>
 </ul>
+
+<p>Alternatywne projeky, których nie robimy (jeszcze):</p>
+<ul>
+<li><a href="#EverybodyARelay">Powinno się sprawić, by każdy użytkownik Tora był przekaźnikiem.</a></li>
+</ul>
+
 
 <p>Nadużycie</p>
 <ul>
@@ -342,7 +348,7 @@ i daj nam o tym znać.
 <li>
 Tor wymaga też trochę zmian architektury. Jedną z ważną\ych zmian jest
 rozpoczęcie dostarczania <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EverybodyARelay">lepszej
+href="#EverybodyARelay">lepszej
 obsługi ludziom, którzy
 prowadzą przekaźniki sieci</a>. Pracujemy nad tym, a skończymy szybciej, jeśli
 uda nam się spędzić przy tym więcej czasu.
@@ -717,6 +723,91 @@ zaangażować się ze społecznością związaną z bezpieczeństwem i zacząć 
 </p>
 
 <hr />
+
+<a id="EverybodyARelay"></a>
+<h3><a class="anchor" href="#EverybodyARelay">Powinno się sprawić, by każdy użytkownik
+Tora był przekaźnikiem.</a></h3>
+
+<p>
+Wymaganie, by każdy użytkownik Tora był przekaźnikiem pomogłoby w skalowaniu
+sieci, by mogła obsłużyć wszystkich użytkowników, a
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">prowadzenie
+przekaźnika Tora może pomóc Twojej anonimowości</a>. Jednak wielu użytkowników Tora nie może
+być dobrymi przekaźnikami &mdash; na przykład część klientów Tora pracuje za restrykcyjnymi
+zaporami ogniowymi, łączy się przez modem lub w inny sposób nie są przystosowane do
+przekierowywania ruchu. Dostarczenie obsługi tym klientom jest ważną częścią dostarczania
+efektywnej anonimowości wszystkim, gdyż wielu użytkowników Tora podlega tym samym lub
+podobnym ograniczeniom, a dołączenie tych klientów zwiększa rozmiar zbioru anonimowości.
+</p>
+
+<p>
+To rzekłszy, chcemy zachęcać użytkowników do prowadzenia przekaźników, więc to, czego
+naprawdę chcemy, to uproszczenie procesu uruchamiania i utrzymywania przekaźnika.
+Poczyniliśmy duży postęp z łatwą konfiguracją w ciągu ostatnich kilku lat:
+Vidalia ma łatwy interfejs konfiguracji przekaźnika i obsługuje też uPnP. Tor jest dobry w
+automatycznym sprawdzaniu, czy jest dostępny i jak dużą przepustowość łącza może
+zaoferować.
+</p>
+
+<p>
+Jest jednak pięć kroków, którymi musimy się zająć:
+</p>
+
+<p>
+Po pierwsze, musimy ustabilizować pracę Tora jako przekaźnika na wszystkich
+popularnych systemach. Główną platformą pozostającą do zrobienia jest Windows,
+planujemy zająć się tym ostatecznie w 2009. Przeczytaj sekcję 4.1 <a
+href="https://www.torproject.org/press/2008-12-19-roadmap-press-release">naszego
+planu rozwojowego</a>.
+</p>
+
+<p>
+Po drugie, dalej potrzebujemy poprawienia automatycznego szacowania
+dozwolonej przepustowości łącza. Przeczytaj punkt 7 w
+<a href="<page volunteer>#Research">sekcji badań na stronie wolontariuszy</a>:
+"Tor nie działa zbyt dobrze, gdy przekaźniki mają asymetryczne łącze (np. kablówka
+czy DSL)". Możliwe, że <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">zmiana
+na transport UDP</a> jest najprostszą odpowiedzią &mdash; co z drugiej strony nie jest
+wcale bardzo prostą odpowiedzią.
+</p>
+
+<p>
+Po trzecie, musimy popracować na skalowalnością, zarówno sieci (jak przestać wymagać,
+by każdy przekaźnik mógł się połączyć z każdym) i katalogów (jak przestać wymagać,
+by wszyscy użytkownicy Tora wiedzieli o wszystkich przekaźnikach). Takie zmiany
+mogą mieć wielki wpływ na potencjalną i rzeczywistą anonimowość. Przeczytaj sekcję 5
+dokumentu <a href="<svnsandbox>doc/design-paper/challenges.pdf">Wyzwania</a>,
+by poznać szczegóły. Ponownie, transport UDP by tu pomógł.
+</p>
+
+<p>
+Po czwarte, musimy lepiej zrozumieć ryzyka płynące z umożliwienia napastnikowi
+wysyłania ruchu przez Twój przekaźnik, gdy Ty zaczynasz swój własny ruch anonimowy. <a
+href="http://freehaven.net/anonbib/#back01">Trzy</a> <a
+href="http://freehaven.net/anonbib/#clog-the-queue">różne</a> dokumenty
+<a href="http://freehaven.net/anonbib/#torta05">badawcze</a> opisują sposoby na
+identyfikację przekaźników w obwodzie poprzez kierowanie ruchu przez węzły-kandydatów
+i szukanie obniżania w ruchu w czasie, gdy obwód jest aktywny. Te ataki zatykające
+nie są tak straszne w kontekście Tora, dopóki przekaźniki nie są klientami. Ale
+jeśli próbujemy zachęcić więcej klientów do bycia przekaźnikami (czy jako
+<a href="<page bridges>">przekaźniki mostkowe</a>, czy zwykłe przekaźniki),
+to musimy lepiej zrozumieć to zagrożenie i nauczyć się je łagodzić.
+</p>
+
+<p>
+Po piąte, możemy potrzebować jakiegoś schematu bodźców do zachęcana ludzi, by
+przekierowywali ruch innych lub zostali węzłami wyjściowymi. Tu są nasze
+<a href="https://blog.torproject.org/blog/two-incentive-designs-tor">bieżące
+pomysły na bodźce Tora</a>.
+</p>
+
+<p>
+Prosimy o pomoc przy każdym z tych punktów!
+</p>
+
+<hr />
+
 
 <a id="Criminals"></a>
 <h3><a class="anchor" href="#Criminals">Czy Tor nie umożliwia przestępcom robienia złych rzeczy?</a></h3>
