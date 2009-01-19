@@ -260,7 +260,7 @@ my %m = (
         },
 
        mirror010 => {
-												adminContact => "contact.plentyfact.org",
+            adminContact => "contact.plentyfact.org",
             orgName => "Plentyfact",
             isoCC => "DE",
             subRegion => "",
@@ -690,8 +690,25 @@ my %m = (
             updateDate => "Unknown",
         },		
 
-
-
+        mirror034 => {
+            adminContact => "security\@hostoffice.hu",
+            orgName => "Unknown",
+            isoCC => "HU",
+            subRegion => "Hungary",
+            region => "Europe",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://mirror.tor.hu/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "", 
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://mirror.tor.hu/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },		
 );
 
 my $count = values %m;
