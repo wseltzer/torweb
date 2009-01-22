@@ -1,0 +1,476 @@
+## translation metadata
+# Based-On-Revision: 18117
+# Last-Translator: mail (a/t) oliverknapp .de
+
+#include "head.wmi" TITLE="Das NLnet Projekt: Versteckte Dienste beschleunigen" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>Das NLnet Projekt: Versteckte Dienste beschleunigen</h2>
+<hr />
+
+<p> Versteckte Dienste bei Tor erlauben dem Nutzer anonyme Informationsdienste
+wie Webseiten zu erstellen, welche nur über das Tor-Netzwerk erreichbar sind
+und deren Aufenthaltsort geheim bleibt. Die kritischsten Einschränkungen von
+versteckten Diensten sind momentan die Zeit, die es dauert, bis ein versteckter
+Dienst im Netzwerk registriert ist und die Zeit die es dauert, bis eine
+Verbindung zum versteckten Dienst hergestellt ist, wenn ein Nutzer auf den
+Dienst zugreifen möchte.
+
+Auf Grund von Designproblemen im originalen Tor Protokoll kann eine Verbindung
+zu einem versteckten Dienst mehrere Minuten dauern, was dafür sorgt, dass die
+meisten Nutzer den Verbindungsversuch aufgeben, bevor die Verbindung
+hergestellt wurde. Versteckte Dienste für eine direkte, interaktive
+Kommunikation zwischen Nutzern zu verwenden (z.B. für Instant Messenger) ist
+auf Grund der hohen Latenz für den Verbindungsaufbau daher momentan nahezu
+unmöglich.</p>
+
+<p>Das Ziel dieses Projektes ist es, versteckte Dienste zu beschleunigen, in
+dem sowohl die Methode, mit der Verbindungen zwischen den Nutzern und den
+versteckten Diensten hergestellt werden, als auch die Methode für die
+Registrierung von versteckten Diensten im Netzwerk, verbessert werden. In einem
+ersten Schritt wird eine präzise Diagnose von versteckten Diensten unter
+Labor- als auch unter Realbedingungen durchgeführt, um den Hauptgrund für die
+schlechte Performanz zu finden. Basierend auf diesen Diagnosen werden
+Optimierungsstrategien erarbeitet und auf mögliche unerwünschte Effekte für
+die Sicherheit und Anonymität des Tor-Netzwerks untersucht. Die
+vielversprechensten Lösungen werden dann implementiert, um eine Verbesserung
+für den Nutzer zu erreichen. In der Diagnosephase, sobald bekannt ist wo Zeit
+verloren geht und was für Verbesserungen wahrscheinlich sind, werden auch
+genaue Erfolgsmaßstäbe entwickelt. Das Ziel ist es, die Veränderungen am
+Protokoll von versteckten Diensten innerhalb von 12 Monaten entwickelt und in
+Tor integriert zu haben.</p>
+
+<p>
+Dieses Projekt wird großzügigerweise gesponsert von:
+</p>
+
+<p>
+<a href="http://www.nlnet.nl/news/2008/20080514-awards.html">
+<img src="$(IMGROOT)/nlnet-160x60.png" alt="Der NLnet Stiftung" /></a>
+</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<thead>
+<tr>
+<th><big>Projekt</big></th>
+<th><big>Fälligkeit</big></th>
+</tr>
+</thead>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Etappe A:</b> Analyse, Messungen und Problem eingrenzen<br />
+
+<small><em>Da das Protokoll von versteckten Diensten in den letzten Jahren
+nicht aktiv weiterentwickelt wurde, sind bestimmte Teilaspekte des Problems
+nicht ausreichend erforscht. Um die genaue Quelle für die Latenz und den
+Zeitverlust zu finden, muss eine ausführliche Analyse der Hintergründe
+durchgeführt werden. Etappe A wird ungefähr einen Monat benötigen. Die
+Ergebnisse der Analyse werden die Designentscheidungen von Etappe B
+beeinflussen.</em></small>
+
+  </td>
+  <td>
+    15. Juni 2008
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Etappe B:</b> Design und Bewertung der nötigen Veränderungen<br />
+
+<small><em>Die Veränderungen an den versteckten Diensten werden Kernfunktionen
+des Tor Protokolls berühren und müssen daher genau auf mögliche Gefahren für
+die Sicherheit und Anonymität untersucht werden. Für die Design- und
+Überprüfungsphase, welche mit einer ausführlichen, externen Prüfung endet,
+sind 2 Monate vorgesehen</em></small>
+
+  </td>
+  <td>
+    15. August 2008
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Etappe C:</b> Implementation<br />
+
+<small><em>Nach Design, Folgeabschätzung und externer Prüfung müssen die
+Veränderungen umgesetzt und in die aktuellen Torquellen eingepflegt werden.
+Die eigentliche Umsetzung der Veränderungenn wird etwa 2 Monate dauern.</em>
+</small>
+
+  </td>
+  <td>
+    15. Oktober 2008
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Etappe D:</b> Implementation und Evaluation der Änderungen bis zur Veröffentlichung<br />
+
+<small><em>Die Veränderung ist sehr kritisch für die Sicherheit und Anonymität
+des Tor-Netzwerks. Sie benötigt daher intensive Tests und Fehlersuche sowohl
+im Labor als auch unter realen Bedingungen. Wir planen für diese Phase 3
+Monate ein, wobei der verantwortliche Entwickler 1/3 seine Zeit mit den Test
+verbringt. Ein Teil der Testphase wird eine öffentliche Betaphase
+beinhalten.</em></small>
+
+  </td>
+  <td>
+    15. Januar 2009
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Etappe E:</b> Veröffentlichung<br />
+
+<small><em>Die eigentliche Veröffentlichung für das Tor-Server-Netzwerk wird
+mit dem regulären Veröffentlichungsplan von Tor abgestimmt. Da dieser Plan von
+mehreren externen Faktoren, wie zum Beispiel der Vervollständigung andere
+Softwareprojekte die in die gleiche Version einfließen sollen, abhängt, kann
+die Zeit zwischen Veröffentlichung und Installation auf den meisten Tor
+Servern variieren. Aus Erfahrung kann ein Zeitraum von 3 bis 4 Monaten
+angenommen werden.</em></small>
+
+  </td>
+  <td>
+    15. Mai 2009
+  </td>
+</tr>
+</table>
+
+<br />
+
+<a id="Reports"></a>
+<h2><a class="anchor" href="#Reports">Monatliche Statusberichte</a></h2>
+
+<p>Es wird insgesamt acht monatliche Statusberichte geben. Der Erste wird mit
+dem Abschluss der ersten Etappe am 15. Juni 2008 erscheinen, der Letzte mit
+dem Abschluss der Tests und der Implementation am 15. Januar 2009. </p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<thead>
+<tr>
+<th><big>Monat,</big></th>
+<th><big>Statusbericht</big></th>
+</tr>
+</thead>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <a id="Jun08"></a>
+    <a class="anchor" href="#Jun08">Juni 08</a>
+  </td>
+  <td>
+  
+<small><em>Das ursprüngliche Ziel, das Problem, welches die versteckten
+Dienste verlangsamt, zu finden, wurde erreicht. Ein Teil dieser Analyse war es,
+ die Verzögerung zu messen, die ein Nutzer erlebt, wenn er auf einen
+versteckten Dienst zugreifen möchte. Messdaten aus dem April 08 konnten dafür
+genutzt werden, zu erforschen welche internen Schritte wie lange dauern, wenn
+ein Nutzer sich zu einem versteckten Dienst verbinden möchte. Die Ergebnisse
+dieser Analyse sind in einem 22-seitigen
+<a href="http://freehaven.net/~karsten/hidserv/perfanalysis-2008-06-15.pdf">
+Bericht (engl.)</a> enthalten, der auf der
+<a href="http://archives.seul.org/or/dev/Jun-2008/msg00019.html">Entwickler
+Mailingliste</a> veröffentlicht wurde.</em></small>
+
+<br/> <small><em>Die Analyse hat ausserdem ein paar Fehler ans Licht gebracht,
+die für einen Teil der Verzögerung verantwortlich waren. Ein paar Fehler
+wurden direkt nach der Analyse behoben, andere werden bald behoben sein. Die
+Untersuchung hat ausserdem mehrere mögliche Performanzverbesserungsansätze
+gebracht. Mehrere der Ansätze können direkt umgesetzt werden, andere benötigen
+intensivere Untersuchungen und neue Messungen. Im Zuge der Analyse fanden wir
+auch heraus, dass einigen der Ansätze tiefgreifende Änderungen an Tor
+benötigen, die nicht direkt mit versteckten Diensten zusammenhängen. Diese
+Veränderungen können innerhalb der Zeitplanungen dieses Projektes nicht
+umgesetzt werden.</em></small>
+
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <a id="Jul08"></a>
+    <a class="anchor" href="#Jul08">Juli 08</a>
+  </td>
+  <td>
+  
+<small><em>Alle in der Analyse gefundenen Fehler wurden behoben. Dies
+beinhaltet 2 Fehler die schon während der Analyse behoben wurden sowie 4
+weitere Fehler, die in den letzten 30 Tagen entfernt wurden. Während die
+Fehlerbehebungen nur ungewollte Performanzprobleme auf Grund von
+Programmierfehlern behoben haben, werden einige der in der Analyse entdeckten
+Designveränderungen einen Einfluss auf Anonymität oder die generelle
+Netzwerklast im Tor-Netzwerk haben. Diese Einflüsse müssen gegen die
+individuellen Performanzsteigerungen evaluiert werden. Ein <a
+href="http://freehaven.net/~karsten/hidserv/discussion-2008-07-15.pdf">
+Bericht</a> mit 7 möglichen Designveränderungen die diskutiert werden müssen,
+wurde auf der <a href="http://archives.seul.org/or/dev/Jul-2008/msg00034.html">
+Entwicklermailingliste</a> veröffentlicht. Bei mehreren Überprüfungen (genauer
+die Messungen bei niedrigen Bandbreiten und der "Grand Scaling Plan") hat sich
+herausgestellt, dass sie mehr Zeit als erwartet benötigen und sie wurden daher
+für eine spätere Etappe eingeplant. Der aktuelle Plan ist, diese Überprüfungen
+innerhalb eines Zeitraums bis zum 15. Januar 2009 zu erledigen und bis dahin
+mit Abschätzungen zu arbeiten.</em></small>
+
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <a id="Aug08"></a>
+    <a class="anchor" href="#Aug08">Aug. 08</a>
+  </td>
+  <td>
+
+<small><em>Während der letzen 30 Tage wurden 7 der vorgeschlagenen Designs
+weiter untersucht und diskutiert. Vier davon wurden im Hinblick auf die zu
+erwartenden Codeänderungen und Auswirkungen auf die Anonymität als machbar
+eingeschätzt. Eines wurde eher als Fehler als als Designveränderung gesehen.
+Zwei wurden auf Grund von unvorhersehbaren Sicherheitsauswirkungen oder
+unklarer Performanzgewinne ausgeschlossen.</em></small>
+
+<br/> <small><em>Zusammen mit den Ergebnissen vom 15. Juli wurde die
+Designphase beendet. Die Aufgaben für die kommende Umsetzung sind jetz klar:
+Ein Fehler muss behoben und 4 Designveränderungen müssen implementiert werden.
+Ausserdem müssen Untersuchungen des veränderten Designs zeigen, ob diese
+sinnvoll sind. Ein <a
+href="http://freehaven.net/~karsten/hidserv/design-2008-08-15.pdf">Bericht</a>
+mit den Ergebnissen der Designphase wurde auf der <a
+href="http://archives.seul.org/or/dev/Aug-2008/msg00025.html">Entwickler
+Mailingliste</a> veröffentlicht.</em></small> </td> </tr>
+
+<tr>
+  <td>
+    <a id="Sep08"></a>
+    <a class="anchor" href="#Sep08">Sep. 08</a>
+  </td>
+  <td>
+  
+<small><em>Während der ersten Hälfte der Umsetzungsphase konnten 2 Fehler
+behoben werden, die mit versteckten Diessnten zusammenhingen: der <a
+href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=767">erste
+Fehler</a> wurde bereits in der Designphase entdeckt und war für eine
+außergewöhnliche Fehlerrate beim Verfügbarmachen von versteckten Diensten
+verantwortlich; der <a
+href="http://bugs.noreply.org/flyspray/index.php?id=814&amp;do=details">zweite
+Fehler</a> wurde in der Umsetzungsphase gefunden und war dafür verantwortlich,
+dass Verbindungen zu aktiven, versteckten Diensten fehlschlagen konnten. Beide
+Fehlerbehebungen werden in der nächsten unstable Version enthalten sein und
+werden wahrscheinlich auch in eine der nächsten stable Veröffentlichungen
+zurückportiert werden.</em></small> <br/>
+
+<small><em>Die vier Designveränderungen die in der Designphase überlegt wurden,
+ wurden in einen <a
+href="https://tor-svn.freehaven.net/svn/tor/branches/hidserv-design-changes/">
+experimentellen Zweig</a> des unstable Entwicklungspfads eingebaut.Erste
+Funktionstests zeigen, dass diese Veränderungen funktionieren und bessere
+(gefühlte) Performanz bieten. Dies muss über die nächsten 4 Wochen in internen
+Tests überprüft werden. Das nächste Ziel ist es eine Version dieses
+experimentellen Zweigs für Betatester zu Beginn der folgenden Testphase zu
+veröffentlichen.</em></small> </td> </tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <a id="Oct08"></a>
+    <a class="anchor" href="#Oct08">Okt. 08</a>
+  </td>
+  <td>
+
+<small><em>Die Umsetzungsphase wurde beendet. Die Fehler die in den letzten 30
+Tagen gefunden wurden, sind in der Entwicklerversion <a
+href="http://archives.seul.org/or/talk/Oct-2008/msg00093.html">
+0.2.1.6-alpha</a> veröffentlicht worden. Die vier Designänderungen die
+identifiziert werden konnten, wurden in <a
+href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/155-four-hidden-service-improvements.txt">
+Vorschlag 155</a> spezifiziert. Drei Desiggnveränderungen wurden bereits in
+die Entwicklungscodebasis übernommen und werden in der nächsten
+Entwicklerversion automatisch enthalten sein. Die ersten beiden
+Designveränderungen verbessern die Verbindungsherstellung zu versteckten
+Diensten, in dem sie den die maximale Wartezeit von 60 auf 30 Sekunden
+reduzieren und parallel einen zweiten Verbindungsversuch nach 15 Sekunden
+starten. Die dritte Designveränderung beeinflusst die Veröffentlichung eines
+versteckten Dienstes im Netzwerk, in dem er gleichzeitig an 5 anstelle von 3
+Stellen bekanntgemacht wird und sobald 3 Stellen etabliert sind, aufhört. Die
+vierte Veränderung hat sich als eher ineffektiv herausgestellt, würde
+allerdings erhebliche Codekomplexität hinzufügen und wurde daher abgelehnt.
+Aktuell gibt es keine weiteren Fehlerbehebungen und Designveränderungen die
+noch umgesetzt werden können. Alle Veränderungen sind in der
+Entwicklungsquellcodebasis und können in der nächsten Etappe getestet
+werden.</em></small> </td> </tr>
+
+<tr>
+  <td>
+    <a id="Nov08"></a>
+    <a class="anchor" href="#Nov08">Nov. 08</a>
+  </td>
+  <td>
+  
+<small><em>Die Geschwindigkeitsverbesserungen wurden in der Tor-Version
+0.2.1.7-alpha veröffentlicht. Benutzer können diese Entwicklungsversion direkt
+von der Tor Homepage runterladen und die Verbesserungen mit minimalem Aufwand
+testen. Ausserdem wurden 2 Fehler (<a
+href="http://bugs.noreply.org/flyspray/index.php?id=767&amp;do=details">1</a>,
+<a href="http://bugs.noreply.org/flyspray/index.php?id=814&amp;do=details">
+2</a>) die während diesem Projekt gefunden wurden, in den stabilen Zweig
+übernommen und werden in der nächsten stable Version 0.2.0.32 enthalten
+sein.</em></small>
+
+<br/> <small><em>Die Hauptaufgabe der letzten 31 Tage war es, neue Messungen
+durchzuführen, ob die Verbesserungen effektiv sind oder nicht. Die Messungen
+wurden zwei Tage lang voom 6. bis zum 7. November durchgeführt. Dummerweise
+hatte das Tor-Netzwerk in dieser Zeit ein massives Problem: Ein abgelaufenes
+Zertifikat einer Verzeichnissauthorität hat hohe Last im Tor-Netz erzeugt, was
+<a href="http://archives.seul.org/or/talk/Nov-2008/msg00053.html">viele
+Serbverbetreiber gezwungen hat, ihre Server abzuschalten</a>. Eine zweite
+Messung wurde zwischen dem 13. und 15. November durchgeführt. Die Rohdaten
+sind <a
+href="http://freehaven.net/~karsten/hidserv/perfdata-2008-11-13.tar.gz">hier
+zu bekommen</a> (40 MB). Leider zeigen die Ergebnisse, dass die
+Gesamtperformanz des Tor-Netzwerks immer noch schlechter ist als im Juni 2008,
+als die erste Messung bezüglich versteckter Dienste durchgeführt wurde. Die
+zeigt sich vor allem bei Anfragen an Verzeichnissserver, die noch nicht von
+den Verbesserungen profitieren und die eine deutlich schlechtere Performanz
+als damals zeigen. Die Effekte der Verbesserungen sind sichtbar, aber absolute
+Zahlen sind noch nicht vergleichbar. Neue Messungen werden im Dezember
+durchgeführt, mit der Hoffnung, dass die Auswirkungen dieses Problems bis
+dahin verschwunden sind.</em></small> <br/>
+
+<small><em>Zusätzlich wurde noch ein möglicher <a
+href="http://bugs.noreply.org/flyspray/index.php?id=847&amp;do=details">
+Fehler</a> in der Art, wie Tor Verzeichnissinformationen beim Starten bezieht,
+gefunden. Auch wenn dieser Fehler nicht direkt mit versteckten Diensten
+zusammenhängt, würde die Veröffentlichung von versteckten Diensten von einer
+Fehlerbehebung profitieren. Ein Teil der Aufgaben der nächsten 30 Tagen wir es
+sein diesen Fehler zu untersuchen. </em></small> </td> </tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <a id="Dec08"></a>
+    <a class="anchor" href="#Dec08">Dez. 08</a>
+  </td>
+  <td>
+  
+<small><em>Ein Teil der letzten 30 Tagen wurde dafür genutzt, Fehler zu
+beheben, die die Messungen negativ beeinflusst haben. Die erste <a
+href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">
+Fehlerbehebung</a> behebt einen möglichen Speicherzugriffsfehler, der
+wahrscheinlich für eine Menge an fehlgeschlagenen Messreihen verantwortlich
+war. Ein anderer <a
+href="https://bugs.torproject.org/flyspray/index.php?id=847&amp;do=details">
+Fehler</a> konnte erklärt werden, der zu massiven Verzögerungen beim Verbinden
+mit dem Tor-Netzwerk führte: Sehr langsame Verzeichnissauthoritäten haben
+startende Nutzer für lange Zeit beschäftigt, bis der Nutzer endlich aufgegeben
+hat und seine Daten von einer anderen Authorität bezogen hat. Ein Ergebniss
+war, dass die langsamsten 2 Verzeichnissauthoritäten ihren Rechnern mehr
+Bandbreite spendiert haben, so dass der Effekt abgemindert wurde. Ein dritter
+<a href="https://bugs.torproject.org/flyspray/index.php?id=874&amp;do=details">
+Fehler</a> wurde mit den Performanzverbesserungen für versteckte Dienste im
+November eingeführt. Der Effekt war, dass Torprozesse, die versteckte Dienste
+angeboten haben, diese nicht mehr veröffentlichten, nachdem sie ihre
+Konfiguration neuluden. Ausserdem zeigte dieser Fehler, dass Tor seine
+Introduction Points neu aufbaute, wenn es neugeladen wurde. Dies könnte die
+Stabilität von versteckten Diensten beeinflusst haben. Der Fehler wurde
+behoben und wird in der folgenden Version 0.2.1.9-alpha enthalten sein.</em>
+</small> <br/>
+
+<small><em>Neben der Fehlerbehebung wurden neue Messungen zwischen dem 8. und
+10. Dezember durchgeführt. Dies werden wahrscheinlich die letzen Messungen
+sein, um die Performanz von versteckten Diensten jetzt mit dem Anfang des
+Projektes zu vergleichen. Die Daten wurden noch nicht komplett ausgewertet,
+daher ist es aktuell schwer eine Aussage über Verbesserungen zu machen. jedoch
+zeigt eine <a
+href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">
+vorläufige Auswertung</a>, dass die Veröffentlichungszeit eines versteckten
+Dienstes deutlich verbessert wurde. Dieser Erfolg kommt von der deutlich
+verbesserten Startzeit für Tornutzer und den Verbesserungen die im November
+eingebaut wurden. Im Gegensatz dazu sind die Ergebnisse der
+Verbindungsherstellung zu versteckten Diensten deutlich schlechter. Obwohl die
+Verbesserungen aus dem November einen positiven Effekt zu haben scheinen,
+zeigen einige interne Schritte eine deutlich schlechtere Performanz als
+vorher. Ein Beispiel dafür ist das Beziehen von Beschreibungsdateien
+versteckter Dienste um eine Verbindung mit diesen herstellen zu können. Eine
+mögliche Erklärung dafür ist dass der plötzliche Anstieg an Verzeichnissen für
+versteckte Dienste einen negativen Einfluss auf die Leistungsfähigkeit hatte.
+Ein Teil der Arbeit der letzten 31 Tage wird es sein, diese Daten genauer
+auszuwerten und finale Schlüsse über die erreichten Ziele dieses Projektes zu
+ziehen.</em></small> </td> </tr>
+
+<tr>
+  <td>
+    <a id="Jan09"></a>
+    <a class="anchor" href="#Jan09">Jan. 09</a>
+  </td>
+  <td>
+  
+<small><em>Die Testphase ist zu Ende. Die Tests wurden in einer öffentlichen
+Betaphase mit den gesamten Änderungen im 0.2.1.x-alpha Zweig von Tor
+durchgeführt. Ein Ergebniss der öffentlichen Betaphase sind ein paar gefundene
+Fehler, die bereits behoben werden konnten.</em></small> <br/>
+
+<small><em>Ein weiterer Teil des Testens war eine zweite Messreihe, die im
+Dezember durchgeführt wurde. Ein <a
+href="http://freehaven.net/~karsten/hidserv/comparison-2009-01-15.pdf">
+Vergleich</a> der durchgeführten Messungen im Juni und im Dezember hat uns
+gezeigt, dass die Veränderungen dieses Projektes effektiv sind. Die
+Veröffentlichungszeit für versteckte Dienste konnte von im Mittel 2:12 Minuten
+auf 58 Sekunden mehr als halbiert werden. Diese Verbesserung ist deutlich
+besser als erwartet. Mit dieser Verbesserung könnte es sogar interessant sein,
+über eine Reduzierung der Stabilisierungszeit von 30 Sekunden auf einen
+niedrigeren Wert nachzudenken. Leider ist die Zeit die es dauert, zwischen der
+Anforderung eines versteckten Dienstes und der Verbindungsherstellung zu
+diesem, bei etwa 56 Sekunden geblieben. Der Hauptgrund für die fehlende
+Verbesserung ist der Wechsel von einer zentralen, hin zu einer dezentralen
+Speicherung der Beschreibungsdateien von versteckten Diensten. Dieser negative
+Effekt durch die Verteilung des Verzeichnisses der versteckten Dienste wurde
+nicht vorhergesehen. In Zukunft sollte daher an der Beschleunigung des
+Herunterladens von Beschreibungsdateien aus dem verteilten Verzeichniss
+gearbeitet werden. Zum Beispiel durch die Parallelisierung dieser
+Anfragen.</em></small> <br/>
+
+<small><em>Dieser Report beendet die monatlichen Statusupdates. Die Verteilung
+der 0.2.1.x Versionen mit den Verbesserungen für versteckte Dienste wird in
+den nächsten Wochen und Monaten geschehen.</em></small>
+
+  </td>
+</tr>
+</table>
+
+<br />
+
+<!-- Do we want a people section? If so, would it make sense to write what
+these people will be doing? And what exactly are these people going to
+do? :)
+<a id="People"></a>
+<h2><a class="anchor" href="#People">Leute</a></h2>
+<ul>
+<li><a href="<page people>#Core">Karsten Loesing</a></li>
+<li><a href="<page people>#Core">Steven Murdoch</a></li>
+</ul>
+-->
+
+<a id="Links"></a>
+<h2><a class="anchor" href="#Links">Links</a></h2>
+<ul>
+<li>Forschungsbericht über <b>Performance Measurements and Statistics of Tor
+Hidden Services</b>
+(<a href="http://www.uni-bamberg.de/fileadmin/uni/fakultaeten/wiai_lehrstuehle/praktische_informatik/Dateien/Publikationen/loesing2008performance.pdf">PDF</a>)
+von Karsten Loesing, Werner Sandmann, Christian Wilms und Guido Wirtz. In
+den Proceedings des 2008 International Symposium on Applications and the
+Internet (SAINT), Turku, Finnland, Juli 2008.
+
+<!-- In the future, put links to proposal, preliminary results, etc. here -->
+
+</ul>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
+
