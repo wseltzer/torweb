@@ -1,0 +1,232 @@
+## translation metadata
+# Based-On-Revision: 16442
+# Last-Translator: mail /a-t/ oliverknapp .de
+
+#include "head.wmi" TITLE="Torbutton Optionen" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>Torbutton Optionen</h2>
+<hr />
+
+<p>Torbutton 1.2.0 fügt viele neue Sicherheitsfeatures hinzu, um deine
+Anonymität vor allen größeren Gefahren, von denen wir wisssen, zu schützen. Die
+Standardeinstellungen sollten für die meisten Leute am Besten (und Sichersten!)
+ sein, aber wenn du ein Schrauber bist, oder wenn du versuchst ein paar der
+Optionen in etwas flexiblere Erweiterungen auszulagern, gibt es hier die
+komplette Liste. (In einer perfekten Welt wären diese Beschreibungen alles
+Tooltips direkt in der Erweiterung, aber die Firefox-Fehler <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=45375">45375</a> und <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=218223">218223</a>
+verhindern das momentan.) </p>
+
+<ul> <li>Disable plugins on Tor Usage (crucial)<p> Diese Option ist
+grundlegend für deine Anonymität bei Tor. Plugins machen vom Browser
+unabhängige Netzwerkanfragen und viele der Plugins halten sich noch nicht mal
+an ihre eigenen Proxyeinstellungen. </p></li>
+
+<li>Isolate Dynamic Content to Tor State (crucial)<p> Eine weitere wichtige
+Option. Diese Einstellung sorgt dafür, dass das Plugin in allen Tabs die in
+einem anderen Tor-Modus als dem Aktuellen geladen wurden, Java-Script
+deaktivert, um absichtlich verzögerte Anfragen oder ein automatisches Neuladen
+mit dem du identifiziert werden könntest, zu verhinden. Die Option verhindert
+auch alle Anfragen von Tabs die in einem anderen Tor-Modus geladen wurden.
+Das dient dazu, dynamische Inhalte wie zum Beispiel CSS Popups davon zu
+abzuhalten, deine IP-Adresse zu verraten, wenn du Tor abschaltest. </p></li>
+
+<li>Hook Dangerous Javascript (crucial)<p> Diese Einstellung fängt bestimmte
+JavaScript-Funktionen ab. JavaScript wird in die Seiten eingefügt, damit die
+Datumsfunktion nicht deine Zeitzone und die Navigationsobjekte keine
+Betriebssystem- oder User-Agent-Details verraten, die nicht von den normalen
+Einstellungen abgefangen werden können. </p></li>
+
+<li>Resize window dimensions to multiples of 50px on toggle (recommended)<p>
+Um eine weitere Möglichkeit der Identifizierung von einzelnen Nutzern zu
+verhindern, sorgt diese Einstellung dafür, dass die Größe von Fenster immer
+auf ein Mehrfaches von 50 Pixeln verändert wird, wenn Tor aktiviert ist und
+Seiten geladen werden. </p></li>
+
+<li>Disable Updates During Tor (recommended)<p> Bei Firefox 2 haben viele
+Autoren von Erweiterungen, Updates nicht über SSL-gesicherte Webseiten
+durchgeführt. Es wäre für böswillige Torserver möglich, diese Erweiterungen zu
+übernehmen und mit Schadcode zu überschreiben oder Schadcode zu normalen
+Erweiterungen hinzufügen. Da Firefox 3 mittlerweile verschlüsselte Updates
+erzwingt, ist diese Einstellung nicht mehr so wichtig, wie sie mal war (da die
+Updates verraten, welche Erweiterungen du hast, ist dies vielleicht
+trotzdem interessant). </p></li>
+
+<li>Disable Search Suggestions during Tor (optional)<p> Mit dieser Einstellung
+kannst du regeln, ob du Suchvorschläge von Google bekommst, während du Tor
+benutzt. Da bei den Suchvorschlägen keine Cookies verwendet werden, ist das
+aber eher eine Zusatzoption. </p></li>
+
+<li>Block Tor/Non-Tor access to network from file:// urls (recommended)<p>
+Diese Einstellung verhindert, dass <a
+href="http://www.gnucitizen.org/blog/content-disposition-hacking/">unter
+Firefox 2</a> lokale HTML Dateien andere lokale HTML Dateien an Webseiten
+verschicken können. Da Exitserver bestimmte Header zu Webseiten hinzufügen
+können, die deinen Browser dazu bringen Dateien lokal zu speichern (oder sie
+fügen Skript in Dateien ein, die du vie Tor lokal speicherts), ist es
+wahrscheinlich eine gute Idee, die Einstellung an zu lassen. </p></li>
+
+<li>Close all Non-Tor/Tor windows and tabs on toggle (optional)<p> Diese
+beiden Einstellungen sind eine noch bessere Versicherung dafür, dass nach
+einem Abschalten von Tor alle Seiten wirklich weg sind und keine
+Netzwerkzugriffe mehr durchführen können. Es gibt zwar aktuell keinen
+bekannten Weg über den Webseiten nach einer Umschaltung noch Netzwerkverkehr
+durchführen können, aber diese Einstellung ist ein Backup für den Fall, dass
+eine Lücke, die dies ermöglichen würde, entdeckt wird. Die Einstellungen sind
+auch ein praktisches "Boss Key" Feature, dass sofort alle Tor Fenster schließt,
+ wenn man Torbutton umschaltet. </p></li>
+
+<li>Isolate access to history navigation to Tor state (crucial)<p> Diese
+Einstellung verhindert, dass sowohl Javascript als auch der Nutzer selbst die
+Chronik benutzt, um Seiten zu laden, die während eines anderes
+Torbutton-Modus geladen wurden. Da das dazu führen könnte, deine Tor und
+Nicht-Tor Identität zu verbinden, ist es als wichtiges Feature markiert. </p>
+</li>
+
+<li>Block History Reads during Tor (crucial)<p> Diese Einstellung basiert auf
+Code von <a href="http://www.collinjackson.com/">Collin Jackson</a>. Wenn sie
+aktiviert ist und Torbutton Tor nutzt, dann verhindert sie, dass die Rendering
+Engine sehen kann, ob bestimmte Links angeklickt wurden. Dieser Mechanismus
+besiegt alle dokument-basierten Angriffe auf deine Surfvergangenheit,
+einschliesslich reiner CSS Attacken.</p></li>
+
+<li>Block History Reads during Non-Tor (recommended)<p> Diese Einstellung
+macht das Gleiche im Nicht-Tor-Modus./p></li>
+
+<li>Block History Writes during Tor (recommended)<p> Diese Einstellung
+verhindert, dass das die Rendering Engine speichert, welche Seiten du besucht
+hast und deaktivert auch die Chronik des Download-Managers. Achtung: Wenn du
+Firefox erlaubst solche Informationen im Tor-Modus zu speichern, musst du
+daüfr sorgen, dass sie während dem Nicht-Tor-Modus nicht gelesen werden
+können. Ansonsten ist es für Webseiten einfach, deine Chronik nach besuchten
+Seiten oder zum Beispiel deinen Google Suchanfragen zu durchsuchen.</p></li>
+
+<li>Block History Writes during Non-Tor (optional)<p> Diese Einstellung macht
+das Gleiche im Nicht-Tor-Modus</p></li>
+
+<li>Clear History During Tor Toggle (optional)<p> Dies ist eine alternative
+Einstellung, die ebenfalls verhindert, dass die Chronik über einen
+Moduswechsel hinweg gelesen werden kann.</p> </li>
+
+<li>Block Password+Form saving during Tor/Non-Tor<p> Diese Einstellung regelt,
+ob dein Browser Passwörter und Formulareingaben während dem entsprechenden
+Modus auf die Festplatte speichern darf oder nicht.</p></li>
+
+<li>Block Tor disk cache and clear all cache on Tor Toggle<p> Da der
+Browsercache dafür genutzt werden kann, eindeutige Identifizierungsmerkmale zu
+speichern, darf der Cache keinesfalls einen Moduswechsel überdauern. Diese
+Option lässt zwar den schnellen Speicher im RAM aktiv, verhinder aber
+Festplattenzugriffe für Caching./p></li>
+
+<li>Block disk and memory cache during Tor<p> Diese Einstellung deaktivert den
+Cache im Tor-Modus generell, erlaubt ihn aber im Nicht-Tor-Modus.</p></li>
+
+<li>Clear Cookies on Tor Toggle<p> Löscht alle Cookies bei einem
+Moduswechsel</p> </li>
+
+<li>Store Non-Tor cookies in a protected jar<p> Diese Option speichert deine
+dauerhaften Nicht-Tor Cookies in einem speziellen Container, soltest du ein paar
+Cookies behalten möchten. Diese Option basiert auf Code von <a
+href="http://www.collinjackson.com/">Collin Jackson</a>. Sie ist kompatibel
+mit anderen Erweiterungen, die du zum Verwalten deiner Nicht-Tor Cookies
+benutzt. Deine Tor Cookies werden beim Moduswechsel natürlich gelöscht.</p>
+</li>
+
+<li>Store both Non-Tor and Tor cookies in a protected jar (dangerous)<p> Diese
+Einstellung speichert deine Tor und deine Nicht-Tor Cookies jeweils in einem
+separaten Container. Bitte beachte, dass es eine sehr schlechte Idee ist, Tor
+Cookies längere Zeit zu speichern, da sie einfach von Exitservern ausgelesen
+werden können, indem sie gefälschte Formulare in Webseiten einbetten, die du
+abrufst.</p> </li>
+
+<li>Manage My Own Cookies (dangerous)<p> Diese Einstellung erlaubt dir, deine
+Cookies mit einer anderen Erweiterung wie zum Beispiel <a
+href="https://addons.mozilla.org/firefox/addon/82">CookieCuller</a> selbst zu
+verwalten. Du solltest wissen, dass das sehr gefährlich ist, da bösartige
+Exitserver einfach Elemente in Webseiten fälschen können, so dass sie aussehen
+als würden sie von anderen Seiten, von denen du Cookies hast, stammen. Auf
+diese Weise können sie dann böse Sachen machen, zum Beispiel dein
+Gmail-Postfach lesen, ohne dass du irgendeine Googleseite aufrufst. </p></li>
+
+<li>Do not write Tor/Non-Tor cookies to disk<p> Diese Einstellung verhindert,
+dass Firefox während dem entsprechenden Modus Cookies auf die Festplatte
+schreibt. Wenn du die Speicherung in speziellen Containern ktiviert hast, sind
+diese Dateien nur im RAM und werden gelöscht, wenn Firefox geschlossen
+wird.</p></li>
+
+<li>Disable DOM Storage during Tor usage (crucial)<p> Firefox hat die
+Möglichkeit, zusätzliche Statusinformationen und Identifizierungsdaten in
+dauerhaften Tabellen, genannt <a
+href="http://developer.mozilla.org/docs/DOM:Storage">DOM Storage</a> zu
+speichern. Wenn dort gespeicherte Daten über einen Moduswechsel erhalten
+bleiben, gefährdet das massiv deine Anonymität.</p></li>
+
+<li>Clear HTTP auth sessions (recommended)<p> HTTP Zugangsdaten können von
+Exitservern abgerufen werden. Dies zeigt ihnen zum Einen, dass du die Seite
+besucht hast und erlaubt ihnen ausserdem, sich auf diesen Seiten mit deiner
+Identität anzumelden.</p></li>
+
+<li>Clear cookies on Tor/Non-Tor shutdown<p> Diese Einstlelung installiert
+einen Skript, der beim Verlassen von Firefox aufgerufen wird. Der Skript ist
+unabhängig von der Einstellung "Private Daten löschen" und löscht auch die
+speziellen Cookiecontainer.</p></li>
+
+<li>Prevent session store from saving Tor-loaded tabs (recommended)<p> Diese
+Option überwacht das Session Store von Firefox und verhindert, dass es Tabs
+die im Tor-Modus geladen wurden auf die Festplatte speichert. Leider
+deaktiviert das auch die Möglichkeit, geschlossene Tabs wiederherzustellen. Der
+Grund warum diese Einstellung empfohlen wird, ist, dass dein Browser sich nach
+einem Absturz in einem undefinierten Zustand befindet und es daher möglich ist,
+ dass er eine Menge über Tor geladene Tabs nicht über Tor wiederherstellt. Die
+folgende Option ist eine Alternative dazu.</p></li>
+
+<li>On normal startup, set state to: Tor, Non-Tor, Shutdown State<p> Diese
+Einstellung erlaubt dir auszuwählen, in welchem Modus dein Browser startet:
+Tor, Nicht-Tor oder der Modus in dem du den Browser geschlossen hast.</p></li>
+
+<li>On crash recovery or session restored startup, restore via: Tor, Non-Tor<p>
+ Wenn Firefox abstürzt, ist der anfängliche Modus von Torbutton mehr oder weniger
+zufällig und es hängt daher vor allem von dieser Option ab, ob Firefox eine
+Menge Tabs im falschen Modus lädt. Mit dieser Einstellung wählst du, in
+welchem Modus eine abgestürzte Session wiederhergestellt wird.</p></li>
+
+<li>Prevent session store from saving Non-Tor/Tor-loaded tabs<p>Diese zwei
+Einstellungen regeln, was der Firefoy Sessionspeicher auf die Festplatte
+schreibt. Da der Sessionspeicher benutzt wird, um Seiten nach einem Absturz
+oder einem Update zu laden, ist es sinnvoll, Tabs aus dem Tor-Modus nicht
+darin zu speichern, damit sie keinesfalls im Nicht-Tor Modus geladen werden.
+(oder andersrum, hängt natürlich von der "Crash Recovery"-Einstellung direkt
+hierüber ab) </p></li>
+
+<li>Set user agent during Tor usage (crucial)<p> Das Verändern deines User
+Agents und der navigator.* Eigenschaften verfolgt die Idee, dass alle Tor
+Nutzer möglichst gleich aussehen sollten. Eine relativ aktuelle Firefoxversion
+unter Windows wurde als Pate für diese Option ausgewählt und wird solange für
+jede neue Torbuttonversion genutzt, bis eine Inkompatibilität auftritt. Diese
+Gleichförmigkeit der Benutzer ist sehr wichtig für die Anonymität. Bitte
+beachte: Damit diese Option wirklich effektiv ist, musst du die Option "Hook
+Dangerous Javascript" aktivieren, damit alle navigator.* Eigenschaften richtig
+eingestellt werden können. Die "Set user agent" Einstellung alleine, kann
+nicht alle Eigenschaften überschreiben.</p></li>
+
+<li>Spoof US English Browser<p> Diese Option sorgt dafür, dass Firefox
+HTTP-Header so aussehen lässt als wäre es ein englischer Browser. Dies ist
+besonders für nicht englischsprachige Nutzer interessant. </p></li>
+
+<li>Don't send referrer during Tor Usage<p> Diese Option verhindert, dass
+Firefox mitteilt, von welcher Seite man gerade kommt. Es ist möglich, dass
+dies einige Seiten nicht mehr benutzbar macht. Insbesondere <a
+href="http://www.digg.com">Digg</a> scheint davon betroffen zu sein. Eine
+etwas bessere, weniger rabiate Version dieser Option wird vielleicht bald
+verfügbar sein. In der Zwischenzeit kann <a
+href="https://addons.mozilla.org/firefox/addon/953">RefControl</a> diese
+Funktionalität mit der Standardeinstellung <b>Forge</b> bieten. </p></li> </ul>
+
+</div><!-- #main -->
+
+#include <foot.wmi>
