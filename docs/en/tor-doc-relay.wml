@@ -93,19 +93,34 @@ while to make sure it's actually working.</p>
 <a id="setup"></a>
 <h2><a class="anchor" href="#setup">Step One: Set it up as a relay</a></h2>
 <br />
-
-<p>
-1. Verify that your clock is set correctly. If possible, synchronize
+<ol>
+<li>Verify that your clock is set correctly. If possible, synchronize
 your clock with public time servers.
-</p>
+</li>
 
-<p>
-2. Make sure name resolution works (that is, your computer can resolve
+<li>Make sure name resolution works (that is, your computer can resolve
 Internet addresses correctly).
-</p>
+</li>
+<li>The easier step to configure a relay is to use Vidalia.  The more advanced step is to edit your torrc directly.
 
-<p>
-3. Edit the bottom part of your torrc. (See <a
+<ul><strong>Easy Configuration</strong>:
+<li>Right click on the Vidalia icon in your task bar.  Choose <tt>Control Panel</tt>.</li>
+<li>Click <tt>Setup Relaying</tt>.</li>
+<li>Choose <tt>Relay Traffic for the Tor network</tt>.</li>
+<li>Enter a nickname for your relay. (Optional, enter contact information.)</li>
+<li>Choose <tt>Attempt to automatically configure port forwarding</tt>.
+Push the <tt>Test</tt> button to see if it works.  If it does work, great.
+If not, see Step 4 below.</li>
+<li>Choose the <tt>Bandwidth Limits</tt> tab.  Select how much bandwidth you want to provide for Tor users like yourself.</li>
+<li>Choose the <tt>Exit Policies</tt> tab.  If you want to allow others
+to use your relay for these services, don't change anything.  Un-check
+the services you don't want to allow through your relay.  If you want to
+be a non-exit relay, un-check all services.</li>
+<li>Click the <tt>Ok</tt> button.  See Step Two below for confirmation
+that the relay is working correctly.</li>
+</li>
+
+<strong>Advanced Configuration</strong>: Edit the bottom part of your torrc. (See <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">this
 FAQ entry</a> for help.)
 Make sure to define at least Nickname and ORPort. Create the DataDirectory
@@ -113,38 +128,38 @@ if necessary, and make sure it's owned by the user that will be running
 tor. <em>If you want to run more than one relay that's great, but
 please set <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">the
 MyFamily option</a> in all your relays' configuration files.</em>
-</p>
 
-<p>
-4. If you are using a firewall, open a hole in your firewall so
+</li>
+</ul>
+
+<li> If you are using a firewall, open a hole in your firewall so
 incoming connections can reach the ports you configured (ORPort, plus
 DirPort if you enabled it). Make sure you allow all outgoing connections,
 so your relay can reach the other Tor relays.
-</p>
+</li>
 
-<p>
-5. Restart your relay. If it <a
+<li>Restart your relay. If it <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">logs
 any warnings</a>, address them.
-</p>
+</li>
 
-<p>
-6. Subscribe to the <a
+<li>Subscribe to the <a
 href="http://archives.seul.org/or/announce/">or-announce</a>
 mailing list. It is very low volume, and it will keep you informed
 of new stable releases. You might also consider subscribing to <a
 href="http://archives.seul.org/or/talk/">or-talk</a> (higher volume),
 where new development releases are announced.
-</p>
+</li>
 
-<p>
-7. Have a look at the manual.
+<li>
+Have a look at the manual.
 The <a href="<page tor-manual>">manual</a> for the
 latest stable version provides a list of all the possible configuration
 options for both clients and relays.
 If you are running the development version of Tor, the manual is available
 <a href="<page tor-manual-dev>">here</a>.
-</p>
+</li>
+</ol>
 
 <hr />
 <a id="check"></a>
