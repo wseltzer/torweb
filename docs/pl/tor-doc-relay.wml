@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 17477
+# Based-On-Revision: 18337
 # Translation-Priority: 2-medium
 # Last-Translator: bogdandr_at_op . pl
 
@@ -90,18 +90,46 @@
 <h2><a class="anchor" href="#setup">Krok 1: Ustawienie Tora jako przekaźnika sieci</a></h2>
 <br />
 
-<p>
-1. Sprawdź, czy twój zegar jest dobrze ustawiony. Jeśli jest to możliwe,
+<ol>
+<li> Sprawdź, czy twój zegar jest dobrze ustawiony. Jeśli jest to możliwe,
  zsynchronizuj swój zegar z publicznymi serwerami czasu.
-</p>
+</li>
 
-<p>
-2. Sprawdź, czy prawidłowo działa rozwiązywanie nazw (tzn. czy twój komputer
+<li>
+Sprawdź, czy prawidłowo działa rozwiązywanie nazw (tzn. czy twój komputer
  potrafi otrzymać prawidłowy adres IP dla podanej nazwy serwera).
-</p>
+</li>
 
-<p>
-3. Wyedytuj dolną część swojego pliku torrc. (Zajrzyj do <a
+<li>Najprostszym sposobem na skonfigurowanie przekaźnika jest skorzystanie z Vidalii.
+Bardziej zaawansowanym krokiem jest bezpośrednia edycja pliku torrc.
+
+<br />
+<strong>Prosta konfiguracja</strong>:
+<ul>
+ <li>Kliknij prawym klawiszem na ikonkę Vidalii w zasobniku systemowym. Wybierz
+  <tt>Control Panel</tt> (Panel sterowania).</li>
+ <li>Klinkij <tt>Setup Relaying</tt> (Uruchomienie przekazywania).</li>
+ <li>Wybierz <tt>Relay Traffic for the Tor network</tt> (Przekazuj ruch dla sieci Tor).</li>
+ <li>Wprowadź nazwę dla swojego przekaźnika (Opcjonalnie wprowadź dane kontaktowe.)</li>
+ <li>Wybierz <tt>Attempt to automatically configure port forwarding</tt> (Spróbuj automatycznie
+  skonfigurować przekazywanie portów). Wciśnij przycisk <tt>Test</tt>, by sprawdzić, czy to
+  działa. Jeśli tak, to wspaniale. Jeśli nie, spójrz na krok 4 poniżej.</li>
+ <li>Wybierz kartę <tt>Bandwidth Limits</tt> (Ograniczenia łącza).
+  Określ, ile z przepustowości łącza chcesz dać uzytkownikom Tora, takim jak Ty.</li>
+ <li>Wybierz kartę <tt>Exit Policies</tt> (Polityki wyjścia). Jeśli chcesz, by inni mogli
+  używać Twojego przekaźnika dla tych usług, nie zmieniaj niczego. Wyłącz te usługi,
+  do których nie chcesz wypuszczać ruchu ze swojego przekaźnika. Jeśli chcesz być przekaźnikiem
+  nie-wyjściowym, wyłącz wszystkie usługi.</li>
+ <li>Kliknij przycisk <tt>Ok</tt>. Spójrz na krok 2 poniżej w celu potwierdzenia, że
+  przekaźnik działa prawidłowo.</li>
+</ul>
+
+<br />
+<strong>Zaawansowana konfiguracja</strong>:
+<ul>
+
+ <li>
+ Wyedytuj dolną część swojego pliku torrc. (Zajrzyj do <a
  href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">tego
  wpisu FAQ</a> po pomoc.)
  Upewnij się, że podałeś co najmniej Nickname i ORPort. Utwórz katalog podany w DataDirectory,
@@ -110,37 +138,39 @@
  <em>Jeśli chcesz uruchomić więcej niż jeden przekaźnik, to świetnie, ale ustaw proszę
  <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">opcję
  MyFamily</a> w plikach konfiguracyjnych wszystkich przekaźników.</em>
-</p>
+ </li>
+</ul>
 
-<p>
-4. Jeśli używasz zapory ogniowej, otwórz w niej przejście, by połączenia
+<li>
+ Jeśli używasz zapory ogniowej, otwórz w niej przejście, by połączenia
  przychodzące mogły dostać sie do skonfigurowanych portów (ORPort, plus
  DirPort, jeśli go włączyłeś). Upewnij się, że dozwolone są wszystkie
  połączenia wychodzące, aby twój przekaźnik mógł dotrzeć do innych przekaźników Tora.
-</p>
+</li>
 
-<p>
-5. Uruchom ponownie swój przekaźnik. Jeśli <a
+<li>
+ Uruchom ponownie swój przekaźnik. Jeśli <a
  href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">wypisze jakieś ostrzeżenia</a>,
  zajmij się nimi.
-</p>
+</li>
 
-<p>
-6. Zapisz się na listę mailingową <a
+<li>
+ Zapisz się na listę mailingową <a
  href="http://archives.seul.org/or/announce/">or-announce</a>.
  Ma ona mały ruch, dzięki niej będziesz informowany o nowych stabilnych wydaniach.
  Możesz także zapisać się na <a
  href="http://archives.seul.org/or/talk/">or-talk</a> (większy ruch),
  gdzie ogłaszane są nowe wydania rozwijane (testowe).
-</p>
+</li>
 
-<p>
-7. Przejrzyj podręcznik.
+<li>
+ Przejrzyj podręcznik.
  Strona <a href="<page tor-manual>">podręcznika</a> najnowszej stabilnej wersji
  zawiera listę wszystkich możliwych opcji konfiguracyjnych dla klienta i przekaźnika.
  Jeśli używasz rozwojowej wersji Tora,
  to podręcznik jest <a href="<page tor-manual-dev>">tutaj</a>.
-</p>
+</li>
+</ol>
 
 <hr />
 <a id="check"></a>
