@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 14160
+# Based-On-Revision: 18337
 # Last-Translator: jan at seul org
 
 #include "head.wmi" TITLE="Tor: struzioni per configurare un relay Tor" CHARSET="UTF-8"
@@ -95,58 +95,75 @@ modo da assicurarti che funzioni correttamente.</p>
 <h2><a class="anchor" href="#setup">Uno: configura Tor come relay</a></h2>
 <br />
 
-<p>
-1. Controlla che l'orologio di sistema sia preciso. Se possibile sincronizzalo
+<ol>
+<li> Controlla che l'orologio di sistema sia preciso. Se possibile sincronizzalo
 con un time server pubbico.
-</p>
+</li>
 
-<p>
-2. Controlla che funzioni la risoluzione dei nomi (in altre parole, il tuo computer deve potere
+<li> Controlla che funzioni la risoluzione dei nomi (in altre parole, il tuo computer deve potere
 risolvere correttamente gli indirizzi per mezzo del DNS).
-</p>
+</li>
 
-<p>
-3. Modifica la parte finale del file torrc. (Vedi <a
+<li>Il modo pi&ugrave; facile per configurare un relay &egrave; usare Vidalia. Il metodo avanzato &egrave; invece modificare il file torrc direttamente.
+
+<ul><strong>Configurazione semplice</strong>:
+<li>Fai clic destro sull'icona Vidalia inella barra di stato. Scegli <tt>Pannello di controllo</tt>.</li>
+<li>Fai clic su <tt>Avviamento del relaying</tt>.</li>
+<li>Seleziona <tt>Scambia traffico per la rete Tor</tt>.</li>
+<li>Scegli un nickname per il tuo relay. (Facoltativamente, inserisci le informazioni per contattarti.)</li>
+<li>Seleziona <tt>Attempt to automatically configure port forwarding</tt>.
+Premi il pulsante <tt>Test</tt> per vedere se tutto funziona. Se funziona, bene.
+Altrimenti, vedi il passo 4 qui sotto.</li>
+<li>Seleziona la scheda <tt>Limiti di Banda</tt>. Scegli quanta banda donare agli utenti Tor come te.</li>
+<li>Seleziona la scheda<tt>Policy delle uscite</tt>. Se vuoi permettere agli altri di
+usare il tuo relay per questi servizi, non cambiare nulla. Deseleziona
+i servizi che non vuoi consentire sul tuo relay. Se vuoi essere un
+relay intermedio, deseleziona tutti  servizi.</li>
+<li>Fai clic sul pulsante <tt>Ok</tt>. Vedi il passo 2 qui sotto per controllare che
+il relay funzioni correttamente.</li>
+</li>
+
+<strong>Configurazione avanzata</strong>: 
+<li> Modifica la parte finale del file torrc. (Vedi <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">questa
 FAQ</a> per un aiuto).
 Definisci come minimo almeno Nickname e ORPort. Crea la DataDirectory
 se necessario, e controlla che sia di propriet&agrave; dell'utente con cui girer&agrave;
 tor. <em>Se vuoi gestire pi&ugrave; di un relay, per favore
 definisci <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">l'opzione
-MyFamily</a> nei file di configurazione di tutti i tuoi relay.</em>
-</p>
+MyFamily</a> nei file di configurazione di tutti i tuoi relay.</em></li>
 
-<p>
-4. Se usi un firewall, aprilo in modo da permettere alle connessioni
+</li>
+</ul>
+
+<li>Se usi un firewall, aprilo in modo da permettere alle connessioni
 in arrivo di raggiungerele porte che hai configurato (ORPort, anche
 DirPort se l'hai abilitata). Controlla che siano permesse tutte le connessioni in uscita,
 per permettere al tuo relay di raggiungere gli altri server Tor.
-</p>
+</li>
 
-<p>
-5. Riavvia il relay. Se <a
+<li> Riavvia il relay. Se <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">segnala
 dei messaggi di avviso</a>, esaminali.
 
-</p>
+</li>
 
-<p>
-6. Iscriviti alla mailing list <a
+<li>Iscriviti alla mailing list <a
 href="http://archives.seul.org/or/announce/">or-announce</a>.
 Ha un traffico molto basso e serve ad informarsi sulle
 nuove versioni stabili. Potresti anche iscriverti a <a
 href="http://archives.seul.org/or/talk/">or-talk</a> (traffico pi&ugrave; alto),
 in cui vengono annunciate le nuove versioni di sviluppo.
-</p>
+</li>
 
-<p>
-7. Leggi il manuale.
+<li>Leggi il manuale.
 Il <a href="<page tor-manual>">manuale</a> dell'
 ultima versione stabile ha una lista di tutte le opzioni di configurazione
 possibili per client e relay.
 Se usi la versione di sviluppo di Tor, il manuale &egrave; disponibile
 <a href="<page tor-manual-dev>">qui</a>.
-</p>
+</li>
+</ol>
 
 <hr />
 <a id="check"></a>
@@ -278,10 +295,7 @@ gestire un exit node veloce, probabilmente non basta. Su
 Linux, aggiungi una riga come "toruser hard nofile 8192" al file
 /etc/security/limits.conf (dove toruser &egrave; l'utente del processo
 Tor), poi riavvia Tor se &egrave; stato installato da pacchetto (o fai un
-logout e login se lo avvii tu stesso). Se non dovesse funzionare, vedi <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FileDescriptors">questa
-FAQ</a> per altri metodi suggeriti per eseguire "ulimit -n 8192" prima
-di lanciare Tor.
+logout e login se lo avvii tu stesso).
 </p>
 
 <p>
