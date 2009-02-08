@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 17477
+# Based-On-Revision: 18337
 # Translation-Priority: 2-medium
 # Last-Translator: peihanru AT gmail.com
 
@@ -85,14 +85,36 @@ href="<page docs/tor-doc-unix>#installing">第一步</a>。
 </p>
 
 <p>
-3、修改 torrc 的最后部分。（如需帮助，请查看<a
+3、配置中继最简单的办法是使用 Vidalia。更高级的方法是直接修改 torrc。
+</p>
+
+<blockquote>
+<strong>简单配置</strong>：
+<ul>
+<li>鼠标右键点击任务栏中的 Vidalia 图标，选择<tt>控制面板</tt>。</li>
+<li>点击<tt>设置中继</tt>。</li>
+<li>选择 <tt>Tor 网络中继</tt>。</li>
+<li>为中继输入一个昵称。（可选，输入联系信息。）</li>
+<li>选择 <tt>Attempt to automatically configure port forwarding</tt>。
+点击 <tt>Test</tt> 按钮检查是否能正常工作。如能正常工作继续往下配置；否则请查看下面的第 4 步。
+<!-- FIXME: 上面的两个GUI短语目前并没有翻译。--></li>
+<li>转到<tt>带宽限制</tt>标签。选择一个你愿意为 Tor 用户提供的带宽。</li>
+<li>转到<tt>服务策略</tt>标签。如果你同意 Tor 用户通过中继使用这些服务，什么都不用修改。
+取消选择那些你不想提供的服务。如果你只想成为非出口的中继，取消选择所有服务。</li>
+<li>点击<tt>确定</tt>按钮。请看下面的第二步以确认中继工作正常。</li>
+</ul>
+
+<strong>高级配置</strong>：
+<ul>
+<li>修改 torrc 的最后部分。（如需帮助，请查看<a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">此 FAQ 条目</a>。）
 请确认至少定义了 Nickname 和 ORPort 选项。需要的话创建 DataDirectory 并确认
 这个目录的所有者是将要运行 Tor 的用户。<em>如果你打算运行多台中继——这太棒了——
 但是请为所有中继的配置文件加入 <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">MyFamily
-选项</a>。</em>
-</p>
+选项</a>。</em></li>
+</ul>
+</blockquote>
 
 <p>
 4、如果你使用防火墙，请在防火墙上开出一个洞口以使得进入的连接能够到达配置的端口
