@@ -1,0 +1,175 @@
+## translation metadata
+# Based-On-Revision: 18438
+# Last-Translator: svecar.zd@gmail.com
+
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h2><a class="anchor" href="#BridgeIntroduction">Tor: Přemosťovací servery</a></h2>
+<hr />
+
+<p>
+Přemosťovací servery, přemosťovací relé či "přemostění" (Bridge-Relays neboli "Bridges") 
+jsou Tor servery, které nejsou uvedeny v hlavním soupisu serverů Toru. Jelikož neexistuje 
+žádný veřejný soupis přemosťovacích serverů, pak pokud Váš ISP filtruje spojení ke všem známým Tor-serverům, 
+pravděpodobně ani tehdy nebude schopen blokovat všechny přemosťovací servery Toru. Pokud 
+očekáváte, že Váš přístup k síti Tor je blokován, budete možná chtít použít přemosťovací 
+vlastnost Toru.
+</p>
+
+<p>
+Přidání přemostění do Toru znamená krok napřed při honbě za zamezením blokování Toru. 
+Je velmi pravěpodobné, že nepotřebujete přemosťovací Tor-server, ani když Váš 
+ISP filtruje přístup k Internetu. Mnoho filtrovacích programů vyhledává nešifrované 
+požadavky na spojení k Toru, aby rozpoznaly, že jej používáte. Naštěstí od verze 0.2.0.23-rc 
+jsou požadavky na spojení k Toru defaultně šifrovány. Tato změna znamená, že většina filtovacích 
+programů nyní není schopna rozpoznat spojení na Tor. Měl(a) byste tedy zkusit použít nejprve 
+Tor bez přemostění.
+</p>
+
+<p>
+Také je možné, že Tor je nefunkční z jiných důvodů. Nejnovější verze <a 
+href="<page torbrowser/index>">The
+Tor Browser Bundle</a> na Windows se Vám pokouší poskytnout lepší podklady k tomu, proč dochází k 
+problémům s připojením k Toru. Také byste si měl(a) přečíst <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">Často kladené 
+otázky (FAQ) při problémech se správným během Toru</a>.
+Jestliže cítíte, že je problémem opravdu blokování Toru, nebo prostě proto, že to 
+chcete zkusit, čtěte dál. Ujistěte se, že používáte <a href="<page download>#Dev">nejnovější 0.2.0.x nebo
+0.2.1.x verzi balíku pro Vaši platformu</a>.
+</p>
+
+<p>
+Abyste mohl(a) přemosťovací server použít, musíte nějaký nalézt. Poté musíte Toru předat 
+adresu příslušného přemosťovacího serveru. To uděláte pomocí Tor-kontroleru Vidalia. 
+Pokud Vaše internetová přípojka vyžaduje užití proxy serveru, budete asi muset konfigurovat 
+Vidalii přesně k tomu. Pokud Vám proxy server není znám, pravděpodobně žádný nepotřebujete.
+Zkuste to, a pokud budete mít problémy, dejte nám vědět.
+</p>
+
+<p>
+Momentálně můžete nalézt přemosťovací servery návštěvou
+<a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+pomocí vašwho browseru. Je-li tato stránka filtována a vy nemáte jiné proxy servery 
+ani způsoby, jak ji zobrazit, zde jsou uvedeny <a
+href="#FindingMore">jiné cesty k nalezení přemosťovacích serverů</a>.
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">Porozumění přemosťovacím serverům</a></h2>
+<hr />
+
+<p>
+Příkladně zjistíte, že záznam o přemosťovacím serveru vypadá následovně:
+</p>
+<pre><samp>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
+</pre>
+
+<p>
+Porozumění složkám výše uvedeného záznamu není nutné, ale může se hodit. Pokud chcete, 
+přeskočte tento odstavec.<br />
+První element je IP adresa: <tt>'141.201.27.48'</tt><br />
+Druhý element je port: <tt>'443'</tt><br />
+Třetí element, "otisk prstu" či fingerprint, je nepovinný:
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br />
+</p>
+
+<a id="UsingBridges"></a>
+<h2><a class="anchor" href="#UsingBridges">Užití přemosťovacích serverů,Toru a
+Vidalie</a></h2>
+<hr />
+
+<p>
+Pro použití adresy přemosťovacího serveru z výše uvedeného příkladu, jděte na stránku 
+Vidalia's Network settings a klikněte na "My ISP blocks connections to the Tor network".  
+Přidejte adresu přemosťovacího serveru do stránky Vidalia Network settings, a to 
+vložením do okna "Add a Bridge" a kliknutím na znak "+". Přidání přemosťovacího serveru 
+je na tomto obrázku:
+</p>
+
+<br /><br />
+<img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalia's Network settings page" />
+<br /><br />
+
+<p>
+Můžete přidat další adresy přemosťovacích serverů, a to dle libosti. Čím více přemosťovacích 
+serverů uvedete, tím spolehlivější spojení získáte. Jeden přemosťovací server by měl dostačovat 
+ke spojení se sítí Tor, ale pokud tento jediný selže, budete odstřižen(a) od sítě Tor.
+</p>
+
+<a id="FindingMore"></a>
+<h2><a class="anchor" href="#FindingMore">Nalezení dalších přemosťovacích serverů pro Tor</a></h2>
+<hr />
+
+<p>
+Další cestou k nalezení veřejných adres přemosťovacích serverů je poslání mailu na 
+bridges@torproject.org s řádkem "get bridges" v těle mailu. Musíte poslat tento požadavek z 
+účtu gmail, i když &mdash; jinak útočníkovi umožníte až příliš snadno dostat se k emailovým 
+adresám všech přemosťovacích serverů.
+Těměř okamžitě obdržíte odpověď, která bude obsahovat:
+</p>
+<pre>
+Here are your bridge relays:
+
+ bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+ bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+ bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+</pre>
+<p>
+Jakmile obdržíte email s informacemi o přemosťovacích serverech, můžete pokračovat v 
+konfigurování Vidalie, jak je popsáno <a
+href="#UsingBridges">výše</a>.
+</p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Provozování přemosťovacího serveru (Tor-serveru)</a></h2>
+<hr />
+
+<p>
+Pokud jste provozovatel serveru, je možné, že byste rád zprovnoznil nód přemosťovacího serveru 
+(Bridge node). Níže je uvedena minimální konfigurace <tt>torrc</tt>, která umožňuje jeho běh v síti Tor:
+</p>
+
+<pre><code>
+SocksPort 0
+Nickname BridgeExample
+ORPort 443
+BridgeRelay 1
+PublishServerDescriptor bridge
+Exitpolicy reject *:*
+</code>
+</pre>
+
+<p>
+(Pokud nevíte, jak upravit soubor <tt>torrc</tt> , podívejte se do
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">této části 
+Často kladených otázek (FAQ)</a>.)
+</p>
+
+<p>
+Při konfigurování serveru jako přemosťovacího serveru (Bridge-server) <b>nebude</b> Váš server 
+uveden jako součást sítě Tor.
+</p>
+
+<p>
+Pokud chcete sdělit uživateli, aby použil Váš přemosťovací server (Bridge-server), dejte mu 
+prostě IP adresu Vašeho přemosťovacího serveru (Tor-serveru), dále TCP port, jak je uveden 
+v <tt>ORPort</tt> a "otisk" neboli fingerprint Vašeho serveru. Fingerprint by měl být v "Tor log files" 
+(v logovacích záznamech) nebo v <tt>/var/lib/tor/fingerprint</tt> v závislosti na Vaší platformě.
+</p>
+
+<p>
+Chcete-li se dozvědět víc o přemosťovacích serverech (Bridge-serverech) z technického hlediska, prosím čtěte<a
+href="<svnsandbox>doc/spec/bridges-spec.txt">Tor bridges specification</a>. Máte-li zájem o zprovoznění 
+privátního přemosťovacího serveru nebo jiných specifických použitích, prosím čtěte specifikaci.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
