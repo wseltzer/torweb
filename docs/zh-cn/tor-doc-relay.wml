@@ -76,36 +76,30 @@ href="<page docs/tor-doc-unix>#installing">第一步</a>。
 <h2><a class="anchor" href="#setup">第一步：将它设置成中继</a></h2>
 <br />
 
-<p>
-1、检查你的时间是否正确。可能的话，与公共的时间服务器同步时间。
-</p>
+<ol>
+<li>检查你的时间是否正确。可能的话，与公共的时间服务器同步时间。
+</li>
 
-<p>
-2、确认名字解析工作正常（意思是，你的机器能够正确解析 Internet 地址）。
-</p>
+<li>确认名字解析工作正常（意思是，你的机器能够正确解析 Internet 地址）。
+</li>
 
-<p>
-3、配置中继最简单的办法是使用 Vidalia。更高级的方法是直接修改 torrc。
-</p>
+<li>配置中继最简单的办法是使用 Vidalia。更高级的方法是直接修改 torrc。
 
-<blockquote>
-<strong>简单配置</strong>：
-<ul>
+<ul><strong>简单配置</strong>：
+
 <li>鼠标右键点击任务栏中的 Vidalia 图标，选择<tt>控制面板</tt>。</li>
 <li>点击<tt>设置中继</tt>。</li>
 <li>选择 <tt>Tor 网络中继</tt>。</li>
 <li>为中继输入一个昵称。（可选，输入联系信息。）</li>
 <li>选择 <tt>Attempt to automatically configure port forwarding</tt>。
-点击 <tt>Test</tt> 按钮检查是否能正常工作。如能正常工作继续往下配置；否则请查看下面的第 4 步。
+点击 <tt>Test</tt> 按钮检查是否能正常工作。如能正常工作继续往下配置；否则请查看下面关于防火墙的说明。
 <!-- FIXME: 上面的两个GUI短语目前并没有翻译。--></li>
 <li>转到<tt>带宽限制</tt>标签。选择一个你愿意为 Tor 用户提供的带宽。</li>
 <li>转到<tt>服务策略</tt>标签。如果你同意 Tor 用户通过中继使用这些服务，什么都不用修改。
 取消选择那些你不想提供的服务。如果你只想成为非出口的中继，取消选择所有服务。</li>
 <li>点击<tt>确定</tt>按钮。请看下面的第二步以确认中继工作正常。</li>
-</ul>
 
 <strong>高级配置</strong>：
-<ul>
 <li>修改 torrc 的最后部分。（如需帮助，请查看<a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">此 FAQ 条目</a>。）
 请确认至少定义了 Nickname 和 ORPort 选项。需要的话创建 DataDirectory 并确认
@@ -113,35 +107,33 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">此 FAQ �
 但是请为所有中继的配置文件加入 <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">MyFamily
 选项</a>。</em></li>
+</li>
 </ul>
-</blockquote>
 
-<p>
-4、如果你使用防火墙，请在防火墙上开出一个洞口以使得进入的连接能够到达配置的端口
+<li>如果你使用防火墙，请在防火墙上开出一个洞口以使得进入的连接能够到达配置的端口
 （ORPort，如果设置的话，还有 DirPort）。请确认你允许所有的外出连接，这样你的
 中继才能与其他 Tor 中继通信。
 <!-- I'm always unable to figure out how to translate "incoming", "outgoing",
 "inbound", "outbound" and the similar into proper Chinese terms. :( --> 
-</p>
+</li>
 
-<p>
-5、重启中继。如果<a
+<li>重启中继。如果<a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">日志中有任何警告信息</a>，
 想办法解决它们。
-</p>
+</li>
 
-<p>
-6、订阅 <a href="http://archives.seul.org/or/announce/">or-announce</a> 邮件列表。
+<li>订阅 <a href="http://archives.seul.org/or/announce/">or-announce</a> 邮件列表。
 该邮件列表流量非常小，它会在新的稳定版本发布时提醒你。你也可以考虑订阅 <a
 href="http://archives.seul.org/or/talk/">or-talk</a>（高流量），新的开发版本
 会在那儿公布。
-</p>
+</li>
 
-<p>
-7、检阅手册。最新稳定版本的<a href="<page tor-manual>">手册</a>提供了一个
+<li>检阅手册。最新稳定版本的<a href="<page tor-manual>">手册</a>提供了一个
 客户端和中继所有可能配置选项的列表。如果你运行的是 Tor 的开发版本，
 它的手册在<a href="<page tor-manual-dev>">这里</a>。
-</p>
+</li>
+
+</ol>
 
 <hr />
 <a id="check"></a>
