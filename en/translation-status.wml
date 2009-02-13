@@ -78,7 +78,11 @@ sub do_status(\%$$) {
 				$validatorlink;
 
 			${$_[0]}{$priority}->{$path}->{'data'} = $cell_path . $cell_en;
-			${$_[0]}{$priority}->{$path}->{'urgency'} = 0;
+			if ($file =~ /.wmi$/) {
+			  ${$_[0]}{$priority}->{$path}->{'urgency'} = 1000;
+			} else {
+			  ${$_[0]}{$priority}->{$path}->{'urgency'} = 0;
+			}
 
 			for my $lang (@LANGUAGES) {
 				next if $lang eq 'en';
