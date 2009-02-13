@@ -78,6 +78,7 @@ sub do_status(\%$$) {
 				$validatorlink;
 
 			${$_[0]}{$priority}->{$path}->{'data'} = $cell_path . $cell_en;
+			# Assign high urgency if it's *.wmi, else init to 0
 			if ($file =~ /.wmi$/) {
 			  ${$_[0]}{$priority}->{$path}->{'urgency'} = 1000;
 			} else {
