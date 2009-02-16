@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 18276
+# Based-On-Revision: 18552
 # Translation-Priority: 2-medium
 # Last-Translator: bogdandr_at_op . pl
 
@@ -7,21 +7,31 @@
 
 <div class="main-column">
 
-<h2>Weryfikacja podpisów na wydanych plikach</h2>
+<h2>Jak weryfikować podpisy paczek</h2>
 <hr />
 
 <p>Każdemu plikowi na <a href="<page download>">naszej stronie pobierania</a> towarzyszy
-plik z tą samą nazwą i rozszerzeniem ".asc".</p>
+plik z tą samą nazwą co paczka i rozszerzeniem ".asc". Na przykład aktualna paczka
+instalacyjna dla Windows: <package-win32-bundle-stable-sig>.</p>
 
-<p>Te pliki to podpisy PGP, byście mogli zweryfikować, że plik, który pobraliście to
+<p>Pliki .asc to podpisy PGP. Pozwalają zweryfikować, że plik, który pobraliście, to
 dokładnie ten sam plik, który my wystawiliśmy do pobierania.</p>
 
 <p>Oczywiście, musicie mieć nasze klucze PGP w swojej bazie kluczy: jeśli nie znacie klucza,
-nie możecie być pewni, że to naprawdę my podpisujemy. Klucze używane przez nasz do podpisu
-to klucz Rogera (0x28988BF5) i Nicka (0x165733EA, lub jego podklucz 0x8D29319A). Niektóre
-paczki binarne mogą być podpisane przez Andrzeja (0x31B0974B), Petera (0x94C09C7F, lub podklucz
-0xAFA44BDD), Matta (0x5FA14861) czy Jacoba (0x9D0FACE4).</p>
+nie możecie być pewni, że to naprawdę my podpisujemy. Klucze używane przez nas do podpisu
+to klucze:
+<ul>
+<li>Rogera (0x28988BF5) zazwyczaj podpisuje plik z kodem źródłowym.</li>
+<li>Nicka (0x165733EA, lub jego podklucz 0x8D29319A)</li>
+<li>Andrzeja (0x31B0974B)</li>
+<li>Petera (0x94C09C7F, lub jego podklucz 0xAFA44BDD)</li>
+<li>Matta (0x5FA14861)</li>
+<li>Jacoba (0x9D0FACE4)</li>
+</ul>
+</p>
 
+<h3>Krok pierwszy: Import kluczy</h3>
+<hr />
 <p>Możecie importować klucze także bezpośrednio z GnuPG:</p>
 
 <pre>gpg --keyserver subkeys.pgp.net --recv-keys 0x28988BF5</pre>
@@ -32,7 +42,11 @@ paczki binarne mogą być podpisane przez Andrzeja (0x31B0974B), Petera (0x94C09
 
 <p>a gdy wybierzecie jeden, zostanie on dodany do Waszej bazy kluczy.</p>
 
-<p>"Odciski palców" kluczy powinny być następujące:</p>
+<h3>Krok drugi: Sprawdzenie "odcisków palców" (skrótów) kluczy</h3>
+<hr />
+<p>Sprawdźcie odciski palców za pomocą:
+<pre>gpg --fingerprint (tu id klucza)</pre>
+Odciski palców kluczy powinny być następujące:</p>
 
 <pre>
 pub   1024D/28988BF5 2000-02-27
@@ -48,6 +62,9 @@ uid                  Nick Mathewson &lt;nickm@freehaven.net&gt;
 pub  1024D/31B0974B 2003-07-17
      Key fingerprint = 0295 9AA7 190A B9E9 027E  0736 3B9D 093F 31B0 974B
 uid                  Andrew Lewman (phobos) &lt;phobos@rootme.org&gt;
+uid                  Andrew Lewman &lt;andrew@lewman.com&gt;
+uid                  Andrew Lewman &lt;andrew@torproject.org&gt;
+sub   4096g/B77F95F7 2003-07-17
 
 pub   1024D/94C09C7F 1999-11-10
       Key fingerprint = 5B00 C96D 5D54 AEE1 206B  AF84 DE7A AF6E 94C0 9C7F
@@ -72,6 +89,8 @@ sub   4096g/D5E87583 2008-03-11 [expires: 2010-03-11]
 powinniście sprawdzić to w innych miejscach lub, nawet lepiej, wejść w podpisywanie
 kluczy i zbudować ścieżkę zaufania do tych kluczy.)</p>
 
+<h3>Krok trzeci: weryfikacja pobranej paczki</h3>
+<hr />
 <p>Jeśli używacie GnuPG, pobierzcie plik .asc i ściągany w tym samym katalogu i
 wpiszcie "gpg --verify (nazwa).asc (nazwa)". Wyświetli się coś w postaci
 "Good signature" ("Prawidłowy podpis") lub "BAD signature" ("NIEPRAWIDŁOWY podpis")
@@ -109,8 +128,7 @@ gpg: Signature made Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
 gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
 </pre>
 
-<p>Jeśli zobaczycie taką wiadomość, nie powinniście mieć żadnego zaufania co do
-zawartości pliku.</p>
+<p>Jeśli zobaczycie taką wiadomość, nie powinniście ufać zawartości pliku.</p>
 
 <p>Jeśli używacie Tora na Debianie, powinniście przeczytać instrukcje o
 <a
