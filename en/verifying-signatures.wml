@@ -6,22 +6,32 @@
 
 <div class="main-column">
 
-<h2>Verifying signatures on released files</h2>
+<h2>How to verify signatures for packages</h2>
 <hr />
 
 <p>Each file on <a href="<page download>">our download page</a> is accompanied
-by a file with the same name and the extension ".asc".</p>
+by a file with the same name as the package and the extension
+".asc".  For example, the current Installation Bundle for Windows:
+<package-win32-bundle-stable-sig>.</p>
 
-<p>These are PGP signatures, so you can verify that the file you've downloaded
+<p>These .asc files are PGP signatures. They allow you to verify the file you've downloaded
 is exactly the one that we intended you to get.</p>
 
 <p>Of course, you'll need to have our pgp keys in your keyring: if you don't
 know the pgp key, you can't be sure that it was really us who signed it. The
-signing keys we use are Roger's (0x28988BF5) and Nick's (0x165733EA, or its
-subkey 0x8D29319A). Some binary packages may also be signed by Andrew's
-(0x31B0974B), Peter's (0x94C09C7F, or its subkey 0xAFA44BDD), Matt's
-(0x5FA14861), or Jacob's (0x9D0FACE4).</p>
+signing keys we use are:
+<ul>
+<li>Roger's (0x28988BF5) typically signs the source code file.</li>
+<li>Nick's (0x165733EA, or its subkey 0x8D29319A)</li>
+<li>Andrew's (0x31B0974B)</li>
+<li>Peter's (0x94C09C7F, or its subkey 0xAFA44BDD)</li>
+<li>Matt's (0x5FA14861)</li>
+<li>Jacob's (0x9D0FACE4)</li>
+</ul>
+</p>
 
+<h3>Step One:  Import the keys</h3>
+<hr />
 <p>You can import keys directly from GnuPG as well:</p>
 
 <pre>gpg --keyserver subkeys.pgp.net --recv-keys 0x28988BF5</pre>
@@ -32,7 +42,11 @@ subkey 0x8D29319A). Some binary packages may also be signed by Andrew's
 
 <p>and when you select one, it will be added to your keyring.</p>
 
-<p>The fingerprints for the keys should be:</p>
+<h3>Step Two:  Verify the fingerprints</h3>
+<hr />
+<p>Verify the pgp fingerprints using:
+<pre>gpg --fingerprint (insert keyid here)</pre>
+The fingerprints for the keys should be:</p>
 
 <pre>
 pub   1024D/28988BF5 2000-02-27
@@ -48,6 +62,9 @@ uid                  Nick Mathewson &lt;nickm@freehaven.net&gt;
 pub  1024D/31B0974B 2003-07-17
      Key fingerprint = 0295 9AA7 190A B9E9 027E  0736 3B9D 093F 31B0 974B
 uid                  Andrew Lewman (phobos) &lt;phobos@rootme.org&gt;
+uid                  Andrew Lewman &lt;andrew@lewman.com&gt;
+uid                  Andrew Lewman &lt;andrew@torproject.org&gt;
+sub   4096g/B77F95F7 2003-07-17
 
 pub   1024D/94C09C7F 1999-11-10
       Key fingerprint = 5B00 C96D 5D54 AEE1 206B  AF84 DE7A AF6E 94C0 9C7F
@@ -72,6 +89,8 @@ sub   4096g/D5E87583 2008-03-11 [expires: 2010-03-11]
 then you should check this from more places or even better get into key signing
 and build a trust path to those keys.)</p>
 
+<h3>Step Three:  Verify the downloaded package</h3>
+<hr />
 <p>If you're using GnuPG, then put the .asc and the download in the same
 directory and type "gpg --verify (whatever).asc (whatever)". It will say
 something like "Good signature" or "BAD signature" using the following type of
@@ -108,8 +127,7 @@ gpg: Signature made Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
 gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
 </pre>
 
-<p>If you see a message like the above one, then you should not have any trust
-in the file contents.</p>
+<p>If you see a message like the above one, then you should not trust the file contents.</p>
 
 <p>If you are running Tor on Debian you should read the instructions on
 <a
