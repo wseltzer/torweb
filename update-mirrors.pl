@@ -711,7 +711,7 @@ my %m = (
         },		
         mirror035 => {
             adminContact => "",
-            orgName => "Unknown",
+            orgName => "Technica-03",
             isoCC => "UA",
             subRegion => "Ukraine",
             region => "Eastern Europe",
