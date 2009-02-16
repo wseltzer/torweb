@@ -225,23 +225,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror008 => {
-            adminContact => "lechtermann\bsdhost.eu",							
-            orgName => "Bsdhost",
-            isoCC => "DE",
-            subRegion => "",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://mirror.bsdhost.eu/www.torproject.org/",
-            ftpWebsiteMirror => "ftp://mirror.bsdhost.eu/www.torproject.org/",
-            rsyncWebsiteMirror => "",
-            httpDistMirror => "http://mirror.bsdhost.eu/www.torproject.org/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
        mirror009 => {
             adminContact => "beaver.trash.net",							
             orgName => "Onionland",
