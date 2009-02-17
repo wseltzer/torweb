@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 13768
+# Based-On-Revision: 18524
 # Last-Translator: jan at seul . org
 
 #include "head.wmi" TITLE="FAQ sugli abusi"
@@ -119,7 +119,7 @@ degli altri tentativi di costruire reti anonime nel passato. </p>
 per ora. </p>
 
 <a id="TypicalAbuses"></a>
-<h3><a class="anchor" href="#TypicalAbuses">Cosa posso aspettarmi se gestisco un relay?</a></h3>
+<h3><a class="anchor" href="#TypicalAbuses">Cosa posso aspettarmi se gestisco un exit relay?</a></h3>
 
 <p>Se gestisci un relay Tor che permette connessioni in uscita (come nella
 default exit policy), &egrave; probabile che alla fine qualcuno ti contatti
@@ -289,21 +289,17 @@ exit policy e blocca solo quelli che consentono di collegarsi a te;
 tieni presente che le exit policy possono cambiare (come pure la lista dei nodi
 della rete Tor).</p>
 
-<p>Se vuoi davvero farlo, abbiamo uno
-<a href="<svnsandbox>contrib/exitlist">script Python per il parsing della Tor
-directory</a>. Nota che questo script non fornisce una lista perfetta
-di indirizzi IP che potrebbero collegarsi usando Tor, dato che alcuni relay Tor
-potrebbero uscire con indirizzi differenti da quelli pubblicati.
-Per un approccio pi&ugrave; preciso (che forse ha una interfaccia pi&ugrave; semplice
-per te), considera il <a href="http://exitlist.torproject.org/">servizio TorDNSEL
-</a>.
+<p>Se vuoi davvero farlo, abbiamo una
+<a href="https://check.torproject.org/cgi-bin/TorBulkExitList.py">lista degli
+exit relay Tor</a> od una
+<a href="<page tordnsel/index>">lista interrogabile basata sul DNS</a>.
 </p>
 
 <p>
 (Alcuni amministratori di sistema bloccano dei range di indirizzi IP per politica
 ufficiale o in seguito a determinati abusi, ma alcuni hanno anche chiesto
 di mettere in whitelist gli exit relay Tor perch&eacute; vogliono consentire l'accesso ai loro
-sistemi con Tor. Questi script funzionano anche per il whitelisting.)
+sistemi soltanto con Tor. Questi script funzionano anche per il whitelisting.)
 </p>
 
 <a id="TracingUsers"></a>
@@ -317,7 +313,7 @@ rendono impossibile effettuare intercettazioni.
 
 <p>
 Qualcuno ha suggerito di ridisegnare Tor includendo una <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Backdoor">backdoor</a>.
+href="<page faq>#Backdoor">backdoor</a>.
 Questa idea ha due difetti. Per prima cosa, indebolisce troppo il sistema
 dal punto di vista tecnico. Un metodo centralizzato per collegare gli utenti alle loro attivit&agrave;
 sarebbe esposto a ogni sorta di attacchi; inoltre le politiche e le regole
