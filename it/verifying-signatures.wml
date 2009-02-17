@@ -1,27 +1,37 @@
 ## translation metadata
-# Based-On-Revision: 18276
+# Based-On-Revision: 18552
 # Last-Translator: jan at seul dot org
 
 #include "head.wmi" TITLE="Verica della firma" CHARSET="UTF-8"
 
 <div class="main-column">
 
-<h2>Verifica della firma dei file rilasciati</h2>
+<h2>Come verificare le firme dei pacchetti</h2>
 <hr />
 
 <p>Ciascun file nella <a href="<page download>">pagina di download</a> &egrave; accompagnato da
-un file con lo stesso nome e l'estensione ".asc".</p>
+un file con lo stesso nome del pacchetto e l'estensione
+".asc". Ad esempio, l'attuale Pacchetto di Installazione Windows:
+<package-win32-bundle-stable-sig>.</p>
 
-<p>Si tratta  di firme PGP per permettere di verificare che il file scaricato
+<p>Questi file .asc sono firme PGP. Ti permettono di verificare che il file scaricato
 sia esattamente quello desiderato.</p>
 
 <p>Naturalmente bisogna avere le nostre chiavi pgp nel proprio keyring: se non
 sai qual'&egrave; la chiave pgp, non puoi esser certo che l'abbiamo firmata proprio noi. Le chiavi che
-usiamo epr firmare sono quella di Roger (0x28988BF5) e di Nick (0x165733EA, o la
-subkey 0x8D29319A). Alcuni pacchetti binari potrebbero essere firmati da Andrew
-(0x31B0974B), Peter (0x94C09C7F, o la subkey 0xAFA44BDD), Matt
-(0x5FA14861), o Jacob (0x9D0FACE4).</p>
+usiamo per firmare sono:
+<ul>
+<li>Roger (0x28988BF5) che di solito firma il codice sorgente.</li>
+<li>Nick (0x165733EA, o la sua sottochiave 0x8D29319A)</li>
+<li>Andrew (0x31B0974B)</li>
+<li>Peter (0x94C09C7F, o la sua sottochiave 0xAFA44BDD)</li>
+<li>Matt (0x5FA14861)</li>
+<li>Jacob (0x9D0FACE4)</li>
+</ul>
+</p>
 
+<h3>Primo: Importa le chiavi</h3>
+<hr />
 <p>Puoi anche importare le chiavi direttamente da GnuPG:</p>
 
 <pre>gpg --keyserver subkeys.pgp.net --recv-keys 0x28988BF5</pre>
@@ -32,7 +42,11 @@ subkey 0x8D29319A). Alcuni pacchetti binari potrebbero essere firmati da Andrew
 
 <p>e quando ne scegli una, verr&agrave; aggiunta al tuo keyring.</p>
 
-<p>I fingerprints delle chiavi sono:</p>
+<h3>Secondo: verifica i fingerprint</h3>
+<hr />
+<p>Verifica i fingerprint pgp con il comando:
+<pre>gpg --fingerprint (metti qui il keyid)</pre>
+I fingerprint delle chiavi devono essere:</p>
 
 <pre>
 pub   1024D/28988BF5 2000-02-27
@@ -48,6 +62,9 @@ uid                  Nick Mathewson &lt;nickm@freehaven.net&gt;
 pub  1024D/31B0974B 2003-07-17
      Key fingerprint = 0295 9AA7 190A B9E9 027E  0736 3B9D 093F 31B0 974B
 uid                  Andrew Lewman (phobos) &lt;phobos@rootme.org&gt;
+uid                  Andrew Lewman &lt;andrew@lewman.com&gt;
+uid                  Andrew Lewman &lt;andrew@torproject.org&gt;
+sub   4096g/B77F95F7 2003-07-17
 
 pub   1024D/94C09C7F 1999-11-10
       Key fingerprint = 5B00 C96D 5D54 AEE1 206B  AF84 DE7A AF6E 94C0 9C7F
@@ -72,6 +89,8 @@ sub   4096g/D5E87583 2008-03-11 [expires: 2010-03-11]
 devi confrontare le firme da pi&ugrave; fonti, o meglio ancora fare key signing
 e costruitre un percorso di fiducia a queste chiavi.)</p>
 
+<h3>Terzo: verifica i pacchetti scaricati</h3>
+<hr />
 <p>Se usi GnuPG, metti il file .asc ed  il file scaricato nella stessa
 directory e dai "gpg --verify (quelchesia).asc (quelchesia)". Risponder&agrave;
 qualcosa come "Good signature" o "BAD signature" usando questi
@@ -108,8 +127,7 @@ gpg: Signature made Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
 gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
 </pre>
 
-<p>Se vedi un messaggio come questo sopra, non devi fidarti del
-contenuto del file.</p>
+<p>Se vedi un messaggio come questo sopra, non devi fidarti del contenuto del file.</p>
 
 <p>Se usi Tor su Debian leggi le istruzioni per
 <a
