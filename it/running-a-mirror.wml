@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 15747
+# Based-On-Revision: 18524
 # Last-Translator: jan at seul .org
 
 #include "head.wmi" TITLE="Tor: gestire un mirror" CHARSET="UTF-8"
@@ -18,6 +18,36 @@ tutto ci&ograve; di cui un mirror ha bisogno:
 <tt>
 rsync -av --delete rsync://rsync.torproject.org/tor tor-mirror/
 </tt>
+<br /><br />
+<p>
+Ad esempio, un cronjob per aggiornare un intero mirror una volta al giorno &egrave; qualcosa come:
+<tt>
+<pre>
+# m h  dom mon dow   command
+1 4 * * * rsync -av --delete rsync://rsync.torproject.org/tor /var/www/mirrors/torproject.org/
+</pre>
+</tt>
+</p>
+<br/>
+Per i gestori di mirror che usano Apache, abbiamo creato un file di configurazione d'esempio per
+un virtual host da usare:
+<tt>
+<pre>
+&lt;VirtualHost 1.2.3.4:80&gt;
+        ServerAdmin youremail@example.com
+        ServerName  1.2.3.4
+
+        DocumentRoot /var/www/mirrors/torproject.org
+
+        &lt;Directory /var/www/mirrors/torproject.org/&gt;
+                Options MultiViews
+                DirectoryIndex index
+                AllowOverride None
+        &lt;/Directory&gt;
+
+&lt;VirtualHost&gt;
+</pre>
+</tt>
 <br /> <br />
 Se hai intenzione di gestire un dist/ mirror, usa questo comando per scaricare
 tutto ci&ograve; che un dist/mirror ha bisogno di replicare:
@@ -30,11 +60,10 @@ Per favore mantieni aggiornato il mirror (ti suggeriamo di automatizzare questo
 compito con '<tt>cron</tt>' e simili). Il nostro sito web, il codice sorgente e le
 release binarie cambiano spesso. Gi utilizzatori di Tor te ne saranno grati.
 </p>
-
+<br/>
 <p>
 Se gestisci un mirror, per favore scrivici a
-<a href="<page contact>">tor-webmaster</a>
-e ti aggiungeremo alla lista.
+<a href="<page contact>">tor-webmaster</a> e ti aggiungeremo alla lista.
 </p>
 
   </div><!-- #main -->
