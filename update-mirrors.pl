@@ -668,10 +668,9 @@ foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys 
 
      my $time;
      if( "$m{$server}{'updateDate'}" ne "Unknown") {
-	if( "$m{$server}{'updateDate'}" eq "$tortime" ) {
-	$time = "Up to date";
-        chomp($time);
-	} else { $time = "Out of date"; }
+	  if( "$m{$server}{'updateDate'}" eq "$tortime" ) {
+	    $time = "Up to date";
+	  } else { $time = "Out of date"; }
      } else { $time = "Unknown"; }
 print OUT <<"END";
      \n<tr>\n
