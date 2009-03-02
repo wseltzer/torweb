@@ -16,7 +16,7 @@ use Date::Format;
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
     keep_alive => 1,
-    timeout => 30,
+    timeout => 15,
     agent => "Tor MirrorCheck Agent"
 );
 
@@ -666,8 +666,7 @@ foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys 
      if( "$m{$server}{'updateDate'}" ne "Unknown") {
         $time = ctime($m{$server}{'updateDate'});
         chomp($time);
-     } else { delete $m{$server}; }
-# } else { $time = "Unknown"; }
+     } else { $time = "Unknown"; }
 print OUT <<"END";
      \n<tr>\n
          <td>$m{$server}{'isoCC'}</td>\n
