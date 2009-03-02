@@ -16,7 +16,7 @@ use Date::Format;
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
     keep_alive => 1,
-    timeout => 15,
+    timeout => 1,
     agent => "Tor MirrorCheck Agent"
 );
 
@@ -620,6 +620,10 @@ my $count = values %m;
 print "We have a total of $count mirrors\n";
 print "Fetching the last updated date for each mirror.\n";
 
+my $tortime;
+$tortime = FetchDate("http://www.torproject.org/");
+print "The official time for Tor is $tortime. \n";
+
 foreach my $server ( keys %m ) {
 
     print "Attempting to fetch from $m{$server}{'orgName'}\n";
@@ -664,8 +668,10 @@ foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys 
 
      my $time;
      if( "$m{$server}{'updateDate'}" ne "Unknown") {
-        $time = ctime($m{$server}{'updateDate'});
+	if( "$m{$server}{'updateDate'}" eq "$tortime" ) {
+	$time = "Up to date";
         chomp($time);
+	} else { $time = "Out of date"; }
      } else { $time = "Unknown"; }
 print OUT <<"END";
      \n<tr>\n
