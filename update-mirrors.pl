@@ -175,21 +175,21 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       # mirror005 => {
-            # orgName => "Berapla",
-            # isoCC => "DE",
-            # subRegion => "",
-            # region => "Europe",
-            # ipv4 => "True",
-            # ipv6 => "False",
-            # loadBalanced => "Unknown",
-            # httpWebsiteMirror => "http://download.berapla.de/mirrors/tor/",
-            # ftpWebsiteMirror => "",
-            # rsyncWebsiteMirror => "",
-            # httpDistMirror => "",
-            # rsyncDistMirror => "",
-            # updateDate => "Unknown",
-        # },
+       mirror005 => {
+            orgName => "Berapla",
+            isoCC => "DE",
+            subRegion => "",
+            region => "Europe",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "Unknown",
+            httpWebsiteMirror => "http://download.berapla.de/mirrors/tor/",
+            ftpWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            httpDistMirror => "http://download.berapla.de/mirrors/tor/dist/",
+            rsyncDistMirror => "",
+            updateDate => "Unknown",
+        },
 
        mirror006 => {
             adminContact => "cm.cybermirror.org",
@@ -261,39 +261,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       # mirror011 => {
-            # orgName => "loxal.net",
-            # isoCC => "DE",
-            # subRegion => "",
-            # region => "Europe",
-            # ipv4 => "True",
-            # ipv6 => "False",
-            # loadBalanced => "Unknown",
-            # httpWebsiteMirror => "http://tor-anonymizer.mirror.loxal.net/",
-            # ftpWebsiteMirror => "",
-            # rsyncWebsiteMirror => "",
-            # httpDistMirror => "http://tor-anonymizer.mirror.loxal.net/dist/",
-            # rsyncDistMirror => "",
-            # updateDate => "Unknown",
-        # },
-
-       # mirror012 => {
-            # orgName => "centervenus.com",
-            # isoCC => "DE",
-            # subRegion => "",
-            # region => "Europe",
-            # ipv4 => "True",
-            # ipv6 => "False",
-            # loadBalanced => "Unknown",
-            # httpWebsiteMirror => "",
-            # ftpWebsiteMirror => "",
-            # rsyncWebsiteMirror => "",
-            # httpDistMirror => "http://www.centervenus.com/mirrors/tor/dist/",
-            # rsyncDistMirror => "",
-            # updateDate => "Unknown",
-        # },
-
-       mirror013 => {
+       mirror011 => {
             adminContact => "info.zentrum-der-gesundheit.de",
             orgName => "Zentrum der Gesundheit",
             isoCC => "DK",
@@ -310,7 +278,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror014 => {
+       mirror012 => {
             adminContact => "kurt.miroir-francais.fr",
             orgName => "CRAN",
             isoCC => "FR",
@@ -327,23 +295,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       # mirror015 => {
-            # orgName => "tor.newworldorder.com.es",
-            # isoCC => "HU",
-            # subRegion => "",
-            # region => "Europe",
-            # ipv4 => "True",
-            # ipv6 => "False",
-            # loadBalanced => "Unknown",
-            # httpWebsiteMirror => "http://tor.newworldorder.com.es/",
-            # rsyncWebsiteMirror => "",
-            # ftpWebsiteMirror => "",
-            # httpDistMirror => "",
-            # rsyncDistMirror => "",
-            # updateDate => "Unknown",
-        # },
-
-       mirror016 => {
+       mirror013 => {
             adminContact => "root.amorphis.eu",
             orgName => "Amorphis",
             isoCC => "NL",
@@ -360,7 +312,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror017 => {
+       mirror014 => {
             adminContact => "mirror.bit.nl",
             orgName => "BIT BV",
             isoCC => "NL",
@@ -377,7 +329,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror018 => {
+       mirror015 => {
             adminContact => "webmaster.ccc.de",
             orgName => "CCC",
             isoCC => "NL",
@@ -394,7 +346,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror018 => {
+       mirror016 => {
             adminContact => "root.kamagurka.org",
             orgName => "Kamagurka",
             isoCC => "NL",
@@ -411,7 +363,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror019 => {
+       mirror017 => {
             adminContact => "mirrors.osmirror.nl",
             orgName => "OS Mirror",
             isoCC => "NL",
@@ -429,7 +381,7 @@ my %m = (
         },
 
 
-       mirror020 => {
+       mirror018 => {
             adminContact => "evert.meulie.net",
             orgName => "Meulie",
             isoCC => "NO",
@@ -446,23 +398,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       # mirror021 => {
-            # orgName => "Swedish Linux Society",
-            # isoCC => "SE",
-            # subRegion => "",
-            # region => "Europe",
-            # ipv4 => "True",
-            # ipv6 => "False",
-            # loadBalanced => "Unknown",
-            # httpWebsiteMirror => "http://ftp.se.linux.org/crypto/tor/",
-            # rsyncWebsiteMirror => "",
-            # ftpWebsiteMirror => "ftp://ftp.se.linux.org/pub/crypto/tor/",
-            # httpDistMirror => "",
-            # rsyncDistMirror => "",
-            # updateDate => "Unknown",
-        # },
-
-       mirror022 => {
+       mirror019 => {
             adminContact => "ghirai.ghirai.com",
             orgName => "Ghirai",
             isoCC => "UK",
@@ -479,8 +415,8 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror023 => {
-							     adminContact => "bjw.bjwonline.com",
+       mirror020 => {
+	    adminContact => "bjw.bjwonline.com",
             orgName => "BJWOnline",
             isoCC => "US",
             subRegion => "California",
@@ -496,24 +432,8 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       # mirror024 => {
-            # orgName => "Libertarian Action Network",
-            # isoCC => "US",
-            # subRegion => "",
-            # region => "North America",
-            # ipv4 => "True",
-            # ipv6 => "False",
-            # loadBalanced => "Unknown",
-            # httpWebsiteMirror => "",
-            # rsyncWebsiteMirror => "",
-            # ftpWebsiteMirror => "ftp://libertarianactivism.com/tor.eff.org/dist/",
-            # httpDistMirror => "",
-            # rsyncDistMirror => "",
-            # updateDate => "Unknown",
-        # },
-
-       mirror025 => {
-			adminContact => "hostmaster.zombiewerks.com",
+       mirror021 => {
+	    adminContact => "hostmaster.zombiewerks.com",
             orgName => "TheOnionRouter",
             isoCC => "US",
             subRegion => "New Jersey",
@@ -529,23 +449,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       # mirror026 => {
-            # orgName => "Site2nd.org",
-            # isoCC => "USA",
-            # subRegion => "Texas",
-            # region => "North America",
-            # ipv4 => "True",
-            # ipv6 => "False",
-            # loadBalanced => "Unknown",
-            # httpWebsiteMirror => "http://tor.site2nd.org",
-            # rsyncWebsiteMirror => "",
-            # ftpWebsiteMirror => "",
-            # httpDistMirror => "",
-            # rsyncDistMirror => "",
-            # updateDate => "Unknown",
-        # },
-
-       mirror027 => {
+       mirror022 => {
             adminContact => "jeroen.unfix.org",
             orgName => "Unfix",
             isoCC => "CH",
@@ -562,7 +466,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror028 => {
+       mirror023 => {
             adminContact => "jeroen.unfix.org",
             orgName => "Sixx",
             isoCC => "CH",
@@ -579,7 +483,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror029 => {
+       mirror024 => {
             adminContact => "",
             orgName => "Crypto",
             isoCC => "US",
@@ -596,7 +500,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror030 => {
+       mirror025 => {
             adminContact => "web2005a.year2005a.wiretapped.net",
             orgName => "Wiretapped",
             isoCC => "AU",
@@ -613,7 +517,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        mirror031 => {
+        mirror026 => {
             adminContact => "tormaster.xpdm.us",
             orgName => "Xpdm",
             isoCC => "US",
@@ -633,27 +537,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        # mirror032 => {
-            # adminContact => "abuse.misericordia.be",
-            # orgName => "Misericordia",
-            # isoCC => "FR",
-            # subRegion => "France",
-            # region => "Europe",
-            # ipv4 => "True",
-            # ipv6 => "False",
-            # loadBalanced => "No",
-            # httpWebsiteMirror => "http://mirror.misericordia.be/",
-            # httpsWebsiteMirror => "",
-            # rsyncWebsiteMirror => "",
-            # ftpWebsiteMirror => "",
-            # httpDistMirror => "http://mirror.misericordia.be/dist/",
-            # httpsDistMirror => "",
-            # rsyncDistMirror => "",
-            # hiddenServiceMirror => "",
-            # updateDate => "Unknown",
-        # },
-
-        mirror033 => {
+        mirror027 => {
             adminContact => "internetfreebeijing\@gmail.com",
             orgName => "Unknown",
             isoCC => "CN",
@@ -673,7 +557,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        mirror034 => {
+        mirror028 => {
             adminContact => "security\@hostoffice.hu",
             orgName => "Unknown",
             isoCC => "HU",
@@ -692,7 +576,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
-        mirror035 => {
+        mirror029 => {
             adminContact => "",
             orgName => "Technica-03",
             isoCC => "UA",
@@ -711,7 +595,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
-	mirror036 => {
+	mirror030 => {
             adminContact => "",
             orgName => "chaos darmstadt",
             isoCC => "DE",
