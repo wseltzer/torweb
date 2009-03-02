@@ -16,7 +16,7 @@ use Date::Format;
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
     keep_alive => 1,
-    timeout => 1,
+    timeout => 15,
     agent => "Tor MirrorCheck Agent"
 );
 
@@ -667,8 +667,8 @@ open(OUT, "> $outFile") or die "Can't open $outFile: $!";
 foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys %m ) {
 
      my $time;
-     if( "$m{$server}{'updateDate'}" ne "Unknown") {
-	  if( "$m{$server}{'updateDate'}" eq "$tortime" ) {
+     if ( "$m{$server}{'updateDate'}" ne "Unknown") {
+	  if ( "$m{$server}{'updateDate'}" eq "$tortime" ) {
 	    $time = "Up to date";
 	  } else { $time = "Out of date"; }
      } else { $time = "Unknown"; }
