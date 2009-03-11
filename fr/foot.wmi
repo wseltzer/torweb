@@ -1,23 +1,18 @@
 #!/usr/bin/wml
 
 ## translation metadata
-# Based-On-Revision: 17060
+# Based-On-Revision: 18750
 # Last-Translator: ultra.high.temperature @gmail.com, fredzupy@gmail.com
 # Translation-Priority: 1-high
 
 #use "functions.wmi"
 
+<hr />
 </div>
   <div class="bottom" id="bottom">
-     <p>
-     <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
-      Dernière modification : <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
-      -
-      Dernière compilation : <: print scalar localtime(); :>
+     <p>"Tor" et le Logo Onion sont des <a href="<page 
+     	 trademark-faq>">marques déposées</a> du Projet Tor, Inc.
      </p>
-     <p>"Tor" et le Logo Onion sont des <a href="<page
-  	      trademark-faq>">marques déposées</a> du Projet Tor, Inc.
-  	      </p>
    <: unless (translation_current()) { :>
      <p>
       Attention: Cette traduction peut être obsolète. La version anglaise originale est la
@@ -31,13 +26,20 @@
        Cette page est aussi disponible dans les langues suivantes :
        <: print list_translations() :>.<br />
        Comment configurer la <a href="http://www.debian.org/intro/cn#howtoset">langue par défaut du document</a>.
-     </p>
+      </p>
    <: }; :>
       <p>Les développeurs de Tor n'ont pas revu cette traduction en ce qui concerne la 
       pertinence et l'exactitude. Elle peut être obsolète ou fausse. La version
       officielle du site web Tor est la version anglaise, disponible sur <a
       href="https://www.torproject.org/">https://www.torproject.org/</a>.
       </p>
+      <p>
+      <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
+  	 # please also translate "last modified" and "last compiled"
+  	       Dernière modification : <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+  	       -
+  	       Dernière mise à jour : <: print scalar localtime(); :>
+  	      </p>
   </div>
 </body>
 </html>
