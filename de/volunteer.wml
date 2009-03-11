@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 18524
-# Last-Translator: jens@kubieziel.de, peter@palfrader.org
+# Based-On-Revision: 18874
+# Last-Translator: mail 11 oliverknapp 22 de
 
 #include "head.wmi" TITLE="Tor: Mithelfen" CHARSET="UTF-8"
 
@@ -34,7 +34,7 @@
 <h2><a class="anchor" href="#Usability">unterstützende Anwendungen</a></h2>
 
 <ol>
-  <li>Wir brauchen gute Methoden, um DNS-Abfragen abzufangen, damit diese
+  <li>Wir brauchen mehr und bessere Methoden, um DNS-Abfragen abzufangen, damit diese
   nicht an einen lokalen Beobachter dringen, während wir versuchen, anonym zu
   bleiben. (Dies passiert, weil die Anwendung selbst DNS-Anfragen
   stellt, anstatt diese über Tor zu leiten.).
@@ -68,17 +68,6 @@
     nach <a href="<svnsandbox>contrib/">contrib</a>? Das wäre
   eine gute Möglichkeit für den <a href="<page gui/index>">Tor GUI
   Wettbewerb</a>.</li>
-  <li>Wir haben eine Vielzahl von Wegen, um
-    das <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">Tornetzwerk
-    in einem bestimmten Land zu verlassen</a>. Aber all diese Wege
-    brauchen den Namen eines speziellen Torservers. Es wäre schön,
-    wenn man nur ein Land angeben muss und automatisch wird ein
-    Server ausgewählt. Der beste Weg ist wahrscheinlich, Blossoms
-  Verzeichnis herunterzuladen und einen lokalen Blossomclient laufen
-  zu lassen, der die Verzeichnisse sicher lädt, die
-  <code>.country.blossom</code>-Hostnamen mitschneidet und dann das
-  richtige tut.</li>
   <li>Wenn wir gerade bei Geolocation sind, wäre es schön, wenn
     jemand eine Karte anfertigt, die die Standorte der Torserver
     anzeigt. Bonuspunkte gibt es, wenn es sich bei Änderungen am
@@ -135,13 +124,13 @@
 <h2><a class="anchor" href="#Projects">Good Coding Projects</a></h2>
 
 <p>
-Here is a list of ideas that were proposed for the <a href="<page gsoc>">Google Summer of Code 2008</a>
+Here is a list of ideas that were proposed for the <a href="<page gsoc>">Google Summer of Code 2009</a>
 but have not been put into practice. Some of the <a href="<svnsandbox>doc/spec/proposals/">current proposals</a> 
 might also be short on developers. If you think you can help out, <a href="<page contact>"> let us know!</a> 
 </p>
 
 <ol>
-
+<!-- Mike is already working on this
 <li>
 <b>Tor Node Scanner improvements</b>
 <br />
@@ -168,7 +157,8 @@ scanner would also report information on oddly-behaving nodes to
 the Directory Authorities, but a communication channel for this
 currently does not exist and would need to be developed as well.
 </li>
-
+ -->
+ 
 <li>
 <b>Help track the overall Tor Network status</b>
 <br />
@@ -181,7 +171,8 @@ in terms of new relays showing up and relays shutting off? Periodically
 people collect brief snapshots, but where it gets really interesting is
 when we start tracking data points over time.
 <br />
-Data could be collected from the "Tor Node Scanner" item above, from
+Data could be collected from the "Tor Node Scanner" in
+<a href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>, from
 the server descriptors that each relay publishes, and from other
 sources. Results over time could be integrated into one of the <a
 href="https://torstatus.blutmagie.de/">Tor Status</a> web pages, or be
@@ -190,6 +181,7 @@ kept separate. Speaking of the Tor Status pages, take a look at Roger's
 Status wish list</a>.
 </li>
 
+<!-- Is this still a useful project? If so, move it to another section.
 <li>
 <b>Better Debian/Ubuntu Packaging for Tor+Vidalia</b>
 <br />
@@ -233,7 +225,8 @@ A person undertaking this project should have prior knowledge of
 Debian package management and some C++ development experience. Previous
 experience with Qt is helpful, but not required.
 </li>
-
+-->
+	 
 <li>
 <b>Improving Tor's ability to resist censorship</b>
 <br />
@@ -261,6 +254,7 @@ resist an adversary even after the adversary knows the design, and
 then trading off censorship resistance with usability and robustness.
 </li>
 
+<!-- This should be mostly done.
 <li>
 <b>Tor/Polipo/Vidalia Auto-Update Framework</b>
 <br />
@@ -294,7 +288,9 @@ is also important for this project, since a vital step of the project
 will be producing a design document to review and discuss
 with others prior to implementation.
 </li>
-
+-->
+	 
+<!-- Matt already made good progress on this.
 <li>
 <b>An Improved and More Usable Network Map in Vidalia</b>
 <br />
@@ -320,6 +316,7 @@ A person undertaking this project should have good C++ development
 experience. Previous experience with Qt and CMake is helpful, but not
 required.
 </li>
+-->
 
 <li>
 <b>Tor Controller Status Event Interface</b>
@@ -356,6 +353,7 @@ be understandable by non-technical users. Bonus points for some graphic
 design/Photoshop fu, since we might want/need some shiny new icons too.
 </li>
 
+<!-- Jake already did most of this.
 <li>
 <b>Improvements on our active browser configuration tester</b> -
 <a href="https://check.torproject.org/">https://check.torproject.org/</a>
@@ -378,7 +376,9 @@ and involve more design and coding, take a look at <a
 href="<svnsandbox>doc/spec/proposals/131-verify-tor-usage.txt">proposal
 131-verify-tor-usage.txt</a>.
 </li>
+-->
 
+<!-- If we decide to switch to the exit list in TorStatus, this is obsolete.
 <li>
 <b>Improvements on our DNS Exit List service</b> -
 <a href="http://exitlist.torproject.org/">http://exitlist.torproject.org/</a>
@@ -399,7 +399,9 @@ own documentation at the very least. Furthermore, it would be useful
 if they were interested in Haskell and wanted to implement more of the
 torel-design.txt suggestions.
 </li>
+-->
 
+<!-- Nobody wanted to keep this.
 <li>
 <b>Testing integration of Tor with web browsers for our end users</b>
 <br />
@@ -410,7 +412,7 @@ user in any way possible. Two current webpages that track these
 kinds of issues are run by Greg Fleischer and HD Moore. Greg keeps a nice <a
 href="http://pseudo-flaw.net/tor/torbutton/">list of issues along
 with their proof of concept code, bug issues, etc</a>. HD Moore runs
-the <a href="http://metasploit.com/research/projects/decloak/">metasploit
+the <a href="http://www.decloak.net/">metasploit
 decloak website</a>. A person interested in defending Tor could start
 by collecting as many workable and known methods for decloaking a
 Tor user. (<a href="https://torcheck.xenobite.eu/">This page</a> may
@@ -421,7 +423,9 @@ should help them to fix the problem or direct them to the proper support
 channels. The person should also be closely familiar with using Tor and how
 to prevent Tor information leakage.
 </li>
+-->
 
+<!-- Nick did quite some work here. Is this project still required then?
 <li>
 <b>Libevent and Tor integration improvements</b>
 <br />
@@ -437,6 +441,7 @@ missing functionality to Libevent as needed &mdash; most difficult likely
 will be adding OpenSSL support on top of Libevent's buffer abstraction.
 Also tricky will be adding rate-limiting to Libevent.
 </li>
+-->
 
 <li>
 <b>Tuneup Tor!</b>
@@ -503,8 +508,8 @@ as possible from globals.
 Additionally, we need to automate our performance testing. We've got
 buildbot to automate our regular integration and compile testing already
 (though we need somebody to set it up on Windows),
-but we need to get our network simulation tests (as built in TorFlow: see
-the "Tor Node Scanner improvements" item)
+but we need to get our network simulation tests (as built in
+<a href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>)
 updated for more recent versions of Tor, and designed to launch a test
 network either on a single machine, or across several, so we can test
 changes in performance on machines in different roles automatically.
@@ -550,6 +555,7 @@ project is one part about identifying requirements to such a
 tool and designing its interface, and one part lots of coding.
 </li>
 
+<!-- Removed, unless Mike still wants this to be in.
 <li>
 <b>Torbutton improvements</b>
 <br />
@@ -568,7 +574,8 @@ This work would be independent coding in Javascript and the fun world of <a
 href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
 with not too much involvement in the Tor internals.
 </li>
-
+-->
+ 
 <li>
 <b>Porting Polipo to Windows</b>
 <br />
@@ -588,25 +595,7 @@ and reporting tool, bonus if it has a systray icon with right clickable
 menu options. Double bonus if it's cross-platform compatible.
 </li>
 
-<li>
-<b>Make our diagrams beautiful and automated</b>
-<br />
-We need a way to generate the website diagrams (for example, the "How
-Tor Works" pictures on the <a href="<page overview>">overview page</a>
-from source, so we can translate them as UTF-8 text rather than edit
-them by hand with Gimp. We might want to
-integrate this as an wml file so translations are easy and images are
-generated in multiple languages whenever we build the website. 
-</li>
-
-<li>
-<b>Improve the LiveCD offerings for the Tor community</b>
-<br />
-How can we make the <a
-href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
-easier to maintain, improve, and document?
-</li>
-
+ <!-- Is Blossom development still happening?
 <li>
 <b>Rework and extend Blossom</b>
 <br />
@@ -654,6 +643,79 @@ TCP, interprocess communication, and Perl will also be helpful.  An
 interest in network neutrality is important as well, since the
 principles of evaluating and understanding internet inconsistency are at
 the core of the Blossom effort.
+</li>
+-->
+<li>
+<b>Implement a torrent-based scheme for downloading Thandy packages</b>
+<br />
+<a
+href="http://git.torproject.org/checkout/thandy/master/specs/thandy-spec.txt">Thandy</a>
+is a relatively new software to allow automatic updates of Tor and related
+software. Currently, there are very few users, but we expect Thandy to be
+used by almost every Tor user in the future. To avoid crashing servers on
+the day of a Tor update, we need new ways to distribute new packages
+efficiently, and using libtorrent seems to be a possible solution. If you
+think of other good ideas, great - please do let us know!<br />
+We also need to investigate how to include our mirrors better. If possible,
+there should be an easy way for them to help distributing the packages.
+</li>
+
+<li>
+<b>Torbutton equivalent for Thunderbird</b>
+<br />
+We're hearing from an increasing number of users that they want to use
+Thunderbird with Tor. However, there are plenty of application-level
+concerns, for example, by default Thunderbird will put your hostname in
+the outgoing mail that it sends. At some point we should start a new
+push to build a Thunderbird extension similar to Torbutton.
+</li>
+
+<li>
+<b>New Torbutton Features</b>
+<br/>
+There are several <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&project=5&type=2">good
+feature requests</a> on the Torbutton Flyspray section. In particular, <a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&id=523">Integrating
+'New Identity' with Vidalia</a>,
+<a href="https://bugs.torproject.org/flyspray/index.php?do=details&id=940">ways of
+managing multiple cookie jars/identities</a>, <a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&id=637">preserving
+specific cookies</a> when
+cookies are cleared,
+<a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&id=524">better
+referrer spoofing</a>, <a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&id=564">correct
+Tor status reporting</a>, and <a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&id=462">"tor://"
+and "tors://" urls</a> are all interesting
+features that could be added.
+<br />
+This work would be independent coding in Javascript and the fun world of <a
+href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
+with not too much involvement in the Tor internals.
+</li>
+
+<li>
+<b>Usability testing of Tor</b>
+<br />
+Especially the browser bundle, ideally amongst our target demographic.
+That would help a lot in knowing what needs to be done in terms of bug
+fixes or new features. We get this informally at the moment, but a more
+structured process would be better.
+</li>
+
+<li>
+<b>Translation wiki for our website</b>
+<br />
+The Tor Project has been working over the past year to set up web-based
+tools to help volunteers translate our applications into other languages.
+We finally hit upon Pootle, and we have a fine web-based translation engine
+in place for Vidalia, Torbutton, and Torcheck. However, Pootle only
+translates strings that are in the "po" format, and our website uses wml
+files. This project is about finding a way to convert our wml files into po
+strings and back, so they can be handled by Pootle.
 </li>
 
 <li>
@@ -735,9 +797,17 @@ roadmap</a> for more ideas.
   <li>Wir sind nicht weit davon entfernt, Unterstützung für IPv6 bei
     Exitknoten zu haben. Falls du dich stark um IPv6 kümmerst, ist
     das wahrscheinlich der Platz, um zu starten.</li>
-  <li>Du magst keinen von den obigen Punkten? Schaue dir die <a
-  href="<svnsandbox>doc/design-paper/roadmap-future.pdf">weiteren Pläne</a> für
-  weitere Ideen an.</li>
+    
+<li>Wir brauchen einen Weg die Diagramme auf der Webseite aus Quellcode zu
+generieren (zum Beispiel das "How Tor Works" Bild auf der <a href="<page
+overview>">Übersichtsseite</a>), damit wir das Bild als UTF-8 text übersetzen
+können, statt es händisch mit Gimp zu ändern. Wir würden dies gerne als
+wml-Datei einbinden, damit die Übersetzung einfach ist und die Bilder in
+verschiedenen Sprachen erzeugt werden, wenn wir die Webseite erstellen.</li>
+
+<li>Wie können wir die <a
+href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
+leichter warten, verbessern und dokumentieren?</li>
 </ol>
 
 <a id="Research"></a>
