@@ -62,6 +62,15 @@ sending all the data to Google and having them draw the map for you. How
 much does this impact privacy, and do we have any other good options?</li>
 </ol>
 
+<a id="Advocacy></a>
+<h2><a class="anchor" href="#Advocacy">Advocacy</a></h2>
+<ol>
+<li>Create a community logo under a Creative Commons license that all can use and modify</li>
+<li>Create a presentation that can be used for various user group meetings around the world</li>
+<li>Create a video about your positive uses of Tor.  Some have already started on Seesmic.</li>
+<li>Create a poster, or a set of posters, around a theme, such as "Tor for Freedom!"</li>
+</ol>
+
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">Documentation</a></h2>
 <ol>
@@ -280,20 +289,27 @@ with others prior to implementation.
 </li>
 -->
 
-<!-- Matt already made good progress on this.
 <li>
 <b>An Improved and More Usable Network Map in Vidalia</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Matt</i>
 <br />
 One of Vidalia's existing features is a network map that shows the user
 the approximate geographic location of relays in the Tor network and
 plots the paths the user's traffic takes as it is tunneled through the
 Tor network. The map is currently not very interactive and has rather
-poor graphics. Instead, we would like to leverage KDE's Marble widget
-that gives us a better quality map and enables improved interactivity,
+poor graphics. Instead, we implemented KDE's Marble widget such
+that it gives us a better quality map and enables improved interactivity,
 such as allowing the user to click on individual relays or circuits to
-display additional information. We might also consider adding the ability
+display additional information. We want to add the ability
 for users to click on a particular relay or a country containing one or
-more Tor exit relays and say, "I want my connections to foo.com to exit
+more Tor exit relays and say, "I want my connections to exit
 from here."
 <br />
 This project will first involve getting familiar with Vidalia
@@ -306,7 +322,6 @@ A person undertaking this project should have good C++ development
 experience. Previous experience with Qt and CMake is helpful, but not
 required.
 </li>
--->
 
 <li>
 <b>Tor Controller Status Event Interface</b>
@@ -629,6 +644,7 @@ natively (i.e. in Unix-like OSes, Polipo defaults to 25% of ram, in
 Windows it's whatever the config specifies). 3) some sort of GUI config
 and reporting tool, bonus if it has a systray icon with right clickable
 menu options. Double bonus if it's cross-platform compatible.
+3) allow the software to use the Windows Registry and handle proper Windows directory locations, such as "C:\Program Files\Polipo"
 </li>
 
 <!-- Is Blossom development still happening?
@@ -742,8 +758,7 @@ href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=523">Inte
 <a href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=940">ways of
 managing multiple cookie jars/identities</a>, <a
 href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=637">preserving
-specific cookies</a> when
-cookies are cleared,
+specific cookies</a> when cookies are cleared,
 <a
 href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=524">better
 referrer spoofing</a>, <a
@@ -887,8 +902,7 @@ details on the research side of this task &mdash; who knows, when it's
 done maybe you can help write a paper or three also.</li>
 
 <li>Tor 0.1.1.x and later include support for hardware crypto accelerators
-via OpenSSL. Nobody has ever tested it, though. Does somebody want to get
-a card and let us know how it goes?</li>
+via OpenSSL. It has been lightly tested and is possibly very buggy.  We're looking for more rigorous testing, performance analysis, and optimally, code fixes to openssl and Tor if needed.</li>
 
 <li>Perform a security analysis of Tor with <a
 href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Determine
