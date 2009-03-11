@@ -7,24 +7,32 @@
 
 <div class="main-column">
 
-<h2>Signaturprüfung bei unseren Dateien</h2>
+<h2>Wie man Paketsignaturen überprüft</h2>
 <hr />
 
 <p>Jede Datei auf unserer <a href="<page download>">Downloadseite</a> wird von
-einer Datei mit der Endung ".asc" begleitet.</p>
+einer Datei mit dem gleichen Namen wie das Paket und der Endung ".asc"
+begleitet. Zum Beispile das aktuelle Installationspaket für
+Windows: <package-win32-bundle-stable-sig>.</p>
 
-<p>Dabei handelt es sich um PGP-Signaturen, mit denen man sicherstellen kann,
+<p>Diese .asc Dateien sind PGP-Signaturen, mit denen man sicherstellen kann,
 dass die heruntergeladene Datei auch die ist, die sie vorgibt zu sein.</p>
 
 <p>Natürlich brauchst du dazu unsere GPG-Schlüssel in deinem
 GPG-Schlüsselbund. Solange du den unterschreibenden Schlüssel nicht kennst,
 kannst du nicht sicher sein, dass es tatsächlich wir waren, die unterschrieben
-haben. Zum Unterschreiben benutzen wir folgende Schlüssel: Rogers (0x28988BF5)
-und Nicks (0x165733EA, oder seinem Unterschlüssel 0x8D29319A). Einige
-kompilierte Pakete könnten auch von Andrew (0x31B0974B), Peter (0x94C09C7F,
-oder seinem Unterschlüssel 0xAFA44BDD), Matt (0x5FA14861) oder Jacob
-(0x9D0FACE4) unterschrieben sein.</p>
+haben. Zum Unterschreiben benutzen wir folgende Schlüssel:</p>
+<ul>
+<li>Rogers (0x28988BF5) unterschreibt meist die Quellcode-Dateien</li>
+<li>Nicks (0x165733EA, oder sein Subkey 0x8D29319A)</li>
+<li>Andrews (0x31B0974B)</li>
+<li>Peters (0x94C09C7F, oder sein Subkey 0xAFA44BDD)</li>
+<li>Matts (0x5FA14861)</li>
+<li>Jacobs (0x9D0FACE4)</li>
+</ul>
 
+<h3>Schritt Eins: Importiere die Schlüssel</h3>
+<hr />
 <p>Man kann die Schlüssel auch direkt in sein GnuPG importieren:</p>
 
 <pre>gpg --keyserver subkeys.pgp.net --recv-keys 0x28988BF5</pre>
@@ -36,7 +44,11 @@ oder seinem Unterschlüssel 0xAFA44BDD), Matt (0x5FA14861) oder Jacob
 <p>Nachdem man einen Schlüssel ausgewählt hat, wird er dem Schlüsselring
 hinzugefügt.</p>
 
-<p>Die Fingerabdrücke der Schlüssel sollten folgende sein:</p>
+<h3>Schritt Zwei:  Übreprüfe die Fingerabdrücke</h3>
+<hr />
+<p>Überpüfe die Fingerabdrücke der Schlüssel folgendermaßen:</p>
+<pre>gpg --fingerprint (insert keyid here)</pre>
+Die Fingerabdrücke der Schlüssel sollten folgende sein:
 
 <pre>
 pub   1024D/28988BF5 2000-02-27
@@ -52,6 +64,9 @@ uid                  Nick Mathewson &lt;nickm@freehaven.net&gt;
 pub  1024D/31B0974B 2003-07-17
      Key fingerprint = 0295 9AA7 190A B9E9 027E  0736 3B9D 093F 31B0 974B
 uid                  Andrew Lewman (phobos) &lt;phobos@rootme.org&gt;
+uid                  Andrew Lewman &lt;andrew@lewman.com&gt;
+uid                  Andrew Lewman &lt;andrew@torproject.org&gt;
+sub   4096g/B77F95F7 2003-07-17
 
 pub   1024D/94C09C7F 1999-11-10
       Key fingerprint = 5B00 C96D 5D54 AEE1 206B  AF84 DE7A AF6E 94C0 9C7F
@@ -77,6 +92,8 @@ stimmen, solltest du sie an verschiedenen Stellen verifizieren. Du kannst dich
 auch mit dem "Web of Trust" von PGP beschäftigen und versuchen einen
 Vertrauenspfad zu den Schlüsseln zu bekommen.)</p>
 
+<h3>Schritt Drei:  Überprüfe das heruntergeladene Paket</h3>
+<hr />
 <p>Wenn du GnuPG benutzt, speichere die .asc Datei im gleichen Verzeichnis wie
  die Installationsdatei und gib dann folgendes ein:
 "gpg --verify (wasauchimmer).asc (wasauchimmer)"
