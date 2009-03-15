@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16333
+# Based-On-Revision: 19001
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Tor VM" CHARSET="UTF-8"
@@ -11,10 +11,144 @@
 <h2>Tor VM</h2>
 <hr>
 
-<p>
-To jest miejsce na stronę o Tor VM. Na razie możecie dowiedzieć się więcej z <a
-href="https://svn.torproject.org/svn/torvm/trunk/doc/design.html">dokumentu
-projektowego</a>.
+<h3>Co to jest?</h3>
+<p>Tor VM to przezroczyste proxy (serwer pośredniczący) dla Windows, korzystające
+z technologii pełnej wirtualizacji Qemu, by uzyskać bardziej elastycznych klientów i
+przekaźników Tora.
+</p>
+<p><strong>Wstępna wersja 0.0.1 jest niestabilnym wydaniem testowym!</strong>
+Przeczytaj <a href="http://bugs.noreply.org/flyspray/index.php?tasks=all&amp;project=4&amp;cat=19"
+>bazę śledzenia błędów, by dowiedzieć się o znanych problemach</a>. Pamiętaj, by zrobić
+kopię zapasową jakichkolwiek ważnych danych przed korzystaniem z tego programu na
+swoim systemie.</p>
+
+<a id="Download"></a>
+<h3><a class="anchor" href="#Download">Pobieranie oprogramowania Tor VM</a></h3>
+
+<ul>
+
+<!-- XXX: need to replace harcoded version with var replace in include -->
+<li><a href="dist/TorVM-0.0.1-NetInstaller.exe">Instalator sieciowy Tor VM</a>
+(<a href="dist/TorVM-0.0.1-NetInstaller.exe.asc" style="font-size: 90%;">podpis</a>/
+<a href="dist/TorVM-0.0.1-NetInstaller.exe.sha1.txt" style="font-size: 90%;">sha1</a>)</li>
+
+<li><a href="dist/TorVM-0.0.1-Bundle.exe">Instalator paczki Tor VM</a>
+(<a href="dist/TorVM-0.0.1-Bundle.exe.asc" style="font-size: 90%;">podpis</a>/
+<a href="dist/TorVM-0.0.1-Bundle.exe.sha1.txt" style="font-size: 90%;">sha1</a>)</li>
+
+<li><a href="dist/Tor_VM.exe">Archiwum samorozpakowujące Tor VM</a>
+(<a href="dist/Tor_VM.exe.asc" style="font-size: 90%;">podpis</a>/
+<a href="dist/Tor_VM.exe.sha1.txt" style="font-size: 90%;">sha1</a>)</li>
+
+</ul>
+
+<a id="Setup"></a>
+<h3><a class="anchor" href="#Setup">Konfiguracja Windowsa, by zmniejszyć ryzyko</a></h3>
+
+<p>Uruchamianie Firefoksa z Torbuttonem z konta użytkownika o ograniczonych prawach
+daje ochronę przed różnymi ryzykami, z którymi spotykają się użytkownicy Internetu.
+Poniższe kroki tłumaczą, jak stworzyć ograniczone konto dla użytkownika o nazwie "anon".</p>
+
+<p>Przejdź do opcji "Konta Użytkowników" w Panelu Sterowania. Możesz też użyć nawigacji menu:<br />
+<!-- should this be a sequence of <span> instead? -->
+<strong>Menu Start -&gt; Ustawienia -&gt; Panel Sterowania -&gt; Dodaj/usuń programy</strong></p>
+
+<p><img src="img/uc01.png" alt="Panel Sterowania - Wybierz opcję Konta Użytkowników" /></p>
+
+<p>Wybierz "Stwórz nowe konto".</p>
+
+<p><img src="img/uc02.png" alt="Narzędzie Konta Użytkowników - Wybierz Stwórz nowe konto" /></p>
+
+<p>Wprowadź nazwę dla anonimowego konta o ograniczonych prawach.</p>
+
+<p><img src="img/uc03.png" alt="Wprowadź nazwę dla ograniczonego konta" /></p>
+
+<p>Wybierz typ konta "Ograniczone", by otrzymać konto o zmniejszonych prawach.</p>
+
+<p><img src="img/uc04.png" alt="Wybierz typ konta Ograniczone" /></p>
+
+<p>Wybierz "Stwórz konto".</p>
+
+<p><img src="img/uc05.png" alt="Wybierz Stwórz konto" /></p>
+
+<p>Nowy użytkownik zostaje dodany do listy kont w systemie. To jest konto, z którego
+będą pracować aplikacje internetowe jak Firefox w czasie używania Tor VM, by kierować
+ruchem przez sieć Tora.
+</p>
+
+<p><img src="img/uc06.png" alt="Nowy użytkownik dostępny do logowania" /></p>
+
+<p>Funkcjonalność zmiany użytkownika jest używana do uruchamiania ważnego oprogramowania
+Tor VM jako Admin, podczas gdy Firefox i inne aplikacje internetowe działają z
+ograniczonymi prawami.</p>
+
+<p><img src="img/uc07.png" alt="Użyj zmiany użytkownika, by zalogować się jako użytkownik o ograniczonych prawach" /></p>
+
+<p>Pulpit nowego użytkownika ma własną konfigurację i środowisko.</p>
+
+<p><img src="img/uc09.png" alt="Oba konta: Tor VM admin i ograniczone mogą być używane równocześnie" /></p>
+
+<a id="Install"></a>
+<h3><a class="anchor" href="#Install">Instalacja paczki Tor VM</a></h3>
+
+<p>Kliknij dwukrotnie na instalator paczkowy lub sieciowy, by zacząć instalację.</p>
+
+<p><img src="img/bundle01.png" alt="Kliknij, by uruchomić Instalator paczki" /> &nbsp;
+<img src="img/netinst01.png" alt="Kliknij, by uruchomić Instalator sieciowy" /></p>
+
+<a id="Run"></a>
+<h3><a class="anchor" href="#Run">Uruchomienie Tor VM i Vidalii</a></h3>
+
+<p>Przy pierwszym uruchomieniu Vidalii zostaną wygenerowane tytuły obrazków
+potrzebnych przy wtyczce Marble Map. Jeśli nie masz dość pamięci lub mocy procesora,
+by wygenerować te tytuły, możesz zainstalować pełną paczkę Vidalia Marble z już
+dołączonymi wygenerowanymi tytułami obrazków.</p>
+vidalia-genmap.png vidalia-support.png vidalia-repair.png
+<p><img src="img/vidalia-genmap.png" alt="Generowanie tytułów obrazków Marble Map może chwilę potrwać" /></p>
+
+<p>Jeśli jakakolwiek z aplikacji z paczki przestanie działać, można zażądać naprawy,
+co może rozwiązać problem.</p>
+
+<a id="Repair"></a>
+<h3><a class="anchor" href="#Repair">Naprawa zainstalowanych aplikacji</a></h3>
+
+<p><img src="img/vidalia-support.png" alt="W Dodaj/usuń programy - Wybierz opcję wsparcia paczki" /></p>
+
+<p>Wybierz opcję naprawy, a wszystkie pliki paczki i wpisy w rejestrze zostaną przywrócone.</p>
+
+<p><img src="img/vidalia-repair.png" alt="Wybierz opcję naprawy" /></p>
+
+<a id="Debug"></a>
+<h3><a class="anchor" href="#Debug">Zwalczanie problemów i zgłaszanie błędów</a></h3>
+
+<p>Kategoria Tor VM w systemie śledzenia błędów flyspray Tora jest używana w celu
+zarządzania defektami i funkcjonalnościami. Przejrzyj
+<a href="http://bugs.noreply.org/flyspray/index.php?tasks=all&amp;project=4"
+>system śledzenia błędów flyspray Tora</a>, by dowiedzieć się o znanych błędach i trwających
+zmianach.</p>
+
+<!-- localized installers and full Marble data bundle?
+<a id="Advanced"></a>
+<h3><a class="anchor" href="#Advanced">Experimental Packages and Usage</a></h3>
+-->
+
+<a id="More"></a>
+<h3><a class="anchor" href="#More">Dodatkowe informacje</a></h3>
+
+<p>Najnowszy dokument projektowy Tor VM jest dostępny pod systemem kontroli wersji:
+<a href="https://svn.torproject.org/svn/torvm/trunk/doc/design.html"
+>https://svn.torproject.org/svn/torvm/trunk/doc/design.html</a>.
+</p>
+
+<p>Funkcjonalności i planowane poprawki oprogramowania Tor VM są opisane w pliku
+<a href="https://svn.torproject.org/svn/torvm/trunk/TODO">Tor VM TODO</a>.</p>
+
+<p><a href="https://data.peertech.org/torbld/info/Tor_VM-svn">Automatycznie budowane paczki
+są dostępne</a> celem weryfikacji poprawek w systemie subversion i testowania trwających prac.</p>
+
+<p>Buduj oprogramowanie korzystając ze znanego działającego znacznika w repozytorium torvm.
+Na przykład,<br />
+svn export https://svn.torproject.org/svn/torvm/tags/torvm-0_0_1 torvm-0.0.1-build
 </p>
 
 </div><!-- #main -->
