@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19001
+# Based-On-Revision: 19060
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Tor VM" CHARSET="UTF-8"
@@ -16,7 +16,7 @@
 z technologii pełnej wirtualizacji Qemu, by uzyskać bardziej elastycznych klientów i
 przekaźników Tora.
 </p>
-<p><strong>Wstępna wersja 0.0.1 jest niestabilnym wydaniem testowym!</strong>
+<p><strong>Wstępna wersja 0.0.1 jest wydaniem, nad którym ciągle się pracuje!</strong>
 Przeczytaj <a href="http://bugs.noreply.org/flyspray/index.php?tasks=all&amp;project=4&amp;cat=19"
 >bazę śledzenia błędów, by dowiedzieć się o znanych problemach</a>. Pamiętaj, by zrobić
 kopię zapasową jakichkolwiek ważnych danych przed korzystaniem z tego programu na
@@ -36,7 +36,7 @@ swoim systemie.</p>
 (<a href="dist/TorVM-0.0.1-Bundle.exe.asc" style="font-size: 90%;">podpis</a>/
 <a href="dist/TorVM-0.0.1-Bundle.exe.sha1.txt" style="font-size: 90%;">sha1</a>)</li>
 
-<li><a href="dist/Tor_VM.exe">Archiwum samorozpakowujące Tor VM</a>
+<li><a href="dist/Tor_VM.exe">Przenośne archiwum samorozpakowujące Tor VM</a>
 (<a href="dist/Tor_VM.exe.asc" style="font-size: 90%;">podpis</a>/
 <a href="dist/Tor_VM.exe.sha1.txt" style="font-size: 90%;">sha1</a>)</li>
 
@@ -89,26 +89,71 @@ ograniczonymi prawami.</p>
 <p><img src="img/uc09.png" alt="Oba konta: Tor VM admin i ograniczone mogą być używane równocześnie" /></p>
 
 <a id="Install"></a>
-<h3><a class="anchor" href="#Install">Instalacja paczki Tor VM</a></h3>
+<h3><a class="anchor" href="#InstallExtractor">Archiwum samorozpakowujące Tor VM</a></h3>
+
+<p>Zachowaj program instalatora na pulpicie lub urządzeniu przenośnym.</p>
+
+<p><img src="img/extr01.png" alt="Zachowaj program instalatora na pulpicie lub napędzie" /></p>
+
+<p>Wybierz ścieżke lub folder do rozpakowania.</p>
+
+<p><img src="img/extr02.png" alt="Wybierz docelową ścieżkę" /></p>
+
+<p>Uruchom program torvm.exe w rozpakowanym folderze Tor_VM.</p>
+
+<p><img src="img/extr03.png" alt="Uruchom program torvm.exe w folderze Tor_VM" /></p>
+
+<h3><a class="anchor" href="#InstallBundle">Instalacja paczki Tor VM</a></h3>
 
 <p>Kliknij dwukrotnie na instalator paczkowy lub sieciowy, by zacząć instalację.</p>
 
 <p><img src="img/bundle01.png" alt="Kliknij, by uruchomić Instalator paczki" /> &nbsp;
 <img src="img/netinst01.png" alt="Kliknij, by uruchomić Instalator sieciowy" /></p>
 
+<p>Paczka instaluje każdą z aplikacji z Tor VM, jak Vidalia i Torbutton.</p>
+
+<p><img src="img/bundle02.png" alt="Kliknij, by uruchomić Instalator paczki" /></p>
+
+<p>Instalator sieciowy zawiera bezpieczne oprogramowanie do aktualizacji Tora,
+używane do wiarygodnego pobrania na żądanie wszystkich najnowszych instalatorów aplikacji.</p>
+
+<p><img src="img/netinst02.png" alt="Instalator sieciowy pobiera paczki z oprogramowaniem na żądanie" /></p>
+
 <a id="Run"></a>
 <h3><a class="anchor" href="#Run">Uruchomienie Tor VM i Vidalii</a></h3>
 
+<p>Po instalacji kontroler Tor VM jest uruchamiany w tle. Program instalacyjny zakończył
+pracę i może zostać zamknięty.</p>
+
+<p><img src="img/run01.png" alt="Kontroler Tor VM uruchomi się pod koniec instalacji" /></p>
+
+<p>Po przygotowaniu urządzeń sieciowych uruchamiana jest maszyna wirtualna Qemu z
+jądrem Tor VM. Ukaże się ekran statusu pokazujący szczegółowy postęp uruchamiania
+programu Tor w sieci.</p>
+
+<p><img src="img/run02.png" alt="Uruchomione Qemu z jądrem Tor VM" /></p>
+
+<p>Uruchamianie jest zakończone w 100%, gdy Tor jest w stanie stworzyć obwód przez sieć.</p>
+
+<p><img src="img/run03.png" alt="Uruchamianie nie zakończone do chwili stworzenia obwodu" /></p>
+
+<p>Po pomyślnym starcie pokazane są listy z liczbą przezroczystych połączeń proxy. Oznacza
+to, że Tor VM działa i jest gotowe przeźroczyście kierować ruchem przez sieć Tor. Port socks
+jest też dostępny dla hosta do korzystania z proxy Polipo lub Privoxy.</p>
+
+<p><img src="img/run04.png" alt="Liczba połączeń proxy pokazuje status Tor VM" /></p>
+
+<!-- no marble for first release
 <p>Przy pierwszym uruchomieniu Vidalii zostaną wygenerowane tytuły obrazków
 potrzebnych przy wtyczce Marble Map. Jeśli nie masz dość pamięci lub mocy procesora,
 by wygenerować te tytuły, możesz zainstalować pełną paczkę Vidalia Marble z już
 dołączonymi wygenerowanymi tytułami obrazków.</p>
-vidalia-genmap.png vidalia-support.png vidalia-repair.png
+
 <p><img src="img/vidalia-genmap.png" alt="Generowanie tytułów obrazków Marble Map może chwilę potrwać" /></p>
 
 <p>Jeśli jakakolwiek z aplikacji z paczki przestanie działać, można zażądać naprawy,
 co może rozwiązać problem.</p>
-
+-->
 <a id="Repair"></a>
 <h3><a class="anchor" href="#Repair">Naprawa zainstalowanych aplikacji</a></h3>
 
@@ -117,6 +162,15 @@ co może rozwiązać problem.</p>
 <p>Wybierz opcję naprawy, a wszystkie pliki paczki i wpisy w rejestrze zostaną przywrócone.</p>
 
 <p><img src="img/vidalia-repair.png" alt="Wybierz opcję naprawy" /></p>
+
+<a id="Remove"></a>
+<h3><a class="anchor" href="#Remove">Deinstalacja oprogramowania Tor</a></h3>
+
+<p>Na pulpicie umieszczony jest skrypt do odinstalowania wszystkiech aplikacji z
+paczki Tora. Uruchom go, by usunąć wszystkie paczki i pliki Tora.</p>
+
+<p><img src="img/uninstall.png" alt="Skrypt Uninstall_Tor usunie wszystkie paczki i pliki Tora" /></p>
+
 
 <a id="Debug"></a>
 <h3><a class="anchor" href="#Debug">Zwalczanie problemów i zgłaszanie błędów</a></h3>
@@ -148,7 +202,7 @@ są dostępne</a> celem weryfikacji poprawek w systemie subversion i testowania 
 
 <p>Buduj oprogramowanie korzystając ze znanego działającego znacznika w repozytorium torvm.
 Na przykład,<br />
-svn export https://svn.torproject.org/svn/torvm/tags/torvm-0_0_1 torvm-0.0.1-build
+svn export https://svn.torproject.org/svn/torvm/tags/torvm-0_0_1 torvm-0.0.1-src
 </p>
 
 </div><!-- #main -->
