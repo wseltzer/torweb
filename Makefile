@@ -1,5 +1,5 @@
 # Directions for building the website:
-# 1. check out stable-tor and cvs-tor and website onto moria.
+# 1. check out stable-tor and development-tor and website onto moria.
 # 2. edit the two lines below to point to them.
 # 3. (edit include/versions.wmi or others if you like)
 # 4. make
@@ -11,7 +11,7 @@ TORSVNHEAD = ../tor
 #TORSVNHEAD = /home/arma/work/onion/svn/trunk
 
 WMLBASE = .
-SUBDIRS=docs eff gui torbrowser torbutton tordnsel projects torvm press gettor
+SUBDIRS=docs eff gui torbrowser torbutton tordnsel projects torvm press gettor vidalia
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
@@ -36,10 +36,12 @@ press:
 	$(MAKE) -C "$@" WMLBASE=..
 gettor:
 	$(MAKE) -C "$@" WMLBASE=..
+vidalia:
+	$(MAKE) -C "$@" WMLBASE=..
 mirrors:
 	./update-mirrors.pl
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
 
-.PHONY: docs eff gui torbrowser torbutton tordnsel projects torvm press gettor
+.PHONY: docs eff gui torbrowser torbutton tordnsel projects torvm press gettor vidalia
