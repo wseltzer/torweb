@@ -1,0 +1,188 @@
+## translation metadata
+# Based-On-Revision: 18435
+# Translation-Priority: 2-medium
+# Last-Translator: cheungtifan AT gmail.com
+
+#include "head.wmi" TITLE="Tor: Mac OS X 安装指导" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>在Mac OS X上运行 <a href="<page index>">Tor</a> 客户端</h1>
+<br />
+
+<p>
+<b>请注意一下所述的是在 Mac OS X 上运行 Tor 客户端的指导。如果你希望运行中继，请阅读
+ <a href="<page docs/tor-doc-relay>">配置中继</a> 的指导。</b>
+</p>
+
+<hr />
+<a id="installing"></a>
+<h2><a class="anchor" href="#installing">步骤一：下载以及安装 Tor</a></h2>
+<br />
+
+<p>
+Macintosh OS X 套件将 <a href="<page index>">Tor</a>, 
+<a href="http://www.vidalia-project.net/">Vidalia</a> (Tor 的一个图形界面), 
+<a href="<page torbutton/index>">Torbutton</a>,
+以及<a href="http://www.privoxy.org/">Privoxy</a> (一种 Web 代理)
+捆绑在一起，并且这四个应用程序已经被预先配置好，可以正常工作。
+下载 OS X 套件的<a href="../<package-osx-bundle-stable>">稳定版本</a>
+或者<a href="../<package-osx-bundle-alpha>">试验性质</a>版本，或者在
+<a href="<page download>">下载页面</a>中得到更多选择。
+</p>
+
+<p>我们的 Tor 安装程序使得任何事情都很简单，下面是安装页面的一个截图。
+</p>
+
+<p><img alt="tor installer 启动屏幕"
+src="../img/screenshot-osx-installer-splash.png"
+border="1"></p>
+
+<p>当安装结束时，你可以通过在你的“应用程序”档案夹中选择 Vidalia 的方式启动它。
+在 Dock 中一个有红色 X 的灰色洋葱图标意味着Tor现在没有运行。
+你可以通过在 "Tor" 菜单中选择启动的方式启动 Tor 。
+</p>
+
+<p>当 Tor 运行时， Vidalia 的 Dock 图标会变成这样：
+</p>
+
+<p><img alt="vidalia running tor"
+src="../img/screenshot-osx-vidalia.png"
+border="1"></p>
+
+<p>Privoxy 是 Tor bundle package 的默认安装项。一旦安装好，他会随你的计算机的启动而
+自动启动。
+你不需要因为使用 Tor 而配置 Privoxy &mdash; 在安装包内已经包含了一个已经定制好的 Privoxy 配置
+文件。
+</p>
+
+<hr />
+<a id="using"></a>
+<h2><a class="anchor" href="#using">步骤二：配置你的应用程序使用 Tor</a></h2>
+<br />
+
+<p>在安装 Tor 和 Privoxy后，你需要配置你的应用程序使用他们。第一件事情是配置
+网络浏览。</p>
+
+<p>为了最大的安全性，你应该在使用 Tor 时使用 Firefox 和 Torbutton。
+Torbutton 已经为你安装好了。 单击红色的 "Tor Disabled" 控制按钮来配置启动 Tor： </p>
+
+<p><img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1"></p>
+
+<p>
+你如果希望在另一台没有安装 Tor 的计算机上使用 Firefox，请看<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">在
+另一台计算机上运行 Tor 的 FAQ 条目</a>.
+</p>
+
+<p>如果需要Tor化其他的支持HTTP代理服务器的应用程序，请将HTTP代理服务器指向
+ Privoxy (那就是 localhost 端口 8118)。如果向直接使用SOCKS代理(比如既时
+通信，Jabber, IRC 等等)你可以直接将你的应用程序代理指向 Tor (localhost 
+端口 9050)，但是请看<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">
+这个FAQ条目</a> &mdash; 这样做可能是危险的。 如果应用程序即不支持SOCKS代理
+也不支持HTTP代理，请看<a href="http://www.taiyo.co.jp/~gotoh/ssh/connect.html">connect</a>
+或者<a href="http://www.dest-unreach.org/socat/">socat</a>.</p>
+
+<p>看看<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">
+如何 Tor 化</a>以获取更多的关于如何 Tor 化其他应用程序的信息。
+</p>
+
+<hr />
+<a id="verify"></a>
+<h2><a class="anchor" href="#verify">步骤三：确认它是不是工作</a></h2>
+<br />
+
+<p>
+下一步，你应该通过浏览器试一试你是的IP是不是被匿名化了。点击 
+<a href="https://check.torproject.org/">Tor 检测器</a>
+看看你是不是在用 Tor。(如果这个站点下线了，看一看 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">这个
+FAQ条目</a>以获取更多的有关如何测试Tor的建议。)
+</p>
+
+<p>如果你的个人防火墙限制你的计算机连接到它自己，一定要允许从本地应用程序到本地端口
+8118 和 9050 的连接。如果你的防火墙阻挡向外的连接，那么至少让它能够连接 TCP 端口 80 和 443，
+然后阅读<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">此 FAQ 条目</a>。
+</p>
+
+<p>如果它还是罢工，那就看看<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">此 FAQ
+条目</a>寻找一些线索。
+</p>
+
+<p>
+一旦工作正常，请了解更多 <a href="<page download>#Warning">Tor 提供什么，不提供什么</a>。
+</p>
+
+<hr />
+<a id="server"></a>
+<a id="relay"></a>
+<h2><a class="anchor" href="#relay">步骤四：配置中继</a></h2>
+<br />
+
+<p>Tor 网络依靠志愿者们贡献带宽运行。运行中继的人越多，Tor 网络的速度就越快。
+如果你的网络连接速度达到至少每秒 20KB，请运行一台中继以帮助 Tor。
+我们有许多特性使得 Tor 中继的运行简单而方便，包括带宽的速率限制，
+定制出口策略以避免滥用，以及对于动态 IP 地址的支持。
+</p>
+
+<p>在互联网上的许多不同地方运行中继保护了 Tor 用户的安全。<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">你自身的
+匿名也能得到更好的保护</a>，因为站点不知道连接究竟来自你的电脑还是为他人传递。
+</p>
+
+<p>阅读更详细的<a href="<page docs/tor-doc-relay>">配置中继</a>的指导。
+</p>
+
+<hr />
+<a id="uninstall"></a>
+<h2><a class="anchor" href="#uninstall">如何卸载 Tor 和 Privoxy</a></h2>
+<br />
+
+<p>Tor 0.1.0.x 以及以上版本有一个命令行的或者基于终端的卸载工具。
+如果你希望在 OSX 上卸载 Tor，请参照一下步骤：</p>
+
+<p>修改你的应用程序代理设置到原始值。如果你只是希望停止使用 Tor，请到此为止。</p>
+
+<p>如果你希望完全移除Tor并且你的账户有管理员权限，请参照以下步骤：</p>
+<ol>
+<li> 打开一个终端或者 x-term 会话。</li>
+<li> cd /Library/Tor</li>
+<li> sudo -s</li>
+<li> ./uninstall_tor_bundle.sh</li>
+</ol>
+<p>Tor 和 Privoxy 现在已经被完全移除。</p>
+
+<p>如果你使用了一个没有 uninstall_tor_bundle 脚本的 Tor 安装程序，你需要手动删除以下的文件：</p>
+<ul>
+<li>/Library/Tor</li>
+<li>/Library/Privoxy</li>
+<li>/usr/bin/tor</li>
+<li>/usr/bin/tor_resolve</li>
+<li>/var/log/tor</li>
+<li>/usr/share/man/man1/tor.1</li>
+<li>/usr/share/man/man1/tor-resolve.1</li>
+<li>/usr/share/man/man1/torify.1</li>
+<li>/Library/Receipts/Privoxy.pkg/</li>
+<li>/Library/Receipts/privoxyconf.pkg/</li>
+<li>/Library/Receipts/Tor.pkg/</li>
+<li>/Library/Receipts/torstartup.pkg/</li>
+<li>/Library/Receipts/torbutton.pkg/</li>
+<li>/Library/StartupItems/Tor</li>
+<li>/Library/StartupItems/Privoxy</li>
+<li>/Library/Torbutton/</li>
+</ul>
+
+<hr />
+
+<p>如果你有其他改进本文档的建议，请<a href="<page contact>">把他们发给我们</a>，
+谢谢！</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
