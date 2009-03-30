@@ -17,6 +17,7 @@
 <p>General questions:</p>
 <ul>
 <li><a href="#WhatIsTor">What is Tor?</a></li>
+<li><a href="#Torisdifferent">How is Tor different from other proxies?</a></li>
 <li><a href="#CompatibleApplications">What programs can I use with
 Tor?</a></li>
 <li><a href="#WhyCalledTor">Why is it called Tor?</a></li>
@@ -99,6 +100,21 @@ href="<page overview>">overview page</a>.
 <p>
 The Tor Project is a non-profit (charity) organization that maintains
 and develops the Tor software.
+</p>
+
+<a id="Torisdifferent"></a>
+<h3><a class="anchor" href="#Torisdifferent">How is Tor different from other proxies?</a></h3>
+<p>
+A typical proxy provider sets up a server somewhere on the Internet and allows you to use it to relay your traffic.  This creates a simple, easy to maintain architecture.  The users all enter and leave through the same server.  The provider may charge for use of the proxy, or fund their costs through advertisements on the server.  In the simplest configuration, you don't have to install anything.  You just have to point your browser at their proxy server.  Simple proxy providers are fine solutions if you do not want protections for your privacy and anonymity online and you trust the provider from doing bad things.  Some simple proxy providers use SSL to secure your connection to them.  This may protect you against local eavesdroppers, such as those at a cafe with free wifi Internet.
+</p>
+<p>
+Simple proxy providers also create a single point of failure.  The provider knows who you are and where you browse on the Internet.  They can see your traffic as it passes through their server.  In some cases, they can see your encrypted traffic as they relay it to your banking site or to ecommerce stores.  You have to trust the provider isn't doing any number of things, such as watching your traffic, injecting their own advertisements into your traffic stream, and isn't recording your personal details.
+</p>
+<p>
+Tor passes your traffic through at least 3 different servers before sending it on to the destination.  Tor does not modify, or even know, what you are sending into it.  It merely relays your traffic, completely encrypted through the Tor network and has it pop out somewhere else in the world, completely intact.  The Tor client is required because we assume you trust your local computer.  The Tor client manages the encryption and the path chosen through the network.  The relays located all over the world merely pass encrypted packets between themselves.</p>
+<p>
+<dt>Doesn't the first server see who I am?</dt><dd>Possibly. A bad first of three servers can see encrypted Tor traffic coming from your computer.  It still doesn't know who you are and what you are doing over Tor.  It merely sees "This IP address is using Tor".  Tor is not illegal anywhere in the world, so using Tor by itself is fine.  You are still protected from this node figuring out who you are and where you are going on the Internet.</dd>
+<dt>Can't the third server see my traffic?</dt><dd>Possibly.  A bad third of three servers can see the traffic you sent into Tor.  It won't know who sent this traffic.  If you're using encryption, such as visiting a bank or ecommerce website, or encrypted mail connections, etc, it will only know the destination.  It won't be able to see the data inside the traffic stream.  You are still protected from this node figuring out who you are and if using encryption, what data you're sending to the destination.</dd>
 </p>
 
 <a id="CompatibleApplications"></a>
