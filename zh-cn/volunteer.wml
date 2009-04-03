@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19193
+# Based-On-Revision: 19218
 # Last-Translator: peihanru AT gmail.com
 
 #include "head.wmi" TITLE="Tor: 志愿者" CHARSET="UTF-8"
@@ -1017,40 +1017,25 @@ href="http://freehaven.net/anonbib/#timing-fc2004">defensive dropping</a>
 延缓攻击吗？有些流量填充（traffic padding）或流量整形（traffic shaping）方案比其他方案更好吗？
 </li>
 
-<!-- NEED TRANSLATION -->
-<li>A related question is: Does running a relay/bridge provide additional
-protection against these timing attacks? Can an external adversary that can't
-see inside TLS links still recognize individual streams reliably?
-Does the amount of traffic carried degrade this ability any? What if the
-client-relay deliberately delayed upstream relayed traffic to create a queue
-that could be used to mimic timings of client downstream traffic to make it
-look like it was also relayed? This same queue could also be used for masking
-timings in client upstream traffic with the techniques from <a
-href="http://www.freehaven.net/anonbib/#ShWa-Timing06">adaptive padding</a>,
-but without the need for additional traffic. Would such an interleaving of
-client upstream traffic obscure timings for external adversaries? Would the
-strategies need to be adjusted for asymmetric links? For example, on
-asymmetric links, is it actually possible to differentiate client traffic from
-natural bursts due to their asymmetric capacity? Or is it easier than
-symmetric links for some other reason?
+<li>
+一个相关的问题是，运行一个中继或者网桥，是否能提供对计时攻击的额外保护？如果某个无法看到 TLS 连接
+内部情况的敌意观察者存在的情况下，我们仍然可以认为数据流是安全可靠的吗？大量的数据传输是否降低了
+可靠性？如果一个客户端-中继故意延迟上行数据并为中继数据创建一个队列来模拟客户端下行传输，这样使自己
+看上去似乎是一个中继，这种做法会有所帮助吗？使用<a href="http://www.freehaven.net/anonbib/#ShWa-Timing06">
+自适应填充</a>中提到的技术方案，这个队列同样可用来混淆上行数据的时间，而不需要额外的数据传输。这种
+客户端的交叉上行方案能否真的混淆外部攻击者的计时观察？这样的策略是否需要针对不对称连接作出调整？比如，
+在不对称连接上，它是否能够真正区分出由于连接不对称造成的客户端的正常的流量爆发？或者，是否有其他理由
+导致这比对称连接更加容易？
 </li>
 
-<!-- NEED TRANSLATION -->
-<li>Repeat Murdoch and Danezis's <a
-href="http://www.cl.cam.ac.uk/~sjm217/projects/anon/#torta">attack from
-Oakland 05</a> on the current Tor network. See if you can learn why it
-works well on some nodes and not well on others. (My theory is that the
-fast nodes with spare capacity resist the attack better.) If that's true,
-then experiment with the RelayBandwidthRate and RelayBandwidthBurst
-options to run a relay that is used as a client while relaying the
-attacker's traffic: as we crank down the RelayBandwidthRate, does the
-attack get harder? What's the right ratio of RelayBandwidthRate to
-actually capacity? Or is it a ratio at all? While we're at it, does a
-much larger set of candidate relays increase the false positive rate
-or other complexity for the attack? (The Tor network is now almost two
-orders of magnitude larger than it was when they wrote their paper.) Be
-sure to read <a href="http://freehaven.net/anonbib/#clog-the-queue">Don't
-Clog the Queue</a> too.
+<li>重复一下来自 Murdoch 和 Danezis 在现在的 Tor 网络上的攻击行为：<a
+href="http://www.cl.cam.ac.uk/~sjm217/projects/anon/#torta">attack from Oakland 05</a>。看看你
+能否搞清楚为什么它在某些节点上可以成功而在某些节点上却招到了失败。（在我看来，较快的节点为攻击提供了更好
+的兼容性。）如果这是真的，那么运行一个中继，并在中继攻击者的传输时将它作为客户端使用，实验 RelayBandwidthRate
+和 RelayBandwidthBurst 这两个参数的调整：如果我们降低 RelayBandwidthRate，会增加攻击的难度吗？RelayBandwidthRate
+的合适的值是多少？或者它就只是一个传输率参数，跟攻击难度其实没有关系？更大的中继候选是否会增加针对攻击的假阳性错误率
+（false positive rate）或者其他复杂性？（Tor 网络的规模现在差不多是他们写那篇论文时的两倍。）请务必读读这篇文章,
+<a href="http://freehaven.net/anonbib/#clog-the-queue">Don't Clog the Queue</a> 。
 </li>
 
 <li>路由区域攻击（routing zones attack）：绝大多数的文献将 Alice 与入口节点（及出口节点与 Bob）
@@ -1081,18 +1066,13 @@ href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh 吞吐量�
 我们需要评估、需要调整，如果结果不错的话，也许会来一次彻底的变化。
 </li>
 
-<!-- NEED TRANSLATION -->
-<li>Our censorship-resistance goals include preventing
-an attacker who's looking at Tor traffic on the wire from <a
-href="<svnsandbox>doc/design-paper/blocking.html#sec:network-fingerprint">distinguishing
-it from normal SSL traffic</a>. Obviously we can't achieve perfect
-steganography and still remain usable, but for a first step we'd like to
-block any attacks that can win by observing only a few packets. One of
-the remaining attacks we haven't examined much is that Tor cells are 512
-bytes, so the traffic on the wire may well be a multiple of 512 bytes.
-How much does the batching and overhead in TLS records blur this on the
-wire? Do different buffer flushing strategies in Tor affect this? Could
-a bit of padding help a lot, or is this an attack we must accept?
+<!-- NEED HELP -->
+<li>我们反审查机制的目标包括防止攻击者<a href="<svnsandbox>doc/design-paper/blocking.html#sec:network-fingerprint">
+从普通 SSL 传输中区分 Tor 数据包</a>。很明显，我们不可能既做到完美的隐藏又保持可用性，但是，
+首先，我们希望能够阻止攻击者仅仅观察几个数据包就可以取得成功。在这些攻击中，有一个我们没有进行太多测试的
+问题是，Tor 的数据包是以512字节为单位的，因此，传输的数据包可以是512字节的倍数。在物理线路上，
+TLS 记录中的这种定量传输能够在多大程度上受到影响？如果 Tor 使用不同的缓冲策略会有所影响吗？作一些填充是否
+会有所帮助，或者这是我们必须接受的攻击？
 </li>
 
 
