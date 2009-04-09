@@ -1,38 +1,48 @@
 ## translation metadata
-# Based-On-Revision: 10723
+# Based-On-Revision: 18944 
 # Last-Translator: buyoppy@yahoo.co.jp
 
-#include "head.wmi" CHARSET="UTF-8" TITLE="ボランティア"
+#include "head.wmi" TITLE="Tor: ボランティア" CHARSET="UTF-8"
 
 <div class="main-column">
 
 <!-- PUT CONTENT AFTER THIS TAG -->
-<h2>今すぐに誰にでもできる三つのこと:</h2>
+<h2>今すぐに誰にでもできるいくつかのこと:</h2>
 <ol>
-<li>私達のTorネットワークを成長させるために<a href="<page docs/tor-doc-server>">サーバを運用する
+<li>私達のTorネットワークを成長させるために<a href="<page docs/tor-doc-relay>">リレーを運用する
 </a>ことをご検討ください。</li>
-<li>あなたの友人にも伝えてください！彼らにもサーバを運用し、またはヒドゥンサービスを
+<li>あなたの友人にも伝えてください！彼らにもリレーを運用し、またはヒドゥンサービスを
 運用するように、そして彼らの友人にそれを伝えるように伝えてください。</li>
-<li>私達は資金とスポンサーを探しています。もしあなたがTorの目的に賛同なさるなら、
+
+<li>もしあなたがTorの目的に賛同なさるなら、
 <a href="<page donate>">Torの開発に対してより深くサポートするために貢献してください</a>
-さらに、もしあなたがコミュニケーションの安全性を望んでいる会社、NGO、機関、その他の組織を
-ご存知なら私達に知らせてください。</li>
+私たちはより多くのスポンサーも求めていますー
+もしあなたが匿名性/プライバシー/コミュニケーションの安全性を望んでいる
+会社、NGO、機関、その他の組織を
+ご存知なら私たちに知らせてください。</li>
+
+<li>私たちはより多くの<a href="<page torusers>">Torのよいユーザ例および使用例</a>
+探しています。もしあなたがこのページにまだ書かれていないようなシナリオや目的の
+ためにお使いなら、もし差し支えがなければそれを私たちにも知らせて頂けると幸いです。
 </ol>
 
 <a id="Usability"></a>
 <h2><a class="anchor" href="#Usability">補助アプリケーション</a></h2>
 <ol>
 <li>匿名になろうとしているときに、これに反してDNSリクエストがその内容を
-ローカルの盗聴者に"リーク"してしまわないようにするよい方法を探しています。
-(アプリケーションがSOCKSプロキシに到達する前にDNS解決を行うために起こることです。)</li>
-<li>tsocks/dsocks アイテム:
+ローカルの盗聴者に"リーク"してしまわないようにそれらを遮断するするよい方法を探しています。
+(アプリケーションがSOCKSプロキシに到達する前にDNS解決を行うために起こることです。)
+</li>
+<li>tsocks/dsocksアイテム:
 <ul>
 <li><a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TSocksPatches">
 tsocksパッチを当て</a>、新たな子プロジェクトを管理する必要があります。
 もし必要なら私達が新プロジェクトをホスティングします。</li>
 <li>Torの<i>mapaddress</i>コマンドをコントローラインターフェースから使えるように
-するためDug Songの"dsocks"プログラムにパッチを当てる必要があります。</li>
+するためDug Songの"dsocks"プログラムにパッチを当てる必要があります。
+これによって接続前に一通り名前解決を行う作業をTor内部で無駄にせずに済みます。</li>
+<li>
 <li>tsocksとdsocksのどちらがインストールされているのかを検知し、
 適切にそれらを呼び出す<i>tor化</i>スクリプトを作る必要があります。
 このためには、恐らくインターフェースを統一したうえで、それらの間で
@@ -40,27 +50,15 @@ tsocksパッチを当て</a>、新たな子プロジェクトを管理する必�
 も必要になるかも知れません。</li>
 </ul>
 </li>
-<li>サーバを運用している人々はよく私達に対して、一日のうちのある時間帯だけに
+<li>リレーを運用している人々は私達に対して、一日のうちのある時間帯だけに
 ある帯域レートを適用し、残りの時間帯には別の帯域レートを適用したいという
-要望をしてきます。これをTorの内部で制御するよりも、<a href="<page gui/index>">
-Tor制御インターフェース</a>を通じて動作し、帯域レートを変更するための設定を
-行う小さなスクリプトがあったほうがいいでしょう。恐らくそれはcronから実行されるか、
-または適当な時間だけsleepした後に動作する(こちらの方がより移植性があるでしょう)
-ものになると思われます。どなたかこのスクリプトを書いてください。そしたら私達は
-それを<a href="<svnsandbox>contrib/">contrib/</a>に加えます。それは
-<a href="<page gui/index>">Tor GUIコンペテション</a>
-でもよいエントリになります。
-  <!-- We have a good script to adjust stuff now, right? -NM -->
+要望をしてきます。これをTorの内部でコーディングするよりも、<a href="<page gui/index>">
+Torコントローラインターフェース</a>を通じて動作し、帯域レートを変更するための設定を
+行う小さなスクリプトがあったほうがいいでしょう。UnixおよびMac用のものは
+すでにあります(それはbashとcronを使用しています)が、Windowsユーザについては
+依然として解決が求められています。
 </li>
-<li>Torは<a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ChooseEntryExit">
-特定の出口ノードから出る</a>ことが出来ますが、出口の国だけを指定して
-自動的にノードを決めることも出来なければなりません。最善の方法は、
-Blossomディレクトリをも取得することとし、それを安全に取得する
-Blossomクライアントをローカルで実行する(Torを通してそのシグネチャをチェックして)
-<tt>.country.blossom</tt>ホストネームを中断してうまく動くようにすること
-です。</li>
-<li>地理位置データについて言えば、誰かがTorサーバの位置を表す世界地図を
+<li>地理位置データについて言えば、誰かがTorリレーの位置を表す世界地図を
 描く必要があります。ネットワークが成長し変更されるにつれ情報が自動的に
 アップデートされるものなら、なお良いです。残念ながら、
 これを実現する最も簡単な方法は、全てのデータをGoogleに送信して地図を描いて
@@ -68,103 +66,934 @@ Blossomクライアントをローカルで実行する(Torを通してそのシ
 ものでしょうか？あるいは他にもっといい選択肢があるでしょうか？</li>
 </ol>
 
+<a id="Advocacy"></a>
+<h2><a class="anchor" href="#Advocacy">支援運動</a></h2>
+<ol>
+<li>Creative Commonsライセンスの下、コミュニティのロゴを作ってすべての人々がそれを使用し
+またそれを変更できるようにすること。</li>
+<li>世界中のユーザグループミーティングで使用できるようなプレゼンテーションを作成すること。</li>
+<li>あなたが推薦するTorの使い方についてのビデオを作成すること。これは一部ですでにSeesmicで
+作成が始まっています。</li>
+<li>「自由のためにTorを使おう！」といったような、
+単一のまたはいくつかの主題についてのポスターを作成する。</li>
+</ol>
+
 <a id="Documentation"></a>
 <h2><a class="anchor" href="#Documentation">ドキュメント</a></h2>
 <ol>
-<li>Torユーザがjavascript、java、activex、flashなどを無効にしていない場合に、
-匿名性を失わせる攻撃に晒される可能性があると聞いています。ユーザがこのような
-リスクを管理することを容易にするプラグイン(FirefoxのNoScriptプラグインのような)
-がどこかにないでしょうか？この場合のリスクとは正確に言ってどのようなもの
-なのでしょうか？</li>
-<li>Privoxyの機能の全てを肩代わりするFirefox 1.5+向けのプラグインのセットは
-存在するでしょうか？</li>
-<li>Matt Edmanが彼の作ったTorコントローラ
-<a href="<page vidalia/index>">Vidalia</a>
+<li>Matt Edmanが自身の作ったTorコントローラ
+<a href="http://vidalia-project.net/">Vidalia</a>
 のためのドキュメントおよびhow-toを書くのを手伝ってください。</li>
-<li>Torを使用するために使用できる<a href="https://wiki.torproject.org/wiki/TheOnionRouter/TorifyHOWTO">私達のプログラムリスト</a>にあるプログラムを使ってみて結果を報告してください。</li>
+<li>Torを使用するために使用できる
+<a href="https://wiki.torproject.org/wiki/TheOnionRouter/TorifyHOWTO">私達のプログラムリスト
+</a>にあるプログラムを使ってみて結果を報告してください。</li>
 <li>私達は動的に接続を遮断してそれをTorを通して送信することについてのよりよい
 ドキュメントを必要としています。私達の新しいTransPort機能のよりよい使用法に
 ついてもそうですが、tsocks (Linux), dsocks (BSD),freecap (Windows)
 がよい候補として挙げられるでしょう。</li>
-<li><a href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">
+<li>
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">
 Torの有用なインターフェースとなりうるプログラム</a>の巨大なリストがあります。
 どのプログラムがどういった状況で使えるでしょうか？それらをテストして
 結果を報告してください。</li>
 <li>ウェブページおよびドキュメントを他の言語に翻訳するのを手伝ってください。
 手伝ってくださる方は<a href="<page translation>">翻訳ガイドライン</a>
-をご覧ください。すでに翻訳があるフランス語およびスウェーデン語の
-メンテナンスを助けてくれる方も募集していますー
-<a href="<page translation-status>">翻訳ステータス概要
-</a>をご覧ください。</li>
-<li>私達のSSL<a href="<page documentation>#Developers">SVN リポジトリ</a>
-のルート証明書を<a href="http://www.cacert.org/">cacert</a>
-から取得するのがいいかどうかについて誰か案内してくれませんか？</li>
+をご覧ください。検閲が行われている地域に住む多くのTorユーザのために、
+特にアラビア語またはペルシア語の翻訳を特に必要としています。
+</li>
 </ol>
 
 <a id="Coding"></a>
-<h2><a class="anchor" href="#Coding">コーディングとデザイン</a></h2>
+<a id="Summer"></a>
+<a id="Projects"></a>
+<h2><a class="anchor" href="#Projects">Good Codingプロジェクト</a></h2>
+
+<p>
+これらのプロジェクトのうちのいくつかが<a href="<page
+gsoc>">Google Summer of Code 2009</a>用のよいアイディアになると思われる
+かも知れません。私たちはそれぞれのアイディアについて、それがTorプロジェクト
+全体にとってどの程度役に立つか(優先順位)、それを実現するために
+どの程度の作業を要すると予想されるか(作業レベル)、どれだけの手掛かりから
+作業を始めなければならないか(スキルレベル)、私たちの<a href="<page
+people>#Core">中心的開発者たち</a>のうちの誰がそれに助言をしたらいいかに
+よってラベル付けを施しました。もしこれらのアイディアのうちの一つまたは
+いくつかが有望だと思われた方は、分りにくい用途を送り付けるよりもむしろ
+あなたの計画について議論を交わすために<a href="<page contact>">ご連絡ください</a>。
+あなた自身のプロジェクトのアイディアを提案してくださっても構いません。その方が
+往々にして最善の用途となることが多いものです。
+</p>
+
 <ol>
-<li>TorサーバがWindows XP上でうまく動きません。Windows上では、
+
+<li>
+<b> Linux/Mac OS X向けTorブラウザバンドル</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Steven, Andrew</i>
+<br />
+TorブラウザバンドルにはTor、Firefox、Vidaliaユーザインターフェース(そして
+オプションでPidgin IM)が含まれます。コンポーネントは安全に操作できるように
+予め設定されており、インストール先のOS上でほんの少しの依存性しか持ちません。
+そのためこのバンドルはWindows上でTorを利用するための方法のうちで最も
+使いやすくて人気のあるものとなっています。
+<br />
+しかしながら、LinuxやMac OS Xのためのこれと同等のパッケージは今のところ存在
+していません。そこでこのプロジェクトではこれらのプラットフォームのためにTor
+ブラウザバンドルを実装することになるでしょう。この作業には、Vidalis(C++)および
+恐らくはFirefox(C)にも変更を加え、可搬性を評価するために一定の範囲のOSバージョン
+についてランチャを作成してテストすることが含まれるでしょう。
+<br />
+生徒諸君はLinuxまたはMac OS Xのうちのどちらかまたは両方でのアプリケーション
+開発に習熟していなければならず、C/C++およびシェルスクリプトに慣れ親しんで
+いなければならない。
+<br />
+このプロジェクトの一部にはTorブラウザバンドルの利便性テストー理想を言えば
+私たちがターゲットとしている層におけるーが含まれるかも知れません。
+それはバグフィクスないし新機能の方面で何が必要とされているのかを知るのに
+大いに役立つでしょう。当面のところこれは非公式のものとしておきますが、
+より構造化されたプロセスとするほうがよいでしょう。
+</li>
+
+<li>
+<b>私たちのウェブサイトのための翻訳wiki</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Jacob</i>
+<br />
+Torプロジェクトはここ数年の間、ボランティアが私たちのアプリケーションを
+他の言語に翻訳するのを助けるウェブベースのツールをセットアップするために
+作業を続けてきました。最終的に私たちはPootleに行きあたりました。これを
+使えば、Vidalia、Torbutton、Torcheckのためのウェブベースの翻訳エンジンを
+使えるようになります。しかしながら、Pootleは"po"形式のファイル内の文字列
+しか翻訳できない一方、私たちのウェブサイトはwmlファイルを使用しています。
+このプロジェクトは私たちのwmlファイルをpo文字列へと変換および逆変換する
+方法を見付けてそれらがPootleによって扱えるようにすることについてのものです。
+</li>
+
+<li>
+<b>Torネットワーク全体のステータスを追跡記録するのを助ける</b>
+<br />
+Priority: <i>Medium to High</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Karsten, Roger</i>
+<br />
+時間を追ってネットワークの健康状態を追跡記録し、それをグラフ化等する
+自動化されたシステムを完成させられたら素晴らしいことです。
+このプロジェクトの一部には、ネットワークの健康状態と成長を評価する
+よりよい指標を考案することが含まれるでしょう。ネットワークの平均
+稼働時間は増加しているか？今月は先月に比べていくつのリレーがGuardステータス
+と認められているか？新しく参加したリレーと停止されたリレーとの交代数は？
+定期的に人々が短時間のスナップショットを収集するようですが、本当に
+興味深くなってくるのはこれを時間経過を追ってデータポイントを記録し
+始めたときなのです。
+<br />
+データは<a
+href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>の
+Tor Network Scannerで各リレーが公開しているサーバデスクリプタから、
+もしくはその他のソースから収集することができます。
+時間経過に伴う結果は<a
+href="https://torstatus.blutmagie.de/">Tor Status</a>のウェブページに
+統合することもできるでしょうし、個別のままでおくこともできるでしょう。
+Tor Statusページについては、Rogerの
+<a href="http://archives.seul.org/or/talk/Jan-2008/msg00300.html">Tor
+Status要望リスト</a>を見てみてください。
+</li>
+
+<li>
+<b>Torの検閲に抵抗する能力を向上させる</b>
+<br />
+Priority: <i>Medium to High</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Nick, Roger, Steven</i>
+<br />
+Tor 0.2.0.xシリーズは国家や組織による検閲に対して抵抗力に関して
+<a href="<svnsandbox>doc/design-paper/blocking.html">著しい進歩</a>
+を遂げています。しかし、Torは依然としてその反検閲の設計のいくつかの
+部分についてよりよいメカニズムを必要としています。例えば、
+現在のTorは同時に単一のアドレス/ポートをリッスンすることしか
+できません。<a href="<svnsandbox>doc/spec/proposals/118-multiple-orports.txt">
+この制限に対処する提案</a>がなされていますが、これについてはまだ作業が
+必要です。これによってクライアントは
+任意の与えられたTorに対して複数のアドレスおよびポートで接続することができる
+ようになります。もう一つの（ずっと難しい)反検閲プロジェクトは、Torをより
+スキャニングに対して抵抗力のあるものにする試みです。現在の時点では、
+攻撃者はTorのプロトコルに従いそれらに対して接続を試みるだけで
+<a href="<svnsandbox>doc/spec/proposals/125-bridges.txt">Torブリッジ</a>
+を識別することができます。この問題を解決するには、ブリッジはポートスキャニング
+ツールでコンタクトされたときには
+<a href="<svnsandbox>doc/design-paper/blocking.html#tth_sEc9.3">ウェブサーバの
+ように振る舞い</a>(HTTPまたはHTTPSで)、ユーザがブリッジ固有の鍵を与えない限り
+ブリッジとして振る舞うことがないようにすることが考えられます。
+<br />
+このプロジェクトには多くの調査や設計が含まれます。大きな挑戦のうちの一つとして、
+攻撃者が設計を知った後でもなお攻撃に耐えうるようなアプローチを特定してうまくそれを
+作成したうえで、検閲に対する抵抗力と利便性および堅牢性とをトレードオフすることが
+あります。
+</li>
+
+<li>
+<b>Torをチューンアップしよう！</b>
+<br />
+Priority: <i>Medium to High</i>
+<br />
+Effort Level: <i>Medium to High</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Nick, Roger, Mike, Karsten</i>
+<br />
+現在のところ、Torリレーは自身の帯域幅を測定して報告し、Torクライアントは
+ある程度この帯域幅に基づいてどのリレーを使用するかを選択しています。
+このアプローチは、
+<a href="http://freehaven.net/anonbib/#bauer:wpes2007">
+リレーが自身の帯域幅について嘘をつく攻撃</a>に晒される危険を有しています;
+この問題を解決するために、Torは現在のところ、すべてのリレーが提供する
+帯域幅に対して信用する上限値を設定するようにしています。これは限定的な
+修正に過ぎず、用意する帯域容量の無駄です。そのかわりに、Torはおそらく
+より分散的なやり方ー恐らくはSnaderとBorisovによる
+<a href="http://freehaven.net/anonbib/author.html#snader08">"A Tune-up for
+Tor"</a>の文書に述べられているように、より分散的なやり方で帯域を計測すべき
+でしょう。この文書の結論を再調査してそれがどの程度実際に配置された
+Torに適合するか検証し、Torネットワークにあまり多くの交信オーバーヘッドを
+課すことなくその結果を彼等の提案に取り込むための良い方法を
+見付けるために、現時点でのテストコードを使用することができます。
+</li>
+
+<li>
+<b>Windows上のPolipoを改良する</b>
+<br />
+Priority: <i>Medium to High</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Martin</i>
+<br />
+<a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+をWindowsに移植するのを手伝ってください。取り組むべき課題の例としては
+以下のようなものが挙げられます:
+1)ネームサーバに非同期に問い合わせ、システムネームサーバを探索し、
+netbiosおよびdnsのクエリを管理する能力
+2)イベントおよびバッファをネイティブに管理すること(Unix系OSではPolipoは
+ramの25%まで使用するのがデフォルトですが、Windowsでは設定次第です)。
+3)何かGUIによる設定および報告のためのツールのようなものが必要です。
+それが右クリック可能なメニューオプション付きのシステムトレイアイコン
+を持っていればなお良く、さらにそれがクロスプラットフォーム互換なら
+なおさら良いでしょう。
+4)ソフトウェアがWindowsのレジストリを使用し、"C:\Program Files\Polipo"
+のようなWindowsの正しいディレクトリの位置を扱うことを可能にすること。
+</li>
+
+<li>
+<b>Thandyパッケージをダウンロードするためのトーレントに基づいたスキームを実装する</b>
+<br />
+Priority: <i>Medium to High</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>Medium to High</i>
+<br />
+Likely Mentors: <i>Martin, Nick</i>
+<br />
+<a
+href="http://git.torproject.org/checkout/thandy/master/specs/thandy-spec.txt">Thandy</a>
+はTorおよび関連するソフトウェアのアップデートを支援する、比較的新しいソフトウェアです。
+現在のところこのソフトウェアを使用しているユーザは非常に少ないのですが、私たちは
+将来的にはすべてのTorユーザにThandyを使用してもらいたいと思っています。
+Torをアップデートすべき日にサーバをクラッシュさせないために、私たちは新しい
+パッケージを効率的に配布する新しい方法を必要としています。libtorrentを使用することが解決策
+として考えられます。もしあなたがその他のよい考えをお持ちでしたら、それは素晴らしいことです
+-是非私たちにそれを教えてください！<br />
+私たちはまた、ミラーサーバを含めるよい方法を調査する必要があります。できればそれは、
+パッケージを配布するのを助ける簡単な方法によるべきでしょう。
+</li>
+
+<li>
+<b>Torコントローラステータスイベントインターフェース</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Low to Medium</i>
+<br />
+Likely Mentors: <i>Matt</i>
+<br />
+ユーザが知りたいと思う幾つかのTorの内部ステータスの変化があります。
+例えばユーザが自分のTorをリレーとしてセットアップしようとしている
+際、Torがそのポートが外部から到達できないことを検知した場合には、
+ユーザに警告を発するべきです。現在のところ、ユーザが得られるものは
+Vidaliaの'メッセージログ'内の二行のログメッセージだけですが、
+ユーザは何かがまずいことになっているという通知を受け取っていないため、
+それを見過ごしてしまう傾向があります。ユーザが実際にそのメッセージ
+ログを見た場合でも、初心者ユーザにとってその多くはほとんど意味を
+なさないでしょう。
+<br />
+Torはそういったステータスの変化をVidaliaに知らせる能力を持っており、
+最近になってそれらのイベントの幾つかをサポートする実装をしました。
+しかしユーザが知らされるべきステータスイベントはまだ多く残っており、
+私たちは実際にそれらをユーザに対して表示するよりよいUIを必要と
+しています。
+<br />
+このプロジェクトの目的はそうすると、Torのステータスイベントをユーザに
+対して表示するUIを設計し実装することにあるということになります。
+例えばVidaliaのトレイアイコン上に、ユーザに彼等が見るべき新たな
+ステータスイベントを警告する小さなバッジを付けることが考えられる
+でしょう。アイコンをダブルクリックすると、最近起こったステータスイベント
+がわかりやすい用語でまとめられたダイアログが表示され、そこには
+ユーザが修正可能な場合には否定的なイベントに対する対処法が提示される、
+といった具合です。むろんこれは一例にすぎませんから、他のアプローチを
+提案することは自由です。
+<br />
+このプロジェクトを遂行する人物は良いUIデザインおよびレイアウトが出来、
+いくらかのC++開発経験がなければいけません。QtおよびQtのデザイナ
+
+A person undertaking this project should have good UI design and layout
+and some C++ development experience. Previous experience with Qt and
+Qt's Designer will be very helpful, but are not required. Some
+English writing ability will also be useful, since this project will
+likely involve writing small amounts of help documentation that should
+be understandable by non-technical users. Bonus points for some graphic
+design/Photoshop fu, since we might want/need some shiny new icons too.
+</li>
+
+<li>
+<b>私たちのユニットテストプロセスを改良する</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Nick, Roger</i>
+<br />
+Torにはまだまだテストが必要です。これは多方面にわたる作業になります。
+手始めに、私たちのユニットテストがカバーする範囲ーとりわけ
+ユーティリティ関数以外の領域におけるーを大幅に増やさなければ
+なりません。これには、グローバルスコープからロジックを切り離すために
+Torのいくつかの部分について大規模なリファクタリング
+が必要になるでしょう。
+<br />
+さらに、私たちのパフォーマンステストを自動化する必要があります。
+私たちはすでに私たちのregular integrationを自動化しテストコードを
+コンパイルするためのbuildbotを持っています(Windowsでそれを
+セットアップしてくれる方が必要ですが)が、私たちのネットワーク
+シミュレーションテスト(<a
+href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>
+にある)をより最近のTorのバージョンに合わせてアップデートし、
+単一のマシンまたは複数のマシン上でネットワークテストを起動して
+自動的に異なる役割におけるマシンのパフォーマンスの変化をテストすることが
+出来るように設計する必要があります。
+</li>
+
+<li>
+<b>独立したTorクライアント実装の復活を助けてください</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>Medium to High</i>
+<br />
+Likely Mentors: <i>Karsten, Nick</i>
+<br />
+TorのクライアントをJavaで実装するアプローチのうちの一つ、例えば
+<a href="http://onioncoffee.sourceforge.net/">OnionCoffee
+プロジェクト</a>
+を復活させ、<a
+href="http://code.google.com/android/">Android</a>上で動くように
+しましょう。手始めとして既存のコードを移植してAndroid環境でそれを
+実行することになるでしょう。次に、そのコードが
+<a href="<svnsandbox>doc/spec/dir-spec.txt">v3ディレクトリプロトコル</a>
+のようなより新しいバージョンのTorプロトコルをサポートするように
+アップデートしなければなりません。さらに、Torのヒドゥンサービスに
+アクセスしさらにはそれを提供する機能をもサポートするなら行き届いたもの
+になるでしょうが、それは必須というわけではありません。
+<br />
+これにあたる開発者はJavaの暗号APIを含む新しいJavaコードを理解してそれを
+書くことができなければなりません。Cのコードを読めるならそれも役に立つ
+でしょう。既存のドキュメントを読み、それに基づいてコードを実装し、
+ドキュメント化されていない項目があればドキュメントを改良していく意欲の
+ある方でなければなりません。このプロジェクトのほとんどの部分は
+コーディングに関するもので設計には少ししか関係しません。
+</li>
+
+<li>
+<b>Torbuttonの新機能</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Mike</i>
+<br/>
+Torbutton Flysprayの節の<a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5&amp;type=2">
+よい機能のリクエスト</a>にいくつかあります。特に、
+<a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=523">
+'新しいID'をVidaliaに組み込む
+</a>、
+<a href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=940">
+複数のクッキーjarおよびIDを管理する方法
+</a>、 クッキーがクリアされる場合に<a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=637">
+特定のクッキーを保存する
+</a>、
+
+<a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=524">
+よりよいリファラースプーフィング
+</a>, <a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=564">
+正しいTorステータスの報告
+</a>、そして<a
+href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=462">
+"tor://"および"tors://"URL</a>はすべて、もし実現できれば面白い機能です。
+<br />
+この作業はJavascriptの独立したコーディングと<a
+href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>
+ファンの世界になり、Torの中身とはそれほど関係しないものになるでしょう。
+</li>
+
+<li>
+<b>新しいThandyの機能 </b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium to High</i>
+<br />
+Likely Mentors: <i>Martin</i>
+<br />
+Windowsおよびその他のOSのためのTor関連ソフトウェアのアップデート補助の
+追加的機能が必要です。考えられる機能としては以下のようなものが挙げられます:
+1)認証付きHTTPSダウンロードのための<a
+href="http://chandlerproject.org/Projects/MeTooCrypto">MeTooCrypto Python
+ライブラリ</a>。
+2)タイムスタンプシグネチャとアップデートに含まれるパッケージファイルとの間
+の迂回レベルを追加する。or-devの"Thandy attacks / suggestions"を参照。
+3)設定、ホスト、ユーザアカウント言語設定に基づき、
+アップデート補助のロケールごとのインストールと設定をサポートする。
+win32およびposix API全般の経験とPythonに習熟していることに加え、
+Windowsコードページ、ユニコードおよびその他の文字セットに通じているとなお可。
+</li>
+
+<li>
+<b>遅いインターネット接続のシミュレータ</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Steven</i>
+<br />
+多くのTorユーザは、狭い帯域幅、高いレイテンシ、高いパケットロスおよび再順序化を
+伴う低質なインターネット接続を利用しています。ユーザ経験上、
+Torはこういった接続に対してはよい反応を示しません。しかし、
+問題を研究室で再現可能にせずしてこの状況を改善することは困難です。
+<br />
+このプロジェクトでは貧弱な接続を再現するシミュレーション環境を
+構築して、それがTorのパフォーマンスに与える影響を測定することが
+できるようにすることになるでしょう。それ以外の要素としては、
+使用可能な接続の条件が何かを決定し、Torのパフォーマンスを向上させる
+変更の効果を測定するテストユーティリティが挙げられるでしょう。
+<br />
+使用するツールは研究者にお任せしますが、dummynet(FreeBSD)および
+nistnet(Linux)はこのプロジェクトがその基礎とすることのできる
+有力なコンポーネントです。研究者はネットワークプログラミング/
+デバッギングおよびTCP/IPに通じていなければならず、できれば
+Cと一つのスクリプト言語に慣れ親しんでいることが望まれます。
+</li>
+
+<li>
+<b>Vidaliaのネットワークマップを改善してより使いやすいものにする</b>
+<br />
+Priority: <i>Low to Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Matt</i>
+<br />
+Vidaliaの既存の機能の一つとして、Torネットワーク上のリレーのおおまかな
+地理的位置をユーザに対して表示し、ユーザの行った通信がTorネットワークを
+通っていくに従ってそのパスを描画する、ネットワークマップがあります。
+マップは現在のところあまりインタラクティブではなく、そのグラフィックは
+かなり貧弱です。これに代えて、私たちはKDEのMarbleウィジットを実装して
+より品質の良いマップを提供できるようにし、双方向性を向上させてユーザが
+個々のリレーをクリックしたり回路についての追加的情報を表示させることが
+可能になりました。私たちは、ユーザが特定のリレーまたは一個以上のTor出口
+リレーが存在している国をクリックして、「私の接続はここから出て欲しい。」
+と言えるような機能を追加したいと考えています。
+<br />
+このプロジェクトにはまずVidaliaおよびMarbleウィジットのAPIに慣れ親しむこと
+が伴うでしょう。そののちにウィジットをVidaliaに統合しMarbleをカスタマイズ
+して私たちのアプリケーションにより適合するようにすることになるでしょう。
+それは例えば回路をクリック可能にすること、キャッシュされたマップデータを
+Vidaliaの独自のデータディレクトリに格納すること、あるいはウィジットの
+ダイアログのうちのいくつかをカスタマイズすることなどです。
+<br />
+このプロジェクトを遂行する人物は、C++開発について十分な経験を有している
+必要があります。QtおよびCMakeについての経験があればなおよいですが、
+これは必須ではありません。
+</li>
+
+<li>
+<b>moniTorを誕生させる</b>
+<br />
+Priority: <i>Low</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Low to Medium</i>
+<br />
+Likely Mentors: <i>Karsten, Jacob</i>
+<br />
+Torリレーのための<a href="http://www.ss64.com/bash/top.html">topに似た</a>
+管理ツールを実装します。こういったツールの目的は、その制御ポートを通じて
+ローカルのTorリレーをモニターし、実行しているマシンの有益なシステム情報
+を盛りこむことです。このツールはtopがLinuxのプロセスに対してするのと
+同様、実行中にそのコンテンツを動的に更新することになるでしょう。
+<a href="http://archives.seul.org/or/dev/Jan-2008/msg00005.html">この
+or-devの投稿</a>をまず始めに読むといいでしょう。
+<br />
+これに興味をお持ちの方は、Torリレーを管理することおよびそれを制御ポートを
+通じて調整することについて熟知しているかまたは学ぼうとする意欲があることが
+必要です。最初のプロトタイプはPythonで書かれていますので、Pythonを書くこと
+についてのいくらかの知識があればそれも役に立つでしょう。
+このプロジェクトはこういったツールに対する機能要求を同定することおよび
+そのインターフェースをデザインすることと、多くのコーディングを行うこととの
+二つの部分に分けられます。
+</li>
+
+<li>
+<b>ThunderbirdにもTorbuttonと同等のものを</b>
+<br />
+Priority: <i>Low</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Mike</i>
+<br />
+ThunderbirdをTorとともに使いたいというユーザが増えていると聞いています。
+しかしながら、それを実現するにはアプリケーションレベルにおける多くの課題
+があります。例えば、Thunderbirdはデフォルトであなたのホスト名を送信する
+メールに出力してしまいます。いずれかの時点で私たちはTorbuttonに似た
+Thunderbird拡張を作成するための新たな行動を起こすべきでしょう。
+</li>
+
+<li>
+<b>中間レベルネットワークデバイスドライバ</b>
+<br />
+Priority: <i>Low</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Martin</i>
+<br />
+ブリッジを使用するネットワーキングのためにTorVMによって使用される
+WinPCAPデバイスドライバは、いくつかの無線および非イーサネットネットワーク
+アダプタをサポートしていません。win32および64ビット用の
+中間レベルデバイスドライバの実装があれば、そういったネットワーク上で
+通信を遮断したりルーティングしたりする道が開けます。
+このプロジェクトはWindowsのカーネルデバイスドライバ開発およびテスティングの
+知識と経験を必要とするでしょう。WinsockおよびQemuについてよく知っていれば
+それも役に立つでしょう。
+</li>
+
+<li>
+<b>新しいアイディアを出してください！</b>
+<br />
+これらのうちのどれも気に入らない？
+<a
+href="<svnsandbox>doc/roadmaps/2008-12-19-roadmap-full.pdf">Tor開発ロードマップ 
+</a>を見てその他のアイディアを探してみてください。
+<a href="<svnsandbox>doc/spec/proposals/">現在の提案</a>のうちのいくつかもまた、
+開発者にとっては手短かに過ぎるかも知れません。
+</li>
+
+<!-- Mike is already working on this.
+<li>
+<b>Tor Node Scanner improvements</b>
+<br />
+Similar to the SoaT exit scanner (or perhaps even during exit scanning),
+statistics can be gathered about the reliability of nodes. Nodes that
+fail too high a percentage of their circuits should not be given
+Guard status. Perhaps they should have their reported bandwidth
+penalized by some ratio as well, or just get marked as Invalid. In
+addition, nodes that exhibit a very low average stream capacity but
+advertise a very high node bandwidth can also be marked as Invalid.
+Much of this statistics gathering is already done, it just needs to be
+transformed into something that can be reported to the Directory
+Authorities to blacklist/penalize nodes in such a way that clients
+will listen.
+<br />
+In addition, these same statistics can be gathered about the traffic
+through a node. Events can be added to the <a
+href="https://svn.torproject.org/svn/torctl/trunk/doc/howto.txt">Tor Control
+Protocol</a> to
+report if a circuit extend attempt through the node succeeds or fails, and
+passive statistics can be gathered on both bandwidth and reliability
+of other nodes via a node-based monitor using these events. Such a
+scanner would also report information on oddly-behaving nodes to
+the Directory Authorities, but a communication channel for this
+currently does not exist and would need to be developed as well.
+</li>
+-->
+
+<!-- Is this still a useful project? If so, move it to another section.
+<li>
+<b>Better Debian/Ubuntu Packaging for Tor+Vidalia</b>
+<br />
+Vidalia currently doesn't play nicely on Debian and Ubuntu with the
+default Tor packages. The current Tor packages automatically start Tor
+as a daemon running as the debian-tor user and (sensibly) do not have a
+<a href="<svnsandbox>doc/spec/control-spec.txt">ControlPort</a> defined
+in the default torrc. Consequently, Vidalia will try
+to start its own Tor process since it could not connect to the existing
+Tor, and Vidalia's Tor process will then exit with an error message
+the user likely doesn't understand since Tor cannot bind its listening
+ports &mdash; they're already in use by the original Tor daemon.
+<br />
+The current solution involves either telling the user to stop the
+existing Tor daemon and let Vidalia start its own Tor process, or
+explaining to the user how to set a control port and password in their
+torrc. A better solution on Debian would be to use Tor's ControlSocket,
+which allows Vidalia to talk to Tor via a Unix domain socket, and could
+possibly be enabled by default in Tor's Debian packages. Vidalia can
+then authenticate to Tor using filesystem-based (cookie) authentication
+if the user running Vidalia is also in the debian-tor group.
+<br />
+This project will first involve adding support for Tor's ControlSocket
+to Vidalia. The student will then develop and test Debian and Ubuntu
+packages for Vidalia that conform to Debian's packaging standards and
+make sure they work well with the existing Tor packages. We can also
+set up an apt repository to host the new Vidalia packages.
+<br />
+The next challenge would be to find an intuitive usable way for Vidalia
+to be able to change Tor's configuration (torrc) even though it is
+located in <code>/etc/tor/torrc</code> and thus immutable. The best
+idea we've come up with so far is to feed Tor a new configuration via
+the ControlSocket when Vidalia starts, but that's bad because Tor starts
+each boot with a different configuration than the user wants. The second
+best idea
+we've come up with is for Vidalia to write out a temporary torrc file
+and ask the user to manually move it to <code>/etc/tor/torrc</code>,
+but that's bad because users shouldn't have to mess with files directly.
+<br />
+A person undertaking this project should have prior knowledge of
+Debian package management and some C++ development experience. Previous
+experience with Qt is helpful, but not required.
+</li>
+-->
+
+<!-- This should be mostly done.
+<li>
+<b>Tor/Polipo/Vidalia Auto-Update Framework</b>
+<br />
+We're in need of a good authenticated-update framework.
+Vidalia already has the ability to notice when the user is running an
+outdated or unrecommended version of Tor, using signed statements inside
+the Tor directory information. Currently, Vidalia simply pops
+up a little message box that lets the user know they should manually
+upgrade. The goal of this project would be to extend Vidalia with the
+ability to also fetch and install the updated Tor software for the
+user. We should do the fetches via Tor when possible, but also fall back
+to direct fetches in a smart way. Time permitting, we would also like
+to be able to update other
+applications included in the bundled installers, such as Polipo and
+Vidalia itself.
+<br />
+To complete this project, the student will first need to first investigate
+the existing auto-update frameworks (e.g., Sparkle on OS X) to evaluate
+their strengths, weaknesses, security properties, and ability to be
+integrated into Vidalia. If none are found to be suitable, the student
+will design their own auto-update framework, document the design, and
+then discuss the design with other developers to assess any security
+issues. The student will then implement their framework (or integrate
+an existing one) and test it.
+<br />
+A person undertaking this project should have good C++ development
+experience. Previous experience with Qt is helpful, but not required. One
+should also have a good understanding of common security
+practices, such as package signature verification. Good writing ability
+is also important for this project, since a vital step of the project
+will be producing a design document to review and discuss
+with others prior to implementation.
+</li>
+-->
+
+<!-- Jake already did most of this.
+<li>
+<b>Improvements on our active browser configuration tester</b> -
+<a href="https://check.torproject.org/">https://check.torproject.org/</a>
+<br />
+We currently have a functional web page to detect if Tor is working. It
+has a few places where it falls short. It requires improvements with
+regard to default languages and functionality. It currently only responds
+in English. In addition, it is a hack of a perl script that should have
+never seen the light of day. It should probably be rewritten in python
+with multi-lingual support in mind. It currently uses the <a
+href="http://exitlist.torproject.org/">Tor DNS exit list</a>
+and should continue to do so in the future. It currently result in certain
+false positives and these should be discovered, documented, and fixed
+where possible. Anyone working on this project should be interested in
+DNS, basic perl or preferably python programming skills, and will have
+to interact minimally with Tor to test their code.
+<br />
+If you want to make the project more exciting
+and involve more design and coding, take a look at <a
+href="<svnsandbox>doc/spec/proposals/131-verify-tor-usage.txt">proposal
+131-verify-tor-usage.txt</a>.
+</li>
+-->
+
+<!-- If we decide to switch to the exit list in TorStatus, this is obsolete.
+<li>
+<b>Improvements on our DNS Exit List service</b> -
+<a href="http://exitlist.torproject.org/">http://exitlist.torproject.org/</a>
+<br />
+The <a href="http://p56soo2ibjkx23xo.onion/">exitlist software</a>
+is written by our fabulous anonymous
+contributer Tup. It's a DNS server written in Haskell that supports part of our <a
+href="<svnsandbox>doc/contrib/torel-design.txt">exitlist
+design document</a>. Currently, it is functional and it is used by
+check.torproject.org and other users. The issues that are outstanding
+are mostly aesthetic. This wonderful service could use a much better
+website using the common Tor theme. It would be best served with better
+documentation for common services that use an RBL. It could use more
+publicity. A person working on this project should be interested in DNS,
+basic RBL configuration for popular services, and writing documentation.
+The person would require minimal Tor interaction &mdash; testing their
+own documentation at the very least. Furthermore, it would be useful
+if they were interested in Haskell and wanted to implement more of the
+torel-design.txt suggestions.
+</li>
+-->
+
+<!-- Nobody wanted to keep this.
+<li>
+<b>Testing integration of Tor with web browsers for our end users</b>
+<br />
+The Tor project currently lacks a solid test suite to ensure that a
+user has a properly and safely configured web browser. It should test for as
+many known issues as possible. It should attempt to decloak the
+user in any way possible. Two current webpages that track these
+kinds of issues are run by Greg Fleischer and HD Moore. Greg keeps a nice <a
+href="http://pseudo-flaw.net/tor/torbutton/">list of issues along
+with their proof of concept code, bug issues, etc</a>. HD Moore runs
+the <a href="http://www.decloak.net/">metasploit
+decloak website</a>. A person interested in defending Tor could start
+by collecting as many workable and known methods for decloaking a
+Tor user. (<a href="https://torcheck.xenobite.eu/">This page</a> may
+be helpful as a start.) One should be familiar with the common pitfalls but
+possibly have new methods in mind for implementing decloaking issues. The
+website should ensure that it tells a user what their problem is. It
+should help them to fix the problem or direct them to the proper support
+channels. The person should also be closely familiar with using Tor and how
+to prevent Tor information leakage.
+</li>
+-->
+
+<!-- Nick did quite some work here. Is this project still required then?
+<li>
+<b>Libevent and Tor integration improvements</b>
+<br />
+Tor should make better use of the more recent features of Niels
+Provos's <a href="http://monkey.org/~provos/libevent/">Libevent</a>
+library.  Tor already uses Libevent for its low-level asynchronous IO
+calls, and could also use Libevent's increasingly good implementations
+of network buffers and of HTTP.  This wouldn't be simply a matter of
+replacing Tor's internal calls with calls to Libevent: instead, we'll
+need to refactor Tor to use Libevent calls that do not follow the
+same models as Tor's existing backends. Also, we'll need to add
+missing functionality to Libevent as needed &mdash; most difficult likely
+will be adding OpenSSL support on top of Libevent's buffer abstraction.
+Also tricky will be adding rate-limiting to Libevent.
+</li>
+-->
+
+<!--
+<li>
+<b>Improving the Tor QA process: Continuous Integration for Windows builds</b>
+<br />
+It would be useful to have automated build processes for Windows and
+probably other platforms. The purpose of having a continuous integration
+build environment is to ensure that Windows isn't left behind for any of
+the software projects used in the Tor project or its accompanying.<br />
+Buildbot may be a good choice for this as it appears to support all of
+the platforms Tor does. See the
+<a href="http://en.wikipedia.org/wiki/BuildBot">wikipedia entry for
+buildbot</a>.<br />
+There may be better options and the person undertaking this task should
+evaluate other options. Any person working on this automatic build
+process should have experience or be willing to learn how to build all
+of the respective Tor related code bases from scratch. Furthermore, the
+person should have some experience building software in Windows
+environments as this is the target audience we want to ensure we do not
+leave behind. It would require close work with the Tor source code but
+probably only in the form of building, not authoring.<br />
+Additionally, we need to automate our performance testing for all platforms.
+We've got buildbot (except on Windows &mdash; as noted above) to automate
+our regular integration and compile testing already,
+but we need to get our network simulation tests (as built in torflow)
+updated for more recent versions of Tor, and designed to launch a test
+network either on a single machine, or across several, so we can test
+changes in performance on machines in different roles automatically.
+</li>
+-->
+
+<!-- Removed, unless Mike still wants this to be in.
+<li>
+<b>Torbutton improvements</b>
+<br />
+Torbutton has a number of improvements that can be made in the post-1.2
+timeframe. Most of these are documented as feature requests in the <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">Torbutton
+flyspray section</a>. Good examples include: stripping off node.exit on http
+headers, more fine-grained control over formfill blocking, improved referrer
+spoofing based on the domain of the site (a-la <a
+href="https://addons.mozilla.org/en-US/firefox/addon/953">refcontrol extension</a>),
+tighter integration with Vidalia for reporting Tor status, a New Identity
+button with Tor integration and multiple identity management, and anything
+else you might think of.
+<br />
+This work would be independent coding in Javascript and the fun world of <a
+href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
+with not too much involvement in the Tor internals.
+</li>
+-->
+
+<!-- Is Blossom development still happening?
+<li>
+<b>Rework and extend Blossom</b>
+<br />
+Rework and extend Blossom (a tool for monitoring and
+selecting appropriate Tor circuits based upon exit node requirements
+specified by the user) to gather data in a self-contained way, with
+parameters easily configurable by the user.  Blossom is presently
+implemented as a single Python script that interfaces with Tor using the
+Controller interface and depends upon metadata about Tor nodes obtained
+via external processes, such as a webpage indicating status of the nodes
+plus publically available data from DNS, whois, etc.  This project has
+two parts: (1) Determine which additional metadata may be useful and
+rework Blossom so that it cleanly obtains the metadata on its own rather
+than depend upon external scripts (this may, for example, involve
+additional threads or inter-process communication), and (2) develop a
+means by which the user can easily configure Blossom, starting with a
+configuration file and possibly working up to a web configuration engine.
+Knowledge of Tor and Python are important; knowledge of
+TCP, interprocess communication, and Perl will also be helpful.  An
+interest in network neutrality is important as well, since the
+principles of evaluating and understanding internet inconsistency are at
+the core of the Blossom effort.
+</li>
+
+<li>
+<b>Improve Blossom: Allow users to qualitatively describe exit nodes they desire</b>
+<br />
+Develop and implement a means of affording Blossom
+users the ability to qualitatively describe the exit node that they
+want.  The Internet is an inconsistent place: some Tor exit nodes see
+the world differently than others.  As presently implemented, Blossom (a
+tool for monitoring and selecting appropriate Tor circuits based upon
+exit node requirements specified by the user) lacks a sufficiently rich
+language to describe how the different vantage points are different.
+For example, some exit nodes may have an upstream network that filters
+certain kinds of traffic or certain websites.  Other exit nodes may
+provide access to special content as a result of their location, perhaps
+as a result of discrimination on the part of the content providers
+themselves.  This project has two parts: (1) develop a language for
+describing characteristics of networks in which exit nodes reside, and
+(2) incorporate this language into Blossom so that users can select Tor
+paths based upon the description.
+Knowledge of Tor and Python are important; knowledge of
+TCP, interprocess communication, and Perl will also be helpful.  An
+interest in network neutrality is important as well, since the
+principles of evaluating and understanding internet inconsistency are at
+the core of the Blossom effort.
+</li>
+-->
+
+<!-- not really suited for GSoC; integrated into TBB for Linux/Mac OS X
+<li>
+<b>Usability testing of Tor</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Low to Medium</i>
+<br />
+Likely Mentors: <i>Andrew</i>
+<br />
+Especially the browser bundle, ideally amongst our target demographic.
+That would help a lot in knowing what needs to be done in terms of bug
+fixes or new features. We get this informally at the moment, but a more
+structured process would be better.
+</li>
+-->
+
+</ol>
+
+<a id="OtherCoding"></a>
+<h2><a class="anchor" href="#OtherCoding">その他コーディングおよび設計に関するアイディア</a></h2>
+<ol>
+<li>TorリレーがWindows XP上でうまく動きません。Windows上では、
 Torは非ページプールメモリを使用する標準の<tt>select()</tt>
-システムコールを使います。これは、中規模のTorサーバが非ページプールメモリ
-を喰い潰してしまい、<a
+システムコールを使います。これは、中規模のTorリレーが非ページプールメモリ
+を喰い潰してしまい、
+<a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">
-大混乱とシステムクラッシュを引き起こす</a>ことを意味します。恐らく代わりに
+大混乱とシステムクラッシュを引き起こす</a>
+ことを意味します。恐らく代わりに
 オーバーラップIOを使用しなければならないでしょう。解決策の一つは、
 <a href="http://www.monkey.org/~provos/libevent/">libevent</a>
 にWindows上でselect()ではなくオーバラップIOを使用する方法を教え、
-Torを新しいlibeventインターフェースに適合させることでしょう。</li>
-<li>Torサーバは扱うセル毎にそれをストアアンドフォワードする必要があるため、
-数十メガバイトのメモリをただバッファのためだけに消費することに
-なります。バッファをいつ収縮／拡張させるかについてのよりよい
-ヒューリスティクスが求められています。恐らくそれはLinuxカーネルの
-バッファデザイン(一枚岩のバッファではなく、多くの小さなバッファを
-互いにリンクさせている)をモデルとすべきと思われますが、どうでしょうか？</li>
-
-<li>私達は、「このIPアドレスはTorの出口サーバですか？」の質問に答える
-正式なメインサイトを必要としています。それはウェブインターフェースおよび
-DNSBLスタイルのインターフェースを含む、複数のインターフェースを提供し
-なければなりません。それはTorのディレクトリ情報のローカルミラーを
-運用することによって最新の回答を提供するようにすることも考えられます。
-間違いやすいのは、出口サーバであるかどうかの問いに対する答は必ずしもbooleanでは
-ないということです: したがって、実際には「このIPアドレスは、私のIPアドレス
-:ポートに向かって出てくる可能性のあるTor出口サーバなのか？」を問わなければ
-ならないことになります。DNSBLインターフェースは恐らく毎分数百もの
-クエリを受信することになるでしょうから、何か賢いアルゴリズムが求められ
-ます。もしそれが出口ノードをいちいちアクティブにテストしてどのIPアドレスから
-それが出てくるのかを知ることができればなお良いです。
-<a href="<svnsandbox>doc/contrib/torbl-design.txt">詳細はこちら</a>。</li>
-<li>Torサーバは時にクラッシュし、それが動いているコンピュータが
-ネットワークから脱落し、あるいはその他のアクシデントに見舞われます。
-Torサーバのオペレータの幾人かは、彼らのTorサーバが元気に稼働しているか
-どうかを定期的にチェックしてもしそうでない場合には警告のメールを送信
-してくれるような、「通知」サービスに合意することに興味を示しています。
-どなたか、幾つかのcgiスクリプトと幾つかのウェブページを書いてある種の
-wgetハックをセットアップし、さらに／もしくは<a
-href="http://nagios.org/">Nagios</a>のようにより複雑なモニタリング
-を行ってみませんか？その最初のバージョンは、単にディレクトリポート
-をチェックするもの、例えば、キャッシュされたネットワークステータス
-ページを見て正しいIPアドレスおよびポートを調べたら次にそれを
-"/tor/server/authority"ページで問い合わせるといった具合で結構です。</li>
-<li>最新のTor、Polipo or Privoxy、 Firefox、 Gaim+OTRその他が収録された
-LiveCDがあれば素晴らしいと思います。ここに二つの取り組みがあります:
-一つはセキュリティ関係者がその安全性に付いて意見を形成するに十分な
-、システムおよび選択についてのドキュメント整備です。もう一つは、Anonym.OS
-のように早々に廃れてしまわないように、容易にメンテナンスをする方法を
-見出すことです。そのCDイメージがsmall-form-factor CDの一つに適合する
-ものならなおさら良いです。</li>
-<li>LiveCDイメージに関連して、私達は直感的に安全で十分なドキュメントが
-付いたTorおよび補助アプリケーションを収録したUSBイメージの製作に取り組む
-必要があります。ここで最も難しいのは、どういった設定が安全かを決定し、
-その決定をドキュメント化し、容易にそれを維持していけるようにすることです。
+Torを新しいlibeventインターフェースに適合させることでしょう。
+Christian Kingが2007年の夏にこれについての
+<a href="https://svn.torproject.org/svn/libevent-urz/trunk/">よい出発点
+</a>を作ってくれました。
 </li>
-<li>私達おすすめのTorグラフィカルフロントエンド
-<a href="<page vidalia/index>">Vidalia</a>は、あらゆる種類の
-開発作業を必要としています。</li>
-<li><a href="<page
+
+<li>
+
+<a href="<page
 documentation>#DesignDoc">抗ブロッキングデザイン</a>の設計を実際に
 始めなければなりません。その作業には、デザインを具体化し、Torの多くの様々な
-部分を変更し<a href="<page vidalia/index>">Vidalia</a>を
+部分を変更し<a href="http://vidalia-project.net/">Vidalia</a>を
 Torの新しい機能をサポートするように変更して実際に配備できる
 ように準備することが含まれます。</li>
 <li>私達はエンドツーエンドトラフィックコンフォメーション攻撃を研究する
@@ -177,59 +1006,21 @@ Torの新しい機能をサポートするように変更して実際に配備�
 コンフォメーション攻撃のこのタスクの研究側の詳細については
 <a href="#Research">下</a>のエントリをご覧くださいー時期は未定ですが、
 それが完了した時には文書を書くのを手伝ってもらえると思います。</li>
-<li>私達は<a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
-対<a href="http://www.privoxy.org/">Privoxy</a>の計測研究を必要と
-しています。Polipoは、Torに起因するスローダウンを計算に入れても、
-実際にPrivoxyよりも際立って速いのでしょうか？その計測結果はLinuxでも
-Windowsでも同じでしょうか？またこれに関連して、PolipoはPrivoxyよりも
-より多くのウェブサイトを正しく扱うことができるのでしょうか、あるいは
-その逆でしょうか？Windowsのような普及したプラットフォーム上でのそれらの
-安定性について、何か問題はないでしょうか？</li>
-<li>上のことに関連して、<a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
-がWindows上で安定して機能するように移植するのを助けてくださいませんか？
-</li>
-<li>私達は分散テストフレームワークを必要としています。すでにユニットテストは
-ありますが、Torネットワークを起動させ、それをしばらくの間使用し、少なくとも
-それの一部分が稼働していることを検証できるようなスクリプトがあれば
-素晴らしいと思います。</li>
-<li>Mike Perryが<a
-href="https://www.torproject.org/svn/torflow/">TorFlow</a>ライブラリ
-(<a href="https://www.torproject.org/svn/torflow/TODO">TODO</a>)
-を作成していますが、これを助けてあげてください:これは
-<a
-href="https://www.torproject.org/svn/torctl/doc/howto.txt">Tor制御プロトコル
-</a>を使用して、Torに対して様々な方法で回路を形成するように指示し、その
-パフォーマンスを計測し、異常を検知しようと試みるpythonライブラリです。</li>
-<!--
-<li>現在のところ、ヒドゥンサービスディスクリプタはほんの幾つかの
-ディレクトリサーバに保存されているに過ぎません。これはプライバシーの
-観点からも堅牢性の観点からも良くありません。より強い堅牢性を獲得するには、
-ヒドゥンサービスのプライバシーを犠牲にせざるを得ません。なぜなら、
-そのためにはそれらのヒドゥンサービスディスクリプタを多くの場所に
-ミラーリングする必要があるからです。概念上、私達は保存／発見システムを
-Torのディレクトリサーバからは完全に切り離して考えたいと思っています。
-最初の問題は、a)便宜上バイナリよりもアスキー文字による、b)ディレクトリ
-サーバがそれらを覚えてしまわないように、<tt>.onion</tt>アドレスを知らない
-限りは導入ポイントのリストを暗号化しておく;そしてc)ディレクトリサーバが
-ヒドゥンサービスディスクリプタについてタイムスタンプとシグネチャの検証
-を行わせることによって偽装されたディスクリプタを公開しないようにする、
-という点にあります。二番目の問題として、信頼性のある分散ストレージシステム
-なら必ずそうするように、可能なら認証されたアップデートを行うことが
-挙げられますが、私達が知る限り、DHTのどの実装も未だ認証されたアップデート
-を持っていません。</li>
--->
+
 <li>Tor 0.1.1.xおよびそれ以降のバージョンはOpenSSLを利用したハードウェア
-暗号処理アクセラレータのサポートが含まれています。まだ誰もそれを
-テストしていません。誰かこれをテストしてどんな具合かを私達に
-報告してくれませんか？</li>
+暗号処理アクセラレータのサポートが含まれています。これはまだ簡単にしか
+テストされておらず、恐らくはバグが多く残っていることでしょう。
+私たちはより厳密なテスティング、パフォーマンス分析、そして出来れば必要に応じて
+openssloおよびTorに対するコード修正を探し求めています。</li>
+
 <li><a
-href="http://en.wikipedia.org/wiki/Fuzz_testing">"ファジング"</a>
-を使ってTorに対してセキュリティ分析を実行してください。
+href="http://en.wikipedia.org/wiki/fuzz_testing">"ファジング"</a>
+を使ってtorに対してセキュリティ分析を実行してください。
 世の中に私達が望んでいるような用途に向いた良いファジングライブラリが
 あるかどうか調べてください。もしあなたのおかげで新しいリリースを
 出すことが出来たら、その貢献は大いに感謝されるでしょう。</li>
+<li>
+
 <li>TorはトランスポートにTCPを、接続の暗号化にはTLSを使用しています。
 これは簡単で良い実装なのですが、それはある接続上で一つのパケットがドロップ
 されるとその接続上のすべてのセルが遅延してしまうこと、従って
@@ -241,19 +1032,24 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTC
 この他にも、提案中の<a
 href="<svnsandbox>doc/spec/proposals/100-tor-spec-udp.txt">
 TorとUDPの仕様</a>がありますーもしこれに誤りが含まれていたら
-私達に知らせてください。
-</li>
+私達に知らせてください。</li>
+
 <li>目的アドレスにIPv6アドレス(出口ノードにおいて)をサポートできるように
 なるのもそう遠い話ではありません。もしIPv6に強い関心がおありなら、
 おそらくまずここから始めるがよいでしょう。</li>
-<li>これらのうち、何か気に入らない点がありますか？詳細は
-<a
-href="<svnsandbox>doc/design-paper/roadmap-2007.pdf">Tor開発ロードマップ
-</a>をご覧ください。</li>
 
-<li>あなたのアイディアがここに載っていない？たぶんそのアイディアが
-何であっても私達はそれを必要としています。私達にコンタクトを取って
-尋ねてみてください。</li>
+<li>ウェブサイトのダイアグラム(例えば
+<a href="<page overview>">概要ページ</a>の"Torはどうやって動くのか"の図)
+をGimpで手動で編集せずにそれをUTF-8のテキストに翻訳できるように、
+ソースから生成する方法を必要としています。
+私たちがウェブサイトを構築するときはいつでも翻訳が簡単で画像が複数の言語で
+生成されるように、それをwmlファイルとして統合することができればよいでしょう。
+</li>
+
+<li><a
+href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
+のメンテナンス、改良、ドキュメントをどうやったらより簡単にできるでしょう？
+</li>
 </ol>
 
 <a id="Research"></a>
@@ -275,8 +1071,6 @@ href="http://freehaven.net/anonbib/#timing-fc2004">
 これらの対策を採用して防御に成功した場合、その影響はどれくらいで、利便性は
 どの程度(何か適当な測定基準を用いて)の影響を被ることになるでしょうか？
 </li>
-<li>"エンドツーエンドトラフィックコンフォメーション攻撃":
-　アリスおよびボブの地点でトラフィックを監視することにより、
 <a
 href="http://freehaven.net/anonbib/#danezis:pet2004">
 トラフィックシグネチャを比較することで同じストリームを監視している
@@ -288,8 +1082,43 @@ href="http://freehaven.net/anonbib/#danezis:pet2004">
 攻撃をスローダウンさせるようなシナリオ(例えば転送量が少ないとか)
 があるのでしょうか？トラフィックパディングまたはトラフィック
 シェイピング手法は他の手段より有効でしょうか？</li>
-<li>"ルーティングゾーン攻撃":
-　ほとんどの資料では、アリスとその入口ノードとの間
+<li>関連する疑問:リレーやブリッジを運用することはこれらの
+タイミング攻撃に対する追加的防御となるのでしょうか？TLSリンクの内部を
+見ることができない外部の攻撃者は確実に個々のストリームを識別することが
+できるのでしょうか？通信量を増加させることでこの能力を少しでも低減させる
+ことができるのでしょうか？クライアントリレーがキューを作成して中継している
+通信のアップをわざと送らせ、そのキューを使用してクライアントの
+ダウンストリームも中継されたもののように見せかけるためにそのタイミングを
+模擬するのはどうでしょう？この同じキューは、<a
+href="http://www.freehaven.net/anonbib/#ShWa-Timing06">adaptive padding</a>
+と同じ技術を用いて、しかし余分な通信を追加せず、クライアントの
+アップストリーム通信のタイミングにマスキングを施すのに使うことが
+できるかもしれません。このようにクライアントのアップストリーム通信に
+間を置くことは、外部の攻撃者から見てタイミングを曖昧にする働きが
+あるでしょうか？非対称リンクの場合には戦略を調整する必要があるでしょうか？
+例えば非対称リンクの場合、その非対称的容量ゆえにクライアントの通信を
+通常の通信から区別することが実際に可能になるのでしょうか？
+それとも対称的リンクにおけるよりもそれが他の何らかの理由で
+より容易になるのでしょうか？</li>
+<li>MurdochとDanezisの<a
+href="http://www.cl.cam.ac.uk/~sjm217/projects/anon/#torta">
+Oaklandからの攻撃 05</a>を現在のTorネットワーク上で再現してください。
+あるノードはうまく動き他のノードではうまく動かない理由が分かるか
+どうかを確かめてください。(私の理論では容量に余裕のある速いノードは
+攻撃に対してより抵抗力が強いことになります。)もしそれが本当なら、
+RelayBandwidthRateおよびRelayBandwidthBurstオプションをいろいろ
+試しながら、攻撃者からの通信を中継しつつクライアントとしても
+使用されるリレーを動かしてみてください:RelayBandwidthRateを下げると
+攻撃はより難しくなるでしょうか？実際の容量として正しいRelayBandwidthRate
+の比率はどれだけでしょう？そもそもそれは比率の問題なのでしょうか？
+私たちがそれに取り組んでいる一方で、より多くのリレー候補の集合が
+攻撃側の誤診率や別の複雑さを増加させてはいないでしょうか？
+(Torネットワークはかつてこの文書が書かれた当時と比較して、
+現在だいたい2乗の規模になっています。)
+<a href="http://freehaven.net/anonbib/#clog-the-queue">Don't
+Clog the Queue</a>も必ずお読みください。</li>
+<li>"ルーティングゾーン攻撃":ほとんどの資料では、
+アリスとその入口ノードとの間
 (および出口ノードとボブとの間)は、あるグラフ上の
 単一のリンクと捉えられています。しかしながら、実際にはこのパスは
 多くの自律システム(AS)を横断することになり、<a
@@ -329,26 +1158,18 @@ href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">SSH
 スループット実験</a>を見る限りうまく行っているように見えますが。
 私達は測定して調整する必要があるでしょう。そして結果が良ければ
 より徹底した調査をすることになるでしょう。</li>
-<li>遠く離れた国々に住む人々がその国のファイアーウォールにブロック
-されることなくTorを使うことができるようにするためには、数百の
-リレーだけでは足りず、数万のリレーを可能にする方法が必要です。
-トップに"自由のためのTor"ボタンを持ったTorクライアントGUIを想像
-することができます。そのボタンを押すと、ポートが開かれて数KB/sの
-トラフィックがTorネットワークに中継されるわけです。(数KB/sは
-迷惑な量ではないはずですし、彼らは出口ノードになるわけではないので
-悪用の問題もあまりありません。)しかし、それらのボランティア
-クライアントのリストを善き住民たちにどうやって国レベルの
-ファイアーウォールに遮断されない、自動化された方法で
-配布することができるでしょうか？恐らくは人的信頼関係上の
-仕事が必要となることでしょう。私達の
-<a href="<page documentation>#DesignDoc">
-初期抗ブロッキングデザインドキュメント</a>およびその
-<a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#BlockingResistance">
-FAQエントリ</a>をご覧ください。その後、
-<a
-href="http://freehaven.net/anonbib/topic.html#Communications_20Censorship">
-anonbibの抗検閲に関するセクション</a></li>
+<li>私たちの抗検閲の目標の一つとして、回線上のTorの通信を観察している
+攻撃者が<a
+href="<svnsandbox>doc/design-paper/blocking.html#sec:network-fingerprint">
+Torの通信を通常のSSLの通信と区別する</a>
+ことを妨げることが挙げられます。明らかに私たちは完全で依然利用可能な
+ステガノグラフィをを得ることは出来ませんが、始めの一歩として数個の
+パケットを観察しただけで成果をあげてしまうような攻撃はすべてブロック
+したいと考えています。私たちがあまり検証していないままの攻撃としては、
+Torのセルが512バイトであることから、回線上の通信が512バイトの倍数だろうと
+推測するというものがあります。バッチングとTLSレコードのオーバーヘッド
+は回線上でこれをどれだけ曖昧にしてくれるでしょうか？1ビットのパディング
+でも大いに役立つのか、それともこれは我々が受容すべき攻撃なのでしょうか？</li>
 <li>Tor回路は一度に一ホップずつ構築されるので、理論的には二番目のホップ
 であるストリームを回路から離脱させ、三番目のホップでもまた別のストリーム
 を離脱させ、以下同様にすることが可能です。これはあるサーバから見ることの
@@ -357,14 +1178,55 @@ anonbibの抗検閲に関するセクション</a></li>
 私達の現在の理論によれば、安全な"最短の"パスは少なくとも3ホップの長さを
 持っている必要があるため、残りはさらに長くなってしまいます。この
 パフォーマンス／セキュリティのトレードオフを検討する必要があります。</li>
-<li>Torサーバやディレクトリサーバに対してDoS攻撃を仕掛けることは
+<li>Torリレーやディレクトリサーバに対してDoS攻撃を仕掛けることは
 そんなに難しいことではありません。クライアントは正しい答を得られずに
 頭を悩ますでしょうか？他のアプローチもあるでしょうか？もしこれを
 現在のTorプロトコルとの後方互換のまま修正できたらなお良いです。</li>
+<li><a
+href="<page torbutton/index>">Torbutton</a>のようなプログラムは、
+あなたのブラウザのUserAgent文字列を全Torユーザ共通の
+答えで置き換えることによってそれを隠蔽することを狙いとしています。
+こうすることによって、攻撃者はヘッダを見てTorの匿名性集団を見破る
+ことが出来なくなります。それは非Torユーザにも広く使われている文字列を
+選ぶようにしていますので、目立つことはありません。質問1:Torbuttonが
+要求するFirefoxのバージョンへと定期的にアップデートするのにどれだけ
+面倒な目に遭わなければいけないんでしょう？もし私たちがそれをあまりにも
+頻繁にアップデートすれば、匿名集団が自ら露見してしまいます。しかし
+もしそれを十分頻繁にアップデートしなければ、すべてのTorユーザが
+Firefoxのかなり古いバージョンを運用すべきだと主張することで目立って
+しまうでしょう。これに対する答えは恐らく、ネット上で見られるFirefoxの
+バージョンによるでしょう。質問2:時々、人々がN個のUserAgent文字列を使いまわす
+ように依頼してくるのですが、このアプローチは役に立つ、悪い、無害のどれですか？
+考慮すべき点:クッキーおよびローテートしているUserAgentからTorbuttonユーザを
+識別すること;特定のブラウザだけを攻撃する悪意あるウェブサイト;
+質問1の答えがこの質問の答えに影響を与えるかどうか。
+</li>
+<li>現在のところ、Torクライアントはある一つの回路を最初にそれが使用
+された時点から10分間再利用しようとします。これは、回路拡張作業を多く
+し過ぎてネットワークがダウンしてしまうのを防ぐ一方で、クライアントが
+あまりに長い時間同じ回路を使い続けて出口ノード
+が有用なクライアントの変名のプロファイルを構築できてしまうことを防ぐ
+ことを目的としています。残念なことに、10分間という時間は、
+特に複数のプロトコルからの接続(例えばIMとウェブブラウジング)が同じ回路に
+押しつけられた場合には、恐らく長すぎます。ネットワークが必要とする
+回路拡張の総合計数を固定化し、クライアントがストリームを回路に
+割り当てるより効率的かつ/または安全な方法、またはクライアントがプリエンプティブ
+な回路を構築できる方法はないでしょうか？恐らくこのリサーチ項目は、
+典型的クライアントがどんな接続を起動しようとするかについてのトレースを
+収集して、現実に何を最適化しようとすべきかを把握することから
+始める必要があるでしょう。
+</li>
+<li>到達性を確保するためにいくつのブリッジリレーを知る必要があるでしょうか？
+ブリッジの中に常時稼働していないものがいくつあるのかを測定する
+必要があります。もし多くの非常時稼働ブリッジがある場合には、ブリッジ
+ユーザが接続を維持しやすくなるような方法があるでしょうか？
+</li>
 </ol>
 
+<p>
 これらの問題について何か前進があったら
 <a href="<page contact>">私達にお知らせください</a>！
+</p>
 
   </div><!-- #main -->
 
