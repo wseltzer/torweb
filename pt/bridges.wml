@@ -1,0 +1,196 @@
+# Based-On-Revision: 19299
+# Last-Translator: bertelli dot andre at gmail
+## translation metadata
+# Revision: $Revision$
+# Translation-Priority: 1-high
+
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h2><a class="anchor" href="#BridgeIntroduction">Tor: Bridges</a></h2>
+<hr />
+
+<p><i>Nota do tradutor: "bridge" em português significa "ponte", mas neste 
+contexto estamos falando de redes de computadores, onde tipicamente se usa os 
+termos originais em inglês mesmo (como nas demais áreas da informática praticada
+no Brasil). O mesmo se dá com a palavra relay, que significa algo como 
+"repassador".</i></p>
+
+<p>
+Bridge relays (ou apenas bridges, para encurtar) são relays do Tor que não são
+listados no diretório principal Tor. Como não há uma lista pública completa deles,
+mesmo se o seu provedor internet (ISP) estiver filtrando conexões para todos os
+relays Tor conhecidos, eles provavelmente não serão capazes de bloquear todas as
+bridges. Se você suspeita de que seu acesso à rede Tor está sendo bloqueado, você
+pode preferir usar as bridges.
+</p>
+
+<p>
+A inclusão de bridges no Tor é um passo à frente na corrida de resistência aos
+bloqueios. É perfeitamente possível que, mesmo que seu provedor filtre a 
+Internet, você não precise de uma bridge para usar o Tor. Muitos programas de
+filtragem procuram por requisições não criptografadas de diretórios Tor para 
+reconhecer que você está usando o Tor, mas a versão 0.2.0.23-rc do Tor e mais
+recentes usam consultas criptografadas de diretório por padrão. Esta mudança 
+significa que muitos programas de filtragem não serão mais capazes de reconhecer
+as conexões do Tor. Por isso você deve tentar usar o Tor sem bridges primeiro,
+pois pode funcionar assim mesmo.
+</p>
+
+<p>
+Note que também é possível que o Tor não esteja funcionando por outros motivos.
+A última versão do <a href="<page torbrowser/index>">Pacote Navegador Tor</a>
+no Windows tenta dar a você dicas melhores sobre o motivo do Tor ter problemas
+de conexão. Você também deveria ler <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">o
+FAQ sobre problemas ao executar o Tor</a> quando alguma coisa acontecer.
+Se você acha que o problema é mesmo bloqueio, ou você simplesmente gostaria de
+tentar porque você não tem certeza ou está disposto a se arriscar, por favor 
+continue lendo. Certifique-se de que você está usando a 
+<a href="<page download>#Dev">versão mais recente do pacote 0.2.0.x ou 0.2.1.x 
+para a sua plataforma</a>.
+</p>
+
+<p>
+Para usar uma bridge, você precisará localizar uma. Além disso, você precisará
+configurar o Tor com o endereço de bridge que você quer usar. Você irá fazer 
+isso com Vidalia, o controlador do Tor.
+Se a sua conexão Internet requer o uso de um proxy, você provavelmente vai
+precisar configurar Vidalia para fazer isto primeiro. Se você acha que não
+precisa configurar um proxy para sua conexão Internet, provavelmente não 
+precisa mesmo. Faça uma tentativa e se houver algum problema, peça por nossa
+ajuda.
+</p>
+
+<p>
+Neste momento, você pode obter uma bridge visitando
+<a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+com seu navegador. Se esta página estiver filtrada para você, e você não tiver
+nenhum outro proxy ou nenhuma outra forma de chegar a ela, existem ainda 
+<a href="#FindingMore">outras formas de encontrar bridges</a>.
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">Entendendo bridges</a></h2>
+<hr />
+
+<p>
+Por exemplo, você vai obter uma entrada sobre uma bridge parecida com a seguinte:
+</p>
+<pre><samp>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
+</pre>
+
+<p>
+Não é estritamente necessário entender os componentes da linha sobre a bridge 
+mas isto pode ser útil. Você pode pular esta seção se quiser.<br />
+O primeiro elemento é o endereço IP: <tt>'141.201.27.48'</tt><br />
+O segundo elemento é a porta: <tt>'443'</tt><br />
+O terceiro elemento, a "impressão digital" (fingerprint), é opcional:
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br />
+</p>
+
+<a id="UsingBridges"></a>
+<h2><a class="anchor" href="#UsingBridges">Usando bridges com Tor e
+Vidalia</a></h2>
+<hr />
+
+<p>
+Para usar a bridge de exemplo acima, vá para a página de configurações de rede
+do Vidalia ("Network settings"), e clique em "Meu ISP bloqueia conexões à rede 
+Tor" ("My ISP blocks connections to the Tor network").  Adicione o endereço de 
+cada bridge na página de configurações de rede do Vidalia colando-os no campo 
+"Adicionar uma Bridge" ("Add a Bridge") e depois clicando no sinal "+". Veja a
+figura abaixo:
+</p>
+
+<br /><br />
+<img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalia's Network settings page" />
+<br /><br />
+
+<p>
+Adicione todos os endereços de bridges que você souver, pois bridges adicionais
+irão aumentar a confiabilidade. Uma bridge deve ser suficiente para alcançar a
+rede Tor, mas se você só tem uma bridge e ela ficar offline, você será cortado 
+da rede Tor.
+</p>
+
+<a id="FindingMore"></a>
+<h2><a class="anchor" href="#FindingMore">Encontrando mais bridges para o Tor</a></h2>
+<hr />
+
+<p>
+Outra forma de encontrar endereços de bridges públicas é enviar email para
+bridges@torproject.org com a linha "get bridges" sozinha no texto do email.
+Mas você precisa enviar este pedido de uma conta do gmail &mdash; caso contrário
+seria muito fácil para um atacante criar vários endereços de email e descobrir
+todas as bridges.
+Quase instantaneamente, você vai receber uma resposta incluindo:
+</p>
+<pre>
+Here are your bridge relays:
+
+ bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+ bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+ bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+</pre>
+<p>
+Depois que você receber o email com as informações sobre bridges, você pode 
+continuar com os passos de configuração do Vidalia descritos 
+<a href="#UsingBridges">acima</a>.
+</p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Executando uma Bridge Tor</a></h2>
+<hr />
+
+<p>
+Se você é um operador de servidor, é possível que você queira rodar um nó de
+bridge. Abaixo está um arquivo de configuração <tt>torrc</tt> mínimo que permite
+a entrada na rede Tor como bridge:
+</p>
+
+<pre><code>
+SocksPort 0
+Nickname BridgeExample
+ORPort 443
+BridgeRelay 1
+PublishServerDescriptor bridge
+Exitpolicy reject *:*
+</code>
+</pre>
+
+<p>
+(Se você não sabe como editar seu arquivo <tt>torrc</tt>, veja
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">este
+item no FAQ</a>.)
+</p>
+
+<p>
+Quando configurado como uma bridge, seu servidor <b>não</b> vai aparecer na rede
+pública Tor.
+</p>
+
+<p>
+Se você quiser que um usuário use a sua bridge, simplesmente dê a ele o endereço
+IP do nó Tor, a porta TCP conforme configurado pelo <tt>ORPort</tt> e a 
+"impressão digital" (fingerprint) do servidor. A "impressão digital" deve estar
+nos arquivos de log do Tor ou em <tt>/var/lib/tor/fingerprint</tt> dependendo
+da sua plataforma.
+</p>
+
+<p>
+Se você quiser aprender mais sobre Bridges de um ponto de vista técnico, por
+favor leia a <a href="<svnsandbox>doc/spec/bridges-spec.txt">especificação de
+bridges Tor</a>. Se você estiver interessado em rodar uma bridge privada ou 
+outros usos específicos, por favor leia a especificação.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
