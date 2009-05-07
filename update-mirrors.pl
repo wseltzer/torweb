@@ -632,7 +632,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror032 => {
             adminContact => "",
             orgName => "I'm on the roof",
@@ -651,7 +651,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror033 => {
             adminContact => "",
             orgName => "",
@@ -670,7 +670,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror034 => {
             adminContact => "",
             orgName => "",
@@ -689,7 +689,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror035 => {
             adminContact => "",
             orgName => "",
@@ -708,7 +708,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror036 => {
             adminContact => "",
             orgName => "",
@@ -727,7 +727,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror037 => {
             adminContact => "",
             orgName => "",
@@ -746,7 +746,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror038 => {
             adminContact => "",
             orgName => "",
@@ -765,7 +765,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror039 => {
             adminContact => "",
             orgName => "",
@@ -784,7 +784,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        }
+        },
 	mirror040 => {
             adminContact => "",
             orgName => "",
