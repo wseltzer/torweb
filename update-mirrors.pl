@@ -654,7 +654,7 @@ my %m = (
         },
 	mirror033 => {
             adminContact => "",
-            orgName => "",
+            orgName => "bullog",
             isoCC => "CN",
             subRegion => "",
             region => "CN",
@@ -673,7 +673,7 @@ my %m = (
         },
 	mirror034 => {
             adminContact => "",
-            orgName => "",
+            orgName => "digitip",
             isoCC => "CN",
             subRegion => "",
             region => "CN",
@@ -692,7 +692,7 @@ my %m = (
         },
 	mirror035 => {
             adminContact => "",
-            orgName => "",
+            orgName => "shizhao",
             isoCC => "CN",
             subRegion => "",
             region => "CN",
@@ -711,7 +711,7 @@ my %m = (
         },
 	mirror036 => {
             adminContact => "",
-            orgName => "",
+            orgName => "ranyunfei",
             isoCC => "CN",
             subRegion => "",
             region => "CN",
@@ -730,7 +730,7 @@ my %m = (
         },
 	mirror037 => {
             adminContact => "",
-            orgName => "",
+            orgName => "wuerkaixi",
             isoCC => "CN",
             subRegion => "",
             region => "CN",
@@ -749,7 +749,7 @@ my %m = (
         },
 	mirror038 => {
             adminContact => "",
-            orgName => "",
+            orgName => "izaobao",
             isoCC => "CN",
             subRegion => "",
             region => "CN",
@@ -768,7 +768,7 @@ my %m = (
         },
 	mirror039 => {
             adminContact => "",
-            orgName => "",
+            orgName => "anothr",
             isoCC => "CN",
             subRegion => "",
             region => "CN",
@@ -787,7 +787,7 @@ my %m = (
         },
 	mirror040 => {
             adminContact => "",
-            orgName => "",
+            orgName => "zuola",
             isoCC => "CN",
             subRegion => "",
             region => "CN",
