@@ -613,7 +613,46 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
+        },
+	mirror031 => {
+            adminContact => "",
+            orgName => "Ask Apache",
+            isoCC => "US",
+            subRegion => "California",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.askapache.com/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.askapache.com/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
         }
+	mirror032 => {
+            adminContact => "",
+            orgName => "I'm on the roof",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://mirror.imontheroof.com/tor-mirror/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://mirror.imontheroof.com/tor-mirror/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        }
+);
 );
 
 my $count = values %m;
