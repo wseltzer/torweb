@@ -175,7 +175,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror005 => {
+       mirror006 => {
             orgName => "Berapla",
             isoCC => "DE",
             subRegion => "",
@@ -191,7 +191,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror006 => {
+       mirror007 => {
             adminContact => "cm.cybermirror.org",
             orgName => "Cybermirror",
             isoCC => "DE",
@@ -208,7 +208,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror007 => {
+       mirror008 => {
             adminContact => "contact.algorithmus.com",
             orgName => "Spline",
             isoCC => "DE",
@@ -239,25 +239,6 @@ my %m = (
             rsyncWebsiteMirror => "rsync: mirror.onionland.org::tor/",
             httpDistMirror => "http://mirror.onionland.org/dist/",
             rsyncDistMirror => "rsync://mirror.onionland.org::tor/dist/",
-            updateDate => "Unknown",
-        },
-
-       mirror010 => {
-            adminContact => "contact.plentyfact.org",
-            orgName => "Plentyfact",
-            isoCC => "DE",
-            subRegion => "",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.plentyfact.net/",
-            ftpWebsiteMirror => "",
-            httpsWebsiteMirror => "https://tor.plentyfact.net/",
-            rsyncWebsiteMirror => "",
-            httpDistMirror => "http://tor.plentyfact.net/dist/",
-            httpsDistMirror => "https://tor.plentyfact.net/dist/",
-            rsyncDistMirror => "",
             updateDate => "Unknown",
         },
 
@@ -576,6 +557,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
         mirror029 => {
             adminContact => "",
             orgName => "Technica-03",
@@ -595,6 +577,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror030 => {
             adminContact => "",
             orgName => "chaos darmstadt",
@@ -614,6 +597,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror031 => {
             adminContact => "",
             orgName => "Ask Apache",
@@ -627,12 +611,13 @@ my %m = (
             httpsWebsiteMirror => "",
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.askapache.com/dist/",
+            httpDistMirror => "",
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror032 => {
             adminContact => "",
             orgName => "I'm on the roof",
@@ -652,6 +637,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror033 => {
             adminContact => "",
             orgName => "bullog",
@@ -671,6 +657,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror034 => {
             adminContact => "",
             orgName => "digitip",
@@ -690,6 +677,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror035 => {
             adminContact => "",
             orgName => "shizhao",
@@ -709,6 +697,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror036 => {
             adminContact => "",
             orgName => "ranyunfei",
@@ -728,6 +717,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror037 => {
             adminContact => "",
             orgName => "wuerkaixi",
@@ -747,6 +737,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror038 => {
             adminContact => "",
             orgName => "izaobao",
@@ -766,6 +757,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror039 => {
             adminContact => "",
             orgName => "anothr",
@@ -785,6 +777,7 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
 	mirror040 => {
             adminContact => "",
             orgName => "zuola",
@@ -799,6 +792,26 @@ my %m = (
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.zuo.la/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },
+
+	mirror041 => {
+            adminContact => "",
+            orgName => "NVS",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.nonvocalscream.com/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.nonvocalscream.com/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
