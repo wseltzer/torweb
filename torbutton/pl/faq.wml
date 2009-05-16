@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 17952
+# Based-On-Revision: 19523
 # Translation-Priority: 3-low
 # Last-Translator: bogdandr_at_op . pl
 
@@ -82,7 +82,14 @@ takiego jak
 <a href="http://anonymityanywhere.com/incognito/">Incognito</a>, które tworzy
 bezpieczne, przezroczyste proxy, by chronić Cię przed omijaniem proxy, lecz
 problemy związane z lokalnym adresem IP i ciasteczkami Flash potencjalnie pozostają groźne.
+</p>
+<p>
 
+Jeśli nie martwisz się, że jesteś śledzony/a przez te strony (i inne strony udające, że są nimi,
+by Cię odkryć) i nie martwisz się, że lokalni cenzorzy dowiedzą się, że je odwiedzasz, możesz
+włączyć wtyczki poprzez wejście do preferencji Torbutton-&gt;Security Settings
+(Ustawienia bezpieczeństwa)-&gt;karta Dynamic Content (Dynamiczna zawartość) i wyłączenie
+"Disable plugins during Tor usage" ("Wyłącz wtyczki w czasie używania Tora").
 </p>
 
 <a id="oldtorbutton"></a>
@@ -94,7 +101,8 @@ Nie mogę po prostu używać starej wersji?</a></strong>
 <b>Nie.</b> Korzystanie ze starej wersji lub innego rozszerzenia do zmiany proxy
 (łącznie z FoxyProxy -- patrz niżej) bez Torbuttona jest mocno odradzane. Poważnie. Używanie
 samego innego rozszerzenia jest o tyle niebezpieczne, że nie tylko tracisz swój
-czas, ale także się narażasz. Po prostu nie używaj Tora i będziesz mieć takie
+czas, ale także się narażasz.
+<b>Po prostu nie używaj Tora</b> i będziesz mieć takie
 samo (a w niektórych przypadkach lepsze!) zabezpieczenie. By dowiedzieć się więcej o typach ataków,
 na jakie może Cię narazić "domowe" rozwiązanie, przeczytaj <a
 href="https://www.torproject.org/torbutton/design/#adversary">The Torbutton
@@ -204,22 +212,6 @@ przykładów, które powinny dać Ci pojęcie co do tego, jakie zachowania są n
  pytanie</a> na FAQ FoxyProxy dla dalszych szczegółów.
  </p></li>
 
- <li>NoScript
- <p>
- Torbutton w chwili obecnej łagodzi wszystkie znane problemy anonimowości związane
- z Javascriptem. Wyłączanie Javascriptu tylko dla niektórych stron może kusić, że
- posiada się lepszą ochronę, ale znacznie lepsze jest podejście wszystko-albo-nic.
- NoScript jest za bardzo skomplikowany i posiada wiele subtelności mogących
- zaskoczyć nawet zaawansowanych użytkowników. Na przykład, addons.mozilla.org
- weryfikuje integralność rozszerzenia używając Javascriptu przez HTTPS, ale
- pobiera je połączeniem jawnym. Nie dodanie tego do listy oznacza efektywnie, że
- pobierasz niezweryfikowane rozszerzenia. Co gorsza, używanie NoScript może
- wyłączyć ochronę dawaną przez Torbutton poprzez Javascript, lecz w dalszym
- ciągu pozwoli złośliwym węzłom wyjściowym na pozbawienie Cie anonimowości
- poprzez domyślną listę stron z pozwoleniem (za które mogą się podszyć, by dodać
- jaki tylko skrypt zechcą).
- </p></li>
-
 </ol>
 
 <a id="recommendedextensions"></a>
@@ -227,18 +219,12 @@ przykładów, które powinny dać Ci pojęcie co do tego, jakie zachowania są n
 >Które rozszerzenia do Firefoksa polecacie?</a></strong>
 
 <ol>
- <li><a href="https://crypto.stanford.edu/forcehttps/">ForceHTTPS</a>
- <p>
-  Wiele stron internetowych jest <a
-  href="http://www.defcon.org/html/defcon-16/dc-16-speakers.html#Perry">niezdarnych
-  w używaniu HTTPS</a> i bezpiecznych ciasteczek. To rozszerzenie pomaga w upewnieniu
-  się, że zawsze używasz HTTPS dla stron, które to obsługują oraz zmniejsza szanse
-  na kradzież Twoich ciasteczek ze stron, które ich nie zabezpieczają.</p></li>
  <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a>
  <p>
  Wspomniane wcześniej, to rozszerzenie pozwala na lepszą kontrolę adresów zwrotnych
  niż Torbutton w tej chwili. Powinno psuć mniej stron niż kontrola adresu zwrotnego
  w Torbuttonie.</p></li>
+
  <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a>
  <p>
  Jeśli dużo używasz Tora i rzadko go wyłączasz, prawodpodobnie przyda Ci się to
@@ -247,6 +233,60 @@ przykładów, które powinny dać Ci pojęcie co do tego, jakie zachowania są n
  adresu pochodzenia w pamięci podręcznej, więc elementy są z niej pobierane tylko jeśli są
  pobierane z dokumentu w tej samej strefie pochodzenia jak element w pamięci podręcznej.
  </p></li>
+
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better Privacy</a>
+  <p>
+  Better Privacy jest znakomitym rozszerzeniem, które chroni Cię przed ciasteczkami
+  używanymi przez aplikacje Flash, które często zostają na zawsze i nie można ich usunąć
+  przez normalne czyszczenie "Prywatnych danych" w Firefoksie. Flash i wszystkie inne wtyczki
+  są domyślnie wyłączane przez Torbuttona, ale jeśli interesuje Cię prywatność, możesz
+  być zainteresowany/a tym rozszerzeniem, które pozwoli Ci obejrzeć i automatycznie
+  usuwać ciasteczka Flash w trakcie pracy bez Tora.
+  </p>
+ </li>
+
+ <li><a href="https://addons.mozilla.org/firefox/addon/1865">AdBlock Plus</a>
+ <p>
+ AdBlock Plus jest doskonałym dodatkiem do usuwania denerwujących, naruszających prywatność
+ i <a href="http://www.wired.com/techbiz/media/news/2007/11/doubleclick">roznoszących malware</a>
+ reklam z sieci. Zawiera <a href="http://adblockplus.org/en/subscriptions">subskrypcje</a>, które
+ są ciągle aktualizowane, by wychwytywać najnowsze wysiłki sieci reklamowych, podejmowane w
+ celu omijania tych filtrów. Polecam subskrypcję filtru kombinacyjnego EasyPrivacy+EasyList w
+ sekcji Miscellaneous (Pozostałe) na stronie subskrypcji.
+ </p>
+
+ <li><a href="https://addons.mozilla.org/firefox/addon/82">Cookie Culler</a>
+  <p>
+  Cookie Culler to przydatne rozszerzenie do szybkiego dostępu do menadżera ciasteczek w
+  Firefoksie. Daje też możliwość ochrony pewnych ciasteczek przed usunięciem, ale niestety, to
+  zachowanie nie integruje się dobrze z Torbuttonem. Kory Kirk pracuje nad zajęciem się tym
+  w czasie projektu Google Summer of Code 2009.
+ </p>
+ </li>
+
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a>
+ <p>
+ Torbutton w chwili obecnej łagodzi wszystkie znane problemy anonimowości związane
+ z Javascriptem. Jednak, jeśli martwisz się exploitami Javascriptu w swojej przeglądarce
+ lub na stronach, na których się logujesz, możesz używać NoScript. Daje on możliwość
+ włączenia Javascriptu tylko dla niektórych stron i daje też mechanizmy wymuszania
+ adresów HTTPS dla stron z <a href="http://fscked.org/category/tags/insecurecookies">niebezpiecznymi
+ ciasteczkami</a>.<br />
+
+ Może być jednak trudny do skonfigurowania tak, by większość stron działała poprawnie. W
+ szczególności, trzeba się upewnić, że nie usunie się addons.mozilla.org z białej listy
+ Javascriptu, jako że rozszerzenia są pobierane przez HTTP, a sprawdzane przez Javascript
+ ze strony HTTPS.
+ </p></li>
+
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/9727/">Request Policy</a>
+  <p>
+  Request Policy jest podobne do NoScript w tym, że wymaga skonfigurowania, które strony
+  mają pozwolenie na ładowanie zawartości z innych domen. Prawidłowa konfiguracja dla
+  nowicjuszy może być bardzo trudna, ale daje to niezłą ochronę przed reklamami,
+  wstrzykniętą zawartością i atakami fałszowania żądań cross-site (między stronami).</p>
+  </li>
+
 </ol>
 
 <a id="securityissues"></a>
