@@ -78,6 +78,14 @@ cookies</a>. It is possible to use a LiveCD or VMWare-based solution such as
 <a href="http://anonymityanywhere.com/incognito/">Incognito</a> that creates a
 secure, transparent proxy to protect you from proxy bypass, however issues
 with local IP address discovery and Flash cookies potentially remain.
+</p>
+<p>
+
+If you are not concerned about being tracked by these sites (and others that
+try to unmask you by pretending to be them), and are unconcerned about your
+local censors noticing you visit them, you can enable plugins by going into the
+Torbtuton Preferences-&gt;Security Settings-&gt;Dynamic Content tab and
+unchecking "Disable plugins during Tor usage" box.
 
 </p>
 
@@ -89,20 +97,20 @@ annoying. Can't I just use the old version?</a></strong>
 
 <b>No.</b> Use of the old version, or any other vanilla proxy changer
 (including FoxyProxy -- see below) without Torbutton is actively discouraged.
-Seriously. Using a vanilla proxy switcher by itself is so insecure that you
-are not only just wasting your time, you are also actually endangering
-yourself. Simply do not use Tor and you will have the same (and in some cases,
-better) security.  For more information on the types of attacks you are
-exposed to with a "homegrown" solution, please see <a
+Seriously. Using a vanilla proxy switcher by itself is so insecure that you are
+not only just wasting your time, you are also actually endangering yourself.
+<b>Simply do not use Tor</b> and you will have the same (and in some cases,
+better) security.  For more information on the types of attacks you are exposed
+to with a "homegrown" solution, please see <a
 href="https://www.torproject.org/torbutton/design/#adversary">The Torbutton
-Adversary Model</a>, in particular the 
-<a href="https://www.torproject.org/torbutton/design/#attacks">Adversary
+Adversary Model</a>, in particular the <a
+href="https://www.torproject.org/torbutton/design/#attacks">Adversary
 Capabilities - Attacks</a> subsection. If there are any specific Torbutton
 behaviors that you do not like, please file a bug on <a
 href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">the
-bug tracker.</a> Most of Torbutton's security features can also be disabled
-via its preferences, if you think you have your own protection for those
-specific cases.
+bug tracker.</a> Most of Torbutton's security features can also be disabled via
+its preferences, if you think you have your own protection for those specific
+cases.
 
 </p>
 
@@ -192,42 +200,21 @@ cooperate with sites to inject images into pages that bypass your filters.
 Setting FoxyProxy to only send certain URLs via Non-Tor is much more secure in
 this regard, but be very careful with the filters you allow. For example, 
 something as simple as allowing *google* to go via Non-Tor will still cause you to end up
-in all the logs of all websites that use Google Analytics!  See <a
-href="http://foxyproxy.mozdev.org/faq.html#privacy-01">this question</a> on
+in all the logs of all websites that use Google Analytics!  See 
+<a href="http://foxyproxy.mozdev.org/faq.html#privacy-01">this question</a> on
 the FoxyProxy FAQ for more information.
  </p></li>
- <li>NoScript
- <p>
- Torbutton currently mitigates all known anonymity issues with Javascript.
- While it may be tempting to get better security by disabling Javascript for
- certain sites, you are far better off with an all-or-nothing approach.
- NoScript is exceedingly complicated, and has many subtleties that can surprise
- even advanced users. For example, addons.mozilla.org verifies extension
- integrity via Javascript over https, but downloads them in the clear. Not 
- adding it to your whitelist effectively
- means you are pulling down unverified extensions. Worse still, using NoScript
- can actually disable protections that Torbutton itself provides via
- Javascript, yet still allow malicious exit nodes to compromise your
- anonymity via the default whitelist (which they can spoof to inject any script  they want). 
-</p></li>
 </ol>
 
 <a id="recommendedextensions"></a>
 <strong><a class="anchor" href="#recommendedextensions">Which Firefox extensions do you recommend?</a></strong>
 <ol>
- <li><a href="https://crypto.stanford.edu/forcehttps/">ForceHTTPS</a>
-	<p>
-Many sites on the Internet are <a
-href="http://www.defcon.org/html/defcon-16/dc-16-speakers.html#Perry">sloppy
-about their use of HTTPS</a> and secure
-cookies. This addon can help you ensure that you always use HTTPS for sites
-that support it, and reduces the chances of your cookies being stolen for
-sites that do not secure them.</p></li>
  <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a>
 	<p>
 Mentioned above, this extension allows more fine-grained referrer spoofing
 than Torbutton currently provides. It should break less sites than Torbutton's
 referrer spoofing option.</p></li>
+
  <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a>
 	<p>
 If you use Tor excessively, and rarely disable it, you probably want to
@@ -236,6 +223,73 @@ identifiers in your cache. This extension applies same origin policy to the
 cache, so that elements are retrieved from the cache only if they are fetched
 from a document in the same origin domain as the cached element. 
 </p></li>
+ </li>
+
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better
+Privacy</a>
+ <p>
+
+Better Privacy is an excellent extension that protects you from cookies used
+by Flash applications, which often persist forever and are not clearable via
+normal Firefox "Private Data" clearing. Flash and all other plugins are
+disabled by Torbutton by default, but if you are interested in privacy, you
+may want this extension to allow you to inspect and automatically clear your
+Flash cookies for your Non-Tor usage.
+
+ </p>
+ </li>
+ <li><a href="https://addons.mozilla.org/firefox/addon/1865">AdBlock Plus</a>
+ <p>
+
+AdBlock Plus is an excellent addon for removing annoying, privacy-invading,
+and <a
+href="http://www.wired.com/techbiz/media/news/2007/11/doubleclick">malware-distributing</a>
+advertisements from the web. It provides 
+<a href="http://adblockplus.org/en/subscriptions">subscriptions</a> that are
+continually updated to catch the latest efforts of ad networks to circumvent
+these filters. I recommend the EasyPrivacy+EasyList combination filter
+subscription in the Miscellaneous section of the subscriptions page.
+
+ </p>
+ <li><a href="https://addons.mozilla.org/firefox/addon/82">Cookie Culler</a>
+ <p>
+
+Cookie Culler is a handy extension to give quick access to the cookie manager
+in Firefox. It also provides the ability to protect certain cookies from
+deletion, but unfortunately, this behavior does not integrate well with Torbutton. Kory Kirk is working on addressing this for this Google Summer of Code project for 2009.
+
+ </p>
+ </li>
+
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a>
+ <p>
+ Torbutton currently mitigates all known anonymity issues with Javascript.
+ However, if you are concerned about Javascript exploits against your browser
+ or against websites you are logged in to, you may want to use NoScript. It
+ provides the ability to allow Javascript only for particular websites 
+ and also provides mechanisms to force HTTPS urls for sites with 
+<a href="http://fscked.org/category/tags/insecurecookies">insecure
+ cookies</a>.<br>
+
+ It can be difficult to configure such that the majority sites will work
+ properly though. In particular, you want to make sure you do not remove the Javascript whitelist for
+ addons.mozilla.org, as extensions are downloaded via http and verified by
+ javascript from the https page.
+
+ </p></li>
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/9727/">Request
+Policy</a>
+ <p>
+
+Request Policy is similar to NoScript in that it requires that you configure
+which sites are allowed to load content from other domains. It can be very
+difficult for novice users to configure properly, but it does provide a good
+deal of protection against ads, injected content, and cross-site request
+forgery attacks.
+
+ </p>
+ </li>
+
 </ol>
 
 <a id="securityissues"></a>
