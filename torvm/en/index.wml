@@ -14,133 +14,42 @@
 <h3>Using Tor VM</h3>
 <ul>
 <li><a href="#Download">Download</a></li>
-<li><a href="#Setup">Setup</a></li>
-<li><a href="#InstallBundle">Install Bundle</a></li>
+<li><a href="#Install">Install</a></li>
 <li><a href="#Run">Run VM</a></li>
 <li><a href="#RecommendedUse">Use Torbutton</a></li>
+<li><a href="#Shutdown">Shutdown</a></li>
 </ul>
 </div>
 <!-- END SIDEBAR -->
 
 <h2>What Is It?</h2>
-<p>Tor VM is an experimental transparent Tor proxy for Windows that uses
+<p>Tor VM is a transparent Tor proxy for Windows built with
 <a href="http://www.qemu.org/">Qemu</a> virtualization technology for more
 resilient clients and relays.
 </p>
-<p><strong>This initial 0.0.1 release is a work in progress!</strong>
-See the
-<a href="http://bugs.noreply.org/flyspray/index.php?tasks=all&amp;project=4&amp;cat=19"
->bug tracking database for known issues</a>. Remember to backup anything
-important before using this software on your system.</p>
-
+<p>
+The <a href="https://svn.torproject.org/svn/torvm/trunk/doc/design.html">Tor
+VM design document</a> contains additional detail about this work in progress.</p>
+</p>
 
 <hr />
 <a id="Download"></a>
 <h2><a class="anchor" href="#Download">Step One: Download Tor VM Software</a></h2>
 
-<p>The bundle packages are preferred since they include Vidalia and other Tor
-software that improves the user experience. If a portable Tor VM instance is
-required the self extracting archive can be used to install Tor VM alone
-onto a portable storage device.</p>
-
 <ul>
-<li><a href="dist/TorVM-0.0.1-Bundle.exe">Tor VM Bundle Installer</a>
-(<a href="dist/TorVM-0.0.1-Bundle.exe.asc" style="font-size: 90%;">sig</a>)</li>
+<li><a href="dist/TorVM-0.0.2-Bundle.exe">Tor VM Bundle Installer</a>
+(<a href="dist/TorVM-0.0.2-Bundle.exe.asc" style="font-size: 90%;">sig</a>)</li>
 
-<li><a href="dist/TorVM-0.0.1-NetInstaller.exe">Tor VM Network Installer</a>
-(<a href="dist/TorVM-0.0.1-NetInstaller.exe.asc" style="font-size: 90%;">sig</a>)</li>
-
-<li><a href="dist/Tor_VM.exe">Tor VM Portable Self Extractor</a>
-(<a href="dist/Tor_VM.exe.asc" style="font-size: 90%;">sig</a>)</li>
+<li><a href="dist/TorVM-0.0.2-NetInstaller.exe">Tor VM Network Installer</a>
+(<a href="dist/TorVM-0.0.2-NetInstaller.exe.asc" style="font-size: 90%;">sig</a>)</li>
 </ul>
 
 <hr />
-<a id="Setup"></a>
-<h2><a class="anchor" href="#Setup">Step Two: Configure Windows For Less Risk</a></h2>
+<a id="Install"></a>
+<h2><a class="anchor" href="#Install">Step Two: Install Tor VM</a></h2>
 
-<p>Running Firefox with Torbutton as a reduced privilege user provides
-defense in depth against various risks Internet users face. These steps
-explain how to create a restricted account for user name "anon".</p>
-
-<p>Navigate to the control panel "User Accounts" option. You can also use
-the menu navigation:<br />
-<!-- should this be a sequence of <span> instead? -->
-<strong>Start Menu -&gt; Settings -&gt; Control Panel -&gt; Add or Remove Programs</strong></p>
-
-<p><img src="img/uc01.png" alt="Control panel view - Select User Accounts option" /></p>
-
-<p>Select "Create a new account".</p>
-
-<p><img src="img/uc02.png" alt="User Accounts Tool - Select Create a new account" /></p>
-
-<p>Provide a nickname for the anonymous limited user account.</p>
-
-<p><img src="img/uc03.png" alt="Provide a nickname for the restricted account" /></p>
-
-<p>Choose the "Limited" account type for the reduced privilege user feature.</p>
-
-<p><img src="img/uc04.png" alt="Choose the Limited account type" /></p>
-
-<p>Select "Create Account".</p>
-
-<p><img src="img/uc05.png" alt="Select Create Account" /></p>
-
-<p>The new user is added to the list of accounts on the local system. This is
-the account that Internet applications like Firefox will run as when using
-Tor VM to route traffic through the Tor network.
-</p>
-
-<p><img src="img/uc06.png" alt="New user is available for login session" /></p>
-
-<p>The Switch User feature is used to run critical Tor VM software as Admin
-while Firefox and other Internet applications run with restricted rights.</p>
-
-<p>Press The Windows Key + L to switch between yourself and restricted user
-accounts.</p>
-
-<p><img src="img/win-el.png" alt="Windows Key + L to switch user" /></p>
-
-<p>Or select the "Log off" Start Menu option followed by "Switch User"</p>
-
-<p><img src="img/uc07.png" alt="Log off and then switch user" /></p>
-
-<p>The new limited user desktop has its own configuration and environment.</p>
-
-<p><img src="img/uc09.png" alt="Both Tor VM admin and restricted user can be used concurrently" /></p>
-
-
-<hr />
-<a id="InstallExtractor"></a>
-<h2><a class="anchor" href="#InstallExtractor">Step Three: Tor VM Self-Extractor</a></h2>
-
-<p>Save the installer executable to Desktop or portable storage.</p>
-
-<p><img src="img/extr01.png" alt="Save installer exe to desktop or drive" /></p>
-
-<p>Select the path or folder to extract into.</p>
-
-<p><img src="img/extr02.png" alt="Select path for destination" /></p>
-
-<p>Run the torvm.exe program in the extracted Tor_VM folder.</p>
-
-<p><img src="img/extr03.png" alt="Run the torvm.exe program in the Tor_VM folder" /></p>
-
-<h2><a class="anchor" href="#Run">Proceed to: Run Tor VM</a></h2>
-
-
-<hr />
-<a id="InstallBundle"></a>
-<h2><a class="anchor" href="#InstallBundle">Step Three: Install Tor VM Bundle</a></h2>
-
-<p>The bundle installers include Vidalia and other software for the local
-machine instead of a portable folder. Double click on the Bundle or
-Network Installer EXE to begin installation to the current system.</p>
-
-<p><img src="img/bundle01.png" alt="Click to Run Bundle Installer" /> &nbsp;
-<img src="img/netinst01.png" alt="Click to Run Network Installer" /></p>
-
-<p>The bundle package installs each of the applications included with Tor VM like 
-Vidalia and Torbutton.</p>
+<p>Double click on the Bundle or Network Installer EXE to begin installation to the
+current system.</p>
 
 <p><img src="img/bundle02.png" alt="Click to Run Bundle Installer" /></p>
 
@@ -152,77 +61,29 @@ to reliably download all of the latest bundle application packages on demand.</p
 
 <hr />
 <a id="Run"></a>
-<h2><a class="anchor" href="#Run">Step Four: Run Tor VM</a></h2>
+<h2><a class="anchor" href="#Run">Step Three: Run Tor VM</a></h2>
 
-<p>After installing the bundle packages a Tor VM controller is started in
+<p>When installation is complete a Tor VM controller is started in
 the background. The installer program has finished and can be closed.</p>
 
 <p><img src="img/run01.png" alt="Tor VM controller will start at end of install" /></p>
 
 <p>After preparing network devices a Qemu virtual machine running the
-Tor VM kernel is launched. A status screen will be shown detailing progress
-bootstrapping the Tor software into the network.</p>
+Tor VM kernel is launched with the Vidalia controller. It may take a
+few minutes to bootstrap into the Tor network. Please be patient.</p>
 
-<p><img src="img/run02.png" alt="Qemu launched with Tor VM kernel" /></p>
-
-<p>The bootstrap is 100% complete when Tor is able to create a circuit
-through the network.</p>
-
-<p><img src="img/run03.png" alt="Bootstrap not complete until circuit created" /></p>
-
-<p>If you are running the Tor VM bundle Vidalia will also display the current
-progress while bootstrapping into the Tor network.</p>
-
-<p><img src="img/vidalia-bootstrap.png" alt="Vidalia will also show bootstrap status" /></p>
-
-<p>After successful start a list of transparent proxy connection counts are
-shown. This indicates that Tor VM is up and ready to start transparently
-routing traffic through the Tor network. The socks port is also available to
-the host for use with Polipo or Privoxy http proxies.</p>
-
-<p><img src="img/run04.png" alt="Proxy traffic connection counts show Tor VM status" /></p>
-
-<!-- no marble for first release
-<p>The first time Vidalia is run the image tiles needed for the Marble Map
-plugin will be generated at start. If you do not have sufficient memory or
-CPU to generate these tiles you can install the full Vidalia Marble package
-with the generated image tiles already included.</p>
-
-<p><img src="img/vidalia-genmap.png" alt="It may take a minute to generate the Marble Map image tiles" /></p>
-
-<p>If any of the bundle applications stop working a repair can be requested
-which may resolve the problem.</p>
--->
-
+<p><img src="img/run02.png" alt="Bootstrap not complete until circuit created" /></p>
 
 <hr />
 <a id="RecommendedUse"></a>
-<h2><a class="anchor" href="#RecommendedUse">Step Five: Using Firefox and Torbutton</a></h2>
+<h2><a class="anchor" href="#RecommendedUse">Step Four: Using Firefox and Torbutton</a></h2>
 
-<p>You should run Firefox and other Internet software as a restricted user.
-Switch to the restricted user account configured in <a class="anchor" href="#Setup">Step Two</a>.</p>
+<p>Once Tor has successfully built a circuit the Switch User menu is presented.
+Firefox and other Tor applications must be run with the "Tor" restricted user account.</p>
 
-<p>Press The Windows Key + L to switch users, or select the "Log off".
-Start Menu option followed by "Switch User"</p>
+<p><img src="img/tor-user-switch.png" alt="Switch to Tor restricted user account" /></p>
 
-<p><img src="img/win-el.png" alt="Windows Key + L to switch user" /></p>
-
-<p><img src="img/switch-user.png" alt="_ Or Log Off to switch user" /></p>
-
-<p>Click the "Install Torbutton" shortcut if you do not have the Torbutton
-extension installed.</p>
-
-<p><img src="img/torbutton01.png" alt="Run Install Torbutton shortcut" /></p>
-
-<p>Continue with installation despite warning about installing from local file.</p>
-
-<p><img src="img/torbutton02.png" alt="Firefox will warn about local extension, continue" /></p>
-
-<p>You will need to restart Firefox to use the new Torbutton extension.</p>
-
-<p><img src="img/torbutton03.png" alt="Restart Firefox to enable new extension" /></p>
-
-<p>Click on the Torbutton status icon in the lower right to enable Tor.</p>
+<p>Start Firefox and click on the Torbutton status icon in the lower right to enable Tor.</p>
 
 <p><img src="img/torbutton04.png" alt="Click on Torbutton status icon to toggle ON" /></p>
 
@@ -236,91 +97,50 @@ extension installed.</p>
 <a id="ExperimentalUse"></a> 
 <h2><a class="anchor" href="#ExperimentalUse">Experimental: Using Flash</a></h2>
 
-<p><strong>IMPORTANT: Tor VM can protect your endpoint IP address when using
-Flash and other software but it does not yet protect against attacks which
-reduce your anonymity set.</strong> DO NOT use Tor VM in this manner if you
-rely on unlinkable anonymity; wait until this is addressed in future releases.
-</p>
+<p><strong>IMPORTANT: This is not a recommended use of Tor.</strong></p>
 
-<p>You should run Flash Player and other Internet software as a restricted user.
-Switch to the restricted user account configured in <a class="anchor" href="#Setup">Step Two</a>.</p>
+<p>Right click on Torbutton icon at lower right for menu. Select "Preferences..."
+option.</p>
 
-<p><img src="img/switch-user.png" alt="Switch to restricted user to play Flash content" /></p>
+<p><img src="img/tbprefs.png" alt="Select Torbutton Preferences menu option" /></p>
 
-<p>First be sure that transparent proxy of Internet traffic through Tor is
-working correctly. Tor VM ensures that all your traffic is relayed
-by default without any application configuration.</p>
+<p>Toggle the "Disable plugins..." dynamic content security setting.</p>
 
-<p><img src="img/flash01.png" alt="Verify Tor usage at check.torproject.org" /></p>
+<p><img src="img/tbcontent.png" alt="Toggle disable plugins dynamic content security setting" /></p>
 
 <p>Connections made from the Browser and Flash Player plugin will now
 be transparently proxied through the Tor network when viewing content.</p>
 
 <p><img src="img/flash02.png" alt="Flash player and other software now using Tor" /></p>
 
-<p>The transparent proxy redirection counts will indicate connections redirected
-through Tor in this manner. Traffic sent via Torbutton and Polipo are visible as
-SOCKS connections to the Tor VM instance.</p>
-
-<p><img src="img/transparent.png" alt="Transparent proxy traffic can be seen along with Torbutton and Polipo traffic" /></p>
-
-
 <hr />
-<a id="Modify"></a>
-<h2><a class="anchor" href="#Modify">Modify Tor VM Install Options</a></h2>
+<a id="Shutdown"></a>
+<h2><a class="anchor" href="#Shutdown">Step Five: Shutdown Tor VM</a></h2>
 
-<p>Once a package is installed you can change the default installation options
-via the "Change" option for the package. For example, Tor VM is configured to
-run at start up which can be disabled by modifying the installation.</p>
+<p>Press The Windows Key + L to switch back to administrator User.</p>
 
-<p><img src="img/change01.png" alt="Change option is in Add Remove Programs" /></p>
- 
-<p>The Change package option will launch the installer GUI for the package.</p>
+<p><img src="img/win-el.png" alt="Windows Key + L to switch user" /></p>
 
-<p><img src="img/change02.png" alt="Changes will launch application installer GUI" /></p>
- 
-<p>The list of configurable installation options can now be set as desired.
-For example, disabling the "Run at Startup" option as shown here.</p>
+<p><img src="img/admin-user-switchback.png" alt="Switch back to admin user account" /></p>
 
-<p><img src="img/change03.png" alt="Change desired installation options" /></p>
- 
-<p>Select "Next" once all changes have been selected.</p>
+<p>Select the Vidalia "Exit" option to shutdown the VM and restore network settings.
+The restricted Tor user will be logged off automatically.</p>
 
-<p><img src="img/change04.png" alt="Select Next when changes selected" /></p>
- 
-<p>Select "Change" to apply the changes to the installed software.</p>
+<p><img src="img/exit-vidalia.png" alt="Select Vidalia Exit option to close VM" /></p>
 
-<p><img src="img/change05.png" alt="Select Change to confirm changes" /></p>
- 
-<p>And finally "Finish" to exit the installer GUI. The requested changes
-are now in effect.</p>
+<p>Do not close the Tor VM controller window while restoring network settings.</p>
 
-<p><img src="img/change06.png" alt="Select Finish to complete modifications" /></p>
- 
+<p><img src="img/vm-shutdown.png" alt="Do not close the Tor VM window while restoring network settings" /></p>
+
 
 <hr />
 <a id="Remove"></a>
 <h2><a class="anchor" href="#Remove">Uninstall Tor Bundle Software</a></h2>
 
-<p>A script to uninstall all of the Tor bundle applications at once is placed
-on the desktop. Run this utility to remove all of the Tor packages and files.</p>
+<p>A script to uninstall all of the Tor bundle applications is placed
+on the desktop. Run this utility to remove all of the Tor software and files.</p>
 
 <p><img src="img/uninstall.png" alt="The Uninstall_Tor script will remove all Tor packages and files" /></p>
-
-
-<hr />
-<a id="Repair"></a>
-<h2><a class="anchor" href="#Repair">Repair Installed Applications</a></h2>
-
-<p>If any installed files become corrupted or deleted you can repair them
-with the support option for the application package having problems.</p>
-
-<p><img src="img/vidalia-support.png" alt="In Add or Remove Programs - Select support option for package" /></p>
-
-<p>Choose the repair option and all of the package files and registry will be
-restored.</p>
-
-<p><img src="img/vidalia-repair.png" alt="Choose Repair option" /></p>
 
 
 <hr />
@@ -332,32 +152,8 @@ defects and features. See the
 <a href="http://bugs.noreply.org/flyspray/index.php?tasks=all&amp;project=4"
 >Tor flyspray bug tracker</a> for known issues and pending changes.</p>
 
-<!-- localized installers and full Marble data bundle?
-<a id="Advanced"></a>
-<h2><a class="anchor" href="#Advanced">Experimental Packages and Usage</a></h2>
--->
-
-
-<hr />
-<a id="More"></a>
-<h2><a class="anchor" href="#More">Additional Resources</a></h2>
-
-<p>The latest design document for Tor VM is available in revision control:
-<a href="https://svn.torproject.org/svn/torvm/trunk/doc/design.html"
->https://svn.torproject.org/svn/torvm/trunk/doc/design.html</a>.
-</p>
-
 <p>Features and fixes planned for the Tor VM software are documented in the
 <a href="https://svn.torproject.org/svn/torvm/trunk/TODO">Tor VM TODO</a>.</p>
-
-<p><a href="https://data.peertech.org/torbld/info/Tor_VM-svn">Automated package
-builds are available</a> for verifying fixes in subversion and testing work in
-progress.</p>
-
-<p>Be sure to build against a known working tag in the torvm repo. For
-example,<br />
-svn export https://svn.torproject.org/svn/torvm/tags/torvm-0_0_1 torvm-0.0.1-src
-</p>
 
 </div><!-- #main -->
 
