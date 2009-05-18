@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19173
+# Based-On-Revision: 19529
 # Last-Translator: bogdandr_at_op . pl
 
 #include "head.wmi" TITLE="Tor VM" CHARSET="UTF-8"
@@ -16,127 +16,43 @@
 <h3>Korzystanie z Tor VM</h3>
 <ul>
 <li><a href="#Download">Pobieranie</a></li>
-<li><a href="#Setup">Instalacja</a></li>
-<li><a href="#InstallBundle">Paczka instalacyjna</a></li>
+<li><a href="#Install">Instalacja</a></li>
 <li><a href="#Run">Uruchamianie VM</a></li>
 <li><a href="#RecommendedUse">Korzystanie z Torbuttona</a></li>
+<li><a href="#Shutdown">Wyłączanie</a></li>
 </ul>
 </div>
 <!-- END SIDEBAR -->
 
 <h2>Co to jest?</h2>
-<p>Tor VM to ekperymentalne przezroczyste proxy (serwer pośredniczący) dla Windows, korzystające
-z technologii pełnej wirtualizacji <a href="http://www.qemu.org/">Qemu</a>,
+<p>Tor VM to przezroczyste proxy (serwer pośredniczący) dla Windows, zbudowane
+z technologią wirtualizacji <a href="http://www.qemu.org/">Qemu</a>,
 by uzyskać bardziej elastycznych klientów i przekaźników Tora.
 </p>
-<p><strong>Ta wstępna wersja 0.0.1 jest wydaniem, nad którym ciągle się pracuje!</strong>
-Przeczytaj <a href="http://bugs.noreply.org/flyspray/index.php?tasks=all&amp;project=4&amp;cat=19"
->bazę śledzenia błędów, by dowiedzieć się o znanych problemach</a>. Pamiętaj, by zrobić
-kopię zapasową jakichkolwiek ważnych danych przed korzystaniem z tego programu na
-swoim systemie.</p>
+<p>
+<a href="https://svn.torproject.org/svn/torvm/trunk/doc/design.html">Dokument projektowy
+Tor VM</a> zawiera dodatkowe szczegóły o postępach tego rozwojowego programu.
+</p>
 
 <hr />
 <a id="Download"></a>
 <h2><a class="anchor" href="#Download">Krok 1: Pobieranie oprogramowania Tor VM</a></h2>
 
-<p>Zalecane są paczki instalacyjne, gdyż zawierają Vidalię i inne oprogramowanie Tora,
-które poprawia doświadczenie użytkownika. Jeśli wymagana jest wersja przenośna Tor VM,
-można użyć samorozpakowującego się archiwum, by zainstalować samo Tor VM na przenośnym
-urządzeniu przechowywania danych.</p>
 <ul>
-<li><a href="dist/TorVM-0.0.1-Bundle.exe">Instalator paczki Tor VM</a>
-(<a href="dist/TorVM-0.0.1-Bundle.exe.asc" style="font-size: 90%;">podpis</a>)</li>
+<li><a href="dist/TorVM-0.0.2-Bundle.exe">Instalator paczki Tor VM</a>
+(<a href="dist/TorVM-0.0.2-Bundle.exe.asc" style="font-size: 90%;">podpis</a>)</li>
 
-<li><a href="dist/TorVM-0.0.1-NetInstaller.exe">Instalator sieciowy Tor VM</a>
-(<a href="dist/TorVM-0.0.1-NetInstaller.exe.asc" style="font-size: 90%;">podpis</a>)</li>
-
-<li><a href="dist/Tor_VM.exe">Przenośne archiwum samorozpakowujące Tor VM</a>
-(<a href="dist/Tor_VM.exe.asc" style="font-size: 90%;">podpis</a>)</li>
+<li><a href="dist/TorVM-0.0.2-NetInstaller.exe">Instalator sieciowy Tor VM</a>
+(<a href="dist/TorVM-0.0.2-NetInstaller.exe.asc" style="font-size: 90%;">podpis</a>)</li>
 </ul>
 
-<hr />
-<a id="Setup"></a>
-<h2><a class="anchor" href="#Setup">Krok 2: Konfiguracja Windowsa, by zmniejszyć ryzyko</a></h2>
-
-<p>Uruchamianie Firefoksa z Torbuttonem z konta użytkownika o ograniczonych prawach
-daje ochronę przed różnymi ryzykami, z którymi spotykają się użytkownicy Internetu.
-Poniższe kroki tłumaczą, jak stworzyć ograniczone konto dla użytkownika o nazwie "anon".</p>
-
-<p>Przejdź do opcji "Konta Użytkowników" w Panelu Sterowania. Możesz też użyć nawigacji menu:<br />
-<!-- should this be a sequence of <span> instead? -->
-<strong>Menu Start -&gt; Ustawienia -&gt; Panel Sterowania -&gt; Dodaj/usuń programy</strong></p>
-
-<p><img src="img/uc01.png" alt="Panel Sterowania - Wybierz opcję Konta Użytkowników" /></p>
-
-<p>Wybierz "Stwórz nowe konto".</p>
-
-<p><img src="img/uc02.png" alt="Narzędzie Konta Użytkowników - Wybierz Stwórz nowe konto" /></p>
-
-<p>Wprowadź nazwę dla anonimowego konta o ograniczonych prawach.</p>
-
-<p><img src="img/uc03.png" alt="Wprowadź nazwę dla ograniczonego konta" /></p>
-
-<p>Wybierz typ konta "Ograniczone", by otrzymać konto o zmniejszonych prawach.</p>
-
-<p><img src="img/uc04.png" alt="Wybierz typ konta Ograniczone" /></p>
-
-<p>Wybierz "Stwórz konto".</p>
-
-<p><img src="img/uc05.png" alt="Wybierz Stwórz konto" /></p>
-
-<p>Nowy użytkownik zostaje dodany do listy kont w systemie. To jest konto, z którego
-będą pracować aplikacje internetowe jak Firefox w czasie używania Tor VM, by kierować
-ruchem przez sieć Tora.
-</p>
-
-<p><img src="img/uc06.png" alt="Nowy użytkownik dostępny do logowania" /></p>
-
-<p>Funkcjonalność zmiany użytkownika jest używana do uruchamiania ważnego oprogramowania
-Tor VM jako Admin, podczas gdy Firefox i inne aplikacje internetowe działają z
-ograniczonymi prawami.</p>
-
-<p>Naciśnij klawisz Windows + L, by przełączyć się na konto użytkownika o ograniczonych prawach</p>
-
-<p><img src="img/win-el.png" alt="Klawisz Windows + L, by przełączyć użytkowników" /></p>
-
-<p>Lub wybierz opcję "Wyloguj" w menu start, po czym "Zmień użytkownika"</p>
-
-<p><img src="img/uc07.png" alt="Wyloguj się i zmień użytkownika" /></p>
-
-<p>Pulpit nowego użytkownika ma własną konfigurację i środowisko.</p>
-
-<p><img src="img/uc09.png" alt="Oba konta: Tor VM admin i ograniczone mogą być używane równocześnie" /></p>
 
 <hr />
-<a id="InstallExtractor"></a>
-<h2><a class="anchor" href="#InstallExtractor">Krok 3: Archiwum samorozpakowujące Tor VM</a></h2>
+<a id="Install"></a>
+<h2><a class="anchor" href="#Install">Krok 2: Instalacja Tor VM</a></h2>
 
-<p>Zachowaj program instalatora na pulpicie lub urządzeniu przenośnym.</p>
-
-<p><img src="img/extr01.png" alt="Zachowaj program instalatora na pulpicie lub napędzie" /></p>
-
-<p>Wybierz ścieżke lub folder do rozpakowania.</p>
-
-<p><img src="img/extr02.png" alt="Wybierz docelową ścieżkę" /></p>
-
-<p>Uruchom program torvm.exe w rozpakowanym folderze Tor_VM.</p>
-
-<p><img src="img/extr03.png" alt="Uruchom program torvm.exe w folderze Tor_VM" /></p>
-
-<h2><a class="anchor" href="#Run">Przejdź do: Uruchamianie Tor VM</a></h2>
-
-<hr />
-<a id="InstallBundle"></a>
-<h2><a class="anchor" href="#InstallBundle">Kork 3: Instalacja paczki Tor VM</a></h2>
-
-<p>Instalatory zawierają Vidalię i inne oprogramowanie dla lokalnej maszyny zamiast
-przenośnego folderu. Kliknij dwukrotnie na instalator paczkowy
-lub sieciowy, by zacząć instalację.</p>
-
-<p><img src="img/bundle01.png" alt="Kliknij, by uruchomić Instalator paczki" /> &nbsp;
-<img src="img/netinst01.png" alt="Kliknij, by uruchomić Instalator sieciowy" /></p>
-
-<p>Paczka instaluje każdą z aplikacji z Tor VM, jak Vidalia i Torbutton.</p>
+<p>Kliknij dwukrotnie na plik EXE instalatora paczki lub sieciowego, by zacząć instalację
+na bieżącym systemie.</p>
 
 <p><img src="img/bundle02.png" alt="Kliknij, by uruchomić Instalator paczki" /></p>
 
@@ -145,171 +61,86 @@ używane do wiarygodnego pobrania na żądanie wszystkich najnowszych instalator
 
 <p><img src="img/netinst02.png" alt="Instalator sieciowy pobiera paczki z oprogramowaniem na żądanie" /></p>
 
+
 <hr />
 <a id="Run"></a>
-<h2><a class="anchor" href="#Run">Krok 4: Uruchomienie Tor VM</a></h2>
+<h2><a class="anchor" href="#Run">Krok 3: Uruchomienie Tor VM</a></h2>
 
-<p>Po instalacji kontroler Tor VM jest uruchamiany w tle. Program instalacyjny zakończył
+<p>Po zakończeniu instalacji, w tle uruchamiany jest kontroler Tor VM. Program instalacyjny zakończył
 pracę i może zostać zamknięty.</p>
 
 <p><img src="img/run01.png" alt="Kontroler Tor VM uruchomi się pod koniec instalacji" /></p>
 
 <p>Po przygotowaniu urządzeń sieciowych uruchamiana jest maszyna wirtualna Qemu z
-jądrem Tor VM. Ukaże się ekran statusu pokazujący szczegółowy postęp uruchamiania
-programu Tor w sieci.</p>
+jądrem Tor VM z kontrolerem Vidalia. Uruchamianie programu Tor w sieci może zająć kilka minut.
+Prosimy o cierpliwość.</p>
 
-<p><img src="img/run02.png" alt="Uruchomione Qemu z jądrem Tor VM" /></p>
+<p><img src="img/run02.png" alt="Uruchamianie nie zakończone do chwili stworzenia obwodu" /></p>
 
-<p>Uruchamianie jest zakończone w 100%, gdy Tor jest w stanie stworzyć obwód przez sieć.</p>
-
-<p><img src="img/run03.png" alt="Uruchamianie nie zakończone do chwili stworzenia obwodu" /></p>
-
-<p>Jeśli masz paczkę Tor VM, Vidalia wyświetli też bieżący postęp podczas uruchamiania
-programu Tor w sieci.</p>
-
-<p><img src="img/vidalia-bootstrap.png" alt="Vidalia pokaże też status uruchamiania" /></p>
-
-<p>Po pomyślnym starcie pokazane są listy z liczbą przezroczystych połączeń proxy. Oznacza
-to, że Tor VM działa i jest gotowe przeźroczyście kierować ruchem przez sieć Tor. Port socks
-jest też dostępny dla hosta do korzystania z proxy Polipo lub Privoxy.</p>
-
-<p><img src="img/run04.png" alt="Liczba połączeń proxy pokazuje status Tor VM" /></p>
-
-<!-- no marble for first release
-<p>Przy pierwszym uruchomieniu Vidalii zostaną wygenerowane tytuły obrazków
-potrzebnych przy wtyczce Marble Map. Jeśli nie masz dość pamięci lub mocy procesora,
-by wygenerować te tytuły, możesz zainstalować pełną paczkę Vidalia Marble z już
-dołączonymi wygenerowanymi tytułami obrazków.</p>
-
-<p><img src="img/vidalia-genmap.png" alt="Generowanie tytułów obrazków Marble Map może chwilę potrwać" /></p>
-
-<p>Jeśli jakakolwiek z aplikacji z paczki przestanie działać, można zażądać naprawy,
-co może rozwiązać problem.</p>
--->
 
 <hr />
 <a id="RecommendedUse"></a>
-<h2><a class="anchor" href="#RecommendedUse">Krok 5: Używanie Firefoksa i Torbuttona</a></h2>
+<h2><a class="anchor" href="#RecommendedUse">Krok 4: Używanie Firefoksa i Torbuttona</a></h2>
 
-<p>Powinieneś/aś używać Firefoksa i innego oprogramowania internetowego jako użytkownik
-z ograniczonymi prawami. Przełącz się na ograniczone konto użytkownika skonfigurowane w
-<a class="anchor" href="#Setup">Kroku 2</a>.</p>
+<p>Gdy Torowi udało się stworzyć obwód, pokazuje się menu zmiany użytkownika. Firefox i
+inne splikacje korzystające z Tora muszą być uruchamiane z konta "Tor" o ograniczonych
+prawach.</p>
 
-<p>Naciśnij klawisz Windows + L, by przełączyć użytkowników, lub wybierz opcję "Wyloguj"
-w menu start, po czym "Przełącz użytkownika"</p>
+<p><img src="img/tor-user-switch.png" alt="Przełączanie na ograniczone konto użytkownika Tor" /></p>
 
-<p><img src="img/win-el.png" alt="Klawisz Windows + L, by przełączyć użytkowników" /></p>
+<p>Uruchom Firefoksa i kliknij ikonę statusu Torbuttona po prawej na dole, by włączyć Tora.</p>
 
-<p><img src="img/switch-user.png" alt="_ Lub Wyloguj, by przełączyć użytkowników" /></p>
-
-<p>Kliknij skrót "Instaluj Torbutton" ("Install Torbutton"), jeśli nie masz rozszerzenia Torbutton.</p>
-
-<p><img src="img/torbutton01.png" alt="Uruchom skrót Instaluj Torbutton" /></p>
-
-<p>Kontynuuj instalację mimo ostrzeżenia o instalacji z pliku lokalnego.</p>
-
-<p><img src="img/torbutton02.png" alt="Firefox ostrzeże o lokalnym rozszerzeniu, kontynuuj" /></p>
-
-<p>Musisz ponownie uruchomić Firefoksa, by korzystać z nowego rozszerzenia - TorButton.</p>
-
-<p><img src="img/torbutton03.png" alt="Uruchom ponownie Firefoksa, by włączyć nowe rozszerzenie" /></p>
-
-<p>Kliknij ikonę statusu Torbutton w prawym dolnym rogu, by włączyć korzystanie z Tora.</p>
-
-<p><img src="img/torbutton04.png" alt="Kliknij ikonę statusu Torbutton, by ustawić stan WŁĄCZONY" /></p>
-
-<p>Sprawdź, czy używasz Tora poprzez stronę
-<a href="https://check.torproject.org/">https://check.torproject.org/</a></p>
-
-<p><img src="img/torbutton05.png" alt="Sprawdź, czy używasz Tora na check.torproject.org" /></p>
 
 <hr />
 <a id="ExperimentalUse"></a>
 <h2><a class="anchor" href="#ExperimentalUse">Eksperymentalne: Używanie Flasha</a></h2>
 
-<p><strong>WAŻNE: Tor VM może chronić Twój adres IP w czasie korzystania z Flasha i
-innego oprogramowania, ale jeszcze nie chroni przed atakami zmniejszającymi Twoją
-anonimowość.</strong>NIE UŻYWAJ Tor VM w ten sposób, jeśli zależy Ci na niepowiązywalnej
-anonimowości; poczekaj, aż ten problem zostanie rozwiązany w przyszłych wersjach.
-</p>
+<p><strong>WAŻNE: To nie jest zalecane korzystanie z Tora.</strong></p>
 
-<p>Powinieneś/aś używać odtwarzacza Flash i innego oprogramowania internetowego jako
-użytkownik o ograniczonych prawach. Przełącz się na ograniczone konto użytkownika skonfigurowane w
-<a class="anchor" href="#Setup">Kroku 2</a>.</p>
+<p>Kliknij prawym klawiszem na ikonkę Torbuttona po prawej na dole, by włączyć menu. Wybierz
+"Preferencje..." ("Preferences...").</p>
 
-<p><img src="img/switch-user.png" alt="Przełącz się na ograniczone konto, by odtwarzać Flash" /></p>
+<p><img src="img/tbprefs.png" alt="Wybierz opcję menu Preferencje Torbuttona" /></p>
 
-<p>Po pierwsze upewnij się, że przezroczyste przekierowanie ruchu internetowego przez
-Tora działa prawidłowo. Tor VM dba o przekazywanie całego Twojego ruchu domyślnie, bez
-jakiegokolwiek konfigurowania aplikacji.</p>
+<p>Przełącz ustawienie dynamicznej zawartości "Wyłącz wtyczki..." ("Disable plugins...").</p>
 
-<p><img src="img/flash01.png" alt="Sprawdź, czy używasz Tora na check.torproject.org" /></p>
+<p><img src="img/tbcontent.png" alt="Ustawienie dynamicznej zawartości - przełącz wyłączenie wtyczek" /></p>
 
 <p>Połączenia dokonywane przez przeglądarkę i wtyczkę odtwarzacza Flash będą teraz
 przezroczyście przekierowywane przez sieć Tora w czasie oglądania zawartości.</p>
 
 <p><img src="img/flash02.png" alt="Odtwarzacz Flash i inne oprogramowanie teraz korzysta z Tora" /></p>
 
-<p>Liczniki przekierowań do przezroczystego proxy będą pokazywać połączenia przekierowane
-przez Tora w ten sposób. Ruch przesyłany przez Torbutton i Polipo jest widoczny jako
-połączenia SOCKS do instancji Tor VM.</p>
-
-<p><img src="img/transparent.png" alt="Ruch przez przezroczyste proxy może być oglądany razem
-z ruchem Torbutton i Polipo" /></p>
 
 <hr />
-<a id="Modify"></a>
-<h2><a class="anchor" href="#Modify">Zmień opcje instalacji Tor VM</a></h2>
+<a id="Shutdown"></a>
+<h2><a class="anchor" href="#Shutdown">Krok 5: Wyłączanie Tor VM</a></h2>
 
-<p>Po instalacji paczki możesz zmienić domyślne opcje instalacji poprzez opcję "Zmień" danej paczki.
-Na przykład, Tor VM jest skonfigurowane do uruchamiania się przy starcie systemu, co można
-wyłączyć przez zmianę instalacji.</p>
+<p>Naciśnij klawisz Windows + L, by przełączyć się z powrotem na administratora.</p>
 
-<p><img src="img/change01.png" alt="Opcja Zmień jest w Dodaj/Usuń Programy" /></p>
+<p><img src="img/win-el.png" alt="Klawisz Windows + L, by zmienić użytkownika" /></p>
 
-<p>Opcja Zmień uruchomi graficzny interfejs instalatora paczki.</p>
+<p><img src="img/admin-user-switchback.png" alt="Przełączenie z powrotem na konto administratora" /></p>
 
-<p><img src="img/change02.png" alt="Zmiany uruchomią graficzny interfejs instalatora" /></p>
+<p>Wybierz opcję "Exit" ("Wyjście") Vidalii, by zamknąć VM i przywrócić ustawienia sieciowe.
+Użytkownik Tor o ograniczonych prawach zostanie wylogowany automatycznie.</p>
 
-<p>Lista konfigurowalnych opcji instalacji może być teraz ustawiona wedle życzenia.
-Na przykład, wyłączenie "Uruchamiania przy starcie" ("Run at Startup"), jak pokazano tutaj.</p>
+<p><img src="img/exit-vidalia.png" alt="Wybierz opcję Wyjście Vidalii, by zamknąć VM" /></p>
 
-<p><img src="img/change03.png" alt="Zmień żądane opcje instalacji" /></p>
+<p>Nie zamykaj okna kontrolera Tor VM w czasie przywracania ustawień sieciowych.</p>
 
-<p>Wybierz "Dalej" ("Next") po wybraniu wszystkich zmian.</p>
+<p><img src="img/vm-shutdown.png" alt="Nie zamykaj okna Tor VM w czasie przywracania ustawień sieciowych" /></p>
 
-<p><img src="img/change04.png" alt="Wybierz Dalej po wybraniu zmian" /></p>
-
-<p>Wybierz "Zmień" ("Change"), by zapisać te zmiany w zainstalowanym oprogramowaniu.</p>
-
-<p><img src="img/change05.png" alt="Wybierz Zmień, by potwierdzić zmiany" /></p>
-
-<p>I w końcu "Zakończ" ("Finish"), by zamknąć interfejs graficzny instalatora. Żądane zmiany
-zostały teraz wprowadzone.</p>
-
-<p><img src="img/change06.png" alt="Wybierz Zakończ, by ukończyć zmiany" /></p>
 
 <hr />
 <a id="Remove"></a>
 <h2><a class="anchor" href="#Remove">Deinstalacja oprogramowania Tor</a></h2>
 
 <p>Na pulpicie umieszczony jest skrypt do odinstalowania wszystkiech aplikacji z
-paczki Tora. Uruchom go, by usunąć wszystkie paczki i pliki Tora.</p>
+paczki Tora. Uruchom go, by usunąć całe oprogramowanie i pliki Tora.</p>
 
 <p><img src="img/uninstall.png" alt="Skrypt Uninstall_Tor usunie wszystkie paczki i pliki Tora" /></p>
 
-<hr />
-<a id="Repair"></a>
-<h3><a class="anchor" href="#Repair">Naprawa zainstalowanych aplikacji</a></h3>
-
-<p>Jeśli zainstalowane pliki zostaną uszkodzone lub skasowane, możesz je naprawić
-za pomocą opcji wsparcia paczki aplikacji mającej problemy.</p>
-
-<p><img src="img/vidalia-support.png" alt="W Dodaj/usuń programy - Wybierz opcję wsparcia paczki" /></p>
-
-<p>Wybierz opcję naprawy, a wszystkie pliki paczki i wpisy w rejestrze zostaną przywrócone.</p>
-
-<p><img src="img/vidalia-repair.png" alt="Wybierz opcję naprawy" /></p>
 
 <hr />
 <a id="Debug"></a>
@@ -321,30 +152,8 @@ zarządzania defektami i funkcjonalnościami. Przejrzyj
 >system śledzenia błędów flyspray Tora</a>, by dowiedzieć się o znanych błędach i trwających
 zmianach.</p>
 
-<!-- localized installers and full Marble data bundle?
-<a id="Advanced"></a>
-<h2><a class="anchor" href="#Advanced">Experimental Packages and Usage</a></h2>
--->
-
-<hr />
-<a id="More"></a>
-<h2><a class="anchor" href="#More">Dodatkowe informacje</a></h2>
-
-<p>Najnowszy dokument projektowy Tor VM jest dostępny pod systemem kontroli wersji:
-<a href="https://svn.torproject.org/svn/torvm/trunk/doc/design.html"
->https://svn.torproject.org/svn/torvm/trunk/doc/design.html</a>.
-</p>
-
 <p>Funkcjonalności i planowane poprawki oprogramowania Tor VM są opisane w pliku
 <a href="https://svn.torproject.org/svn/torvm/trunk/TODO">Tor VM TODO</a>.</p>
-
-<p><a href="https://data.peertech.org/torbld/info/Tor_VM-svn">Automatycznie budowane paczki
-są dostępne</a> celem weryfikacji poprawek w systemie subversion i testowania trwających prac.</p>
-
-<p>Buduj oprogramowanie korzystając ze znanego działającego znacznika w repozytorium torvm.
-Na przykład,<br />
-svn export https://svn.torproject.org/svn/torvm/tags/torvm-0_0_1 torvm-0.0.1-src
-</p>
 
 </div><!-- #main -->
 
