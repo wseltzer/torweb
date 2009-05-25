@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 18524
+# Based-On-Revision: 19475
 # Last-Translator: jan at seul .org
 
 #include "head.wmi" TITLE="Tor: gestire un mirror" CHARSET="UTF-8"
@@ -9,7 +9,12 @@
 <h2>Tor: gestire un mirror</h2>
 <hr />
 
-<p>Tutti i nostri mirror sono pubblici e snono elencati sulla <a href="<page mirrors>">pagina dei mirror</a>.</p>
+<p>Se vuoi essere un mirror del sito web Tor ti ringraziamo. Tutti i
+nostri mirror sono elencati in pubblico nella <a href="<page mirrors>">pagina dei nostri mirror
+</a>.  Qui trovi alcuni comandi e configurazione d'esempio per
+facilitare la creazione e l'aggiornamento continuo di un mirror.
+Il sito web Tor e la directory di distribuzione al momento richiedono 15GB di
+spazio sul disco. la directory /dist da sola &egrave; di is 3.6 GB.</p>
 
 <p>
 Se vuoi realizzare un mirror &egrave; molto semplice: usa questo comando per scaricare
@@ -20,6 +25,13 @@ rsync -av --delete rsync://rsync.torproject.org/tor tor-mirror/
 </tt>
 <br /><br />
 <p>
+Se hai intenzione di creare solo un dist/ mirror, usa questo comando per scaricare
+tutto ci&ograve; che un dist/mirror ha bisogno di replicare:
+<br /> <br />
+<tt>
+rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
+</tt>
+<br/> <br/>
 Ad esempio, un cronjob per aggiornare un intero mirror una volta al giorno &egrave; qualcosa come:
 <tt>
 <pre>
@@ -49,13 +61,6 @@ un virtual host da usare:
 </pre>
 </tt>
 <br /> <br />
-Se hai intenzione di gestire un dist/ mirror, usa questo comando per scaricare
-tutto ci&ograve; che un dist/mirror ha bisogno di replicare:
-<br /> <br />
-<tt>
-rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
-</tt>
-<br/> <br/>
 Per favore mantieni aggiornato il mirror (ti suggeriamo di automatizzare questo
 compito con '<tt>cron</tt>' e simili). Il nostro sito web, il codice sorgente e le
 release binarie cambiano spesso. Gi utilizzatori di Tor te ne saranno grati.
