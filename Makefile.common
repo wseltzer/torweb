@@ -1,10 +1,20 @@
+# Directions for adding a new language:
+# 1. Add the two-letter code to LANGS below.
+# 2. Add a new "%.html.es: es/%.wml en/%.wml" clause below.
+# 3. Add a new ".deps/%.html.es.d: es/%.wml .deps/.stamp" clause below.
+# 4. mkdir a new two-letter directory. Make sure there's a foot.wmi
+#    and navigation.wmi.
+# 5. Edit include/perl-globals.wmi, add to @LANGUAGES and %LANGUAGES.
+#    You might find useful %LANGUAGES strings at the bottom of
+#    http://debian.org/
+# 6. Add a new images/es.png flag image.
+
 WMLOPT  = \
           -I $(WMLBASE)/include \
           -D DOCROOT=$(WMLBASE) \
           -D IMGROOT=$(WMLBASE)/images \
           -D TORSVNSTABLE=$(TORSVNSTABLE) \
           -D TORSVNHEAD=$(TORSVNHEAD)
-
 
 LANGS=de en es it fi fr ja ko nl no pl pt ru se tr zh-cn fa
 
