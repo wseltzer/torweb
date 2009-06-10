@@ -24,8 +24,13 @@ sub do_status(\%$$) {
 
 	my @warnings;
 	for my $lang (@LANGUAGES) {
-		opendir(DIR, "$dir/$lang") or
+		my $dir_opened = opendir(DIR, "$dir/$lang");
+
+		if (! $dir_opened) {
 			$may_miss_dir or die ("Cannot opendir $dir/$lang: $!\n");
+			next;
+		}
+
 		my @files = grep { $_ ne '.' && $_ ne '..' &&
 			$_ !~ /tor-manual/i && $_ !~ /translation-status/i && $_ =~ m/^[^.]/ && -f "$dir/$lang/$_"} readdir(DIR);
 		closedir DIR;
