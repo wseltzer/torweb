@@ -816,6 +816,26 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
+        },
+
+	mirror042 => {
+            adminContact => "",
+            orgName => "ax",
+            isoCC => "DE",
+            subRegion => "",
+            region => "DE",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.initrd.net/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
         }
 );
 
