@@ -799,7 +799,7 @@ my %m = (
         },
 
 	mirror041 => {
-            adminContact => "",
+            adminContact => "scream AT nonvocalscream DOT com",
             orgName => "NVS",
             isoCC => "US",
             subRegion => "",
