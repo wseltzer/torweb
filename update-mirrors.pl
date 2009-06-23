@@ -499,7 +499,7 @@ my %m = (
         },
 
         mirror026 => {
-            adminContact => "tormaster.xpdm.us",
+            adminContact => "tormaster AT xpdm DOT us",
             orgName => "Xpdm",
             isoCC => "US",
             subRegion => "",
