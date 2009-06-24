@@ -719,8 +719,7 @@ ernation
 feature</a>.
 </li>
 <li>Each Tor relay has an <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">ex
-it
+href="#RunARelayBut">exit
 policy</a> that specifies what sort of outbound connections are allowed
 or refused from that relay. If you are uncomfortable allowing people
 to exit from your relay, you can set it up to only allow connections
@@ -759,10 +758,12 @@ Great. That's exactly why we implemented exit policies.
 
 <p>
 Each Tor relay has an exit policy that specifies what sort of outbound
-connections he will allow from his relay, and what sort he will
-refuse. The exit policies are propagated to the client in the directory,
-so clients will avoid picking exit nodes that would refuse to exit to
-their intended destination.
+connections are allowed or refused from that relay. The exit policies are
+propagated to the client via the directory, so clients will automatically
+avoid picking exit relays that would refuse to exit to their intended
+destination. This way each relay can decide the services, hosts, and
+networks he wants to allow connections to, based on abuse potential and
+his own situation.
 </p>
 
 <p>
