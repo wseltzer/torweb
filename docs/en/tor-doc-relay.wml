@@ -118,10 +118,13 @@ and make sure it's owned by the user that will be running tor. -->
 
 </ul></li>
 
-<li> If you are using a firewall, open a hole in your firewall so
-incoming connections can reach the ports you configured (ORPort, plus
-DirPort if you enabled it). Make sure you allow all outgoing connections,
-so your relay can reach the other Tor relays.
+<li>If you are using a firewall, open a hole in your firewall
+so incoming connections can reach the ports you configured
+(ORPort, plus DirPort if you enabled it). If you have a
+hardware firewall (Linksys box, cablemodem, etc) you might like <a
+href="http://portforward.com/">portforward.com</a>. Also, make sure you
+allow all <em>outgoing</em> connections, so your relay can reach the
+other Tor relays.
 </li>
 
 <li>Restart your relay. If it <a
@@ -133,18 +136,10 @@ any warnings</a>, address them.
 href="http://archives.seul.org/or/announce/">or-announce</a>
 mailing list. It is very low volume, and it will keep you informed
 of new stable releases. You might also consider subscribing to <a
-href="http://archives.seul.org/or/talk/">or-talk</a> (higher volume),
-where new development releases are announced.
+href="<page documentation>#MailingLists">the higher-volume Tor lists</a>
+too.
 </li>
 
-<li>
-Have a look at the manual.
-The <a href="<page tor-manual>">manual</a> for the
-latest stable version provides a list of all the possible configuration
-options for both clients and relays.
-If you are running the development version of Tor, the manual is available
-<a href="<page tor-manual-dev>">here</a>.
-</li>
 </ol>
 
 <hr />
@@ -154,7 +149,8 @@ If you are running the development version of Tor, the manual is available
 
 <p>As soon as your relay manages to connect to the network, it will
 try to determine whether the ports you configured are reachable from
-the outside. This may take up to 20 minutes. Look for a
+the outside. This step is usually fast, but may take up to 20
+minutes. Look for a
 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">log
 entry</a> like
 <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
@@ -164,7 +160,7 @@ testing the IP and port you think it should be testing, etc.
 </p>
 
 <p>When it decides that it's reachable, it will upload a "server
-descriptor" to the directories. This will let clients know
+descriptor" to the directories, to let clients know
 what address, ports, keys, etc your relay is using. You can <a
 href="http://moria.seul.org:9032/tor/status/authority">load one of
 the network statuses manually</a> and
@@ -182,19 +178,19 @@ We recommend the following steps as well:
 </p>
 
 <p>
-8. Read
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">this document</a>
+6. Read
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">about operational security</a>
 to get ideas how you can increase the security of your relay.
 </p>
 
 <p>
-9. If you want to run more than one relay that's great, but please set <a
+7. If you want to run more than one relay that's great, but please set <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">the
 MyFamily option</a> in all your relays' configuration files.
 </p>
 
 <p>
-10. Decide about rate limiting. Cable modem, DSL, and other users
+8. Decide about rate limiting. Cable modem, DSL, and other users
 who have asymmetric bandwidth (e.g. more down than up) should
 rate limit to their slower bandwidth, to avoid congestion. See the <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
@@ -202,7 +198,7 @@ limiting FAQ entry</a> for details.
 </p>
 
 <p>
-11. Back up your Tor relay's private key (stored in "keys/secret_id_key"
+9. Back up your Tor relay's private key (stored in "keys/secret_id_key"
 in your DataDirectory). This is your relay's "identity," and
 you need to keep it safe so nobody can read the traffic that goes
 through your relay. This is the critical file to keep if you need to <a
@@ -212,7 +208,7 @@ or restore your Tor relay</a> if something goes wrong.
 
 <p>
 
-12. If you control the name servers for your domain, consider setting your
+10. If you control the name servers for your domain, consider setting your
 reverse DNS hostname to 'anonymous-relay', 'proxy' or 'tor-proxy', so when
 other people see the address in their web logs, they will more quickly
 understand what's going on. Adding the <a
@@ -223,7 +219,7 @@ complaints to you and your ISP if you are running an exit node.
 </p>
 
 <p>
-13. If your computer isn't running a webserver, please consider
+11. If your computer isn't running a webserver, please consider
 changing your ORPort to 443 and your DirPort to 80. Many Tor
 users are stuck behind firewalls that only let them browse the
 web, and this change will let them reach your Tor relay. Win32
@@ -238,7 +234,7 @@ ports are 22, 110, and 143.
 </p>
 
 <p>
-14. If your Tor relay provides other services on the same IP address
+12. If your Tor relay provides other services on the same IP address
 &mdash; such as a public webserver &mdash; make sure that connections to the
 webserver are allowed from the local host too. You need to allow these
 connections because Tor clients will detect that your Tor relay is the <a
@@ -249,7 +245,7 @@ explicitly reject them in your exit policy.
 </p>
 
 <p>
-15. (Unix only). Make a separate user to run the relay. If you
+13. (Unix only). Make a separate user to run the relay. If you
 installed the OS X package or the deb or the rpm, this is already
 done. Otherwise, you can do it by hand. (The Tor relay doesn't need to
 be run as root, so it's good practice to not run it as root. Running
@@ -260,7 +256,7 @@ into a chroot jail</a>.)
 </p>
 
 <p>
-16. (Unix only.) Your operating system probably limits the number
+14. (Unix only.) Your operating system probably limits the number
 of open file descriptors per process to 1024 (or even less). If you
 plan to be running a fast exit node, this is probably not enough. On
 Linux, you should add a line like "toruser hard nofile 8192" to your
@@ -270,7 +266,7 @@ out and log back in if you run it yourself).
 </p>
 
 <p>
-17. If you installed Tor via some package or installer, it probably starts
+15. If you installed Tor via some package or installer, it probably starts
 Tor for you automatically on boot. But if you installed from source,
 you may find the initscripts in contrib/tor.sh or contrib/torctl useful.
 </p>
