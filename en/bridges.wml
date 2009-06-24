@@ -137,9 +137,12 @@ href="#UsingBridges">above</a>.
 <hr />
 
 <p>
-If you're a server operator, it's possible that you'd like to run a bridge 
-node. Below is a minimal <tt>torrc</tt> configuration that allows for bridged 
-entry into the Tor network:
+If you want to help out and you can't run a <a href="<page
+docs/tor-doc-relay>">normal Tor relay</a>, you should
+run a bridge relay. You can configure it <a href="<page
+docs/tor-doc-relay>">using Vidalia</a>, or you can manually <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">edit
+your torrc file</a> to be just these four lines:
 </p>
 
 <pre><code>
@@ -151,29 +154,27 @@ Exitpolicy reject *:*
 </pre>
 
 <p>
-(If you don't know how to edit your <tt>torrc</tt> file, see
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">this
-FAQ entry</a>.)
-</p>
-
-<p>
 When configured as a bridge, your server will <b>not</b> appear in the public
 Tor network.
 </p>
 
 <p>
-If you wish to tell a user to use your bridge, simply give them the IP
-address of the Tor node, the TCP port as configured by <tt>ORPort</tt> and the
-fingerprint of the server. The fingerprint should be in your Tor log files or
-in <tt>/var/lib/tor/fingerprint</tt> depending on your platform.
+Your bridge relay will automatically publish its address to the bridge
+authority, which will give it out via https or email as above. You can
+also tell a user about your bridge directly: if you're using Vidalia,
+you can copy-and-paste the bridge address from the Settings window. If
+you're on Linux or BSD, you can construct the bridge address manually
+using the <a href="#Understanding">format above</a> (you can find the
+fingerprint in your Tor log files or in <tt>/var/lib/tor/fingerprint</tt>
+depending on your platform).
 </p>
 
 <p>
-If you would like to learn more about Bridges from a technical standpoint,
-please read the <a
-href="<svnsandbox>doc/spec/bridges-spec.txt">Tor
-bridges specification</a>. If you're interested in running a private bridge or
-other specific uses, please do read the specification.
+If you would like to learn more about our bridge
+design from a technical standpoint, please read the <a
+href="<svnsandbox>doc/spec/bridges-spec.txt">Tor bridges
+specification</a>. If you're interested in running an unpublished bridge
+or other non-standard uses, please do read the specification.
 </p>
 
   </div><!-- #main -->
