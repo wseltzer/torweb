@@ -92,7 +92,7 @@ my %m = (
         },
 
        mirror001 => {
-            adminContact => "webmaster.depthstrike.com",
+            adminContact => "webmaster AT depthstrike DOT com",
             orgName => "Depthstrike",
             isoCC => "CA",
             subRegion => "NS",
@@ -109,7 +109,7 @@ my %m = (
         },
 
        mirror002 => {
-            adminContact => "operator.hermetix.org",
+            adminContact => "operator AT hermetix DOT org",
             orgName => "Hermetix",
             isoCC => "CA",
             subRegion => "QC",
@@ -142,7 +142,7 @@ my %m = (
         },
 
        mirror004 => {
-            adminContact => "peihanru.gmail.com",
+            adminContact => "peihanru AT gmail DOT com",
             orgName => "Anonymity",
             isoCC => "CN",
             subRegion => "",
@@ -159,7 +159,7 @@ my %m = (
         },
 
        mirror005 => {
-            adminContact => "citizen428.gmail.com",
+            adminContact => "citizen428 AT gmail DOT com",
             orgName => "Bbs",
             isoCC => "DE",
             subRegion => "",
@@ -192,7 +192,7 @@ my %m = (
         },
 
        mirror007 => {
-            adminContact => "cm.cybermirror.org",
+            adminContact => "cm AT cybermirror DOT org",
             orgName => "Cybermirror",
             isoCC => "DE",
             subRegion => "",
@@ -209,7 +209,7 @@ my %m = (
         },
 
        mirror008 => {
-            adminContact => "contact.algorithmus.com",
+            adminContact => "contact AT algorithmus DOT com",
             orgName => "Spline",
             isoCC => "DE",
             subRegion => "FU",
@@ -226,7 +226,7 @@ my %m = (
         },
 
        mirror009 => {
-            adminContact => "beaver.trash.net",
+            adminContact => "beaver AT trash DOT net",
             orgName => "Onionland",
             isoCC => "DE",
             subRegion => "",
@@ -243,7 +243,7 @@ my %m = (
         },
 
        mirror011 => {
-            adminContact => "info.zentrum-der-gesundheit.de",
+            adminContact => "info AT zentrum-der-gesundheit DOT de",
             orgName => "Zentrum der Gesundheit",
             isoCC => "DK",
             subRegion => "",
@@ -260,7 +260,7 @@ my %m = (
         },
 
        mirror012 => {
-            adminContact => "kurt.miroir-francais.fr",
+            adminContact => "kurt AT miroir-francais DOT fr",
             orgName => "CRAN",
             isoCC => "FR",
             subRegion => "Ile de France",
@@ -277,7 +277,7 @@ my %m = (
         },
 
        mirror013 => {
-            adminContact => "root.amorphis.eu",
+            adminContact => "root AT amorphis DOT eu",
             orgName => "Amorphis",
             isoCC => "NL",
             subRegion => "",
@@ -294,7 +294,7 @@ my %m = (
         },
 
        mirror014 => {
-            adminContact => "mirror.bit.nl",
+            adminContact => "mirror AT bit DOT nl",
             orgName => "BIT BV",
             isoCC => "NL",
             subRegion => "",
@@ -311,7 +311,7 @@ my %m = (
         },
 
        mirror015 => {
-            adminContact => "webmaster.ccc.de",
+            adminContact => "webmaster AT ccc DOT de",
             orgName => "CCC",
             isoCC => "NL",
             subRegion => "",
@@ -328,7 +328,7 @@ my %m = (
         },
 
        mirror016 => {
-            adminContact => "root.kamagurka.org",
+            adminContact => "root AT kamagurka DOT org",
             orgName => "Kamagurka",
             isoCC => "NL",
             subRegion => "Haarlem",
@@ -345,7 +345,7 @@ my %m = (
         },
 
        mirror017 => {
-            adminContact => "mirrors.osmirror.nl",
+            adminContact => "mirrorsosmirror.nl",
             orgName => "OS Mirror",
             isoCC => "NL",
             subRegion => "",
@@ -363,7 +363,7 @@ my %m = (
 
 
        mirror018 => {
-            adminContact => "evert.meulie.net",
+            adminContact => "evert AT meulie DOT net",
             orgName => "Meulie",
             isoCC => "NO",
             subRegion => "",
@@ -380,7 +380,7 @@ my %m = (
         },
 
        mirror019 => {
-            adminContact => "ghirai.ghirai.com",
+            adminContact => "ghirai AT ghirai DOT com",
             orgName => "Ghirai",
             isoCC => "UK",
             subRegion => "London",
@@ -397,7 +397,7 @@ my %m = (
         },
 
        mirror020 => {
-	    adminContact => "bjw.bjwonline.com",
+	    adminContact => "bjw AT bjwonline DOT com",
             orgName => "BJWOnline",
             isoCC => "US",
             subRegion => "California",
@@ -414,7 +414,7 @@ my %m = (
         },
 
        mirror021 => {
-	    adminContact => "hostmaster.zombiewerks.com",
+	    adminContact => "hostmaster AT zombiewerks DOT com",
             orgName => "TheOnionRouter",
             isoCC => "US",
             subRegion => "New Jersey",
@@ -431,7 +431,7 @@ my %m = (
         },
 
        mirror022 => {
-            adminContact => "jeroen.unfix.org",
+            adminContact => "jeroen AT unfix DOT org",
             orgName => "Unfix",
             isoCC => "CH",
             subRegion => "",
@@ -448,7 +448,7 @@ my %m = (
         },
 
        mirror023 => {
-            adminContact => "jeroen.unfix.org",
+            adminContact => "jeroen AT unfix DOT org",
             orgName => "Sixx",
             isoCC => "CH",
             subRegion => "",
@@ -482,7 +482,7 @@ my %m = (
         },
 
        mirror025 => {
-            adminContact => "web2005a.year2005a.wiretapped.net",
+            adminContact => "web2005a AT year2005a.wiretapped DOT net",
             orgName => "Wiretapped",
             isoCC => "AU",
             subRegion => "Sydney",
@@ -519,7 +519,7 @@ my %m = (
         },
 
         mirror027 => {
-            adminContact => "internetfreebeijing\@gmail.com",
+            adminContact => "internetfreebeijing AT gmail DOT com",
             orgName => "Unknown",
             isoCC => "CN",
             subRegion => "China",
@@ -539,7 +539,7 @@ my %m = (
         },
 
         mirror028 => {
-            adminContact => "security\@hostoffice.hu",
+            adminContact => "security AT hostoffice DOT hu",
             orgName => "Unknown",
             isoCC => "HU",
             subRegion => "Hungary",
