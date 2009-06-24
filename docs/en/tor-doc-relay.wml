@@ -40,42 +40,10 @@ may also get stronger anonymity yourself</a>,
 since remote sites can't know whether connections originated at your
 computer or were relayed from others.</p>
 
-<p>Setting up a Tor relay is easy and convenient:
-<ul>
-<li>Tor has built-in support for <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
-limiting</a>. Further, if you have a fast link
-but want to limit the number of bytes per day
-(or week or month) that you donate, check out the <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
-feature</a>.
-</li>
-<li>Each Tor relay has an <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">exit
-policy</a> that specifies what sort of outbound connections are allowed
-or refused from that relay. If you are uncomfortable allowing people
-to exit from your relay, you can set it up to only allow connections
-to other Tor relays.
-</li>
-<li>It's fine if the relay goes offline sometimes. The directories
-notice this quickly and stop advertising the relay. Just try to make
-sure it's not too often, since connections using the relay when it
-disconnects will break.
-</li>
-<li>We can handle relays with dynamic IPs just fine &mdash; simply
-leave the Address config option blank, and Tor will try to guess.
-</li>
-<li>If your relay is behind a NAT and it doesn't know its public
-IP (e.g. it has an IP of 192.168.x.y), you'll need to set up port
-forwarding. Forwarding TCP connections is system dependent but <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">this
-FAQ entry</a> offers some examples on how to do this.
-</li>
-<li>Your relay will passively estimate and advertise its recent
-bandwidth capacity, so high-bandwidth relays will attract more users than
-low-bandwidth ones. Therefore having low-bandwidth relays is useful too.
-</li>
-</ul>
+<p>Setting up a Tor relay is easy and convenient: <a href="<page
+faq>#RelayFlexible">Tor supports rate limiting, will guess its own IP
+address, doesn't need to run 24/7, etc.</a>
+</p>
 
 <p>You can run a Tor relay on
 pretty much any operating system, but see <a
