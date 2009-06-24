@@ -49,6 +49,8 @@ have a virus or spyware?</a></li>
 <p>Running a Tor relay:</p>
 <ul>
 <li><a href="#RelayFlexible">How stable does my relay need to be?</a></li>
+<li><a href="#RunARelayBut">I'd run a relay, but I don't want to deal
+with abuse issues.</a></li>
 <li><a href="#WhyNotNamed">Why is my Tor relay not named?</a></li>
 </ul>
 
@@ -728,6 +730,47 @@ bandwidth capacity, so high-bandwidth relays will attract more users than
 low-bandwidth ones. Therefore having low-bandwidth relays is useful too.
 </li>
 </ul>
+
+<hr />
+
+<a id="RunARelayBut"></a>
+<h3><a class="anchor" href="#RunARelayBut">I'd run a relay, but I don't
+want to deal with abuse issues.</a></h3>
+
+<p>
+Great. That's exactly why we implemented exit policies.
+</p>
+
+<p>
+Each Tor relay has an exit policy that specifies what sort of outbound
+connections he will allow from his relay, and what sort he will
+refuse. The exit policies are propagated to the client in the directory,
+so clients will avoid picking exit nodes that would refuse to exit to
+their intended destination.
+</p>
+
+<p>
+By default, your relay allows access to many popular
+services, but restricts some (such as port 25, see all <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#DefaultPorts">default
+restricted ports</a>)  due to abuse potential. You can edit your torrc
+to make your exit policy more or less restrictive. If you want to avoid
+most if not all abuse potential, set it to "reject *:*". This setting
+forces a "non-exit" operation. Nobody exits through your  node, only
+direct connections to other nodes will be established.
+</p>
+
+<p>
+One good way to minimize abuse complaints in general
+for exit nodes is to set the reverse DNS of your Tor
+exit IP to be something like 'tor-exit.yourhost.org'
+or 'tor-readme.yourhost.org'. You can then  place <a
+href="https://tor-svn.freehaven.net/svn/tor/trunk/contrib/tor-exit-notice.html">this
+exit notice</a> html page (<a href="http://tor-exit.fscked.org">live
+version</a>) on a  vhost for that hostname to try to educate people
+before they run off and  harass you or your ISP. This actually does cut
+down on abuse complaints quite a bit, believe it or not.
+</p>
 
 <hr />
 
