@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19780
+# Based-On-Revision: 19816
 # Translation-Priority: 1-high
 # Last-Translator: bogdandr_at_op . pl
 
@@ -132,9 +132,12 @@ Vidalię według <a href="#UsingBridges">powyższych</a> kroków.
 <hr />
 
 <p>
-Jeśli jesteś operatorem serwera, to może chcesz też prowadzić węzeł mostkowy.
-Poniżej jest minimalna konfiguracja <tt>torrc</tt>, która pozwala na wpisanie mostka
-do sieci Tora:
+Jeśli chcesz pomóc, a nie możesz prowadzić <a href="<page
+ docs/tor-doc-relay>">normalnego przekaźnika Tora</a>, powinieneś/aś prowadzić
+ przekaźnik mostkowy. Możesz skonfigurować go <a href="<page
+  docs/tor-doc-relay>">za pomocą programu Vidalia</a>, możesz też ręcznie <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">edytować
+swój plik torrc</a>, by składał się tylko z tych czterech linii:
 </p>
 
 <pre><code>
@@ -146,29 +149,25 @@ Exitpolicy reject *:*
 </pre>
 
 <p>
-(Jeśli nie wiesz, jak edytować swój plik <tt>torrc</tt>, przeczytaj
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">ten
-wpis w FAQ</a>.)
-</p>
-
-<p>
 Gdy skonfigurowany jako mostek, Twój serwer <b>nie</b> będzie widoczny w publicznej
 sieci Tora.
 </p>
 
 <p>
-Jeśli chcesz, by użytkownicy korzystali z Twojego mostka, po prostu daj im adres
-IP węzła, port TCP skonfigurowany w <tt>ORPort</tt> i odcisk palca serwera.
-Odcisk palca powinien znajdować się w Twoich logach lub w <tt>/var/lib/tor/fingerprint</tt>,
-w zależności od systemu.
+Twój przekaźnik mostkowy automatycznie opublikuje swój adres do katalogu mostków,
+który będzie go podawał przez https lub e-mail, jak powyżej. Możesz też bezpośrednio
+powiedzieć użytkownikowi o swoim mostku: jeśli używasz Vidalii, możesz skopiować i
+wkleić adres mostku z okna ustawień. Jeśli jesteś na Linuksie lub BSD, możesz ręcznie
+skonstruować adres, korzystając z <a href="#Understanding">powyższego formatu</a>
+(odcisk palca możesz znaleźć w logach Tora lub w <tt>/var/lib/tor/fingerprint</tt>,
+w zależności od Twojej platformy).
 </p>
 
 <p>
-Jeśli chcesz się dowiedzieć więcej o mostkach z technicznego punktu widzenia,
-przeczytaj <a
-href="<svnsandbox>doc/spec/bridges-spec.txt">specyfikację
-mostków Tora</a>. Jeśli chcesz prowadzić prywatny mostek lub masz jakieś inne
-specyficzne zastosowania, przeczytaj specyfikację.
+Jeśli chcesz się dowiedzieć więcej o projekcie mostka z technicznego punktu widzenia,
+przeczytaj <a href="<svnsandbox>doc/spec/bridges-spec.txt">specyfikację mostków Tora</a>.
+Jeśli interesuje Cię prowadzenie niepublicznego mostka lub inne niestandardowe wykorzystania,
+prosimy przeczytać specyfikację.
 </p>
 
 

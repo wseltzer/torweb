@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19410
+# Based-On-Revision: 19819
 # Translation-Priority: 4-optional
 # Last-Translator: bogdandr_at_op . pl
 
@@ -47,6 +47,9 @@ mieć wirusa lub oprogramowanie szpiegujące?</a></li>
 
 <p>Uruchamianie przekaźnika sieci Tora:</p>
 <ul>
+<li><a href="#RelayFlexible">Jak stabilny musi być mój przekaźnik?</a></li>
+<li><a href="#ExitPolicies">Prowadziłbym/prowadziłabym przekaźnik, ale nie chcę
+mieć do czynienia z przypadkami nadużyć.</a></li>
 <li><a href="#WhyNotNamed">Czemu mój przekaźnik Tora nie ma nazwy?</a></li>
 </ul>
 
@@ -102,6 +105,8 @@ Projekt Tor jest organizacją non-profit (dobroczynną), która zajmuje się
 i rozwija oprogramowanie Tor.
 </p>
 
+<hr />
+
 <a id="Torisdifferent"></a>
 <h3><a class="anchor" href="#Torisdifferent">Czym różni się Tor od innych serwerów proxy?</a></h3>
 <p>
@@ -146,6 +151,7 @@ miejsca przeznaczenia.</dd>
 </dl>
 </p>
 
+<hr />
 
 <a id="CompatibleApplications"></a>
 <h3><a class="anchor" href="#CompatibleApplications">Jakich programów mogę
@@ -185,6 +191,8 @@ Prosimy o dodawanie wpisów do tej listy i pomaganie nam w utrzymaniu jej
 w zgodności ze stanem faktycznym!
 </p>
 
+<hr />
+
 <a id="WhyCalledTor"></a>
 <h3><a class="anchor" href="#WhyCalledTor">Czemu się to nazywa Tor?</a></h3>
 
@@ -209,6 +217,8 @@ pierwsza litera jest wielka. W zasadzie zauważamy kogoś, kto nie przeczytał n
 strony (i dowiedział się wszystkiego o Torze z artykułów), po tym, że źle
 literuje nazwę.
 </p>
+
+<hr />
 
 <a id="Backdoor"></a>
 <h3><a class="anchor" href="#Backdoor">Czy jest tylna furtka w Torze?</a></h3>
@@ -246,6 +256,8 @@ Ponadto, w Torze mogą znaleźć się przypadkowe błędy, które mogłyby wpły
 na Twoją anonimowość. Okresowo szukamy i usuwamy błędy związane z anonimowością,
 więc zawsze używaj najnowszej wersji Tora.
 </p>
+
+<hr />
 
 <a id="DistributingTor"></a>
 <h3><a class="anchor" href="#DistributingTor">Czy mogę rozprowadzać Tora na
@@ -297,6 +309,8 @@ ani nawet działać &mdash; już sześć miesięcy później. Tak jest z każdym
 dotyczącym bezpieczeństwa, które jest aktywnie rozwijane.
 </p>
 
+<hr />
+
 <a id="SupportMail"></a>
 <h3><a class="anchor" href="#SupportMail">Jak mogę dostać odpowiedź na mój
 list o Torze?</a></h3>
@@ -338,6 +352,8 @@ Tora.
 Jeśli znajdziesz swoją odpowiedź, zostań na kanale IRC lub liście mailingowej
 i odpowiadaj na pytania od innych.
 </p>
+
+<hr />
 
 <a id="WhySlow"></a>
 <h3><a class="anchor" href="#WhySlow">Czemu Tor jest taki powolny?</a></h3>
@@ -426,6 +442,8 @@ To się przydaje!
 </li>
 
 </ul>
+
+<hr />
 
 <a id="Funding"></a>
 <h3><a class="anchor" href="#Funding">Co Projekt Tor zrobiłby z większymi funduszami?</a></h3>
@@ -701,6 +719,93 @@ wersji systemu KNOPPIX. Zawiera prekonfigurowanego Tora i Privoxy. Można je pob
 
 <p>
 Proszę się z nami skontaktować, jeśli znacie jakieś inne.
+</p>
+
+<hr />
+
+<a id="RelayFlexible"></a>
+<h3><a class="anchor" href="#RelayFlexible">Jak stabilny musi być mój przekaźnik?</a></h3>
+
+<p>
+Naszym celem jest uczynienie uruchomienia przekaźnika Tora czynnością łatwą i wygodną:
+</p>
+
+<ul>
+<li>Tor ma wbudowaną obsługę <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">ograniczania
+przepustowości</a>. Ponadto, jeśli masz szybkie łącze, ale chcesz ograniczać liczbę bajtów na dzień
+(czy tydzień, czy miesiąc), które dajesz innym, sprawdź <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">możliwość
+hibernacji</a>.
+</li>
+<li>Każdy przekaźnik Tora ma <a href="#ExitPolicies">politykę wyjścia</a>, która określa,
+jakie rodzaje połączeń wychodzących są dozwolone lub zabronione z danego przekaźnika.
+Jeśli nie chcesz pozwalać ludziom na wychodzenie z Twojego przekaźnika, możesz skonfigurować
+go tak, by pozwalał na połączenia tylko do innych przekaźników Tora.
+</li>
+<li>Jeśli przekaźnik czasem będzie offline, to w porządku. Serwery katalogowe szybko to zauważają
+i przestają ogłaszać dany przekaźnik. Postaraj się jednak, by nie zdarzało się to zbyt często,
+gdyż przerwie to połączenia korzystające z przekaźnika w chwili jego rozłączenia.
+</li>
+<li>Dobrze radzimy sobie z przekaźnikami mającymi dynamiczne adresy IP &mdash; po prostu
+zostaw opcję konfiguracji adresu pustą, a Tor spróbuje zgadnąć.
+</li>
+<li>Jeśli Twój przekaźnik jest za NATem i nie zna swojego publicznego IP (np. ma adres
+IP postaci 192.168.x.y), musisz ustawić przekierowanie portów. Przekierowywanie
+połączeń TCP jest zależne od systemu, ale <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">ten
+wpis w FAQ</a> podaje kilka przykładów, jak to wykonać.
+</li>
+<li>Twój przekaźnik pasywnie oszacuje i ogłosi swoją ostatnią przepustowość łącza, by
+przekaźniki o szerszym łączu przyciągały więcej użytkowników, niż te o wąskim łączu.
+Zatem posiadanie przekaźnika z wolnym łączem też jest przydatne.
+</li>
+</ul>
+
+<hr />
+
+<a id="RunARelayBut"></a>
+<a id="ExitPolicies"></a>
+<h3><a class="anchor" href="#ExitPolicies">Prowadziłbym/prowadziłabym przekaźnik, ale nie chcę
+mieć do czynienia z przypadkami nadużyć.</a></h3>
+
+<p>
+Wspaniale. To właśnie po to zaimplementowaliśmy polityki wyjścia.
+</p>
+
+<p>
+Każdy przekaźnik Tora ma politykę wyjścia, która określa,
+jakie rodzaje połączeń wychodzących są dozwolone lub zabronione z danego przekaźnika.
+Polityki wyjścia są rozprowadzane do klientów poprzez katalog, więc klienci automatycznie
+unikną wybierania przekaźników, które odmówiłyby wyjścia do ich zamierzonych miejsc. W
+ten sposób każdy przekaźnik może decydować o usługach, hostach i sieciach, do których
+chce zezwalać na połączenia, w oparciu o możliwości nadużyć i własną sytuację. Przeczytaj
+wpis do FAQ o <a href="<page faq-abuse>#TypicalAbuses">sprawach, które można napotkać
+w razie używania domyślnej polityki wyjścia</a>, po czym przeczytaj <a
+href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">wskazówki
+prowadzenia węzła wyjściowego z minimalnym narażeniem</a> Mike'a Perry'ego.
+</p>
+
+<p>
+Domyślna polityka wyjścia pozwala na dostęp do wielu popularnych usług (np. przeglądania sieci),
+ale <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#DefaultPorts">ogranicza</a>
+niektóre ze względu na możliwości nadużyć (np. pocztę) i niektóre, w których sieć Tora nie mogłaby
+wytrzymać ilości danych (np. domyślne porty współdzielenia plików). Możesz zmienić swoją
+politykę wyjścia z karty "Sharing" ("Współdzielenie") w programie Vidaila lub poprzez ręczną
+edycję swojego pliku <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">torrc</a>. Jeśli chcesz
+uniknąć większości, jeśli nie całości, możliwości nadużyć, ustaw ją na "reject *:*". To ustawienie
+oznacza, że Twój przekaźnik będzie wykorzystywany do przekazywania ruchu wewnątrz sieci Tora,
+ale nie do połączeń do zewnętrznych stron lub innych usług.
+</p>
+
+<p>
+Upewnij się, że działa rozwiązywanie nazw (czyli Twój komputer jest w stanie poprawnie
+rozwiązywać adresy internetowe).
+Jeśli są jakieś zasoby, do których Twój komputer nie może dotrzeć (na przykład, jesteś za
+restrykcyjną zaporą ogniową lub filtrem zawartości), prosimy o jawne wykluczenie ich
+w Twojej polityce wyjścia &mdash; w innym przypadku miałoby to wpływ też na użytkowników
+Tora.
 </p>
 
 <hr />

@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19475
+# Based-On-Revision: 19814
 # Translation-Priority: 4-optional
 # Last-Translator: bogdandr_at_op . pl
 
@@ -38,7 +38,7 @@ Przykładowe zadanie crona do aktualizacji całego mirrora raz na tydzień może
 wyglądać następująco:</p>
 <pre>
 # m h  dom mon dow   command
-1 4 * * * rsync -av --delete rsync://rsync.torproject.org/tor /var/www/mirrors/torproject.org/
+1 4 * * * rsync -av --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
 </pre>
 <br/>
 Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy przykładowy
@@ -51,12 +51,12 @@ plik konfiguracji wirtualnego hosta:
 	DocumentRoot /var/www/mirrors/torproject.org
 
 	&lt;Directory /var/www/mirrors/torproject.org/&gt;
-		Options MultiViews
+		Options MultiViews Indexes
 		DirectoryIndex index
 		AllowOverride None
 	&lt;/Directory&gt;
 
-&lt;VirtualHost&gt;
+&lt;/VirtualHost&gt;
 </pre>
 <br/> <br/>
 
@@ -68,9 +68,10 @@ będą Ci wdzięczni.
 </p>
 
 <p>
-Jeśli prowadzisz mirror, proszę napisz wiadomość do
-<a href="<page contact>">tor-webmaster</a>
-a my dodamy Twój mirror do listy.
+Jeśli prowadzisz mirror, proszę zapisz się na
+<A href="http://archives.seul.org/tor/mirrors/">listę mailingową tor-mirrors</A> i
+przedstaw się tam. Dodamy Cię do listy mirrorów. Na liście można też znaleźć pomoc
+w sprawach wsparcia dla mirrorów i spraw związanych z konfiguracją.
 </p>
 
   </div><!-- #main -->
