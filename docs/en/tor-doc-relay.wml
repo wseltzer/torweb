@@ -73,45 +73,48 @@ while to make sure it's actually working.</p>
 <h2><a class="anchor" href="#setup">Step Two: Set it up as a relay</a></h2>
 <br />
 <ol>
-<li>Verify that your clock is set correctly. If possible, synchronize
-your clock with public <a href="http://en.wikipedia.org/wiki/Network_Time_Protocol">time servers</a>.
+<li>Verify that your clock and timezone are set
+correctly. If possible, synchronize your clock with public <a
+href="http://en.wikipedia.org/wiki/Network_Time_Protocol">time
+servers</a>.
 </li>
 
-<li>Make sure name resolution works (that is, your computer can resolve
-Internet addresses correctly).
-</li>
-<li>The easier step to configure a relay is to use Vidalia.  The more advanced step is to edit your torrc directly.
-
-<br />
-<strong>Easy Configuration</strong>:
+<li> <strong>Windows / OS X Configuration</strong>:
 <ol>
 <li>Right click on the Vidalia icon in your task bar.  Choose <tt>Control Panel</tt>.</li>
 <li>Click <tt>Setup Relaying</tt>.</li>
-<li>Choose <tt>Relay Traffic for the Tor network</tt>.</li>
+<li>Choose <tt>Relay Traffic for the Tor network</tt> if you want to be
+a public relay (recommended), or choose <tt>Help censored users reach the
+Tor network</tt> if you want to be a <a href="<page bridges>">bridge</a>
+for users in countries that censor their Internet.</li>
 <li>Enter a nickname for your relay. (Optional, enter contact information.)</li>
-<li>Choose <tt>Attempt to automatically configure port forwarding</tt>.
+<li>Leave <tt>Attempt to automatically configure port forwarding</tt> clicked.
 Push the <tt>Test</tt> button to see if it works.  If it does work, great.
 If not, see number 4 below.</li>
 <li>Choose the <tt>Bandwidth Limits</tt> tab.  Select how much bandwidth you want to provide for Tor users like yourself.</li>
 <li>Choose the <tt>Exit Policies</tt> tab.  If you want to allow others
 to use your relay for these services, don't change anything.  Un-check
-the services you don't want to allow through your relay.  If you want to
-be a non-exit relay, un-check all services.</li>
+the services you don't want to allow people to <a href="<page
+faq>#RunARelayBut">reach from your relay</a>.
+If you want to be a non-exit relay, un-check all services.</li>
 <li>Click the <tt>Ok</tt> button.  See Step Three below for confirmation
 that the relay is working correctly.</li>
 </ol>
 
 <br />
-<strong>Advanced Configuration</strong>:
+<strong>Linux / BSD Configuration</strong>:
 <ul>
-<li>Edit the bottom part of your torrc. (See <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">this
-FAQ entry</a> for help.)
-Make sure to define at least Nickname and ORPort. Create the DataDirectory
-if necessary, and make sure it's owned by the user that will be running
-tor. <em>If you want to run more than one relay that's great, but
-please set <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">the
-MyFamily option</a> in all your relays' configuration files.</em></li>
+<li>Edit the bottom part of <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">your
+torrc file</a>. Make sure to define ORPort and <a href="<page
+faq>#RunARelayBut">look at ExitPolicy</a>
+if you want to be a public relay (recommended), or just add
+<a href="<page bridges>#RunningABridge">these lines</a>
+if you want to be a <a href="<page bridges>">bridge</a>
+for users in countries that censor their Internet.
+<!-- If you installed from source, create the DataDirectory if necessary
+and make sure it's owned by the user that will be running tor. -->
+</li>
 
 </ul></li>
 
@@ -185,19 +188,9 @@ to get ideas how you can increase the security of your relay.
 </p>
 
 <p>
-9. Decide what exit policy you want. By default your relay allows
-access to many popular services, but restricts some (such as port 25)
-due to abuse potential. You might want an exit policy that is
-less restrictive or more restrictive; edit your torrc appropriately.
-Read the FAQ entry on <a
-href="<page faq-abuse>#TypicalAbuses">issues you might
-encounter if you use the default exit policy</a>.
-If you choose a particularly open exit policy, you should make
-sure your ISP is ok with that choice.
-If there are any resources that your computer can't reach (for example,
-you are behind a restrictive firewall or content filter), please
-explicitly reject them in your exit policy &mdash; otherwise Tor users
-will be impacted too.
+9. If you want to run more than one relay that's great, but please set <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">the
+MyFamily option</a> in all your relays' configuration files.
 </p>
 
 <p>
