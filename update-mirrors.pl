@@ -838,7 +838,7 @@ my %m = (
             updateDate => "Unknown",
         },
         mirror043 => {
-            adminContact => "BarkerJr",
+            adminContact => "BarkerJr AT barkerjr DOT net",
             orgName => "BarkerJr",
             isoCC => "FR",
             subRegion => "",
