@@ -762,7 +762,7 @@ Great. That's exactly why we implemented exit policies.
 <p>
 Each Tor relay has an exit policy that specifies what sort of
 outbound connections are allowed or refused from that relay. The exit
-policies are propagated to the client via the directory, so clients
+policies are propagated to Tor clients via the directory, so clients
 will automatically avoid picking exit relays that would refuse to
 exit to their intended destination. This way each relay can decide
 the services, hosts, and networks he wants to allow connections to,
@@ -783,14 +783,14 @@ file-sharing ports). You can change your exit policy
 using Vidalia's "Sharing" tab, or by manually editing your <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">torrc</a>
 file. If you want to avoid most if not all abuse potential, set it to
-"reject *:*". This setting means that your relay will be used for
-relaying traffic inside the Tor network, but not for connections to
-external websites or other services.
+"reject *:*" (or un-check all the boxes in Vidalia). This setting means
+that your relay will be used for relaying traffic inside the Tor network,
+but not for connections to external websites or other services.
 </p>
 
 <p>
-Make sure name resolution works (that is, your computer can resolve
-Internet addresses correctly).
+If you do allow any exit connections, make sure name resolution works
+(that is, your computer can resolve Internet addresses correctly).
 If there are any resources that your computer can't reach (for example,
 you are behind a restrictive firewall or content filter), please
 explicitly reject them in your exit policy &mdash; otherwise Tor users
@@ -804,7 +804,8 @@ will be impacted too.
 or bridge relay?</a></h3>
 
 <p><a href="<page bridges>">Bridge relays</a> (or "bridges" for short)
-are Tor relays that aren't listed in the main Tor directory. That means
+are <a href="<page docs/tor-doc-relay>">Tor relays</a> that aren't listed
+in the main Tor directory. That means
 that even an ISP or government trying to filter connections to the Tor
 network probably won't be able to block all the bridges.
 </p>
@@ -819,7 +820,7 @@ connections to the Tor network. So getting a lot of bridges running
 right now is mostly a backup measure, a) in case the Tor network does
 get blocked somewhere, and b) for people who want an extra layer of
 security because they're worried somebody will recognize that it's a
-Tor relay IP address they're contacting.
+public Tor relay IP address they're contacting.
 </p>
 
 <p>So should you run a normal relay or bridge relay? If you have
@@ -1010,7 +1011,7 @@ Please help on all of these!
 things?</a></h3>
 
 <p>
-For the answer to this question and others, please see our new <a
+For the answer to this question and others, please see our <a
 href="<page faq-abuse>">Tor Abuse FAQ</a>.
 </p>
 
