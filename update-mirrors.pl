@@ -855,6 +855,24 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
+        },       mirror044 => {
+            adminContact => "tor AT goodeid DOT com",
+            orgName => "goodeid.com",
+            isoCC => "CAN",
+            subRegion => "",
+            region => "CAN",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor-node.goodeid.com/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor-node.goodeid.com/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
         }
 );
 
