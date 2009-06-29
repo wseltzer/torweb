@@ -76,23 +76,7 @@ sub FetchDate {
 
 # This is the list of all known Tor mirrors
 # Add new mirrors to the bottom!
-my %m = (
-       mirror000 => {
-            adminContact => "or-assistants.local",
-            orgName => "Cypherpunks",
-            isoCC => "AT",
-            subRegion => "",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.cypherpunks.at/",
-            rsyncWebsiteMirror => "rsync://tor.cypherpunks.at/tor",
-            httpDistMirror => "http://tor.cypherpunks.at/dist/",
-            rsyncDistMirror => "rsync://tor.cypherpunks.at::tor/dist/",
-            updateDate => "Unknown",
-        },
-
+my %m = 
        mirror001 => {
             adminContact => "webmaster AT depthstrike DOT com",
             orgName => "Depthstrike",
