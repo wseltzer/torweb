@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19814
+# Based-On-Revision: 19861
 # Translation-Priority: 4-optional
 # Last-Translator: bogdandr_at_op . pl
 
@@ -34,11 +34,11 @@ rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
 </tt>
 <br/> <br/>
 <p>
-Przykładowe zadanie crona do aktualizacji całego mirrora raz na tydzień może
+Przykładowe zadanie crona do aktualizacji całego mirrora raz na 6 godzin może
 wyglądać następująco:</p>
 <pre>
 # m h  dom mon dow   command
-1 4 * * * rsync -av --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
+1 */6 * * * rsync -av --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
 </pre>
 <br/>
 Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy przykładowy
