@@ -206,32 +206,31 @@ href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> extension.
 </li>
 
 <li>
-Browser plugins such as Java, Flash, ActiveX, RealPlayer,
-Quicktime, Adobe's PDF plugin, and others can be manipulated
-into revealing your IP address. You should probably
-<a href="http://plugindoc.mozdev.org/faqs/uninstall.html">uninstall your
-plugins</a>
-(go to "about:plugins" to see what is installed), or investigate <a
-href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>, <a
-href="https://addons.mozilla.org/firefox/433/">FlashBlock</a>, and
-<a href="http://noscript.net/">NoScript</a>
-if you really need them. Consider removing extensions that look up
-more information about the websites you type in (like Google toolbar),
-as they may bypass Tor and/or broadcast sensitive information. Some
+Torbutton blocks browser plugins such as Java, Flash, ActiveX, RealPlayer,
+Quicktime, Adobe's PDF plugin, and others: they can be manipulated
+into revealing your IP address. For example, that means Youtube is
+disabled. If you really need your Youtube, you can <a href="<page
+torbutton/faq>#noflash">reconfigure Torbutton</a> to allow it; but
+be aware that you're opening yourself up to potential attack. Also,
+extensions like Google toolbar look up
+more information about the websites you type in:
+they may bypass Tor and/or broadcast sensitive information. Some
 people prefer using two browsers (one for Tor, one for unsafe browsing).
 </li>
 
 <li>
-Beware of cookies: if you ever browse without Tor and Privoxy
+Beware of cookies: if you ever browse without Tor
 and a site gives you a cookie, that cookie could identify you even when
-you start using Tor again. You should clear your cookies frequently. <a
+you start using Tor again. Torbutton tries to handle your cookies
+safely. <a
 href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> can help
 protect any cookies you do not want to lose.
 </li>
 
 <li>
-Tor anonymizes the origin of your traffic,
-and it encrypts everything inside the Tor network, but <a
+Tor anonymizes the origin of your traffic, and it encrypts everything
+between you and the Tor network and everything inside the Tor network,
+but <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">it
 can't encrypt your traffic between the Tor network and its final
 destination.</a>
@@ -245,7 +244,8 @@ While Tor blocks attackers
 on your local network from discovering or influencing your destination,
 it opens new risks: malicious or misconfigured Tor exit nodes can send
 you the wrong page, or even send you embedded Java applets disguised as
-domains you trust.
+domains you trust. Be careful opening documents or applications you
+download through Tor, unless you've verified their integrity.
 </li>
 </ol>
 
