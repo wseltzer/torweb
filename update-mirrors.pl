@@ -12,8 +12,6 @@ use Date::Format;
 # This is Free Software (GPLv3)
 # http://www.gnu.org/licenses/gpl-3.0.txt
 #
-# 001 Timoutes 	Contacted
-# 002 403 	Contacted
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
@@ -76,7 +74,27 @@ sub FetchDate {
 
 # This is the list of all known Tor mirrors
 # Add new mirrors to the bottom!
-my %m = 
+my %m = (
+        mirror000 => {
+            adminContact => "tor AT goodeid DOT com",
+            orgName => "goodeid.com",
+            isoCC => "CAN",
+            subRegion => "",
+            region => "CAN",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor-node.goodeid.com/",
+            httpsWebsiteMirror => "https://tor-node.goodeid.com/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor-node.goodeid.com/dist/",
+            httpsDistMirror => "https://tor-node.goodeid.com/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },
+
        mirror001 => {
             adminContact => "webmaster AT depthstrike DOT com",
             orgName => "Depthstrike",
@@ -838,24 +856,6 @@ my %m =
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.megahal.org/dist/",
             httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },       mirror044 => {
-            adminContact => "tor AT goodeid DOT com",
-            orgName => "goodeid.com",
-            isoCC => "CAN",
-            subRegion => "",
-            region => "CAN",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor-node.goodeid.com/",
-            httpsWebsiteMirror => "https://tor-node.goodeid.com/",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor-node.goodeid.com/dist/",
-            httpsDistMirror => "https://tor-node.goodeid.com/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
