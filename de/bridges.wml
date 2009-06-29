@@ -122,10 +122,12 @@ href="#UsingBridges">oben beschrieben</a> fortfahren.
 <h2><a class="anchor" href="#RunningABridge">Einen Brücken-Server betreiben</a></h2>
 <hr />
 
-<p>Wenn du Betreiber eines Servers bist, könntst du auch eine Bridge betreiben
-wollen. Unten ist ein minimaler <tt>torrc</tt>-Eintrag. Er erlaubt, eine Bridge
-zu betreiben.
-</p>
+<p>Wenn du helfen willst, aber keinen <a href="<page docs/tor-doc-relay>">
+normalen Tor-Server</a> betreiben kannst, solltest du eine Brücke betreiben.
+Du kannst das <a href="<page docs/tor-doc-relay>"> mit Vidalia</a>, oder
+manuell einstellen, indem du deine <tt>torrc</tt>-Datei <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">
+editierst,</a> so dass sie nur die folgenden Zeilen enthält: </p>
 
 <pre><code>
 SocksPort 0
@@ -135,31 +137,29 @@ Exitpolicy reject *:*
 </code>
 </pre>
 
-<p>Falls du nicht weißt, wie du die <tt>torrc</tt>-Datei bearbeitest, schaue dir
-den
-<a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">Eintrag
-in der
-FAQ</a> an.)
-</p>
+<p>Wenn du beim Starten von Tor Fehlermeldungen wie "Could not bind to
+0.0.0.0:443: Permission denied" bekommst, musst du einen anderen Port (z.B.
+8080) bei ORPort angeben, oder
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
+Port-Forwarding einrichten.</a> </p>
 
 <p>Wenn dein Server als Bridge eingerichtet ist, wird er nicht im öffentlichen
 Netzwerk erscheinen.
 </p>
 
-<p>Wenn du einem anderen Nutzer die Daten deines Brücken-Servers geben möchtest,
-teile ihnen einfach die IP-Adresse des Tor-Knotens, den TCP-Port, wie in der
-Variable <tt>ORPort</tt> eingestellt, sowie den Fingerprint des Servers mit.Den
-Fingerprint findest du in den Logdateien oder in
-<tt>/var/lib/tor/fingerprint</tt>, in Abhängigkeit von deiner Plattform.
-</p>
+<p>Deine Bridge wird sich automatisch beim Brücken-Verzeichniss anmelden, von
+wo Leute sich die Adresse z.B. per Email oder HTTPS abholen können. Du kannst
+auch anderen Nutzern die Daten deiner Bridge direkt geben. Wenn du Vidalia
+benutzt kannst du die entsprechenden Angaben einfach aus dem Fenster
+rauskopieren. Wenn du unter Linux oder BSD bist, kannst du die Adresse manuell
+zusammensetzten, schau dir einfach <a href="#Understanding">das Format weiter
+oben</a> an. Den Fingerprint findest du in den Logdateien oder in <tt>
+/var/lib/tor/fingerprint</tt>, in Abhängigkeit von deiner Plattform. </p>
 
 <p>Falls du mehr über Brücken-Server aus einer technischen Perspektive lernen
-willst, lies bitte <a
-href="https://<svnsandbox>doc/spec/bridges-spec.txt">die
-Spezifikation zu den Brücken-Servern</a>. Wenn du eine private Bridge betreiben
-willst, liess bitte die Spezifikation.
-</p>
+willst, lies bitte <a href="https://<svnsandbox>doc/spec/bridges-spec.txt">die
+Spezifikation zu den Brücken-Servern</a>. Wenn du eine unveröffentlichte
+Brücke betreiben willst, schau bitte in die Spezifikation. </p>
 
   </div><!-- #main -->
 
