@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16901
+# Based-On-Revision: 19850
 # Last-Translator: jan at seul . org
 
 #include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
@@ -137,9 +137,12 @@ href="#UsingBridges">sopra</a>.
 <hr />
 
 <p>
-Se gestisci un server potresti essere interessato a gestire anche un nodo 
-bridge. Qui sotto c'&egrave; la configurazione minima <tt>torrc</tt> per l'inserimento di un bridge 
-nella rete Tor:
+Se vuoi aiutarci e non puoi gestire un <a href="<page
+docs/tor-doc-relay>">normale relay Tor</a>, puoi comunque
+gestire un bridge relay. Lo puoi configurare <a href="<page
+docs/tor-doc-relay>">usando Vidalia</a>, o puoi <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">modificare
+il file torrc</a> manualmente in modo che contenga solo queste 4 righe:
 </p>
 
 <pre><code>
@@ -151,9 +154,10 @@ Exitpolicy reject *:*
 </pre>
 
 <p>
-(Se non sai come modificare il tuo file <tt>torrc</tt>, vedi
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">questa
-FAQ</a>.)
+<p>Se all'avvio vedi degli errori come "Could not bind to 0.0.0.0:443: Permission denied",
+devi scegliere una ORPort pi&ugrave; alta (es. 8080) o fare del <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">complicato
+port forwarding</a>.
 </p>
 
 <p>
@@ -162,10 +166,14 @@ Tor.
 </p>
 
 <p>
-Se vuoi dire ad un utente di usare il tuo bridge, dagli semplicemente l'indirizzo
-Ip del nodo Tor, la porta TCP configurata come <tt>ORPort</tt> ed il
-fingerprint del server. Il fingerprint si trova nei file di log di Tor oppure
-in <tt>/var/lib/tor/fingerprint</tt> a seconda del tuo sistema opetativo.
+Il tuo bridge relay pubblica automaticamente il suo indirizzo nella bridge
+authority, che lo distribuir&agrave; via https od email come sopra. Puoi
+anche dare il tuo bridge direttamente ad un utente: se usi Vidalia,
+puoi copiare e incollare l'indirizzo del bridge dalla finestra delle Impostazioni. Se
+usi Linux o BSD, puoi costruire l'indirizzo del bridge a mano
+usando il <a href="#Understanding">formato di cui sopra</a> (trovi il
+fingerprint nei file di log di Tor o in <tt>/var/lib/tor/fingerprint</tt>
+a seconda della tua piattaforma).
 </p>
 
 <p>
