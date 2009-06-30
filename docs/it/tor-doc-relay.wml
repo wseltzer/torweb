@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19410
+# Based-On-Revision: 19852
 # Last-Translator: jan at seul org
 
 #include "head.wmi" TITLE="Tor: struzioni per configurare un relay Tor" CHARSET="UTF-8"
@@ -29,59 +29,16 @@ La rete Tor &egrave; formata da volontari che offrono la propria banda. Quante
 pi&ugrave; persone hanno un relay, tanto pi&ugrave; veloce sar&agrave; la rete Tor. Se hai
 almeno 20 kilobyte/s sia up che down, aiuta la rete configurando il tuo software Tor
 come relay. Gestire un relay Tor &egrave; semplice e ci sono funzionalit&agrave;
-molto comode, come il controllo della banda usata, exit policy che permettono
-di ridurre il rischio di lamentele ed abusi, ed il supporto per indirizzi IP
-dinamici.</p>
+molto comode, come il <a href="<page faq>#RelayFlexible">controllo della banda</a> usata,
+exit policy che permettono di ridurre il rischio di lamentele ed abusi,
+ed il supporto per indirizzi IP dinamici.
+</p>
 
-<p>Con dei relay sparsi in molti luoghi diversi su Internet, gli utenti
-Tor sono pi&ugrave; sicuri. <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">Puoi
-avere tu stesso un anonimato maggiore</a>,
-dato che i siti remoti non potranno sapere se la connessione &egrave; partita dal tuo
-computer o da un altro nodo precedente.</p>
-
-<p>Realizzare un server Tor &egrave; semplice:
-<ul>
-<li>Tor ha un sistema nativo per il <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">controllo
-della banda</a>. Se poi hai un collegamento veloce,
-ma vuoi limitare i byte che metti a disposizione ogni giorno
-(oppure ogni settimana o mese), leggi della <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">funzionalit&agrave;
-di ibernazione</a>.
-</li>
-<li>Ciascun relay Tor ha una <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RunARelayBut">exit
-policy</a> che stabilisce quali connessioni in uscita sono permesse
-o bloccate. Se preferisci non consentire agli altri l'uscita dal tuo
-relay, puoi definire l'exit policy per permettere solo collegamenti
-verso altri relay Tor.
-</li>
-<li>Se il tuo relay qualche volta si scollega, non c'&egrave; problema. Le directory
-infatti se ne accorgono presto e cessano di pubblicarlo. Cerca per&ograve; di non
-farlo cadere troppo di frequente, perch&eacute; le connessioni che in quel momento stanno
-usando il relay vengono interrotte.
-</li>
-<li>Si  pu&ograve; realizzare un relay anche con un indirizzo IP dinamico &mdash; basta
-lasciare vuota l'opzione Address config e Tor ricaver&agrave; da solo l'indirizzo.
-</li>
-<li>Se il tuo relay &egrave; in NAT e non conosce il suo IP
-pubblico (es. ha un IP simile a 192.168.x.y), dovreai configurare il port
-forwarding. Il forwarding delle connessioni TCP varia da sistema a sistema, ma in <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">questa
-FAQ</a> ci sono vari esempi di come fare.
-</li>
-<li>Il tuo relay fa una stima passiva della banda recentemente disponibile
-e la pubblicizza, e quindi i relay a larga banda attrarranno pi&ugrave; utenti di
-quelli con meno banda. Per questo anche i relay con poca banda sono molto utili.
-</li>
-</ul>
-
-<p>Puoi realizzare un relay Tor
-su quasi tutti i sistemi operativi, ma leggi <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">questa
-FAQ</a> per indicazioni sul sistema operativo pi&ugrave; adatto e per i problemi
-tecnici che potresti avere.</p>
+<p>Puoi realizzare un relay Tor su <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">quasi
+tutti</a> i sistemi operativi, ma Linux, FreeBSD 5.x+, OS X Tiger o
+superiore e Windows Server 2003 funzionano al meglio.
+</p>
 
 <hr />
 <a id="zero"></a>
@@ -92,13 +49,8 @@ tecnici che potresti avere.</p>
 <p>Prima di iniziare, assicurati che Tor sia installato e funzioni.
 </p>
 
-<p>Gli utenti Windows devono seguire il <a
-href="<page docs/tor-doc-windows>#installing">passo uno</a>
-della guida di installazione Tor su Windows. Gli utenti di Mac OS X devono seguire il
-<a href="<page docs/tor-doc-osx>#installing">passo uno</a>
-della guida di installazione Tor su OS X. Gli utenti Linux/BSD/Unix devono completare il
-<a href="<page docs/tor-doc-unix>#installing">passo uno</a>
-della guida di installazione Tor su Unix.
+<p>Visita la <a href="<page easy-download>">pagina dei download</a> ed
+installa il "Pacchetto di installazione" per il tuo sistema operativo.
 </p>
 
 <p>Per comodit&agrave; potresti usarlo come client per un po', in
@@ -110,54 +62,57 @@ modo da assicurarti che funzioni correttamente.</p>
 <br />
 
 <ol>
-<li> Controlla che l'orologio di sistema sia preciso. Se possibile sincronizzalo
-con un time server pubbico.
+<li> Controlla che l'orologio di sistema ed il fuso orario siano precisi. Se possibile sincronizzalo
+con un <a href="http://en.wikipedia.org/wiki/Network_Time_Protocol">time server</a> pubbico.
 </li>
 
-<li> Controlla che funzioni la risoluzione dei nomi (in altre parole, il tuo computer deve potere
-risolvere correttamente gli indirizzi per mezzo del DNS).
-</li>
+<li> <strong>Configurazione Windows / OS X</strong>:
+<ol>
 
-<li>Il modo pi&ugrave; facile per configurare un relay &egrave; usare Vidalia. Il metodo avanzato &egrave; invece modificare il file torrc direttamente.
-
-<br />
-<strong>Configurazione semplice</strong>:
-<ul>
 <li>Fai clic destro sull'icona Vidalia nella barra di stato. Scegli <tt>Pannello di controllo</tt>.</li>
 <li>Fai clic su <tt>Avviamento del relaying</tt>.</li>
-<li>Seleziona <tt>Scambia traffico per la rete Tor</tt>.</li>
-<li>Scegli un nickname per il tuo relay. (Facoltativamente, inserisci le informazioni per contattarti.)</li>
-<li>Seleziona <tt>Attempt to automatically configure port forwarding</tt>.
+<li>Scegli <tt>Dona traffico alla rete Tor</tt> Se vuoi essere un
+relay pubblico (raccomandato), o scegli <tt>Aiuta gli utenti sotto censura a raggiungere
+la rete Tor</tt> se vuoi fare da <a href="<page
+faq>#RelayOrBridge">bridge</a>
+per gli utenti in paesi che censurano Internet.</li>
+<li>Scegli un nickname per il tuo relay ed inserisci i tuoi contatti nel
+caso dobbiamo contattarti per qualche problema.</li>
+<li>Lascia selezionato <tt>Cerca di configurare automaticamente il port forwarding</tt>.
 Premi il pulsante <tt>Test</tt> per vedere se tutto funziona. Se funziona, bene.
-Altrimenti, vedi il numero 4 qui sotto.</li>
+Altrimenti, vedi il numero 3 qui sotto.</li>
 <li>Seleziona la scheda <tt>Limiti di Banda</tt>. Scegli quanta banda donare agli utenti Tor come te.</li>
 <li>Seleziona la scheda <tt>Policy delle uscite</tt>. Se vuoi permettere agli altri di
 usare il tuo relay per questi servizi, non cambiare nulla. Deseleziona
-i servizi che non vuoi consentire sul tuo relay. Se vuoi essere un
-relay intermedio, deseleziona tutti  servizi.</li>
-<li>Fai clic sul pulsante <tt>Ok</tt>. Vedi il passo 2 qui sotto per controllare che
+i servizi <a href="<page faq>#ExitPolicies">che non vuoi che la gente raggiunga dal tuo relay</a>.
+Se vuoi essere un relay intermedio, deseleziona tutti  servizi.</li>
+<li>Fai clic sul pulsante <tt>Ok</tt>. Vedi il passo 3 qui sotto per controllare che
 il relay funzioni correttamente.</li>
-</ul>
+</ol>
 
 <br />
 
-<strong>Configurazione avanzata</strong>: 
+<strong>Configurazione Linux / Unix</strong>: 
 <ul>
-<li> Modifica la parte finale del file torrc. (Vedi <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">questa
-FAQ</a> per un aiuto).
-Definisci come minimo almeno Nickname e ORPort. Crea la DataDirectory
-se necessario, e controlla che sia di propriet&agrave; dell'utente con cui girer&agrave;
-tor. <em>Se vuoi gestire pi&ugrave; di un relay, per favore
-definisci <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">l'opzione
-MyFamily</a> nei file di configurazione di tutti i tuoi relay.</em></li>
+<li>Modifica la parte finale del <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">file
+torrc</a>. Se vuoi essere un relay pubblico (raccomandato),
+definisci la ORPort e <a href="<page
+faq>#ExitPolicies">dai un'occhiata alla ExitPolicy</a>; altrimenti
+se vuoi essere un <a href="<page faq>#RelayOrBridge">bridge</a>
+per gli utenti nei paesi che censurano Internet,
+usa solo <a href="<page bridges>#RunningABridge">queste righe</a>.
+</li>
 
-</li></ul>
+</ul></li>
 
 <li>Se usi un firewall, aprilo in modo da permettere alle connessioni
 in arrivo di raggiungerele porte che hai configurato (ORPort, anche
-DirPort se l'hai abilitata). Controlla che siano permesse tutte le connessioni in uscita,
-per permettere al tuo relay di raggiungere gli altri server Tor.
+DirPort se l'hai abilitata). Se hai un firewall hardware (Linksys box,
+cablemodem, etc) potrebbe interessarti <a
+href="http://portforward.com/">portforward.com</a>. Controlla inoltre che
+siano consentite anche le connessioni  <em>in uscita</em>, in modo che il tuo
+relay possa raggiungere gli altri relay Tor.
 </li>
 
 <li> Riavvia il relay. Se <a
@@ -169,18 +124,10 @@ dei messaggi di avviso</a>, esaminali.
 <li>Iscriviti alla mailing list <a
 href="http://archives.seul.org/or/announce/">or-announce</a>.
 Ha un traffico molto basso e serve ad informarsi sulle
-nuove versioni stabili. Potresti anche iscriverti a <a
-href="http://archives.seul.org/or/talk/">or-talk</a> (traffico pi&ugrave; alto),
-in cui vengono annunciate le nuove versioni di sviluppo.
+nuove versioni stabili. Potresti anche iscriverti alle <a
+href="<page documentation>#MailingLists">liste Tor ad alto traffico</a>.
 </li>
 
-<li>Leggi il manuale.
-Il <a href="<page tor-manual>">manuale</a> dell'
-ultima versione stabile ha una lista di tutte le opzioni di configurazione
-possibili per client e relay.
-Se usi la versione di sviluppo di Tor, il manuale &egrave; disponibile
-<a href="<page tor-manual-dev>">qui</a>.
-</li>
 </ol>
 
 <hr />
@@ -190,7 +137,8 @@ Se usi la versione di sviluppo di Tor, il manuale &egrave; disponibile
 
 <p>Appena il relay si collega alla rete, cerca
 di capire se le porte che hai configurato sono raggiungibili dall'
-esterno. Ci vogliono fino a 20 minuti. Cerca
+esterno. Di solito &egrave; un'operazione rapida, ma potrebbe richiedere
+fino a 20 minuti. Cerca
 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">riga del
 log</a> cos&igrave;
 
@@ -201,7 +149,7 @@ l'IP giusto, etc.
 </p>
 
 <p>Quando il relay stabilisce di essere raggiungibile, invia un "server
-descriptor" alle directory. In questo modo i client sapranno
+descriptor" alle directory per comunicare ai client
 quale indirizzo, che porta, che chiave, etc usi il tuo server. Puoi <a
 href="http://moria.seul.org:9032/tor/status/authority">caricare manualmente
 uno dei network status</a> e
@@ -219,30 +167,19 @@ Raccomandiamo anche le seguenti operazioni:
 </p>
 
 <p>
-8. Leggi
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">questo documento</a>
-su come aumentare la sicurezza del tuo relay.
+6. Leggi
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">documentazione sulla sicurezza operativa</a>
+per sapere come aumentare la sicurezza del tuo relay.
 </p>
 
 <p>
-9. Scegli una exit policy. Di default il tuo relay consente
-l'accesso a molti servizi, ma ne limita alcuni (come la porta 25)
-a causa dei potenziali abusi. Potresti applicare una exit policy pi&ugrave;
-o meno restrittiva; per farlo modifica il tuo file torrc.
-Leggi la FAQ sui <a
-href="<page faq-abuse>#TypicalAbuses">problemi che potresti
-avere con la exit policy di default</a>.
-Se scegli di applicare una exit policy particolarmente aperta, assicurati
-che per il tuo ISP non ci siano problemi.
-Se il tuo computer non pu&ograve; raggiungere certe risorse (ad esempio,
-se sei dietro un firewall restrittivo o dietro un content filter), per favore
-rifiutali esplicitamente nella tua exit policy &mdash; altrimenti anche gli utenti Tor
-ne verrebbero pregiudicati.
-
+7. Se vuoi gestire pi&ugrave; di un relay va benissimo, ma per favore definisci <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">l'opzione
+MyFamily</a> nei file di configurazione di tutti i tuoi relay.
 </p>
 
 <p>
-10. Decidi se applicare un rate limiting. Le ADSL, i modem via cavo e tutti
+8. Decidi se applicare un rate limiting. Le ADSL, i modem via cavo e tutti
 coloro che hanno banda asimmetrica (es. pi&ugrave; down che up) dovrebbero
 definire un rate limit alla banda pi&ugrave; lenta, per evitare congestioni. vedi la <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
@@ -250,7 +187,7 @@ limiting FAQ </a> per maggiori dettagli.
 </p>
 
 <p>
-11. Fai un backup della chiave privata del tuo relay Tor (&egrave; in "keys/secret_id_key"
+9. Fai un backup della chiave privata del tuo relay Tor (&egrave; in "keys/secret_id_key"
 nella tua DataDirectory). Essa costituisce l'identit&agrave; del tuo relay ed
 &egrave; importante custodirla al sicuro in modo che nessuno possa leggere il traffico
 che passa dal tuo relay. Questo &egrave; un file importante da conservare se dovessi <a
@@ -259,7 +196,7 @@ ripristinare il tuo server Tor</a> in caso di prolemi.
 </p>
 
 <p>
-12. Se controlli il name server del tuo dominio, potresti impostare
+10. Se controlli il name server del tuo dominio, potresti impostare
 il reverse DNS hostname a 'anonymous-relay', 'proxy' o 'tor-proxy', in modo che quando
 altri ne vedranno l'indirizzo nel loro log sar&agrave; pi&ugrave; facile per loro
 capire di cosa si tratta. E' anche utilissimo aggiungere la <a
@@ -270,7 +207,7 @@ a te e al tuo ISP se gestisci un exit node.
 </p>
 
 <p>
-13. Se non hai un webserver sul tuo computer, potresti cambiare
+11. Se non hai un webserver sul tuo computer, potresti cambiare
 la ORPort a 443 e la DirPort a 80. Molti utenti Tor
 si trovano dietro dei firewall che consentono solo di navigare
 sul web, e in questo modo potranno raggiungere comunque il tuo Tor relay. I relay Win32
@@ -285,7 +222,7 @@ molto utili sono la 22, 110, e 143.
 </p>
 
 <p>
-14. Se il tuo relay Tor fornisce altri servizi sul medesimo indirizzo IP
+12. Se il tuo relay Tor fornisce altri servizi sul medesimo indirizzo IP
 &mdash; ad esempio, un webserver &mdash; controlla che sia possibile collegarsi al
 webserver anche da localhost. &#200; necessario
 perch&eacute; i client Tor rileveranno che il tuo server &egrave; <a
@@ -296,7 +233,7 @@ rifiutarle esplicitamente nella tua exit policy.
 </p>
 
 <p>
-15. (Solo per Unix). Crea un utente separato per il relay. Se hai
+13. (Solo per Unix). Crea un utente separato per il relay. Se hai
 installato il pacchetto OS X, il deb o l'rpm, &egrave; gi&agrave; cos&igrave;.
 Altrimenti puoi farlo a mano. (Il relay Tor non ha bisogno di girare
 come root, anzi &egrave; buona prassi non eseguirlo come root. Girando
@@ -307,7 +244,7 @@ in un chroot jail</a>.)
 </p>
 
 <p>
-16. (Solo per Unix). Il tuo sistema operativo probabilmente limita il numero
+14. (Solo per Unix). Il tuo sistema operativo probabilmente limita il numero
 dei file descriptor aperti per ogni processo a 1024 (o meno). Se vuoi
 gestire un exit node veloce, probabilmente non basta. Su
 Linux, aggiungi una riga come "toruser hard nofile 8192" al file
@@ -317,7 +254,7 @@ logout e login se lo avvii tu stesso).
 </p>
 
 <p>
-17. Se hai installato Tor da qualche pacchetto o installer, Tor si avvier&agrave;
+15. Se hai installato Tor da qualche pacchetto o installer, Tor si avvier&agrave;
 automaticamente al boot del sistema. Se per&ograve; l'hai installato dai sorgenti,
 potrebbero esserti utili gli initscript in contrib/tor.sh o contrib/torctl.
 </p>
@@ -341,4 +278,3 @@ href="<page contact>">segnalaceli</a>. Grazie!</p>
 </div>
 
 #include <foot.wmi>
-
