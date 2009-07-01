@@ -95,6 +95,26 @@ my %m = (
             updateDate => "Unknown",
         },
 
+        mirror001 => {
+            adminContact => "BarkerJr AT barkerjr DOT net",
+            orgName => "BarkerJr",
+            isoCC => "FR",
+            subRegion => "",
+            region => "FR",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.megahal.org/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },
+
        mirror002 => {
             adminContact => "operator AT hermetix DOT org",
             orgName => "Hermetix",
@@ -823,26 +843,8 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        },
-        mirror043 => {
-            adminContact => "BarkerJr AT barkerjr DOT net",
-            orgName => "BarkerJr",
-            isoCC => "FR",
-            subRegion => "",
-            region => "FR",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.megahal.org/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
         }
+
 );
 
 my $count = values %m;
