@@ -95,23 +95,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror001 => {
-            adminContact => "webmaster AT depthstrike DOT com",
-            orgName => "Depthstrike",
-            isoCC => "CA",
-            subRegion => "NS",
-            region => "North America",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.depthstrike.com/",
-            ftpWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            httpDistMirror => "http://tor.depthstrike.com/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
        mirror002 => {
             adminContact => "operator AT hermetix DOT org",
             orgName => "Hermetix",
