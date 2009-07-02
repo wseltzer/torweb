@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 16901
-# Last-Translator: mfr(ät]misericordia.be, fredzupy@gmail.com
+# Based-On-Revision: 19850
+# Last-Translator: mfr(ät]misericordia.be, fredzupy at gmail.com, misc at zarb.org
 
 #include "head.wmi" TITLE="Tor : Les Relais Passerelles" CHARSET="UTF-8"
 
@@ -113,10 +113,13 @@ href="#UsingBridges">ci dessus</a>.
 <hr />
 
 <p>
-Si vous êtes un opérateur de serveur Tor, il est possible que vous souhaitiez faire tourner un
-nœud passerelle. Ce qui suit montre une configuration minimale de <tt>torrc</tt> permettant de devenir une entrée de
-passerelle pour le réseau Tor :
+Si vous voulez donner un coup de main et que vous ne pouvez pas faire tourner un
+<a href="<page docs/tor-doc-relay>">nœud tor</a>, vous pouvez faire tourner
+un nœud passerelle. Vous pouvez le configurer en <a href="<page docs/tor-doc-relay>">
+utilisant Vidalia</a>, ou en modifiant directement <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">
+votre fichier torrc<a> pour qu'il ne contienne que ces 4 lignes :
 </p>
+
   	 
 <pre><code>
 SocksPort 0
@@ -127,29 +130,27 @@ Exitpolicy reject *:*
 </pre>
   	 
 <p>
-(Si vous ne savez pas comment éditer votre fichier <tt>torrc</tt>, voyez
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">cette
-entrée de la FAQ</a>.)
-</p>
-  	 
-<p>
 Une fois configuré en tant que passerelle, votre serveur n'apparaîtra <b>plus</b> publiquement dans le 
 réseau Tor.
 </p>
   	 
 <p>
-Si vous le souhaitez, vous pouvez inviter une personne à utiliser votre passerelle, simplement en lui fournissant l'adresse IP
-du nœud Tor, le port TCP configuré par la directive <tt>ORPort</tt> et l'empreinte
-du serveur. L'empreinte devrait se trouver dans les fichiers traces de Tor ou
-dans <tt>/var/lib/tor/fingerprint</tt> suivant votre plate-forme.
+Votre passerelle va automatiquement publier son address sur l'annuaire des passerelles, 
+qui va le distribuer par courrier electronique, ou via https comme expliqué plus haut.
+Vous pouvez aussi directement inviter un utilisateur à utiliser votre passerelle :
+si vous utilisez Vidalia, vous pouvez coper et coller l'adresse de la passerelle depuis
+la fenetre de réglage. Si vous êtes sous Linux ou BSD, vous pouvez construire manuellement
+l'adresse de la passerelle en utilisant le <a href="#Understanding">format ci-dessous</a> (
+vous pouvez trouver la signature dans vos fichiers de journaux ou dans <tt>/var/lib/tor/fingerprint</tt>, en 
+fonction de votre plateforme).
 </p>
   	 
 <p>
-Si vous voulez en savoir plus sur les passerelles d'un point de vue plus technique,
+Si vous voulez en savoir plus sur le design des passerelles d'un point de vue plus technique,
 voyez les <a
 href="<svnsandbox>doc/spec/bridges-spec.txt">Spécifications 
-de passerelles Tor</a>. Si vous avez envie de faire tourner une passerelle privée ou d'avoir 
-d'autres utilisations plus spécifique, voyez les spécifications.
+de passerelles Tor</a>. Si vous avez envie de faire tourner une passerelle non publié ou d'avoir 
+d'autres utilisations non standards, voyez les spécifications.
 </p>
 
 </div><!-- #main -->
