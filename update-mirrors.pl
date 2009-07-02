@@ -406,23 +406,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror020 => {
-	    adminContact => "bjw AT bjwonline DOT com",
-            orgName => "BJWOnline",
-            isoCC => "US",
-            subRegion => "California",
-            region => "North America",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://mirror.bjwonline.com/tor/",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://mirror.bjwonline.com/tor/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
        mirror021 => {
 	    adminContact => "hostmaster AT zombiewerks DOT com",
             orgName => "TheOnionRouter",
