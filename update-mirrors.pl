@@ -478,23 +478,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror024 => {
-            adminContact => "",
-            orgName => "Crypto",
-            isoCC => "US",
-            subRegion => "",
-            region => "North America",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://crypto.nsa.org/tor/",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://crypto.nsa.org/tor/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
        mirror025 => {
             adminContact => "web2005a AT year2005a.wiretapped DOT net",
             orgName => "Wiretapped",
