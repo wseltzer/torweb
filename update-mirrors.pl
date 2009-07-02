@@ -12,6 +12,9 @@ use Date::Format;
 # This is Free Software (GPLv3)
 # http://www.gnu.org/licenses/gpl-3.0.txt
 #
+#Contacted
+#Crypto 404 
+#
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
