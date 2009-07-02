@@ -478,6 +478,26 @@ my %m = (
             updateDate => "Unknown",
         },
 
+	mirror024 => {
+            adminContact => "scream AT nonvocalscream DOT com",
+            orgName => "NVS",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.nonvocalscream.com/",
+            httpsWebsiteMirror => "https://tor.nonvocalscream.com/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.nonvocalscream.com/dist/",
+            httpsDistMirror => "https://tor.nonvocalscream.com/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },
+
        mirror025 => {
             adminContact => "web2005a AT year2005a.wiretapped DOT net",
             orgName => "Wiretapped",
@@ -793,28 +813,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
-        },
-
-	mirror041 => {
-            adminContact => "scream AT nonvocalscream DOT com",
-            orgName => "NVS",
-            isoCC => "US",
-            subRegion => "",
-            region => "US",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.nonvocalscream.com/",
-            httpsWebsiteMirror => "https://tor.nonvocalscream.com/",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.nonvocalscream.com/dist/",
-            httpsDistMirror => "https://tor.nonvocalscream.com/dist/",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
+        }
 
 );
 
