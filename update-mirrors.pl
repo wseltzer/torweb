@@ -14,6 +14,7 @@ use Date::Format;
 #
 #Contacted
 #Crypto 404 
+#Kamagurka TIMOUTS
 #
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
