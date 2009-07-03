@@ -813,7 +813,28 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
+        },
+
+	mirror041 => {
+            adminContact => "BarkerJr AT barkerjr DOT net",
+            orgName => "BarkerJr",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.dontdraft.us/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
         }
+
 
 );
 
