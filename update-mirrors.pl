@@ -13,7 +13,7 @@ use Date::Format;
 # http://www.gnu.org/licenses/gpl-3.0.txt
 #
 #Contacted
-#Crypto 404 
+#
 #Kamagurka TIMOUTS (Should be up in about a week)
 #
 
