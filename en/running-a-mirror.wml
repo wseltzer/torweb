@@ -33,17 +33,17 @@ rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
 
 
 <p>
-In order to assure the mirrors of of high quility and up to date... Please ensure your mirror does at least the following:<br>
+In order to assure the mirrors of of high quility and up to date... Please ensure your mirror does at least the following:<br><br>
 
-Updates no later than every six hours, but no more frequent than every hour.<br>
+Updates no later than every six hours, but no more frequent than every hour.<br><br>
 
-Allows "Directory Index / Indexes" (Index viewing) of the /dist directory.<br>
+Allows "Directory Index / Indexes" (Index viewing) of the /dist directory.<br><br>
 
-Allows "Multiviews" or equivalent for language localization.<br>
+Allows "Multiviews" or equivalent for language localization.<br><br>
 
-Have a valid contact email for administrative communications should your server have issues.<br>
+Have a valid contact email for administrative communications should your server have issues.<br><br>
 
-It is highly recommended for all mirror operators to subscribe to <A href="http://archives.seul.org/tor/mirrors/">tor-mirrors mailing list</A> where all mirror listing modification requests should go (ADD, CHANGE, DELETE, any other requests/notifications).  Also, any technical assistance in setting up your mirror may be found here as well.<br>
+It is highly recommended for all mirror operators to subscribe to <A href="http://archives.seul.org/tor/mirrors/">tor-mirrors mailing list</A> where all mirror listing modification requests should go (ADD, CHANGE, DELETE, any other requests/notifications).  Also, any technical assistance in setting up your mirror may be found here as well.<br><br>
 
 </p>
 <br /><br />
@@ -62,16 +62,16 @@ configuration file to use:
 <tt>
 <pre>
 &lt;VirtualHost 1.2.3.4:80&gt;
-        &lt;ServerAdmin youremail@example.com&gt;
-        &lt;ServerName  1.2.3.4&gt;
+        ServerAdmin youremail@example.com<br>
+        ServerName  1.2.3.4<br>
 
-        &lt;DocumentRoot /var/www/mirrors/torproject.org&gt;
+        DocumentRoot /var/www/mirrors/torproject.org<br>
 
-        &lt;Directory /var/www/mirrors/torproject.org/&gt;
-            &lt;Options MultiViews Indexes&gt;
-            &lt;DirectoryIndex index&gt;
-            &lt;AllowOverride None&gt;
-        &lt;/Directory&gt;
+        &lt;Directory /var/www/mirrors/torproject.org/&gt;<br>
+            Options MultiViews Indexes<br>
+            DirectoryIndex index<br>
+            AllowOverride None<br>
+        &lt;/Directory&gt;<br>
 
 &lt;/VirtualHost&gt;
 </pre>
