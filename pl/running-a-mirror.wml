@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19885
+# Based-On-Revision: 19940
 # Translation-Priority: 4-optional
 # Last-Translator: bogdandr_at_op . pl
 
@@ -32,6 +32,25 @@ wystarczy ta komenda, by pobrać wszystko, czym taki mirror powinien dzielić si
 <tt>
 rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
 </tt>
+
+
+<p>
+W celu zapewnienia aktualnych mirrorów wysokiej jakości... Prosimy upewnić się, że
+Twój mirror wykonuje co najmniej następujące rzeczy:<br><br>
+
+Aktualizuje się nie rzadziej niż co sześć godzin, ale nie częściej, niż co godzinę.<br><br>
+
+Pozwala "Directory Index / Indexes" (wyświetlanie indeksów) katalogu /dist.<br><br>
+
+Pozwala na "Multiviews" lub coś równoważnego, w celu lokalizacji języków.<br><br>
+
+Ma prawidłowy adres email w celach komunikacji administracyjnej, gdyby Twój serwer miał kłopoty.<br><br>
+
+Jest wysoce zalecane, by wszyscy operatorzy mirrorów zapisali się na
+<A href="http://archives.seul.org/tor/mirrors/">listę mailingową tor-mirrors</A>, gdzie powinny
+iść wszystkie prośby modyfikacji (ADD, CHANGE, DELETE, jakiekolwiek inne prośby/zawiadomienia).
+Ponadto, można tu znaleźć wsparcie w jakichkolwiek sprawach technicznych przy uruchamianiu mirrora.<br><br>
+</p>
 <br/> <br/>
 <p>
 Przykładowe zadanie crona do aktualizacji całego mirrora raz na 6 godzin może
@@ -45,16 +64,16 @@ Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy przykła
 plik konfiguracji wirtualnego hosta:
 <pre>
 &lt;VirtualHost 1.2.3.4:80&gt;
-	ServerAdmin youremail@example.com
-	ServerName  1.2.3.4
+	ServerAdmin youremail@example.com<br>
+	ServerName  1.2.3.4<br>
 
-	DocumentRoot /var/www/mirrors/torproject.org
+	DocumentRoot /var/www/mirrors/torproject.org<br>
 
-	&lt;Directory /var/www/mirrors/torproject.org/&gt;
-		Options MultiViews Indexes
-		DirectoryIndex index
-		AllowOverride None
-	&lt;/Directory&gt;
+	&lt;Directory /var/www/mirrors/torproject.org/&gt;<br>
+		Options MultiViews Indexes<br>
+		DirectoryIndex index<br>
+		AllowOverride None<br>
+	&lt;/Directory&gt;<br>
 
 &lt;/VirtualHost&gt;
 </pre>
@@ -73,6 +92,8 @@ Jeśli prowadzisz mirror, proszę zapisz się na
 przedstaw się tam. Dodamy Cię do listy mirrorów. Na liście można też znaleźć pomoc
 w sprawach wsparcia dla mirrorów i spraw związanych z konfiguracją.
 </p>
+
+
 
   </div><!-- #main -->
 
