@@ -13,7 +13,6 @@ use Date::Format;
 # http://www.gnu.org/licenses/gpl-3.0.txt
 #
 #Contacted
-#Meulie Configuration error.
 #Kamagurka TIMOUTS (Should be up in about a week)
 #
 
