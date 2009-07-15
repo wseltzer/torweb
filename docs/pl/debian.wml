@@ -1,0 +1,124 @@
+## translation metadata
+# Based-On-Revision: 19802
+# Translation-Priority: 3-low
+# Last-Translator: bogdandr_at_op . pl
+
+#include "head.wmi" TITLE="Tor: Instrukcje dla Debiana/Ubuntu"
+
+<div class="center">
+
+<div class="main-column">
+
+<a id="debian"></a>
+<h2><a class="anchor" href="#debian">Opcja pierwsza: Tor na Debianie lenny,
+Debianie sid lub Debianie testing</a></h2>
+<br />
+
+<p>
+Jeśli używasz Debiana stabilnego (lenny), niestabilnego (sid), lub testowego
+(squeeze), uruchom po prostu<br />
+<tt>apt-get install tor tor-geoipdb</tt>
+</p>
+
+<p>
+Teraz Tor jest zainstalowany i działa. Przejdź do <a href="<page
+docs/tor-doc-unix>#privoxy">kroku drugiego</a> na stronie instrukcji "Tor na Linux/Unix".
+</p>
+
+<hr />
+
+<a id="ubuntu"></a>
+<a id="packages"></a>
+<h2><a class="anchor" href="#ubuntu">Opcja druga: Tor na Ubuntu lub Debianie etch</a></h2>
+<br />
+
+<p>
+<b>Nie używaj paczek ze świata Ubuntu.</b> Nikt się nimi nie opiekuje i są przestarzałe.
+To oznacza, że nie będziesz mieć poprawek stabilności i bezpieczeństwa.
+</p>
+
+<p>
+Musisz skonfigurować repozytorium pakietów, zanim będziesz mógł/mogła pobrać Tora.
+Po pierwsze, musisz poznać nazwę swojej dystrybucji. Jeśli używasz Ubuntu 9.04, to
+jest to "jaunty". Ubuntu 8.10 to "intrepid", a Ubuntu 8.04 to "hardy". Jeśli używasz
+Debiana etch, to jest to "etch".
+Potem dodaj te linie do swojego pliku <tt>/etc/apt/sources.list</tt>:<br />
+<pre>
+deb     http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
+deb-src http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
+</pre>
+gdzie zamiast &lt;DISTRIBUTION&gt; wstawiasz jedno z powyższych słów (etch, jaunty, intrepid, hardy).
+</p>
+
+<p>
+Potem uruchom
+<pre>
+gpg --keyserver keys.gnupg.net --recv 94C09C7F
+gpg --export 94C09C7F | sudo apt-key add -
+apt-get update
+apt-get install tor tor-geoipdb
+</pre>
+<p>
+
+<p>
+Teraz Tor jest zainstalowany i działa. Przejdź do <a href="<page
+docs/tor-doc-unix>#privoxy">kroku drugiego</a> na stronie instrukcji "Tor na Linux/Unix".
+</p>
+
+<hr />
+
+<a id="development"></a>
+<h2><a class="anchor" href="#development">Opcja trzecia: używanie gałęzi rozwojowych
+Tora na Debianie lub Ubuntu</a></h2>
+<br />
+
+<p>Jeśli chcesz używać <a href="<page
+download>#packagediff">gałęzi rozwojowej</a> Tora (więcej cech i więcej błędów), musisz dodać
+inny zestaw linii do swojego pliku <tt>/etc/apt/sources.list</tt>:<br />
+<pre>
+deb     http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
+deb-src http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
+deb http://mirror.noreply.org/pub/tor experimental-0.2.1.x-&lt;DISTRIBUTION&gt; main
+deb-src http://mirror.noreply.org/pub/tor experimental-0.2.1.x-&lt;DISTRIBUTION&gt; main
+</pre>
+gdzie zamiast &lt;DISTRIBUTION&gt; wstawiasz nazwę swojej dystrybucji (etch, lenny, sid, jaunty,
+intrepid, hardy).
+</p>
+
+<p>
+Potem uruchom
+<pre>
+gpg --keyserver keys.gnupg.net --recv 94C09C7F
+gpg --export 94C09C7F | sudo apt-key add -
+apt-get update
+apt-get install tor tor-geoipdb
+</pre>
+<p>
+
+<p>
+Teraz Tor jest zainstalowany i działa. Przejdź do <a href="<page
+docs/tor-doc-unix>#privoxy">kroku drugiego</a> na stronie instrukcji "Tor na Linux/Unix".
+</p>
+
+<hr />
+
+<a id="source"></a>
+<h2><a class="anchor" href="#source">Budowanie ze źródła</a></h2>
+<br />
+
+<p>
+Jeśli chcesz zbudować własne paczki deb ze źródła, przeczytaj nasz <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorOnDebian#BuildFromSource">przewodnik
+budowania debów</a>.
+</p>
+
+<hr />
+
+<p>Jeśli masz sugestie co do ulepszenia tego dokumentu, prosimy <a
+href="<page contact>">prześlij je do nas</a>. Dziękujemy!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+
