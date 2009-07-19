@@ -843,6 +843,8 @@ print "Fetching the last updated date for each mirror.\n";
 
 my $tortime;
 $tortime = FetchDate("http://www.torproject.org/");
+# Adjust offical Tor time by out-of-date offset: number of days * seconds per day 
+$tortime -= 1 * 86400; 
 print "The official time for Tor is $tortime. \n";
 
 foreach my $server ( keys %m ) {
@@ -889,7 +891,7 @@ foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys 
 
      my $time;
      if ( "$m{$server}{'updateDate'}" ne "Unknown") {
-	  if ( "$m{$server}{'updateDate'}" eq "$tortime" ) {
+	  if ( $m{$server}{'updateDate'} > $tortime ) {
 	    $time = "Up to date";
 	  } else { $time = "Out of date"; }
      } else { $time = "Unknown"; }
