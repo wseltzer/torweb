@@ -615,8 +615,8 @@ my %m = (
         },
 
 	mirror031 => {
-            adminContact => "",
-            orgName => "Ask Apache",
+            adminContact => "webmaster AT askapache DOT com",
+            orgName => "AskApache",
             isoCC => "US",
             subRegion => "California",
             region => "US",
@@ -627,7 +627,7 @@ my %m = (
             httpsWebsiteMirror => "",
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
-            httpDistMirror => "",
+            httpDistMirror => "http://tor.askapache.com/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
