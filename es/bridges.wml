@@ -1,0 +1,191 @@
+## translation metadata
+# Based-On-Revision: 19850
+# Last-Translator: green crescent
+
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h2><a class="anchor" href="#BridgeIntroduction">Tor: Puentes</a></h2>
+<hr />
+
+<p>
+Los repetidores de puente (o "puentes" para abreviar) son repetidores de
+Tor que no aparecen en la lista del directorio principal de Tor. Como
+que no hay una lista pública completa de ellos, incluso si su ISP está
+filtrando las conexiones a todos los repetidores de Tor conocidos,
+probablemente no podrá bloquear todos los puentes. Si usted sospecha
+que está siendo bloqueado su acceso a la red Tor, es posible que desee
+utilizar la funcionalidad de puentes de Tor.
+</p>
+
+<p>
+La adición de puentes a Tor es un paso adelante en la carrera de resistencia al bloqueo. Es perfectamente posible que incluso si su ISP filtra la Internet, usted no necesite de un puente para usar Tor. Muchos programas de filtrado buscan peticiones de directorios de Tor no encriptados para reconocer que usted está usándolo, pero la versión 0.2.0.23-rc de Tor y las subsiguientes usan de manera predeterminada consultas de directorios encriptados. Este cambio significa que la mayoría de los programas de filtrado ahora son incapaces de reconocer conexiones a Tor. Así que debe intentar usar primero a Tor sin puentes, ya que esto podría funcionar.
+</p>
+
+<p>
+Fíjese que también es posible que Tor no sea funcional
+por otros motivos. La última versión de <a href="<page
+torbrowser/index>">El Paquete del Navegador Tor</a> sobre
+Windows trata de darle los mejores indicios acerca de por qué
+Tor está teniendo problemas para conectarse. Debe leer también <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">las
+Preguntas Más Frecuentes acerca de problemas con la ejecución correcta del
+Tor</a> cuando tenga dificultades en esto. Si piensa que la dificultad
+consiste evidentemente en el bloqueo, o simplemente le gustaría probar
+porque no está seguro de tener suerte, léalo. Asegúrese de estar usando
+el <a href="<page download>#Dev">último paquete 0.2.0.x o el 0.2.1.x
+para su plataforma</a>.
+</p>
+
+<p>
+Para usar un puente, necesitará localizar uno. Además, tendrá que
+configurar Tor con cualquier dirección de puente que pretenda usar. Esto
+lo hará con Vidalia, el controlador de Tor. Si su conexión a Internet
+requiere el uso de un proxy, probablemente necesitará configurar primero
+a Vidalia para que lo use. Si no cree que necesite configurar un proxy
+para su conexión a Internet, probablemente sea así. Pruebe, y si tiene
+problemas, pida ayuda.
+</p>
+
+<p>
+Por el momento, puede obtener un puente visitando <a
+href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+con su navegador. Si el acceso a esta página está filtrado y no
+tiene ningún otro proxy ni formas de alcanzarlo, también hay <a
+href="#FindingMore">otras formas de encontrar puentes</a>.
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">Comprensión de los puentes</a></h2>
+<hr />
+
+<p>
+Como ejemplo, obtendrá una entrada a un puente que tiene un aspecto
+similar al siguiente:
+</p>
+<pre><samp>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
+</pre>
+
+<p>
+La comprensión de los componentes de la línea de un puente no
+estrictamente necesaria, pero puede ser útil. Si lo desea, puede
+saltar esta sección.<br /> El primer elemento es la dirección IP:
+<tt>'141.201.27.48'</tt><br /> El segundo elemente es el puerto:
+<tt>'443'</tt><br /> El tercer elemento, la huella, es opcional:
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br />
+</p>
+
+<a id="UsingBridges"></a>
+<h2><a class="anchor" href="#UsingBridges">Empleo de puentes con Tor y
+con Vidalia</a></h2>
+<hr />
+
+<p>
+Para usar el ejemplo de puente mencionado anteriormente, vaya a la
+página de configuraciones de la Red de Vidalia y haga clic en "My ISP
+blocks connections to the Tor network" (Mi ISP bloquea las conexiones
+a la red Tor).  A&ntilde;ada cada dirección de puente una a una en la
+página de configuraciones de la Red de Vidalia, pegándolas en la ventana
+"Add a Bridge" (A&ntilde;adir un Puente) y haciendo clic después en el
+signo "+". La adición de un puente se muestra a continuación:
+</p>
+
+<br /><br /> <img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalia's Network settings page" /> <br /><br />
+
+<p>
+Es recomendable a&ntilde;adir tantas direcciones de puentes como conozca,
+ya que a mayor cantidad de puentes mayor fiabilidad. Un puente debe ser
+suficiente para llegar a la red Tor, pero si usted sólo tiene un puente
+y este se derrumba, se le cortará el acceso a la red Tor.
+</p>
+
+<a id="FindingMore"></a>
+<h2><a class="anchor" href="#FindingMore">Cómo encontrar más puentes
+para Tor</a></h2>
+<hr />
+
+<p>
+Otra forma de encontrar direcciones públicas de puentes es enviar un
+correo a bridges@torproject.org con la línea "get bridges" en al propio
+cuerpo del correo. Tendrá que enviar esta solicitud desde una cuenta
+de Gmail, porque de otra forma le facilitamos mucho a los intrusos
+hacer un montón de direcciones de correos y conocer acerca de todos los
+puentes. Casi instantáneamente recibirá una contestación que incluye:
+</p>
+<pre>
+Aquí tiene sus repetidores de puente:
+
+ bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+ bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+ bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+</pre>
+<p>
+Una vez que haya recibido el correo electrónico con la información de
+los puentes, puede continuar con los pasos de configuración explicados
+<a href="#UsingBridges">anteriormente</a>.
+</p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Ejecución de un Puente
+de Tor</a></h2>
+<hr />
+
+<p>
+Si quiere ayudarlo y no puede ejecutar un <a href="<page
+docs/tor-doc-relay>">repetidor normal de Tor</a>, debe
+ejecutar un repetidor de puente. Puede configurarlo <a
+href="<page docs/tor-doc-relay>">usando Vidalia</a>, o puede <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">editar
+su archivo torrc</a> manualmente con sólo estas cuatro líneas:
+</p>
+
+<pre><code>
+SocksPort 0
+ORPort 443
+BridgeRelay 1
+Exitpolicy reject *:*
+</code>
+</pre>
+
+<p>
+Si recibe "Could not bind to 0.0.0.0:443: Permission denied"
+"No se pudo conectar con 0.0.0.0:443: Permiso denegado,
+necesitará tomar un ORPort más alto (por ejemplo 8080) o ejecutar <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">algún
+envío más complejo de puerto</a>.
+</p>
+
+<p>
+Cuando está configurado como un puente, su servidor <b>no</b> aparecerá
+en la red pública de Tor.
+</p>
+
+<p>
+Su repetidor de puente publicará automáticamente su dirección a la
+autoridad de puentes, la cual la dará a conocer a través de https o
+correo electrónico como se dijo anteriormente. También puede comunicarle
+directamente a un usuario lo relacionado con su puente: si está usando
+Vidalia, puede copiar y pegar la dirección del puente desde la ventana de
+Configuración. Si está en Linux o en BSD, puede construir manualmente
+la dirección del puente usando el <a href="#Understanding">formato
+anterior</a> (puede encontrar la huella en sus archivos de registro de
+Tor o en <tt>/var/lib/tor/fingerprint</tt> dependiendo de su plataforma).
+</p>
+
+<p>
+Si desea aprender más acerca de nuestro dise&ntilde;o
+de puentes desde un punto de vista técnico, lea las <a
+href="<svnsandbox>doc/spec/bridges-spec.txt">Especificaciones de puentes
+de Tor</a>. Si está interesado en la ejecución de un puente no publicado
+o en otros usos no estándar, lea la especificación.
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+
