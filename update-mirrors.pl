@@ -235,23 +235,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror009 => {
-            adminContact => "beaver AT trash DOT net",
-            orgName => "Onionland",
-            isoCC => "DE",
-            subRegion => "",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://mirror.onionland.org/",
-            ftpWebsiteMirror => "",
-            rsyncWebsiteMirror => "rsync: mirror.onionland.org::tor/",
-            httpDistMirror => "http://mirror.onionland.org/dist/",
-            rsyncDistMirror => "rsync://mirror.onionland.org::tor/dist/",
-            updateDate => "Unknown",
-        },
-
        mirror011 => {
             adminContact => "info AT zentrum-der-gesundheit DOT de",
             orgName => "Zentrum der Gesundheit",
