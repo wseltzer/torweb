@@ -3,7 +3,7 @@
 # Translation-Priority: 3-low
 # Last-Translator: bogdandr_at_op . pl
 
-#include "head.wmi" TITLE="Tor: Instrukcje dla Debiana/Ubuntu"
+#include "head.wmi" TITLE="Tor: Instrukcje dla Debiana/Ubuntu" CHARSET="UTF-8"
 
 <div class="center">
 
@@ -43,22 +43,22 @@ Po pierwsze, musisz poznać nazwę swojej dystrybucji. Jeśli używasz Ubuntu 9.
 jest to "jaunty". Ubuntu 8.10 to "intrepid", a Ubuntu 8.04 to "hardy". Jeśli używasz
 Debiana etch, to jest to "etch".
 Potem dodaj te linie do swojego pliku <tt>/etc/apt/sources.list</tt>:<br />
+</p>
 <pre>
 deb     http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
 deb-src http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
 </pre>
 gdzie zamiast &lt;DISTRIBUTION&gt; wstawiasz jedno z powyższych słów (etch, jaunty, intrepid, hardy).
-</p>
 
 <p>
 Potem uruchom
+</p>
 <pre>
 gpg --keyserver keys.gnupg.net --recv 94C09C7F
 gpg --export 94C09C7F | sudo apt-key add -
 apt-get update
 apt-get install tor tor-geoipdb
 </pre>
-<p>
 
 <p>
 Teraz Tor jest zainstalowany i działa. Przejdź do <a href="<page
@@ -75,6 +75,7 @@ Tora na Debianie lub Ubuntu</a></h2>
 <p>Jeśli chcesz używać <a href="<page
 download>#packagediff">gałęzi rozwojowej</a> Tora (więcej cech i więcej błędów), musisz dodać
 inny zestaw linii do swojego pliku <tt>/etc/apt/sources.list</tt>:<br />
+</p>
 <pre>
 deb     http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
 deb-src http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
@@ -83,17 +84,16 @@ deb-src http://mirror.noreply.org/pub/tor experimental-0.2.1.x-&lt;DISTRIBUTION&
 </pre>
 gdzie zamiast &lt;DISTRIBUTION&gt; wstawiasz nazwę swojej dystrybucji (etch, lenny, sid, jaunty,
 intrepid, hardy).
-</p>
 
 <p>
 Potem uruchom
+</p>
 <pre>
 gpg --keyserver keys.gnupg.net --recv 94C09C7F
 gpg --export 94C09C7F | sudo apt-key add -
 apt-get update
 apt-get install tor tor-geoipdb
 </pre>
-<p>
 
 <p>
 Teraz Tor jest zainstalowany i działa. Przejdź do <a href="<page
