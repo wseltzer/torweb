@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 16901
-# Last-Translator: bridgefish at Gmail.com
+# Based-On-Revision: 19850
+# Last-Translator: bridgefish at Gmail.com, peihanru AT gmail.com
 # Translation-Priority: 1-high
 
 #include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
@@ -12,24 +12,38 @@
 <hr />
 
 <p>
-网桥中继（简称“网桥”）是 Tor 中继，但不被列在 Tor 的主目录中。因为没有它们的完整公共目录，即使您的 ISP 屏蔽了所有已知的 Tor 中继，也不可能屏蔽所有的网桥。如果您怀疑您的Tor网络被屏蔽了，您可能需要用到 Tor 的网桥功能。
+网桥中继（简称“网桥”）是 Tor 中继，但不被列在 Tor 的主目录中。
+因为没有它们的完整公共目录，即使您的 ISP 屏蔽了所有已知的 Tor 中继，也不可能屏蔽所有的网桥。
+如果您怀疑您的Tor网络被屏蔽了，您可能需要用到 Tor 的网桥功能。
 </p>
 
 <p>
-网桥对于 Tor 的反屏蔽战役来讲是一个进步。但很有可能在 ISP 过滤了 Internet 的情况下，您仍能够不使用网桥功能而直接连接 Tor。许多屏蔽程序通过搜寻那些未加密的Tor目录请求来识别您是否在使用 Tor，但 Tor 0.2.0.23-rc 或更高版本默认使用加密的目录请求。这一变化意味着大多数屏蔽程序将不能识别Tor连接。因此，您应该首先尝试不使用网桥功能来连接 Tor，也许在不使用网桥功能的情况下您仍然能够连接 Tor 网络。 
+网桥对于 Tor 的反屏蔽战役来讲是一个进步。但很有可能在 ISP 过滤了 Internet 的情况下，
+您仍能够不使用网桥功能而直接连接 Tor。许多屏蔽程序通过搜寻那些未加密的 Tor
+目录请求来识别您是否在使用 Tor，但 Tor 0.2.0.23-rc 或更高版本默认使用加密的目录请求。
+这一变化意味着大多数屏蔽程序将不能识别 Tor 连接。因此，您应该首先尝试不使用网桥功能来连接 Tor，
+也许在不使用网桥功能的情况下您仍然能够连接 Tor 网络。 
 </p>
 
 <p>
-注意：Tor 也可能因其它原因而不能工作。最新版本的 <a href="<page torbrowser/index>">Tor Browser Bundle</a> for Windows 试图给予您更好的关于 Tor 故障原因的提示。当您遇到问题时，您也应该仔细阅读<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">FAQ：关于 Tor 使用常见问题</a> 。如果您觉得问题很明显是被屏蔽了，或您就是想试一试网桥功能，请您继续阅读。请确定您正在使用<a href="<page download>#Dev">最新版 0.2.0.x 或0.2.1.x </a>的 Tor 软件。
+注意：Tor 也可能因其它原因而不能工作。最新版本的 <a href="<page torbrowser/index>">Windows
+Tor 浏览器套件</a>试图给予您更好的关于 Tor 故障原因的提示。当您遇到问题时，您也应该仔细阅读 <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">FAQ：关于 Tor 使用常见问题</a> 。
+如果您觉得问题很明显是被屏蔽了，或您就是想试一试网桥功能，请您继续阅读。
+请确定您正在使用<a href="<page download>#Dev">最新版 0.2.0.x 或0.2.1.x </a>的 Tor 软件。
 </p>
 
 <p>
-要使用网桥，您必须找到一个网桥地址。此外，您得将 Tor 配置为使用这个网桥。您可以用 Vidalia（Tor的 GUI 控制程序）来配置。
-如果您的 Internet 使用了代理，您也要在 Vidalia 中配置同样的代理。如果您认为不需要代理，也可不配置。可以试一试是否需要代理，如果有问题，可以向我们求助。
+要使用网桥，您必须找到一个网桥地址。此外，您得将 Tor 配置为使用这个网桥。
+您可以用 Vidalia（Tor 的 GUI 控制程序）来配置。
+如果您的 Internet 使用了代理，您也要在 Vidalia 中配置同样的代理。
+如果您认为不需要代理，也可不配置。可以试一试是否需要代理，如果有问题，可以向我们求助。
 </p>
 
 <p>
-现在，您可以通过访问<a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>来获取网桥地址。如果该网页被屏蔽了，且您也没有任何代理或其它方法访问该页面，请参考<a href="#FindingMore">查找网桥的其它方法</a> 。
+现在，您可以通过访问 <a href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+来获取网桥地址。如果该网页被屏蔽了，且您也没有任何代理或其它方法访问该页面，
+请参考<a href="#FindingMore">查找网桥的其它方法</a> 。
 </p>
 
 <a id="Understanding"></a>
@@ -57,7 +71,10 @@ bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
 <hr />
 
 <p>
-要使用上述示例中的网桥，请前往 Vidalia 的 Network settings（网络设置）页面，选中 "My ISP blocks connections to the Tor network"（我的 ISP 阻挡了对 Tor 网络的连接）项，一次一个的将网桥地址加入设置中，即将网桥地址粘帖到"Add a Bridge"（添加一个网桥）框中，点击 "+"。添加网桥如下图所示：
+要使用上述示例中的网桥，请前往 Vidalia 的 Network settings（网络设置）页面，
+选中 "My ISP blocks connections to the Tor network"（我的 ISP 阻挡了对 Tor 网络的连接）项，
+一次一个的将网桥地址加入设置中，即将网桥地址粘帖到"Add a Bridge"（添加一个网桥）框中，
+点击 "+"。添加网桥如下图所示：
 </p>
 
 <br /><br />
@@ -65,7 +82,9 @@ bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
 <br /><br />
 
 <p>
-您可能想将您所知的所有网桥都添加进去，较多的网桥可以增加 Tor 的稳定性。因为，虽然一个网桥就足以让您进入 Tor 网络了，但如果您只有一个网桥，而该网桥关闭了，您将从 Tor 网络断开。
+您可能想将您所知的所有网桥都添加进去，较多的网桥可以增加 Tor 的稳定性。
+因为，虽然一个网桥就足以让您进入 Tor 网络了，但如果您只有一个网桥，而该网桥关闭了，
+您将从 Tor 网络断开。
 </p>
 
 <a id="FindingMore"></a>
@@ -73,7 +92,9 @@ bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
 <hr />
 
 <p>
-另一个查找公共网桥地址的方法是给 bridges@torproject.org 发邮件，邮件正文为 "get bridges" 。您必须使用 gmail 的电子邮件账户, 否则攻击者很容易制造大量的电子邮件地址来窃取所有的网桥地址。当您发送邮件后，几乎立即可以收到回信，回信包含如下信息：
+另一个查找公共网桥地址的方法是给 bridges@torproject.org 发邮件，邮件正文为 "get bridges" 。
+您必须使用 gmail 的电子邮件账户, 否则攻击者很容易制造大量的电子邮件地址来窃取所有的网桥地址。
+当您发送邮件后，几乎立即可以收到回信，回信包含如下信息：
 </p>
 <pre>
 Here are your bridge relays:
@@ -92,7 +113,11 @@ Here are your bridge relays:
 <hr />
 
 <p>
-如果您是服务器管理员，您可能愿意建立一个网桥节点。您只需对<tt>torrc</tt> 进行简单的配置就能让您的网桥进入Tor网络中：
+如果您愿意提供帮助，但是无法运行<a href="<page docs/tor-doc-relay>">普通的 Tor
+中继</a>，您可以运行一个网桥中继。您可以<a href="<page
+docs/tor-doc-relay>">通过 Vidalia 进行配置</a>，或者您可以手动<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">修改 torrc 文件</a>，
+您只需要修改以下四行：
 </p>
 
 <pre><code>
@@ -104,9 +129,10 @@ Exitpolicy reject *:*
 </pre>
 
 <p>
-(如果您不知道如何编辑<tt>torrc</tt>文件，请参考
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">
-FAQ</a>.)
+如果您在启动时看到“Could not bind to 0.0.0.0:443: Permission denied”这样的错误，
+您需要挑选一个 1023 以上的端口作为 ORPort（例如 8080），或者，配置<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">复杂
+的端口转发</a>。
 </p>
 
 <p>
@@ -114,11 +140,16 @@ FAQ</a>.)
 </p>
 
 <p>
-如果您想告知用户使用您的网桥，只要将 Tor 节点的IP地址、端口号（见<tt>ORPort</tt>配置行）以及服务器的指纹发送给用户。服务器指纹应该在您的 Tor 记录文件中或在<tt>/var/lib/tor/fingerprint</tt>中，取决于您的操作系统类型。
+您的网桥中继会自动将其地址发布到权威网桥，地址将通过上面提到的 HTTPS
+或电子邮件的方法分发到给户。您也可以将网桥地址直接告诉用户：如果您使用 Vidalia，
+网桥地址可以复制粘贴自设置窗口。如果您使用 Linux 或 BSD，网桥地址需要按照<a
+href="#Understanding">上面的格式</a>手工生成（不同的平台下，指纹可以在 Tor 日志文件或
+<tt>/var/lib/tor/fingerprint</tt> 文件中找到）。
 </p>
 
 <p>
-如果您想了解更多有关“网桥”的信息，请您参考<a href="<svnsandbox>doc/spec/bridges-spec.txt">Tor 网桥详细说明</a>。如果您对运行私人网桥或其它特殊应用感兴趣，也请您务必阅读该说明。
+如果您需要从技术角度了解更多有关网桥的设计，请参考 <a href="<svnsandbox>doc/spec/bridges-spec.txt">Tor
+网桥规格说明</a>。如果您对运行私人网桥或其它特殊应用感兴趣，也请您务必阅读该说明。
 </p>
 
   </div><!-- #main -->
