@@ -1,0 +1,429 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR The Tor Project, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2009-08-15 13:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Content of: <div><div><h1>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:11
+msgid "Configuring Hidden Services for <a href=\"<page index>\">Tor</a>"
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:12
+#: /tmp/onBaazsYD7.xml:260
+msgid "<hr />"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:14
+msgid ""
+"Tor allows clients and relays to offer hidden services. That is, you can "
+"offer a web server, SSH server, etc., without revealing your IP address to "
+"its users. In fact, because you don't use any public address, you can run a "
+"hidden service from behind your firewall."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:20
+msgid ""
+"If you have Tor and Privoxy installed, you can see hidden services in action "
+"by visiting <a href=\"http://duskgytldkxiuqc6.onion/\">our example hidden "
+"service</a> or the <a href=\"http://gaddbiwdftapglkq.onion/\">Wikileaks "
+"hidden service</a>."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:26
+msgid ""
+"This howto describes the steps for setting up your own hidden service "
+"website. For the technical details of how the hidden service protocol works, "
+"see our <a href=\"<page hidden-services>\">hidden service protocol</a> page."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:31
+msgid "<hr /> <a id=\"zero\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:33
+msgid ""
+"<a class=\"anchor\" href=\"#zero\">Step Zero: Get Tor and Privoxy working</a>"
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:34
+#: /tmp/onBaazsYD7.xml:70 /tmp/onBaazsYD7.xml:115 /tmp/onBaazsYD7.xml:215
+msgid "<br />"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:36
+msgid "Before you start, you need to make sure:"
+msgstr ""
+
+#. type: Content of: <div><div><ol><li>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:38
+msgid "Tor is up and running,"
+msgstr ""
+
+#. type: Content of: <div><div><ol><li>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:39
+msgid "Privoxy is up and running,"
+msgstr ""
+
+#. type: Content of: <div><div><ol><li>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:40
+msgid "Privoxy is configured to point to Tor and"
+msgstr ""
+
+#. type: Content of: <div><div><ol><li>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:41
+msgid "You actually set it up correctly."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:45
+msgid ""
+"Windows users should follow the <a href=\"<page docs/tor-doc-windows>"
+"\">Windows howto</a>, OS X users should follow the <a href=\"<page docs/tor-"
+"doc-osx>\">OS X howto</a>, and Linux/BSD/Unix users should follow the <a "
+"href=\"<page docs/tor-doc-unix>\">Unix howto</a>."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:53
+msgid ""
+"Once you've got Tor and Privoxy installed and configured, you can see hidden "
+"services in action by following this link to <a href=\"http://"
+"duskgytldkxiuqc6.onion/\">our example hidden service</a> or the <a href="
+"\"http://gaddbiwdftapglkq.onion/\">Wikileaks hidden service</a>.  It will "
+"typically take 10-60 seconds to load (or to decide that it is currently "
+"unreachable). If it fails immediately and your browser pops up an alert "
+"saying that \"www.duskgytldkxiuqc6.onion could not be found, please check "
+"the name and try again\" then you haven't configured Tor and Privoxy "
+"correctly; see <a href=\"https://wiki.torproject.org/noreply/TheOnionRouter/"
+"TorFAQ#ItDoesntWork\">the it-doesn't-work FAQ entry</a> for some help."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:67
+msgid "<hr /> <a id=\"one\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:69
+msgid ""
+"<a class=\"anchor\" href=\"#one\">Step One: Install a web server locally</a>"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:72
+msgid ""
+"First, you need to set up a web server locally. Setting up a web server can "
+"be tricky, so we're just going to go over a few basics here. If you get "
+"stuck or want to do more, find a friend who can help you. We recommend you "
+"install a new separate web server for your hidden service, since even if you "
+"already have one installed, you may be using it (or want to use it later) "
+"for an actual website."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:81
+msgid ""
+"If you're on Unix or OS X and you're comfortable with the command-line, by "
+"far the best way to go is to install <a href=\"http://www.acme.com/software/"
+"thttpd/\">thttpd</a>. Just grab the latest tarball, untar it (it will create "
+"its own directory), and run <kbd>./configure &amp;&amp; make</kbd>. Then "
+"<kbd>mkdir hidserv; cd hidserv</kbd>, and run <kbd>../thttpd -p 5222 -h "
+"localhost</kbd>. It will give you back your prompt, and now you're running a "
+"webserver on port 5222. You can put files to serve in the hidserv directory."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:92
+msgid ""
+"If you're on Windows, you might pick <a href=\"http://savant.sourceforge.net/"
+"\">Savant</a> or <a href=\"http://httpd.apache.org/\">Apache</a>, and be "
+"sure to configure it to bind only to localhost. You should also figure out "
+"what port you're listening on, because you'll use it below."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:99
+msgid ""
+"(The reason we bind the web server only to localhost is to make sure it "
+"isn't publically accessible. If people could get to it directly, they could "
+"confirm that your computer is the one offering the hidden service.)"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:105
+msgid ""
+"Once you've got your web server set up, make sure it works: open your "
+"browser and go to <a href=\"http://localhost:5222/\">http://localhost:5222/</"
+"a>, where 5222 is the port that you picked above. Then try putting a file in "
+"the main html directory, and make sure it shows up when you access the site."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:112
+msgid "<hr /> <a id=\"two\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:114
+msgid ""
+"<a class=\"anchor\" href=\"#two\">Step Two: Configure your hidden service</a>"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:117
+msgid ""
+"Next, you need to configure your hidden service to point to your local web "
+"server."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:121
+msgid ""
+"First, open your torrc file in your favorite text editor. (See <a href="
+"\"https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc\">the "
+"torrc FAQ entry</a> to learn what this means.) Go to the middle section and "
+"look for the line"
+msgstr ""
+
+#. type: Content of: <div><div><pre>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:127
+#, no-wrap
+msgid "\\############### This section is just for location-hidden services ###\n"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:131
+msgid ""
+"This section of the file consists of groups of lines, each representing one "
+"hidden service. Right now they are all commented out (the lines start with "
+"#), so hidden services are disabled. Each group of lines consists of one "
+"<var>HiddenServiceDir</var> line, and one or more <var>HiddenServicePort</"
+"var> lines:"
+msgstr ""
+
+#. type: Content of: <div><div><ul><li>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:137
+msgid ""
+"<var>HiddenServiceDir</var> is a directory where Tor will store information "
+"about that hidden service.  In particular, Tor will create a file here named "
+"<var>hostname</var> which will tell you the onion URL.  You don't need to "
+"add any files to this directory."
+msgstr ""
+
+#. type: Content of: <div><div><ul><li>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:141
+msgid ""
+"<var>HiddenServicePort</var> lets you specify a virtual port (that is, what "
+"port people accessing the hidden service will think they're using) and an IP "
+"address and port for redirecting connections to this virtual port."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:146
+msgid "Add the following lines to your torrc:"
+msgstr ""
+
+#. type: Content of: <div><div><pre>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:150
+#, no-wrap
+msgid ""
+"HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/\n"
+"HiddenServicePort 80 127.0.0.1:5222\n"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:154
+msgid ""
+"You're going to want to change the <var>HiddenServiceDir</var> line, so it "
+"points to an actual directory that is readable/writeable by the user that "
+"will be running Tor. The above line should work if you're using the OS X Tor "
+"package. On Unix, try \"/home/username/hidserv/\" and fill in your own "
+"username in place of \"username\". On Windows you might pick:"
+msgstr ""
+
+#. type: Content of: <div><div><pre>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:160
+#, no-wrap
+msgid ""
+"HiddenServiceDir C:\\Documents and Settings\\username\\Application Data\\hidden_service\\\\\n"
+"HiddenServicePort 80 127.0.0.1:5222\n"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:164
+msgid "Now save the torrc, shut down your Tor, and then start it again."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:168
+msgid ""
+"If Tor starts up again, great. Otherwise, something is wrong. First look at "
+"your logfiles for hints. It will print some warnings or error messages. That "
+"should give you an idea what went wrong. Typically there are typos in the "
+"torrc or wrong directory permissions (See <a href=\"https://wiki.torproject."
+"org/noreply/TheOnionRouter/TorFAQ#Logs\">the logging FAQ entry</a> if you "
+"don't know how to enable or find your log file.)"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:177
+msgid ""
+"When Tor starts, it will automatically create the <var>HiddenServiceDir</"
+"var> that you specified (if necessary), and it will create two files there."
+msgstr ""
+
+#. type: Content of: <div><div><dl><dt>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:181
+msgid "<var>private_key</var>"
+msgstr ""
+
+#. type: Content of: <div><div><dl><dd>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:182
+msgid ""
+"First, Tor will generate a new public/private keypair for your hidden "
+"service. It is written into a file called \"private_key\". Don't share this "
+"key with others -- if you do they will be able to impersonate your hidden "
+"service."
+msgstr ""
+
+#. type: Content of: <div><div><dl><dt>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:186
+msgid "<var>hostname</var>"
+msgstr ""
+
+#. type: Content of: <div><div><dl><dd>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:187
+msgid ""
+"The other file Tor will create is called \"hostname\". This contains a short "
+"summary of your public key -- it will look something like "
+"<tt>duskgytldkxiuqc6.onion</tt>. This is the public name for your service, "
+"and you can tell it to people, publish it on websites, put it on business "
+"cards, etc."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:194
+msgid ""
+"If Tor runs as a different user than you, for example on OS X, Debian, or "
+"Red Hat, then you may need to become root to be able to view these files."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:198
+msgid ""
+"Now that you've restarted Tor, it is busy picking introduction points in the "
+"Tor network, and generating a <em>hidden service descriptor</em>. This is a "
+"signed list of introduction points along with the service's full public key. "
+"It anonymously publishes this descriptor to the directory servers, and other "
+"people anonymously fetch it from the directory servers when they're trying "
+"to access your service."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:206
+msgid ""
+"Try it now: paste the contents of the hostname file into your web browser. "
+"If it works, you'll get the html page you set up in step one.  If it doesn't "
+"work, look in your logs for some hints, and keep playing with it until it "
+"works."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:212
+msgid "<hr /> <a id=\"three\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:214
+msgid "<a class=\"anchor\" href=\"#three\">Step Three: More advanced tips</a>"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:217
+msgid ""
+"If you plan to keep your service available for a long time, you might want "
+"to make a backup copy of the <var>private_key</var> file somewhere."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:221
+msgid ""
+"We avoided recommending Apache above, a) because many people might already "
+"be running it for a public web server on their computer, and b)  because "
+"it's big and has lots of places where it might reveal your IP address or "
+"other identifying information, for example in 404 pages. For people who need "
+"more functionality, though, Apache may be the right answer. Can somebody "
+"make us a checklist of ways to lock down your Apache when you're using it as "
+"a hidden service? Savant probably has these problems too."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:231
+msgid ""
+"If you want to forward multiple virtual ports for a single hidden service, "
+"just add more <var>HiddenServicePort</var> lines.  If you want to run "
+"multiple hidden services from the same Tor client, just add another "
+"<var>HiddenServiceDir</var> line. All the following <var>HiddenServicePort</"
+"var> lines refer to this <var>HiddenServiceDir</var> line, until you add "
+"another <var>HiddenServiceDir</var> line:"
+msgstr ""
+
+#. type: Content of: <div><div><pre>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:240
+#, no-wrap
+msgid ""
+"HiddenServiceDir /usr/local/etc/tor/hidden_service/\n"
+"HiddenServicePort 80 127.0.0.1:8080\n"
+"\n"
+"HiddenServiceDir /usr/local/etc/tor/other_hidden_service/\n"
+"HiddenServicePort 6667 127.0.0.1:6667\n"
+"HiddenServicePort 22 127.0.0.1:22\n"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:248
+msgid "There are some anonymity issues you should keep in mind too:"
+msgstr ""
+
+#. type: Content of: <div><div><ul><li>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:251
+msgid ""
+"As mentioned above, be careful of letting your web server reveal identifying "
+"information about you, your computer, or your location.  For example, "
+"readers can probably determine whether it's thttpd or Apache, and learn "
+"something about your operating system."
+msgstr ""
+
+#. type: Content of: <div><div><ul><li>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:255
+msgid ""
+"If your computer isn't online all the time, your hidden service won't be "
+"either. This leaks information to an observant adversary."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-hidden-service.wml:262
+msgid ""
+"If you have suggestions for improving this document, please <a href=\"<page "
+"contact>\">send them to us</a>. Thanks!"
+msgstr ""

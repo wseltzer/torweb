@@ -1,0 +1,153 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR The Tor Project, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2009-08-15 13:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Content of: <div><h2>
+#: /home/runa/tor/website/en/running-a-mirror.wml:9
+msgid "Tor: Running a Mirror"
+msgstr ""
+
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/running-a-mirror.wml:10
+msgid "<hr />"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:12
+msgid ""
+"Thank you for wanting to be a mirror of the Tor website.  All of our mirrors "
+"are publicly listed on <a href=\"<page mirrors>\">our mirrors page</a>.  "
+"We've included some sample commands and configuration below to make the "
+"initial setup and ongoing maintenance a minimal effort.  The Tor website and "
+"distribution directory currently require 1.6 GB of disk space.  The /dist "
+"directory alone is 230 MB."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:20
+msgid ""
+"If you would like to run a mirror (website + dist), it's as easy as this "
+"command to download everything a mirror should share with the world: <br /> "
+"<br /> <tt> rsync -av --delete rsync://rsync.torproject.org/tor tor-mirror/ "
+"</tt> <br /> <br /> If you would like to run only a dist/ mirror "
+"(distribution only), it's as easy as this command to download everything a "
+"dist mirror should share with the world: <br /> <br /> <tt> rsync -av --"
+"delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/ </tt>"
+msgstr ""
+
+#. type: Content of: <div><p><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:36
+msgid ""
+"In order to assure the mirrors of of high quility and up to date...  Please "
+"ensure your mirror does at least the following:<br/><br/> Updates no later "
+"than every six hours, but no more frequent than every hour.<br/><br/> Allows "
+"\"Directory Index / Indexes\" (Index viewing) of the /dist directory.<br/"
+"><br/> Allows \"Multiviews\" or equivalent for language localization.<br/"
+"><br/> Have a valid contact email for administrative communications should "
+"your server have issues.<br/><br/> It is highly recommended for all mirror "
+"operators to subscribe to"
+msgstr ""
+
+#. type: Content of: <div><p><A>
+#: /home/runa/tor/website/en/running-a-mirror.wml:51 /tmp/Ah2EnNv2dh.xml:95
+msgid "tor-mirrors mailing list"
+msgstr ""
+
+#. type: Content of: <div><p><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:52
+msgid ""
+"where all mirror listing modification requests should go (ADD, CHANGE, "
+"DELETE, any other requests/notifications).  Also, any technical assistance "
+"in setting up your mirror may be found here as well.<br/><br/>"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:57
+msgid "<br /><br />"
+msgstr ""
+
+#. type: Content of: <div><p><p><tt>
+#: /home/runa/tor/website/en/running-a-mirror.wml:59
+msgid ""
+"An example cronjob to update a full mirror once every 6 hours may look like "
+"so: <tt>"
+msgstr ""
+
+#. PO4ASHARPBEGIN m h  dom mon dow   commandPO4ASHARPEND
+#. type: Content of: <div><p><p><tt><pre>
+#: /home/runa/tor/website/en/running-a-mirror.wml:62
+#, no-wrap
+msgid ""
+"\n"
+"0 */6 * * * rsync -av --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org\n"
+msgstr ""
+
+#. type: Content of: <div><p><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:65
+msgid "</tt>"
+msgstr ""
+
+#. type: Content of: <div><p><tt>
+#: /home/runa/tor/website/en/running-a-mirror.wml:67
+msgid ""
+"<br/> For mirror operators that use Apache, we have created a sample virtual "
+"host configuration file to use: <tt>"
+msgstr ""
+
+#. type: Content of: <div><p><tt><pre>
+#: /home/runa/tor/website/en/running-a-mirror.wml:72
+#, no-wrap
+msgid ""
+"&lt;VirtualHost 1.2.3.4:80&gt;\n"
+"        ServerAdmin youremail@example.com<br/>\n"
+"        ServerName  1.2.3.4<br/>\n"
+"\n"
+"        DocumentRoot /var/www/mirrors/torproject.org<br/>\n"
+"\n"
+"        &lt;Directory /var/www/mirrors/torproject.org/&gt;<br/>\n"
+"            Options MultiViews Indexes<br/>\n"
+"            DirectoryIndex index<br/>\n"
+"            AllowOverride None<br/>\n"
+"        &lt;/Directory&gt;<br/>\n"
+"\n"
+"&lt;/VirtualHost&gt;\n"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:86
+msgid ""
+"</tt> <br/> <br/> Please ensure that you keep your mirror updated (we "
+"suggest automating this task with something like '<tt>cron</tt>'). Our "
+"website, source code and binary releases change often. An update frequency "
+"of six hours is recommended.  Tor users everywhere will thank you."
+msgstr ""
+
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/running-a-mirror.wml:92
+msgid "<br/>"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:94
+msgid "If you are running a mirror, please subscribe to the"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/running-a-mirror.wml:95
+msgid ""
+", and introduce yourself there.  We will add you to the mirror list.  Help "
+"for mirror support and configuration issues may also be found on the list."
+msgstr ""

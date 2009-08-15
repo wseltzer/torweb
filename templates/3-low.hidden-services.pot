@@ -1,0 +1,211 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR The Tor Project, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2009-08-15 13:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Content of: <div><h2>
+#: /home/runa/tor/website/en/hidden-services.wml:9
+msgid "Tor: Hidden Service Protocol"
+msgstr ""
+
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/hidden-services.wml:10
+msgid "<hr />"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:13
+msgid ""
+"Tor makes it possible for users to hide their locations while offering "
+"various kinds of services, such as web publishing or an instant messaging "
+"server.  Using Tor \"rendezvous points,\" other Tor users can connect to "
+"these hidden services, each without knowing the other's network identity. "
+"This page describes the technical details of how this rendezvous protocol "
+"works. For a more direct how-to, see our <a href=\"<page docs/tor-hidden-"
+"service>\">configuring hidden services</a> page."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:24
+msgid ""
+"A hidden service needs to advertise its existence in the Tor network before "
+"clients will be able to contact it. Therefore, the service randomly picks "
+"some relays, builds circuits to them, and asks them to act as "
+"<em>introduction points</em> by telling them its public key. Note that in "
+"the following figures the green links are circuits rather than direct "
+"connections. By using a full Tor circuit, it's hard for anyone to associate "
+"an introduction point with the hidden server's IP address. While the "
+"introduction points and others are told the hidden service's identity "
+"(public key), we don't want them to learn about the hidden server's location "
+"(IP address)."
+msgstr ""
+
+#. PO4ASHARPBEGIN maybe add a speech bubble containing "PK" to Bob, because that's whatPO4ASHARPEND
+#. PO4ASHARPBEGIN Bob tells to his introduction pointsPO4ASHARPEND
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/hidden-services.wml:36
+msgid ""
+"<img alt=\"Tor hidden service step one\" src=\"$(IMGROOT)/THS-1.png\" />"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:41
+msgid ""
+"Step two: the hidden service assembles a <em>hidden service descriptor</em>, "
+"containing its public key and a summary of each introduction point, and "
+"signs this descriptor with its private key.  It uploads that descriptor to a "
+"set of directory servers, again using a full Tor circuit to hide the link "
+"between the directory server storing the descriptor and the hidden server's "
+"IP address. The descriptor will be found by clients requesting XYZ.onion "
+"where XYZ is a 16 character name that can be uniquely derived from the "
+"service's public key. After this step, the hidden service is set up."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:53
+msgid ""
+"Although it might seem impractical to use an automatically-generated service "
+"name, it serves an important goal: Everyone &ndash; including the "
+"introduction points, the directory servers, and of course the clients "
+"&ndash; can verify that they are talking to the right hidden service. See "
+"also <a href=\"https://zooko.com/distnames.html\">Zooko's conjecture</a> "
+"that out of Decentralized, Secure, and Human-Meaningful, you can achieve at "
+"most two. Perhaps one day somebody will implement a <a href=\"http://www."
+"skyhunter.com/marcs/petnames/IntroPetNames.html\">Petname</a> design for "
+"hidden service names?"
+msgstr ""
+
+#. PO4ASHARPBEGIN maybe replace "database" with "directory servers"; further: how incorrectPO4ASHARPEND
+#. PO4ASHARPBEGIN is it to *not* add DB to the Tor cloud, now that begin dir cells are inPO4ASHARPEND
+#. PO4ASHARPBEGIN use?PO4ASHARPEND
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/hidden-services.wml:64
+msgid ""
+"<img alt=\"Tor hidden service step two\" src=\"$(IMGROOT)/THS-2.png\" />"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:70
+msgid ""
+"Step three: A client that wants to contact a hidden service needs to learn "
+"about its onion address first. After that, the client can initiate "
+"connection establishment by downloading the descriptor from the directory "
+"servers. If there is a descriptor for XYZ.onion (the hidden service could "
+"also be offline or have left long ago, or there could be a typo in the onion "
+"address), the client now knows the set of introduction points and the right "
+"public key to use. Around this time, the client also creates a circuit to "
+"another randomly picked relay and asks it to act as <em>rendezvous point</"
+"em> by telling it a one-time secret."
+msgstr ""
+
+#. PO4ASHARPBEGIN maybe add "cookie" to speech bubble, separated from the surroundedPO4ASHARPEND
+#. PO4ASHARPBEGIN "IP1-3" and "PK"PO4ASHARPEND
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/hidden-services.wml:82
+msgid ""
+"<img alt=\"Tor hidden service step three\" src=\"$(IMGROOT)/THS-3.png\" />"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:87
+msgid ""
+"Step four: When the descriptor is present and the rendezvous point is ready, "
+"the client assembles an <em>introduce</em> message (encrypted to the hidden "
+"service's public key) including the address of the rendezvous point and the "
+"one-time secret. The client sends this message to one of the introduction "
+"points, requesting it be delivered to the hidden service. Again, "
+"communication takes place via a Tor circuit: nobody can relate sending the "
+"introduce message to the client's IP address, so the client remains "
+"anonymous."
+msgstr ""
+
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/hidden-services.wml:97
+msgid ""
+"<img alt=\"Tor hidden service step four\" src=\"$(IMGROOT)/THS-4.png\" />"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:100
+msgid ""
+"Step five: The hidden service decrypts the client's introduce message and "
+"finds the address of the rendezvous point and the one-time secret in it. The "
+"service creates a circuit to the rendezvous point and sends the one-time "
+"secret to it in a rendezvous message."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:108
+msgid ""
+"At this point it is of special importance that the hidden service sticks to "
+"the same set of <a href=\"https://wiki.torproject.org/noreply/TheOnionRouter/"
+"TorFAQ#EntryGuards\">entry guards</a> when creating new circuits. Otherwise "
+"an attacker could run his own relay and force a hidden service to create an "
+"arbitrary number of circuits in the hope that the corrupt relay is picked as "
+"entry node and he learns the hidden server's IP address via timing analysis. "
+"This attack was described by &Oslash;verlier and Syverson in their paper "
+"titled <a href=\"http://freehaven.net/anonbib/#hs-attack06\">Locating Hidden "
+"Servers</a>."
+msgstr ""
+
+#. PO4ASHARPBEGIN it should say "Bob connects to Alice's ..."PO4ASHARPEND
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/hidden-services.wml:120
+msgid ""
+"<img alt=\"Tor hidden service step five\" src=\"$(IMGROOT)/THS-5.png\" />"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:124
+msgid ""
+"In the last step, the rendezvous point notifies the client about successful "
+"connection establishment. After that, both client and hidden service can use "
+"their circuits to the rendezvous point for communicating with each other. "
+"The rendezvous point simply relays (end-to-end encrypted) messages from "
+"client to service and vice versa."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:132
+msgid ""
+"One of the reasons for not using the introduction circuit for actual "
+"communication is that no single relay should appear to be responsible for a "
+"given hidden service. This is why the rendezvous point never learns about "
+"the hidden service's identity."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:139
+msgid ""
+"In general, the complete connection between client and hidden service "
+"consists of 6 relays: 3 of them were picked by the client with the third "
+"being the rendezvous point and the other 3 were picked by the hidden service."
+msgstr ""
+
+#. type: Content of: <div>
+#: /home/runa/tor/website/en/hidden-services.wml:145
+msgid ""
+"<img alt=\"Tor hidden service step six\" src=\"$(IMGROOT)/THS-6.png\" />"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/en/hidden-services.wml:148
+msgid ""
+"There are more detailed descriptions about the hidden service protocol than "
+"this one. See the <a href=\"<svnsandbox>doc/design-paper/tor-design.pdf"
+"\">Tor design paper</a> for an in-depth design description and the <a href="
+"\"<svnsandbox>doc/spec/rend-spec.txt\">rendezvous specification</a> for the "
+"message formats."
+msgstr ""

@@ -1,0 +1,311 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR The Tor Project, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2009-08-15 13:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Content of: <div><div><h1>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:11
+msgid "Running the <a href=\"<page index>\">Tor</a> client on Linux/BSD/Unix"
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:12 /tmp/zjsdUdC28n.xml:24
+#: /tmp/zjsdUdC28n.xml:53 /tmp/zjsdUdC28n.xml:101 /tmp/zjsdUdC28n.xml:144
+#: /tmp/zjsdUdC28n.xml:182
+msgid "<br />"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:15
+msgid ""
+"<b>Note that these are the installation instructions for running a Tor "
+"client. If you want to relay traffic for others to help the network grow "
+"(please do), read the <a href=\"<page docs/tor-doc-relay>\">Configuring a "
+"relay</a> guide.</b>"
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:21
+msgid "<hr /> <a id=\"installing\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:23
+msgid ""
+"<a class=\"anchor\" href=\"#installing\">Step One: Download and Install Tor</"
+"a>"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:27
+msgid ""
+"The latest release of Tor can be found on the <a href=\"<page download-unix>"
+"\">download</a> page. We have packages for Debian, Red Hat, Gentoo, *BSD, "
+"etc there too. If you're using Ubuntu, don't use the default packages: use "
+"<a href=\"<page docs/debian>#ubuntu\">our deb repository</a> instead."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:34
+msgid ""
+"If you're building from source, first install <a href=\"http://www.monkey."
+"org/~provos/libevent/\">libevent</a>, and make sure you have openssl and "
+"zlib (including the -devel packages if applicable). Then run:<br /> <tt>tar "
+"xzf tor-<version-stable>.tar.gz; cd tor-<version-stable><br /> ./configure "
+"&amp;&amp; make</tt><br /> Now you can run tor as <tt>src/or/tor</tt>, or "
+"you can run <tt>make install</tt> (as root if necessary) to install it into /"
+"usr/local/, and then you can start it just by running <tt>tor</tt>."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:45
+msgid ""
+"Tor comes configured as a client by default. It uses a built-in default "
+"configuration file, and most people won't need to change any of the "
+"settings. Tor is now installed."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:50
+msgid "<hr /> <a id=\"privoxy\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:52
+msgid ""
+"<a class=\"anchor\" href=\"#privoxy\">Step Two: Install Privoxy for Web "
+"Browsing</a>"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:55
+msgid ""
+"After installing Tor, you need to configure your applications to use it."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:59
+msgid ""
+"The first step is to set up web browsing. Start by installing <a href="
+"\"http://www.privoxy.org/\">Privoxy</a>: click on 'recent releases' and pick "
+"your favorite package or install from source. Privoxy is a filtering web "
+"proxy that integrates well with Tor."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:65
+msgid ""
+"Once you've installed Privoxy (either from package or from source), <b>you "
+"will need to configure Privoxy to use Tor</b>. You may find <a href="
+"\"https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig\">this "
+"sample Privoxy configuration</a> useful. Otherwise, you should configure "
+"Privoxy by hand, using the directions that follow."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:74
+msgid ""
+"Open Privoxy's \"config\" file (look in /etc/privoxy/ or /usr/local/etc/)  "
+"and add the line <br /> <tt>forward-socks4a / 127.0.0.1:9050 .</tt><br /> to "
+"the top of the config file. <b>Don't forget to add the dot at the end of the "
+"line.</b>"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:81
+msgid ""
+"Privoxy keeps a log file of everything passed through it.  In order to stop "
+"this you will need to comment out three lines by inserting a \\# before the "
+"line. The three lines are:<br /> <tt>logfile logfile</tt><br /> and the line "
+"<br /> <tt>jarfile jarfile</tt><br /> and (on some systems) the line <br /> "
+"<tt>debug 1 # show each GET/POST/CONNECT request</tt><br />"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:91
+msgid ""
+"Depending on which default config file you have for Privoxy, you may also "
+"need to turn off <tt>enable-remote-toggle</tt>, <tt>enable-remote-http-"
+"toggle</tt>, and <tt>enable-edit-actions</tt>."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:96
+msgid "You'll need to restart Privoxy for the changes to take effect."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:98
+msgid "<hr /> <a id=\"using\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:100
+msgid ""
+"<a class=\"anchor\" href=\"#using\">Step Three: Configure your applications "
+"to use Tor</a>"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:103
+msgid ""
+"After installing Tor and Privoxy, you need to configure your applications to "
+"use them. The first step is to set up web browsing."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:106
+msgid ""
+"You should use Tor with Firefox and Torbutton, for best safety.  Simply "
+"install the <a href=\"https://addons.mozilla.org/firefox/2275/\">Torbutton "
+"plugin</a>, restart your Firefox, and you're all set:"
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:112
+msgid ""
+"<img alt=\"Torbutton plugin for Firefox\" src=\"../img/screenshot-torbutton."
+"png\" border=\"1\"> <br />"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:119
+msgid ""
+"If you plan to run Firefox on a different computer than Tor, see the <a href="
+"\"https://wiki.torproject.org/noreply/TheOnionRouter/"
+"TorFAQ#SocksListenAddress\"> FAQ entry for running Tor on a different "
+"computer</a>."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:125
+msgid ""
+"To Torify other applications that support HTTP proxies, just point them at "
+"Privoxy (that is, localhost port 8118). To use SOCKS directly (for instant "
+"messaging, Jabber, IRC, etc), you can point your application directly at Tor "
+"(localhost port 9050), but see <a href=\"https://wiki.torproject.org/noreply/"
+"TheOnionRouter/TorFAQ#SOCKSAndDNS\">this FAQ entry</a> for why this may be "
+"dangerous. For applications that support neither SOCKS nor HTTP, take a look "
+"at <a href=\"http://tsocks.sourceforge.net/\">tsocks</a> or <a href="
+"\"https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO#socat"
+"\">socat</a>."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:136
+msgid ""
+"For information on how to Torify other applications, check out the <a href="
+"\"https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO\">Torify "
+"HOWTO</a>."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:141
+msgid "<hr /> <a id=\"verify\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:143
+msgid ""
+"<a class=\"anchor\" href=\"#verify\">Step Four: Make sure it's working</a>"
+msgstr ""
+
+#. PO4ASHARPBEGIN<a href="http://ipchicken.com/">
+#. this site</a>PO4ASHARPEND
+#. PO4ASHARPBEGINto see what IP address it thinks you're using.PO4ASHARPEND
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:147
+msgid ""
+"Next, you should try using your browser with Tor and make sure that your IP "
+"address is being anonymized. Click on <a href=\"https://check.torproject.org/"
+"\">the Tor detector</a> and see whether it thinks you're using Tor or not.  "
+"(If that site is down, see <a href=\"https://wiki.torproject.org/noreply/"
+"TheOnionRouter/TorFAQ#IsMyConnectionPrivate\">this FAQ entry</a> for more "
+"suggestions on how to test your Tor.)"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:159
+msgid ""
+"If you have a personal firewall that limits your computer's ability to "
+"connect to itself (this includes something like SELinux on Fedora Core 4), "
+"be sure to allow connections from your local applications to Privoxy (local "
+"port 8118) and Tor (local port 9050). If your firewall blocks outgoing "
+"connections, punch a hole so it can connect to at least TCP ports 80 and "
+"443, and then see <a href=\"https://wiki.torproject.org/noreply/"
+"TheOnionRouter/TorFAQ#FirewalledClient\">this FAQ entry</a>.  If your "
+"SELinux config is not allowing tor or privoxy to run correctly, create a "
+"file named booleans.local in the directory /etc/selinux/targeted.  Edit this "
+"file in your favorite text editor and insert \"allow_ypbind=1\".  Restart "
+"your machine for this change to take effect."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:174
+msgid ""
+"If it's still not working, look at <a href=\"https://wiki.torproject.org/"
+"noreply/TheOnionRouter/TorFAQ#ItDoesntWork\">this FAQ entry</a> for hints."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:178
+msgid "<hr /> <a id=\"server\"></a> <a id=\"relay\"></a>"
+msgstr ""
+
+#. type: Content of: <div><div><h2>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:181
+msgid ""
+"<a class=\"anchor\" href=\"#relay\">Step Five: Configure it as a relay</a>"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:184
+msgid ""
+"The Tor network relies on volunteers to donate bandwidth. The more people "
+"who run relays, the faster the Tor network will be. If you have at least 20 "
+"kilobytes/s each way, please help out Tor by configuring your Tor to be a "
+"relay too. We have many features that make Tor relays easy and convenient, "
+"including rate limiting for bandwidth, exit policies so you can limit your "
+"exposure to abuse complaints, and support for dynamic IP addresses."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:192
+msgid ""
+"Having relays in many different places on the Internet is what makes Tor "
+"users secure. <a href=\"https://wiki.torproject.org/noreply/TheOnionRouter/"
+"TorFAQ#RelayAnonymity\">You may also get stronger anonymity yourself</a>, "
+"since remote sites can't know whether connections originated at your "
+"computer or were relayed from others."
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:199
+msgid ""
+"Read more at our <a href=\"<page docs/tor-doc-relay>\">Configuring a relay</"
+"a> guide."
+msgstr ""
+
+#. type: Content of: <div><div>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:202
+msgid "<hr />"
+msgstr ""
+
+#. type: Content of: <div><div><p>
+#: /home/runa/tor/website/docs/en/tor-doc-unix.wml:204
+msgid ""
+"If you have suggestions for improving this document, please <a href=\"<page "
+"contact>\">send them to us</a>. Thanks!"
+msgstr ""

@@ -1,0 +1,168 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR The Tor Project, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2009-08-15 13:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Content of: <div><h1>
+#: /home/runa/tor/website/tordnsel/en/index.wml:10
+msgid "The public TorDNSEL service"
+msgstr ""
+
+#. type: Content of: <div><h2>
+#: /home/runa/tor/website/tordnsel/en/index.wml:12
+msgid "What is the TorDNSEL?"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:14
+msgid ""
+"TorDNSEL is an active testing, DNS-based list of Tor exit nodes. Since Tor "
+"supports exit policies, a network service's Tor exit list is a function of "
+"its IP address and port. Unlike with traditional DNSxLs, services need to "
+"provide that information in their queries."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:19
+msgid ""
+"Previous DNSELs scraped Tor's network directory for exit node IP addresses, "
+"but this method fails to list nodes that don't advertise their exit address "
+"in the directory. TorDNSEL actively tests through these nodes to provide a "
+"more accurate list."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:24
+msgid ""
+"The full background and rationale for TorDNSEL is described in the official "
+"<a href=\"<svnsandbox>doc/contrib/torel-design.txt\">design document</a>. "
+"The current service only supports the first query type mentioned in that "
+"document."
+msgstr ""
+
+#. type: Content of: <div><h2>
+#: /home/runa/tor/website/tordnsel/en/index.wml:29
+msgid "How can I query the public TorDNSEL service?"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:31
+msgid "Using the command line tool dig, users can ask type 1 queries like so:"
+msgstr ""
+
+#. type: Content of: <div><pre>
+#: /home/runa/tor/website/tordnsel/en/index.wml:33
+#, no-wrap
+msgid "dig 209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org"
+msgstr ""
+
+#. type: Content of: <div><h2>
+#: /home/runa/tor/website/tordnsel/en/index.wml:35
+msgid "What do the received answers mean?"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:37
+msgid ""
+"A request for the A record \"209.137.169.81.6667.4.3.2.1.ip-port.exitlist."
+"torproject.org\" would return 127.0.0.2 if there's a Tor node that can exit "
+"through 81.169.137.209 to port 6667 at 1.2.3.4. If there isn't such an exit "
+"node, the DNSEL returns NXDOMAIN."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:43
+msgid ""
+"Other A records inside net 127/8, except 127.0.0.1, are reserved for future "
+"use and should be interpreted by clients as indicating an exit node. Queries "
+"outside the DNSEL's zone of authority result in REFUSED. Ill-formed queries "
+"inside its zone of authority result in NXDOMAIN."
+msgstr ""
+
+#. type: Content of: <div><h2>
+#: /home/runa/tor/website/tordnsel/en/index.wml:48
+msgid "How do I configure software with DNSBL support?"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:50
+msgid ""
+"Users of software with built-in support for DNSBLs can configure the "
+"following zone as a DNSBL:"
+msgstr ""
+
+#. type: Content of: <div><pre>
+#: /home/runa/tor/website/tordnsel/en/index.wml:53
+#, no-wrap
+msgid ""
+"[service port].[reversed service\n"
+"address].ip-port.exitlist.torproject.org"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:56
+msgid ""
+"An example for an IRC server running on port 6667 at IP address 1.2.3.4:"
+msgstr ""
+
+#. type: Content of: <div><pre>
+#: /home/runa/tor/website/tordnsel/en/index.wml:57
+#, no-wrap
+msgid "6667.4.3.2.1.ip-port.exitlist.torproject.org"
+msgstr ""
+
+#. type: Content of: <div><h2>
+#: /home/runa/tor/website/tordnsel/en/index.wml:59
+msgid "How reliable are the answers returned by TorDNSEL?"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:61
+msgid ""
+"The current public service is operating on an experimental basis and hasn't "
+"been well tested by real services. Reports of erroneous answers or service "
+"interruption would be appreciated. Future plans include building a fault "
+"tolerant pool of DNSEL servers. TorDNSEL is currently under active "
+"development."
+msgstr ""
+
+#. type: Content of: <div><h2>
+#: /home/runa/tor/website/tordnsel/en/index.wml:67
+msgid "How can I run my own private TorDNSEL?"
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:69
+msgid ""
+"You can learn all about the code for TorDNSEL by visiting the <a href="
+"\"http://p56soo2ibjkx23xo.onion/\">official hidden service</a> through Tor."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:73
+msgid ""
+"You can download the latest source release from the <a href=\"http://"
+"p56soo2ibjkx23xo.onion/dist/tordnsel-0.0.6.tar.gz\">hidden service</a> or "
+"from a <a href=\"https://www.torproject.org/tordnsel/dist/tordnsel-0.0.6.tar."
+"gz\"> local mirror</a>. It's probably wise to check out the current revision "
+"from the darcs repository hosted on the aforementioned hidden service."
+msgstr ""
+
+#. type: Content of: <div><p>
+#: /home/runa/tor/website/tordnsel/en/index.wml:81
+msgid ""
+"For more information or to report something useful, please email the "
+"<tt>tordnsel</tt> alias on our <a href=\"<page contact>\">contact page</a>."
+msgstr ""
