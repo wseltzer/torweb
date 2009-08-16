@@ -40,6 +40,8 @@ vidalia:
 	$(MAKE) -C "$@" WMLBASE=..
 mirrors:
 	./update-mirrors.pl
+translations:
+	./po2wml.sh
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
