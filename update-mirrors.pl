@@ -817,7 +817,25 @@ my %m = (
             updateDate => "Unknown",
         },
 
-
+mirror039 => {
+            adminContact => "",
+            orgName => " ",
+            isoCC => " ",
+            subRegion => "",
+            region => " ",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://torproject.cybervalley.org/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },
 );
 
 my $count = values %m;
