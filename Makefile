@@ -7,8 +7,8 @@
 
 TORSVNSTABLE = ../tor-stable
 TORSVNHEAD = ../tor
-#TORSVNSTABLE = /home/arma/work/onion/tor-020x/tor/
-#TORSVNHEAD = /home/arma/work/onion/svn/trunk
+#TORSVNSTABLE = /home/arma/work/onion/git/tor-021
+#TORSVNHEAD = /home/arma/work/onion/git/tor
 
 WMLBASE = .
 SUBDIRS=docs eff gui torbrowser torbutton tordnsel projects torvm press gettor vidalia
