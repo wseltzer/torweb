@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19877
+# Based-On-Revision: 20473
 # Translation-Priority: 2-medium
 # Last-Translator: bogdandr_at_op . pl
 
@@ -41,6 +41,10 @@ mieć wirusa lub oprogramowanie szpiegujące?</a></li>
 <p>Uruchamianie Tora:</p>
 
 <p>Uruchamianie klienta Tora:</p>
+<ul>
+<li><a href="#ChooseEntryExit">Czy mogę kontrolować, które węzły (lub kraje) są używane do
+wchodzenia/wychodzenia?</a></li>
+</ul>
 
 <p>Uruchamianie przekaźnika sieci Tora:</p>
 <ul>
@@ -717,6 +721,60 @@ wersji systemu KNOPPIX. Zawiera prekonfigurowanego Tora i Privoxy. Można je pob
 
 <p>
 Proszę się z nami skontaktować, jeśli znacie jakieś inne.
+</p>
+
+<hr />
+
+<a id="ChooseEntryExit"></a>
+<h3><a class="anchor" href="#ChooseEntryExit">Czy mogę kontrolować, które węzły (lub kraje) są używane do
+wchodzenia/wychodzenia?</a></h3>
+
+<p>
+Tak. Możesz ustawić preferowane węzły wejściowe i wyjściowe, jak również poinformować Tora,
+których węzłów nie chcesz używać. Następujące opcje mogą być dodane do Twojego pliku
+konfiguracyjnego "torrc" lub podane na linii poleceń:
+</p>
+<dl>
+  <dt><tt>EntryNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>Lista preferowanych węzłów do używania przy pierwszym skoku w obwodzie, jeśli możliwe.
+    </dd>
+  <dt><tt>ExitNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>Lista preferowanych węzłów do używania przy ostatnim skoku w obwodzie, jeśli możliwe.
+    </dd>
+  <dt><tt>ExcludeNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>Lista węzłów, których nigdy nie używać do budowania obwodu.
+    </dd>
+  <dt><tt>ExcludeExitNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>Lista węzłów, których nigdy nie wybierać do wyjścia.
+    	Węzły podane w <tt>ExcludeNodes</tt> są automatycznie na tej liście.
+    </dd>
+</dl>
+<p>
+<em>Nie zalecamy używania tych opcji</em>
+-- są przeznaczone do testów i mogą zniknąć w przyszłych wersjach. Najlepsze bezpieczeństwo, jakie
+może dać Tor, dostajesz gdy zostawisz Torowi wybór ścieżki; zmiana węzłów wejściowych / wyjściowych
+może zepsuć Twoją anonimowość na sposoby, których nie rozumiemy.
+</p>
+<p>
+Opcje <tt>EntryNodes</tt> i <tt>ExitNodes</tt> są traktowane jako prośba, co znaczy, że jeśli
+te węzły są wyłączone lub wydają się działać wolno, Tor dalej będzie ich unikał. Możesz sprawić,
+że te opcje będą obowiązkowe ustawiając
+<tt>StrictExitNodes 1</tt> lub <tt>StrictEntryNodes 1</tt>
+-- ale jeśli tak zrobisz, Twoje połączenia przez Tora przestaną działać, jeśli wszystkie
+podane przez Ciebie węzły staną się nieosiągalne.
+Zobacz <a href="https://www.torproject.org/documentation.html.en#NeatLinks">strony statusu Tora</a>,
+by znaleźć węzły, które można wybrać.
+</p>
+<p>
+Zamiast <tt>$fingerprint</tt> możesz podać też 2-literowy kod kraju według ISO3166 w nawiasach
+klamrowych (na przykład {de}) lub wzorzec adresów IP (na przykład 255.254.0.0/8) lub nazwę
+węzła. Upewnij się, że nie ma spacji między przecinkami a elementami list.
+</p>
+<p>
+Jeśli chcesz się dostać do usługi bezpośrednio przez interfejs SOCKS Tora (np. używając SSH przez
+connect.c), innym rozwiązaniem jest ustawienie wewnętrznego odwzorowania w pliku konfiguracyjnym,
+korzystając z <tt>MapAddress</tt>.
+Przeczytaj stronę podręcznika, by poznać szczegóły.
 </p>
 
 <hr />
