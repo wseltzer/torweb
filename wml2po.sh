@@ -118,14 +118,21 @@ for file in $wml ; do
 	then
 		popath="$podir"
 	else
-		popath="$podir/$onedirup"
+		# We need to know if a subdirectory, such as torbutton,
+		# exist in the translation module. If it does not exist,
+		# the script will create it in all the directories under
+		# translation/projects/website (excluding .svn)
+		langdir=`find $(dirname "$podir") -maxdepth 1 -type d ! -path $(dirname "$podir") ! -path "*\.*"`
 
-		# Check if the directory exists. If it doesn't,
-		# create it
-		if [ ! -d "$podir/$onedirup" ]
-		then
-			svn mkdir "$podir/$onedirup"
-		fi
+		for dir in $langdir ; do
+			if [ ! -d "$dir/$onedirup" ]
+			then
+				svn mkdir "$dir/$onedirup"
+			fi
+		done
+
+		# Set the path
+		popath="$podir/$onedirup"
 	fi
 		
 	# Check to see if the pot file existed prior to running this
