@@ -42,6 +42,9 @@ have a virus or spyware?</a></li>
 <p>Running Tor:</p>
 
 <p>Running a Tor client:</p>
+<ul>
+<li><a href="#ChooseEntryExit">Can I control which nodes (or country) are used for entry/exit?</a></li>
+</ul>
 
 <p>Running a Tor relay:</p>
 <ul>
@@ -694,6 +697,63 @@ Website</a>.</li>
 
 <p>
 Please contact us if you know any others.
+</p>
+
+<hr />
+
+<a id="ChooseEntryExit"></a>
+<h3><a class="anchor" href="#ChooseEntryExit">Can I control which nodes (or country) are used for entry/exit?</a></h3>
+
+<p>
+Yes. You can set preferred entry and exit nodes as well as 
+inform Tor which nodes you do not want to use. 
+The following options can be added to your config file "torrc" 
+or specified on the command line:
+</p>
+<dl>
+  <dt><tt>EntryNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>A list of preferred nodes to use for the first hop in the circuit, if possible.
+    </dd>
+  <dt><tt>ExitNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>A list of preferred nodes to use for the last hop in the circuit, if possible. 
+    </dd>
+  <dt><tt>ExcludeNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>A list of nodes to never use when building a circuit. 
+    </dd>
+  <dt><tt>ExcludeExitNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>A list of nodes to never use when picking an exit. 
+        Nodes listed in <tt>ExcludeNodes</tt> are automatically in this list. 
+    </dd>
+</dl>
+<p>
+<em>We recommend you do not use these</em> 
+-- they are intended for testing and may disappear in future versions. 
+You get the best security that Tor can provide when you leave the route selection to Tor; 
+overriding the entry / exit nodes can mess up your anonymity in ways we don't understand.
+</p>
+<p>
+The <tt>EntryNodes</tt> and <tt>ExitNodes</tt> config options are treated as a request, 
+meaning if the nodes are down or seem slow, Tor will still avoid them. 
+You can make the option mandatory by setting 
+<tt>StrictExitNodes 1</tt> or <tt>StrictEntryNodes 1</tt> 
+-- but if you do, your Tor connections will stop working 
+if all of the nodes you have specified become unreachable. 
+See the <a href="https://www.torproject.org/documentation.html.en#NeatLinks">Tor status pages</a> 
+for some nodes you might pick.
+</p>
+<p>
+Instead of <tt>$fingerprint</tt> you can also specify 
+a 2 letter ISO3166 country code in curly braces 
+(for example {de}), 
+or an ip address pattern (for example 255.254.0.0/8), 
+or a node nickname. 
+Make sure there are no spaces between the commas and the list items. 
+</p>
+<p>
+If you want to access a service directly through Tor's SOCKS interface 
+(eg. using ssh via connect.c), another option is to 
+set up an internal mapping in your configuration file using <tt>MapAddress</tt>. 
+See the manual page for details.
 </p>
 
 <hr />
