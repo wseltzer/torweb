@@ -116,22 +116,15 @@ for file in $wml ; do
 	# repository.
 	if [ $onedirup = $wmldir ]
 	then
-		popath="$podir/$dir"
+		popath="$podir"
+	else
+		popath="$podir/$onedirup"
 
 		# Check if the directory exists. If it doesn't,
 		# create it
-		if [ ! -d "$podir/$dir" ]
+		if [ ! -d "$podir/$onedirup" ]
 		then
-			svn mkdir "$podir/$dir"
-		fi
-	else
-		popath="$podir/$dir/$onedirup"
-
-		# Check if the directory exists. If it doesn't,
-		# create it.
-		if [ ! -d "$podir/$dir/$onedirup" ]
-		then
-			svn mkdir "$podir/$dir/$onedirup"
+			svn mkdir "$podir/$onedirup"
 		fi
 	fi
 		
