@@ -1,0 +1,51 @@
+Here's a brief overview of how our wml set-up works.
+----------------------------------------------------
+
+Here's a typical wml file:
+https://svn.torproject.org/svn/website/trunk/en/bridges.wml
+
+The top of the file has:
+
+  ## translation metadata
+  # Revision: $Revision$
+  # Translation-Priority: 1-high
+
+  #include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+
+  <div class="main-column">
+
+and the bottom of the file has:
+
+    </div><!-- #main -->
+
+  #include <foot.wmi>
+
+and the middle is standard html, plus a few extra tags like
+<page> that we've added to automatically link to the translated
+pages when they exist. So that wml page produces this html page:
+https://www.torproject.org/bridges aka
+https://www.torproject.org/bridges.html.en
+
+Then head.wmi and foot.wmi are just other mostly-html files you import
+to handle the repeat parts of each page (well, that plus some embedded
+perl scripts to generate some of the static content).
+https://svn.torproject.org/svn/website/trunk/include/head.wmi
+https://svn.torproject.org/svn/website/trunk/en/foot.wmi
+
+You can basically ignore the wml part of them, and to a first
+approximation just think of them as more html.
+
+So in summary, wml is like html with a bit more markup.
+
+----------------------------------------------------
+
+Where it gets interesting is the download page:
+https://svn.torproject.org/svn/website/trunk/en/easy-download.wml
+
+It has the standard header and footer section, but in the body of the page
+it includes links like <a href="<package-osx-bundle-stable>". Rather than
+putting URLs and Tor versions into every wml page, and then requiring
+the translators to update their page whenever we bump a version number,
+we instead define each URL and version as a new wml element:
+https://svn.torproject.org/svn/website/trunk/include/versions.wmi
+
