@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20384
+# Based-On-Revision: 20621
 # Translation-Priority: 3-low
 # Last-Translator: bogdandr_at_op . pl
 
@@ -48,7 +48,9 @@
 
 <hr />
 <a id="privoxy"></a>
-<h2><a class="anchor" href="#privoxy">Krok 2: Instalacja Privoxy do przeglądania sieci WWW</a></h2>
+<a id="polipo"></a>
+
+<h2><a class="anchor" href="#polipo">Krok 2: Instalacja Polipo do przeglądania sieci WWW</a></h2>
 <br />
 
 <p>Po instalacji Tora musisz skonfigurować swoje aplikacje, by go używały.
@@ -56,58 +58,29 @@
 
 <p>
  Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW. Zacznij od instalacji <a
- href="http://www.privoxy.org/">Privoxy</a>: kliknij na 'ostatnie wydania' ('recent releases') i
- wybierz swój ulubiony typ paczki lub instaluj ze źródeł. Privoxy jest filtrującym
- serwerem pośredniczącym (proxy) do WWW, który dobrze integruje się z Torem.
+ href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> ze swojego ulubionego repozytorium.
+ Polipo to pośrednik WWW z pamięcią podręczną, który dobrze wykonuje HTTP pipelining, więc dobrze
+ pasuje do długich czasów oczekiwania w Torze. Pobierz wersję co najmniej Polipo 1.0.4.
 </p>
 
-<p>Po instalacji Privoxy (z paczki lub źródeł)
- <b>musisz skonfigurować Privoxy, by używało Tora</b>.
- Może ci się przydać
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">ten
-przykładowy plik konfiguracyjny</a>. Jeśli nie, powinieneś ręcznie skonfigurować Privoxy
-według następujących instrukcji.
-</p>
+<p>Po instalacji Polipo (z paczki lub źródeł)
+ <b>musisz skonfigurować Polipo, by używało Tora</b>. Pobierz naszą <a
+ href="https://svn.torproject.org/svn/torbrowser/trunk/build-scripts/config/polipo.conf">konfigurację
+ Polipo dla Tora</a> i umieść go zamiast swojego bieżącego pliku konfiguracyjnego Polipo
+ (np. /etc/polipo/config lub ~/.polipo/config). Musisz ponownie uruchomić Polipo, by zmiany
+ odniosły skutek.</p>
 
-<p>
- Otwórz plik "config" z konfiguracją Privoxy (poszukaj w /etc/privoxy/ lub /usr/local/etc/)
- i dodaj linię <br />
- <tt>forward-socks4a / 127.0.0.1:9050 .</tt><br />
- na górze tego pliku konfiguracyjnego. <b>Nie zapomnij dodać kropki na końcu linii.</b>
-</p>
-
-<p>
-W niektórych dystrybucjach, localhost jest mapowany do adresu IPv6 i niektóre programy mogą
-nie połączyć się z Privoxy. Jeśli tak jest, zmień linię
-<br />
-<tt>listen-address localhost:8118</tt><br />
-tak, by było w niej<br />
-<tt>listen-address 127.0.0.1:8118</tt>
-</p>
-
-<p>Privoxy loguje wszystko, co przez niego przechodzi. Żeby temu zapobiec, musisz
- zakomentować 3 linie poprzez wstawienie
- \# na ich początek. Owe trzy linie to:<br />
-<tt>logfile logfile</tt><br />
- i linia <br />
-<tt>jarfile jarfile</tt><br />
- i (na niektórych systemach) linia <br />
-<tt>debug 1  # show each GET/POST/CONNECT request</tt><br />
-</p>
-
-<p>W zależności od domyślnego pliku konfiguracji Provoxy,
-być może będziesz musiał wyłączyć opcje <tt>enable-remote-toggle</tt>,
-<tt>enable-remote-http-toggle</tt> i <tt>enable-edit-actions</tt>.
-</p>
-
-<p>Musisz ponownie uruchomić Privoxy, by zmiany odniosły efekt.</p>
+ <p>Jeśli wolisz, możesz używać Privoxy z <a
+ href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">tą przykładową
+ konfiguracją Privoxy</a>. Ale jako że oba pliki konfiguracyjne używają portu 8118, nie
+ powinieneś/aś używać Polipo i Privoxy jednocześnie.</p>
 
 <hr />
 <a id="using"></a>
 <h2><a class="anchor" href="#using">Krok 3: Konfiguracja aplikacji, by używały Tora</a></h2>
 <br />
 
-<p>Po instalacji Tora i Privoxy musisz skonfigurować swoje aplikacje, by ich używały.
+<p>Po instalacji Tora i Polipo musisz skonfigurować swoje aplikacje, by ich używały.
  Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW.</p>
 
 <p>Powinieneś/aś używać Tora z Firefoksem i Torbuttonem, dla najlepszego bezpieczeństwa.
@@ -129,7 +102,7 @@ być może będziesz musiał wyłączyć opcje <tt>enable-remote-toggle</tt>,
 </p>
 
 <p>By "storyfikować" inne aplikacje, które używają proxy dla HTTP, po prostu
- skieruj je na Privoxy (czyli localhost, port 8118). By aplikacje bezpośrednio używały
+ skieruj je na Polipo (czyli localhost, port 8118). By aplikacje bezpośrednio używały
  serwera SOCKS (do komunikatorów, Jabbera, IRC, itp.), skieruj je
  bezpośrednio na Tora (localhost, port 9050), ale przeczytaj <a
  href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">ten
@@ -161,8 +134,9 @@ być może będziesz musiał wyłączyć opcje <tt>enable-remote-toggle</tt>,
 </p>
 
 <p>Jeśli masz zaporę ogniową, która ogranicza możliwości Twojego komputera co
- do łączenia się z samym sobą, zezwól w niej na połączenia od programów
- lokalnych na porty lokalne 8118 i 9050. Jeśli zapora blokuje połączenia
+ do łączenia się z samym sobą (wliczając w to coś jak SELinux na Fedora Core 4),
+ zezwól w niej na połączenia od programów
+ lokalnych do Polipo (port lokalny 8118) i Tora (port lokalny 9050). Jeśli zapora blokuje połączenia
  wychodzące, spraw, by można się było połączyć choć z portami 80 i 433,
  po czym przeczytaj <a
  href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">ten
