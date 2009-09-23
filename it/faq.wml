@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19410
+# Based-On-Revision: 20473
 # Last-Translator: jan at_seul_dot_org
 
 #include "head.wmi" TITLE="Tor FAQ"
@@ -42,9 +42,17 @@ un virus o uno spyware?</a></li>
 <p>Usare Tor:</p>
 
 <p>Usare un client Tor:</p>
+<ul>
+<li><a href="#ChooseEntryExit">Posso decidere quali nodo (o nazione) di ingresso o di uscita usare?</a></li>
+</ul>
 
 <p>Gestire un relay Tor:</p>
 <ul>
+<li><a href="#RelayFlexible">Quanto deve essere stabile il mio relay?</a></li>
+<li><a href="#ExitPolicies">Io gestirei un relay, ma non voglio avere
+noie con eventuali abusi.</a></li>
+<li><a href="#RelayOrBridge">Devo essere un relay normale o un
+bridge?</a></li>
 <li><a href="#WhyNotNamed">Perch&eacute; il mio relay &egrave; senza nome?</a></li>
 </ul>
 
@@ -99,6 +107,8 @@ The Tor Project &egrave; una associazione no-profit che mantiene e
 sviluppa il software Tor.
 </p>
 
+<hr />
+
 <a id="Torisdifferent"></a>
 <h3><a class="anchor" href="#Torisdifferent">Perch&eacute; Tor &egrave; diverso dagli altri proxy?</a></h3>
 <p>
@@ -111,6 +121,9 @@ I fornitori di proxy semplici sono anche un anello debole. Il fornitore sa chi s
 Tor passa il tuo traffico attraverso almeno 3 server diversi prima di inviarlo alla destinazione. Tor non modifica, n&eacute; nemmeno conosce, quello che ci invii attraverso. Fa semplicemente passare il tuo traffico, completamente cifrato, attraverso la rete Tor e lo fa spuntare fuori da qualche altra parte nel mondo, perfettamente intatto. Il client Tor &egrave; necessario, perch&eacute; si suppone che tu ti fidi del tuo computer locale. Il client Tor gestisce la crittografia ed il percorso scelto attraverso la rete. I relay posti in tutto il mondo si scambiano semplicemente pacchetti cifrati tra di loro.</p>
 <p>
 <dl>
+
+<hr />
+
 <dt>Il primo server pu&ograve; sapere chi sono?</dt><dd>&Egrave; possibile. Un primo server cattivo di questi tre pu&ograve; vedere il traffico cifrato proveniente dal tuo computer. Ma non sa comunque chi sei e cosa fai con Tor. Semplicemente vede che "Questo indirizzo IP sta usando Tor". Tor non &egrave; illegale in nessun paese, perci&ograve; usare Tor, di per s&eacute;, non presenta problemi. Hai comunque protezione e questo primo nodo non pu&ograve; sapere chi sei e che cosa vai a fare su Internet.</dd>
 <dt>Il terzo server pu&ograve; vedere il mio traffico?</dt><dd>&Egrave; possibile. Il terzo server dei tre pu&ograve; leggere il traffico che hai inviato attraverso Tor.  Non sapr&agrave; chi ha inviato questo traffico. Se poi usi la crittografia, ad esempio visitando il sito di una banca o di un negozio online, o le connessioni email cifrate etc, conoscer&agrave; solo la destinazione. Non sar&agrave; in grado di leggere i dati all'interno del flusso di traffico. Hai comunqe protezione e questo nodo non pu&ograve; sapere chi sei e, se usi la crittografia, quali dati stai inviando a destinazione.</dd>
 </dl>
@@ -155,6 +168,8 @@ di applicazioni per dirigere il traffico attraverso Tor</a>.
 Per favore completa la lista ed aiutaci a mantenerla accurata!
 </p>
 
+<hr />
+
 <a id="WhyCalledTor"></a>
 <h3><a class="anchor" href="#WhyCalledTor">Perch&eacute; si chiama Tor?</a></h3>
 
@@ -179,6 +194,8 @@ se qualcuno non ha mai letto il nostro sito web (ed ha letto invece tutto
 quel che sa di Tor da articoli e riviste) dal fatto che ne fa uno spelling
 sbagliato.
 </p>
+
+<hr />
 
 <a id="Backdoor"></a>
 <h3><a class="anchor" href="#Backdoor">Ci sono delle backdoor in Tor?</a></h3>
@@ -215,6 +232,8 @@ Inoltre, potrebbero esserci in Tor dei bachi accidentali che potrebbero comprome
 anonimato. Noi troviamo e risolviamo regolarmente bachi con un impatto sull'anonimato, perci&ograve;
 mantieni aggiornata la tua versione di Tor.
 </p>
+
+<hr />
 
 <a id="DistributingTor"></a>
 <h3><a class="anchor" href="#DistributingTor">Posso distribuire Tor con
@@ -269,6 +288,8 @@ potrebbe non essere pi&ugrave; supportata &mdash; o addirittura funzionare &mdas
 un dato di fatto per tutto il software di sicurezza attivamente sviluppato.
 </p>
 
+<hr />
+
 <a id="SupportMail"></a>
 <h3><a class="anchor" href="#SupportMail">Come faccio a farmi rispondere alle
 email di richiesta di assistenza per Tor?</a></h3>
@@ -312,6 +333,8 @@ alla comunit&agrave; Tor.
 Se trovi una risposta da te, per favore resta sul canale IRC o nella
 mailing list per rispondere alle eventuali domande degli altri.
 </p>
+
+<hr />
 
 <a id="WhySlow"></a>
 <h3><a class="anchor" href="#WhySlow">Perch&eacute; Tor &egrave; cos&igrave; lento?</a></h3>
@@ -397,10 +420,12 @@ Tor. Senza sponsor Tor potrebbe anche rallentare.
 <li>
 Se non puoi fare nulla di quanto sopra, puoi sempre dare una mano
 individualmente <a href="<page donate>">donando del denaro al progetto
-</a>. Tutto fa brodo!
+</a>. Tutto contribuisce ad aiutarci!
 </li>
 
 </ul>
+
+<hr />
 
 <a id="Funding"></a>
 <h3><a class="anchor" href="#Funding">Cosa farebbe The Tor Project se avesse maggiori
@@ -678,6 +703,195 @@ Contattaci se ne conosci altri.
 
 <hr />
 
+<a id="ChooseEntryExit"></a>
+<h3><a class="anchor" href="#ChooseEntryExit">Posso decidere quali nodo (o nazione) di ingresso o di uscita usare?</a></h3>
+
+<p>
+S&igrave;. Puoi definire i nodi di ingresso e di uscita preferito ed
+anche informare Tor dei noidi che non vuoi usare.
+Puoi aggiungere queste opzioni nel file di configurazione "torrc" 
+o specificarle nella linea di comando:
+</p>
+<dl>
+  <dt><tt>EntryNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>Una lista di nodi preferiti da usare come primo nodo nel circuito, se possibile.
+    </dd>
+  <dt><tt>ExitNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>Una lista di nodi preferiti da usare come ultimo nodo nel circuito, se possibile.
+    </dd>
+  <dt><tt>ExcludeNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>Una lista di nodi da non usare mai nella costruzione di un circuito.
+    </dd>
+  <dt><tt>ExcludeExitNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>Una lista di nodi da non usare mai nella scelta di un nodo di uscita.
+        I nodi elencati in <tt>ExcludeNodes</tt> sono automaticamente in questa lista.
+    </dd>
+</dl>
+<p>
+<em>Noi consigliamo di non usare quese opzioni</em> 
+-- sono pensate per la sperimentazione e potrebbero svanire nelle prossime versioni di Tor.
+Puoi ottenere la migliore sicurezza che Tor offre se lasci a Tor la selezione dei circuiti;
+modificare i nodi di ingresso/uscita pu&ograve; causare problemi di anonimato difficili da capire.
+</p>
+<p>
+Le opzioni di configurazione <tt>EntryNodes</tt> ed <tt>ExitNodes</tt> sono considerate delle richieste, 
+nel senso che se quei nodi sono gi&ugrave; o lenti, Tor li eviter&agrave;.
+Puoi rendere obbligatoria l'opzione definendo
+<tt>StrictExitNodes 1</tt> o <tt>StrictEntryNodes 1</tt> 
+-- ma se lo fai, la tua connessione Tor smette di funzionare
+se tutti i nodi che hai definito sono irraggiungibili. 
+Vedi le <a href="https://www.torproject.org/documentation.html.it#NeatLinks">pagine sullo stato di Tor</a> 
+per scegliere dei nodi.
+</p>
+<p>
+Invece di <tt>$fingerprint</tt> puoi anche indicare un
+codice nazionale ISO3166 in parentesi graffe 
+(ad esempio {it}), 
+o una classe di indirizzi ip (ad esempio 255.254.0.0/8), 
+oppure il nickname di un nodo.
+Controlla che non ci siano spazi tra le virgole e le voci della lista.
+</p>
+<p>
+Se vuoi collegarti ad un sefvizio direttamente tramite l'interfaccia SOCKS di Tor,
+(p.es. usando ssh via connect.c), un'altra possibilit&agrave; &egrave;
+di definire una mappatura interna nel file di configurazione con <tt>MapAddress</tt>. 
+Leggi la pagina del manuale per i dettagli.
+</p>
+
+<hr />
+
+<a id="RelayFlexible"></a>
+<h3><a class="anchor" href="#RelayFlexible">Quanto deve essere stabile
+il mio relay?</a></h3>
+
+<p>
+Noi cerchiamo di rendere facile e comoda la realizzazione di un relay Tor.
+</p>
+
+<ul>
+<li>Tor ha un supporto nativo per la <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">
+limitazione di
+banda</a>. Inoltre, se hai un collegamento veloce,
+ma vuoi limitare i byte che ogni giorno
+(o settimana o mese) doni al progetto, leggi la <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hib
+ernation
+feature</a>.
+</li>
+<li>Ciascun relay Tor ha una <a
+href="#ExitPolicies">exit
+policy</a> che definisce quali collegamenti in uscita sono permessi
+o negati per quel relay. Se non ti va di permettere che qualcuno esca
+attraverso il tuo relay, puoi configuarlo per consentire solo connessioni
+verso altri relay Tor.
+</li>
+<li>Se talvolta il relay si disconnette non ci sono problemi. Le directory
+se ne accorgono rapidamente e cessano di pubblicizzare il relay. Purch&eacute;
+non accada troppo spesso, dato che le connessioni che utilizzano il relay
+quando si scollega vengono interrotte.
+</li>
+<li>Gestiamo senza problemi relay con indirizzi IP dinamici &mdash; lascia
+vuota la configurazione di Address, e Tor cercher&agrave; di indovinarla da s&eacute;.
+</li>
+<li>Se il tuo relay si trova dietro NAT e non conosce il suo indirizzo
+IP pubblico (es. ha l'IP 192.168.x.y), devi configurare il port
+forwarding. L'inoltro di connessioni TCP dipende dal sistema che usi, ma <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewal
+ledClients">questa
+FAQ</a> ha degli esempi che spiegano come fare.
+</li>
+<li>Il tuo relay fa una stima passiva della capacit&agrave; di banda
+recente e la divulga, in modo che relay a banda larga attraggono pi&ugrave; utenti
+di quelli a banda stretta. Per questo anche i relay a banda stretta sono utili.
+</li>
+</ul>
+
+<hr />
+
+<a id="RunARelayBut"></a>
+<a id="ExitPolicies"></a>
+<h3><a class="anchor" href="#ExitPolicies">Io gestirei anche un relay, ma non
+voglio avere noie con probleimi ed abusi.</a></h3>
+
+<p>
+Ottimo. &Egrave; proprio per questo che ci sono le exit policy.
+</p>
+ 
+<p>
+Ogni relay Tor ha una exit policy che specifica quale tipo di connessioni
+in uscita sono consentite o vietate da quel relay, Le exit
+policy si propagano ai client Tor attraverso le directory, in modo che i client
+evitino automaticamente di scegliere exit relay che rifiuterebbero l'uscita
+verso la destinazione desiderata. In questo modo ogni relay sceglie
+i servizi, host e reti a cui permettere la connessione in uscita,
+in considerazione del potenziale per abusi e della propria situazione. Leggi la FAQ sulle
+<a href="<page faq-abuse>#TypicalAbuses">questioni in cui potresti imbatterti
+usando la exit policy di default</a>, e leggi poi i <a
+href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">consigli
+per gestire un exit node con il minimo di problemi</a> di Mike Perry.
+</p>
+
+<p>
+L'exit policy di default permette l'accesso a
+molti servizi diffusi (es. navigazione web), ma ne <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#DefaultPorts">limita</a>
+alcuni a causa del potenziale per abusi(es. email) ed altri perch&eacute; la
+rete Tor non potrebbe reggerne il carico (es. le porte di default
+per il file-sharing). Puoi modificare la tua exit policy
+con la scheda "Condivisione" di Vidalia, o a mano scrivendo nel file <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">torrc</a>
+. Se vuoi evitare la maggior parte dei potenziali abusi, impostala a
+"reject *:*" (o deseleziona tutte le voci in Vidalia). Questa impostazione significa
+che il relay verr&agrave; usato per istradare traffico all'interno della rete Tor,
+ma non per connessioni verso siti web o altri servizi esterni.
+</p>
+
+<p>
+Se permetti connessioni in uscita, controlla che funzioni la risoluzione di indirizzi
+(cio&egrave; che il tuo computer risolva correttamente indirizzi Internet).
+Se ci sono risorse che il tuo computer non pu&ograve; raggiungere (ad esempio
+se sei dietro firewall restrittifi o content filter), per favore
+rifiutali esplicitamente nella exit policy &mdash; altrimenti anche gli
+utilizzatori di Tor ne saranno penalizzati.
+</p>
+
+<hr />
+
+<a id="RelayOrBridge"></a>
+<h3><a class="anchor" href="#RelayOrBridge">Devo essere un relay normale o un
+bridge?</a></h3>
+
+<p><a href="<page bridges>">Un bridge relay</a> (o "bridge" in breve)
+&egrave; un <a href="<page docs/tor-doc-relay>">relay Tor</a> che non viene elencato
+nella directory principale di Tor. In questo modo
+neppure un ISP od un governo ostile che tentasse di filtrare le connessioni alla rete Tor
+riuscirebbe probabilmente a bloccare tutti i bridge.
+</p>
+
+<p>La differenza della configurazione di un normale relay ed un bridge &egrave;
+minima: &egrave; solo se il relay viene elencato pubblicamente
+o meno.
+</p>
+
+<p>Per ora non vi &egrave; al mondo alcun luogo che filtra
+le connessioni verso la rete Tor. Per ora quindi avere molti bridge
+&egrave; principalmente una misura di backup a) nel caso la rete Tor venga
+bloccata da qualche parte, e b) per chi desideri un livello in pi&ugrave; di
+sicurezza ed &egrave; preoccupata che qualcuno rilevi che si sta collegando
+ad un IP di un relay Tor pubblico.
+</p>
+
+<p>E allora, cosa &egrave; meglio fare, un bridge o un relay normale? Se hai
+molta banda meglio senz'altro un relay normale &mdash;
+i bridge relay sono davvero poco usati oggigiorno. Se sei disposto ad <a
+href="#ExitPolicies">essere un exit</a>, dovresti proprio gestire un normale
+relay, perch&eacute; abbiamo bisogno di pi&ugrave; exit. Se non puoi essere un exit
+ed hai poca banda, lancia una monetina in aria. E grazie del tuo contributo!
+</p>
+
+<hr />
+
 <a id="WhyNotNamed"></a>
 <h3><a class="anchor" href="#WhyNotNamed">Perch&eacute; il mio relay &egrave; senza nome?</a></h3>
 
@@ -856,7 +1070,7 @@ Aiutaci, se puoi, su questi temi!
 </a></h3>
 
 <p>
-Trovi una risposta a questa e altre domande sulla nostra nuova <a
+Trovi una risposta a questa e altre domande sulla nostra <a
 href="<page faq-abuse>">FAQ sugli abusi di Tor</a>.
 </p>
 
