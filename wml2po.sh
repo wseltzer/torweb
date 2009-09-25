@@ -6,8 +6,9 @@
 # This is Free Software (GPLv3)
 # http://www.gnu.org/licenses/gpl-3.0.txt
 #
-# This script will convert all of the english wml files to pot files and
-# keep them updated.
+# This script will convert all of the english wml files to po files, and
+# keep them updated. The script will also convert subdirectories that
+# exist in the english website module.
 #
 # For more information, see the HOWTO and README in
 # translation/tools/gsoc09.
@@ -18,11 +19,11 @@
 # Location of the wml files
 wmldir="$PWD"
 
-# Location of the pot files.
+# Location of the po files.
 # Assuming that the translation directory is relative to the website
-podir="`dirname $wmldir`/translation/projects/website/templates"
+podir="`dirname $wmldir`/translation/projects/website"
 
-# Set the copyright holder of the pot files,
+# Set the copyright holder of the po files,
 # for example "The Tor Project, Inc"
 copyright="The Tor Project, Inc"
 
@@ -75,172 +76,185 @@ fi
 # Create the temp log
 touch $tmplog
 
-# cd to the right directory so we can commit the files later
-cd "$podir"
+# We need to find out which language directories we have.
+# We also need to excluse the website module directory itself, as well
+# as .svn
+langdir=`find "$podir" -maxdepth 1 -type d ! -path "$podir" ! -path "$podir/templates" ! -path "*\.*" | sed "s#$podir/##"`
 
 # We only need the english wml files, but we do not wish to translate
 # the eff documents.
 wml=`find $wmldir -regex '^'$wmldir'/.*en/.*\.wml' -type f | grep -v '^'$wmldir'/eff'`
 
-# For every wml, update po
-for file in $wml ; do
+# For every language directory, create and/or update the po files.
+for lang in $langdir ; do
 
-	# Get the basename of the file we are dealing with
-	wmlfile=`basename $file`
+	# For every english wml, see if the po needs to be created or
+	# updated
+	for file in $wml ; do
 
-	# Get the translation priority
-	priority=`cat $file | grep "# Translation-Priority" | awk '{print $3}'`
+		# Get the basename of the file we are dealing with
+		wmlfile=`basename $file`
 
-	# If the file doesn't have a translation-priority, we can assume
-	# that it doesn't need to be translated. Skip this file and
-	# continue on with the next.
-	if [ ! $priority ]
-	then
-		continue
-	fi
+		# Get the translation priority
+		priority=`cat $file | grep "# Translation-Priority" | awk '{print $3}'`
 
-	# Strip the file for its original extension and add .pot
-	pofile="$priority.${wmlfile%%.*}.pot"
+		# If the file doesn't have a translation-priority, we can assume
+		# that it doesn't need to be translated. Skip this file and
+		# continue on with the next.
+		if [ ! $priority ]
+		then
+			continue
+		fi
 
-	# Find out what directory the file is in.
-	# Also, remove the parth of the path that is $wmldir
-	indir=`dirname $file`
+		# Strip the file for its original extension and add .po
+		pofile="$priority.${wmlfile%%.*}.po"
+
+		# Find out what directory the file is in.
+		# Also, remove the parth of the path that is $wmldir
+		indir=`dirname $file`
 	
-	# We need to know what one dir up is
-	onedirup=`dirname $indir | sed "s#$wmldir/##"`
+		# We need to know what one dir up is
+		onedirup=`dirname $indir | sed "s#$wmldir/##"`
 
-	# We need to have the correct, full path to the pot
-	# directory for the file we are working on.
-	# Also, did the subdirectory exist prior to running this
-	# script? If not, create it now and add it to the
-	# repository.
-	if [ $onedirup = $wmldir ]
-	then
-		popath="$podir"
-	else
-		# We need to know if a subdirectory, such as torbutton,
-		# exist in the translation module. If it does not exist,
-		# the script will create it in all the directories under
-		# translation/projects/website (excluding .svn)
-		langdir=`find $(dirname "$podir") -maxdepth 1 -type d ! -path $(dirname "$podir") ! -path "*\.*"`
+		# We need to have the correct, full path to the po
+		# directory for the file we are working on.
+		# Also, did the subdirectory exist prior to running this
+		# script? If not, create it now and add it to the
+		# repository.
+		if [ $onedirup = $wmldir ]
+		then
+			popath="$podir/$lang"
+		else
 
-		for dir in $langdir ; do
-			if [ ! -d "$dir/$onedirup" ]
-			then
-				svn mkdir "$dir/$onedirup"
-			fi
-		done
+			# We need to know if a subdirectory, such as torbutton,
+			# exist in the translation module. If it does not exist,
+			# the script will create it in all the directories under
+			# translation/projects/website (excluding .svn)
+			subdir=`find "$podir/$lang" -maxdepth 1 -type d	! -path "$ppodir/$lang" ! -path "*\.*"`
 
-		# Set the path
-		popath="$podir/$onedirup"
-	fi
+			for dir in $subdir ; do
+				if [ ! -d "$podir/$lang/$onedirup" ]
+				then
+					svn mkdir "$podir/$lang/$onedirup"
+				fi
+			done
+
+			# Set the path
+			popath="$podir/$lang/$onedirup"
+
+		fi
 		
-	# Check to see if the pot file existed prior to running this
-	# script. If it didn't, check if there any files with the same
-	# filename, but different priority. If neither of the files
-	# exist, create with po4a-gettextize.
-	if [ -e "$popath/$pofile" ]
-	then
-		poexist=1
-	elif [ `find $popath -type f -name "*.$filename" | wc -l` -gt "0" ]
-	then
-		poexist=2
+		# Check to see if the po existed prior to running this
+		# script. If it didn't, check if there any files with the same
+		# filename, but different priority. If neither of the files
+		# exist, create with po4a-gettextize.
+		if [ -e "$popath/$pofile" ]
+		then
+			poexist=1
+		elif [ `find $popath -type f -name "*.$filename" | wc -l` -gt "0" ]
+		then
+			poexist=2
 
 		# We need to rename the other file
 		for file in `find $popath -type f -name "*.$filename"` ; do
 			svn mv "$file" "$popath/$pofile"
 			echo "$popath/$pofile" > $tmplog
 		done
-	else
-		poexist=0
-	fi
+	
+		else
+			poexist=0
+		fi
 
-	# If the pot file does not exist, convert it with
-	# po4a-gettextize, set the right encoding and charset
-	# and the correct copyright.
-	if [ $poexist = 0 ]
-	then
-		# Convert it
-		po4a-gettextize -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
-
-		# Check to see if the file exists
-		if [ -e "$popath/$pofile" ]
+		# If the po file does not exist, convert it with
+		# po4a-gettextize, set the right encoding and charset
+		# and the correct copyright.
+		if [ $poexist = 0 ]
 		then
-			# We don't want files without
-			# content, so check the file first.
-			content=`cat "$popath/$pofile" | grep '^#[.]' | wc -l`
+			# Convert it
+			po4a-gettextize -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
 
-			# If the file does not have any
-			# content, delete it.
-			if [ $content = 0 ] 
+			# Check to see if the file exists
+			if [ -e "$popath/$pofile" ]
 			then
-				rm -f "$popath/$pofile"
+				# We don't want files without
+				# content, so check the file first.
+				content=`cat "$popath/$pofile" | grep '^#[.]' | wc -l`
+
+				# If the file does not have any
+				# content, delete it.
+				if [ $content = 0 ] 
+				then
+					rm -f "$popath/$pofile"
+					echo "$popath/$pofile" > $tmplog
+				else
+					# Set the right encoding and charset, as well
+					# as the correct copyright holder.
+					sed -i '0,/ENCODING/ s/ENCODING/8bit/' "$popath/$pofile"
+					sed -i '0,/CHARSET/ s/CHARSET/utf-8/' "$popath/$pofile"
+					sed -i "0,/Free Software Foundation, Inc/ s/Free Software Foundation, Inc/$copyright/" "$popath/$pofile"
+				
+					# And add it to the repository
+					svn add "$popath/$pofile"
+					echo "$popath/$pofile" > $tmplog
+				fi
+			fi
+
+			# Update the file with po4a-updatepo to make the
+			# word wrapping perfect
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+
+			# Delete the backup
+			rm -f "$popath/$pofile~"
+		fi
+		
+		# If the po file does exist, calculate the hash first,
+		# then update the file, then calculate the hash again.
+		if [ $poexist = 1 ]
+		then
+			# Calculate the hash before we update the file
+			before=`grep -vE '^("POT-Creation-Date:|#)' "$popath/$pofile" | md5sum | cut -d " " -f1`
+
+			# Update the po file
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+
+			# Calculate the new hash
+			after=`grep -vE '^("POT-Creation-Date:|#)' "$popath/$pofile" | md5sum | cut -d " " -f1`
+
+			# Delete the backup
+			rm -f "$popath/$pofile~"
+
+			# Now we need to compare the before and after
+			# hash. If they match (i.e. nothing has
+			# changed), revert the file.
+			if [ $before = $after ]
+			then
+				svn revert "$popath/$pofile"
 				echo "$popath/$pofile" > $tmplog
 			else
-				# Set the right encoding and charset, as well
-				# as the correct copyright holder.
-				sed -i '0,/ENCODING/ s/ENCODING/8bit/' "$popath/$pofile"
-				sed -i '0,/CHARSET/ s/CHARSET/utf-8/' "$popath/$pofile"
-				sed -i "0,/Free Software Foundation, Inc/ s/Free Software Foundation, Inc/$copyright/" "$popath/$pofile"
-
-				# And add it to the repository
-				svn add "$popath/$pofile"
 				echo "$popath/$pofile" > $tmplog
 			fi
 		fi
-	fi
-		
-	# If the pot file does exist, calculate the hash first,
-	# then update the file, then calculate the hash again.
-	if [ $poexist = 1 ]
-	then
-		# Calculate the hash before we update the file
-		before=`grep -vE '^("POT-Creation-Date:|#)' "$popath/$pofile" | md5sum | cut -d " " -f1`
 
-		# Update the pot file
-		po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
-
-		# Calculate the new hash
-		after=`grep -vE '^("POT-Creation-Date:|#)' "$popath/$pofile" | md5sum | cut -d " " -f1`
-
-		# Delete the backup
-		rm -f "$popath/$pofile~"
-
-		# Now we need to compare the before and after
-		# hash. If they match (i.e. nothing has
-		# changed), revert the file.
-		if [ $before = $after ]
+		# If a file with the same name but different priority
+		# exist, then rename the file (we have done so already)
+		# and update it with po4a-updatepo to make sure
+		# everything else is ok.
+		if [ $poexist = 2 ]
 		then
-			svn revert "$popath/$pofile"
-			echo "$popath/$pofile" > $tmplog
-		else
-			echo "$popath/$pofile" > $tmplog
+			# Update the file
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
 		fi
-	fi
-
-	# If a file with the same name but different priority
-	# exist, then rename the file (we have done so already)
-	# and update it with po4a-updatepo to make sure
-	# everything else is ok.
-	if [ $poexist = 2 ]
-	then
-		# Update the file
-		po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
-	fi
 	
-	# Write to the logfile
-	if [ -e $logfile ]
-	then
-		if [ `cat $tmplog | grep "$popath/$pofile" | wc -l` -eq "0" ]
+		# Write to the logfile
+		if [ -e $logfile ]
 		then
-			echo "could not process: " "$file" >> $logfile
+			if [ `cat $tmplog | grep "$popath/$pofile" | wc -l` -eq "0" ]
+			then
+				echo "could not process: " "$file" >> $logfile
+			fi
 		fi
-	fi
 
-	# Delete the temp log
-	rm -f $tmplog
+		# Delete the temp log
+		rm -f $tmplog
+	done
 done
-
-	# If you want the script to commit the files automatically,
-	# uncomment the following line.
-	# svn ci -m 'automatically generated and updated the pot files'
