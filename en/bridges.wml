@@ -139,19 +139,21 @@ href="#UsingBridges">above</a>.
 <p>
 If you want to help out and you can't run a <a href="<page
 docs/tor-doc-relay>">normal Tor relay</a>, you should
-run a bridge relay. You can configure it <a href="<page
-docs/tor-doc-relay>">using Vidalia</a>, or you can manually <a
+run a bridge relay. You can configure it either way:
+<ul>
+<li> manually <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">edit
-your torrc file</a> to be just these four lines:
-</p>
-
+your torrc file</a> to be just these four lines:</br>
 <pre><code>
 SocksPort 0
 ORPort 443
 BridgeRelay 1
 Exitpolicy reject *:*
-</code>
-</pre>
+</code></pre></li>
+<li><a href="<pagedocs/tor-doc-relay>">or using Vidalia</a>:</br>
+<img src="$(IMGROOT)/vidalia-bridges-setup.png" alt="Vidalia's Sharing
+settings page" /></li>
+
 
 <p>If you get "Could not bind to 0.0.0.0:443: Permission denied" errors
 on startup, you'll need to pick a higher ORPort (e.g. 8080) or do <a
