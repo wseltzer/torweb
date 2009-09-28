@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20450
+# Based-On-Revision: 20677
 # Translation-Priority: 1-high
 # Last-Translator: bogdandr_at_op . pl
 
@@ -133,10 +133,11 @@ Vidalię według <a href="#UsingBridges">powyższych</a> kroków.
 
 <p>
 Jeśli chcesz pomóc, a nie możesz prowadzić <a href="<page
- docs/tor-doc-relay>">normalnego przekaźnika Tora</a>, powinieneś/aś prowadzić
- przekaźnik mostkowy. Możesz skonfigurować go <a href="<page
-  docs/tor-doc-relay>">za pomocą programu Vidalia</a>, możesz też ręcznie <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">edytować
+docs/tor-doc-relay>">normalnego przekaźnika Tora</a>, powinieneś/aś prowadzić
+przekaźnik mostkowy. Możesz skonfigurować go na dwa sposoby:
+<ul>
+ <li>ręcznie <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">edytując
 swój plik torrc</a>, by składał się tylko z tych czterech linii:
 </p>
 
@@ -145,8 +146,10 @@ SocksPort 0
 ORPort 443
 BridgeRelay 1
 Exitpolicy reject *:*
-</code>
-</pre>
+</code></pre></li>
+ <li><a href="<page docs/tor-doc-relay>">lub za pomocą programu Vidalia</a>:<br>
+  <img src="$(IMGROOT)/vidalia-bridges-setup.png" alt="Strona ustawień współdzielenia programu Vidalia" /></li>
+</ul>
 
 <p>Jeśli dostajesz błędy "Could not bind to 0.0.0.0:443: Permission denied" w czasie
 startu, musisz wybrać wyższy ORPort (np. 8080) lub wykonać <a
