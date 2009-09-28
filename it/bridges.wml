@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20450
+# Based-On-Revision: 20677
 # Last-Translator: jan at seul . org
 
 #include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
@@ -139,21 +139,23 @@ href="#UsingBridges">sopra</a>.
 <p>
 Se vuoi aiutarci e non puoi gestire un <a href="<page
 docs/tor-doc-relay>">normale relay Tor</a>, puoi comunque
-gestire un bridge relay. Lo puoi configurare <a href="<page
-docs/tor-doc-relay>">usando Vidalia</a>, o puoi <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">modificare
-il file torrc</a> manualmente in modo che contenga solo queste 4 righe:
-</p>
+gestire un bridge relay. Lo puoi configurare in due modi:
+<ul>
+<li> manualmente <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">modificando
+il file torrc</a> in modo che contenga solo queste 4 righe:</br>
 
 <pre><code>
 SocksPort 0
 ORPort 443
 BridgeRelay 1
 Exitpolicy reject *:*
-</code>
-</pre>
+</code></pre></li>
+<li><a href="<pagedocs/tor-doc-relay>">oppure usando Vidalia</a>:</br>
+<img src="$(IMGROOT)/vidalia-bridges-setup.png" alt="Vidalia's Sharing
+settings page" /></li>
 
-<p>
+
 <p>Se all'avvio vedi degli errori come "Could not bind to 0.0.0.0:443: Permission denied",
 devi scegliere una ORPort pi&ugrave; alta (es. 8080) o fare del <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">complicato
