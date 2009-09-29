@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 16763
+# Based-On-Revision: 20671
 # Last-Translator: jan at seul org
 
 #include "head.wmi" TITLE="Tor: istruzioni per installare Tor su Linux/BSD/Unix" CHARSET="UTF-8"
@@ -26,7 +26,9 @@ href="<page docs/tor-doc-relay>">Configurare un relay</a>.</b>
 <p>
 L'ultima versione di Tor si trova sulla pagina <a
 href="<page download>">scarica</a>. Ci sono anche pacchetti per Debian,
-Red Hat, Gentoo, *BSD, etc.
+Red Hat, Gentoo, *BSD, etc. Se usi
+Ubuntu, non usare i pacchetti di default: usa invece <a
+href="<page docs/debian>#ubuntu">il nostro deb repository</a>.
 </p>
 
 <p>Se compili dai sorgenti, installa prima <a
@@ -47,7 +49,8 @@ modificare i valori. Dopo queste operazioni, Tor &egrave; installato.
 
 <hr />
 <a id="privoxy"></a>
-<h2><a class="anchor" href="#privoxy">Due: installa Privoxy per navigare sul web</a></h2>
+<a id="polipo"></a>
+<h2><a class="anchor" href="#polipo">Due: installa Polipo per navigare sul web</a></h2>
 <br />
 
 <p>Dopo avere installato Tor, occorre configurare i programmi affinch&eacute; lo usino.
@@ -55,48 +58,32 @@ modificare i valori. Dopo queste operazioni, Tor &egrave; installato.
 
 <p>
 Per prima cosa va configurata la navigazione web. Inizia installando <a
-href="http://www.privoxy.org/">Privoxy</a>: fai clic su 'recent releases'
-e scegli il tuo pacchetto preferito, o installa dai sorgenti. Privoxy &egrave;
-un filtro proxy web che si integra bene con Tor.
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> dal tuo
+repository preferito. Polipo &egrave; un caching web proxy che fa anche bene http
+pipelining, ed &egrave; quindi adatto alla latenza di Tor. Installa come minimo
+Polipo 1.0.4, perch&eacute; le versioni precedenti non hanno il supporto SOCKS
+pecessario per usare Polipo con Tor.
 </p>
 
-<p>Una volta installato Privoxy (da un pacchetto o dai sorgenti),
-<b>dovrai configurare Privoxy per usare Tor</b>. Puoi prendere
-<a
+<p>Una volta installato Polipo (da un pacchetto o dai sorgenti),
+<b>devi configurare Polipo per usare Tor</b>. Usa la nostra <a
+href="https://svn.torproject.org/svn/torbrowser/trunk/build-scripts/config/polipo.conf">configurazione Polipo
+per Tor</a> e mettila al posto dell'attuale file di configurazione
+di Polipo (es. /etc/polipo/config o ~/.polipo).
+Devi riavviare Polipo per applicare i cambiamenti.</p>
+
+<p>Se preferisci puoi usare invece Privoxy con <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">questa
-configurazione base di Privoxy</a> come punto di partenza. Altrimenti devi configurare
-Privoxy a mano seguendo le istruzioni qui sotto.
+configurazione base di Privoxy</a>. Tuttavia dato che entrambi i file di configurazione usano
+la porta 8118, non devi far girare Polipo e Privoxy contemporaneamente.</p>
 </p>
-
-<p>
-Apri il file 'config' di Privoxy (cerca in /etc/privoxy/ o /usr/local/etc/)
-e aggiungi questa riga <br>
-<tt>forward-socks4a / 127.0.0.1:9050 .</tt><br />
-in cima al file di configurazione. Non dimenticare il punto a fine riga.
-</p>
-
-<p>Privoxy conserva un file di log per tutto ci&ograve; che vi passa attraverso.  Per
-impedirlo occorre commentare via tre righe inserendo un 
-\# a inizio linea. Le tre righe sono:<br />
-<tt>logfile logfile</tt><br />
-e<br />
-<tt>jarfile jarfile</tt><br />
-e (su alcuni sistemi) la riga <br />
-<tt>debug 1  # show each GET/POST/CONNECT request</tt><br />
-</p>
-<p>A seconda del tuo config file di default per Privoxy,
-dovresti anche disabilitare <tt>enable-remote-toggle</tt>,
-<tt>enable-remote-http-toggle</tt>, e<tt>enable-edit-actions</tt>.
-</p>
-
-<p>Dovrai riavviare Privoxy perch&eacute; le modifiche abbiano effetto.</p>
 
 <hr />
 <a id="using"></a>
 <h2><a class="anchor" href="#using">Tre: configura i tuoi programmi per usare Tor</a></h2>
 <br />
 
-<p>Dopo aver installato Tor e Privoxy, devi configurare i tuoi programmi per
+<p>Dopo aver installato Tor e Polipo, devi configurare i tuoi programmi per
 usarli. Il primo passo è la configurazione della navigazione web.</p>
 
 <p>Per una protezione ottimale dovresti usare Tor con Firefox e Torbutton.
@@ -119,7 +106,7 @@ per usare Tor su un pc diverso</a>.
 </p>
 
 <p>Per torificare altri programmi che supportino un proxy HTTP, basta
-farli puntare a Privoxy (ovvero, a localhost porta 8118). Per usare SOCKS
+farli puntare a Polipo (ovvero, a localhost porta 8118). Per usare SOCKS
 direttamente (per instant messaging, Jabber, IRC, etc), puoi puntare
 l'applicazione direttamente a Tor (localhost porta 9050), ma leggi <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">questa
@@ -156,7 +143,7 @@ FAQ</a> per conoscere altri modi di verificare il tuo Tor.)
 <p>Se usi un personal firewall che limita le connessioni del tuo computer
 verso se stesso (compreso ad esempio SELinux su
 Fedora Core 4), devi consentire le connessioni dalla
-tua applicazione locale a Privoxy (porta locale 8118) ed a Tor (porta locale
+tua applicazione locale a Polipo (porta locale 8118) ed a Tor (porta locale
 9050). Se
 il tuo firewall blocca le connessioni in uscita, abilita almeno 
 le connessioni alle porte TCP 80 e 443, e poi vedi <a
