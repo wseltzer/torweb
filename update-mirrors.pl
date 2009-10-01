@@ -80,7 +80,7 @@ sub FetchDate {
 my %m = (
         mirror000 => {
             adminContact => "tor AT goodeid DOT com",
-            orgName => "goodeid.com",
+            orgName => "Goodeid",
             isoCC => "CA",
             subRegion => "",
             region => "North America",
