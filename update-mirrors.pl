@@ -87,12 +87,14 @@ my %m = (
             ipv4 => "True",
             ipv6 => "False",
             loadBalanced => "No",
-            httpWebsiteMirror => "http://tor-node.goodeid.com/",
-            httpsWebsiteMirror => "https://tor-node.goodeid.com/",
+            httpWebsiteMirror => "http://tor-node.goodeid.com:8081/",
+            httpsWebsiteMirror => "https://tor-node.goodeid.com:8444/",
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor-node.goodeid.com/dist/",
-            httpsDistMirror => "https://tor-node.goodeid.com/dist/",
+            httpDistMirror => "http://tor-node.goodeid.com:8081/dist/",
+            httpsDistMirror => "https://tor-node.goodeid.com:8444/dist/
+
+",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
