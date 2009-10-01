@@ -858,6 +858,27 @@ mirror040 => {
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
+mirror041 => {
+            adminContact => " ",
+            orgName => " ",
+            isoCC => " ",
+            subRegion => "",
+            region => "DE",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.beme-it.de/",
+            httpsWebsiteMirror => "https://tor.beme-it.de/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.beme-it.de/dist/",
+            httpsDistMirror => "https://tor.beme-it.de/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },
+
 );
 
 my $count = values %m;
