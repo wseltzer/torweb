@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19475
+# Based-On-Revision: 20718
 # Last-Translator: jan at seul .org
 
 #include "head.wmi" TITLE="Tor: gestire un mirror" CHARSET="UTF-8"
@@ -13,17 +13,17 @@
 nostri mirror sono elencati in pubblico nella <a href="<page mirrors>">pagina dei nostri mirror
 </a>.  Qui trovi alcuni comandi e configurazione d'esempio per
 facilitare la creazione e l'aggiornamento continuo di un mirror.
-Il sito web Tor e la directory di distribuzione al momento richiedono 15GB di
-spazio sul disco. la directory /dist da sola &egrave; di is 3.6 GB.</p>
+Il sito web Tor e la directory di distribuzione al momento richiedono 1,6 GB di
+spazio sul disco. la directory /dist da sola &egrave; di 230 MB.</p>
 
 <p>
-Se vuoi realizzare un mirror &egrave; molto semplice: usa questo comando per scaricare
+Se vuoi realizzare un mirror (sito + dist) &egrave; molto semplice: usa questo comando per scaricare
 tutto ci&ograve; di cui un mirror ha bisogno:
 <br /> <br />
 <tt>
 rsync -av --delete rsync://rsync.torproject.org/tor tor-mirror/
 </tt>
-<br /><br />
+
 <p>
 Se hai intenzione di creare solo un dist/ mirror, usa questo comando per scaricare
 tutto ci&ograve; che un dist/mirror ha bisogno di replicare:
@@ -31,12 +31,36 @@ tutto ci&ograve; che un dist/mirror ha bisogno di replicare:
 <tt>
 rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
 </tt>
-<br/> <br/>
+
+<p>
+Perch&eacute; i mirror siano affidabili ed aggiornati, per favore
+controlla che facciano almeno questo:<br/><br/>
+
+Aggiornamenti almeno ogni sei ore, ma non pi&ugrave; frequenti di
+uno ogni ora.<br/><br/>
+
+Devono permettere "Directory Index / Indexes" (vista a indice) della directory /dist.
+<br/><br/>
+
+Devono permettere "Multiviews" o equivalenti per la localizzazione della lingua.<br/><br/>
+
+Devono avere un indirizzo email valido come contatto per comunicazioni amministrative in
+caso di problemi col tuo server.<br/><br/>
+
+&Egrave; caldamente consigliato che i gestori die mirror si iscrivano alla <A
+href="http://archives.seul.org/tor/mirrors/">tor-mirrors mailing
+list</A> a cui dovrebbero essere dirette tutte le richieste di modifica dei mirror (aggiunta,
+modifica, cancellazione e ogni altra richiesta o notifica). Vi si pu&ograve; trovare
+anche assistenza nella configurazione e gestione del tuo mirror.<br/><br/>
+
+</p>
+
+<br /><br />
 Ad esempio, un cronjob per aggiornare un intero mirror una volta al giorno &egrave; qualcosa come:
 <tt>
 <pre>
 # m h  dom mon dow   command
-1 4 * * * rsync -av --delete rsync://rsync.torproject.org/tor /var/www/mirrors/torproject.org/
+0 */6 * * * rsync -av --delete rsync://rsync.torproject.org/tor /var/www/mirrors/torproject.org
 </pre>
 </tt>
 </p>
@@ -46,29 +70,31 @@ un virtual host da usare:
 <tt>
 <pre>
 &lt;VirtualHost 1.2.3.4:80&gt;
-        ServerAdmin youremail@example.com
-        ServerName  1.2.3.4
+        ServerAdmin youremail@example.com<br/>
+        ServerName  1.2.3.4<br/>
 
-        DocumentRoot /var/www/mirrors/torproject.org
+        DocumentRoot /var/www/mirrors/torproject.org<br/>
 
-        &lt;Directory /var/www/mirrors/torproject.org/&gt;
-                Options MultiViews
-                DirectoryIndex index
-                AllowOverride None
-        &lt;/Directory&gt;
+        &lt;Directory /var/www/mirrors/torproject.org/&gt;<br/>
+                Options MultiViews<br/>
+                DirectoryIndex index<br/>
+                AllowOverride None<br/>
+        &lt;/Directory&gt;<br/>
 
-&lt;VirtualHost&gt;
+&lt;/VirtualHost&gt;
 </pre>
 </tt>
 <br /> <br />
 Per favore mantieni aggiornato il mirror (ti suggeriamo di automatizzare questo
 compito con '<tt>cron</tt>' e simili). Il nostro sito web, il codice sorgente e le
-release binarie cambiano spesso. Gi utilizzatori di Tor te ne saranno grati.
+release binarie cambiano spesso. Noi consigliamo una frequenza di aggiornamento di sei ore. Gi utilizzatori di Tor te ne saranno grati.
 </p>
 <br/>
 <p>
-Se gestisci un mirror, per favore scrivici a
-<a href="<page contact>">tor-webmaster</a> e ti aggiungeremo alla lista.
+Se gestisci un mirror, per favore iscriviti alla
+<A href="http://archives.seul.org/tor/mirrors/">tor-mirrors mailing list</A>, e presentati brevemente.
+Ti aggiungeremo alla lista dei mirror.
+Sulla lista si pu&ograve; anche trovare aiuto sulla configurazione e gestione dei mirror.
 </p>
 
   </div><!-- #main -->
