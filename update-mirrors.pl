@@ -841,7 +841,7 @@ mirror039 => {
 
 mirror040 => {
             adminContact => "doc DOT kuehn AT nexgo DOT de",
-            orgName => " tor-proxy.de ",
+            orgName => " spacecowboy ",
             isoCC => " ",
             subRegion => "",
             region => "DE",
