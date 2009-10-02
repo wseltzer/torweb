@@ -860,8 +860,8 @@ mirror040 => {
         },
 
 mirror041 => {
-            adminContact => " ",
-            orgName => " ",
+            adminContact => " mail AT benjamin-meier DOT info ",
+            orgName => "beme it",
             isoCC => " ",
             subRegion => "",
             region => "DE",
