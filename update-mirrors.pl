@@ -841,7 +841,7 @@ mirror039 => {
 
 mirror040 => {
             adminContact => "doc DOT kuehn AT nexgo DOT de",
-            orgName => " ",
+            orgName => " tor-proxy.de ",
             isoCC => " ",
             subRegion => "",
             region => "DE",
