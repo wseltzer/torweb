@@ -835,7 +835,7 @@ print "Fetching the last updated date for each mirror.\n";
 my $tortime;
 $tortime = FetchDate("http://www.torproject.org/");
 # Adjust offical Tor time by out-of-date offset: number of days * seconds per day 
-$tortime -= 1 * 86400; 
+$tortime -= 1 * 172800; 
 print "The official time for Tor is $tortime. \n";
 
 foreach my $server ( keys %m ) {
