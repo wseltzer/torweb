@@ -15,6 +15,9 @@ use Date::Format;
 #Contacted
 #Kamagurka TIMOUTS (Should be up in about a week)
 #
+#CHANGELOG
+#20091003 Code changes to elimiate the need for a trailing slash in addresses for script runtime
+#
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
