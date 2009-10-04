@@ -17,6 +17,7 @@ use Date::Format;
 #
 #CHANGELOG
 #20091003 Code changes to elimiate the need for a trailing slash in addresses for script runtime
+#20091004 Code changes to increase out of date tolerance to 48 hours
 #
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
