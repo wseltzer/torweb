@@ -37,7 +37,7 @@ sub sanitize {
 
 sub FetchDate {
     my $url = shift; # Base url for mirror
-    my $trace = "project/trace/www.torproject.org"; # Location of recent update info
+    my $trace = "/project/trace/www.torproject.org"; # Location of recent update info
     $url = "$url$trace";
 
     print "Fetching possible date from: $url\n";
