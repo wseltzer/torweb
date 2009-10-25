@@ -26,9 +26,9 @@
 <p>
 The install for Macintosh OS X bundles
 <a href="<page index>">Tor</a>,
-<a href="http://www.vidalia-project.net/">Vidalia</a> (a GUI for Tor),
+<a href="<page vidalia/index>">Vidalia</a> (a graphical interface for Tor),
 <a href="<page torbutton/index>">Torbutton</a>,
-and <a href="http://www.privoxy.org/">Privoxy</a> (a filtering web proxy)
+and <a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (a web proxy)
 into one package, with the four applications pre-configured to work
 together.
 Download either the <a href="../<package-osx-bundle-stable>">stable</a>
@@ -37,13 +37,8 @@ of the OS X bundle, or look for more options on the <a href="<page
 download>">download page</a>.
 </p>
 
-<p>Our Tor installer should make everything pretty simple. Below is a
-screenshot of the setup page:
-</p>
-
-<p><img alt="tor installer splash page"
-src="../img/screenshot-osx-installer-splash.png"
-border="1"/></p>
+<p>It's easy to install the bundle; simply drag and drop the Vidalia
+onion icon to the Applications folder.</p>
 
 <p>When the installer is finished, you can start Vidalia by selecting its icon
 from your Applications folder. A dark onion with a red X in your dock means
@@ -58,10 +53,10 @@ Tor is not currently running. You can start Tor by selecting Start from the
 src="../img/screenshot-osx-vidalia.png"
 border="1"/></p>
 
-<p>Privoxy is installed as part of the Tor bundle package
+<p>Polipo is installed as part of the Tor bundle package
 installer. Once it is installed, it will start automatically when your
 computer is restarted.
-You do not need to configure Privoxy to use Tor &mdash; a custom Privoxy
+You do not need to configure Polipo to use Tor &mdash; a custom Polipo 
 configuration for Tor has been installed as part of the installer package.
 </p>
 
@@ -165,42 +160,30 @@ guide.</p>
 <h2><a class="anchor" href="#uninstall">How To Uninstall Tor and Privoxy</a></h2>
 <br />
 
-<p>The Tor 0.1.0.x series and beyond have a command line or
-Terminal-based uninstaller.  If you want to remove Tor on OSX, here's how:</p>
+<p>Tor has a command line or Terminal-based uninstaller.  If you want to remove Tor on OSX, here's how:</p>
 
 <p>Change your application proxy settings back to their original values.
    If you just want to stop using Tor, you can end at this point.</p>
 
 <p>If you want to completely remove Tor, and your account has Admin
 Privileges, then proceed as follows:</p>
-<ol>
-<li> Open up a Terminal or x-term session.</li>
-<li> cd /Library/Tor</li>
-<li> sudo -s</li>
-<li> ./uninstall_tor_bundle.sh</li>
-</ol>
-<p>Tor and Privoxy are now completely removed from your system.</p>
 
-<p>If you're using a version of the Tor installer that doesn't come
-with the uninstall_tor_bundle script, you will need to manually
-delete the following:</p>
+<ol>
+<li>Drag /Applications/Vidalia to the Trash.</li>
+<li>Remove /Library/Torbutton from your system.</li>
+<li>In your home directory, go to Library, remove the Vidalia
+directory</li>
+</ol>
+
+<p>Tor, Vidalia, and Polipo are now completely removed from your system.</p>
+
+<p>If you're familiar with the command line or Terminal, you can
+manually remove the following:</p>
 <ul>
-<li>/Library/Tor</li>
-<li>/Library/Privoxy</li>
-<li>/usr/bin/tor</li>
-<li>/usr/bin/tor_resolve</li>
-<li>/var/log/tor</li>
-<li>/usr/share/man/man1/tor.1</li>
-<li>/usr/share/man/man1/tor-resolve.1</li>
-<li>/usr/share/man/man1/torify.1</li>
-<li>/Library/Receipts/Privoxy.pkg/</li>
-<li>/Library/Receipts/privoxyconf.pkg/</li>
-<li>/Library/Receipts/Tor.pkg/</li>
-<li>/Library/Receipts/torstartup.pkg/</li>
-<li>/Library/Receipts/torbutton.pkg/</li>
-<li>/Library/StartupItems/Tor</li>
-<li>/Library/StartupItems/Privoxy</li>
+<li>/Applications/Vidalia.app/</li>
 <li>/Library/Torbutton/</li>
+<li>~/Library/Vidalia</li>
+<li>~/.tor</li>
 </ul>
 
 <hr />
