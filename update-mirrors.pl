@@ -157,23 +157,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror004 => {
-            adminContact => "peihanru AT gmail DOT com",
-            orgName => "Anonymity",
-            isoCC => "CN",
-            subRegion => "",
-            region => "Asia",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.cypherpunks.cn/",
-            ftpWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            httpDistMirror => "http://tor.cypherpunks.cn/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
        mirror005 => {
             adminContact => "citizen428 AT gmail DOT com",
             orgName => "Bbs",
