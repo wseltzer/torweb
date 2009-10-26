@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20027
+# Based-On-Revision: 20848
 # Translation-Priority: 2-medium
 # Last-Translator: bogdandr_at_op . pl
 
@@ -25,9 +25,9 @@
 
 <p>Wersje instalacyjne dla Macintosh OS X zawierają
  <a href="<page index>">Tora</a>,
- <a href="http://www.vidalia-project.net/">Vidalia</a> (GUI dla Tora),
+ <a href="<page vidalia/index>">Vidalia</a> (graficzny interfejs dla Tora),
  <a href="<page torbutton/index>">Torbutton</a>,
- i <a href="http://www.privoxy.org/">Privoxy</a> (filtrujący serwer pośredniczący proxy)
+ i <a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (serwer pośredniczący proxy)
  w jednej paczce, ze wszystkimi czterema programami prekonfigurowanymi do współpracy ze sobą.
 
  Pobierz albo <a href="../<package-osx-bundle-stable>">stabilną</a>
@@ -36,16 +36,14 @@
  download>">stronie pobierania</a>.
 </p>
 
-<p>Nasz instalator Tora powinien ułatwić wszystko. Poniżej jest zdjęcie
- strony instalacji:
-</p>
+<p>Po pobraniu dmg, kliknij go dwukrotnie i pozwól, by się zamontował. Przejdź do teraz
+otwartej paczki Vidalia (Vidalia Bundle) w Finderze. Paczkę łatwo jest zainstalować; po prostu
+przenieś i upuść cebulową ikonę Vidalii do folderu Aplikacji. Opcjonalnie, kliknij dwukrotnie
+skrypt "install torbutton", by zainstalować Torbutton do Firefoksa. Możesz też pobrać
+Torbuttona ze strony z dodatkami Mozilli, wyszukując "torbutton".</p>
 
-<p><img alt="Ekran instalacji Tora"
-src="../img/screenshot-osx-installer-splash.png"
-border="1" /></p>
-
-<p>Gdy instalator zakończył pracę, możesz uruchomić program Vidalia poprzez
- jego ikonę z twojego folderu Aplikacji. Ciemna cebula z czerwonym krzyżykiem na
+<p>Po zakończeniu instalacji możesz uruchomić program Vidalia poprzez wybranie
+ jego ikony z twojego folderu Aplikacji. Ciemna cebula z czerwonym krzyżykiem na
  pasku oznacza, że w tej chwili Tor nie jest uruchomiony. Możesz uruchomić Tora
  wybierając Start z menu "Tor" u góry ekranu.
 </p>
@@ -57,10 +55,10 @@ border="1" /></p>
 src="../img/screenshot-osx-vidalia.png"
 border="1" /></p>
 
-<p>Privoxy jest instalowane jako część pakietu Tora. Po jego instalacji,
+<p>Polipo jest instalowane jako część pakietu Tora. Po jego instalacji,
  uruchomi się automatycznie po restarcie komputera.
- Nie musisz konfigurować Privoxy, by używało Tora &mdash; taka konfiguracja
- Privoxy została zainstalowana jako część pakietu instalacyjnego.
+ Nie musisz konfigurować Polipo, by używało Tora &mdash; odpowiednia konfiguracja
+ Polipo została zainstalowana jako część pakietu instalacyjnego.
 </p>
 
 <hr />
@@ -163,7 +161,8 @@ przekaźnika sieci Tor</a>.</p>
 <h2><a class="anchor" href="#uninstall">Jak odinstalować Tora i Privoxy</a></h2>
 <br />
 
-<p>Gałąź Tora 0.1.0.x i dalsze mają program odinstalowujący uruchamiany z linii
+<p>Są dwa sposoby na odinstalowanie paczki z komputera, z wykorzystaniem Findera albo
+poprzez program odinstalowujący uruchamiany z linii
  poleceń (Terminala). Jeśli chcesz usunąć Tora z systemu OSX, oto jak to zrobić:</p>
 
 <p>Przywróć ustawienia Proxy w aplikacjach do ich poprzednich wartości. Jeśli chcesz
@@ -171,33 +170,21 @@ przekaźnika sieci Tor</a>.</p>
 
 <p>Jeśli chcesz całkowicie usunąć Tora, a twoje konto ma prawa
  Administratora, wykonaj co następuje:</p>
-<ol>
-<li> Otwórz Terminal lub sesję x-term.</li>
-<li> cd /Library/Tor</li>
-<li> sudo -s</li>
-<li> ./uninstall_tor_bundle.sh</li>
-</ol>
-<p>Tor and Privoxy są teraz całkowicie usunięte z systemu.</p>
 
-<p>Jeśli używasz instalatora Tora, który nie ma skryptu uninstall_tor_bundle,
- musisz ręcznie usunąć następujące elementy:</p>
+<ol>
+<li> Otwórz Findera i kliknij Aplikacje.</li>
+<li> Przeciągnij /Applications/Vidalia do kosza</li>
+<li> Usuń /Library/Torbutton z systemu</li>
+<li> W swoim katalogu domowym przejdź do Library, usuń katalog Vidalia</li>
+</ol>
+<p>Tor, Vidalia i Polipo są teraz całkowicie usunięte z systemu.</p>
+
+<p>Jeśli znasz linię poleceń lub Terminal, możesz ręcznie usunąć następujące elementy:</p>
 <ul>
-<li>/Library/Tor</li>
-<li>/Library/Privoxy</li>
-<li>/usr/bin/tor</li>
-<li>/usr/bin/tor_resolve</li>
-<li>/var/log/tor</li>
-<li>/usr/share/man/man1/tor.1</li>
-<li>/usr/share/man/man1/tor-resolve.1</li>
-<li>/usr/share/man/man1/torify.1</li>
-<li>/Library/Receipts/Privoxy.pkg/</li>
-<li>/Library/Receipts/privoxyconf.pkg/</li>
-<li>/Library/Receipts/Tor.pkg/</li>
-<li>/Library/Receipts/torstartup.pkg/</li>
-<li>/Library/Receipts/torbutton.pkg/</li>
-<li>/Library/StartupItems/Tor</li>
-<li>/Library/StartupItems/Privoxy</li>
+<li>/Applications/Vidalia.app/</li>
 <li>/Library/Torbutton/</li>
+<li>~/Library/Vidalia</li>
+<li>~/.tor</li>
 </ul>
 
 <hr />
