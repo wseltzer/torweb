@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20027
+# Based-On-Revision: 20848
 # Last-Translator: jan at seul dot org
 
 #include "head.wmi" TITLE="Tor: istruzioni per installare Tor su Mac OS X" CHARSET="UTF-8"
@@ -26,9 +26,9 @@ su Mac OS X. Se invece vuoi offrire banda e traffico per aiutare a fare crescere
 <p>
 L'installer per Macintosh OS X comprende
 <a href="<page index>">Tor</a>,
-<a href="http://www.vidalia-project.net/">Vidalia</a> (una GUI per Tor),
+<a href="<page vidalia/index>">Vidalia</a> (una interfaccia grafica per Tor),
 <a href="<page torbutton/index>">Torbutton</a>,
-e <a href="http://www.privoxy.org">Privoxy</a> (un filtro proxy web)
+e <a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (un proxy web)
 in  un pacchetto comprendente le quattro applicazioni preconfigurate in modo
 da funzionare insieme.
 Scarica la versione <a href="../<package-osx-bundle-stable>">stabile</a>
@@ -37,15 +37,14 @@ del pacchetto OS X, oppure scegli tra pi&ugrave; opzioni dalla <a href="<page
 download>">pagina di download</a>.
 </p>
 
-<p>L'installer di Tor dovrebbe rendere tutto semplicissimo. Qui sotto
-ecco una schermata dell'installazione
-</p>
+<p>Una volta scaricato il file dmg, fai doppio clic per montarlo.
+Vai ora al Vidalia Bundle nel Finder. &Egrave; facile installare il pacchetto, trascina semplicemente
+l'icona a cipolla di Vidalia nella cartella Applicazioni. Facoltativamente, fai doppio clic sullo script
+"install torbutton" ed installa torbutton in Firefox.
+Puoi anche scaricare Torbutton dai componenti aggiuntivi di Mozilla facendo una ricerca per
+"torbutton".</p>
 
-<p><img alt="tor installer splash page"
-src="../img/screenshot-osx-installer-splash.png"
-border="1"/></p>
-
-<p>Dopo che il programma di installazione &egrave; terminato, puoi avviare Vidalia selezionandone l'icona
+<p>Dopo aver finito l'installazione puoi avviare Vidalia selezionandone l'icona
 dalla cartella Applicazioni. Una cipolla di colore scuro con una X rossa nel dock significa
 che Tor non &egrave; in esecuzione. Puoi eseguire Tor selezionando Start dal menu
 "Tor" nella parte superiore dello schermo.
@@ -58,11 +57,11 @@ che Tor non &egrave; in esecuzione. Puoi eseguire Tor selezionando Start dal men
 src="../img/screenshot-osx-vidalia.png"
 border="1"/></p>
 
-<p>Privoxy viene installato insieme al pacchetto di installazione di Tor.
+<p>Polipo viene installato insieme al pacchetto di installazione di Tor.
 Una volta installato viene eseguito automaticamente quando
 riavii il tuo computer.
-Non occorre configurare Privoxy per usare Tor. Infatti col pacchetto di installazione
-&egrave; stata installata anche una configurazione ad hoc di Privoxy per Tor.
+Non occorre configurare Polipo per usare Tor. Infatti col pacchetto di installazione
+&egrave; stata installata anche una configurazione ad hoc di Polipo per Tor.
 </p>
 
 <hr />
@@ -164,8 +163,8 @@ computer o &egrave; stata trasportata da un altro nodo Tor.</p>
 <h2><a class="anchor" href="#uninstall">Disinstallare Tor and Privoxy</a></h2>
 <br />
 
-<p>Le versioni di Tor della serie 0.1.0.x hanno un disinstallatore a riga di comando o 
-da Terminale. Se vuoi rimuovere Tor da OSX, ecco come fare:</p>
+<p>Puoi disinstallare il pacchetto dal tuo computer in due modi, con il
+Finder o con un disinstallatore da Terminale o riga di comando. Se vuoi rimuovere Tor da OSX, ecco come fare:</p>
 
 <p>Riporta la configurazione proxy dei tuoi programmi ai valori originali.
 Se ti interessa semplicemente smettere di usare Tor, puoi fermarti qui.</p>
@@ -173,33 +172,21 @@ Se ti interessa semplicemente smettere di usare Tor, puoi fermarti qui.</p>
 <p>Se invece vuoi rimuovere completamente Tor, e il tuo account ha privilegi di
 amministratore, fai cos&igrave;:</p>
 <ol>
-<li> Apri una sessione del Terminale o di x-term.</li>
-<li> cd /Library/Tor</li>
-<li> sudo -s</li>
-<li> ./uninstall_tor_bundle.sh</li>
+<li>Apri il Finder e fai clic su Applicazioni.</li>
+<li>Sposta /Applicazioni/Vidalia nel Cestino.</li>
+<li>Cancella /Libreria/Torbutton dal sistema.</li>
+<li>Nella tua cartella Inizio, vai a Libreria e cancella la cartella
+Vidalia</li>
 </ol>
-<p>Tor e Privoxy sono ora completamente rimossi dal tuo sistema.</p>
+<p>Tor, Vidalia e Polipo sono ora completamente rimossi dal tuo sistema.</p>
 
-<p>Se usi una versione dell'installer Tor che non ha lo
-script uninstall_tor_bundle, devi cancellare manualmente
-i seguenti file e directory:</p>
+<p>Se ti trovi a tuo agio con la riga di comando o con Terminale, puoi
+cancellare manualmente i file e cartelle seguenti:</p>
 <ul>
-<li>/Library/Tor</li>
-<li>/Library/Privoxy</li>
-<li>/usr/bin/tor</li>
-<li>/usr/bin/tor_resolve</li>
-<li>/var/log/tor</li>
-<li>/usr/share/man/man1/tor.1</li>
-<li>/usr/share/man/man1/tor-resolve.1</li>
-<li>/usr/share/man/man1/torify.1</li>
-<li>/Library/Receipts/Privoxy.pkg/</li>
-<li>/Library/Receipts/privoxyconf.pkg/</li>
-<li>/Library/Receipts/Tor.pkg/</li>
-<li>/Library/Receipts/torstartup.pkg/</li>
-<li>/Library/Receipts/torbutton.pkg/</li>
-<li>/Library/StartupItems/Tor</li>
-<li>/Library/StartupItems/Privoxy</li>
-<li>/Library/Torbutton/</li>
+<li>/Applicazioni/Vidalia.app/</li>
+<li>/Libreria/Torbutton/</li>
+<li>~/Libreria/Vidalia</li>
+<li>~/.tor</li>
 </ul>
 
 <hr />
