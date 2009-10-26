@@ -809,7 +809,6 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
-
 );
 
 my $count = values %m;
