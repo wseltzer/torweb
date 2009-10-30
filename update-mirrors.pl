@@ -789,6 +789,46 @@ my %m = (
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
+
+        mirror038 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "IN",
+            subRegion => "",
+            region => "IN",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://www.torproject.org.in",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://www.torproject.org.in/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+        },
+
+        mirror039 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "LU",
+            subRegion => "",
+            region => "LU",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.idnr.at",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+        },
+
 );
 
 my $count = values %m;
