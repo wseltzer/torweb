@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 18435
-# Last-Translator: jens @kubieziel.de
+# Based-On-Revision: 20848
+# Last-Translator: jens @kubieziel.de; mail ft oliverknapp,de
 
 #include "head.wmi" TITLE="Tor: Anweisungen zur Installation auf Mac OS X" CHARSET="UTF-8"
 
@@ -24,9 +24,9 @@
 
 <p>Die Installationsdatei für  Mac OS X fasst <a href="<page
   index>">Tor</a>, <a
-  href="http://www.vidalia-project.net/">Vidalia</a> (eine grafische
+  href="<page vidalia/index>">Vidalia</a> (eine grafische
   Oberfläche für Tor), <a href="<page torbutton/index>">Torbutton</a> und <a
-  href="http://www.privoxy.org/">Privoxy</a> (einen filternden Proxy)
+  href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (ein Proxy)
   in ein Paket zusammen. Alle Anwendungen sind vorkonfiguriert und
   sollten direkt nach der Installation laufen. Lade entweder die <a
   href="../<package-osx-bundle-stable>">stabile</a> oder die <a
@@ -35,14 +35,15 @@
   download>">Downloadseite</a> beschrieben.
 </p>
 
-<p>Unser Installationsprogramm sollte alles recht einfach
-  machen. Unten findest du einen Screenshot:
-</p>
+<p>Nachdem du die dmg-Datei runtergeladen hast, klicke doppelt darauf, damit 
+sie eingebunden wird. Danach sollte sich der Finder mit dem Vidalia-Bundle 
+öffnen. Die Installation ist ganz einfach, ziehe einfach die Datei in deinem 
+Anwendungsordner. Optional kannst du noch das "install torbutton" Skript 
+ausführen. Es installiert dir Torbutton in den Firefox, ansonsten bekommst du 
+Torbutton auch über das Mozilla Erweiterungsportal wenn du nach "torbutton" 
+suchst.</p>
 
-<p><img alt="tor installer splash page"
-  src="../img/screenshot-osx-installer-splash.png" border="1" /></p>
-
-<p>Wenn das Installationsprogramm beendet ist, kannst du Vidalia
+<p>Wenn du mit dem Installieren beendet ist, kannst du Vidalia
   starten, indem du das Icon vom Ordner Applications auswählst. Eine
   dunkle Zwiebel mit einem roten X heißt, dass Tor derzeit
   abgeschalten ist. Wenn du Start (aus dem Menu Tor ganz oben)
@@ -55,9 +56,9 @@
 <p><img alt="vidalia running tor"
   src="../img/screenshot-osx-vidalia.png" border="1" /></p>
 
-<p>Privoxy ist als Teil des Tor-Paketes mit installiert worden. Das
+<p>Polipo ist als Teil des Tor-Paketes mit installiert worden. Das
   Programm startet automatisch, wenn du den Computer anschaltest. Du
-  musst Privoxy nicht konfigurieren. Das wurde bereits während der
+  musst Polipo nicht konfigurieren. Das wurde bereits während der
   Installation erledigt.
 </p>
 
@@ -144,9 +145,9 @@ einen Tor-Server</a>.</p>
 <a id="uninstall"></a>
 <h2><a class="anchor" href="#uninstall">Wie du Tor and Privoxy deinstallierst</a></h2>
 
-<p>Die Versionen 0.1.0.x und später haben einen Terminal-basiertes
-Deinstallationsprogramm. Falls du also Tor deinstallieren willst,
-steht hier wie:</p>
+<p>Es gibt zwei Wege das Tor-Bundle zu deinstallieren. Entweder per Finder 
+oder mittels einem Terminal-basiertem Deinstallationsprogramm. Wenn du Tor 
+unter OSX deinstallieren willst, hier steht wie es geht:</p>
 
 <p>Ändere die Einstellungen in allen Anwendungen so, dass Tor nicht
    mehr benutzt wird. Dies reicht, um Tor nicht mehr aktiv zu nutzen.</p>
@@ -154,33 +155,20 @@ steht hier wie:</p>
 <p>Wenn du Tor komplett entfernen willst und dein Zugang die nötigen
 Adminrechte hat, verfahre folgendermaßen:</p>
 <ol>
-<li> Öffne ein Terminal oder eine x-term-Sitzung.</li>
-<li> <kbd>cd /Library/Tor</kbd></li>
-<li> <kbd>sudo -s</kbd></li>
-<li> <kbd>./uninstall_tor_bundle.sh</kbd></li>
+<li> Öffne den Finder und klick auf Anwendungen"</li>
+<li> Ziehe /Anwendungen/Vidalia in den Mülleimer</li>
+<li> Entferne /Bibliotheken/Torbutton von deinem System</li>
+<li> Entferne das Vidalia Verzeichniss aus deinem Benutzerordner</li>
 </ol>
 
-<p>Tor und Privoxy sind nun von deinem System entfernt.</p>
+<p>Tor, Vidalia und Polipo sind jetzt komplett von deinem System entfernt.</p>
 
-<p>Wenn du eine Tor-Version nutzt, die nicht das
-uninstall_tor_bundle-Skript hat, musst du folgendes manuell löschen:</p>
+<p>Wenn du dich mit der Kommandozeile auskennst, kannst du auch folgendes manuell entfernen:</p>
 <ul>
-<li>/Library/Tor</li>
-<li>/Library/Privoxy</li>
-<li>/usr/bin/tor</li>
-<li>/usr/bin/tor_resolve</li>
-<li>/var/log/tor</li>
-<li>/usr/share/man/man1/tor.1</li>
-<li>/usr/share/man/man1/tor-resolve.1</li>
-<li>/usr/share/man/man1/torify.1</li>
-<li>/Library/Receipts/Privoxy.pkg/</li>
-<li>/Library/Receipts/privoxyconf.pkg/</li>
-<li>/Library/Receipts/Tor.pkg/</li>
-<li>/Library/Receipts/torstartup.pkg/</li>
-<li>/Library/Receipts/torbutton.pkg/</li>
-<li>/Library/StartupItems/Tor</li>
-<li>/Library/StartupItems/Privoxy</li>
+<li>/Applications/Vidalia.app/</li>
+<li>/Library/Vidalia/</li>
 <li>/Library/Torbutton/</li>
+<li>~/.tor</li>
 </ul>
 
 <hr />
