@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20707
+# Based-On-Revision: 20890
 # Last-Translator: jens@kubieziel.de
 
 #include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
@@ -18,12 +18,12 @@ Falls du annimmst, dass dein Zugang zum Tor-Netzwerk blockiert ist, kannst du
 versuchen, Bridge-Server zu verwenden.
 </p>
 
-<p>Die Hinzunahme von Bridges ist ein Schritt, um resistenter gegen das
-Blockieren des Netzwerks zu werden. Es ist sehr wohl möglich, obwohl dein ISP
-den Zugang zum Internet filtert, du die Bridges für die Benutzung von Tor nicht
+<p>Die Hinzunahme von Bridges ist ein Schritt, um resistenter gegen
+  die Sperrung des Tor-Netzwerks zu werden. Auch wenn dein ISP
+den Zugang zum Internet filtert, kann es sein, dass du die Bridges für die Benutzung von Tor nicht
 benötigst. Viele Filterprogramme schauen nach unverschlüsselten
 Verbindungsaufnahmen zu den Verzeichnisservern und wollen so feststellen, ob du
-Tor verwendest. Die Version ab 0.2.0.23-rc benutzt standardmaäßig verschlüsselte
+Tor verwendest. Die Version ab 0.2.0.23-rc benutzt standardmäßig verschlüsselte
 Anfragen. Damit erkennen die meisten Filterprogramme die Verbindungsanfragen
 nicht mehr. Daher solltest du Tor zuerst mit einer aktuellen Version probieren.
 </p>
@@ -35,13 +35,13 @@ Hinweise, warum Tor Probleme bei der Verbindungsaufnahme hat. Weiterhin solltest
 du den <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">Eintrag
 in der FAQ über Probleme mit Tor</a> lesen, wenn es Probleme gibt. Falls du der
-Meinung bist, dass das Problem wirklich ein Abblocken von Tor ist oder du es
+Meinung bist, dass das Problem wirklich eine Sperrung von Tor ist oder du es
 einfach probieren willst, lies einfach weiter. Stelle sicher, dass du die
 aktuellste <a href="<page download>#Dev">Version von 0.2.1.x oder das
-0.2.2.x-Paket für deine Plattform</a> verwendest..
+0.2.2.x-Paket für deine Plattform</a> verwendest.
 </p>
 
-<p>Um einen Brücker-Server zu verwenden, musst du einen finden. Weiterhin musst
+<p>Um einen Brücker-Server zu verwenden, musst du zuerst einen finden. Weiterhin musst
 du Tor die Adresse des Brücken-Servers übergeben. Du kannst das mit Vidalia, dem
 Tor-Controller tun. Falls deine Internetverbindung von einem Proxy abhängt,
 musst du zuerst Vidalia entsprechend einrichten. Falls dir kein Proxy bekannt
@@ -81,7 +81,7 @@ Das drittem Element, der Fingerprint, ist optional:
 <hr />
 
 <p>Um das Beispiel oben zu verwenden, klicke auf die Netzwerkeinstellungen von
-Vidalia und dann auf <q>Eine Brücke hinzufügen:</q>. Füge jeden Brücken-Server wie auf der
+Vidalia und dann auf den Menüpunkt <q>Eine Brücke hinzufügen:</q>. Füge jeden Brücken-Server wie auf der
 untenstehenden Abbildung hinzu:
 </p>
 
@@ -101,7 +101,7 @@ dieser wird abgeschalten, dann bist du vom Netzwerk getrennt.
 
 <p>Ein anderer Weg, um öffentliche Adressen für Bridges zu finden, ist, eine
 E-Mail an bridges@torproject.org mit der Zeile "get bridges" zu senden. Diese
-Anfrage musst du von einem GMail-Konto versenden. Sonst machen wir es einem
+Anfrage musst du von einem Googlemail-Konto versenden. Sonst machen wir es einem
 Angreifer zu leicht, eine Vielzahl an Adressen zu erzeugen und alle
 Brücken-Server zu finden. Du erhälst eine Antwort, die etwa so aussieht:
 </p>
@@ -124,8 +124,8 @@ href="#UsingBridges">oben beschrieben</a> fortfahren.
 
 <p>Wenn du helfen willst, aber keinen <a href="<page docs/tor-doc-relay>">
 normalen Tor-Server</a> betreiben kannst, solltest du eine Brücke betreiben.
-Du kannst das <a href="<page docs/tor-doc-relay>"> mit Vidalia</a>, oder
-manuell einstellen, indem du deine <tt>torrc</tt>-Datei <a
+Du kannst das <a href="<page docs/tor-doc-relay>"> mit Vidalia</a>
+einstellen oder manuell machen, indem du deine <tt>torrc</tt>-Datei <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">
 editierst,</a> so dass sie nur die folgenden Zeilen enthält: </p>
 
@@ -137,9 +137,9 @@ Exitpolicy reject *:*
 </code>
 </pre>
 
-<p>Wenn du beim Starten von Tor Fehlermeldungen wie "Could not bind to
-0.0.0.0:443: Permission denied" bekommst, musst du einen anderen Port (z.B.
-8080) bei ORPort angeben, oder
+<p>Wenn du beim Starten von Tor Fehlermeldungen wie <samp>Could not bind to
+0.0.0.0:443: Permission denied</samp> bekommst, musst du einen anderen Port (z.B.
+8080) als <code>ORPort</code> angeben, oder
 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
 Port-Forwarding einrichten.</a> </p>
 
