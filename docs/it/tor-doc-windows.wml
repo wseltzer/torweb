@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20341
+# Based-On-Revision: 20905
 # Last-Translator: jan at seul . org
 
 #include "head.wmi" TITLE="Tor: istruzioni per installare Tor su MS Windows" CHARSET="UTF-8"
@@ -13,7 +13,7 @@
 
 <p>
 <b>Queste sono le istruzioni per installare e usare un client Tor
-su MS Windows (98, 98SE, NT4, 2000, XP, Vista, Server).
+su Microsoft Windows (versioni 2000, XP, Vista, 7, Server).
 Se invece vuoi offrire banda e traffico per aiutare a fare crescere la rete Tor (s&igrave;,
 per favore!), leggi la guida per <a href="<page docs/tor-doc-relay>">Configurare un relay</a>.
 </b>
@@ -26,9 +26,10 @@ per favore!), leggi la guida per <a href="<page docs/tor-doc-relay>">Configurare
 
 <p>
 L'installer per MS Windows comprende <a href="<page index>">Tor</a>,
-<a href="<page vidalia/index>">Vidalia</a> (una interfaccia grafica per Tor), e <a
-href="http://www.privoxy.org">Privoxy</a> (un filtro web proxy) in
-un unico pacchetto che contiene le tre applicazioni gi&agrave; preconfigurate per funzionare insieme.
+<a href="<page vidalia/index>">Vidalia</a> (una interfaccia grafica per Tor), Torbutton (un
+plugin per Mozilla Firefox), e <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (un web proxy) in
+un pacchetto unico contenente le 4 applicazioni preconfigurate.
 Scarica la versione <a href="../<package-win32-bundle-stable>">stabile</a>
 o quella <a href="../<package-win32-bundle-alpha>">sperimentale</a>
 del pacchetto Windows, oppure scegli altre opzioni dalla
@@ -38,7 +39,7 @@ del pacchetto Windows, oppure scegli altre opzioni dalla
 <img alt="tor installer splash page"
 src="../img/screenshot-win32-installer-splash.png" />
 
-<p>Se avevi gi&agrave; installato in precedenza Tor, Vidalia, o Privoxy
+<p>Se avevi gi&agrave; installato in precedenza Tor, Vidalia, o Polipo
 puoi deselezionare i componenti di cui non hai bisogno
 nella finestra di dialogo qui sotto.
 </p>
@@ -62,7 +63,7 @@ di modificare. Ora Tor &egrave; installato.
 <h2><a class="anchor" href="#using">Due: configura i tuoi programmi per usare Tor</a></h2>
 <br />
 
-<p>Dopo l'installazione di Tor e di Privoxy, devi configurare i tuoi programmi affinch&eacute;
+<p>Dopo l'installazione di Tor e di Polipo, devi configurare i tuoi programmi affinch&eacute;
 li usino. Il primo passo &egrave; configurare il browser web.</p>
 
 <p>Per una sicurezza ottimale dovresti usare Tor con Firefox e Torbutton. Il
@@ -84,7 +85,7 @@ per usare Tor su un pc differente</a>.
 </p>
  
 <p>Per usare Tor con altre applicazioni che supportano un HTTP proxy, basta
-puntarle a Privoxy (ossia, a localhost porta 8118). Per usare SOCKS
+puntarle a Polipo (ossia, a localhost porta 8118). Per usare SOCKS
 direttamente (con l'instant messaging, Jabber, IRC, etc), si pu&ograve; puntare
 il programma direttamente a Tor (localhost porta 9050), ma leggi <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">questa
@@ -104,9 +105,8 @@ HOWTO</a>.
 <br />
 
 <p>
-Controlla che Privoxy e Vidalia siano attivi. L'icona di Privoxy &egrave;
-un cerchio blu o verde con una "P" dentro, mentre per Vidalia &egrave; una piccola
-cipolla verde per indicare che Tor &egrave; attivo, o una cipolla scura con una "X" rossa
+Controlla che Vidalia sia attivo.  Vidalia usa una piccola cipolla verde
+per indicare che Tor &egrave; attivo, ed una cipolla scura con una "X" rossa
 quando Tor &egrave; spento. Puoi avviare o fermare Tor facendo clic col tasto destro del mouse
 sulla icona di Vidalia nella barra di sistema e selezionando "Start" o "Stop"
 dal menu come mostrato qui sotto:
@@ -121,8 +121,6 @@ che il tuo indirizzo IP sia anonimizzato. Fai clic sul
 <a href="https://check.torproject.org/">
 Tor detector</a>
 e verifica se stai usando o meno Tor
-#<a href="http://ipchicken.com/">this site</a>
-#to see what IP address it thinks you're using.
 (se questo sito &egrave; gi&ugrave;, vedi <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">questa
 FAQ</a> per altri modi di testare il tuo client Tor).
