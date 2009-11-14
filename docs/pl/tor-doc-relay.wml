@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 19878
+# Based-On-Revision: 20949
 # Translation-Priority: 2-medium
 # Last-Translator: bogdandr_at_op . pl
 
@@ -32,13 +32,6 @@
  by był także przekaźnikiem sieci. Mamy wiele cech, które czynią przekaźniki Tora łatwymi i
  wygodnymi, łącznie z <a href="<page faq>#RelayFlexible">ograniczeniem przepustowości,
  politykami wyjścia, byś mógł zmniejszyć ryzyko skarg, oraz obsługą dynamicznych adresów IP</a>.</p>
-
-<p>Posiadanie przekaźników w wielu różnych miejscach w sieci sprawia, że
- użytkownicy są bezpieczni. <a
- href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">Ty
- też możesz mieć lepszą anonimowość</a>, gdyż przekaźniki sieci, do których się łączysz,
- nie mogą stwierdzić, czy połączenie pochodzi z Twojego komputera, czy
- zostało przekierowane z innych.</p>
 
 <p>Możesz uruchomić przekaźnik sieci Tora na <a
  href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">prawie każdym
@@ -73,34 +66,49 @@
  >serwerami czasu</a>.
 </li>
 
-<li><strong>Prosta konfiguracja</strong>:
+<li><strong>Konfiguracja Tora z Interfejsem Graficznym Vidalia</strong>:
 <ol>
- <li>Kliknij prawym klawiszem na ikonkę Vidalii w zasobniku systemowym. Wybierz
-  <tt>Control Panel</tt> (Panel sterowania).</li>
+ <li>
+   <dt>Kliknij prawym klawiszem na ikonkę Vidalii w zasobniku systemowym. Wybierz
+    <tt>Control Panel</tt> (Panel sterowania).</dt></li>
+    <dd><img src="../img/screenshot-win32-vidalia.png"></dd>
+
  <li>Klinkij <tt>Setup Relaying</tt> (Uruchomienie przekazywania).</li>
- <li>Wybierz <tt>Relay Traffic for the Tor network</tt> (Przekazuj ruch dla sieci Tor),
- jeśli chcesz być publicznym przekaźnikiem (zalecane), lub wybierz <tt>Help censored users reach the
- Tor network</tt> (Pomóż cenzorowanym użytkownikom dostać się do sieci Tora), jeśli chcesz być
- <a href="<page faq>#RelayOrBridge">mostkiem</a> dla użytkowników w krajach cenzurujących swój Internet.
+
+ <li>
+   <dt>Wybierz <tt>Relay Traffic for the Tor network</tt> (Przekazuj ruch dla sieci Tor),
+       jeśli chcesz być publicznym przekaźnikiem (zalecane), lub wybierz <tt>Help censored users
+       reach the Tor network</tt> (Pomóż cenzorowanym użytkownikom dostać się do sieci Tora),
+       jeśli chcesz być <a href="<page faq>#RelayOrBridge">mostkiem</a> dla użytkowników w
+       krajach cenzurujących swój Internet.</dt>
+       <dd><img src="../img/screenshot-win32-configure-relay-1.png"></dd>
  </li>
+
  <li>Wprowadź nazwę dla swojego przekaźnika i wprowadź informacje kontaktowe, w razie
    gdybyśmy musieli skontaktować się z Tobą w przypadku problemów.</li>
+
  <li>Zostaw <tt>Attempt to automatically configure port forwarding</tt> (Spróbuj automatycznie
   skonfigurować przekazywanie portów) włączone. Wciśnij przycisk <tt>Test</tt>, by sprawdzić, czy to
   działa. Jeśli tak, to wspaniale. Jeśli nie, spójrz na punkt numer 3 poniżej.</li>
- <li>Wybierz kartę <tt>Bandwidth Limits</tt> (Ograniczenia łącza).
-  Określ, ile z przepustowości łącza chcesz dać uzytkownikom Tora, takim jak Ty.</li>
- <li>Wybierz kartę <tt>Exit Policies</tt> (Polityki wyjścia). Jeśli chcesz, by inni mogli
+
+ <li><dt>Wybierz kartę <tt>Bandwidth Limits</tt> (Ograniczenia łącza).
+  Określ, ile z przepustowości łącza chcesz dać uzytkownikom Tora, takim jak Ty.</dt>
+  <dd><img src="../img/screenshot-win32-configure-relay-2.png"></dd>
+  </li>
+
+ <li><dt>Wybierz kartę <tt>Exit Policies</tt> (Polityki wyjścia). Jeśli chcesz, by inni mogli
   używać Twojego przekaźnika dla tych usług, nie zmieniaj niczego. Wyłącz te usługi,
   co do których nie chcesz, by były osiągalne przez ludzi z <a href="<page
   faq>#ExitPolicies">Twojego przekaźnika</a>. Jeśli chcesz być przekaźnikiem
-  nie-wyjściowym, wyłącz wszystkie usługi.</li>
+  nie-wyjściowym, wyłącz wszystkie usługi.</dt></li>
+  <dd><img src="../img/screenshot-win32-configure-relay-3.png"></dd>
+
  <li>Kliknij przycisk <tt>Ok</tt>. Spójrz na krok 3 poniżej w celu potwierdzenia, że
   przekaźnik działa prawidłowo.</li>
 </ol>
 
 <br />
-<strong>Konfiguracja na Linux / Unix</strong>:
+<strong>Manual Configuration</strong>:
 <ul>
 
  <li>
@@ -112,9 +120,6 @@
  <a href="<page bridges>#RunningABridge">te linie</a>; w innym przypadku, jeśli chcesz być
  <a href="<page faq>#RelayOrBridge">mostkiem</a> dla użytkowników w krajach cenzurujących
  swój Internet, skorzystaj z <a href="<page bridges>#RunningABridge">tych linii</a>.
- <em>Jeśli chcesz uruchomić więcej niż jeden przekaźnik, to świetnie, ale ustaw proszę
- <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">opcję
- MyFamily</a> w plikach konfiguracyjnych wszystkich przekaźników.</em>
  </li>
 </ul></li>
 
