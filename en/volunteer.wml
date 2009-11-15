@@ -61,7 +61,7 @@ much does this impact privacy, and do we have any other good options?</li>
 <a id="Advocacy"></a>
 <h2><a class="anchor" href="#Advocacy">Advocacy</a></h2>
 <ol>
-<li>Create a community logo under a Creative Commons license that all can use and modify</li>
+<li>Create a <a href="https://wiki.torproject.org/noreply/CommunityLogos">community logo</a> under a Creative Commons license that all can use and modify</li>
 <li>Create a presentation that can be used for various user group meetings around the world</li>
 <li>Create a video about your positive uses of Tor.  Some have already started on Seesmic.</li>
 <li>Create a poster, or a set of posters, around a theme, such as "Tor for Freedom!"</li>
@@ -96,7 +96,7 @@ Farsi translations, for the many Tor users in censored areas.</li>
 
 <p>
 You may find some of these projects to be good <a href="<page
-gsoc>">Google Summer of Code 2009</a> ideas. We have labelled each idea
+gsoc>">Google Summer of Code 2010</a> ideas. We have labelled each idea
 with how useful it would be to the overall Tor project (priority), how
 much work we expect it would be (effort level), how much clue you should
 start with (skill level), and which of our <a href="<page
@@ -120,17 +120,16 @@ Skill Level: <i>Medium</i>
 <br />
 Likely Mentors: <i>Steven, Andrew</i>
 <br />
-The Tor Browser bundle incorporates Tor, Firefox, and the Vidalia user
-interface (and optionally Pidgin IM). Components are pre-configured to
-operate in a secure way, and it has very few dependencies on the
+The Tor Browser Bundle incorporates Tor, Firefox, Polipo, and the Vidalia user
+interface (and optionally the <a href="http://pidgin.im/">Pidgin</a> Instant Messaging client). Components are pre-configured to operate in a secure way, and it has very few dependencies on the
 installed operating system. It has therefore become one of the most
 easy to use, and popular, ways to use Tor on Windows.
 <br />
-However, there is currently no comparable package for Linux and Mac OS
+However, there is currently no working package for Linux and Mac OS
 X, so this project would be to implement Tor Browser Bundle for these
 platforms. This will involve modifications to Vidalia (C++), possibly
 Firefox (C) then creating and testing the launcher on a range of
-operating system versions and configurations to verify portability.
+operating system versions and configurations to verify portability.  Some work on this was completed as part of the Google Summer of Code 2009.  
 <br />
 Students should be familiar with application development on one or
 preferably both of Linux and Mac OS X, and be comfortable with C/C++
@@ -141,26 +140,6 @@ ideally amongst our target demographic.
 That would help a lot in knowing what needs to be done in terms of bug
 fixes or new features. We get this informally at the moment, but a more
 structured process would be better.
-</li>
-
-<li>
-<b>Translation wiki for our website</b>
-<br />
-Priority: <i>High</i>
-<br />
-Effort Level: <i>Medium</i>
-<br />
-Skill Level: <i>Medium</i>
-<br />
-Likely Mentors: <i>Jacob</i>
-<br />
-The Tor Project has been working over the past year to set up web-based
-tools to help volunteers translate our applications into other languages.
-We finally hit upon Pootle, and we have a fine web-based translation engine
-in place for Vidalia, Torbutton, and Torcheck. However, Pootle only
-translates strings that are in the "po" format, and our website uses wml
-files. This project is about finding a way to convert our wml files into po
-strings and back, so they can be handled by Pootle.
 </li>
 
 <li>
@@ -534,33 +513,6 @@ required.
 </li>
 
 <li>
-<b>Bring moniTor to life</b>
-<br />
-Priority: <i>Low</i>
-<br />
-Effort Level: <i>Medium</i>
-<br />
-Skill Level: <i>Low to Medium</i>
-<br />
-Likely Mentors: <i>Karsten, Jacob</i>
-<br />
-Implement a <a href="http://www.ss64.com/bash/top.html">top-like</a>
-management tool for Tor relays. The purpose of such a tool would be
-to monitor a local Tor relay via its control port and include useful
-system information of the underlying machine. When running this tool, it
-would dynamically update its content like top does for Linux processes.
-<a href="http://archives.seul.org/or/dev/Jan-2008/msg00005.html">This
-or-dev post</a> might be a good first read.
-<br />
-A person interested in this should be familiar
-with or willing to learn about administering a Tor relay and configuring
-it via its control port. As an initial prototype is written in Python,
-some knowledge about writing Python code would be helpful, too. This
-project is one part about identifying requirements to such a
-tool and designing its interface, and one part lots of coding.
-</li>
-
-<li>
 <b>Torbutton equivalent for Thunderbird</b>
 <br />
 Priority: <i>Low</i>
@@ -607,7 +559,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Jake, Roger</i>
+Likely Mentors: <i>Christian, Roger</i>
 <br />
 <a href="https://weather.torproject.org/">Tor weather</a> is a tool
 that allows signing up to receive notifications via email when the
@@ -638,36 +590,6 @@ Some of the <a href="<svnsandbox>doc/spec/proposals/">current proposals</a>
 might also be short on developers.
 </li>
 
-<!-- Mike is already working on this.
-<li>
-<b>Tor Node Scanner improvements</b>
-<br />
-Similar to the SoaT exit scanner (or perhaps even during exit scanning),
-statistics can be gathered about the reliability of nodes. Nodes that
-fail too high a percentage of their circuits should not be given
-Guard status. Perhaps they should have their reported bandwidth
-penalized by some ratio as well, or just get marked as Invalid. In
-addition, nodes that exhibit a very low average stream capacity but
-advertise a very high node bandwidth can also be marked as Invalid.
-Much of this statistics gathering is already done, it just needs to be
-transformed into something that can be reported to the Directory
-Authorities to blacklist/penalize nodes in such a way that clients
-will listen.
-<br />
-In addition, these same statistics can be gathered about the traffic
-through a node. Events can be added to the <a
-href="https://svn.torproject.org/svn/torctl/trunk/doc/howto.txt">Tor Control
-Protocol</a> to
-report if a circuit extend attempt through the node succeeds or fails, and
-passive statistics can be gathered on both bandwidth and reliability
-of other nodes via a node-based monitor using these events. Such a
-scanner would also report information on oddly-behaving nodes to
-the Directory Authorities, but a communication channel for this
-currently does not exist and would need to be developed as well.
-</li>
--->
-
-<!-- Is this still a useful project? If so, move it to another section.
 <li>
 <b>Better Debian/Ubuntu Packaging for Tor+Vidalia</b>
 <br />
@@ -711,9 +633,7 @@ A person undertaking this project should have prior knowledge of
 Debian package management and some C++ development experience. Previous
 experience with Qt is helpful, but not required.
 </li>
--->
 
-<!-- This should be mostly done.
 <li>
 <b>Tor/Polipo/Vidalia Auto-Update Framework</b>
 <br />
@@ -747,101 +667,9 @@ is also important for this project, since a vital step of the project
 will be producing a design document to review and discuss
 with others prior to implementation.
 </li>
--->
 
-<!-- Jake already did most of this.
 <li>
-<b>Improvements on our active browser configuration tester</b> -
-<a href="https://check.torproject.org/">https://check.torproject.org/</a>
-<br />
-We currently have a functional web page to detect if Tor is working. It
-has a few places where it falls short. It requires improvements with
-regard to default languages and functionality. It currently only responds
-in English. In addition, it is a hack of a perl script that should have
-never seen the light of day. It should probably be rewritten in python
-with multi-lingual support in mind. It currently uses the <a
-href="http://exitlist.torproject.org/">Tor DNS exit list</a>
-and should continue to do so in the future. It currently result in certain
-false positives and these should be discovered, documented, and fixed
-where possible. Anyone working on this project should be interested in
-DNS, basic perl or preferably python programming skills, and will have
-to interact minimally with Tor to test their code.
-<br />
-If you want to make the project more exciting
-and involve more design and coding, take a look at <a
-href="<svnsandbox>doc/spec/proposals/131-verify-tor-usage.txt">proposal
-131-verify-tor-usage.txt</a>.
-</li>
--->
-
-<!-- If we decide to switch to the exit list in TorStatus, this is obsolete.
-<li>
-<b>Improvements on our DNS Exit List service</b> -
-<a href="http://exitlist.torproject.org/">http://exitlist.torproject.org/</a>
-<br />
-The <a href="http://p56soo2ibjkx23xo.onion/">exitlist software</a>
-is written by our fabulous anonymous
-contributer Tup. It's a DNS server written in Haskell that supports part of our <a
-href="<svnsandbox>doc/contrib/torel-design.txt">exitlist
-design document</a>. Currently, it is functional and it is used by
-check.torproject.org and other users. The issues that are outstanding
-are mostly aesthetic. This wonderful service could use a much better
-website using the common Tor theme. It would be best served with better
-documentation for common services that use an RBL. It could use more
-publicity. A person working on this project should be interested in DNS,
-basic RBL configuration for popular services, and writing documentation.
-The person would require minimal Tor interaction &mdash; testing their
-own documentation at the very least. Furthermore, it would be useful
-if they were interested in Haskell and wanted to implement more of the
-torel-design.txt suggestions.
-</li>
--->
-
-<!-- Nobody wanted to keep this.
-<li>
-<b>Testing integration of Tor with web browsers for our end users</b>
-<br />
-The Tor project currently lacks a solid test suite to ensure that a
-user has a properly and safely configured web browser. It should test for as
-many known issues as possible. It should attempt to decloak the
-user in any way possible. Two current webpages that track these
-kinds of issues are run by Greg Fleischer and HD Moore. Greg keeps a nice <a
-href="http://pseudo-flaw.net/tor/torbutton/">list of issues along
-with their proof of concept code, bug issues, etc</a>. HD Moore runs
-the <a href="http://www.decloak.net/">metasploit
-decloak website</a>. A person interested in defending Tor could start
-by collecting as many workable and known methods for decloaking a
-Tor user. (<a href="https://torcheck.xenobite.eu/">This page</a> may
-be helpful as a start.) One should be familiar with the common pitfalls but
-possibly have new methods in mind for implementing decloaking issues. The
-website should ensure that it tells a user what their problem is. It
-should help them to fix the problem or direct them to the proper support
-channels. The person should also be closely familiar with using Tor and how
-to prevent Tor information leakage.
-</li>
--->
-
-<!-- Nick did quite some work here. Is this project still required then?
-<li>
-<b>Libevent and Tor integration improvements</b>
-<br />
-Tor should make better use of the more recent features of Niels
-Provos's <a href="http://monkey.org/~provos/libevent/">Libevent</a>
-library.  Tor already uses Libevent for its low-level asynchronous IO
-calls, and could also use Libevent's increasingly good implementations
-of network buffers and of HTTP.  This wouldn't be simply a matter of
-replacing Tor's internal calls with calls to Libevent: instead, we'll
-need to refactor Tor to use Libevent calls that do not follow the
-same models as Tor's existing backends. Also, we'll need to add
-missing functionality to Libevent as needed &mdash; most difficult likely
-will be adding OpenSSL support on top of Libevent's buffer abstraction.
-Also tricky will be adding rate-limiting to Libevent.
-</li>
--->
-
-<!--
-<li>
-<b>Improving the Tor QA process: Continuous Integration for Windows builds</b>
+<b>Improving the Tor QA process: Continuous Integration for builds</b>
 <br />
 It would be useful to have automated build processes for Windows and
 probably other platforms. The purpose of having a continuous integration
@@ -867,81 +695,7 @@ updated for more recent versions of Tor, and designed to launch a test
 network either on a single machine, or across several, so we can test
 changes in performance on machines in different roles automatically.
 </li>
--->
 
-<!-- Removed, unless Mike still wants this to be in.
-<li>
-<b>Torbutton improvements</b>
-<br />
-Torbutton has a number of improvements that can be made in the post-1.2
-timeframe. Most of these are documented as feature requests in the <a
-href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">Torbutton
-flyspray section</a>. Good examples include: stripping off node.exit on http
-headers, more fine-grained control over formfill blocking, improved referrer
-spoofing based on the domain of the site (a-la <a
-href="https://addons.mozilla.org/en-US/firefox/addon/953">refcontrol extension</a>),
-tighter integration with Vidalia for reporting Tor status, a New Identity
-button with Tor integration and multiple identity management, and anything
-else you might think of.
-<br />
-This work would be independent coding in Javascript and the fun world of <a
-href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
-with not too much involvement in the Tor internals.
-</li>
--->
-
-<!-- Is Blossom development still happening?
-<li>
-<b>Rework and extend Blossom</b>
-<br />
-Rework and extend Blossom (a tool for monitoring and
-selecting appropriate Tor circuits based upon exit node requirements
-specified by the user) to gather data in a self-contained way, with
-parameters easily configurable by the user.  Blossom is presently
-implemented as a single Python script that interfaces with Tor using the
-Controller interface and depends upon metadata about Tor nodes obtained
-via external processes, such as a webpage indicating status of the nodes
-plus publically available data from DNS, whois, etc.  This project has
-two parts: (1) Determine which additional metadata may be useful and
-rework Blossom so that it cleanly obtains the metadata on its own rather
-than depend upon external scripts (this may, for example, involve
-additional threads or inter-process communication), and (2) develop a
-means by which the user can easily configure Blossom, starting with a
-configuration file and possibly working up to a web configuration engine.
-Knowledge of Tor and Python are important; knowledge of
-TCP, interprocess communication, and Perl will also be helpful.  An
-interest in network neutrality is important as well, since the
-principles of evaluating and understanding internet inconsistency are at
-the core of the Blossom effort.
-</li>
-
-<li>
-<b>Improve Blossom: Allow users to qualitatively describe exit nodes they desire</b>
-<br />
-Develop and implement a means of affording Blossom
-users the ability to qualitatively describe the exit node that they
-want.  The Internet is an inconsistent place: some Tor exit nodes see
-the world differently than others.  As presently implemented, Blossom (a
-tool for monitoring and selecting appropriate Tor circuits based upon
-exit node requirements specified by the user) lacks a sufficiently rich
-language to describe how the different vantage points are different.
-For example, some exit nodes may have an upstream network that filters
-certain kinds of traffic or certain websites.  Other exit nodes may
-provide access to special content as a result of their location, perhaps
-as a result of discrimination on the part of the content providers
-themselves.  This project has two parts: (1) develop a language for
-describing characteristics of networks in which exit nodes reside, and
-(2) incorporate this language into Blossom so that users can select Tor
-paths based upon the description.
-Knowledge of Tor and Python are important; knowledge of
-TCP, interprocess communication, and Perl will also be helpful.  An
-interest in network neutrality is important as well, since the
-principles of evaluating and understanding internet inconsistency are at
-the core of the Blossom effort.
-</li>
--->
-
-<!-- not really suited for GSoC; integrated into TBB for Linux/Mac OS X
 <li>
 <b>Usability testing of Tor</b>
 <br />
@@ -958,8 +712,6 @@ That would help a lot in knowing what needs to be done in terms of bug
 fixes or new features. We get this informally at the moment, but a more
 structured process would be better.
 </li>
--->
-
 </ol>
 
 <a id="OtherCoding"></a>
