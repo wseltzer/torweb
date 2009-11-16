@@ -390,24 +390,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror017 => {
-            adminContact => "mirrorsosmirror.nl",
-            orgName => "OS Mirror",
-            isoCC => "NL",
-            subRegion => "",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "",
-            rsyncWebsiteMirror => "rsync://rsync.osmirror.nl::tor/",
-            ftpWebsiteMirror => "ftp://ftp.osmirror.nl/pub/tor/",
-            httpDistMirror => "http://tor.osmirror.nl/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
-
        mirror018 => {
             adminContact => "evert AT meulie DOT net",
             orgName => "Meulie",
