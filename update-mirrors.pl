@@ -811,6 +811,25 @@ my %m = (
             hiddenServiceMirror => "",
         },
 
+        mirror040 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "LU",
+            subRegion => "",
+            region => "LU",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://torproject.the-onion-router.net/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://torproject.the-onion-router.net/dist",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+        },
+
 );
 
 my $count = values %m;
