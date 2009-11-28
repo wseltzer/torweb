@@ -25,7 +25,7 @@ print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
     keep_alive => 1,
     timeout => 30,
-    agent => "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)"
+    agent => "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Tor MirrorCheck Agent)"
 );
 
 sub sanitize {
