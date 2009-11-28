@@ -14,6 +14,7 @@ use Date::Format;
 #
 #Contacted
 # http://tor.amorphis.eu/ deconfigured?  Contacted 20091027
+# http://tor.askapache.com/ HTTP 403 Contacted 20091027
 #
 #CHANGELOG
 #20091003 Code changes to elimiate the need for a trailing slash in addresses for script runtime
