@@ -13,7 +13,7 @@ use Date::Format;
 # http://www.gnu.org/licenses/gpl-3.0.txt
 #
 #Contacted
-#Kamagurka TIMOUTS (Should be up in about a week)
+# http://tor.amorphis.eu/ deconfigured?  Contacted 20091027
 #
 #CHANGELOG
 #20091003 Code changes to elimiate the need for a trailing slash in addresses for script runtime
