@@ -813,10 +813,10 @@ my %m = (
 
         mirror040 => {
             adminContact => "",
-            orgName => "",
-            isoCC => "LU",
+            orgName => "StrangeCharm",
+            isoCC => "",
             subRegion => "",
-            region => "LU",
+            region => "FR",
             ipv4 => "True",
             ipv6 => "False",
             loadBalanced => "No",
