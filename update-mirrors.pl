@@ -13,7 +13,6 @@ use Date::Format;
 # http://www.gnu.org/licenses/gpl-3.0.txt
 #
 #Contacted
-# http://tor.amorphis.eu/ deconfigured?  Contacted 20091027
 # http://tor.askapache.com/ HTTP 403 Contacted 20091027
 #
 #CHANGELOG
