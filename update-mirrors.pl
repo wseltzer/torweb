@@ -495,24 +495,23 @@ my %m = (
             updateDate => "Unknown",
         },
 
-	mirror024 => {
+       mirror024 => {
             adminContact => "",
-            orgName => "izaobao",
-            isoCC => "CN",
+            orgName => "StrangeCharm",
+            isoCC => "",
             subRegion => "",
-            region => "CN",
+            region => "FR",
             ipv4 => "True",
             ipv6 => "False",
             loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.izaobao.com/",
+            httpWebsiteMirror => "http://torproject.the-onion-router.net/",
             httpsWebsiteMirror => "",
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.izaobao.com/dist/",
+            httpDistMirror => "http://torproject.the-onion-router.net/dist",
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
-            updateDate => "Unknown",
         },
 
        mirror025 => {
@@ -811,24 +810,7 @@ my %m = (
             hiddenServiceMirror => "",
         },
 
-        mirror040 => {
-            adminContact => "",
-            orgName => "StrangeCharm",
-            isoCC => "",
-            subRegion => "",
-            region => "FR",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://torproject.the-onion-router.net/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://torproject.the-onion-router.net/dist",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
+
 
 );
 
