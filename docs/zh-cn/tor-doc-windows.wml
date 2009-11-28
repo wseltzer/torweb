@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20028
+# Based-On-Revision: 20976
 # Translation-Priority: 1-high
 # Last-Translator: peihanru AT gmail.com
 
@@ -9,14 +9,18 @@
 
 <div class="main-column">
 
-<h1>在 MS Windows 上运行 <a href="<page index>">Tor</a> 客户端</h1>
+<h1>在微软 Windows 操作系统上运行 <a href="<page index>">Tor</a> 客户端</h1>
 <br />
 
 <p>
-<b>请注意此处提供的是在 MS Windows（98、98SE、NT4、2000、XP、Vista、Server）上运行 Tor
+<b>请注意此处提供的是在 Windows（2000、XP、Vista、7 和服务器版本）上运行 Tor
 客户端的安装指导。如果你想要贡献流量帮助网络增长（请这么做），请阅读<a
 href="<page docs/tor-doc-relay>">配置中继</a>指导。</b>
 </p>
+
+<p>自由之家制作了如何安装 Tor 的视频。观看视频：<a
+href="http://tinyvid.tv/show/3lejztnthk2tm">如何在 Windows 上安装 Tor</a>。
+知道更好的或者用中文讲解的视频吗？请告诉我们！</p>
 
 <hr />
 <a id="installing"></a>
@@ -24,49 +28,43 @@ href="<page docs/tor-doc-relay>">配置中继</a>指导。</b>
 <br />
 
 <p>Windows 套件将 <a href="<page index>">Tor</a>、<a
-href="http://www.vidalia-project.net/">Vidalia</a>（Tor 的一个图形用户界面）和
-<a href="http://www.privoxy.org">Privoxy</a>（一种 Web 代理）整合在了一起，
+href="<page vidalia/index>">Vidalia</a>（Tor 的一个图形用户界面）、<a
+href="https://addons.mozilla.org/firefox/2275/">Torbutton</a>（Firefox 的一个插件）和
+<a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>（一种 Web 代理）整合在了一起，
 并预先配置好能够一同工作。下载<a href="../<package-win32-bundle-stable>">稳定版</a>或<a
 href="../<package-win32-bundle-alpha>">测试版</a>的 Windows 套件，<a
 href="<page download>">下载页面</a>有更多选择。
 </p>
 
-<img alt="tor installer splash page"
-src="../img/screenshot-win32-installer-splash.png" />
+<img alt="tor installer splash page" src="../img/screenshot-win32-installer-splash.png" />
 
-<p>如果以前安装过 Tor，Vidalia 或 Privoxy，你可以在如下所示的对话框中取消你不需要安装的软件。
+<p>如果以前安装过 Tor，Vidalia 或 Poplip，你可以在如下所示的对话框中取消你不需要安装的软件。
 </p>
 
-<img alt="select components to install"
-src="../img/screenshot-win32-installer-components.png" />
+<img alt="select components to install" src="../img/screenshot-win32-installer-components.png" />
 
 <p>安装结束后，你选择安装的软件会自动运行。
 </p>
 
-<!--
-<p>Tor comes configured as a client by default. It uses a built-in
-default configuration file, and most people won't need to change any of
-the settings. Tor is now installed.
+<p>默认情况下，Tor 使用客户端配置。它使用的是一个内置的默认配置文件，
+大部分用户不需要对设置进行任何修改。Tor 安装完毕。
 </p>
--->
 
 <hr />
 <a id="using"></a>
 <h2><a class="anchor" href="#using">第二步：配置应用程序使用 Tor</a></h2>
 <br />
 
-<p>当 Tor 和 Privoxy 安装结束后，你需要配置你的应用程序来使用它们。
+<p>当 Tor 和 Polipo 安装结束后，你需要配置你的应用程序来使用它们。
 第一步是配置 Web 浏览。
 </p>
 
-<p>为了取得最佳的安全性，你应该使用 Firefox 和 Torbutton。套件已为你安装了
+<p>为了取得最佳的安全性，你应该配合 Tor 使用 Firefox 和 Torbutton。套件已为你安装了
 <a href="https://addons.mozilla.org/firefox/2275/">Torbutton 插件</a>。
 只需重新启动 Firefox，就这么简单：
 </p>
 
-<img alt="Torbutton plugin for Firefox"
-src="../img/screenshot-torbutton.png"
-border="1"/>
+<img alt="Torbutton plugin for Firefox" src="../img/screenshot-torbutton.png" border="1"/>
 
 <br />
 
@@ -75,7 +73,7 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddre
 另一台计算机上运行 Tor 的 FAQ 条目</a>。
 </p>
 
-<p>要让其他支持 HTTP 代理的应用程序使用 Tor，将它们指向 Provixy 即可（也就是 localhost 端口 8118）。
+<p>要让其他支持 HTTP 代理的应用程序使用 Tor，将它们指向 Polipo 即可（也就是 localhost 端口 8118）。
 直接使用 SOCKS（即时通讯、Jabber、IRC 等），可将你的应用程序直接指向 Tor（localhost 端口 9050），
 但是请阅读<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">此
 FAQ 条目</a>——你得明白这么做可能是危险的。对于既不支持 SOCKS 也不支持 HTTP 的应用程序，
@@ -92,14 +90,12 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify HOW
 <h2><a class="anchor" href="#verify">第三步：确定它在工作</a></h2>
 <br />
 
-<p>检查 Privoxy 和 Vidalia 正在运行。Privoxy 的图标是一个蓝色或绿色的圈，
-中间有一个字母“P”，Vidalia 用一个绿色洋葱的图标指示 Tor 正在运行，Tor 不运行时是
-一个带有红色“X”的灰色洋葱图标。你可以通过右键单击系统托盘中 Vidalia 的图标，
+<p>检查 Vidalia 正在运行。Vidalia 用一个绿色洋葱的图标指示 Tor 正在运行，
+Tor 不运行时是一个带有红色“X”的灰色洋葱图标。你可以通过右键单击系统托盘中 Vidalia 的图标，
 从菜单选择“开始”或者“停止”来启动或终止 Tor，如下所示：
 </p>
 
-<img alt="Vidalia Tray Icon"
-src="../img/screenshot-win32-vidalia.png"/>
+<img alt="Vidalia Tray Icon" src="../img/screenshot-win32-vidalia.png"/>
 
 <p>然后，你应该通过浏览器来验证你的 IP 地址已经匿名化了。
 点击 <a href="https://check.torproject.org/">Tor 探测器</a>看看

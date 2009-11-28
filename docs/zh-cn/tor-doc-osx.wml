@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20027
+# Based-On-Revision: 20912
 # Translation-Priority: 2-medium
 # Last-Translator: cheungtifan AT gmail.com
 
@@ -8,6 +8,9 @@
 <div class="center">
 
 <div class="main-column">
+
+<!-- 本翻译不是由 Mac 用户所做，肯定存在不正确的地方，Mac 用户，
+请帮忙改进此翻译，谢谢！-->
 
 <h1>在Mac OS X上运行 <a href="<page index>">Tor</a> 客户端</h1>
 <br />
@@ -24,21 +27,19 @@
 
 <p>
 Macintosh OS X 套件将 <a href="<page index>">Tor</a>, 
-<a href="http://www.vidalia-project.net/">Vidalia</a> (Tor 的一个图形界面), 
+<a href="<page vidalia/index>">Vidalia</a> (Tor 的一个图形界面), 
 <a href="<page torbutton/index>">Torbutton</a>,
-以及<a href="http://www.privoxy.org/">Privoxy</a> (一种 Web 代理)
-捆绑在一起，并且这四个应用程序已经被预先配置好，可以正常工作。
+以及<a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (一种 Web 代理)
+整合在一起，并且这四个应用程序已经被预先配置好，可以正常工作。
 下载 OS X 套件的<a href="../<package-osx-bundle-stable>">稳定版本</a>
 或者<a href="../<package-osx-bundle-alpha>">试验性质</a>版本，或者在
 <a href="<page download>">下载页面</a>中得到更多选择。
 </p>
 
-<p>我们的 Tor 安装程序使得任何事情都很简单，下面是安装页面的一个截图。
-</p>
-
-<p><img alt="tor installer 启动屏幕"
-src="../img/screenshot-osx-installer-splash.png"
-border="1"/></p>
+<p>dmg 文件下载结束后，双击将其展开。在 Finder 中定位到打开的 Vidalia 套件。
+安装套件很简单，把 Vidalia 的洋葱图标拖放到 Applications 文件夹即可。
+双击 "install torbutton" 脚本还可以额外为 Firefox 安装 Torbutton。
+Torbutton 可以在 Mozilla Add-ons 站点通过搜索 "torbutton" 找到。</p>
 
 <p>当安装结束时，你可以通过在你的“应用程序”档案夹中选择 Vidalia 的方式启动它。
 在 Dock 中一个有红色 X 的灰色洋葱图标意味着Tor现在没有运行。
@@ -52,10 +53,10 @@ border="1"/></p>
 src="../img/screenshot-osx-vidalia.png"
 border="1"/></p>
 
-<p>Privoxy 是 Tor bundle package 的默认安装项。一旦安装好，他会随你的计算机的启动而
+<p>Polipo 是 Tor bundle package 的默认安装项。一旦安装好，他会随你的计算机的启动而
 自动启动。
-你不需要因为使用 Tor 而配置 Privoxy &mdash; 在安装包内已经包含了一个已经定制好的 Privoxy 配置
-文件。
+你不需要因为使用 Tor 而配置 Polipo &mdash; 在安装包内已经包含了一个已经定制好的 Polipo
+配置文件。
 </p>
 
 <hr />
@@ -63,7 +64,7 @@ border="1"/></p>
 <h2><a class="anchor" href="#using">步骤二：配置你的应用程序使用 Tor</a></h2>
 <br />
 
-<p>在安装 Tor 和 Privoxy后，你需要配置你的应用程序使用他们。第一件事情是配置
+<p>安装结束后，你需要配置你的应用程序使用他们。第一件事情是配置
 网络浏览。</p>
 
 <p>为了最大的安全性，你应该在使用 Tor 时使用 Firefox 和 Torbutton。
@@ -80,7 +81,7 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddre
 </p>
 
 <p>如果需要Tor化其他的支持HTTP代理服务器的应用程序，请将HTTP代理服务器指向
- Privoxy (那就是 localhost 端口 8118)。如果向直接使用SOCKS代理(比如既时
+Polipo (那就是 localhost 端口 8118)。如果向直接使用SOCKS代理(比如既时
 通信，Jabber, IRC 等等)你可以直接将你的应用程序代理指向 Tor (localhost 
 端口 9050)，但是请看<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">
 这个FAQ条目</a> &mdash; 这样做可能是危险的。 如果应用程序即不支持SOCKS代理
@@ -143,38 +144,28 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">
 <h2><a class="anchor" href="#uninstall">如何卸载 Tor 和 Privoxy</a></h2>
 <br />
 
-<p>Tor 0.1.0.x 以及以上版本有一个命令行的或者基于终端的卸载工具。
-如果你希望在 OSX 上卸载 Tor，请参照一下步骤：</p>
+<p>有两种方法卸载 Tor 套件，使用 Finder 或者命令行/基于终端的卸载工具。
+如果你希望在 OSX 上卸载 Tor，请参照以下步骤：</p>
 
 <p>修改你的应用程序代理设置到原始值。如果你只是希望停止使用 Tor，请到此为止。</p>
 
 <p>如果你希望完全移除Tor并且你的账户有管理员权限，请参照以下步骤：</p>
-<ol>
-<li> 打开一个终端或者 x-term 会话。</li>
-<li> cd /Library/Tor</li>
-<li> sudo -s</li>
-<li> ./uninstall_tor_bundle.sh</li>
-</ol>
-<p>Tor 和 Privoxy 现在已经被完全移除。</p>
 
-<p>如果你使用了一个没有 uninstall_tor_bundle 脚本的 Tor 安装程序，你需要手动删除以下的文件：</p>
+<ol>
+<li>打开 Finder，点击 Applications。</li>
+<li>将 /Applications/Vidalia 拖至 Trash。</li>
+<li>从系统中删除 /Library/Torbutton。</li>
+<li>在你的 home 目录中，转到 Library，删除 Vidalia 目录。</li>
+</ol>
+
+<p>现在，Tor、Vidalia 和 Polipo 已从系统中完全删除。</p>
+
+<p>如果你熟悉命令行或者终端，你也可以手工删除：</p>
 <ul>
-<li>/Library/Tor</li>
-<li>/Library/Privoxy</li>
-<li>/usr/bin/tor</li>
-<li>/usr/bin/tor_resolve</li>
-<li>/var/log/tor</li>
-<li>/usr/share/man/man1/tor.1</li>
-<li>/usr/share/man/man1/tor-resolve.1</li>
-<li>/usr/share/man/man1/torify.1</li>
-<li>/Library/Receipts/Privoxy.pkg/</li>
-<li>/Library/Receipts/privoxyconf.pkg/</li>
-<li>/Library/Receipts/Tor.pkg/</li>
-<li>/Library/Receipts/torstartup.pkg/</li>
-<li>/Library/Receipts/torbutton.pkg/</li>
-<li>/Library/StartupItems/Tor</li>
-<li>/Library/StartupItems/Privoxy</li>
+<li>/Applications/Vidalia.app/</li>
 <li>/Library/Torbutton/</li>
+<li>~/Library/Vidalia</li>
+<li>~/.tor</li>
 </ul>
 
 <hr />
