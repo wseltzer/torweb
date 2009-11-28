@@ -1,19 +1,19 @@
 ## translation metadata
-# Based-On-Revision: 19878
+# Based-On-Revision: 20949
 # Translation-Priority: 2-medium
 # Last-Translator: peihanru AT gmail.com
 
-#include "head.wmi" TITLE="Tor: 中继配置指导" CHARSET="UTF-8"
+#include "head.wmi" TITLE="Tor：中继配置指导" CHARSET="UTF-8"
 
 <div class="center">
 
 <div class="main-column">
 
-<h1>配置一台 Tor 中继</h1>
+<h1>配置 Tor 中继</h1>
 
 <!-- BEGIN SIDEBAR -->
 <div class="sidebar-left">
-<h3>Config Steps</h3>
+<h3>配置步骤</h3>
 <ol>
 <li><a href="<page docs/tor-doc-relay>#install">下载并安装</a></li>
 <li><a href="<page docs/tor-doc-relay>#setup">配置</a></li>
@@ -23,7 +23,7 @@
 </div>
 <!-- END SIDEBAR -->
 
-<br />
+<hr />
 
 <p>Tor 网络依靠志愿者们贡献带宽运行。运行中继的人越多，Tor 网络的速度就越快。
 如果你的网络连接速度达到至少每秒 20KB，请运行一台中继以帮助 Tor。
@@ -61,29 +61,45 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">几乎
 href="http://en.wikipedia.org/wiki/Network_Time_Protocol">时间服务器</a>同步时间。
 </li>
 
-<li><strong>Windows / OS X 配置</strong>：
+<li><strong>在 Vidalia 图形界面配置 Tor</strong>：
 <ol>
-<li>鼠标右键点击任务栏中的 Vidalia 图标，选择<tt>控制面板</tt>。</li>
-<li>点击<tt>设置中继</tt>。</li>
-<li>如果你想要成为公共中继（推荐），选择 <tt>Tor 网络中继</tt>。如果你想要成为<a href="<page
-faq>#RelayOrBridge">网桥</a>以帮助无法使用 Tor 的国家的用户，
-选择<tt>帮助用户访问 Tor 网络</tt>。</li>
+<!-- 一些地方使用了：中文(英文)的形式，方便阅读 -->
+<!-- 引用了 Vidalia 软件界面文字的部分需参考最新 Vidalia 软件界面 -->
+<li>
+	<dt>右键单击在任务栏中的 Vidalia 图标，选择 <tt>控制面板(Control Panel)</tt>。</dt>
+	<dd><img src="../img/screenshot-win32-vidalia.png"></dd>
+</li>
+
+<li>点击<tt>设置中继服务器(Setup Relaying)</tt>。</li>
+
+<li>
+	<dt>如果你想成为公共中继（推荐），选择 <tt>Tor 网络中继(Relay Traffic for the Tor network)</tt>。或者如果你想成为 <a href="<page faq>#RelayOrBridge">网桥</a> 帮助所在国家审查网络无法使用 Tor 的用户</dt>，选择 <tt>帮助用户访问 Tor 网络(Help censored users reach the Tor network)</tt> 。
+<dd><img src="../img/screenshot-win32-configure-relay-1.png"></dd>
+</li>
+
 <li>为中继输入一个昵称，为了在出现问题时我们能及时和你联系，还请输入联系方式。</li>
-<li>选择 <tt>Attempt to automatically configure port forwarding</tt>。
-点击 <tt>Test</tt> 按钮检查是否能正常工作。如能正常工作继续往下配置；
+
+<li>选择 <tt>Attempt to automatically configure port forwarding(尝试自动配置端口转发)</tt>。
+点击 <tt>Test(测试)</tt> 按钮检查是否能正常工作。如能正常工作继续往下配置；
 否则请查看下面第 3 点。
 <!-- FIXME: 上面的两个GUI短语目前并没有翻译。--></li>
-<li>转到<tt>带宽限制</tt>标签。选择一个你愿意为 Tor 用户提供的带宽。</li>
-<li>转到<tt>服务策略</tt>标签。如果你同意 Tor 用户通过中继使用这些服务，什么都不用修改。
-取消选择那些你不想其他用户<a href="<page faq>#ExitPolicies">通过你的中继</a>访问的服务。
-如果你只想成为非出口的中继，取消选择所有服务。</li>
-<li>点击<tt>确定</tt>按钮。请看下面的第三步以确认中继工作正常。</li>
+
+<li><dt>选择 <tt>带宽限制(Bandwidth Limits)</tt> 标签。选择你想为像你一样的 Tor 用户提供的带宽。</dt>
+<dd><img src="../img/screenshot-win32-configure-relay-2.png"></dd>
+</li> 
+
+<li>选择<tt>服务策略(Exit Policies)</tt> 标签。如果你同意 Tor 用户通过你的中继使用这些服务，什么都不用修改。
+取消选中那些你不想其他用户<a href="<page faq>#ExitPolicies">通过你的中继</a>。访问的服务。如果你只想成为非出口的中继，取消选中所有服务。</dt>
+<dd><img src="../img/screenshot-win32-configure-relay-3.png"></dd>
+</li>
+
+<li>点击<tt>确定(OK)</tt>按钮。请看下面的第三步以确认中继工作正常。</li>
 </ol>
 
 <br />
-<strong>Linux / Unix 配置</strong>：
+<strong>手动配置</strong>：
 <ul>
-<li>修改 <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">torrc</a>
+<li>修改<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">你的 torrc 文件</a>
 的最后部分。如果你想要成为公共中继（推荐），定义 ORPort，然后<a href="<page
 faq>#ExitPolicies">查看出口策略</a>；如果你想要成为<a href="<page
 faq>#RelayOrBridge">网桥</a>以帮助无法使用 Tor 的国家的用户，使用<a
@@ -92,10 +108,10 @@ href="<page bridges>#RunningABridge">这些行</a>即可。
 
 </ul></li>
 
-<li>如果你使用防火墙，请在防火墙上开出一个洞口以使得进入的连接能够到达配置的端口
-（ORPort，如果设置的话，还有 DirPort）。如果你有硬件防火墙（Linksys 盒子、
+<li>如果你使用防火墙，请为防火墙添加一个例外以使得进入的连接能够到达配置的端口
+（ORPort，如果启用的话，还有 DirPort）。如果你有硬件防火墙（Linksys 路由器、
 电缆调制解调器等），你需要参考 <a href="http://portforward.com/">portforward.com</a>。
-另外，请确认你允许所有的<em>外出</em>连接，这样你的中继才能与其他 Tor 中继通信。
+另外，请确认你允许所有的<em>向外</em>连接，这样你的中继才能与其他 Tor 中继通信。
 <!-- I'm always unable to figure out how to translate "incoming", "outgoing",
 "inbound", "outbound" and the similar into proper Chinese terms. :( --> 
 </li>
