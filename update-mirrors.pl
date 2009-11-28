@@ -19,7 +19,7 @@ use Date::Format;
 #20091003 Code changes to elimiate the need for a trailing slash in addresses for script runtime
 #20091004 Code changes to increase out of date tolerance to 48 hours
 #20091028 Code changes to increase timout to 30 seconds (attempting to resolve "unknown" status'
-#
+#20091028 Code changes to change user agent of script
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
