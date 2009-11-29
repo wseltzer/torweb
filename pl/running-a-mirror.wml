@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20745
+# Based-On-Revision: 21056
 # Translation-Priority: 4-optional
 # Last-Translator: bogdandr_at_op . pl
 
@@ -38,7 +38,7 @@ rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
 W celu zapewnienia, że mamy wiarygodne i aktualne mirrory,
 prosimy upewnić się, że Twój mirror wykonuje co najmniej następujące rzeczy:<br /><br />
 
-Aktualizuje się nie rzadziej niż co sześć godzin, ale nie częściej, niż co godzinę.<br /><br />
+Aktualizuje się <b>nie rzadziej</b> niż co sześć godzin, ale nie częściej, niż co godzinę.<br /><br />
 
 Pozwala "Directory Index / Indexes" (wyświetlanie indeksów) katalogu /dist.<br /><br />
 
@@ -59,7 +59,7 @@ Przykładowe zadanie crona do aktualizacji całego mirrora raz na 6 godzin może
 wyglądać następująco:</p>
 <pre>
 # m h  dom mon dow   command
-1 */6 * * * rsync -av --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
+1 */6 * * * rsync -aq --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
 </pre>
 <br/>
 Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy przykładowy
