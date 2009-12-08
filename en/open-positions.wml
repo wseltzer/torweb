@@ -9,14 +9,14 @@
 <h2>Tor: Open Positions</h2>
 <hr />
 
-<p>Tor is hiring! We're looking for self-motivated individuals who are
+<p>Tor is hiring!  We're looking for self-motivated individuals who are
 able to work independently and want to help make Tor better.
 </p>
 
-<p>In particular, we're looking for two categories of people:</p>
+<p>In particular, we're looking for a few people:</p>
 <ul>
-<li><a href="#developer">Software Developer</a></li>
-<li><a href="#activist">Activist/Outreach</a></li>
+<li><a href="#sysdev">Systems Developer</a></li>
+<li><a href="#windowsdev">Microsoft Windows Developer</a></li>
 </ul>
 
 <p>Working on Tor is rewarding because:</p>
@@ -35,11 +35,97 @@ We want you to have good communication and writing skills (in particular,
 you should know how to keep other project members informed of your
 progress), and we want you to know how to figure out what needs doing and
 then take the initiative to do it. Most project members play more than
-one role, so combination developer/activist/grantwriters are very welcome.
+one role, so combination developer/activist are very welcome.
 </p>
 
-<a id="developer"></a>
-<h3><a class="anchor" href="#developer">Developer</a></h3>
+<a id="sysdev"></a>
+<h3><a class="anchor" href="#sysdev">Systems Developer</a></h3>
+<ul>
+<li><strong>New Secure Updater Features</strong>:
+<br />
+Additional capabilities are needed for assisted updates of all the Tor
+related software for Windows and other operating systems. Some of the
+features to consider include:
+<ol>
+<li> Integration of the <a
+href="http://chandlerproject.org/Projects/MeTooCrypto">MeTooCrypto
+Python library</a> for authenticated HTTPS downloads.</li>
+<li> Adding a level of indirection between the timestamp signatures
+and the package files included in an update. See the "Thandy attacks /
+suggestions" thread on or-dev.</li>
+<li> Support locale specific installation and configuration of assisted
+updates based on preference, host, or user account language settings.
+Familiarity with Windows codepages, unicode, and other character sets
+is helpful in addition to general win32 and posix API experience and
+Python proficiency.</li>
+</ol>
+</li>
+
+<li><strong>Tor/Polipo/Vidalia Auto-Update Framework</strong>:
+<p>We're in need of a good authenticated-update framework.  Vidalia already
+has the ability to notice when the user is running an outdated or
+unrecommended version of Tor, using signed statements inside the Tor
+directory information. Currently, Vidalia simply pops up a little message
+box that lets the user know they should manually upgrade. The goal of
+this project would be to extend Vidalia with the ability to also fetch
+and install the updated Tor software for the user. We should do the
+fetches via Tor when possible, but also fall back to direct fetches in
+a smart way. Time permitting, we would also like to be able to update
+other applications included in the bundled installers, such as Polipo
+and Vidalia itself.</p>
+<p>To complete this project, you will first need to first investigate
+the existing auto-update frameworks (e.g., Sparkle on OS X) to evaluate
+their strengths, weaknesses, security properties, and ability to be
+integrated into Vidalia. If none are found to be suitable, the student
+will design their own auto-update framework, document the design, and
+then discuss the design with other developers to assess any security
+issues. You will then implement their framework (or integrate
+an existing one) and test it.</p>
+<p>A person undertaking this project should have good C++ development
+experience. Previous experience with Qt is helpful, but not required. One
+should also have a good understanding of common security
+practices, such as package signature verification. Good writing ability
+is also important for this project, since a vital step of the project
+will be producing a design document to review and discuss
+with others prior to implementation.</p>
+</li>
+</ul>
+
+<a id="windowsdev"></a>
+<h3><a class="anchor" href="#windowsdev">Microsoft Windows Developer</a></h3>
+This person needs to be very familiar with Windows at a system and
+network level.  We're looking or someone to do two projects:
+<ul>
+<li><strong>Improving Polipo on Windows</strong>:
+<p>Help port <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+to Windows. Example topics to tackle include: 
+<ol>
+<li> the ability to asynchronously query name servers, find the system
+nameservers, and manage netbios and dns queries.</li>
+<li> manage events and buffers natively (i.e. in Unix-like OSes, Polipo
+defaults to 25% of ram, in Windows it's whatever the config
+specifies).</li>
+<li> some sort of GUI config and reporting tool, bonus if it has a
+systray icon with right clickable menu options. Double bonus if it's
+cross-platform compatible.</li>
+<li> allow the software to use the Windows Registry and handle proper
+Windows directory locations, such as "C:\Program Files\Polipo"</li>
+</ol>
+</li>
+
+<li><strong>Intermediate Level Network Device Driver</strong>:
+<br />
+The WinPCAP device driver used by Tor VM for bridged networking does
+not support a number of wireless and non-Ethernet network adapters.
+Implementation of a intermediate level network device driver for win32
+and 64bit would provide a way to intercept and route traffic over such
+networks. This project will require knowledge of and experience with
+Windows kernel device driver development and testing. Familiarity with
+Winsock and Qemu would also be helpful.
+</li>
+</ul>
+</p>
 
 <p>
 The best way to get noticed as a good developer is to join the community
@@ -52,40 +138,8 @@ Torbutton, etc.
 Periodically we get new funding to work on more development
 projects.  Your goal should be to get into the list of <a href="<page
 people>#Core">core project members</a> so we think of you when new
-funding arrives. We're particularly looking for Windows developers and
+funding arrives. We're particularly looking for Qt developers and
 people to help maintain <a href="<page vidalia/index>">Vidalia</a>.
-</p>
-
-<a id="activist"></a>
-<h3><a class="anchor" href="#activist">Activist and Outreach</a></h3>
-
-<p>
-There are a lot of excited people about there who want to help Tor
-&mdash; by running relays, helping users, writing documentation,
-working on add-on tools, and so on. We need to keep in touch with
-all of them, help them work with each other, and help them understand
-where they can be most useful.
-</p>
-
-<p>
-Tor activists should understand Tor's role in the world, and they should
-be good at explaining to the world why privacy/security/anonymity are
-important. They should also be well-connected with other groups around
-the world who care about these issues.
-</p>
-
-<p>
-Like the developer positions above, the best way to get noticed
-for this position is to start helping out: join the <a href="<page
-documentation>#MailingLists">mailing lists</a> and the <a href="<page
-documentation>#Support">IRC channel</a>, help clean up our FAQ, and
-generally be useful. Once we notice you're competent and reliable,
-we'll add you to the <a href="<page contact>">"tor-assistants"</a> list,
-and we can see where it goes from there.
-</p>
-
-<p>
-In addition, we are looking to hire experienced grant-writers.
 </p>
 
   </div><!-- #main -->
