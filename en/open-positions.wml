@@ -61,27 +61,17 @@ Python proficiency.</li>
 </ol>
 </li>
 
-<li><strong>Tor/Polipo/Vidalia Auto-Update Framework</strong>:
-<p>We're in need of a good authenticated-update framework.  Vidalia already
-has the ability to notice when the user is running an outdated or
-unrecommended version of Tor, using signed statements inside the Tor
-directory information. Currently, Vidalia simply pops up a little message
-box that lets the user know they should manually upgrade. The goal of
-this project would be to extend Vidalia with the ability to also fetch
-and install the updated Tor software for the user. We should do the
-fetches via Tor when possible, but also fall back to direct fetches in
-a smart way. Time permitting, we would also like to be able to update
-other applications included in the bundled installers, such as Polipo
-and Vidalia itself.</p>
-<p>To complete this project, you will first need to first investigate
-the existing auto-update frameworks (e.g., Sparkle on OS X) to evaluate
-their strengths, weaknesses, security properties, and ability to be
-integrated into Vidalia. If none are found to be suitable, the student
-will design their own auto-update framework, document the design, and
-then discuss the design with other developers to assess any security
-issues. You will then implement their framework (or integrate
-an existing one) and test it.</p>
-<p>A person undertaking this project should have good C++ development
+<li><strong>Extend the Tor Secure Auto-Update Framework</strong>:
+<p>We've developed a secure auto-update framework, codenamed <a
+href="http://git.torproject.org/checkout/thandy/master/">Thandy</a>.  It
+needs some design work to be finished, some security decisions to be
+made, and then code written to actually get the software and
+infrastructure running.  The primary goal is to get this working on
+Microsoft Windows operating systems.  Secondary goal is to have this
+work with Apple OS X.  The <a
+href="http://git.torproject.org/checkout/thandy/master/TODO">TODO</a>
+file explains more of the goals.</p>
+<p>A person undertaking this project should have good C/C++ development
 experience. Previous experience with Qt is helpful, but not required. One
 should also have a good understanding of common security
 practices, such as package signature verification. Good writing ability
