@@ -1,5 +1,5 @@
 ## translation metadata
-# Based-On-Revision: 20880
+# Based-On-Revision: 21136
 # Translation-Priority: 4-optional
 # Last-Translator: bogdandr_at_op . pl
 
@@ -14,10 +14,10 @@
 niezależnie i którzy chcą pomóc usprawniać Tora.
 </p>
 
-<p>W szczególności, szukamy dwóch rodzajów ludzi:</p>
+<p>W szczególności, szukamy kilku ludzi:</p>
 <ul>
-<li><a href="#developer">Programista</a></li>
-<li><a href="#activist">Aktywista/Działacz zewnętrzny</a></li>
+<li><a href="#sysdev">Deweloper systemów</a></li>
+<li><a href="#windowsdev">Deweloper dla Microsoft Windows</a></li>
 </ul>
 
 <p>Praca nad Torem się opłaca, gdyż:</p>
@@ -37,12 +37,85 @@ Oczekujemy, że będziesz mieć dobre zdolności w komunikacji i pisaniu
 członków projektu o swoich postępach), oraz że będziesz wiedzieć, co ma być
 zrobione i będziesz mieć inicjatywę do zrobienia tego. Większość członków
 projektu gra więcej niż jedną rolę, więc kombinacje
-programista/aktywista/osoba do pisania wniosków o granty są jak najbardziej
-mile widziane.
+programista/aktywista są jak najbardziej mile widziane.
 </p>
 
-<a id="developer"></a>
-<h3><a class="anchor" href="#developer">Programista</a></h3>
+<a id="sysdev"></a>
+<h3><a class="anchor" href="#sysdev">Deweloper systemów</a></h3>
+
+<ul>
+<li><strong>Nowe funkcjonalności bezpiecznej aktualizacji</strong>:
+<br />
+Potrzebujemy dodatkowych funkcjonalności do wspomaganych aktualizacji całego
+oprogramowania związanego z Torem na Windows i innych systemach operacyjnych.
+Niektóre funkcjonalności do rozważenia to:
+<ol>
+<li> Integracja <a
+href="http://chandlerproject.org/Projects/MeTooCrypto">biblioteki Pythona MeTooCrypto</a>
+do uwierzytelnianych pobierań przez HTTPS.</li>
+<li> Dodanie poziomu niezależności między
+sygnaturami czasowymi a plikami załączonymi w aktualizacji. Przeczytaj wątek
+"Thandy attacks / suggestions" na or-dev.</li>
+<li> Obsługa specyficznych dla lokalizacji instalacji i konfiguracji wspomaganych
+aktualizacji w oparciu o ustawienia języka według preferencji, hosta lub konta użytkownika.
+Znajomość stron kodowych Windows, unikodu i innych zestawów znaków będzie pomocna,
+jak również ogólne doświadczenie w programowaniu win32 i POSIX API oraz biegłość w Pythonie.</li>
+</ol>
+</li>
+
+<li><strong>Rozszerzenie frameworku bezpiecznej aktualizacji Tora</strong>:
+<p>Stworzyliśmy framework bezpiecznej aktualizacji o nazwie kodowej <a
+href="http://git.torproject.org/checkout/thandy/master/">Thandy</a>. Do ukończenia wymaga
+on trochę pracy projektowej, podjęcia kilku decyzji dotyczących bezpieczeństwa oraz
+napisania kodu, dzięki któremu cały program i infrastruktura ruszy. Głównym celem jest
+uruchomienie tego na systemach operacyjnych Microsoft Windows. Celem drugorzędnym jest
+uruchomienie tego na Apple OS X. Plik <a
+href="http://git.torproject.org/checkout/thandy/master/TODO">TODO</a>
+wyjaśnia więcej odnośnie celów.</p>
+<p>Osoba, która podejmie się tego projektu powinna mieć dobre doświadczenie w
+programowaniu C/C++. Doświadczenie z Qt będzie pomocne, ale nie jest wymagane. Powinno się
+także dobrze rozumieć powszechne praktyki dotyczące bezpieczeństwa, jak na przykład
+weryfikacja podpisu paczki. Ważne dla tego projektu są też dobre zdolności w pisaniu, gdyż
+istotnym krokiem w projekcie będzie wyprodukowanie dokumentu projektowego, który zostanie
+przejrzany i omówiony z innymi przed implementacją.</p>
+</li>
+</ul>
+
+<a id="windowsdev"></a>
+<h3><a class="anchor" href="#windowsdev">Deweloper dla Microsoft Windows</a></h3>
+Ta osoba musi być dobrze zaznajomiona z systemem Windows na poziomie systemowym i
+sieciowym. Szukamy osoby do wykonania dwóch projektów:
+<ul>
+<li><strong>Ulepszenie Polipo na Windows</strong>:
+<p>Pomóż przenieść <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> na Windows.
+Przykładowe tematy obejmują:
+<ol>
+<li> zdolność do asynchronicznego wysyłania zapytań do
+serwerów nazw, znajdowania systemowych serwerów nazw i zarządzanie zapytaniami NetBIOS i DNS.</li>
+<li> natywna obsługa zdarzeń i buforów (tj. w
+systemach uniksopodobnych Polipo domyślnie używa 25% pamięci RAM, a pod Windows
+jest to cokolwiek wpisane w plik konfiguracyjny).</li>
+<li> jakieś narzędzie z
+graficznym interfejsem do konfiguracji i raportowania, dodatkowe punkty, jeśli
+ma ikonkę w zasobniku z opcjami menu po kliknięciu prawym przyciskiem myszy.
+Podwójny bonus, jeśli działa na wielu platformach.</li>
+<li> umożliwienie programowi używania rejestru Windowsa i obsługiwania prawidłowych
+ścieżek w Windowsie, np. "C:\Program Files\Polipo".</li>
+</ol>
+</p>
+</li>
+
+<li><strong>Sterownik Pośredniego Poziomu Sieci</strong>:
+<br />
+Sterownik WinPCAP używany przez Tor VM do działań sieciowych nie obsługuje sporej
+liczby kart bezprzewodowych i nie-ethernetowych. Zaimplementowanie sterownika
+pośredniego poziomu sieciowego dla win32 i 64-bitowego dałoby możliwość przechwytywania
+i przekierowywania ruchu w takich sieciach. Ten projekt wymaga znajomości i doświadczenia
+z pisaniem i testowaniem sterowników poziomu jądra Windows. Znajomość Winsock i Qemu
+też byłaby pomocna.
+</li>
+</ul>
 
 <p>
 Najlepszym sposobem na zostanie zauważonym jako dobry programista jest
@@ -55,39 +128,8 @@ wspierającym Tora, jak Vidalia, Torbutton etc.
 Raz na jakiś czas otrzymujemy nowe fundusze, by pracować na dalszych
 projektach. Twoim celem powinno być dostanie się na listę <a href="<page
 people>#Core">głównych członków projektu</a>, abyśmy pomyśleli o Tobie,
-gdy przyjdą nowe fundusze. Poszukujemy zwłaszcza deweloperów pod Windows i osób,
+gdy przyjdą nowe fundusze. Poszukujemy zwłaszcza deweloperów Qt i osób,
 które pomogłyby w utrzymaniu projektu <a href="<page vidalia/index>">Vidalia</a>.
-</p>
-
-<a id="activist"></a>
-<h3><a class="anchor" href="#activist">Aktywista i Działacz zewnętrzny</a></h3>
-
-<p>
-Jest wiele podekscytowanych osób, które chcą pomóc Torowi
-&mdash; uruchamiając przekaźniki sieci, pomagając użytkownikom, pisząc dokumentację,
-pracując nad dodatkowymi narzędziami itd. Musimy utrzymywać kontakt z nimi
-wszystkimi, pomagać im pracować ze sobą wzajemnie i pomagać im w zrozumieniu,
-w jakich obszarach mogą najbardziej się przydać.
-</p>
-
-<p>
-Aktywiści Tora powinni rozumieć rolę Tora na świecie i powinni umieć tłumaczyć
-ludziom, dlaczego prywatność/bezpieczeństwo/anonimowość są ważne. Powinni także
-być dobrze powiązani z innymi grupami na całym świecie, które zajmują się tymi sprawami.
-</p>
-
-<p>
-Tak jak powyżej napisane dla programistów, najlepszym sposobem na bycie zauważonym
-jest zacząć pomagać: przyłacz się do <a href="<page
-documentation>#MailingLists">list mailingowych</a> i <a href="<page
-documentation>#Support">kanału IRC</a>, pomóż oczyścić nasze FAQ i ogólnie
-bądź przydatnym. Jak zobaczymy, że jesteś osobą kompetentną i wiarygodną,
-dodamy Cię do listy <a href="<page contact>">"tor-assistants"</a>,
-i zobaczymy, jak sprawy dalej się potoczą.
-</p>
-
-<p>
-Dodatkowo, poszukujemy doświadczonych osób piszących podania o granty.
 </p>
 
   </div><!-- #main -->
