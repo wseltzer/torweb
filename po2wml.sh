@@ -101,8 +101,20 @@ for file in $po ; do
 		# The location of the english wml file
 		english="$wmldir/en/$wmlfile"
 
-		# Convert everything but the english po files
-		if [ $subdir != "en" ]
+		# If the current subdirectory is "zh_CN" use "zh-cn" instead
+		if [ $subdir = "zh_CN" ]
+		then
+			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/zh-cn/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+
+			# Check to see if the file was written
+			if [ -e "$wmldir/zh-cn/tmp-$wmlfile" ]
+			then
+				mv "$wmldir/zh-cn/tmp-$wmlfile" "$wmldir/zh-cn/$wmlfile"
+			fi
+		fi
+		
+		# Convert everything else
+		if ([ $subdir != "en" ] && [ $subdir != "zh_CN" ])
 		then
 			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
 
@@ -116,8 +128,20 @@ for file in $po ; do
 		# The location of the english wml file
 		english="$wmldir/$subdir/en/$wmlfile"
 		
-		# Convert everything but the english po files
-		if [ $lang != "en" ]
+		# If the current language is "zh_CN" use "zh-cn" instead
+		if [ $lang = "zh_CN" ]
+		then
+			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/zh-cn/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+
+			# Check to see if the file was written
+			if [ -e "$wmldir/$subdir/zh-cn/tmp-$wmlfile" ]
+			then
+				mv "$wmldir/$subdir/zh-cn/tmp-$wmlfile" "$wmldir/$subdir/zh-cn/$wmlfile"
+			fi
+		fi
+		
+		# Convert everything else
+		if ([ $lang != "en" ] && [ $lang != "zh_CN" ])
 		then
 			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/$lang/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
 
