@@ -811,7 +811,24 @@ my %m = (
             hiddenServiceMirror => "",
         },
 
-
+        mirror040 => {
+            adminContact => "",
+            orgName => "NIIF Institute",
+            isoCC => "HU",
+            subRegion => "",
+            region => "HU",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://trak.tor.hu/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://trak.tor.hu/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+        },
 
 );
 
