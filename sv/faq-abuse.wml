@@ -1,0 +1,336 @@
+## translation metadata
+# Based-On-Revision: 8460
+# Last-Translator: lasse underscore ahv atTAat yahoo dot se
+
+#include "head.wmi" TITLE="Abuse FAQ for Server Operators"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>Vanliga fr&aring;gor om missbruk f&ouml;r Tor Serveroperat&ouml;rer</h2>
+<hr />
+
+<a id="WhatAboutCriminals"></a>
+<h3><a class="anchor" href="#WhatAboutCriminals">L&aring;ter inte Tor kriminella personer g&ouml;ra d&aring;liga saker?</a></h3>
+
+<p>Kriminella kan redan g&ouml;ra d&aring;liga saker. Eftersom de &auml;r beredda att bryta lagar
+ har de redan massor med m&ouml;jligheter som ger
+<em>b&auml;ttre</em> anonymitet &auml;n Tor erbjuder. De kan stj&auml;la mobiltelefoner,
+anv&auml;nda dem, och sl&auml;nga dem; de kan bryta sig in i datorer
+i Korea eller Brasilien och anv&auml;nda dem f&ouml;r att starta olagliga aktiviteter;
+de kan anv&auml;nda spyware, virus, och andra tekniker f&ouml;r att ta kontroll av
+bokstavligen miljoner Windowsmaskiner jorden runt. </p>
+
+<p>Tor vill erbjuda skydd f&ouml;r vanliga m&auml;nniskor som vill f&ouml;lja lagen.
+Nu har bara kriminella det skyddet och vi beh&ouml;ver ordna det. </p>
+
+<p>En del f&ouml;respr&aring;kare f&ouml;r anonymitet s&auml;ger att det &auml;r en avv&auml;gning &mdash;
+att acceptera den d&aring;liga anv&auml;ndingen f&ouml;r den bra &mdash; men det &auml;r mer
+&auml;n s&aring;.
+Kriminella och andra d&aring;liga m&auml;nniskor har motivation att l&auml;ra sig hur de kan
+f&aring; god anonymitet, och m&aring;nga har motivation att betala bra f&ouml;r att f&aring; det.
+Att kunna stj&auml;la och anv&auml;nda identitieter fr&aring;n oskyldiga offer
+(identitetsst&ouml;ld) g&ouml;r det &auml;nnu l&auml;ttare. Vanliga m&auml;nniskor &aring; andra sidan
+har inte tid eller pengar f&ouml;r att kunna ta reda p&aring; hur de ska kunna skydda
+sitt privatliv p&aring; n&auml;tet. Detta &auml;r den s&auml;msta av alla v&auml;rldar. </p>
+
+<p>Visst kriminella skulle i teorin kunna anv&auml;nda Tor men de har redan b&auml;ttre
+alternativ och det &auml;r osannolikt att to bort Tor skulle stoppa dem fr&aring;n
+att g&ouml;ra sina d&aring;liga g&auml;rningar. &Aring; andra sidan, Tor och andra &aring;tg&auml;rder f&ouml;r att skydda
+privatlivet kan <em>f&ouml;rsv&aring;ra</em> identitetst&ouml;lder, fysiska brott som f&ouml;rf&ouml;ljelser osv </p>
+
+<!--
+<a id="Pervasive"></a>
+<h3><a class="anchor" href="#Pervasive">If the whole world starts using
+Tor, won't civilization collapse?</a></h3>
+-->
+
+<a id="DDoS"></a>
+<h3><a class="anchor" href="#DDoS">Om DDoS-attacker (Distributed Denial of Service)</a></h3>
+
+<p>Distributed denial of service (DDoS) attacker grundar sig oftast p&aring; att ha
+tusentals datorer som alla skickar stora m&auml;ngder trafik till ett offer. Eftersom
+m&aring;let &auml;r att &ouml;veranstr&auml;ng offrets bandbredd skickas oftast UDP-paket
+eftersom de inte beh&ouml;ver handskakning eller koordination. </p>
+
+<p>Men eftersom Tor bara skickar korrekt formaterad TCP-str&ouml;mmar, inte alla
+IP-paket, kan du inte skicka UDP-paket &ouml;ver Tor. (Du kan inte g&ouml;ra
+varianter p&aring; den typen av attacker som SYN-flooding heller.) S&aring; vanliga
+DDoS attacker kan inte g&ouml;ras &ouml;ver Tor. Tor till&aring;ter inte heller attacker med
+bandbreddsf&ouml;rst&auml;rkning mot externa siter: du m&aring;ste skicka in en byte f&ouml;r varje
+byte som Tor-n&auml;tverket ska skickar till din destination. S&aring; generellt,
+personer som kontrollerar tillr&auml;ckligt med bandbredd f&ouml;r att g&ouml;ra en effektiv
+DDoS-attack klarar sig lika bra utan Tor. </p>
+
+<a id="WhatAboutSpammers"></a>
+<h3><a class="anchor" href="#WhatAboutSpammers">Spammare ? </a></h3>
+
+<p>F&ouml;rst och fr&auml;mst, Tor:s default exit policy avvisar all utg&aring;ende trafik p&aring;
+port 25 (SMTP). S&aring; att att skicka spam genom Tor kommer inte att fungera automatiskt.
+Det &auml;r m&ouml;jlig att en del serveroperat&ouml;rer kommer att sl&aring; p&aring; port 25
+p&aring; deras speciella exit nod, i s&aring; fall kommer den datorn att till&aring;ta
+utg&aring;ende epost; men den personen kunde bara s&auml;tta upp ett mailrel&auml; ocks&aring;
+oberoende av Tor. I korta ord, Tor &auml;r inte anv&auml;ndbart f&ouml;r spamm
+d&auml;rf&ouml;r att n&auml;stan alla Torservrar v&auml;grar leverera eposten. </p>
+
+<p>Det handlar inte bara om att leverera epost, givetvis. Spammare kan anv&auml;nda
+Tor f&ouml;r att koppla upp sig mot &ouml;ppna HTTP proxies (och d&auml;rifr&aring;n till SMTP-servrar); f&ouml;r
+koppla till d&aring;ligt skrivna CGI-skript f&ouml;r epost;
+ock kontrollera deras botnet &mdash; dvs , f&ouml;r att dolt kommunicera med armeer av
+komprometterade datorer som leverar spam.
+</p>
+
+<p>
+Det &auml;r synd, men m&auml;rk att spammare redan klarar sig bra utan Tor.
+Dessutom, kom i h&aring;g att m&aring;nga av deras mera sofistikerade kommunikationsmekanismer
+(som falska UDP-paket) inte kan anv&auml;ndas &ouml;ver Tor, eftersom det bara skickar
+korrekt formaterade TCP kopplingar.
+</p>
+
+<a id="ExitPolicies"></a>
+<h3><a class="anchor" href="#ExitPolicies">Hur fungerar Tor:s exit policy?</a></h3>
+
+<p>Alla Tor servrar har en exit policy som best&auml;mmer vilken typ av utg&aring;ende
+trafik som till&aring;ts eller stoppad fr&aring;n den servern. Exit
+policies &ouml;verf&ouml;rs till klienten via katalogen s&aring; att klienter
+automatiskt undviker att v&auml;lja noder som v&auml;grar kontakter till den avsedda
+destinationen. </p>
+
+<p>P&aring; det h&auml;r s&auml;ttet kan varje server best&auml;mma vilka tj&auml;nster, maskiner och n&auml;tverk
+han vill till&aring;ta kommunikation med, baserat p&aring; potentialen f&ouml;r missbruk och den egna
+situationen. </p>
+
+<a id="HowMuchAbuse"></a>
+<h3><a class="anchor" href="#HowMuchAbuse">Missbrukas Tor ofta?</a></h3>
+
+<p>Inte mycket, i ett st&ouml;rre perspektiv. Vi har k&ouml;rt n&auml;tverket sedan
+since oktober 2003, och det har bara generer en ahndfull klagom&aring;l.
+Givetvis, som alla n&auml;tverk med fokus p&aring; privatliv s&aring; lockar vi till oss v&aring;r andel
+av idioter. Tors exit policy hj&auml;lper till att separera rollen som "villig att
+att donera resurser till n&auml;tverket" fr&aring;n role som "villig att hantera
+klagom&aring;l &ouml;ver missbruk" s&aring; vi hoppas att v&aring;rt n&auml;tverk &auml;r mer h&aring;llbart &auml;n
+tidigare f&ouml;rs&ouml;k med anonymitetsn&auml;tverk. </p>
+
+<p>Eftersom Tor har
+<a href="<page overview>">m&aring;nga bra anv&auml;ndningsomr&aring;den ocks&aring;</a>
+, tycker vi att vi g&ouml;r ett bra jobb med att h&aring;lla en balans f&ouml;r n&auml;rvarande. </p>
+
+<a id="TypicalAbuses"></a>
+<h3><a class="anchor" href="#TypicalAbuses">Vad kan jag f&ouml;rv&auml;nta mig om jag k&ouml;r en server?</a></h3>
+
+<p>Om du k&ouml;r en Tor-server som till&aring;ter utg&aring;ende trafik (till exempel
+standard exit policy), s&aring; &auml;r det troligen s&auml;kert att s&auml;ga att du till slut
+kommer att h&ouml;ra av fr&aring;n n&aring;gon.
+Klagom&aring;l &ouml;ver missbruk kommer i m&aring;nga former. Till exempel: </p>
+<ul>
+<li>N&aring;gon g&aring;r till Hotmail, och skickar ett hotbrev till ett f&ouml;retag
+company. Polisen skickar ett artigt mail, du f&ouml;rklarar att du k&ouml;r en Tor-server,
+de s&auml;ger "jaha" och l&auml;mnar dig ifred. [Port 80]</li>
+<li>N&aring;gon f&ouml;rs&ouml;ker f&aring; dig stoppad genom att anv&auml;nda Tor f&ouml;r att g&aring; till Google
+grupper och skicka spam till Usenet, och skickar sen ett argt mail till
+din ISP och s&auml;ger att f&ouml;rst&ouml;r hela v&auml;rlden. [Port 80]</li>
+<li>N&aring;gon g&aring;r in p&aring; ett IRC-n&auml;tverk och f&ouml;rpestar.
+Din ISP f&aring;r ett artigt mail om att din dator har blivit
+nersmittad; och/eller din dator attackeras med en DDoS -attack. [Port 6667]</li>
+<li>N&aring;gon anv&auml;nder Tor f&ouml;r att ladda ner en Vin Diesel-film, och
+din ISP f&aring;r ett meddelande fr&aring;n DMCA . L&auml;s EFF's
+<a href="<page eff/tor-dmca-response>">Tor DMCA Svarsmall</a>
+, som f&ouml;rklarar f&ouml;r din ISP varf&ouml;r den troligen kan ignorera
+meddelandet utan n&aring;gra f&ouml;ljder. [Godtyckliga portar]</li>
+</ul>
+
+<p>Du kan ocks&aring; uppt&auml;cka att IP-adressen f&ouml;r din server blockeras fr&aring;n
+n&aring;gra Internet siter/tj&auml;nster. Detta kan h&auml;nda oavsett din exit policy
+, d&auml;rf&ouml;r att n&aring;gra grupper inte verkar veta om eller bry sig om att Tor har
+en exit policy. (Om du har en extra IP-adress som inte anv&auml;nds f&ouml;r annat
+kanske du ska &ouml;verv&auml;ga att k&ouml;ra din Tor-server med den.) Till exempel, </p>
+
+<ul>
+<li>Efter n&aring;gra f&aring; fall d&auml;r anonym idioter r&ouml;rt till dess sidor blockerar
+Wikipedia nu m&aring;nga IP-adresser till Tor-servrar f&ouml;r skrivning
+(l&auml;sning fungerar fortfarande). We pratar med Wikipedia om hur de skulle kunna
+kontrollera missbruk och samtidigt till&aring;ta anonyma bidragare som ofta har heta nyheter
+eller intern ingformation om ett &auml;mne men inte vill riskera att avsl&ouml;ja
+sina identiteter n&auml;r de publiserar det (eller inte vill avsl&ouml;ja att
+att det g&aring;tr till Wikipedia). Slashdot sitter i samma b&aring;t.</li>
+
+<li>SORBS s&auml;tter adresserna till n&aring;gra Tor-servrar  p&aring; sin svarta lista f&ouml;r mail
+ocks&aring;. De g&ouml;r det d&auml;rf&ouml;r att de passivt detekterar om din server har kontakt med
+vissa IRC n&auml;tverk, och fr&aring;n det drar de slutsatsen att din server kan skicka
+spam. Vi har f&ouml;rs&ouml;kt att l&auml;ra dem att all mjukvara fungerar p&aring; det s&auml;ttet,
+men har gett upp. Vi rekommenderar att du undviker dem och <a
+href="http://paulgraham.com/spamhausblacklist.html">l&auml;r dina v&auml;nner
+(om de anv&auml;nder det) att ocks&aring; undvika grova svarta listor </a>.</li>
+
+</ul>
+
+<a id="IrcBans"></a>
+<h3><a class="anchor" href="#IrcBans">Tor &auml;r stoppad i det IRC-n&auml;tverk jag vill anv&auml;nda</a></h3>
+
+<p>Ibland anv&auml;nder idioter Tor f&ouml;r att fiska i IRC-kanaler. Detta missbruk
+resulterar i IP-specifika tillf&auml;lliga stopp  ("klines" i IRC-spr&aring;k), eftersom
+n&auml;tverksoperat&ouml;rer f&ouml;rs&ouml;ker h&aring;lla fiskandet borta fr&aring;n sitt n&auml;tverk. </p>
+
+<p>Det svaret understryker ett fundamentalt fel i s&auml;kerhetsmodellen som
+anv&auml;nds inom IRC: de antar att IP-adresser &auml;r samma sak som m&auml;nniskor och
+de kan stopppa en m&auml;nniska genom att stoppa en IP-adress.
+I verkligheten fungerar inte det &mdash; mycket s&aring;dant fiskande anv&auml;nder
+rutinm&auml;ssigt bokstavligen milliontals &ouml;ppna proxyservrar och smittade
+datorer runtom p&aring; n&auml;tet. IRC-n&auml;tverken f&ouml;rlorar kampen om att f&ouml;rs&ouml;ka
+blockera alla dessa noder och en hel industri av svartlistor och f&ouml;rs&ouml;k att
+stoppa fisket har vuxit upp baserat p&aring; denna felaktiga s&auml;kerhetsmodell
+ (inte helt olikt anti-virus industrin).
+Tor-n&auml;tverket &auml;r bara en droppe i havet h&auml;r. </p>
+
+<p>&Aring; andra sidan, ur IRC-operat&ouml;rernas synvinkel, &auml;r s&auml;kerhet
+inte en allt-eller-inget grej. Genom att svara snabbt p&aring; fiske eller n&aring;gon
+annan attack, so kan det vara m&ouml;jligt att g&ouml;ra attacken mindre
+attraktiv. Och de flesta IP-adresserna &auml;r lika med individer,
+p&aring; ett givet IRC-n&auml;tverk vid ett givet tillf&auml;lle.
+Undantagen inkluderar NAT-portat som kan till&aring;tas access som specialfall
+&Auml;ven om det &auml;r ett hoppl&ouml;st f&ouml;retag att f&ouml;rs&ouml;ka stoppa &ouml;ppna proxies, s&aring;
+&auml;r det generellt inte det att stoppa en enstaka IRC som inte sk&ouml;ter sig
+till anv&auml;ndarna tr&ouml;ttnar och f&ouml;rsvinner. </p>
+
+<p>Men det korrekta svaret &auml;r att implementera s&auml;kerhet p&aring; applikationsniv&aring;,
+att sl&auml;ppa in sk&ouml;tsamma anv&auml;ndare och h&aring;lla ute anv&auml;ndare som inte sk&ouml;ter sig.
+Detta m&aring;ste baseras p&aring; n&aring;gon typ egenskap per person (som ett l&ouml;senord ),
+inte en egenskap p&aring; hur hans paket transporteras. </p>
+
+<p>Alla IRC-n&auml;tverk f&ouml;rs&ouml;ker givetvis inte stoppa Tor-noder. Trots allt
+, ganska m&aring;nga anv&auml;nder Tor f&ouml;r att kunna anv&auml;nda IRC avskilt f&ouml;r att kommunicera
+legitimt utan att bli knutna till sin verkliga identitet.
+Varje IRC-n&auml;tverk beh&ouml;ver best&auml;mma sig f&ouml;r om blockering av n&aring;gra f&aring;
+av de the millioner av IP-adresser som illvilliga m&auml;nniskor kan anv&auml;nda &auml;r v&auml;rt
+f&ouml;rlusten av bidragen fr&aring;n Tor-anv&auml;ndarna som sk&ouml;ter sig. </p>
+
+<p>Om du blockeras, diskutera med n&auml;tverksoperat&ouml;ren och f&ouml;rklara
+problemen f&ouml;r dem. De kanske inte k&auml;nner till Tor alla, eller
+de kanske inte k&auml;nner till att maskinnamnen de 'klinar' &auml;r Tor-noder
+Om du f&ouml;rklara problemet och de vidh&aring;ller att Tor borde vara blockerat
+vill du kanske flytta till ett n&auml;tverk som &auml;r mer &ouml;ppet f&ouml;r yttrandefrihet.
+Kanske en inbjudan in till #tor p&aring; irc.oftc.net kommer att visa att
+vi inte alla &auml;r onda m&auml;nniskor. </p>
+
+<p>Slutligen, om du f&aring;r veta om ett IRC-n&auml;tverk som verkar blockera
+Tor, eller en enstaka Tor exitnod, v&auml;nligen l&auml;gg ut den informationen p&aring; <a
+href="https://wiki.torproject.org/wiki/TheOnionRouter/BlockingIrc">The Tor
+IRC block tracker</a>
+s&aring; att andra kan se det. Minst ett IRC-n&auml;tverk l&auml;ser den sidan
+f&ouml;r att kunna till&aring;ta  exitnoder som blivit blockerade oavsiktligt. </p>
+
+<a id="SMTPBans"></a>
+<h3><a class="anchor" href="#SMTPBans">Era noder &auml;r sp&auml;rrade fr&aring;n den mail-server jag vill anv&auml;nda.</a></h3>
+
+<p>&Auml;ven om <a href="#WhatAboutSpammers">Tor inte &auml;r anv&auml;ndbart f&ouml;r
+spam</a>, verkar en del &ouml;verambiti&ouml;sa svartlistare tro att alla &ouml;ppna
+n&auml;tverk som Tor &auml;r ondskefulla &mdash; de f&ouml;rs&ouml;ker tvinga ur
+administrat&ouml;rer fakta om regler, service, och routing, och sen f&aring;
+l&ouml;sensummor fr&aring;n offer. </p>
+
+<p>Om din serveradministrat&ouml;r best&auml;mmer sig f&ouml;r at anv&auml;nda dessa svarta listor
+och v&auml;gra inkommande epost borde du ha ett samtal med dem och l&auml;ra dem om Tor
+Tor:s utg&aring;ngsregler. </p>
+
+<a id="Bans"></a>
+<h3><a class="anchor" href="#Bans">Jag vill stoppa Tor-n&auml;tverket fr&aring;n min tj&auml;nst.</a></h3>
+
+<p>Det var tr&aring;kigt att h&ouml;ra. Det finns m&aring;nga tillf&auml;llen d&auml;r det &auml;r klokt att
+blockera anonyma anv&auml;ndare till en Internettj&auml;nst.  Men i m&aring;nga fall
+finns det enklare l&ouml;sningar som kan ordna ditt problem och samtidigt
+till&aring;ta anv&auml;ndare att ha tillg&aring;ng till din site s&auml;kert</p>
+
+<p>F&ouml;rst och fr&auml;mst: Fr&aring;ga dig sj&auml;lv om det finns ett s&auml;tt besluta p&aring; applikationsniv&aring;
+f&ouml;r att skilja de gilitga anv&auml;ndarna fr&aring;n idioterna. Till exempel, du kan ha
+ha vissa omr&aring;den p&aring; siten eller vissa privlegier som postning,
+tillg&auml;ngligt bara f&ouml;r registrerade anv&auml;ndare. Det &auml;r enkelt att bygga
+uppdaterad lista av Tor:s IP-adresser som till&aring;ter kommunikation till din tj&auml;nst
+s&aring; du kan s&auml;tta upp den h&auml;r distinktionen f&ouml;r enbart Tor-anv&auml;ndare P&aring; detta s&auml;ttet
+kan du ha access via multipla noder och beh&ouml;ver inte stoppa varje del av din tj&auml;nst. </p>
+
+<p>Till exempel, <a
+href="http://freenode.net/policy.shtml#tor">Freenode IRC</a>
+hade ett problem med en koordinerad grupp av anv&auml;ndare som ansl&ouml;t till kanaler
+och raffinerat tog &ouml;ver konversationen; men n&auml;r det markerade alla anv&auml;ndare
+fr&aring;n Tor-noder som "anonyma anv&auml;ndare," och tog bort m&ouml;jligheten f&ouml;r dem att
+blandas in bland de andra, gick personer &ouml;ver till att anv&auml;nda &ouml;ppna proxies
+och robot-n&auml;tverk. </p>
+
+<p>Nummer tv&aring;, t&auml;nk p&aring; att hundratusentals m&auml;nniskor anv&auml;nder Tor
+varje dag bara f&ouml;r enkel datahygien&mdash; till exempel,
+f&ouml;r att skydda sig mot datainsamling fr&aring;n reklamf&ouml;retag medan de
+h&aring;ller p&aring; med sina normala aktiviteter. Andra anv&auml;nder Tor eftersom det &auml;r deras
+enda s&auml;tt att komma f&ouml;rbi restriktiva lokala brandv&auml;ggar.
+En del Toranv&auml;ndare kanske anv&auml;nder din tj&auml;nst just nu f&ouml;r genomf&ouml;ra helt
+normala aktiviteter. Du m&aring;ste best&auml;mma om det &auml;r v&auml;rt att tappa bidragen
+fr&aring;n dess anv&auml;ndare genom att stoppa Tor-n&auml;tverket s&aring;v&auml;l som potentiella
+framtida anv&auml;ndare (Ofta har folk ingen uppfattning om hur m&aring;nga artiga
+Toranv&auml;ndare som koplar till deras tj&auml;nster&mdash; du m&auml;rker dem inte tills det kommer
+en oartig)</p>
+
+<p>Nu borde du st&auml;lla dig sj&auml;lv fr&aring;gan; Hur g&ouml;r du med andra tj&auml;nster
+som samlar m&aring;nga anv&auml;ndare bakom n&aring;gra f&aring; IP-adresser. Tor &auml;r inte s&aring;
+annorlunda &auml;n AOL i det avseendet.</p>
+
+<p>Sist, kom ih&aring;g att Tor-servrar har <a
+href="#ExitPolicies">individuella utg&aring;ngsregler </a>. M&aring;nga Tor-servrar
+till&aring;ter inte utg&aring;ende kopplingar alls, m&aring;nga av de som till&aring;ter en del
+utg&aring;ende kopplingar kanske redan f&ouml;rbjuder kopplingar till din tj&auml;nst.
+N&auml;r du stoppar noder b&ouml;r du g&aring; igenom utg&aring;ngsreglerna och bara blockera de
+som till&aring;ster dessa kopplingar och du b&ouml;r komma ih&aring;g att utg&aring;ngsreglerna
+kan &auml;ndras (och &auml;ven listan med noder i n&auml;tverket)
+. </p>
+
+<p>Om du verkligen vill g&ouml;ra det s&aring; tillhandah&aring;ller vi ett
+<a href="<svnsandbox>contrib/exitlist">Python-skript f&ouml;r att parsa
+katalogen</a>. (Notera att skriptet inte kommer att ge en perfekt lista
+med IP-adresser som kan koppla till dig via Tor, eftersom en del Tor-servrar
+kan koppla ut&aring;t fr&aring;n andra adresser &auml;n de de publicerar.)
+</p>
+
+<a id="TracingUsers"></a>
+<h3><a class="anchor" href="#TracingUsers">Jag har ett tungt v&auml;gande sk&auml;l att sp&aring;ra Tor-anv&auml;ndare.
+Kan ni hj&auml;lpa till?</a></h3>
+
+<p>
+Det finns ingenting utvecklarna av Tor kan g&ouml;ra f&ouml;r att sp&aring;ra Tor-anv&auml;ndarna. Samma
+skydd som hindrar folk fr&aring;n att bryta Tor:s anonymitet stoppar ocks&aring;
+oss fr&aring;n att r&auml;kna ut vad som p&aring;g&aring;r.
+</p>
+
+<p>
+N&aring;gra anh&auml;ngare har f&ouml;reslagit att vi designar om Tor till att
+inkludera <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Backdoor">bakd&ouml;rr</a>.
+Det finns tv&aring; problem med det. Nummer ett, det f&ouml;rsvagar systemet
+f&ouml;r mycket rent tekniskt. Att ha ett centralt s&auml;tt att koppla anv&auml;ndare till
+deras aktiviteter &auml;r ett vid&ouml;ppet h&aring;l f&ouml;r alla sorters attacker;
+och regelmekanismerna som skulle beh&ouml;vas f&ouml;r en korrekt hantering av
+det ansvaret &auml;r enorma och ol&ouml;sta. Nummer tv&aring;,
+De onda m&auml;nniskorna<a href="#WhatAboutCriminals">kommer inte
+f&aring;ngas med det &auml;nd&aring;</a>, eftersom de kommer att anv&auml;nda andra s&auml;tt
+att skydda sin anonymitet (identitetsst&ouml;ld, smitta datorer och
+anv&auml;nda dem som rel&auml;punkter, osv).
+</p>
+
+<p>
+Men kom ih&aring;g att det inte betyder att Tor &auml;r os&aring;rbart. Traditionellt
+polisarbete som att f&ouml;rh&ouml;ra misst&auml;nkta, &ouml;vervakning, tangentbordslyssnare,
+textanalys, tillslag och andra fysiska unders&ouml;kningar kan vara v&auml;ldigt effektiva mot Tor.
+</p>
+
+<a id="LegalQuestions"></a>
+<h3><a class="anchor" href="#LegalQuestions">Jag har fr&aring;gor om missbruk av Tor och lagar.</a></h3>
+
+<p>Vi &auml;r bara utvecklare, Vi kan svara p&aring; tekniska fr&aring;gor, men vi
+kan inte svara p&aring; fr&aring;gom om juridik och lagar. </p>
+
+<p>V&auml;nligen se p&aring;
+<a href="<page eff/tor-legal-faq>">Vanliga fr&aring;gor om Tor och lagar</a>,
+och kontakta EFF direkt om du har juridiska sp&ouml;rsm&aring;l.
+(G&auml;ller antagligen bara USA)
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
