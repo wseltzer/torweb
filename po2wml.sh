@@ -113,8 +113,32 @@ for file in $po ; do
 			fi
 		fi
 		
+		# If the current directory is "nb" use "no" instead
+		if [ $subdir = "nb" ]
+		then
+			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/no/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"	
+
+			# Check to see if the file was written
+			if [ -e "$wmldir/no/tmp-$wmlfile" ]
+			then
+				mv "$wmldir/no/tmp-$wmlfile" "$wmldir/no/$wmlfile"
+			fi
+		fi
+
+		# If the current directory is "sv" use "se" instead
+		if [ $subdir = "sv" ]
+		then
+			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/se/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+
+			# Check to see if the file was written
+			if [ -e "$wmldir/se/tmp-$wmlfile" ]
+			then
+				mv "$wmldir/se/tmp-$wmlfile" "$wmldir/se/$wmlfile"
+			fi
+		fi
+
 		# Convert everything else
-		if ([ $subdir != "en" ] && [ $subdir != "zh_CN" ])
+		if [[ $subdir != "en" && $subdir != "zh_CN" && $subdir != "nb" && $subdir != "sv" ]]
 		then
 			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
 
@@ -139,9 +163,33 @@ for file in $po ; do
 				mv "$wmldir/$subdir/zh-cn/tmp-$wmlfile" "$wmldir/$subdir/zh-cn/$wmlfile"
 			fi
 		fi
+
+		# If the current language is "nb" use "no" instead
+		if [ $lang = "nb" ]
+		then
+			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/no/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+
+			# Check to see if the file was written
+			if [ -e "$wmldir/$subdir/no/tmp-$wmlfile" ]
+			then
+				mv "$wmldir/$subdir/no/tmp-$wmlfile" "$wmldir/$subdir/no/$wmlfile"
+			fi
+		fi
+
+		# If the current language is "sv" use "se" instead
+		if [ $lang = "sv" ]
+		then
+			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/se/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+
+			# Check to see if the file was written
+			if [ -e "$wmldir/$subdir/se/tmp-$wmlfile" ]
+			then
+				mv "$wmldir/$subdir/se/tmp-$wmlfile" "$wmldir/$subdir/se/$wmlfile"
+			fi
+		fi
 		
 		# Convert everything else
-		if ([ $lang != "en" ] && [ $lang != "zh_CN" ])
+		if [[ $lang != "en" && $lang != "zh_CN" && $lang != "nb" && $lang != "sv" ]]
 		then
 			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/$lang/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
 
