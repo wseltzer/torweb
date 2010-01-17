@@ -1,6 +1,6 @@
 ## translation metadata
-# Based-On-Revision: 19850
-# Last-Translator: mfr(ät]misericordia.be, fredzupy at gmail.com, misc at zarb.org
+# Based-On-Revision: 21421
+# Last-Translator: mederic.ribreux@gmail.com, mfr(ät]misericordia.be, fredzupy at gmail.com, misc at zarb.org
 
 #include "head.wmi" TITLE="Tor : Les Relais Passerelles" CHARSET="UTF-8"
 
@@ -32,6 +32,17 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">la
 Pour utiliser une passerelle, vous aurez besoin d'en trouver une. De plus, vous aurez besoin de configurer Tor avec n'importe laquelle des adresses passerelles que vous avez l'intention d'utiliser. Vous pourrez faire cela avec Vidalia, le contrôleur Tor. 
 Si votre connexion Internet nécessite l'utilisation d'un proxy, vous aurez probablement besoin de configurer Vidalia pour cela en premier. Si vous ne pensez pas que vous devez configurer un proxy pour votre connexion Internet, c'est que vous n'avez probablement pas à le faire. Faites un essai et si vous avez des questions, demandez-nous de l'aide.
 </p>
+
+<p>Freedom House a produit une vidéo expliquant comment récupérer et utiliser des passerelles Tor.
+Vous pouvez visualiser cette vidéo sur <a
+href="http://tinyvid.tv/show/3uiwckrlqynqv">TinyVid: Using Bridge Relays
+to Access Tor</a>.  Vous connaissez une meilleure vidéo ou une qui est traduite dans
+votre langue ? Faîtes-le nous savoir !</p>
+ 	 
+<div class="center">
+<p><video id="v1" src="http://tinyvid.tv/file/3uiwckrlqynqv.ogg"
+autobuffer="true" controls="controls"></video></p>
+</div>
 
 <p>
 Pour le moment, vous pouvez obtenir une passerelle en visitant le site
@@ -103,8 +114,7 @@ Here are your bridge relays:
 
 </pre>
 <p>
-Une fois que vous avez reçu le mél avec les renseignements sur les passerelles,
-vous pouvez continuer la configuration Vidalia par les étapes décrites <a
+Une fois que vous avez reçu le mél avec les renseignements sur les passerelles, vous pouvez continuer la configuration Vidalia par les étapes décrites <a
 href="#UsingBridges">ci dessus</a>.
 </p>
 
@@ -115,19 +125,23 @@ href="#UsingBridges">ci dessus</a>.
 <p>
 Si vous voulez donner un coup de main et que vous ne pouvez pas faire tourner un
 <a href="<page docs/tor-doc-relay>">nœud tor</a>, vous pouvez faire tourner
-un nœud passerelle. Vous pouvez le configurer en <a href="<page docs/tor-doc-relay>">
-utilisant Vidalia</a>, ou en modifiant directement <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">
-votre fichier torrc<a> pour qu'il ne contienne que ces 4 lignes :
-</p>
-
-  	 
+un nœud passerelle. Vous pouvez le configurer selon les moyens suivants:
+<ul>
+<li> manuellement <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">
+en modifiant votre fichier torrc</a> pour qu'il ne contienne que ces 4 lignes :<br/>
+  	
+ 
 <pre><code>
 SocksPort 0
 ORPort 443
 BridgeRelay 1
 Exitpolicy reject *:*
-</code>
-</pre>
+</code></pre><li>
+<li><a href="<page docs/tor-doc-relay>">ou en utilisant Vidalia</a>:<br />
+<img src="$(IMGROOT)/vidalia-bridges-setup.png" alt="page de configuration des
+partages de Vidalia" /></li>
+</ul>
+</p>
   	 
 <p>
 Une fois configuré en tant que passerelle, votre serveur n'apparaîtra <b>plus</b> publiquement dans le 
@@ -135,7 +149,7 @@ réseau Tor.
 </p>
   	 
 <p>
-Votre passerelle va automatiquement publier son address sur l'annuaire des passerelles, 
+Votre passerelle va automatiquement publier son adresse sur l'annuaire des passerelles, 
 qui va le distribuer par courrier electronique, ou via https comme expliqué plus haut.
 Vous pouvez aussi directement inviter un utilisateur à utiliser votre passerelle :
 si vous utilisez Vidalia, vous pouvez coper et coller l'adresse de la passerelle depuis
