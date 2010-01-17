@@ -222,16 +222,16 @@ Effort Level: <i>Medium</i>
 Skill Level: <i>High</i>
 <br />
 Likely Mentors: <i>Nick, Roger, Steven</i>
-Tor 0.2.0.x系列的<a href="<svnsandbox>doc/design-paper/blocking.html">一个重要改进</a
+Tor 0.2.0.x系列的<a href="<gitblob>doc/design-paper/blocking.html">一个重要改进</a
 >是提高了抵抗政府机关或者组织探测的能力。但是 Tor 的反审查设计在某些方面仍然需要
 更好的机制来改进。比如，现在 Tor 只能在一个 地址/端口  对上进行监听，
-有<a href="<svnsandbox>doc/spec/proposals/118-multiple-orports.txt">建议放开这个限制</a>，
+有<a href="<gitblob>doc/spec/proposals/118-multiple-orports.txt">建议放开这个限制</a>，
 并允许客户端可以连接到任意给定的 Tor 地址和端口上，但是，这需要大量的工作。另外一个
 提高反审查能力的方案（更加复杂和困难）希望能够提高 Tor 对端口扫描的抵抗能力。现在，恶意
 的扫描者可以通过尝试连接一个假定的 Tor 主机，向其发送 Tor 协议包，并检查它的响应来确定
-它是否在运行<a href="<svnsandbox>doc/spec/proposals/125-bridges.txt"> Tor 网桥</a>。
+它是否在运行<a href="<gitblob>doc/spec/proposals/125-bridges.txt"> Tor 网桥</a>。
 要解决这个问题，当受到端口扫描工具扫描的时候，网桥应该
-<a href="<svnsandbox>doc/design-paper/blocking.html#tth_sEc9.3">伪装成一个 web 服务器</a>
+<a href="<gitblob>doc/design-paper/blocking.html#tth_sEc9.3">伪装成一个 web 服务器</a>
 （HTTP或者HTTPS），如果对方没有提供正确的网桥 key，那么它不会作出正确的网桥连接响应。
 <br />
 这部分的工作需要大量的研究和设计。一个巨大的挑战是，即使一个攻击者知道我们的算法和机制，
@@ -397,7 +397,7 @@ project</a>, and make it run on <a
 href="http://code.google.com/android/">Android</a>. The first step
 would be to port the existing code and execute it in an Android
 environment. Next, the code should be updated to support the newer Tor
-protocol versions like the <a href="<svnsandbox>doc/spec/dir-spec.txt">v3
+protocol versions like the <a href="<gitblob>doc/spec/dir-spec.txt">v3
 directory protocol</a>. Further, support for requesting or even
 providing Tor hidden services would be neat, but not required.
 <br />
@@ -624,9 +624,9 @@ and <a href="https://svn.torproject.org/svn/weather/trunk/TODO">TODO</a>.
 <li>
 <b>告诉我们新的想法!</b>
 <br />
-这些项目你都不敢兴趣？看看<a href="<svnsandbox>doc/roadmaps/2008-12-19-roadmap-full.pdf">
+这些项目你都不敢兴趣？看看<a href="<gitblob>doc/roadmaps/2008-12-19-roadmap-full.pdf">
 Tor 开发路线图</a>，这里有更多资料。
-<a href="<svnsandbox>doc/spec/proposals/">现有的建议</a>中的一些，也许很快就会进入开发流程。
+<a href="<gittree>doc/spec/proposals/">现有的建议</a>中的一些，也许很快就会进入开发流程。
 </li>
 
 <!-- Mike is already working on this.
@@ -659,7 +659,7 @@ Tor 开发路线图</a>，这里有更多资料。
 <br />
 目前在Debian/Ubuntu上，Vidalia 的缺省安装包运行的不算太好。当前的安装包用 debian-tor
 用户缺省的以守护进程运行 Tor，但是没有在缺省的 torrc 文件中定义
-<a href="<svnsandbox>doc/spec/control-spec.txt">控制端口</a>。
+<a href="<gitblob>doc/spec/control-spec.txt">控制端口</a>。
 因此，Vidalia 会发现无法找到已经运行的 Tor 程序于是试图自行启动一个新的 Tor 进程，
 然后，这个进程会失败并退出，Vidalia 会得到一个错误消息并报告给用户，用户会因此而
 感到困惑，他们实际上已经有一个可用的 Tor 进程了，但仍然被报告错误。
@@ -733,7 +733,7 @@ to interact minimally with Tor to test their code.
 <br />
 If you want to make the project more exciting
 and involve more design and coding, take a look at <a
-href="<svnsandbox>doc/spec/proposals/131-verify-tor-usage.txt">proposal
+href="<gitblob>doc/spec/proposals/131-verify-tor-usage.txt">proposal
 131-verify-tor-usage.txt</a>.
 </li>
 
@@ -748,7 +748,7 @@ href="<svnsandbox>doc/spec/proposals/131-verify-tor-usage.txt">proposal
 The <a href="http://p56soo2ibjkx23xo.onion/">exitlist software</a>
 is written by our fabulous anonymous
 contributer Tup. It's a DNS server written in Haskell that supports part of our <a
-href="<svnsandbox>doc/contrib/torel-design.txt">exitlist
+href="<gitblob>doc/contrib/torel-design.txt">exitlist
 design document</a>. Currently, it is functional and it is used by
 check.torproject.org and other users. The issues that are outstanding
 are mostly aesthetic. This wonderful service could use a much better
@@ -974,7 +974,7 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">
 但它意味着一个数据包的丢失就会导致一条连接上的所有单元的延时，它还意味着我们只能支持 TCP 流。
 我们列出了<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">我们
 为什么还不转而使用 UDP 传输的理由</a>，这些理由越少越好。我们还提出了一个 <a
-href="<svnsandbox>doc/spec/proposals/100-tor-spec-udp.txt">Tor 和 UDP 的规格说明</a>——如果
+href="<gitblob>doc/spec/proposals/100-tor-spec-udp.txt">Tor 和 UDP 的规格说明</a>——如果
 什么地方错了，请告诉我们。
 </li>
 
@@ -1065,7 +1065,7 @@ href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">ssh 吞吐量�
 </li>
 
 <!-- NEED HELP -->
-<li>我们反审查机制的目标包括防止攻击者<a href="<svnsandbox>doc/design-paper/blocking.html#sec:network-fingerprint">
+<li>我们反审查机制的目标包括防止攻击者<a href="<gitblob>doc/design-paper/blocking.html#sec:network-fingerprint">
 从普通 SSL 传输中区分 Tor 数据包</a>。很明显，我们不可能既做到完美的隐藏又保持可用性，但是，
 首先，我们希望能够阻止攻击者仅仅观察几个数据包就可以取得成功。在这些攻击中，有一个我们没有进行太多测试的
 问题是，Tor 的数据包是以512字节为单位的，因此，传输的数据包可以是512字节的倍数。在物理线路上，

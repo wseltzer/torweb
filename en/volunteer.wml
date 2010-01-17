@@ -187,20 +187,20 @@ Skill Level: <i>High</i>
 Likely Mentors: <i>Nick, Roger, Steven</i>
 <br />
 The Tor 0.2.1.x series makes <a
-href="<svnsandbox>doc/design-paper/blocking.html">significant
+href="<gitblob>doc/design-paper/blocking.html">significant
 improvements</a> in resisting national and organizational censorship.
 But Tor still needs better mechanisms for some parts of its
 anti-censorship design.  For example, current Tors can only listen on a
 single address/port combination at a time.  There's
-<a href="<svnsandbox>doc/spec/proposals/118-multiple-orports.txt">a
+<a href="<gitblob>doc/spec/proposals/118-multiple-orports.txt">a
 proposal to address this limitation</a> and allow clients to connect
 to any given Tor on multiple addresses and ports, but it needs more
 work.  Another anti-censorship project (far more difficult) is to try
 to make Tor more scanning-resistant.  Right now, an adversary can identify
-<a href="<svnsandbox>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
+<a href="<gitblob>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
 just by trying to connect to them, following the Tor protocol, and
 seeing if they respond.  To solve this, bridges could
-<a href="<svnsandbox>doc/design-paper/blocking.html#tth_sEc9.3">act like
+<a href="<gitblob>doc/design-paper/blocking.html#tth_sEc9.3">act like
 webservers</a> (HTTP or HTTPS) when contacted by port-scanning tools,
 and not act like bridges until the user provides a bridge-specific key.
 <br />
@@ -560,9 +560,9 @@ and <a href="https://svn.torproject.org/svn/weather/trunk/TODO">TODO</a>.
 <b>Bring up new ideas!</b>
 <br />
 Don't like any of these? Look at the <a
-href="<svnsandbox>doc/roadmaps/2008-12-19-roadmap-full.pdf">Tor development
+href="<gitblob>doc/roadmaps/2008-12-19-roadmap-full.pdf">Tor development
 roadmap</a> for more ideas.
-Some of the <a href="<svnsandbox>doc/spec/proposals/">current proposals</a>
+Some of the <a href="<gittree>doc/spec/proposals/">current proposals</a>
 might also be short on developers.
 </li>
 
@@ -572,7 +572,7 @@ might also be short on developers.
 Vidalia currently doesn't play nicely on Debian and Ubuntu with the
 default Tor packages. The current Tor packages automatically start Tor
 as a daemon running as the debian-tor user and (sensibly) do not have a
-<a href="<svnsandbox>doc/spec/control-spec.txt">ControlPort</a> defined
+<a href="<gitblob>doc/spec/control-spec.txt">ControlPort</a> defined
 in the default torrc. Consequently, Vidalia will try
 to start its own Tor process since it could not connect to the existing
 Tor, and Vidalia's Tor process will then exit with an error message
@@ -737,7 +737,7 @@ it means we can only reasonably support TCP streams. We have a <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">list
 of reasons why we haven't shifted to UDP transport</a>, but it would
 be great to see that list get shorter. We also have a proposed <a
-href="<svnsandbox>doc/spec/proposals/100-tor-spec-udp.txt">specification
+href="<gitblob>doc/spec/proposals/100-tor-spec-udp.txt">specification
 for Tor and
 UDP</a> &mdash; please let us know what's wrong with it.</li>
 
@@ -850,7 +850,7 @@ throughput experiment</a>. We'll need to measure and tweak, and maybe
 overhaul if the results are good.</li>
 <li>Our censorship-resistance goals include preventing
 an attacker who's looking at Tor traffic on the wire from <a
-href="<svnsandbox>doc/design-paper/blocking.html#sec:network-fingerprint">distinguishing
+href="<gitblob>doc/design-paper/blocking.html#sec:network-fingerprint">distinguishing
 it from normal SSL traffic</a>. Obviously we can't achieve perfect
 steganography and still remain usable, but for a first step we'd like to
 block any attacks that can win by observing only a few packets. One of
