@@ -830,6 +830,25 @@ my %m = (
             hiddenServiceMirror => "",
         },
 
+        mirror041 => {
+            adminContact => "sina at accessnow.org",
+            orgName => "Access",
+            isoCC => "IR",
+            subRegion => "",
+            region => "IR",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "Yes",
+            httpWebsiteMirror => "http://irani-tor.ath.cx/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://irani-tor.ath.cx/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+        }
+
 );
 
 my $count = values %m;
