@@ -1,0 +1,181 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 19802 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: Debian/Ubuntu Instructions"
+<div class="center">
+
+<div class="main-column">
+
+<a id="debian"></a>
+<h2><a class="anchor" href="#debian">Option un: Tor sur Debian lenny, Debian
+sid, ou Debian testing</a></h2>
+<br />
+
+<p>
+Si vous utilisez Debian stable (lenny), unstable (sid) ou testing (squeeze),
+lancez simplement:<br /> <tt>apt-get install tor tor-geoipdb</tt>
+</p>
+
+<p>
+Attention de prendre note qu'il est possible que cela ne vous installe pas
+la toute dernière version stable de Tor, néanmoins, vous recevrez
+d'importantes corrections de sécurité. Pour être certain d'utiliser la
+dernière version stable de Tor, consultez la deuxième option ci-dessous.
+</p>
+
+<p>
+Désormais, Tor est installé et fonctionne. Rendez-vous à <a href="<page
+docs/tor-doc-unix>#polipo">l'étape deux</a> des instructions "Tor sur
+Linux/Unix".
+</p>
+
+<hr /> <a id="ubuntu"></a> <a id="packages"></a>
+<h2><a class="anchor" href="#ubuntu">Option deux: Tor sur Ubuntu ou Debian</a></h2>
+<br />
+
+<p>
+<b>N'utilisez pas les paquets du dépôt universe d'Ubuntu.</b> Ils ne sont
+pas maintenus et sont périmés. Cela signifie que vous manquerez de stabilité
+et de correction de failles de sécurité.
+</p>
+
+<p>
+Vous aurez besoin d'utiliser notre dépôt de paquets avant de récupérer
+Tor. D'abord, vous aurez besoin de connaître le nom de votre
+distribution. Si vous utilisez Ubuntu 9.10, il s'agit de "karmic" alors que
+pour la 9/04 c'est "jaunty", la 8.10 c'est "intrepid" et la 8.04 c'est
+"hardy". Si vous utilisez Debian Etch, c'est "etch", et Debian Lenny c'est
+"lenny". Ajoutez ensuite cette ligne à votre fichier
+<tt>/etc/apt/sources.list</tt> :<br />
+<pre>
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+</pre>
+où vous substituez le mot adapté (etch, lenny, sid, karmic, jaunty,
+intrepid, hardy) à la place de &lt;DISTRIBUTION&gt;.
+</p>
+
+<p>
+Ajoutez alors la clef gpg utilisé pour signer les paquets en lançant:
+<pre>
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+</pre>
+Maintenant, vous pouvez rafraîchir vos sources et installer Tor en lançant:
+<pre>
+apt-get update
+apt-get install tor tor-geoipdb
+</pre>
+</p>
+
+<p>
+Désormais, Tor est installé et fonctionne. Rendez-vous à <a href="<page
+docs/tor-doc-unix>#polipo">l'étape deux</a> des instructions "Tor sur
+Linux/Unix".
+</p>
+
+<p style="font-size: small">
+Le nom DNS <code>deb.torproject.org</code> est en fait un ensemble de
+serveurs indépendants dans une configuration DNS round-robin.  Si pour une
+raison, vous ne pouvez pas y accéder, vous pouvez utiliser le nom d'un
+serveur dans la liste suivante à la place.  Essayez
+<code>deb-master.torproject.org</code>, <code>mirror.netcologne.de</code> ou
+<code>tor.mirror.youam.de</code>.
+</p>
+
+<hr /> <a id="development"></a>
+<h2><a class="anchor" href="#development">Option trois: Utiliser la branche de
+développement de Tor sur Debian ou Ubuntu</a></h2>
+<br />
+
+<p>Si vous voulez utiliser la <a href="<page download>#packagediff">branche de
+développement</a> de Tor à la place (plus de fonctionnalités et plus de
+bugs), vous avez besoin d'ajouter un jeu de lignes différent à votre fichier
+<tt>/etc/apt/sources.list</tt>:<br />
+<pre>
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb     http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
+</pre>
+ou vous substituez le nom de votre distribution (etch, lenny, sid, karmic,
+jaunty, intrepid, hardy) à la place de &lt;DISTRIBUTION&gt;.
+</p>
+
+<p>
+Lancez alors
+<pre>
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+apt-get update
+apt-get install tor tor-geoipdb
+</pre>
+</p>
+
+<p>
+Désormais, Tor est installé et fonctionne. Rendez-vous à <a href="<page
+docs/tor-doc-unix>#polipo">l'étape deux</a> des instructions "Tor sur
+Linux/Unix".
+</p>
+
+<hr /> <a id="source"></a>
+<h2><a class="anchor" href="#source">Construire à partir du code source</a></h2>
+<br />
+
+<p>
+Si vous désirez construire votre propres paquest deb à partir des fichiers
+sources, vous devez d'abord ajouter un <tt>deb-src</tt> approprié à
+<tt>sources.list</tt>.
+<pre>
+# For the stable version.
+# For the unstable version.
+
+deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+
+
+deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb-src http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
+</pre>
+Vous avez également besoin d'installer les paquets nécessaires pour
+construire vos propres paquets deb ainsi que les paquets requis pour
+construire Tor:
+<pre>
+apt-get install build-essential fakeroot devscripts
+apt-get build-dep tor
+</pre>
+Maintenant, vous pouvez construire Tor dans ~/debian-packages:
+<pre>
+mkdir ~/debian-packages; cd ~/debian-packages
+apt-get source tor
+cd tor-*
+debuild -rfakeroot -uc -us
+cd ..
+</pre>
+Maintenant, vous pouvez installer le nouveau paquet:
+<pre>
+sudo dpkg -i tor_*.deb
+</pre>
+</p>
+
+<p>
+Désormais, Tor est installé et fonctionne. Rendez-vous à <a href="<page
+docs/tor-doc-unix>#polipo">l'étape deux</a> des instructions "Tor sur
+Linux/Unix".
+</p>
+
+<hr />
+
+<p>Si vous avez des suggestions pour améliorer ce document, merci de <a
+href="<page contact>">nous en faire part</a>. Merci !</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+
+
+<!--PO4ASHARPBEGINinclude <foot.wmi>
+PO4ASHARPEND-->

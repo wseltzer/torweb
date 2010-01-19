@@ -1,51 +1,56 @@
+
+
+
+
+
+
 ## translation metadata
-# Based-On-Revision: 18807
-# Last-Translator: fredzupy@gmail.com
+# Revision: $Revision: 20019 $
 # Translation-Priority: 2-medium
-
-#include "head.wmi" TITLE="Vérifier les signatures" CHARSET="UTF-8"
-
+#include "head.wmi" TITLE="Verifying Signatures" CHARSET="UTF-8"
 <div class="main-column">
 
 <h2>Comment vérifier les signatures des paquets</h2>
 <hr />
 
-<p>Chaque fichier sur notre <a href="<page download>">page de téléchargement</a> est accompagné
-par un fichier du même nom que le paquet avec l'extention
-« .asc ».  Par exemple, le fichier courant d'installation « tout en un pour Windows » :
-<package-win32-bundle-stable-sig>.</p>
+<p>Chaque fichier sur notre <a href="<page download>">page de
+téléchargement</a> est accompagné par un fichier du même nom que le paquet
+avec l'extention « .asc ».  Par exemple, le fichier courant d'installation
+« tout en un pour Windows » : <package-win32-bundle-stable-sig>.</p>
 
-<p>Ces fichiers .asc sont des signatures PGP. Elles vous permettent de vérifier que les fichiers que vous avez téléchargés
-sont exactement ceux que vous aviez l'intention de télécharger.</p>
+<p>Ces fichiers .asc sont des signatures PGP. Elles vous permettent de vérifier
+que les fichiers que vous avez téléchargés sont exactement ceux que vous
+aviez l'intention de télécharger.</p>
 
-<p>Bien entendu, vous avez besoin d'avoir nos clés pgp dans votre trousseau : si vous ne
-connaissez pas les clés pgp, vous ne pouvez pas être certain que ce soit nous qui avont signé. Les clés
-de signature utilisées sont :</p>
+<p>Bien entendu, vous avez besoin d'avoir nos clés pgp dans votre trousseau :
+si vous ne connaissez pas les clés pgp, vous ne pouvez pas être certain que
+ce soit nous qui avons signé les fichiers. Les clés de signature utilisées
+sont :</p>
 <ul>
-<li>Roger's (0x28988BF5) typiquement pour signer l'archive code source.</li>
-<li>Nick's (0x165733EA, ou sa sous clé 0x8D29319A)</li>
-<li>Andrew's (0x31B0974B)</li>
-<li>Peter's (0x94C09C7F, ou sa sous clé 0xAFA44BDD)</li>
-<li>Matt's (0x5FA14861)</li>
-<li>Jacob's (0x9D0FACE4)</li>
+<li>Celle de Roger (0x28988BF5) signe généralement l'archive du code source.</li>
+<li>Celle de Nick (0x165733EA, ou sa sous clé 0x8D29319A)</li>
+<li>Celle d'Andrew (0x31B0974B)</li>
+<li>Celle de Peter (0x94C09C7F, ou sa sous clé 0xAFA44BDD)</li>
+<li>Celle de Matt (0x5FA14861)</li>
+<li>Celle de Jacob (0x9D0FACE4)</li>
 </ul>
 
-<h3>Étape Une :  Importer les clés</h3>
+<h3>Étape Un : Importer les clés</h3>
 <hr />
-<p>Vous pouvez aussi bien importer les clés directement de GnuPG :</p>
+<p>Vous pouvez tout aussi bien importer les clés directement de GnuPG :</p>
 
 <pre>gpg --keyserver subkeys.pgp.net --recv-keys 0x28988BF5</pre>
 
-<p>ou chercher les clés avec </p>
+<p>ou chercher les clés avec</p>
 
 <pre>gpg --keyserver subkeys.pgp.net --search-keys 0x28988BF5</pre>
 
 <p>et lorsque vous en sélectionnez une, elle sera ajoutée à votre trousseau.</p>
 
-<h3>Étape deux :  Vérifier les empreintes</h3>
+<h3>Étape deux : Vérifier les empreintes</h3>
 <hr />
 <p>Vérifier les empreintes pgp en utilisant :</p>
-<pre>gpg --fingerprint (insert keyid here)</pre>
+<pre>gpg --fingerprint (inserez les id de clef ici)</pre>
 Les empreintes pour les clés devraient être :
 
 <pre>
@@ -85,16 +90,16 @@ uid                  Jacob Appelbaum &lt;jacob@appelbaum.net&gt;
 sub   4096g/D5E87583 2008-03-11 [expires: 2010-03-11]
 </pre>
 
-<p>(Bien entendu, si vous voulez être certain que ces clés sont bien les bonnes,
-vous devriez les contrôler à plusieurs endroits ou mieux, les faire signer
-et ce faisant, contruire un chemin de confiance pour celles-ci.)</p>
+<p>(Bien entendu, si vous voulez être certain que ces clés sont bien les
+bonnes, vous devriez les contrôler à plusieurs endroits ou mieux, les faire
+signer et ce faisant, construire un chemin de confiance pour celles-ci.)</p>
 
-<h3>Étape trois :  Vérifier les fichiers téléchargés</h3>
+<h3>Étape trois : Vérifier les fichiers téléchargés</h3>
 <hr />
-<p>Si vous utilisez GnuPG, il vous suffit de mettre le fichier .asc et le téléchargement dans le même
-répertoire et taper "gpg --verify (fichier).asc (fichier)". Il devrait dire
-quelquechose comme "Good signature" ou "BAD signature" en utilisant ce type de
-commande :</p>
+<p>Si vous utilisez GnuPG, il vous suffit de mettre le fichier .asc et le
+téléchargement dans le même répertoire et taper "gpg --verify (fichier).asc
+(fichier)". Il devrait dire quelquechose comme "Good signature" ou "BAD
+signature" en utilisant ce type de commande :</p>
 
 <pre>
 gpg --verify tor-0.1.0.17.tar.gz.asc tor-0.1.0.17.tar.gz
@@ -107,19 +112,23 @@ Primary key fingerprint: B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
 </pre>
 
 <p>
-Notez qu'il y a une mise en garde du fait que vous n'avez pas assigné un index de confiance à cet
-utilisateur. Ceci signifie que votre programme a vérifié la clé qui a produit cette signature.
-Il revient à l'utilisateur de décider si cette clé appartient réellement aux développeurs. La
-meilleur méthode est de les rencontrer en personne et échanger les empreintes gpg. Les clés peuvent
-également être signées. Si vous regardez les clés de Roger ou Nick's, d'autres personnes ont
-essentiellement dit « nous avons vérifié que c'est Roger/Nick ». Donc si vous faites confiance à ces 
-tierces personnes, alors vous avez un degré de confiance pour arma/nick.
+Notez qu'il y a une mise en garde du fait que vous n'avez pas assigné un
+index de confiance à cet utilisateur. Ceci signifie que votre programme a
+vérifié la clé qui a produit cette signature.  Il revient à l'utilisateur de
+décider si cette clé appartient réellement aux développeurs. La meilleur
+méthode est de les rencontrer en personne et d'échanger les empreintes
+gpg. Les clés peuvent également être signées. Si vous regardez les clés de
+Roger ou de Nick, d'autres personnes ont souvent dit « nous avons vérifié
+que c'est Roger/Nick ». Donc si vous faites confiance à ces tierces
+personnes, alors vous avez un degré de confiance pour arma/nick.
 </p>
 
-<p>Tout ceci signifie que vous pouvez ignorer ce message ou assigner un niveau de confiance.</p>
+<p>Tout ceci signifie que vous pouvez ignorer ce message ou assigner un niveau
+de confiance.</p>
 
-<p>Pour votre information, ceci est un exemple d'une <em>MAUVAISE</em> vérification. Il
-signifie que la signature et le contenu du fichier ne correspondent pas :</p>
+<p>Pour votre information, ceci est un exemple d'une <em>MAUVAISE</em>
+vérification. Il signifie que la signature et le contenu du fichier ne
+correspondent pas :</p>
 
 <pre>
 gpg --verify tor-0.1.0.17.tar.gz.asc
@@ -127,13 +136,17 @@ gpg: Signature made Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
 gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
 </pre>
 
-<p>Si vous voyez un message comme celui ci-dessus, alors vous ne devriez pas faire confiance au contenu du fichier.</p>
+<p>Si vous voyez un message comme celui ci-dessus, alors vous ne devriez pas
+faire confiance au contenu du fichier.</p>
 
-<p>Si vous faites tourner Tor sur Debian vous devriez lire les intructions sur comment
-<a
+<p>Si vous faites tourner Tor sur Debian vous devriez lire les intructions sur
+comment <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorOnDebian">importer
 ces clés dans apt</a>.</p>
 
-</div><!-- #main -->
+</div>
 
-#include <foot.wmi>
+
+<!-- #main -->
+<!--PO4ASHARPBEGINinclude <foot.wmi>
+PO4ASHARPEND-->
