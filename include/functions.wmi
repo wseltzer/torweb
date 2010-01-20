@@ -50,12 +50,11 @@ sub translation_get_basedonrevision_langfile($$$) {
 	my ($dir, $lang, $page) = @_;
 	my $translation = getMetadata("$dir/$lang/$page");
 
-	die ("Cannot find 'Based-On-Revision' header in translations's translation metadata of $lang/$page") unless exists $translation->{'Based-On-Revision'};
-
-	my ($rev) = $translation->{'Based-On-Revision'};
-	if ($rev eq '') { $rev = '(unknown)'; };
-
-	return $rev
+	if (exists $translation->{'Based-On-Revision'}) {
+		return $translation->{'Based-On-Revision'};
+	} else {
+		 return '(unknown)';
+	}
 };
 sub translation_get_basedonrevision() {
 	translation_get_basedonrevision_langfile(".", "$(LANG)", $WML_SRC_FILENAME);
