@@ -847,6 +847,25 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+
+        mirror042 => {
+            adminContact => "kovtalex at mail.ru",
+            orgName => "",
+            isoCC => "RU",
+            subRegion => "",
+            region => "RU",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://www.tor.myeveryday.ru/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://www.tor.myeveryday.ru/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 
 );
