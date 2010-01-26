@@ -41,9 +41,7 @@ hidden server's location (IP address).
 Step two: the hidden service assembles a <em>hidden service
 descriptor</em>, containing its public key and a summary of each
 introduction point, and signs this descriptor with its private key.
-It uploads that descriptor to a set of directory servers, again using a
-full Tor circuit to hide the link between the directory server storing
-the descriptor and the hidden server's IP address. The descriptor will be
+It uploads that descriptor to a distributed hash table. The descriptor will be
 found by clients requesting XYZ.onion where XYZ is a 16 character
 name that can be uniquely derived from the service's public key. After
 this step, the hidden service is set up.
@@ -52,7 +50,7 @@ this step, the hidden service is set up.
 <p>
 Although it might seem impractical to use an automatically-generated
 service name, it serves an important goal: Everyone &ndash; including
-the introduction points, the directory servers, and of course the
+the introduction points, the distributed hash table directory, and of course the
 clients &ndash; can verify that they are talking to the right hidden
 service. See also <a href="https://zooko.com/distnames.html">Zooko's
 conjecture</a> that out of Decentralized, Secure, and Human-Meaningful,
@@ -62,7 +60,7 @@ design for hidden service names?
 </p>
 
 <img alt="Tor hidden service step two" src="$(IMGROOT)/THS-2.png" />
-# maybe replace "database" with "directory servers"; further: how incorrect
+# maybe replace "database" with "DHT"; further: how incorrect
 # is it to *not* add DB to the Tor cloud, now that begin dir cells are in
 # use?
 
@@ -70,7 +68,8 @@ design for hidden service names?
 Step three: A client that wants to contact a hidden service needs to
 learn about its
 onion address first. After that, the client can initiate connection
-establishment by downloading the descriptor from the directory servers. If
+establishment by downloading the descriptor from the distributed hash
+table. If
 there is a descriptor for XYZ.onion (the hidden service could also be
 offline or have left long ago, or there could be a typo in the onion
 address), the client now knows the set of introduction points and the
