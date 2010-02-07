@@ -9,12 +9,9 @@
 <div class="main-column">
 
 <:
-	die "Missing manpage" unless -f "$(TORSVNHEAD)/doc/tor.1.in";
-	my $man = `man2html -M '' $(TORSVNHEAD)/doc/tor.1.in`;
-	die "No manpage" unless $man;
-
-	$man =~ s,.*<body>,,is;
-	$man =~ s,</body>.*,,is;
+	die "Missing git clone" unless -d "$(TORGIT)";
+	my $man = `GIT_DIR=$(TORGIT) git show $(DEVTAG):doc/tor.1.txt | asciidoc -d manpage -s -o - -`;
+	die "No manpage because of asciidoc error or file not available from git" unless $man;
 
 	print $man;
 :>

@@ -1,12 +1,15 @@
 # Directions for building the website:
-# 1. check out stable-tor and development-tor and website onto moria.
-# 2. edit the two lines below to point to them.
+# 1. check out stable-tor, make TORSVNSTABLE point to it.
+# 2. Clone the Tor git repository, make TORGIT point to it.
 # 3. (edit include/versions.wmi or others if you like)
-# 4. make
-# 5. ./publish
+# 4. Update STABLETAG and DEVTAG below if there is a new git tag
+# 5. make
+# 6. ./publish
 
 TORSVNSTABLE = ../tor-stable
-TORSVNHEAD = ../tor
+TORGIT = ../tor
+STABLETAG = tor-0.2.1.22
+DEVTAG = tor-0.2.2.8-alpha
 #TORSVNSTABLE = /home/arma/work/onion/git/tor-021
 #TORSVNHEAD = /home/arma/work/onion/git/tor
 
