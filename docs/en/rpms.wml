@@ -1,0 +1,75 @@
+## translation metadata
+# Revision: $Revision: 19802 $
+# Translation-Priority: 3-low
+
+#include "head.wmi" TITLE="Tor: CentOS/Fedora/OpenSUSE Instructions" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<a id="rpms"></a>
+<h2><a class="anchor" href="#rpms">Tor packages for rpm-based
+linux distributions.</a></h2>
+<br />
+
+<p>Do not use the packages in the native repositories.</b> They are
+frequently out of date. That means you'll be missing stability and
+security fixes.
+</p>
+
+<p>
+You'll need to set up our package repository before you can fetch
+Tor.  Assuming yum, in /etc/yum.repos.d/, create a file called
+torproject.repo.  Edit this file with the following information:
+<tt>[torproject]
+name=Tor and Vidalia
+enabled=1
+autorefresh=0
+baseurl=http://deb.torproject.org/torproject.org/rpm/DISTRIBUTION/
+type=rpm-md
+gpgcheck=1
+gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org
+</tt>
+
+where you substitute the word (centos4, centos5, fc10, fc11, fc12,
+opensuse) in place of DISTRIBUTION.
+</p>
+
+<p>
+Now Tor is installed and running. Move on to <a href="<page
+docs/tor-doc-unix>#polipo">step two</a> of the "Tor on Linux/Unix"
+instructions.
+</p>
+
+<p style="font-size: small">
+The DNS name <code>deb.torproject.org</code> is actually a set of independent
+servers in a DNS round robin configuration.  If you for some reason cannot
+access it you might try to use the name of one of its part instead.  Try
+<code>deb-master.torproject.org</code>,
+<code>mirror.netcologne.de</code> or
+<code>tor.mirror.youam.de</code>.
+</p>
+
+<hr />
+
+<hr />
+
+<a id="source"></a>
+<h2><a class="anchor" href="#source">Building from source</a></h2>
+<br />
+
+<p>
+If you'd like to build from source, please follow the <a
+href="<gitblob>doc/tor-rpm-creation.txt">rpm creation instructions</a>.
+</p>
+
+<hr />
+
+<p>If you have suggestions for improving this document, please <a
+href="<page contact>">send them to us</a>. Thanks!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
