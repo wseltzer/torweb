@@ -127,28 +127,33 @@ Effort Level: <i>High</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Steven, Andrew, Jacob</i>
+Likely Mentors: <i>Steven, Erinn, Jacob, Andrew</i>
 <br />
-The Tor Browser Bundle incorporates Tor, Firefox, Polipo, and the Vidalia user
-interface (and optionally the <a href="http://pidgin.im/">Pidgin</a> Instant Messaging client). Components are pre-configured to operate in a secure way, and it has very few dependencies on the
-installed operating system. It has therefore become one of the most
-easy to use, and popular, ways to use Tor on Windows.
+The Tor Browser Bundle incorporates Tor, Firefox, Polipo, and the Vidalia
+user interface (and optionally the <a href="http://pidgin.im/">Pidgin</a>
+Instant Messaging client). Components are pre-configured to operate in a
+secure way, and it has very few dependencies on the installed operating
+system. It has therefore become one of the most easy to use, and popular,
+ways to use Tor on Windows.
 <br />
 However, there is currently no working package for Linux and Mac OS
 X, so this project would be to implement Tor Browser Bundle for these
 platforms. This will involve modifications to Vidalia (C++), possibly
 Firefox (C) then creating and testing the launcher on a range of
-operating system versions and configurations to verify portability.  Some work on this was completed as part of the Google Summer of Code 2009.  
+operating system versions and configurations to verify portability.
+Some work on this was completed as part of the Google Summer of Code
+2009. Another part of this project is to identify all of the traces left
+behind by using a Tor Browser Bundle on Mac OS X or Linux.  Developing
+ways to stop, counter, or remove these traces is a final step.
 <br />
 Students should be familiar with application development on one or
 preferably both of Linux and Mac OS X, and be comfortable with C/C++
 and shell scripting.
 <br />
 Part of this project could be usability testing of Tor Browser Bundle,
-ideally amongst our target demographic.
-That would help a lot in knowing what needs to be done in terms of bug
-fixes or new features. We get this informally at the moment, but a more
-structured process would be better.
+ideally amongst our target demographic.  That would help a lot in knowing
+what needs to be done in terms of bug fixes or new features. We get this
+informally at the moment, but a more structured process would be better.
 </li>
 
 <li>
@@ -201,12 +206,12 @@ single address/port combination at a time.  There's
 <a href="<gitblob>doc/spec/proposals/118-multiple-orports.txt">a
 proposal to address this limitation</a> and allow clients to connect
 to any given Tor on multiple addresses and ports, but it needs more
-work.  Another anti-censorship project (far more difficult) is to try
-to make Tor more scanning-resistant.  Right now, an adversary can identify
-<a href="<gitblob>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
-just by trying to connect to them, following the Tor protocol, and
-seeing if they respond.  To solve this, bridges could
-<a href="<gitblob>doc/design-paper/blocking.html#tth_sEc9.3">act like
+work.  Another anti-censorship project is to try to make Tor
+more scanning-resistant.  Right now, an adversary can identify <a
+href="<gitblob>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
+just by trying to connect to them, following the Tor protocol,
+and seeing if they respond.  To solve this, bridges could <a
+href="<gitblob>doc/design-paper/blocking.html#tth_sEc9.3">act like
 webservers</a> (HTTP or HTTPS) when contacted by port-scanning tools,
 and not act like bridges until the user provides a bridge-specific key.
 <br />
@@ -256,21 +261,22 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Martin, Chris</i>
+Likely Mentors: <i>Chris</i>
 <br />
 Help port <a
 href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> to
 Windows. Example topics to tackle include:
-1) the ability to asynchronously
-query name servers, find the system nameservers, and manage netbios
-and dns queries.
-2) manage events and buffers
-natively (i.e. in Unix-like OSes, Polipo defaults to 25% of ram, in
-Windows it's whatever the config specifies). 3) some sort of GUI config
-and reporting tool, bonus if it has a systray icon with right clickable
-menu options. Double bonus if it's cross-platform compatible.
-4) allow the software to use the Windows Registry and handle proper
-Windows directory locations, such as "C:\Program Files\Polipo"
+<ol><li> the ability to asynchronously query name servers, find the
+system nameservers, and manage netbios and dns queries.</li>
+<li> manage events and buffers natively (i.e. in Unix-like OSes,
+Polipo defaults to 25% of ram, in Windows it's whatever the config
+specifies).</li>
+<li> some sort of GUI config and reporting tool, bonus if it has a
+systray icon with right clickable menu options. Double bonus if it's
+cross-platform compatible.</li>
+<li> allow the software to use the Windows Registry and handle proper
+Windows directory locations, such as "C:\Program Files\Polipo"</li>
+</ol>
 </li>
 
 <li>
@@ -354,9 +360,10 @@ Skill Level: <i>Medium to High</i>
 <br />
 Likely Mentors: <i>Karsten, Nick</i>
 <br />
-We're currently working on Tor clients for Java, Android, and Maemo
+Others are currently working on Tor clients for Java, Android, and Maemo
 environments.  The first step is to get a handle on the current state of
-the project in which you are interested in helping; Tor for Java,
+the project in which you are interested in helping; <a
+href="http://github.com/JTor">Tor for Java</a>,
 Android/Orbot, or Tor for Maemo. Check out the repository and
 familiarlize yourself with the source code.  Further, support for requesting or even
 providing Tor hidden services would be neat, but not required.
@@ -417,17 +424,20 @@ Likely Mentors: <i>Martin</i>
 Additional capabilities are needed for assisted updates of all the Tor
 related software for Windows and other operating systems. Some of the
 features to consider include:
-1) Integration of the <a
+<ol>
+<li> Integration of the <a
 href="http://chandlerproject.org/Projects/MeTooCrypto">MeTooCrypto
 Python library</a>
-for authenticated HTTPS downloads. 2) Adding a level of indirection
+for authenticated HTTPS downloads.</li>
+<li> Adding a level of indirection
 between the timestamp signatures and the package files included in an
-update. See the "Thandy attacks / suggestions" thread on or-dev.
-3) Support locale specific installation and configuration of assisted
+update. See the "Thandy attacks / suggestions" thread on or-dev.</li>
+<li> Support locale specific installation and configuration of assisted
 updates based on preference, host, or user account language settings.
 Familiarity with Windows codepages, unicode, and other character sets
 is helpful in addition to general win32 and posix API experience and
-Python proficiency.
+Python proficiency.</li>
+</ol>
 </li>
 
 <li>
@@ -760,8 +770,9 @@ generated in multiple languages whenever we build the website.</li>
 
 <li>How can we make the various LiveCD/USB systems easier
 to maintain, improve, and document?  Some examples are <a
+href="http://amnesia.boum.org/">amnesia LiveCD/USB</a> and the <a
 href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
-and the  <a href="http://amnesia.boum.org">amnesia LiveCD/USB</a>.</li>
+</li>
 </ol>
 
 <a id="Research"></a>
@@ -921,4 +932,3 @@ of these!
   </div><!-- #main -->
 
 #include <foot.wmi>
-
