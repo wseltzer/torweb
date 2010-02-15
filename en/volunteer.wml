@@ -574,16 +574,6 @@ and <a href="https://svn.torproject.org/svn/weather/trunk/TODO">TODO</a>.
 </li>
 
 <li>
-<b>Bring up new ideas!</b>
-<br />
-Don't like any of these? Look at the <a
-href="<gitblob>doc/roadmaps/2008-12-19-roadmap-full.pdf">Tor development
-roadmap</a> for more ideas.
-Some of the <a href="<gittree>doc/spec/proposals">current proposals</a>
-might also be short on developers.
-</li>
-
-<li>
 <b>Better Debian/Ubuntu Packaging for Tor+Vidalia</b>
 <br />
 Vidalia currently doesn't play nicely on Debian and Ubuntu with the
@@ -705,6 +695,51 @@ That would help a lot in knowing what needs to be done in terms of bug
 fixes or new features. We get this informally at the moment, but a more
 structured process would be better.
 </li>
+
+<li>
+<b>An authenticating IRC proxy</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium to High</i>
+<br />
+Skill Level: <i>Medium to High</i>
+<br />
+Likely Mentors: <i>Sebastian, Weasel, Roger</i>
+<br />
+The world needs an authenticating irc proxy. As we're periodically
+reminded from the Penny Arcade web comic, "Internet user + anonymity =
+jerk". With respect to websites we're actually doing ok, since websites
+can make their users log in and use other application-level authentication
+approaches. But IRC servers are much worse off, because most IRC server
+code is poorly written: hard to maintain, and harder to modify. Many
+IRC networks now block connections from Tor, and we're basically down to
+two holdouts (OFTC and Freenode). This state of affairs means that a lot
+of people around the world are thinking "I told you so" about anonymity
+online, when in fact the problem is simply lack of technology to make the
+problem manageable. We need some way to let the IRC networks distinguish
+which users have developed a reputation as not being jerks, so they can
+treat the two groups separately. There are some really cool research
+designs like <a href="http://www.cs.dartmouth.edu/~nymble/">Nymble</a>,
+which aim to let websites blacklist users without needing to learn who
+they are.  But Nymble is designed around web interactions. We need to
+build the glue around the IRC protocol that would let us plug in a project
+like Nymble (or a simpler one to start, as a proof-of-concept). One way
+to do that would be to build an IRC proxy that knows how to hear from
+IRC clients, knows how to talk to IRC servers, and has an additional
+layer that requires the users to authenticate.
+</li>
+
+<li>
+<b>Bring up new ideas!</b>
+<br />
+Don't like any of these? Look at the <a
+href="<gitblob>doc/roadmaps/2008-12-19-roadmap-full.pdf">Tor development
+roadmap</a> for more ideas.
+Some of the <a href="<gittree>doc/spec/proposals">current proposals</a>
+might also be short on developers.
+</li>
+
 </ol>
 
 <a id="OtherCoding"></a>
