@@ -19,6 +19,7 @@
   <ifeq "$(STYLESHEET)" "" "<link rel="stylesheet" type="text/css" href="$(DOCROOT)/stylesheet-ltr.css" />">
   <link rel="shortcut icon" type="image/x-icon" href="$(DOCROOT)/favicon.ico" />
   <ifneq "$(REDIRECT)" "" "<meta http-equiv="refresh" content="0;url=$(DOCROOT)/$(REDIRECT)" />">
+  <ifneq "$(REDIRECT_GLOBAL)" "" "<meta http-equiv="refresh" content="0;url=$(REDIRECT_GLOBAL)" />">
   <ifeq "$(ANNOUNCE_RSS)" "yes" "<link rel="alternate" title="Tor Project OR-announce" href="http://rss.gmane.org/gmane.network.onion-routing.announce" type="application/rss+xml" />">
 </head>
 
@@ -79,3 +80,5 @@
 </table>
 
 <ifneq "$(REDIRECT)" "" "Redirecting to <a href="$(DOCROOT)/$(REDIRECT)">$(DOCROOT)/$(REDIRECT)</a>.">
+<ifneq "$(REDIRECT_GLOBAL)" "" "Redirecting to <a href="$(REDIRECT_GLOBAL)">$(REDIRECT_GLOBAL)</a>.">
+
