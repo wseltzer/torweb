@@ -1,113 +1,14 @@
+
+
+
+
+
+
+
+
 ## translation metadata
-# Based-On-Revision: 20427
-# Translation-Priority: 4-optional
-# Last-Translator: bogdandr_at_op . pl
-
-#include "head.wmi" TITLE="Projekt Mierzenia: Pomiary sieci Tora" CHARSET="UTF-8"
-
-<div class="main-column">
-
-<!-- PUT CONTENT AFTER THIS TAG -->
-
-<h2>Projekt Mierzenia: Pomiary sieci Tora</h2>
-<hr />
-
-<p>
-Projekt Mierzenia ma na celu pomiar różnych aspektów sieci Tora, łącznie z
-udostępnionymi zasobami i wykorzystaniem sieci. Te informacje są ważne na przykład,
-by zdecydować, które części sieci wymagają lepszej obsługi, by lepiej sprostać
-wymaganiom użytkowników.
-</p>
-
-<p>
-Są co najmniej trzy aspekty sieci Tora, które zostaną uwzględnione w tym projekcie:
-</p>
-
-<ul>
-<li><b>Przekaźniki:</b> Istnieją już statystyki opisujące dane, które przekaźniki
-zgłaszają o sobie i które są potwierdzane w częściach przez serwery katalogowe.
-Projekt <a href="http://torstatus.kgprog.com/">TorStatus</a> analizuje katalogi
-publikowane co godzinę, zawierające listy wszystkich działających przekaźników i
-śledzi czasy ich działania i zgłaszane przepustowości łącza. Jednak ciągle brakuje
-zbiorczego przeglądu rozwoju przekaźników w dłuższym przedziale czasu. Ponadto,
-wszystkie informacje o pojemnościach łączy zgłaszanych przez przekaźniki nie są
-do końca wiarygodne. Nie ma wyczerpującego pomiaru wydajności przekaźników,
-który by pozwolił na sprawdzenie łącza i stabilności przekaźników.</li>
-<li><b>Mostki:</b> Specjalny typ przekaźników działa jako mostki. Mostki też
-przekazują ruch, ale nie są podawane w publicznym katalogu. Celem mostków jest
-umożliwienie ocenzurowanym klientom połączenie z siecią Tora bez łatwej możliwości
-zablokowania tego przez cenzora. Liczba i pojemność mostków nie jest więc znana
-publicznie i nie została jeszcze oceniona.</li>
-<li><b>Klienci:</b> Mało wiadomo o wykorzystaniu sieci Tora. W szczególności,
-liczba i położenie klientów są w większości nieznane. Grube oszacowanie jest takie,
-że jest kilkaset tysięcy klientów w sieci; liczba ta jest bardzo trudna do zweryfikowania.
-Nie ma bieżących badań co do liczby użytkowników Tora, które pomogłyby w zbudowaniu
-lepszego obrazu wykorzystania sieci Tora. Jasne jest, że wszystkie badania klientów
-muszą być przeprowadzone ze szczególną uwagą i w bardzo zbiorczej formie, by chronić
-anonimowość użytkowników.</li>
-</ul>
-
-<p>
-Planowany czas realizacji Projektu Mierzenia to trzy lata od września 2008 do
-sierpnia 2011 (przeczytaj sekcję 5.7 <a
-href="https://svn.torproject.org/svn/tor/trunk/doc/roadmaps/2008-12-19-roadmap-full.pdf"
->trzyletniego planu rozwojowego</a>, by poznać szczegóły). Główne kroki są planowane
-co sześć miesięcy w tym okresie. Następujące sekcje (na razie tylko jedna) pokazują
-postępy poczynione w tych krokach.
-</p>
-
-<h3>Luty 2009</h3>
-
-<p>
-Pierwszy krok milowy Projektu Mierzenia ma na celu zbadanie publicznych danych o sieci Tora,
-jak statusy sieci i deskryptory routerów.
-Te badania pomogą zdecydować, jakie dane będą
-potrzebne w przyszłości, by mierzyć wkłady do sieci i wykorzystanie sieci Tora.
-Następujące wyniki są już dostępne. <a href="<page contact>">Opinie</a> bardzo mile widziane!
-</p>
-
-<ul>
-<li>Badanie przekaźników z publicznych danych katalogowych (<a
-href="https://git.torproject.org/checkout/metrics/master/report/dirarch/dirarch-2009-06-22.pdf">PDF</a>,
-558K) z 22 czerwca 2009.</li>
-<li>Analiza wykorzystania mostków w Torze (<a
-href="https://git.torproject.org/checkout/metrics/master/report/bridges/bridges-2009-06-22.pdf">PDF</a>,
-76K) z 22 czerwca 2009.</li>
-<li>Badanie żądań klientów do serwerów katalogowych w celu poznania całkowitych liczb
-i krajów użytkowników (<a
-href="https://git.torproject.org/checkout/metrics/master/report/dirreq/directory-requests-2009-06-25.pdf">PDF</a>,
-207K, z 25 czerwca 2009).</li>
-<li>Wszystkie skrypty i kody źródłowe używane w tych badaniach (niestety, nie dane)
-są dostępne w publicznym repozytorium Git, które można sklonować następującą komendą:<br />
-<tt>git clone git://git.torproject.org/git/metrics/</tt></li>
-</ul>
-
-<h3>Sierpień 2009</h3>
-
-<p>
-Drugi kamień milowy skupia się na mierzeniu sieci i wydajności.
-</p>
-
-<ul>
-<li>Możliwe problemy z przydzielaniem flag Stabilny i Strażnik przez serwery katalogowe (<a
-href="https://git.torproject.org/checkout/metrics/master/report/dirarch/relayflags-2009-04-01.pdf">PDF</a>,
-2M) z 1 kwietnia 2009.</li>
-<li>Symulacja liczby flag Szybki, Stabilny i Strażnik, ze zmienionymi wymaganiami (<a
-href="https://git.torproject.org/checkout/metrics/master/report/dirarch/flagrequirements-2009-04-11.pdf">PDF</a>,
-229K) z 11 kwietnia 2009.</li>
-<li>Zmniejszanie rozmiaru okna obwodu w Torze (<a
-href="https://git.torproject.org/checkout/metrics/master/report/circwindow/circwindow-2009-08-19.pdf">PDF</a>,
-110K z 19 sierpnia 2009).</li>
-<li>Wydajność żądań przez sieć Tora (<a
-href="https://git.torproject.org/checkout/metrics/master/report/performance/torperf-2009-08-24.pdf">PDF</a>,
-2.8M z 24 sierpnia 2009).</li>
-<li>Analiza kolejek obwodów w Torze (<a
-href="https://git.torproject.org/checkout/metrics/master/report/buffer/bufferstats-2009-08-25.pdf">PDF</a>,
-196K z 25 sierpnia 2009).</li>
-</ul>
-
-<br />
-
-</div><!-- #main -->
-
-#include <foot.wmi>
+# Revision: $Revision$
+# Status: obsolete
+#include "head.wmi" TITLE="Redirecting" REDIRECT_GLOBAL="http://metrics.torproject.org"
+<!--PO4ASHARPBEGINinclude <foot.wmi>
+PO4ASHARPEND-->

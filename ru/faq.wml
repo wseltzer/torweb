@@ -674,7 +674,8 @@ Windows?</a></h3>
 
 <p>
 Try following the steps at <a
-href="<gitblob>doc/tor-win32-mingw-creation.txt>"<gitblob>doc/tor-win32-mingw-creation.txt</a>.
+href="<gitblob>doc/tor-win32-mingw-creation.txt">
+tor-win32-mingw-creation.txt</a>.
 </p>
 
 <p>
@@ -879,13 +880,12 @@ href="https://www.torproject.org/documentation.html.en#NeatLinks">страниц
 </p>
 
 <ul>
-<li>Клиентская программа Tor имеет встроенную поддержку для <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">ограничения
-скорости</a>. Более того, если вы имеете скоростное подключение, но хотите
-ограничить число байтов пропускаемых через ваш ретранслятор в день (неделю
-или месяц), обратитесь к <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">функции
-гибернации</a>.
+<li>Tor has built-in support for <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">
+rate limiting</a>. Further, if you have a fast link but want to limit the
+number of bytes per day (or week or month) that you donate, check out the <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
+feature</a>.
 </li>
 <li>Каждый ретранслятор Tor имеет <a href="#ExitPolicies">правила вывода</a>,
 которые устанавливают разрешенные и запрещенные внешние соединения этого
@@ -902,13 +902,11 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">ф�
 таких случаях при настройке нужно просто оставлять Address config пустым, и
 Tor попытается определить адрес автоматически.
 </li>
-<li>Если ваш ретранслятор работает через протокол NAT (протокол трансляции
-сетевых адресов) и публичный IP не известен (например, если IP адрес -
-192.168.x.y), вам понадобится установить переадресацию портов. Переадресация
-соединений TCP имеет системные особенности, но <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewal
-ledClients">этот список часто задаваемых вопросов (FAQ)</a> предлагает
-несколько примеров настройки этой функции.
+<li>If your relay is behind a NAT and it doesn't know its public IP (e.g. it has
+an IP of 192.168.x.y), you'll need to set up port forwarding. Forwarding TCP
+connections is system dependent but <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">this
+FAQ entry</a> offers some examples on how to do this.
 </li>
 <li>Ваш ретранслятор будет пассивно оценивать, и передавать информацию о своем
 текущем потенциале полосы пропускания, таким образом, высокоскоростные
@@ -927,19 +925,17 @@ ledClients">этот список часто задаваемых вопросо
 </p>
 
 <p>
-Каждый ретранслятор Tor имеет правила вывода, которые устанавливают
-разрешенные или запрещенные подключения вне сети для этого конкретного
-ретранслятора. Правила вывода отдельных узлов представлены в директории Tor,
-таким образом, клиент автоматически будет избегать подключения к тем узлам,
-которые не разрешают подключение к интересующим его ресурсам. Так каждый
-ретранслятор может решить, к каким сервисам, хостам и сетям разрешить
-подключение, основываясь на их вредоносном потенциале и своих собственных
-условиях. Прочитайте разделы часто задаваемых вопросов (FAQ), касающиеся <a
-href="<page faq-abuse>#TypicalAbuses">условий использования стандартных
-правил вывода</a>, а затем ознакомьтесь с советами Майка Перри (Mike Perry)
-<a
-href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">о
-том, как минимизировать угрозы предоставления выводного узла</a>.
+Each Tor relay has an exit policy that specifies what sort of outbound
+connections are allowed or refused from that relay. The exit policies are
+propagated to Tor clients via the directory, so clients will automatically
+avoid picking exit relays that would refuse to exit to their intended
+destination. This way each relay can decide the services, hosts, and
+networks he wants to allow connections to, based on abuse potential and his
+own situation. Read the FAQ entry on <a href="<page
+faq-abuse>#TypicalAbuses">issues you might encounter</a> if you use the
+default exit policy, and then read Mike Perry's <a
+href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">tips
+for running an exit node with minimal harassment</a>.
 </p>
 
 <p>

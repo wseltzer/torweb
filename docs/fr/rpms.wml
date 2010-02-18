@@ -1,0 +1,79 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision$
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: CentOS/Fedora/OpenSUSE Instructions" CHARSET="UTF-8"
+<div class="center">
+
+<div class="main-column">
+
+<a id="rpms"></a>
+<h2><a class="anchor" href="#rpms">Paquets Tor pour les distributions basées sur
+RPM.</a></h2>
+<br />
+
+<p>N'utilisez pas les paquets des dépôts officiels. Ils sont très souvent
+périmés et vous ne bénéficieriez pas de corrections de sécurité et de
+stabilité.
+</p>
+
+<p>
+You'll need to set up our package repository before you can fetch Tor.
+Assuming yum, in /etc/yum.repos.d/, create a file called torproject.repo.
+Edit this file with the following information:
+<pre>[torproject]
+name=Tor and Vidalia
+enabled=1
+autorefresh=0
+baseurl=http://deb.torproject.org/torproject.org/rpm/DISTRIBUTION/
+type=rpm-md
+gpgcheck=1
+gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org
+</pre>
+
+where you substitute the word (centos4, centos5, fc10, fc11, fc12, opensuse)
+in place of DISTRIBUTION.
+</p>
+
+<p>
+Maintenant, Tor est installé et fonctionne. Allez à <a href="<page
+docs/tor-doc-unix>#polipo">la deuxième étape</a> des instructions "Tor sur
+Linux/Unix".
+</p>
+
+<p style="font-size: small">
+Le nom DNS <code>deb.torproject.org</code> est en fait un jeu de serveurs
+indépendant dans une configuration DNS round robin.  Si pour une raison ou
+une autre, vous ne pouvez pas y accéder, vous pouvez utiliser le nom d'un
+des serveurs à la place.  Essayez avec
+<code>deb-master.torproject.org</code>, <code>mirror.netcologne.de</code> ou
+<code>tor.mirror.youam.de</code>.
+</p>
+
+<hr /> <hr /> <a id="source"></a>
+<h2><a class="anchor" href="#source">Compiler à partir des sources</a></h2>
+<br />
+
+<p>
+Si vous désirez compiler à partir des sources, merci de suivre <a
+href="<gitblob>doc/tor-rpm-creation.txt">les instructions de création des
+RPM</a>.
+</p>
+
+<hr />
+
+<p>Si vous avez des suggestions pour améliorer le contenu de ce document, merci
+<a href="<page contact>">de nous les faire parvenir</a>. Merci !</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+
+<!--PO4ASHARPBEGINinclude <foot.wmi>
+PO4ASHARPEND-->

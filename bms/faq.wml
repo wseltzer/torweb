@@ -682,7 +682,8 @@ PGP signature မ်ား ရွိၾကသည့္အတြက္ သင္ 
 
 <p>
 Try following the steps at <a
-href="<gitblob>doc/tor-win32-mingw-creation.txt>"<gitblob>doc/tor-win32-mingw-creation.txt</a>.
+href="<gitblob>doc/tor-win32-mingw-creation.txt">
+tor-win32-mingw-creation.txt</a>.
 </p>
 
 <p>
@@ -894,13 +895,12 @@ Tor ၏ SOCKS ၾကားခံစနစ္ကုိ တုိက္ရုိ�
 </p>
 
 <ul>
-<li>Tor တြင္ <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">ႏႈန္းကန္႕သတ္ျခင္း</a>
-ေထာက္ကူမႈ ပါဝင္ျပီး ျဖစ္ပါသည္။ ထို႕ထက္ပို၍ သင့္တြင္ ျမန္ဆန္ေသာ
-ခ်ိတ္ဆက္မႈရွိေသာ္လည္း တစ္ရက္တြင္ Bytes အေရအတြက္ကို ကန္႕သတ္လိုလွ်င္
-(သို႕မဟုတ္ တစ္ပတ္လွ်င္ သို႕မဟုတ္ တစ္လလွ်င္) <a
+<li>Tor has built-in support for <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">
+rate limiting</a>. Further, if you have a fast link but want to limit the
+number of bytes per day (or week or month) that you donate, check out the <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
-လကၡဏာမ်ား</a>ကို ၾကည့္ရႈပါ။
+feature</a>.
 </li>
 <li>Tor ထပ္ဆင့္လႊင့္သူတစ္ခုစီတုိင္းတြင္ ၎ ထပ္ဆင့္လႊင့္သူမွ မည္သည့္ အျပင္ထြက္
 ဆက္သြယ္မႈအမ်ိဳးအစားမ်ားကို ခြင့္ျပဳ သို႕မဟုတ္ ျငင္းပယ္ေၾကာင္း
@@ -920,14 +920,11 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hib
 ရိုးရွင္းစြာ ကြက္လပ္ထားခဲ့ရန္ ျဖစ္ပါသည္။ Tor မွ ခန္႕မွန္းရန္
 ၾကိဳးစားပါလိမ့္မည္။
 </li>
-<li>သင့္ ထပ္ဆင့္လႊင့္မႈသည္ NAT(ကြန္ယက္လိပ္စာေျပာင္းလဲဘာသာျပန္ေပးသူ) ၏
-ေနာက္ကြယ္တြင္ ရွိျပီး သူ၏ အမ်ားသံုး အုိင္ပီ (ဥပမာ - သူ႕တြင္ အိုင္ပီ
-192.168.x.y မွ တစ္ခုရွိသည္) ကုိ မသိခဲ့လွ်င္ သင္ port
-ေနာက္တစ္ဆင့္ပို႕လႊတ္မႈသတ္မွတ္ရန္   လိုအပ္ပါသည္။ TCP ဆက္သြယ္မႈေနာက္တစ္ဆင့္
-ပို႕လႊတ္ျခင္းသည္ စနစ္ေပၚတြင္ မူတည္ပါသည္။ သို႕ေသာ္ <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewal
-ledClients">ဤ မၾကာခဏေမးေလ့ရွိေသာ ေမးခြန္းမ်ား အဝင္</a> မွ
-မည္သို႕ျပဳလုပ္ရမည္ဆိုေသာ ဥပမာအခ်ိဳ႕ ျပသႏိုင္ပါလိမ့္မည္။
+<li>If your relay is behind a NAT and it doesn't know its public IP (e.g. it has
+an IP of 192.168.x.y), you'll need to set up port forwarding. Forwarding TCP
+connections is system dependent but <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">this
+FAQ entry</a> offers some examples on how to do this.
 </li>
 <li>သင့္ထပ္ဆင့္လႊင့္မႈသည္ ၎၏ မၾကာေသးမီက လိုင္းအက်ယ္ပမာဏကုိ မတုန္လႈပ္ေသာ
 ခန္႕မွန္းမႈႏွင့္ ေၾကာ္ျငာျခင္းမ်ား ျပဳလုပ္ပါလိမ့္မည္။ ထုိ႕ေၾကာင့္
@@ -947,20 +944,17 @@ ledClients">ဤ မၾကာခဏေမးေလ့ရွိေသာ ေမး
 </p>
 
 <p>
-Tor လက္ဆင့္ကမ္းသူတုိင္းတြင္ ၎ ထပ္ဆင့္လႊင့္သူမွ မည္သည့္ အျပင္ထြက္
-ဆက္သြယ္မႈအမ်ိဳးအစားမ်ားကုိ ခြင့္ျပဳသည္ သို႕မဟုတ္ ျငင္းပယ္သည္ဟူေသာ
-မူဝါဒတို႕ကုိ သတ္မွတ္ေပးေသာ မူဝါဒမ်ားရွိၾကသည္။ အထြက္မူဝါဒသည္
-လမ္းညႊန္မွတစ္ဆင့္ Tor client မ်ားကို ျဖန္႕ခ်ိပါသည္။ ထို႕ေၾကာင့္ client
-မ်ားသည္ ၎တုိ႕ရည္ရြယ္သည့္ ဦးတည္ရာသို႕ ထြက္ခြာရန္ လက္ဆင့္ကမ္းမည့္သူကို
-အလိုအေလ်ာက္ ျငင္းပယ္ပါလိမ့္မည္။ ဤ နည္းအားျဖင့္ လက္ဆင့္ကမ္းသူတုိင္းသည္
-ဝန္ေဆာင္မႈမ်ား၊ လက္ခံမည့္သူမ်ားႏွင့္ ဆက္သြယ္ရန္ ခြင့္ျပဳလိုေသာ
-ကြန္ယက္မ်ားကုိ အလဲြသံုးမႈ ျဖစ္ႏုိင္ေျခမ်ားႏွင့္ သူ၏ ကုိယ္ပိုင္အေျခအေနအရ
-ဆံုးျဖတ္ႏုိင္ပါသည္။ <a href="<page
-faq-abuse>#TypicalAbuses">ပံုမွန္အထြက္မူဝါဒကုိ သင္အသံုးျပဳလွ်င္
-ၾကံဳေတြ႕ႏိုင္ေသာ အခ်က္မ်ား</a>ကို မၾကာခဏေမးေလ့ရွိေသာ ေမးခြန္းမ်ား အဝင္တြင္
-ဖတ္ရႈပါ။ ျပီးလွ်င္ Mike Perry ၏ <a
-href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">အေႏွာင့္အယွက္အနည္းဆံုးျဖင့္
-အထြက္ ဆံုမွတ္ကို အလုပ္လုပ္ႏုိင္ရန္ အၾကံျပဳခ်က္မ်ား</a>ကို ဖတ္ရႈပါ။
+Each Tor relay has an exit policy that specifies what sort of outbound
+connections are allowed or refused from that relay. The exit policies are
+propagated to Tor clients via the directory, so clients will automatically
+avoid picking exit relays that would refuse to exit to their intended
+destination. This way each relay can decide the services, hosts, and
+networks he wants to allow connections to, based on abuse potential and his
+own situation. Read the FAQ entry on <a href="<page
+faq-abuse>#TypicalAbuses">issues you might encounter</a> if you use the
+default exit policy, and then read Mike Perry's <a
+href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">tips
+for running an exit node with minimal harassment</a>.
 </p>
 
 <p>
