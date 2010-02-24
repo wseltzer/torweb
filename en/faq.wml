@@ -904,44 +904,42 @@ a little bit of bandwidth, then flip a coin. Thanks for volunteering!
 <h3><a class="anchor" href="#RelayMemory">Why is my Tor relay using so
 much memory?</a></h3>
 
-<p>There are three reasons for this.
+<p>If your Tor relay is using more memory than you'd like, here are some
+tips for reducing its footprint:
 </p>
 
-<p>The first is that Tor uses threads, so many of the measurements (such
-as the output of top or ps) are inaccurate: they add up all the library
-memory used by each thread, so the total "virtual" memory size will be
-much larger than the actual amount of ram Tor is using. So this isn't
-actually a problem &mdash; looking at the "resident" memory size instead should
-be much more accurate (unless you're swapping a lot). (Note that on <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">OpenBSD,
-NetBSD, and old FreeBSD</a>, Tor uses a separate process for each thread,
-since threading is broken on these platforms, so in these cases it
-actually <i>is</i> using this much memory!)
-</p>
+<ol>
+<li>If you're on Linux, you may be encountering memory fragmentation
+bugs in glibc's malloc implementation. That is, when Tor releases memory
+back to the system, the pieces of memory are fragmented so they're hard
+to reuse. The Tor tarball ships with OpenBSD's malloc implementation,
+which doesn't have as many fragmentation bugs (but the tradeoff is higher
+CPU load). You can tell Tor to use this malloc implementation instead:
+<tt>./configure --enable-openbsd-malloc</tt></li>
 
-<p>The second reason is that Tor relays really do use quite a bit of
-memory. Each connection that you hold open has a pair of memory buffers
-that it uses for reading and writing from the network, and when many
-connections are active at once, these buffers might grow quite large. We
-used to have them shrink again immediately once they weren't full, but we
-found that was using too much CPU &mdash; so now they stick around for a short
-amount of time in case we need to use them again soon after. It is not
-unusual for a fast exit relay to use several hundred megabytes of memory
-(i.e.: you need about 768 MB RAM for a 10 MBit connected dedicated exit
-node on Linux with Tor 0.1.2.14).
-</p>
+<li>If you're running a fast relay, meaning you have many TLS connections
+open, you are probably losing a lot of memory to OpenSSL's internal
+buffers (38KB+ per socket). We've patched OpenSSL to release unused buffer
+memory more aggressively. If you update to OpenSSL 1.0.0-beta5, Tor's
+build process will automatically recognize and use this feature.</li>
 
-<p>The third reason is that we may have some bugs somewhere. They fall
-into the categories of "things we keep around in memory that are big
-and we should probably get rid of", and "actual memory leaks". We're
-working on these, but we'd love some help. We believe the 0.1.1.x stable
-release was pretty good about this, but 0.1.2.x and 0.2.0.x are so far
-quite bad. Please help!
-</p>
+<li>If you're running on Solaris, OpenBSD, NetBSD, or
+old FreeBSD, Tor is probably forking separate processes
+rather than using threads. Consider switching to a <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">better
+operating system</a>.</li>
 
-<p>Many linux users have found that in the 0.2.0.x series, <tt>configure
---enable-openbsd-malloc</tt> fixes many of the linux malloc fragmentation
-bugs.
+<li>If you still can't handle the memory load, consider reducing the
+amount of bandwidth your relay advertises. Advertising less bandwidth
+means you will attract fewer users, so your relay shouldn't grow
+as large. See the <tt>MaxAdvertisedBandwidth</tt> option in the man
+page.</li>
+
+</ol>
+
+<p>
+All of this said, fast Tor relays do use a lot of ram. It is not unusual
+for a fast exit relay to use 500-1000 MB of memory.
 </p>
 
 <hr />
