@@ -61,6 +61,7 @@ Tor?</a></li>
 с различного рода злоупотреблениями.</a></li>
 <li><a href="#RelayOrBridge">Что лучше установить обычный ретранслятор или
 ретранслятор типа мост?</a></li>
+<li><a href="#RelayMemory">Why is my Tor relay using so much memory?</a></li>
 <li><a href="#WhyNotNamed">Почему моему ретранслятору не присваивается имя?</a></li>
 </ul>
 
@@ -839,22 +840,21 @@ href="http://theory.kaos.to/projects.html">Kaos.Theory</a>.</li>
     </dd>
 </dl>
 <p>
-<em>Мы рекомендуем вам не использовать эти функции </em> – они были задуманы
-для тестирования и могут исчезнуть в будущих версиях. Вы получаете лучший
-уровень безопасности, когда оставляете выбор маршрутов сервису Tor; ручной
-выбор выводных / вводных узлов может навредить вашей анонимности по
-непонятной нам причине.
+<em>We recommend you do not use these</em> &mdash; they are intended for
+testing and may disappear in future versions.  You get the best security
+that Tor can provide when you leave the route selection to Tor; overriding
+the entry / exit nodes can mess up your anonymity in ways we don't
+understand.
 </p>
 <p>
-Опции конфигурации входных и выводных узлов (<tt>EntryNodes</tt> и
-<tt>ExitNodes</tt>) воспринимаются как запросы. Это означает, что если узлы
-недоступны или работают медленно, система Tor будет их избегать. Вы можете
-сделать эту опцию обязательной, установив значение 1 в поле
-<tt>StrictExitNodes</tt> или <tt>StrictEntryNodes</tt>. Но если вы сделаете
-так, ваши соединения Tor прекратят работу, если все из перечисленных вами
-узлов станут недоступными. Просмотрите <a
-href="https://www.torproject.org/documentation.html.en#NeatLinks">страницу
-статусов Tor</a> для выбора узлов.
+The <tt>EntryNodes</tt> and <tt>ExitNodes</tt> config options are treated as
+a request, meaning if the nodes are down or seem slow, Tor will still avoid
+them.  You can make the option mandatory by setting <tt>StrictExitNodes
+1</tt> or <tt>StrictEntryNodes 1</tt> &mdash; but if you do, your Tor
+connections will stop working if all of the nodes you have specified become
+unreachable.  See the <a
+href="https://www.torproject.org/documentation.html.en#NeatLinks">Tor status
+pages</a> for some nodes you might pick.
 </p>
 <p>
 Вместо этого вы можете в поле <tt>$fingerprint<tt> обозначить двухбуквенный
@@ -1000,6 +1000,47 @@ Tor</a>, которые не указаны в главной директори
 налицо их нехватка. Если вы не можете предоставлять услуги выводного узла и
 имеете ограниченное по скорости соединение, бросьте монетку. Большое спасибо
 за ваш вклад!
+</p>
+
+<hr /> <a id="RelayMemory"></a>
+<h3><a class="anchor" href="#RelayMemory">Why is my Tor relay using so much
+memory?</a></h3>
+
+<p>If your Tor relay is using more memory than you'd like, here are some tips
+for reducing its footprint:
+</p>
+
+<ol>
+<li>If you're on Linux, you may be encountering memory fragmentation bugs in
+glibc's malloc implementation. That is, when Tor releases memory back to the
+system, the pieces of memory are fragmented so they're hard to reuse. The
+Tor tarball ships with OpenBSD's malloc implementation, which doesn't have
+as many fragmentation bugs (but the tradeoff is higher CPU load). You can
+tell Tor to use this malloc implementation instead: <tt>./configure
+--enable-openbsd-malloc</tt></li>
+
+<li>If you're running a fast relay, meaning you have many TLS connections open,
+you are probably losing a lot of memory to OpenSSL's internal buffers (38KB+
+per socket). We've patched OpenSSL to release unused buffer memory more
+aggressively. If you update to OpenSSL 1.0.0-beta5, Tor's build process will
+automatically recognize and use this feature.</li>
+
+<li>If you're running on Solaris, OpenBSD, NetBSD, or old FreeBSD, Tor is
+probably forking separate processes rather than using threads. Consider
+switching to a <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">better
+operating system</a>.</li>
+
+<li>If you still can't handle the memory load, consider reducing the amount of
+bandwidth your relay advertises. Advertising less bandwidth means you will
+attract fewer users, so your relay shouldn't grow as large. See the
+<tt>MaxAdvertisedBandwidth</tt> option in the man page.</li>
+
+</ol>
+
+<p>
+All of this said, fast Tor relays do use a lot of ram. It is not unusual for
+a fast exit relay to use 500-1000 MB of memory.
 </p>
 
 <hr /> <a id="WhyNotNamed"></a>
