@@ -83,27 +83,6 @@ sub FetchDate {
 # This is the list of all known Tor mirrors
 # Add new mirrors to the bottom!
 my %m = (
-        mirror000 => {
-            adminContact => "tor AT goodeid DOT com",
-            orgName => "Goodeid",
-            isoCC => "CA",
-            subRegion => "",
-            region => "North America",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor-node.goodeid.com:8081/",
-            httpsWebsiteMirror => "https://tor-node.goodeid.com:8444/",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor-node.goodeid.com:8081/dist/",
-            httpsDistMirror => "https://tor-node.goodeid.com:8444/dist/
-
-",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
 
         mirror001 => {
             adminContact => "BarkerJr AT barkerjr DOT net",
@@ -428,9 +407,9 @@ my %m = (
 	mirror020 => {
             adminContact => "",
             orgName => "ax",
-            isoCC => "DE",
+            isoCC => "HU",
             subRegion => "",
-            region => "DE",
+            region => "HU",
             ipv4 => "True",
             ipv6 => "False",
             loadBalanced => "No",
