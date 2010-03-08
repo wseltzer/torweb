@@ -16,5 +16,8 @@ chmod a+r * -R
 ## since if they screw up it'll blow away arbitrary things.
 #rsync -Prvz --delete . tor.eff.org:directory/
 
-rsync --exclude .svn --exclude .deps -Prvz . www.torproject.org:/var/www/www.torproject.org/htdocs/
+rsync --exclude .svn --exclude .deps -Prvz . byblos:/var/www/www.torproject.org/htdocs/
+
+echo "Forcing mirror update"
+ssh byblos '/var/lib/mirror-tor/trigger-sync'
 
