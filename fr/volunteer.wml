@@ -124,31 +124,30 @@ Quelques-uns de ces projets peuvent sans doute faire de bonnes idées pour le
 <ol>
 
 <li>
-<b>Pack de Navigation Tor pour Linux/Mac OS X</b> <br /> Priorité:
-<i>Haute</i> <br /> Effort à fournir: <i>Haut</i> <br /> Compétences
-requises: <i> Moyennes</i> <br /> Tuteurs potentiels: <i>Steven, Erinn,
-Jacob, Andrew</i> <br /> Le Pack de Navigation Tor contient Tor, Firefox,
-Polipo et l'interface graphique Vidalia (et en option le client de
-messagerie instantanée <a href="http://pidgin.im/">Pidgin</a>). Les
-composants sont préconfigurés pour fonctionner de manière sécurisée et
-requièrent très peu de dépendances vis à vis du système d'exploitation
-installé. C'était autrefois un des moyens les plus faciles et le plus
-populaire d'utiliser Tor sous Windows.  <br /> Toutefois, il n'existe pas de
-paquets fonctionnant sous Linux ou Mac Os X. C'est pourquoi ce projet
-consiste à créer un Pack de Navigation Tor sur ces plateformes. Cela
-implique des modifications dans Vidalia (C++), peut-être dans Firefox (C) et
-enfin de créer et de tester le lanceur sur toute une gamme de versions de
-systèmes d'exploitation et de configuration différentes afin de vérifier la
-portabilité. Un peu de ce travail a été accompli lors du Google Summer of
-Code 2009. <br /> Les étudiants désirant participer doivent connaître le
-développement d'applications, de préférence, sur les deux plateformes (Linux
-et Mac OS X) et doivent disposer de sérieuses compétences en C/C++ et en
-script shell.  <br /> Une part de ce projet peut consister à tester ce Pack
-de Navigation sur le coeur de cible des utilisateurs concernés. Cela
-permettrait d'en savoir un peu plus sur ce qui a besoin d'être corrigé ou
-amélioré. Nous conservons cette description comme un simple élément
-d'information pour le moment mais un processus plus structuré serait
-meilleur.
+<b>Tor Browser Bundle for Linux/Mac OS X</b> <br /> Priority: <i>High</i>
+<br /> Effort Level: <i>High</i> <br /> Skill Level: <i>Medium</i> <br />
+Likely Mentors: <i>Steven, Erinn, Jacob, Andrew</i> <br /> The Tor Browser
+Bundle incorporates Tor, Firefox, Polipo, and the Vidalia user interface
+(and optionally the <a href="http://pidgin.im/">Pidgin</a> Instant Messaging
+client). Components are pre-configured to operate in a secure way, and it
+has very few dependencies on the installed operating system. It has
+therefore become one of the most easy to use, and popular, ways to use Tor
+on Windows.  <br /> However, there is currently no released package for
+Linux and Mac OS X, so this project would be to implement Tor Browser Bundle
+for OS X and continue work on the Tor Browser Bundle for Linux. This will
+involve modifications to Vidalia (C++), possibly Firefox (C) then creating
+and testing the launcher on a range of operating system versions and
+configurations to verify portability.  Some work on this was completed as
+part of the Google Summer of Code 2009. Another part of this project is to
+identify all of the traces left behind by using a Tor Browser Bundle on Mac
+OS X or Linux.  Developing ways to stop, counter, or remove these traces is
+a final step.  <br /> Students should be familiar with application
+development on one or preferably both of Linux and Mac OS X, and be
+comfortable with C/C++ and shell scripting.  <br /> Part of this project
+could be usability testing of Tor Browser Bundle, ideally amongst our target
+demographic.  That would help a lot in knowing what needs to be done in
+terms of bug fixes or new features. We get this informally at the moment,
+but a more structured process would be better.
 </li>
 
 <li>
@@ -206,27 +205,39 @@ alors possible de conjuguer résistance à la censure avec facilité
 d'utilisation et robustesse.
 </li>
 
-<li>
-<b>Tuner Tor !</b> <br /> Priorité: <i>Moyenne à Haute</i> <br /> Effort à
-fournir: <i>Moyen à Important</i> <br /> Compétences requises: <i>Hautes</i>
-<br /> Tuteurs potentiels: <i>Nick, Roger, Mike, Karsten</i> <br />Pour le
-moment, les relais Tor mesurent et remontent leur propre bande passante, les
-clients choisissent quels relais ils vont utiliser en partie selon cette
-bande passante.  Cette approche présent des vulnérabilités <a
-href="http://freehaven.net/anonbib/#bauer:wpes2007">aux attaques dans
-lesquelles le relais ment sur sa bande passante</a>. Pour régler ce
-problème, Tor plafonne la bande passante maximale affichée par un relais.
-C'est une correction limitée et une perte de bande passante.  A la place,
-Tor devrait mesure la bande passante selon un mode distribué, peut-être
-comme décrit dans le document <a
-href="http://freehaven.net/anonbib/author.html#snader08">"A Tune-up for
-Tor"</a> de Snader et Borisov. On pourrait utiliser du code source en test
-pour confirmer les trouvailles de ce document et vérifier la manière dont
-elles concordent avec le fonctionnement réel de Tor. On pourrait trouver les
-bons moyens d'incorporer ces suggestions dans le réseau Tor sans ajouter
-trop de trafic entre les relais et les autorités d'annuaire.
-</li>
 
+
+<!--<li>
+
+<b>Tuneup Tor!</b>
+<br />
+Priority: <i>Medium to High</i>
+<br />
+Effort Level: <i>Medium to High</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Nick, Roger, Mike, Karsten</i>
+<br />
+Right now, Tor relays measure and report their own bandwidth, and Tor
+clients choose which relays to use in part based on that bandwidth.
+This approach is vulnerable to
+<a href="http://freehaven.net/anonbib/#bauer:wpes2007">attacks where
+relays lie about their bandwidth</a>;
+to address this, Tor currently caps the maximum bandwidth
+it's willing to believe any relay provides.  This is a limited fix, and
+a waste of bandwidth capacity to boot.  Instead,
+Tor should possibly measure bandwidth in a more distributed way, perhaps
+as described in the
+<a href="http://freehaven.net/anonbib/author.html#snader08">"A Tune-up for
+Tor"</a> paper
+by Snader and Borisov. One could use current testing code to
+double-check this paper's findings and verify the extent to which they
+dovetail with Tor as deployed in the wild, and determine good ways to
+incorporate them into their suggestions Tor network without adding too
+much communications overhead between relays and directory
+authorities.
+</li>-->
 <li>
 <b>Améliorer Polipo sous Windows</b> <br /> Priorité: <i>Moyenne à Haute</i>
 <br /> Effort à fournir: <i>Moyen</i> <br /> Compétences requises:
@@ -250,37 +261,34 @@ Files\Polipo"</li>
 </li>
 
 <li>
-<b>Interface de contrôle des évènements d'état de Tor</b> <br /> Priorité:
-<i>Moyenne</i> <br /> Effort à fournir: <i>Moyen</i> <br /> Compétences
-requises: <i>Faibles à Moyennes</i> <br /> Tuteurs potentiels: <i>Matt</i>
-<br /> Il existe un grand nombre de changement d'état à l'intérieur de Tor
-qu'il serait bon de signaler à l'utilisateur. Par exemple, si l'utilisateur
-essaye de configure son noeud Tor en tant que relais et que Tor décide que
-ses ports ne sont pas accessibles depuis l'extérieur, l'utilisateur devrait
-en être averti. Actuellement, tous ce que l'utilisateur récupère sont les
-quelques messages de log dans la fenêtre Vidalia 'message log' qui est
-rarement consultée puisqu'aucun avertissement n'est notifié. Même si
-l'utilisateur consulte les messages de log, ces derniers sont souvent peu
-compréhensibles pour les novices.  <br /> Tor a la possibilité d'informer
-Vidalia de ces nombreux changements d'état et nous avons récemment
-implémenté le support de quelques-uns d'entre-eux. Toutefois, il existe
-beaucoup d'autres changement d'état à notifier et nous avons besoin d'une
-meilleure interface pour les communiquer à l'utilisateur.  <br /> L'objectif
-de ce projet est donc de concevoir et d'implémenter une interface pour
-notifier les évènements d'état à l'utilisateur. Par exemple, on pourrait
-mettre un petit badge sur l'icône de Vidalia qui alerterait l'utilisateur
-sur les évènement de status qu'il doit consulter. Double-cliquer sur l'icône
-afficherait une fenêtre résumant les évènements récents en termes faciles à
-comprendre et peut-être également des suggestions pour remédier aux
-évènements négatifs qui pourraient être réglés par l'utilisateur. Bien
-entendu, c'est juste un exemple et les suggestions sont ouvertes.  <br ./>
-Une personne en charge de ce projet devrait avoir de solides compétences en
-conception et en ergonomie ainsi que de l'expérience dans le développement
-en C++. Une expérience avec Qt et le designer Qt serait un plus. Des
-capacités de rédaction en Anglais seraient appréciées car le projet implique
-probablement la rédaction de quelques documentations compréhensible par les
-utilisateurs non techniques. En bonus, des compétences graphiques
-permettrait de créer les belles nouvelles icônes dont nous aurons besoin.
+<b>Tor Controller Status Event Interface for Vidalia</b> <br /> Priority:
+<i>Medium</i> <br /> Effort Level: <i>Medium</i> <br /> Skill Level: <i>Low
+to Medium</i> <br /> Likely Mentors: <i>Matt</i> <br /> There are a number
+of status changes inside Tor of which the user may need to be informed. For
+example, if the user is trying to set up his Tor as a relay and Tor decides
+that its ports are not reachable from outside the user's network, we should
+alert the user. Currently, all the user gets is a couple log messages in
+Vidalia's 'message log' window, which they likely never see since they don't
+receive a notification that something has gone wrong. Even if the user does
+actually look at the message log, most of the messages make little sense to
+the novice user.  <br /> Tor has the ability to inform Vidalia of many such
+status changes, and we recently implemented support for a couple of these
+events. Still, there are many more status events the user should be informed
+of and we need a better UI for actually displaying them to the user.  <br />
+The goal of this project then is to design and implement a UI for displaying
+Tor status events to the user. For example, we might put a little badge on
+Vidalia's tray icon that alerts the user to new status events they should
+look at. Double-clicking the icon could bring up a dialog that summarizes
+recent status events in simple terms and maybe suggests a remedy for any
+negative events if they can be corrected by the user. Of course, this is
+just an example and one is free to suggest another approach.  <br /> A
+person undertaking this project should have good UI design and layout and
+some C++ development experience. Previous experience with Qt and Qt's
+Designer will be very helpful, but are not required. Some English writing
+ability will also be useful, since this project will likely involve writing
+small amounts of help documentation that should be understandable by
+non-technical users. Bonus points for some graphic design/Photoshop fu,
+since we might want/need some shiny new icons too.
 </li>
 
 <li>
@@ -350,28 +358,38 @@ href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>
 sans trop interférer avec le fonctionnement interne de Tor.
 </li>
 
-<li>
-<b>Nouvelles fonctionnalités</b> Priorité: <i>Moyenne</i> <br /> Effort à
-fournir: <i>Moyen</i> <br /> Compétences requises: <i>Moyennes à Hautes</i>
-<br /> Tuteurs potentiels: <i>Martin</i> <br /> De nouvelles fonctionnalités
-doivent être implémentées en ce qui concerne les assistants de mises à jour
-de l'ensemble des logiciels Tor sous Windows et sous les autres systèmes
-d'exploitation. Ces fonctionnalité incluent:
-<ol>
-<li> Intégration de <a href="http://chandlerproject.org/Projects/MeTooCrypto">la
-bibliohthèque Python MeTooCrypto</a> pour les téléchargements HTTPS
-authentifiés.</li>
-<li> Ajouter un système de pointeurs entre les singatures d'horodatage et les
-fichiers de paquets inclus dans une mise à jour. Consultez le fil de
-discussion "Thandy attacks / suggestions" sur la liste de diffusion or-dev.</li>
-<li> Le support des langues dans les assistants d'installation et de
-configuration, basées sur les préférences régionales de la machine ou compte
-utilisateur.  Nous avons besoin de compétences sur les codepages Windows,
-sur unicode et les autres jeux de caractères ainsi que d'une expérience dans
-les API win32 et posix ainsi que dans Python.</li>
-</ol>
-</li>
 
+
+<!-- <li>
+
+<b>New Thandy Features</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium to High</i>
+<br />
+Likely Mentors: <i>Martin</i>
+<br />
+Additional capabilities are needed for assisted updates of all the Tor
+related software for Windows and other operating systems. Some of the
+features to consider include:
+<ol>
+<li> Integration of the <a
+href="http://chandlerproject.org/Projects/MeTooCrypto">MeTooCrypto
+Python library</a>
+for authenticated HTTPS downloads.</li>
+<li> Adding a level of indirection
+between the timestamp signatures and the package files included in an
+update. See the "Thandy attacks / suggestions" thread on or-dev.</li>
+<li> Support locale specific installation and configuration of assisted
+updates based on preference, host, or user account language settings.
+Familiarity with Windows codepages, unicode, and other character sets
+is helpful in addition to general win32 and posix API experience and
+Python proficiency.</li>
+</ol>
+</li> -->
 <li>
 <b>Simulateur pour les connexion Internet lentes</b> <br /> Priorité:
 <i>Moyenne</i> <br /> Effort à fournir: <i>Moyen</i> <br /> Compétences
@@ -417,29 +435,38 @@ Qt et Cmake serait un vrai plus.
 </li>
 
 <li>
-<b>Équivalent de Torbutton pour Thunderbird</b> <br /> Priorité:
-<i>Faible</i> <br /> Effort à fournir: <i>Important</i> <br /> Compétences
-requises: <i>Hautes</i> <br /> Tuteurs potentiels: <i>Mike</i> <br /> Nous
-entendons parler d'un nombre de plus en plus important d'utilisateurs qui
-désirent utiliser Thunderbird avec Tor. Néanmoins, il y a plein de problèmes
-de niveau applicatifs, par exemple, par défaut Thunderbird ajoutera votre
-nom d'hôte au mail sortant qu'il envoie. A un certain niveau, nous devrions
-pousser la réalisation d'une extension Thunderbird similaire à Torbutton.
+<b>Torbutton equivalent for Thunderbird</b> <br /> Priority: <i>Medium</i>
+<br /> Effort Level: <i>High</i> <br /> Skill Level: <i>High</i> <br />
+Likely Mentors: <i>Mike</i> <br /> We're hearing from an increasing number
+of users that they want to use Thunderbird with Tor. However, there are
+plenty of application-level concerns, for example, by default Thunderbird
+will put your hostname in the outgoing mail that it sends. At some point we
+should start a new push to build a Thunderbird extension similar to
+Torbutton.
 </li>
 
-<li>
-<b>Pilote réseau de niveau intermédiaire</b> <br /> Priorité: <i>Faible</i>
-<br /> Effort à fournir: <i>Important</i> <br /> Compétences requises:
-<i>Hautes</i> <br /> Tuteurs potentiels: <i>Martin</i> <br /> Le pilote
-WinPCAP utilisé par la Machine Virtuelle Tor pour les réseaux translatés ne
-supporte pas un certain nombre d'adaptateurs de réseaux sans-fil ou
-non-Ethernet.  L'implémentation d'un pilote réseau de niveau intermédiaire
-pour win32 et win64 fournirait un moyen d'intercepter et de router du trafic
-sur ces réseaux. Ce projet nécessite des connaissances et de l'expérience
-dans le développement de pilote de périphériques du noyau Windows ainsi que
-des tests. Connaître Winsock et Qemu serait un plus.
-</li>
 
+
+<!--<li>
+
+<b>Intermediate Level Network Device Driver</b>
+<br />
+Priority: <i>Low</i>
+<br />
+Effort Level: <i>High</i>
+<br />
+Skill Level: <i>High</i>
+<br />
+Likely Mentors: <i>Martin</i>
+<br />
+The WinPCAP device driver used by Tor VM for bridged networking does
+not support a number of wireless and non-Ethernet network adapters.
+Implementation of a intermediate level network device driver for win32
+and 64bit would provide a way to intercept and route traffic over such
+networks. This project will require knowledge of and experience with
+Windows kernel device driver development and testing. Familiarity with
+Winsock and Qemu would also be helpful.
+</li>-->
 <li>
 <b>Améliorer Tor Weather</b> <br /> Priorité: <i>Moyenne</i> <br /> Effort à
 fournir: <i>Moyen</i> <br /> Compétences requises: <i>moyennes</i> <br />
@@ -505,36 +532,42 @@ des règles d'empaquetage dans Debian et avoir une expérience en C++. Des
 compétences en QT seraient un vrai plus.
 </li>
 
-<li>
-<b>Framework de mise à jour automatique pour Tor/Polipo/Vidalia</b> <br
-/>Nous avons besoin d'un bon framework pour les mises à jour authentifiées.
-Vidalia dispose déjà de la capacité à avertir l'utilisateur qu'il utilise
-une version périmée ou non recommandée de Tor en utilisant des annonces
-signées issue des information d'annuaire. Pour le moment, Vidalia affiche
-simplement une petit boîte de dialogue qui informe l'utilisateur qu'il doit
-manuellement mettre à jour ses logiciels. L'objectif du projet serait
-d'offrir la possibilité à Vidalia de récupérer et installer les logiciels
-Tor mis à jour pour le compte de l'utilisateur. Nous devrions récupérer les
-fichiers via Tor si possible mais également par des moyens plus directs. Si
-le temps le permet, nous aimerions mettre à jour les autres applications
-incluses dans les installeurs telles que Polipo et Vidalia lui-même.  <br />
-Pour mener à bien ce projet, l'étudient devra d'abord se renseigner sur les
-frameworks de mise à jour automatique (e.g. Sparkle sur OS X) pour évaluer
-leurs avantages/inconvénients ainsi que leurs failles de sécurité et leur
-capacité à s'intégrer à Vidalia. Si aucun de ces framworks ne convient,
-l'étudiant concevra sont propre framework, documentera les spécifications et
-en discutera avec les autres développeurs pour gérer les problèmes de
-sécurité. L'étudiant implémentera ensuite le framework (ou intégrera un de
-ceux qui existent) et procédera aux tests.  <br /> Une personne motivée par
-ce projet doit disposer d'une bonne expérience en C++. Une expérience
-antérieure avec Qt serait un vrai plus. Il est également important de bien
-comprendre les bonnes pratiques de sécurité telles que la vérification de
-signature des paquets. De bonnes capacités de rédaction sont également
-importantes pour ce projet car une des étapes vitales est de produire la
-documentation des spécifications à relire et à discuter avec les autres
-avant l'implémentation.
-</li>
 
+
+<!--<li>
+
+<b>Tor/Polipo/Vidalia Auto-Update Framework</b>
+<br />
+We're in need of a good authenticated-update framework.
+Vidalia already has the ability to notice when the user is running an
+outdated or unrecommended version of Tor, using signed statements inside
+the Tor directory information. Currently, Vidalia simply pops
+up a little message box that lets the user know they should manually
+upgrade. The goal of this project would be to extend Vidalia with the
+ability to also fetch and install the updated Tor software for the
+user. We should do the fetches via Tor when possible, but also fall back
+to direct fetches in a smart way. Time permitting, we would also like
+to be able to update other
+applications included in the bundled installers, such as Polipo and
+Vidalia itself.
+<br />
+To complete this project, the student will first need to first investigate
+the existing auto-update frameworks (e.g., Sparkle on OS X) to evaluate
+their strengths, weaknesses, security properties, and ability to be
+integrated into Vidalia. If none are found to be suitable, the student
+will design their own auto-update framework, document the design, and
+then discuss the design with other developers to assess any security
+issues. The student will then implement their framework (or integrate
+an existing one) and test it.
+<br />
+A person undertaking this project should have good C++ development
+experience. Previous experience with Qt is helpful, but not required. One
+should also have a good understanding of common security
+practices, such as package signature verification. Good writing ability
+is also important for this project, since a vital step of the project
+will be producing a design document to review and discuss
+with others prior to implementation.
+</li>-->
 <li>
 <b>Améliorer le processus qualité de Tor: Intégration continue de
 compilation</b> <br /> Il serait très utile d'avoir un processus de
@@ -563,17 +596,25 @@ manière à tester automatiquement les changement de performance avec des
 rôles différents.
 </li>
 
-<li>
-<b>Tests d'utilisation de Tor</b> <br /> Priorité: <i>Moyenne</i> <br />
-Effort à fournir: <i>Moyen</i> <br /> Compétences requises: <i>Faibles à
-Moyennes</i> <br /> Tuteurs potentiels: <i>Andrew</i> <br /> Spécialement le
-Pack de Navigation, idéalement parmi notre coeur de cible.  Cela nous
-aiderait beaucoup à comprendre ce qui doit être réalisé en terme de
-correction de bugs ou de nouvelles fonctionnalités. Nous récupérons
-l'information de manière informelle pour le moment mais un processus plus
-structuré serait meilleur.
-</li>
 
+
+<!--<li>
+
+<b>Usability testing of Tor</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Low to Medium</i>
+<br />
+Likely Mentors: <i>Andrew</i>
+<br />
+Especially the browser bundle, ideally amongst our target demographic.
+That would help a lot in knowing what needs to be done in terms of bug
+fixes or new features. We get this informally at the moment, but a more
+structured process would be better.
+</li>-->
 <li>
 <b>Un proxy IRC d'authentification</b> <br /> Priorité: <i>Moyenne</i> <br
 /> Effort à fournir: <i>Moyen à Important</i> <br /> Compétences requises:
