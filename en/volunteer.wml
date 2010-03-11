@@ -72,7 +72,7 @@ people>#Core">core developers</a> would be good mentors.
 If one or more of these ideas looks promising to you, please <a
 href="<page contact>">contact us</a> to discuss your plans rather than
 sending blind applications. You may also want to propose your own project
-idea which often results in the best applications.
+idea &mdash; which often results in the best applications.
 </p>
 
 <ol>
@@ -165,14 +165,14 @@ single address/port combination at a time.  There's
 <a href="<gitblob>doc/spec/proposals/118-multiple-orports.txt">a
 proposal to address this limitation</a> and allow clients to connect
 to any given Tor on multiple addresses and ports, but it needs more
-work.  Another anti-censorship project is to try to make Tor
-more scanning-resistant.  Right now, an adversary can identify <a
-href="<gitblob>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
-just by trying to connect to them, following the Tor protocol,
-and seeing if they respond.  To solve this, bridges could <a
-href="<gitblob>doc/design-paper/blocking.html#tth_sEc9.3">act like
-webservers</a> (HTTP or HTTPS) when contacted by port-scanning tools,
-and not act like bridges until the user provides a bridge-specific key.
+work.
+<br />
+Another area that needs work is our <a
+href="http://gitweb.torproject.org//bridgedb.git?a=tree">bridgedb</a>
+service. See e.g. <a
+href="http://archives.seul.org/or/dev/Dec-2009/msg00000.html">Roger's
+or-dev post</a> from December for details &mdash; lots of design work
+remains.
 <br />
 This project involves a lot of research and design. One of the big
 challenges will be identifying and crafting approaches that can still
@@ -290,7 +290,7 @@ Effort Level: <i>Medium</i>
 <br />
 Skill Level: <i>Medium</i>
 <br />
-Likely Mentors: <i>Nick, Roger</i>
+Likely Mentors: <i>Nick, Erinn</i>
 <br />
 Tor needs to be far more tested. This is a multi-part effort. To start
 with, our unit test coverage should rise substantially, especially in
@@ -317,7 +317,7 @@ Effort Level: <i>High</i>
 <br />
 Skill Level: <i>Medium to High</i>
 <br />
-Likely Mentors: <i>Karsten, Nick</i>
+Likely Mentors: <i>Bruce, Nathan</i>
 <br />
 Others are currently working on Tor clients for Java, Android, and Maemo
 environments.  The first step is to get a handle on the current state of
@@ -336,7 +336,7 @@ when things are underdocumented. This project is mostly about coding and
 to a small degree about design.
 </li>
 
-<li>
+<!--<li>
 <b>New Torbutton Features</b>
 <br />
 Priority: <i>Medium</i>
@@ -368,7 +368,7 @@ features that could be added.
 This work would be independent coding in Javascript and the fun world of <a
 href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
 with not too much involvement in the Tor internals.
-</li>
+</li>-->
 
 <!-- <li>
 <b>New Thandy Features</b>
@@ -535,6 +535,14 @@ and <a href="https://svn.torproject.org/svn/weather/trunk/TODO">TODO</a>.
 <li>
 <b>Better Debian/Ubuntu Packaging for Tor+Vidalia</b>
 <br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Erinn, Peter</i>
+<br />
 Vidalia currently doesn't play nicely on Debian and Ubuntu with the
 default Tor packages. The current Tor packages automatically start Tor
 as a daemon running as the debian-tor user and (sensibly) do not have a
@@ -612,6 +620,14 @@ with others prior to implementation.
 
 <li>
 <b>Improving the Tor QA process: Continuous Integration for builds</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Erinn</i>
 <br />
 It would be useful to have automated build processes for Windows and
 probably other platforms. The purpose of having a continuous integration
@@ -723,7 +739,8 @@ or discarding one entirely.
 <br />
 Don't like any of these? Look at the <a
 href="<gitblob>doc/roadmaps/2008-12-19-roadmap-full.pdf">Tor development
-roadmap</a> for more ideas.
+roadmap</a> for more ideas, or just try out Tor, Vidalia, and Torbutton,
+and find out what you think needs fixing.
 Some of the <a href="<gittree>doc/spec/proposals">current proposals</a>
 might also be short on developers.
 </li>
@@ -797,6 +814,20 @@ to maintain, improve, and document?  Some examples are <a
 href="http://amnesia.boum.org/">amnesia LiveCD/USB</a> and the <a
 href="http://anonymityanywhere.com/incognito/">Incognito LiveCD</a>
 </li>
+
+<li>
+Another anti-censorship project is to try to make Tor
+more scanning-resistant.  Right now, an adversary can identify <a
+href="<gitblob>doc/spec/proposals/125-bridges.txt">Tor bridges</a>
+just by trying to connect to them, following the Tor protocol,
+and seeing if they respond.  To solve this, bridges could <a
+href="<gitblob>doc/design-paper/blocking.html#tth_sEc9.3">act like
+webservers</a> (HTTP or HTTPS) when contacted by port-scanning tools,
+and not act like bridges until the user provides a bridge-specific key.
+To start, check out Shane Pope's <a
+href="http://dl.dropbox.com/u/37735/index.html">thesis and prototype</a>.
+</li>
+
 </ol>
 
 <a id="Research"></a>
