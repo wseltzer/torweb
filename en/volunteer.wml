@@ -27,38 +27,19 @@ we'd love to hear from you.</li>
 <p>Tor has <a href="<page open-positions>">two open positions</a>.
 Please <a href="<page contact>">contact us</a> if you are qualified!</p>
 
-<a id="Usability"></a>
-<h2><a class="anchor" href="#Usability">Supporting Applications</a></h2>
+<a id="Documentation"></a>
+<h2><a class="anchor" href="#Documentation">Documentation</a></h2>
 <ol>
-<li>We need more and better ways to intercept DNS requests so they don't "leak" their
-request to a local observer while we're trying to be anonymous. (This
-happens because the application does the DNS resolve before going to
-the SOCKS proxy.)</li>
-<li>Tsocks/dsocks items:
-<ul>
-<li>We should patch Dug Song's "dsocks" program to use Tor's
-<i>mapaddress</i> commands from the controller interface, so we
-don't waste a whole round-trip inside Tor doing the resolve before
-connecting.</li>
-<li>We need to make our <i>torify</i> script detect which of tsocks or
-dsocks is installed, and call them appropriately. This probably means
-unifying their interfaces, and might involve sharing code between them
-or discarding one entirely.</li>
-</ul>
-</li>
-<li>People running relays tell us they want to have one BandwidthRate
-during some part of the day, and a different BandwidthRate at other
-parts of the day. Rather than coding this inside Tor, we should have a
-little script that speaks via the <a href="<page gui/index>">Tor
-Controller Interface</a>, and does a setconf to change the bandwidth
-rate. There is one for Unix and Mac already (it uses bash and cron),
-but Windows users still need a solution.
-</li>
-<li>Speaking of geolocation data, somebody should draw a map of the Earth
-with a pin-point for each Tor relay. Bonus points if it updates as the
-network grows and changes. Unfortunately, the easy ways to do this involve
-sending all the data to Google and having them draw the map for you. How
-much does this impact privacy, and do we have any other good options?</li>
+<li>Help translate the web page and documentation into other
+languages. See the <a href="<page translation>">translation
+guidelines</a> if you want to help out. We especially need Arabic or
+Farsi translations, for the many Tor users in censored areas.</li>
+<li>Evaluate and document
+<a href="https://wiki.torproject.org/wiki/TheOnionRouter/TorifyHOWTO">our
+list of programs</a> that can be configured to use Tor.</li>
+<li>We have a huge list of <a href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">potentially useful
+programs that interface to Tor</a>. Which ones are useful in which
+situations? Please help us test them out and document your results.</li>
 </ol>
 
 <a id="Advocacy"></a>
@@ -74,28 +55,6 @@ href="http://www.howcast.com/videos/90601-How-To-Circumvent-an-Internet-Proxy">H
 and <a href="http://www.youtube.com/freedom4internet">Youtube</a>.</li> 
 <li>Create a poster, or a set of posters, around a theme,
 such as "Tor for Freedom!"</li>
-</ol>
-
-<a id="Documentation"></a>
-<h2><a class="anchor" href="#Documentation">Documentation</a></h2>
-<ol>
-<li>Please help Matt Edman with the documentation and how-tos for his
-Tor controller,
-<a href="<page vidalia/index>">Vidalia</a>.</li>
-<li>Evaluate and document
-<a href="https://wiki.torproject.org/wiki/TheOnionRouter/TorifyHOWTO">our
-list of programs</a> that can be configured to use Tor.</li>
-<li>We need better documentation for dynamically intercepting
-connections and sending them through Tor. tsocks (Linux), dsocks (BSD),
-and freecap (Windows) seem to be good candidates, as would better
-use of our new TransPort feature.</li>
-<li>We have a huge list of <a href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">potentially useful
-programs that interface to Tor</a>. Which ones are useful in which
-situations? Please help us test them out and document your results.</li>
-<li>Help translate the web page and documentation into other
-languages. See the <a href="<page translation>">translation
-guidelines</a> if you want to help out. We especially need Arabic or
-Farsi translations, for the many Tor users in censored areas.</li>
 </ol>
 
 <a id="Coding"></a>
@@ -728,6 +687,35 @@ like Nymble (or a simpler one to start, as a proof-of-concept). One way
 to do that would be to build an IRC proxy that knows how to hear from
 IRC clients, knows how to talk to IRC servers, and has an additional
 layer that requires the users to authenticate.
+</li>
+
+<li>
+<b>Make torsocks/dsocks work on OS X</b>
+<br />
+Priority: <i>Medium</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>?</i>
+<br />
+<a href="http://code.google.com/p/torsocks/">Torsocks</a> and <a
+href="http://code.google.com/p/dsocks/">dsocks</a> are wrappers that will
+run applications, intercept their outgoing network connections, and push
+those connections through Tor. The goal is to handle applications that
+don't support proxies (or don't supporting them well). To get it right,
+they need to intercept many system calls. The syscalls you need to
+intercept on Linux differ dramatically from those on BSD. So Torsocks
+works fine on Linux, dsocks works ok on BSD (though it may be less
+maintained and thus might miss more syscalls), and nothing works well
+on both. First, we should patch dsocks to use Tor's <i>mapaddress</i>
+commands from the controller interface, so we don't waste a whole
+round-trip inside Tor doing the resolve before connecting. Second,
+we should make our <i>torify</i> script detect which of torsocks or
+dsocks is installed, and call them appropriately. This probably means
+unifying their interfaces, and might involve sharing code between them
+or discarding one entirely.
 </li>
 
 <li>
