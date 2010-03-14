@@ -58,23 +58,6 @@
 	    }
 	}:>
         </td>
-        <td class="banner-right">
-	<:{
-	  my $page = $WML_SRC_FILENAME;
-	  $page =~ s/\.wml//;
-	  for my $dir (@LANGUAGES) {
-	    if (-e "$dir/$WML_SRC_FILENAME") {
-	      if ($dir eq '$(LANG)') {
-	        printf('<acronym title="%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></acronym> ', $LANGUAGES{$dir}, $dir, $LANGUAGES{$dir});
-	      } else {
-	        printf('<a href="%s.html.%s"><acronym title="%s"><img src="$(IMGROOT)/%s.png" alt="%s" /></acronym></a> ', $page, $dir, $LANGUAGES{$dir}, $dir, $LANGUAGES{$dir});
-	      };
-	    } else {
-	      printf('<img src="$(IMGROOT)/green-flagspace.png"/> ');
-	    };
-	  };
-	}:>
-        </td>
     </tr>
 </table>
 
