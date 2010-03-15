@@ -110,6 +110,12 @@ for file in $po ; do
 			if [ -e "$wmldir/zh-cn/tmp-$wmlfile" ]
 			then
 				mv "$wmldir/zh-cn/tmp-$wmlfile" "$wmldir/zh-cn/$wmlfile"
+
+				# Remove last three lines in file
+				sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/zh-cn/$wmlfile"
+
+				# Include foot.wmi
+				echo "#include <foot.wmi>" >> "$wmldir/zh-cn/$wmlfile"
 			fi
 		fi
 		
@@ -122,6 +128,12 @@ for file in $po ; do
 			if [ -e "$wmldir/no/tmp-$wmlfile" ]
 			then
 				mv "$wmldir/no/tmp-$wmlfile" "$wmldir/no/$wmlfile"
+
+				# Remove last three lines in file
+				sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/no/$wmlfile"
+
+				# Include foot.wmi
+				echo "#include <foot.wmi>" >> "$wmldir/no/$wmlfile"
 			fi
 		fi
 
@@ -134,6 +146,13 @@ for file in $po ; do
 			if [ -e "$wmldir/se/tmp-$wmlfile" ]
 			then
 				mv "$wmldir/se/tmp-$wmlfile" "$wmldir/se/$wmlfile"
+
+				# Remove last three lines in file
+				sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/se/$wmlfile"
+
+				# Include foot.wmi
+				echo "#include <foot.wmi>" >> "$wmldir/se/$wmlfile"
+
 			fi
 		fi
 
@@ -146,6 +165,12 @@ for file in $po ; do
 			if [ -e "$wmldir/$subdir/tmp-$wmlfile" ]
 			then
 				mv "$wmldir/$subdir/tmp-$wmlfile" "$wmldir/$subdir/$wmlfile"
+
+				# Remove last three lines in file
+				sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/$wmlfile"
+
+				# Include foot.wmi
+				echo "#include <foot.wmi>" >> "$wmldir/$subdir/$wmlfile"
 			fi
 		fi
 	else
@@ -161,6 +186,12 @@ for file in $po ; do
 			if [ -e "$wmldir/$subdir/zh-cn/tmp-$wmlfile" ]
 			then
 				mv "$wmldir/$subdir/zh-cn/tmp-$wmlfile" "$wmldir/$subdir/zh-cn/$wmlfile"
+
+				# Remove last three lines in file
+				sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/zh-cn/$wmlfile"
+
+				# Include foot.wmi
+				echo "#include <foot.wmi>" >> "$wmldir/$subdir/zh-cn/$wmlfile"
 			fi
 		fi
 
@@ -173,6 +204,12 @@ for file in $po ; do
 			if [ -e "$wmldir/$subdir/no/tmp-$wmlfile" ]
 			then
 				mv "$wmldir/$subdir/no/tmp-$wmlfile" "$wmldir/$subdir/no/$wmlfile"
+
+				# Remove last three lines in file
+				sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/no/$wmlfile"
+
+				# Include foot.wmi
+				echo "#include <foot.wmi>" >> "$wmldir/$subdir/no/$wmlfile"
 			fi
 		fi
 
@@ -185,6 +222,12 @@ for file in $po ; do
 			if [ -e "$wmldir/$subdir/se/tmp-$wmlfile" ]
 			then
 				mv "$wmldir/$subdir/se/tmp-$wmlfile" "$wmldir/$subdir/se/$wmlfile"
+
+				# Remove last three lines in file
+				sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/se/$wmlfile"
+
+				# Include foot.wmi
+				echo "#include <foot.wmi>" >> "$wmldir/$subdir/se/$wmlfile"
 			fi
 		fi
 		
@@ -197,6 +240,12 @@ for file in $po ; do
 			if [ -e "$wmldir/$subdir/$lang/tmp-$wmlfile" ]
 			then
 				mv "$wmldir/$subdir/$lang/tmp-$wmlfile" "$wmldir/$subdir/$lang/$wmlfile"
+
+				# Remove last three lines in file
+				sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/$lang/$wmlfile"
+
+				# Include foot.wmi
+				echo "#include <foot.wmi>" >> "$wmldir/$subdir/$lang/$wmlfile"
 			fi
 		fi
 	fi
