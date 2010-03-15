@@ -20,9 +20,10 @@ un serveur de messagerie instanée. En utilisant les "points de rendez-vous"
 Tor, les autres utilisateurs de Tor peuvent se connecter à ces services
 cachés de manière à ce que ni celui qui publie l'information ni celui qui la
 consulte ne puisse connaître leur identité respective. Cette page décrit les
-détails techniques du fonctionnement du protocole "rendez-vous". Si vous
-désirez des instruction plus opérationnelles, consultez notre page sur la <a
-href="<page docs/tor-hidden-service>">configuration des services cachés</a>.
+détails techniques du fonctionnement du protocole de "rendez-vous". Si vous
+désirez des instructions plus opérationnelles, consultez notre page sur la
+<a href="<page docs/tor-hidden-service>">configuration des services
+cachés</a>.
 </p>
 
 <p>
@@ -31,12 +32,11 @@ des clients puissent le contacter. Par conséquent, le service récupère des
 noeuds au hasard, construit des circuits vers eux et leur demande d'agir
 comme des <em>points d'introduction</em> en leur fournissant sa clef
 publique. Notez que dans les schémas suivant, les liens verts représentent
-des circuits plutot que des connexions directes. L'utilisation d'un circuit
-Tor complet rend difficile pour quiconque d'associer un points
-d'introduction avec l'adresse IP du serveur caché. Bien que les points
-d'introduction et les autres disposent de l'identité (la clef publique) du
-service caché, ils ne doivent rien savoir de l'emplacement du serveur caché
-(Adresse IP).
+des circuits plutôt que des connexions directes. L'utilisation d'un circuit
+Tor complet rend difficile pour quiconque d'associer un point d'introduction
+avec l'adresse IP du serveur caché. Bien que les points d'introduction et
+les autres disposent de l'identité (la clef publique) du service caché, ils
+ne doivent rien savoir de l'emplacement du serveur caché (Adresse IP).
 </p>
 
 # maybe add a speech bubble containing "PK" to Bob, because that's what
@@ -46,8 +46,8 @@ service caché, ils ne doivent rien savoir de l'emplacement du serveur caché
 
 
 <p>
-Dans un second temps, le service caché construit un <em>descripteur de
-service caché</em> contenant sa clef publique et un résumé de chaque point
+Etape deux: le service caché construit un <em>descripteur de service
+caché</em> contenant sa clef publique et un résumé de chaque point
 d'introduction qu'il signe avec sa clef privée.  Il stocke ce descripteur
 sur un ensemble de serveurs d'annuaires, encore une fois en utilisant un
 circuit complet dans Tor afin de cacher le lien entre le serveur d'annuaire
@@ -67,8 +67,8 @@ href="https://zooko.com/distnames.html">la conjecture de Zooko</a> qui
 précise qu'on peut atteindre deux des trois fonctionnalités suivantes:
 décentralisation, sécurité, noms compréhensibles pour un être
 humain. Peut-être qu'un jour, quelqu'un implémentera une fonctionnalité <a
-href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html">Petname</a>sur
-les noms de services cachés ?
+href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html">Petname</a>
+sur les noms de services cachés ?
 </p>
 
 # maybe replace "database" with "DHT"; further: how incorrect
@@ -110,8 +110,8 @@ l'adresse IP du client, assurant l'anonymat du client.
 <img alt="Tor hidden service step four" src="$(IMGROOT)/THS-4.png" />
 
 <p>
-Etape cinq:Le service caché déchiffre le message de bienvenue du client et y
-trouve l'adresse du point de rendez-vous ainsi que le secret partagé. Le
+Etape cinq: Le service caché déchiffre le message de bienvenue du client et
+y trouve l'adresse du point de rendez-vous ainsi que le secret partagé. Le
 service créé alors un circuit vers le point de rendez-vous et lui envoie le
 secret partagé dans un message rendez-vous. 
 </p>

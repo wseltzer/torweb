@@ -1,10 +1,13 @@
+
+
+
+
+
+
 ## translation metadata
-# Based-On-Revision: 20019
-# Last-Translator: mail (a.t) oliverknapp. de
-
-
-#include "head.wmi" TITLE="Signaturen überprüfen" CHARSET="UTF-8"
-
+# Revision: $Revision$
+# Translation-Priority: 2-medium
+#include "head.wmi" TITLE="Verifying Signatures" CHARSET="UTF-8"
 <div class="main-column">
 
 <h2>Wie man Paketsignaturen überprüft</h2>
@@ -12,16 +15,16 @@
 
 <p>Jede Datei auf unserer <a href="<page download>">Downloadseite</a> wird von
 einer Datei mit dem gleichen Namen wie das Paket und der Endung ".asc"
-begleitet. Zum Beispile das aktuelle Installationspaket für
-Windows: <package-win32-bundle-stable-sig>.</p>
+begleitet. Zum Beispiel das aktuelle Installationspaket für Windows:
+<package-win32-bundle-stable-sig>.</p>
 
 <p>Diese .asc Dateien sind PGP-Signaturen, mit denen man sicherstellen kann,
 dass die heruntergeladene Datei auch die ist, die sie vorgibt zu sein.</p>
 
 <p>Natürlich brauchst du dazu unsere GPG-Schlüssel in deinem
 GPG-Schlüsselbund. Solange du den unterschreibenden Schlüssel nicht kennst,
-kannst du nicht sicher sein, dass es tatsächlich wir waren, die unterschrieben
-haben. Zum Unterschreiben benutzen wir folgende Schlüssel:</p>
+kannst du nicht sicher sein, dass es tatsächlich wir waren, die
+unterschrieben haben. Zum Unterschreiben benutzen wir folgende Schlüssel:</p>
 <ul>
 <li>Rogers (0x28988BF5) unterschreibt meist die Quellcode-Dateien</li>
 <li>Nicks (0x165733EA, oder sein Subkey 0x8D29319A)</li>
@@ -29,6 +32,7 @@ haben. Zum Unterschreiben benutzen wir folgende Schlüssel:</p>
 <li>Peters (0x94C09C7F, oder sein Subkey 0xAFA44BDD)</li>
 <li>Matts (0x5FA14861)</li>
 <li>Jacobs (0x9D0FACE4)</li>
+<li>Erinns (0x63FEE659) und (0xF1F5C9B5)</li>
 </ul>
 
 <h3>Schritt Eins: Importiere die Schlüssel</h3>
@@ -44,10 +48,10 @@ haben. Zum Unterschreiben benutzen wir folgende Schlüssel:</p>
 <p>Nachdem man einen Schlüssel ausgewählt hat, wird er dem Schlüsselring
 hinzugefügt.</p>
 
-<h3>Schritt Zwei:  Übreprüfe die Fingerabdrücke</h3>
+<h3>Schritt Zwei: Übreprüfe die Fingerabdrücke</h3>
 <hr />
 <p>Überpüfe die Fingerabdrücke der Schlüssel folgendermaßen:</p>
-<pre>gpg --fingerprint (insert keyid here)</pre>
+<pre>gpg --fingerprint (Legen Sie hier keyid)</pre>
 Die Fingerabdrücke der Schlüssel sollten folgende sein:
 
 <pre>
@@ -88,17 +92,16 @@ sub   4096g/D5E87583 2008-03-11 [expires: 2010-03-11]
 </pre>
 
 <p>(Natürlich: Wenn du wirklich sicher sein willst, dass diese Fingerabdrücke
-stimmen, solltest du sie an verschiedenen Stellen verifizieren. Du kannst dich
-auch mit dem "Web of Trust" von PGP beschäftigen und versuchen einen
+stimmen, solltest du sie an verschiedenen Stellen verifizieren. Du kannst
+dich auch mit dem "Web of Trust" von PGP beschäftigen und versuchen einen
 Vertrauenspfad zu den Schlüsseln zu bekommen.)</p>
 
-<h3>Schritt Drei:  Überprüfe das heruntergeladene Paket</h3>
+<h3>Schritt Drei: Überprüfe das heruntergeladene Paket</h3>
 <hr />
 <p>Wenn du GnuPG benutzt, speichere die .asc Datei im gleichen Verzeichnis wie
- die Installationsdatei und gib dann folgendes ein:
-"gpg --verify (wasauchimmer).asc (wasauchimmer)"
-Es wird entweder "Good signature" oder "BAD signature" anzeigen. Als Beispiel
-hier eine vollständige, gute Ausgabe:</p>
+die Installationsdatei und gib dann folgendes ein: "gpg --verify
+(wasauchimmer).asc (wasauchimmer)" Es wird entweder "Good signature" oder
+"BAD signature" anzeigen. Als Beispiel hier eine vollständige, gute Ausgabe:</p>
 
 <pre>
 gpg --verify tor-0.1.0.17.tar.gz.asc tor-0.1.0.17.tar.gz
@@ -110,16 +113,19 @@ gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
 </pre>
 
-<p> Beachte: GnuPG gibt eine Warnung aus, weil du noch keinen Vertrauenslevel
+<p>
+Beachte: GnuPG gibt eine Warnung aus, weil du noch keinen Vertrauenslevel
 für den Schlüssel festgelegt hast. Das Programm überprüft nur, ob die
 Unterschrift von dem speziellen Schlüssel stammt, ob der Schlüssel den
 Entwicklern gehört muss der Nutzer entscheiden. Die beste Methode dafür wäre
-die Entwickler persönlich zu treffen und die GPG Fingerabdrücke auszutauschen.
-Andere Leute können Schlüssel auch unterschreiben. Wenn du dir Rogers oder
-Nicks Schlüssel anschaust, siehst du, dass viele andere Leute bereits
-überprüft haben, dass die Schlüssel den beiden gehören. Mittels ihrer
-Unterschrift haben sie das dann öffentlich erklärt. Wenn du diesen anderen
-Menschen traust, hast du z.B. einen Vertrauenspfad zu Roger oder Nick. </p>
+die Entwickler persönlich zu treffen und die GPG Fingerabdrücke
+auszutauschen.  Andere Leute können Schlüssel auch unterschreiben. Wenn du
+dir Rogers oder Nicks Schlüssel anschaust, siehst du, dass viele andere
+Leute bereits überprüft haben, dass die Schlüssel den beiden
+gehören. Mittels ihrer Unterschrift haben sie das dann öffentlich
+erklärt. Wenn du diesen anderen Menschen traust, hast du z.B. einen
+Vertrauenspfad zu Roger oder Nick.
+</p>
 
 <p>Das alles zusammengefasst: Entweder du ignorierst die Nachricht (schlecht)
 oder du legst ein Vertrauenslevel für die Schlüssel fest.</p>
@@ -137,10 +143,11 @@ gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
 <p>Wenn du solch eine Meldung siehst, solltest du dem Inhalt der Datei auf
 keinen Fall vertrauen!</p>
 
-<p>Wenn du Tor auf Debian laufen lässt, solltest du <a
-href="<page docs/debian>#packages">diese
-Anleitung zum Import der Schlüssel in apt</a> lesen.</p>
+<p>Wenn du Tor auf Debian laufen lässt, solltest du <a href="<page
+docs/debian>#packages">diese Anleitung zum Import der Schlüssel in apt</a>
+lesen.</p>
 
-</div><!-- #main -->
+</div>
+
 
 #include <foot.wmi>

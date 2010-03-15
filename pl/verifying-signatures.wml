@@ -1,25 +1,29 @@
+
+
+
+
+
+
 ## translation metadata
-# Based-On-Revision: 20019
+# Revision: $Revision$
 # Translation-Priority: 2-medium
-# Last-Translator: bogdandr_at_op . pl
-
-#include "head.wmi" TITLE="Weryfikacja Podpisów" CHARSET="UTF-8"
-
+#include "head.wmi" TITLE="Verifying Signatures" CHARSET="UTF-8"
 <div class="main-column">
 
 <h2>Jak weryfikować podpisy paczek</h2>
 <hr />
 
-<p>Każdemu plikowi na <a href="<page download>">naszej stronie pobierania</a> towarzyszy
-plik z tą samą nazwą co paczka i rozszerzeniem ".asc". Na przykład aktualna paczka
-instalacyjna dla Windows: <package-win32-bundle-stable-sig>.</p>
+<p>Każdemu plikowi na <a href="<page download>">naszej stronie pobierania</a>
+towarzyszy plik z tą samą nazwą co paczka i rozszerzeniem ".asc". Na
+przykład aktualna paczka instalacyjna dla Windows:
+<package-win32-bundle-stable-sig>.</p>
 
-<p>Pliki .asc to podpisy PGP. Pozwalają zweryfikować, że plik, który pobraliście, to
-dokładnie ten sam plik, który my wystawiliśmy do pobierania.</p>
+<p>These .asc files are PGP signatures. They allow you to verify the file
+you've downloaded is exactly the one that we intended you to get.</p>
 
-<p>Oczywiście, musicie mieć nasze klucze PGP w swojej bazie kluczy: jeśli nie znacie klucza,
-nie możecie być pewni, że to naprawdę my podpisujemy. Klucze używane przez nas do podpisu
-to klucze:</p>
+<p>Oczywiście, musicie mieć nasze klucze PGP w swojej bazie kluczy: jeśli nie
+znacie klucza, nie możecie być pewni, że to naprawdę my podpisujemy. Klucze
+używane przez nas do podpisu to klucze:</p>
 <ul>
 <li>Rogera (0x28988BF5) zazwyczaj podpisuje plik z kodem źródłowym.</li>
 <li>Nicka (0x165733EA, lub jego podklucz 0x8D29319A)</li>
@@ -27,6 +31,7 @@ to klucze:</p>
 <li>Petera (0x94C09C7F, lub jego podklucz 0xAFA44BDD)</li>
 <li>Matta (0x5FA14861)</li>
 <li>Jacoba (0x9D0FACE4)</li>
+<li>Erinn (0x63FEE659) i (0xF1F5C9B5)</li>
 </ul>
 
 <h3>Krok pierwszy: Import kluczy</h3>
@@ -84,16 +89,16 @@ uid                  Jacob Appelbaum &lt;jacob@appelbaum.net&gt;
 sub   4096g/D5E87583 2008-03-11 [expires: 2010-03-11]
 </pre>
 
-<p>(Oczywiście, jeśli chcecie być naprawdę pewni, że to są nasze prawdziwe klucze,
-powinniście sprawdzić to w innych miejscach lub, nawet lepiej, wejść w podpisywanie
-kluczy i zbudować ścieżkę zaufania do tych kluczy.)</p>
+<p>(Oczywiście, jeśli chcecie być naprawdę pewni, że to są nasze prawdziwe
+klucze, powinniście sprawdzić to w innych miejscach lub, nawet lepiej, wejść
+w podpisywanie kluczy i zbudować ścieżkę zaufania do tych kluczy.)</p>
 
 <h3>Krok trzeci: weryfikacja pobranej paczki</h3>
 <hr />
-<p>Jeśli używacie GnuPG, pobierzcie plik .asc i ściągany w tym samym katalogu i
-wpiszcie "gpg --verify (nazwa).asc (nazwa)". Wyświetli się coś w postaci
-"Good signature" ("Prawidłowy podpis") lub "BAD signature" ("NIEPRAWIDŁOWY podpis")
-po tym typie komendy:</p>
+<p>If you're using GnuPG, then put the .asc and the download in the same
+directory and type "gpg --verify (whatever).asc (whatever)". It will say
+something like "Good signature" or "BAD signature" using the following type
+of command:</p>
 
 <pre>
 gpg --verify tor-0.1.0.17.tar.gz.asc tor-0.1.0.17.tar.gz
@@ -106,20 +111,22 @@ Primary key fingerprint: B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
 </pre>
 
 <p>
-Zauważcie, że pojawia się ostrzeżenie, gdyż nie określiliście stopnia zaufania
-do tego użytkownika. Znaczy to, że program zweryfikował, że ten podpis został
-wykonany tym kluczem. To od użytkownika zależy decydowanie, czy ten klucz
-rzeczywiście należy do deweloperów. Najlepszym sposobem jest spotkanie się z
-nimi osobiście i wymiana odcisków palców kluczy GPG. Klucze też mogą być
-podpisywane. Jeśli sprawdzicie klucze Rogera lub Nicka, zobaczycie, że inni
-poświadczyli "sprawdziliśmy, że to jest Roger/Nick". Więc jeśli ufasz tej
-osobie trzeciej, masz stopień zaufania do arma/nick.
+Zauważcie, że pojawia się ostrzeżenie, gdyż nie określiliście stopnia
+zaufania do tego użytkownika. Znaczy to, że program zweryfikował, że ten
+podpis został wykonany tym kluczem. To od użytkownika zależy decydowanie,
+czy ten klucz rzeczywiście należy do deweloperów. Najlepszym sposobem jest
+spotkanie się z nimi osobiście i wymiana odcisków palców kluczy GPG. Klucze
+też mogą być podpisywane. Jeśli sprawdzicie klucze Rogera lub Nicka,
+zobaczycie, że inni poświadczyli "sprawdziliśmy, że to jest
+Roger/Nick". Więc jeśli ufasz tej osobie trzeciej, masz stopień zaufania do
+arma/nick.
 </p>
 
-<p>Wszystko to znaczy, że możesz zignorować tę wiadomość lub przyznać poziom zaufania.</p>
+<p>Wszystko to znaczy, że możesz zignorować tę wiadomość lub przyznać poziom
+zaufania.</p>
 
-<p>Do Waszej wiadomości, oto jest przykład <em>NIEPRAWIDŁOWEJ</em> (nieudanej) weryfikacji.
-Oznacza ona, że podpis i zawartość pliku nie pasują:</p>
+<p>For your reference, this is an example of a <em>BAD</em> verification. It
+means that the signature and file contents do not match:</p>
 
 <pre>
 gpg --verify tor-0.1.0.17.tar.gz.asc
@@ -129,10 +136,11 @@ gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
 
 <p>Jeśli zobaczycie taką wiadomość, nie powinniście ufać zawartości pliku.</p>
 
-<p>Jeśli używacie Tora na Debianie, powinniście przeczytać instrukcje o
-<a
-href="<page docs/debian>#packages">importowaniu tych kluczy do programu apt</a>.</p>
+<p>Jeśli używacie Tora na Debianie, powinniście przeczytać instrukcje o <a
+href="<page docs/debian>#packages">importowaniu tych kluczy do programu
+apt</a>.</p>
 
-</div><!-- #main -->
+</div>
+
 
 #include <foot.wmi>

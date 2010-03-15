@@ -61,7 +61,8 @@ Tor?</a></li>
 с различного рода злоупотреблениями.</a></li>
 <li><a href="#RelayOrBridge">Что лучше установить обычный ретранслятор или
 ретранслятор типа мост?</a></li>
-<li><a href="#RelayMemory">Why is my Tor relay using so much memory?</a></li>
+<li><a href="#RelayMemory">Почему мой ретранслятор использует так много
+памяти?</a></li>
 <li><a href="#WhyNotNamed">Почему моему ретранслятору не присваивается имя?</a></li>
 </ul>
 
@@ -307,10 +308,10 @@ href="https://www.fsf.org/">бесплатным</a>. Это означает, �
 </p>
 
 <p>
-However, if you want to redistribute the Tor software you must follow our <a
-href="<gitblob>LICENSE">LICENSE</a>.  Essentially this means that you need
-to include our LICENSE file along with whatever part of the Tor software
-you're distributing.
+Однако если вы хотите распространять программное обеспечение Tor вы должны
+следовать нашей <a href="<gitblob>LICENSE">ЛИЦЕНЗИИ</a>. Главным образом это
+означает, что вы должны добавлять наш файл ЛИЗЕНЗИИ к любой распространяемой
+вами части программного обеспечения Tor.
 </p>
 
 <p>
@@ -419,9 +420,9 @@ href="http://archives.seul.org/or/talk/"> архив</a>.
 </p>
 
 <p>
-For the much more in-depth answer, see <a
-href="https://blog.torproject.org/blog/why-tor-is-slow">Roger's blog post on
-the topic</a>, which includes both a detailed PDF and a video to go with it.
+Для более подробного ответа, смотрите <a
+href="https://blog.torproject.org/blog/why-tor-is-slow"> блог Роджера на эту
+тему</a>, который включает подробные PDF и видео.
 </p>
 
 <p>
@@ -674,9 +675,8 @@ verifying-signatures>">верификации подписей</a> для пол
 Windows?</a></h3>
 
 <p>
-Try following the steps at <a
-href="<gitblob>doc/tor-win32-mingw-creation.txt">
-tor-win32-mingw-creation.txt</a>.
+Попробуйте следовать поэтапной инструкции доступной на: <a
+href="<svnsandbox>doc/tor-win32-mingw-creation.txt"><svnsandbox>doc/tor-win32-mingw-creation.txt</a>.
 </p>
 
 <p>
@@ -723,16 +723,15 @@ href="#CompileTorWindows">перекомпилируйте файл самост
 </p>
 
 <ol>
-<li><a href="https://amnesia.boum.org/">amnesia LiveCD/USB</a> is a Live System
-aimed at preserving your privacy and anonymity:
+<li><a href="https://amnesia.boum.org/">amnesia LiveCD/USB</a> эта Live System
+направленная на сохранение конфиденциальности и анонимности:
 <ul>
-<li> All outgoing connections to the Internet are forced to go through the Tor
-network.</li>
-<li> No trace is left on local storage devices unless explicitely asked.</li>
-<li> It includes Firefox, Tor, Torbutton, Vidalia graphical Tor controller,
-Pidgin Instant Messaging client, and lots of other software.</li>
-<li> It's based upon Debian gnu/linux and comes with the GNOME desktop
-environment.</li>
+<li> Все исходящие подключения к Интернету, вынуждены проходить через сеть Tor.</li>
+<li> Не осталось и следа на локальных устройствах хранения, если явно не спросил.</li>
+<li> Она включает в себя Firefox, Tor, Torbutton, Vidalia графического
+контроллера Tor, Pidgin клиент обмена мгновенными сообщениями и многое
+другое программное обеспечение.</li>
+<li> Он основан на Debian GNU / Linux и поставляется с рабочего окружения GNOME.</li>
 </ul>
 <li><a href="http://incognito.anonymityanywhere.com/">Incognito LiveCD/USB</a>
 (инкогнито LiveCD/USB) – это CD диск, с которого вы можете загрузиться, и
@@ -840,24 +839,25 @@ href="http://theory.kaos.to/projects.html">Kaos.Theory</a>.</li>
     </dd>
 </dl>
 <p>
-<em>We recommend you do not use these</em> &mdash; they are intended for
-testing and may disappear in future versions.  You get the best security
-that Tor can provide when you leave the route selection to Tor; overriding
-the entry / exit nodes can mess up your anonymity in ways we don't
-understand.
+<em>Мы рекомендуем вам не использовать эти функции </em> – они были задуманы
+для тестирования и могут исчезнуть в будущих версиях. Вы получаете лучший
+уровень безопасности, когда оставляете выбор маршрутов сервису Tor; ручной
+выбор выводных / вводных узлов может навредить вашей анонимности по
+непонятной нам причине.
 </p>
 <p>
-The <tt>EntryNodes</tt> and <tt>ExitNodes</tt> config options are treated as
-a request, meaning if the nodes are down or seem slow, Tor will still avoid
-them.  You can make the option mandatory by setting <tt>StrictExitNodes
-1</tt> or <tt>StrictEntryNodes 1</tt> &mdash; but if you do, your Tor
-connections will stop working if all of the nodes you have specified become
-unreachable.  See the <a
-href="https://www.torproject.org/documentation.html.en#NeatLinks">Tor status
-pages</a> for some nodes you might pick.
+Опции конфигурации входных и выводных узлов (<tt>EntryNodes</tt> и
+<tt>ExitNodes</tt>) воспринимаются как запросы. Это означает, что если узлы
+недоступны или работают медленно, система Tor будет их избегать. Вы можете
+сделать эту опцию обязательной, установив значение 1 в поле
+<tt>StrictExitNodes</tt> или <tt>StrictEntryNodes</tt>. Но если вы сделаете
+так, ваши соединения Tor прекратят работу, если все из перечисленных вами
+узлов станут недоступными. Просмотрите <a
+href="https://www.torproject.org/documentation.html.en#NeatLinks">страницу
+статусов Tor</a> для выбора узлов.
 </p>
 <p>
-Вместо этого вы можете в поле <tt>$fingerprint<tt> обозначить двухбуквенный
+Вместо этого вы можете в поле <tt>$fingerprint</tt> обозначить двухбуквенный
 код страны ISO3166, заключенный в фигурные скобки (например, {de}), или
 образец ip адресов (например, 255.254.0.0/8), или имя узла. Убедитесь, что
 между запятыми и элементами списка нет пробелов. 
@@ -866,7 +866,7 @@ pages</a> for some nodes you might pick.
 Если вы хотите подключаться к сервису напрямую через SOCKS интерфейс Tor
 (например, используя ssh через connect.c), другой возможностью является
 установка внутреннего преобразования в вашем конфигурационном файле
-<tt>MapAddress<tt>. Прочитайте страницу руководства для получения подробной
+<tt>MapAddress</tt>. Прочитайте страницу руководства для получения подробной
 информации.
 </p>
 
@@ -880,12 +880,13 @@ pages</a> for some nodes you might pick.
 </p>
 
 <ul>
-<li>Tor has built-in support for <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">
-rate limiting</a>. Further, if you have a fast link but want to limit the
-number of bytes per day (or week or month) that you donate, check out the <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">hibernation
-feature</a>.
+<li>Клиентская программа Tor имеет встроенную поддержку для <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">ограничения
+скорости</a>. Более того, если вы имеете скоростное подключение, но хотите
+ограничить число байтов пропускаемых через ваш ретранслятор в день (неделю
+или месяц), обратитесь к <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Hibernation">функции
+гибернации</a>.
 </li>
 <li>Каждый ретранслятор Tor имеет <a href="#ExitPolicies">правила вывода</a>,
 которые устанавливают разрешенные и запрещенные внешние соединения этого
@@ -902,11 +903,13 @@ feature</a>.
 таких случаях при настройке нужно просто оставлять Address config пустым, и
 Tor попытается определить адрес автоматически.
 </li>
-<li>If your relay is behind a NAT and it doesn't know its public IP (e.g. it has
-an IP of 192.168.x.y), you'll need to set up port forwarding. Forwarding TCP
-connections is system dependent but <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">this
-FAQ entry</a> offers some examples on how to do this.
+<li>Если ваш ретранслятор работает через протокол NAT (протокол трансляции
+сетевых адресов) и публичный IP не известен (например, если IP адрес -
+192.168.x.y), вам понадобится установить переадресацию портов. Переадресация
+соединений TCP имеет системные особенности, но <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewal
+ledClients">этот список часто задаваемых вопросов (FAQ)</a> предлагает
+несколько примеров настройки этой функции.
 </li>
 <li>Ваш ретранслятор будет пассивно оценивать, и передавать информацию о своем
 текущем потенциале полосы пропускания, таким образом, высокоскоростные
@@ -925,17 +928,19 @@ FAQ entry</a> offers some examples on how to do this.
 </p>
 
 <p>
-Each Tor relay has an exit policy that specifies what sort of outbound
-connections are allowed or refused from that relay. The exit policies are
-propagated to Tor clients via the directory, so clients will automatically
-avoid picking exit relays that would refuse to exit to their intended
-destination. This way each relay can decide the services, hosts, and
-networks he wants to allow connections to, based on abuse potential and his
-own situation. Read the FAQ entry on <a href="<page
-faq-abuse>#TypicalAbuses">issues you might encounter</a> if you use the
-default exit policy, and then read Mike Perry's <a
-href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">tips
-for running an exit node with minimal harassment</a>.
+Каждый ретранслятор Tor имеет правила вывода, которые устанавливают
+разрешенные или запрещенные подключения вне сети для этого конкретного
+ретранслятора. Правила вывода отдельных узлов представлены в директории Tor,
+таким образом, клиент автоматически будет избегать подключения к тем узлам,
+которые не разрешают подключение к интересующим его ресурсам. Так каждый
+ретранслятор может решить, к каким сервисам, хостам и сетям разрешить
+подключение, основываясь на их вредоносном потенциале и своих собственных
+условиях. Прочитайте разделы часто задаваемых вопросов (FAQ), касающиеся <a
+href="<page faq-abuse>#TypicalAbuses">условий использования стандартных
+правил вывода</a>, а затем ознакомьтесь с советами Майка Перри (Mike Perry)
+<a
+href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">о
+том, как минимизировать угрозы предоставления выводного узла</a>.
 </p>
 
 <p>
@@ -1002,45 +1007,49 @@ Tor</a>, которые не указаны в главной директори
 за ваш вклад!
 </p>
 
-<hr /> <a id="RelayMemory"></a>
-<h3><a class="anchor" href="#RelayMemory">Why is my Tor relay using so much
-memory?</a></h3>
+<hr /> <a id="RelayFlexible"></a>
+<h3><a class="anchor" href="#RelayMemory">Почему мой ретранслятор использует так
+много памяти?</a></h3>
 
-<p>If your Tor relay is using more memory than you'd like, here are some tips
-for reducing its footprint:
+<p>Если ваш сервер использует больше памяти, чем вам хотелось бы, вот несколько
+советов для сокращения своего присутствия:
 </p>
 
 <ol>
-<li>If you're on Linux, you may be encountering memory fragmentation bugs in
-glibc's malloc implementation. That is, when Tor releases memory back to the
-system, the pieces of memory are fragmented so they're hard to reuse. The
-Tor tarball ships with OpenBSD's malloc implementation, which doesn't have
-as many fragmentation bugs (but the tradeoff is higher CPU load). You can
-tell Tor to use this malloc implementation instead: <tt>./configure
+<li>Если вы на Linux, у вас могут возникнуть ошибки фрагментации памяти в
+осуществлении MALLOC Glibc. То есть, когда Тор освобождает память обратно в
+систему, куски памяти становится фрагментированной, поэтому они трудно
+повторно. поэтому они трудно повторно. Тор архива суда с осуществлением
+MALLOC OpenBSD, который не имеет как много ошибок фрагментации (но выбор
+стоит выше загрузка процессора). Вы можете установить Tor, чтобы
+использовать эту MALLOC осуществление вместо: <tt>./configure
 --enable-openbsd-malloc</tt></li>
 
-<li>If you're running a fast relay, meaning you have many TLS connections open,
-you are probably losing a lot of memory to OpenSSL's internal buffers (38KB+
-per socket). We've patched OpenSSL to release unused buffer memory more
-aggressively. If you update to OpenSSL 1.0.0-beta5, Tor's build process will
-automatically recognize and use this feature.</li>
+<li>Если у вас есть быстрый ретранслятор, то есть у вас много связей TLS
+открыты, вы, вероятно, потеряв много памяти в связи с OpenSSL внутреннего
+буфера (38KB+ на сокете). Мы обновили OpenSSL освободить неиспользуемую
+память буфера более агрессивно. При обновлении до OpenSSL 1.0.0-beta5,
+процесс сборки Tor будет автоматически распознавать и использовать эту
+возможность.</li>
 
-<li>If you're running on Solaris, OpenBSD, NetBSD, or old FreeBSD, Tor is
-probably forking separate processes rather than using threads. Consider
-switching to a <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">better
-operating system</a>.</li>
+<li>Если вы используете Solaris, OpenBSD, NetBSD, или старый FreeBSD, Tor
+вероятно создает отдельные процессы, вместо использования
+потоков. Рассмотреть возможность изменения к <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">лучшей
+операционной системе</a>.</li>
 
-<li>If you still can't handle the memory load, consider reducing the amount of
-bandwidth your relay advertises. Advertising less bandwidth means you will
-attract fewer users, so your relay shouldn't grow as large. See the
-<tt>MaxAdvertisedBandwidth</tt> option in the man page.</li>
+<li>Если вы все еще не может справиться с нагрузкой памяти, можно также
+уменьшить возможности вашего сервера объявляет. Объявляя меньшей пропускной
+способности означает, что вас привлекает меньше пользователей, так что ваш
+сервер не должна расти как крупные. См. <tt>MaxAdvertisedBandwidth</tt>
+опцию в странице руководства (man page).</li>
 
 </ol>
 
 <p>
-All of this said, fast Tor relays do use a lot of ram. It is not unusual for
-a fast exit relay to use 500-1000 MB of memory.
+Все-таки, быстрые серверы Tor используют много памяти. Это не является
+необычным для быстрого выводного ретранслятора использовать 500-1000 Мбайт
+памяти.
 </p>
 
 <hr /> <a id="WhyNotNamed"></a>
@@ -1083,25 +1092,27 @@ a fast exit relay to use 500-1000 MB of memory.
 </p>
 
 <p>
-<b>Authentication</b>: Every Tor relay has a public decryption key called
-the "onion key".  When the Tor client establishes circuits, at each step it
-<a href="<gitblob>doc/design-paper/tor-design.html#subsec:circuits">demands
-that the Tor relay prove knowledge of its onion key</a>. That way the first
-node in the path can't just spoof the rest of the path.  Each relay rotates
-its onion key once a week.
+<b>Идентификация</b>: каждый ретранслятор Tor имеет публичный ключ
+дешифрования, называемый "луковый ключ". Когда клиентская программа Tor
+создает цепочку, на каждом этапе <a
+href="<svnsandbox>doc/design-paper/tor-design.html#subsec:circuits">идет
+запрос на предъявление лукового ключа ретранслятора Tor</a>. Таким образом,
+первый узел в цепочке не может просто имитировать все последующие. Каждый
+ретранслятор меняет луковый ключ раз в неделю.
 </p>
 
 <p>
-<b>Coordination</b>: How do clients know what the relays are, and how do
-they know that they have the right keys for them? Each relay has a long-term
-public signing key called the "identity key". Each directory authority
-additionally has a "directory signing key". The directory authorities <a
-href="<gitblob>doc/spec/dir-spec.txt">provide a signed list</a> of all the
-known relays, and in that list are a set of certificates from each relay
-(self-signed by their identity key) specifying their keys, locations, exit
-policies, and so on. So unless the adversary can control a threshold of the
-directory authorities, he can't trick the Tor client into using other Tor
-relays.
+<b>Координация</b>: как клиенты идентифицируют ретрансляторы и подбирают для
+них правильные ключи? Каждый ретранслятор имеет долговременный публичный
+ключ подписи, называемый "ключ идентификации". Каждое управление директорией
+дополнительно имеет "ключ подписи директории". Управление директорией <a
+href="<svnsandbox>doc/spec/dir-spec.txt"> содержит подтвержденный список</a>
+всех известных ретрансляторов, и в этом списке есть набор их сертификатов
+(подписанных идентификационными ключами ретрансляторов). Этот набор содержит
+спецификации ключей, местоположений, правил вывода и т.д. обо всех
+ретрансляторах сети. Таким образом, если недоброжелатель не может
+контролировать управление директорией, он не может заставить клиента
+использовать другие ретрансляторы Tor.
 </p>
 
 <p>
@@ -1184,13 +1195,15 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTC
 </p>
 
 <p>
-Third, we need to work on scalability, both of the network (how to stop
-requiring that all Tor relays be able to connect to all Tor relays) and of
-the directory (how to stop requiring that all Tor users know about all Tor
-relays). Changes like this can have large impact on potential and actual
-anonymity. See Section 5 of the <a
-href="<gitblob>doc/design-paper/challenges.pdf">Challenges</a> paper for
-details. Again, UDP transport would help here.
+В-третьих, мы должны работать над увеличением, как сети (как прекратить
+запрос того, что все ретрансляторы Tor должны быть способны подключиться ко
+всем ретрансляторам Tor), так и директории (как прекратить запрос того, что
+все пользователи Tor информированы обо всех ретрансляторах Tor). Подобные
+изменения могут сильно повлиять на потенциальную и на возможную в настоящее
+время анонимность. Смотри Секция 5 документа <a
+href="<svnsandbox>doc/design-paper/challenges.pdf">Вызовов</a> для получения
+более подробной информации. Опять-таки информационный обмен через UDP мог бы
+помочь решить эту задачу.
 </p>
 
 <p>
