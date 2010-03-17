@@ -146,6 +146,46 @@ Status wish list</a>.
 </li>
 
 <li>
+<b>Rewrite TorDNSEL, this time with a spec!</b>
+<br />
+Priority: <i>High</i>
+<br />
+Effort Level: <i>Medium</i>
+<br />
+Skill Level: <i>Medium</i>
+<br />
+Likely Mentors: <i>Mike, Roger, Sebastian</i>
+<br />
+The <a href="<page tordnsel/index>">Tor DNS Exit List</a> is a Haskell
+program that serves three purposes. First, it provides an rbl-style DNS
+interface for people to look up whether a given IP address is (or has
+recently been) a Tor exit relay. Second, it actively builds circuits over
+the Tor network and connects back to itself, to learn the actual exit
+IP address of each relay &mdash; some Tor relays exit from a different
+address than they advertise in their descriptor. Third, it exports a <a
+href="http://exitlist.torproject.org/exitAddresses">set of conclusions</a>
+so that <a href="https://check.torproject.org/">check.torproject.org</a>
+can guess for you whether your browser is configured to point to Tor.
+<br />
+This project would make use of <a
+href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>,
+a set of Python scripts to interact with Tor; the project would be
+to figure out how our Tor Exit Checker should actually work, and then
+build it &mdash; probably in Python since Torflow is in Python. The main
+goal is to reduce false positives as much as possible, by making sure
+that it learns about new relays as soon as possible, making sure that
+the testing phase concludes quickly, and making sure the answers get
+passed to the Check script quickly. As a bonus, we should standardize
+(specify) the format of the exitAddresses file, and rewrite the <a
+href="https://svn.torproject.org/svn/check/trunk/cgi-bin/TorBulkExitList.py">Tor
+Bulk Exit List</a> script to use that file rather than its current
+horrible DNS hacks.
+<br />
+You can fetch the <a href="git://git.torproject.org/git/tordnsel">latest
+tordnsel</a> via git.
+</li>
+
+<li>
 <b>Improving Tor's ability to resist censorship</b>
 <br />
 Priority: <i>Medium to High</i>
