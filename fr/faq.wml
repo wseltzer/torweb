@@ -1062,13 +1062,12 @@ pas fonctionner.
 </p>
 
 <p>
-<b>Authentification</b>: Chaque noeud Tor a une clef de déchiffrement
-publique appelée "clef oignon".  Lorsque le client met en place des
-circuits, à chaque étape il <a
-href="<svnprojects>design-paper/tor-design.html#subsec:circuits">demande que
-le noeud Tor prouve la connaissance de sa propre clef oignon</a>. Ainsi, le
-premier noeud du circuit ne peut usurper le reste du circuit.  Chaque noeud
-change de clef oignon une fois par semaine.
+<b>Authentication</b>: Every Tor relay has a public decryption key called
+the "onion key".  When the Tor client establishes circuits, at each step it
+<a href="<svnprojects>design-paper/tor-design.html#subsec:circuits">demands
+that the Tor relay prove knowledge of its onion key</a>. That way the first
+node in the path can't just spoof the rest of the path.  Each relay rotates
+its onion key once a week.
 </p>
 
 <p>
@@ -1163,15 +1162,13 @@ qui hélas n'est pas une réponse si simple que ça.
 </p>
 
 <p>
-Troisièment, nous avons besoin de travailler sur l'évolutivité du réseau
-(comment éviter d'imposer que chaque noeud Tor soit capable de se connecter
-à l'intégralité des noeuds Tor) et de l'annuaire (comment éviter d'imposer
-que tous les utilisateurs Tor connaissent l'intégralité des noeuds Tor). Les
-changement à ce niveau peuvent avoir des conséquences sur
-l'anonymat. Consultez la section 4 de notre article sur <a
-href="<svnprojects>design-paper/challenges.pdf">nos défis</a> pour plus
-détails. Encore une fois, le transport par UDP devrait améliorer grandement
-la situation.
+Third, we need to work on scalability, both of the network (how to stop
+requiring that all Tor relays be able to connect to all Tor relays) and of
+the directory (how to stop requiring that all Tor users know about all Tor
+relays). Changes like this can have large impact on potential and actual
+anonymity. See Section 5 of the <a
+href="<svnprojects>design-paper/challenges.pdf">Challenges</a> paper for
+details. Again, UDP transport would help here.
 </p>
 
 <p>

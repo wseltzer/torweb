@@ -1092,13 +1092,12 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">луч�
 </p>
 
 <p>
-<b>Идентификация</b>: каждый ретранслятор Tor имеет публичный ключ
-дешифрования, называемый "луковый ключ". Когда клиентская программа Tor
-создает цепочку, на каждом этапе <a
-href="<svnsandbox>doc/design-paper/tor-design.html#subsec:circuits">идет
-запрос на предъявление лукового ключа ретранслятора Tor</a>. Таким образом,
-первый узел в цепочке не может просто имитировать все последующие. Каждый
-ретранслятор меняет луковый ключ раз в неделю.
+<b>Authentication</b>: Every Tor relay has a public decryption key called
+the "onion key".  When the Tor client establishes circuits, at each step it
+<a href="<svnprojects>design-paper/tor-design.html#subsec:circuits">demands
+that the Tor relay prove knowledge of its onion key</a>. That way the first
+node in the path can't just spoof the rest of the path.  Each relay rotates
+its onion key once a week.
 </p>
 
 <p>
@@ -1195,15 +1194,13 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTC
 </p>
 
 <p>
-В-третьих, мы должны работать над увеличением, как сети (как прекратить
-запрос того, что все ретрансляторы Tor должны быть способны подключиться ко
-всем ретрансляторам Tor), так и директории (как прекратить запрос того, что
-все пользователи Tor информированы обо всех ретрансляторах Tor). Подобные
-изменения могут сильно повлиять на потенциальную и на возможную в настоящее
-время анонимность. Смотри Секция 5 документа <a
-href="<svnsandbox>doc/design-paper/challenges.pdf">Вызовов</a> для получения
-более подробной информации. Опять-таки информационный обмен через UDP мог бы
-помочь решить эту задачу.
+Third, we need to work on scalability, both of the network (how to stop
+requiring that all Tor relays be able to connect to all Tor relays) and of
+the directory (how to stop requiring that all Tor users know about all Tor
+relays). Changes like this can have large impact on potential and actual
+anonymity. See Section 5 of the <a
+href="<svnprojects>design-paper/challenges.pdf">Challenges</a> paper for
+details. Again, UDP transport would help here.
 </p>
 
 <p>

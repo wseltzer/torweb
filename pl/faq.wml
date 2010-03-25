@@ -1010,13 +1010,12 @@ w celu odkrycia klucza nie podziała.
 </p>
 
 <p>
-<b>Uwierzytelnianie</b>: Każdy przekaźnik sieci Tora ma publiczny klucz
-deszyfrujący zwany "kluczem cebulowym". Gdy klient Tora uruchamia obwody, na
-każdym kroku <a
-href="<svnprojects>design-paper/tor-design.html#subsec:circuits">żąda, by
-przekaźnik sieci udowodnił znajomość swojego klucza cebulowego</a>. Tym
-sposobem, pierwszy węzeł w ścieżce nie może podszyć się pod resztę
-ścieżki. Każdy przekaźnik zmienia swój klucz raz w tygodniu.
+<b>Authentication</b>: Every Tor relay has a public decryption key called
+the "onion key".  When the Tor client establishes circuits, at each step it
+<a href="<svnprojects>design-paper/tor-design.html#subsec:circuits">demands
+that the Tor relay prove knowledge of its onion key</a>. That way the first
+node in the path can't just spoof the rest of the path.  Each relay rotates
+its onion key once a week.
 </p>
 
 <p>
@@ -1109,13 +1108,13 @@ strony nie jest wcale bardzo prostą odpowiedzią.
 </p>
 
 <p>
-Po trzecie, musimy popracować na skalowalnością, zarówno sieci (jak przestać
-wymagać, by każdy przekaźnik mógł się połączyć z każdym) i katalogów (jak
-przestać wymagać, by wszyscy użytkownicy Tora wiedzieli o wszystkich
-przekaźnikach). Takie zmiany mogą mieć wielki wpływ na potencjalną i
-rzeczywistą anonimowość. Przeczytaj sekcję 5 dokumentu <a
-href="<svnprojects>design-paper/challenges.pdf">Wyzwania</a>, by poznać
-szczegóły. Ponownie, transport UDP by tu pomógł.
+Third, we need to work on scalability, both of the network (how to stop
+requiring that all Tor relays be able to connect to all Tor relays) and of
+the directory (how to stop requiring that all Tor users know about all Tor
+relays). Changes like this can have large impact on potential and actual
+anonymity. See Section 5 of the <a
+href="<svnprojects>design-paper/challenges.pdf">Challenges</a> paper for
+details. Again, UDP transport would help here.
 </p>
 
 <p>
