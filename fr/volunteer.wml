@@ -185,27 +185,30 @@ tordnsel</a> via git.
 </li>
 
 <li>
-<b>Improving Tor's ability to resist censorship</b> <br /> Priority:
-<i>Medium to High</i> <br /> Effort Level: <i>Medium</i> <br /> Skill Level:
-<i>High</i> <br /> Likely Mentors: <i>Nick, Roger, Steven</i> <br /> The Tor
-0.2.1.x series makes <a
-href="<svnprojects>design-paper/blocking.html">significant improvements</a>
-in resisting national and organizational censorship.  But Tor still needs
-better mechanisms for some parts of its anti-censorship design.  For
-example, current Tors can only listen on a single address/port combination
-at a time.  There's <a
-href="<gitblob>doc/spec/proposals/118-multiple-orports.txt">a proposal to
-address this limitation</a> and allow clients to connect to any given Tor on
-multiple addresses and ports, but it needs more work.  <br /> Another area
-that needs work is our <a
-href="http://gitweb.torproject.org//bridgedb.git?a=tree">bridgedb</a>
-service. See e.g. <a
-href="http://archives.seul.org/or/dev/Dec-2009/msg00000.html">Roger's or-dev
-post</a> from December for details &mdash; lots of design work remains.  <br
-/> This project involves a lot of research and design. One of the big
-challenges will be identifying and crafting approaches that can still resist
-an adversary even after the adversary knows the design, and then trading off
-censorship resistance with usability and robustness.
+<b>Améliorer les capacités de résistance à la censure de Tor</b> <br />
+Priorité: <i>Moyenne à Haute</i> <br /> Effort à fournir: <i>Moyen</i> <br
+/> Compétences requises: <i>Hautes</i> <br /> Tuteurs potentiels: <i>Nick,
+Roger, Steven</i> <br /> La série 0.2.1.x de Tor a fait l'objet <a
+href="<svnprojects>design-paper/blocking.html">d'amélioration sensibles</a>
+dans la résistance aux censures des États et des organisations.  Néanmoins,
+Tor a toujours besoin de meilleurs mécanismes dans certaines parties de ses
+fonctionnalités anti-censure.  Par exemple, Tor ne peut écouter le réseau
+que sur une seule combinaison adresse/port à la fois.  Il existe <a
+href="<gitblob>doc/spec/proposals/118-multiple-orports.txt">une proposition
+visant à réduire cette limite</a> et à permettre aux clients de se connecter
+à n'importe quel noeud Tor sur de multiples adresses et ports mais il y a
+besoin de plus de travail dessus.  <br /> Un autre périmètre de travail est
+notre service <a
+href="http://gitweb.torproject.org//bridgedb.git?a=tree">bridgedb</a>.
+Consultez <a
+href="http://archives.seul.org/or/dev/Dec-2009/msg00000.html">le message de
+Roger du mois de décembre sur la liste de diffusion or-dev</a> pour plus de
+détails &mdash; un gros travail de spécification reste à accomplir.  <br />
+Ce projet implique un gros travail de recherche et de conception. Un des
+défis le plus important est d'identifier et de sélectionner des approches
+résistantes aux attaques y compris lorsque l'attaquant en connaît la
+conception. Il sera alors possible de conjuguer résistance à la censure avec
+facilité d'utilisation et robustesse.
 </li>
 
 
@@ -783,16 +786,17 @@ quelques exemples.
 </li>
 
 <li>
-Another anti-censorship project is to try to make Tor more
-scanning-resistant.  Right now, an adversary can identify <a
-href="<gitblob>doc/spec/proposals/125-bridges.txt">Tor bridges</a> just by
-trying to connect to them, following the Tor protocol, and seeing if they
-respond.  To solve this, bridges could <a
-href="<svnprojects>design-paper/blocking.html#tth_sEc9.3">act like
-webservers</a> (HTTP or HTTPS) when contacted by port-scanning tools, and
-not act like bridges until the user provides a bridge-specific key.  To
-start, check out Shane Pope's <a
-href="http://dl.dropbox.com/u/37735/index.html">thesis and prototype</a>.
+Un autre projet anti-censure est de rendre Tor plus résistant au scans
+réseaux.  Pour le moment, un attaquant peut identifier <a
+href="<gitblob>doc/spec/proposals/125-bridges.txt">les passerelles Tor</a>
+en essayant simplement de se connecter à elles en utilisant le protocole Tor
+pour vérifier si elles répondent.  Pour régler ce problème, les passerelles
+pourraient <a href="<svnprojects>design-paper/blocking.html#tth_sEc9.3">agir
+comme des serveurs webs</a> (HTTP ou HTTPS) lorsqu'elles sont contactées par
+des outils de scan de port et agir comme des passerelles uniquement lorsque
+l'utilisateur aura amené une clef spécifique.  Pour commencer, consultez <a
+href="http://dl.dropbox.com/u/37735/index.html">la thèse et le prototype</a>
+de Shane Pope.
 </li>
 
 </ol>
@@ -895,17 +899,20 @@ expérimenter des fenêtres de tailles variables plutôt que des fenêtres fixes
 href="http://www.psc.edu/networking/projects/hpn-ssh/theory.php">cette
 expérimentation autour de ssh</a>. Nous avons besoin de mesurer, de corriger
 et peut-être de refondre quelquechose si les résultats s'avèrent bons.</li>
-<li>Our censorship-resistance goals include preventing an attacker who's looking
-at Tor traffic on the wire from <a
-href="<svnprojects>design-paper/blocking.html#sec:network-fingerprint">distinguishing
-it from normal SSL traffic</a>. Obviously we can't achieve perfect
-steganography and still remain usable, but for a first step we'd like to
-block any attacks that can win by observing only a few packets. One of the
-remaining attacks we haven't examined much is that Tor cells are 512 bytes,
-so the traffic on the wire may well be a multiple of 512 bytes.  How much
-does the batching and overhead in TLS records blur this on the wire? Do
-different buffer flushing strategies in Tor affect this? Could a bit of
-padding help a lot, or is this an attack we must accept?</li>
+<li>Nos objectifs de résistance à la censure incluent l'impossibilité pour un
+attaquant qui observe le trafic Tor de <a
+href="<svnprojects>design-paper/blocking.html#sec:network-fingerprint">le
+distinguer d'un trafic SSL normal</a>. Néanmoins, nous ne pouvons pas
+recréer une stéganographie parfaite tout en restant utilisable mais, dans un
+premier temps, nous aimerions pouvoir bloquer toute attaque qui pourrait
+réussir en observant quelques paquets seulement. Une des attaques qu'il nous
+reste à examiner est basée sur le fait que les paquets Tor font 512 octets
+et que par conséquence, les paquets du trafic réseau sont également des
+multiples de 512 octets.  En quoi le fait de modifier les enregistrements
+TLS et leur en-tête pourrait brouiller ce trafic ? Différentes stratégies de
+fermeture de tampon dans Tor peuvent-elles avoir un impact sur ce sujet ?
+Est-ce-qu'un peu de remplissage ferait l'affaire ou bien est-ce-une attaque
+que nous pouvons accepter ?</li>
 <li>Les circuits Tor sont construit pas à pas. Ainsi, il est théoriquement
 possible de faire sortir des flux à partir du second pas, d'autres à partir
 du troisième et ainsi de suite. Cela semble une alternative séduisante car
