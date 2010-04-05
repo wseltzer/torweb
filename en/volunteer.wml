@@ -615,7 +615,7 @@ and <a href="https://svn.torproject.org/svn/weather/trunk/TODO">TODO</a>.
 </li>
 
 <li>
-<b>Better Debian/Ubuntu Packaging for Tor+Vidalia</b>
+<b>Improvements for Tor+Vidalia interaction on Linux/Unix platforms</b>
 <br />
 Priority: <i>Medium</i>
 <br />
@@ -625,45 +625,43 @@ Skill Level: <i>Medium</i>
 <br />
 Likely Mentors: <i>Erinn, Peter</i>
 <br />
-Vidalia currently doesn't play nicely on Debian and Ubuntu with the
-default Tor packages. The current Tor packages automatically start Tor
-as a daemon running as the debian-tor user and (sensibly) do not have a
-<a href="<gitblob>doc/spec/control-spec.txt">ControlPort</a> defined
-in the default torrc. Consequently, Vidalia will try
-to start its own Tor process since it could not connect to the existing
-Tor, and Vidalia's Tor process will then exit with an error message
-the user likely doesn't understand since Tor cannot bind its listening
-ports &mdash; they're already in use by the original Tor daemon.
+Vidalia currently doesn't play nicely with Tor on Linux and Unix platforms.
+Currently, on Debian and Ubuntu, there is a configuration mechanism which
+allows Vidalia to override Tor's ability to start on boot (by sourcing
+<code>/etc/default/tor.vidalia</code> which sets <code>RUN_DAEMON=no</code> at the user's
+request), but full implementation of <a href="<gitblob>doc/spec/control-spec.txt">ControlPort</a> 
+communication is still required.
 <br />
-The current solution involves either telling the user to stop the
-existing Tor daemon and let Vidalia start its own Tor process, or
-explaining to the user how to set a control port and password in their
-torrc. A better solution on Debian would be to use Tor's ControlSocket,
-which allows Vidalia to talk to Tor via a Unix domain socket, and could
-possibly be enabled by default in Tor's Debian packages. Vidalia can
-then authenticate to Tor using filesystem-based (cookie) authentication
-if the user running Vidalia is also in the debian-tor group.
+A better solution on Linux and Unix platforms would be to use Tor's
+ControlSocket, which allows Vidalia to talk to Tor via a Unix domain socket,
+and could possibly be enabled by default in Tor's distribution packages.
+Vidalia can then authenticate to Tor using filesystem-based (cookie)
+authentication if the user running Vidalia is also in the distribution-specific
+tor group.
 <br />
-This project will first involve adding support for Tor's ControlSocket
-to Vidalia. The student will then develop and test Debian and Ubuntu
-packages for Vidalia that conform to Debian's packaging standards and
-make sure they work well with the existing Tor packages. We can also
-set up an apt repository to host the new Vidalia packages.
+This project will first involve adding support for Tor's ControlSocket to
+Vidalia. The student will then develop and test this support on various
+distributions to make sure it behaves in a predictable and consistent manner on
+all of them.
 <br />
-The next challenge would be to find an intuitive usable way for Vidalia
-to be able to change Tor's configuration (torrc) even though it is
-located in <code>/etc/tor/torrc</code> and thus immutable. The best
-idea we've come up with so far is to feed Tor a new configuration via
-the ControlSocket when Vidalia starts, but that's bad because Tor starts
-each boot with a different configuration than the user wants. The second
-best idea
-we've come up with is for Vidalia to write out a temporary torrc file
-and ask the user to manually move it to <code>/etc/tor/torrc</code>,
-but that's bad because users shouldn't have to mess with files directly.
+The next challenge would be to find an intuitive and usable way for Vidalia to be
+able to change Tor's configuration (torrc) even though it is located in
+<code>/etc/tor/torrc</code> and thus immutable. In Debian and Ubuntu we handle
+this with the aforementioned <code>/etc/default/tor.vidalia</code> but this
+functionality could (or should) be less distribution-specific. 
 <br />
-A person undertaking this project should have prior knowledge of
-Debian package management and some C++ development experience. Previous
-experience with Qt is helpful, but not required.
+The best idea we've come up with so far is to feed Tor a new configuration via
+the ControlSocket when Vidalia starts, but that's bad because if the user is not
+using the latest Debian/Ubuntu packages, they may not have disabled Tor's
+ability to run on boot and will end up with a configuration that is different
+from what they want. The second best idea we've come up with is for Vidalia to
+write out a temporary torrc file and ask the user to manually move it to
+<code>/etc/tor/torrc</code>, but that's bad because users shouldn't have to
+mess with files directly.
+<br />
+A person undertaking this project should have prior knowledge of various Linux
+distributions and their packaging mechanisms as well as some C++ development
+experience. Previous experience with Qt is helpful, but not required.
 </li>
 
 <!--<li>
