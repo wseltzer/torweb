@@ -1,205 +1,194 @@
+
+
+
+
+
+
 ## translation metadata
-# Based-On-Revision: 20384
-# Last-Translator: ygrekheretix/gmail/com
-
-#include "head.wmi" TITLE="Tor: Установка на Linux/BSD/Unix" CHARSET="UTF-8"
-
+# Revision: $Revision$
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: Linux/BSD/Unix Install Instructions" CHARSET="UTF-8"
 <div class="center">
 
 <div class="main-column">
 
-<h1>Запуск клиента <a href="<page index>">Tor</a> на Linux/BSD/Unix</h1>
+<h1>Запуск <a href="<page index>">Tor</a> на Linux/BSD/Unix</h1>
 <br />
 
 <p>
-<b>Внимание: это инструкции по установке клиента Tor.
-Если вы хотите передавать серверный трафик чтобы помочь
-увеличиться сети Tor (пожалуйста делайте это), прочитайте инструкции по
-<a href="<page docs/tor-doc-relay>">настройке сервера</a>.</b>
+<b>Обратите внимание, что это инструкции по запуску клиента Tor. Если бы Вы
+хотели предоставить свой траффик другим пользователям, чтобы помочь сети Tor
+расти, ознакомьтесь с руководством по <a href="<page
+docs/tor-doc-relay>">настройке узла</a>.</b>
 </p>
 
-<hr />
-<a id="installing"></a>
-<h2><a class="anchor" href="#installing">Шаг первый: Скачать и установить Tor</a></h2>
+<hr /> <a id="installing"></a>
+<h2><a class="anchor" href="#installing">Шаг 1: загрузка и установка Tor</a></h2>
 <br />
 
 <p>
-Последний релиз Tor можно найти на странице
-<a href="<page download-unix>">download</a>. Мы предоставляем пакеты для Debian,
-Red Hat, Gentoo, *BSD, etc. Если вы используете Ubuntu, не устанавливайте дистрибутивные 
-пакеты; вместо этого пользуйтесь <a href="<page docs/debian>#ubuntu">нашим deb репозиторием</a>.
+Последняя версия Tor находится на странице <a href="<page
+download-unix>">загрузок</a>, где предоставлены пакеты для Debian, Red Hat,
+Gentoo, *BSD итд. Если Вы используете  Ubuntu, не используйте стандартные
+репозитории, лучше настройте <a href="<page docs/debian>#ubuntu">источник
+Tor</a>.
 </p>
 
-<p>Если вы собираете из исходников, сначала установите
-<a href="http://www.monkey.org/~provos/libevent/">libevent</a>,
-и убедитесь что у вас есть openssl и zlib (включая -devel пакеты если такие
-существуют). Потом :<br />
-<tt>tar xzf tor-<version-stable>.tar.gz; cd tor-<version-stable><br />
-./configure &amp;&amp; make</tt><br />
-Теперь вы можете запускать tor как <tt>src/or/tor</tt>, или сделав <tt>make install</tt>
-(под root'ом если требуется) установите в /usr/local/, и тогда можно запускать клиент
+<p>Если Вы собираете Tor из исходных кодов, сначала установите <a
+href="http://www.monkey.org/~provos/libevent/">библиотеку libevent</a>, а
+также убедитесь, что у Вас установлены библиотеки openssl и zlib (в том
+числе пакеы для разработчиков с окончанием -devel). Затем запустите:<br />
+<tt>tar xzf tor-<version-stable>.tar.gz; cd tor-<version-stable></tt><br />
+<tt>./configure &amp;&amp; make</tt><br /> После этого Вы можете запустить
+Tor как <tt>src/or/tor</tt>, или Вы можете выполнить команду <tt>make
+install</tt> (от имени суперпользователя root при необходимости) для
+установки Tor в папку /usr/local/, после чего Вы сможете запускать программу
 просто командой <tt>tor</tt>.
 </p>
 
-<p>По умолчанию Tor настроен работать в качестве клиента. Используется встроенный
-конфигурационный файл, и в большинстве случаев вам не требуется изменять какие-либо
-настройки. Всё, Tor установлен.
+<p>Изначально Tor настроен как клиент. В прогамме используется встроенный
+конфигурационный файл, и в большинстве случаев перенастройка Tor не
+потребуется. Теперь Tor установлен.
 </p>
 
-<hr />
-<a id="privoxy"></a>
-<h2><a class="anchor" href="#privoxy">Шаг второй: Настроить Privoxy чтобы использовать Tor в браузере</a></h2>
+<hr /> <a id="privoxy"></a> <a id="polipo"></a>
+<h2><a class="anchor" href="#polipo">Шаг 2: установка Polipo для браузера</a></h2>
 <br />
 
-<p>После установки Tor, надо научить другие приложения использовать его.
+<p>После установки Tor Вам потребуется настроить используемые Вами приложения
+для работы с программой.
 </p>
 
 <p>
-Первым делом займёмся браузером. Сначала установите
-<a href="http://www.privoxy.org/">Privoxy</a>: кликните 'recent releases'
-и выберите подходящий пакет или исходники. Privoxy это фильтрующий
-веб-прокси который хорошо интегрируется с Tor'ом.
+Прежде всего настраивается браузер. Загрузите <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> с Вашего
+репозитория. Polipo - кеширующий прокси-сервер, который имеет широкие
+возможности по туннелированию HTTP-траффика, поэтому он является подходящим
+для использования с Tor. Убедитесь, что версия загружаемого Polipo не
+меньше, чем 1.0.4, так как более ранние версии не поддерживают
+туннелирование в SOCKS, что необходимо для использования Polipo с Tor. Вам
+потребуется удалить Privoxy (например, apt-get remove privoxy or yum remove
+privoxy) для предотвращения  несовместимостей программ.
 </p>
 
-<p>После установки Privoxy (из пакета или из исходников),
-<b>требуется настроить Privoxy использовать Tor</b>. В качестве примера можно использовать
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">этот конфиг
-Privoxy</a>. Иначе вам придётся настроить Privoxy вручную, следуя указаниям ниже.
+<p>Установив Polipo (из пакета или из исходных кодов), <b>Вы должны настроить
+Polipo на работу с Tor</b>. Скачайте <a
+href="https://svn.torproject.org/svn/torbrowser/trunk/build-scripts/config/polipo.conf">настройки
+Polipo для Tor</a> и перезапишите им конфигурационный файл Polipo (например,
+/etc/polipo/config or ~/.polipo).  Перезапустите Polipo для применения
+настроек. Например:<br /> <tt>/etc/init.d/polipo restart</tt>
 </p>
 
-<p>
-Откройте конфигурационный файл Privoxy (см. в /etc/privoxy/ или /usr/local/etc/)
-и добавьте строку <br/>
-<tt>forward-socks4a / 127.0.0.1:9050 .</tt><br/>
-в начале файла. <b>Не забудьте точку в конце строки.</b>
-</p>
+<p>Если Вы хотите, Вы можете использовать Privoxy с <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">данными
+настройками</a>. Так как оба прокси-сервера (Privoxy и Polipo) используют
+порт 8118, не стоит их использовать одновременно.</p>
 
-<p>
-В некоторых дистрибутивах, localhost резолвится в IPv6 адрес, и некоторые
-программы могут испытывать проблемы при соединении к Privoxy. В таком случае замените строку
-<br />
-<tt>listen-address localhost:8118</tt><br />
-на<br />
-<tt>listen-address 127.0.0.1:8118</tt>
-</p>
-
-<p>Privoxy записывает в лог-файл все проходящие запросы. Чтобы выключить это поведение
-закомментируйте три строчки в конфиге (вставив символ
-\# в начале строки). Эти три строки выглядят так:<br/>
-<tt>logfile logfile</tt><br/>
-и <br/>
-<tt>jarfile jarfile</tt><br/>
-и (на некоторых системах)<br/>
-<tt>debug 1  # show each GET/POST/CONNECT request</tt><br/>
-</p>
-
-<p>В зависомости от того какие у вас по умолчанию настройки Privoxy,
-вам может понадобиться отключить <tt>enable-remote-toggle</tt>,
-<tt>enable-remote-http-toggle</tt>, и <tt>enable-edit-actions</tt>.
-</p>
-
-<p>Перезапустите Privoxy чтобы настройки вступили в силу.</p>
-
-<hr />
-<a id="using"></a>
-<h2><a class="anchor" href="#using">Шаг третий: Настроить приложения для использования Tor</a></h2>
+<hr /> <a id="using"></a>
+<h2><a class="anchor" href="#using">Шаг 3: настройте Ваши приложения на работу с
+Tor</a></h2>
 <br />
 
-<p>После установки, вы должны настроить остальные приложения
-чтобы они использовали Tor и Privoxy. Для начала настроим браузер.</p>
+<p>После установки Tor и Polipo, Вам потребуется настроить ваши приложения для
+работы с ними. Прежде всего следует настроить браузер.</p>
 
-<p>Используйте Firefox и Torbutton, для лучшей безопасности. Просто установите
-<a href="https://addons.mozilla.org/firefox/2275/">плагин Torbutton</a>,
-перезапустите браузер, и всё готово:
+<p>При работе с Tor рекомендуется использовать браузер Firefox с дополнением
+Torbutton для обеспечения наивысшей безопасности. Просто установите <a
+href="https://addons.mozilla.org/firefox/2275/">дополнение Torbutton</a>,
+перезагрузите Firefox, и браузер будет готов к работе:
 </p>
 
 <img alt="Torbutton plugin for Firefox"
-src="../img/screenshot-torbutton.png"
-border="1">
+src="../img/screenshot-torbutton.png" border="1"> <br />
 
+<p>
+Если Вы собираетесь использовать Firefox на компьютере без Tor, ознакомьтесь
+с <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">частыми
+вопросами по запуску Tor на другом компьютере</a>.
+</p>
+
+<p>Чтобы направить через сеть Tor траффик приложений, поддерживающих настройку
+HTTP-прокси, укажите настройки Polipo (по умолчанию localhost порт
+8118). Для использования SOCKS5 (для быстрых сообщений, клиентов Jabber, IRC
+итд), Вы можете настроить приложение непосредственно на Tor (по умолчанию
+localhost порт 9050), но ознакомьтесь с <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">частыми
+вопросами</a> по поводу опасностей данного способа. Для приложений без
+поддержки настройки прокси-серверов протоколов SOCKS/HTTP, Вы можете
+воспользоваться приложениями <a
+href="http://tsocks.sourceforge.net/">tsocks</a> или <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
+</p>
+
+<p>Дополнительную информацию по настройке различных приложений для работы с
+Tor, ознакомьтесь с  <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">данным
+руководством</a>.
+</p>
+
+<hr /> <a id="verify"></a>
+<h2><a class="anchor" href="#verify">Шаг 4: проверка на корректность работы</a></h2>
 <br />
 
 <p>
-Если вы собираетесь запускать Firefox и Tor на разных компьютерах, смотрите
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
-этот раздел FAQ</a>.
+<!--PO4ASHARPBEGIN<a href="http://ipchicken.com/">
+this site</a>PO4ASHARPEND-->
+#to see what IP address it thinks you're using.
+Теперь вам следует попробовать запустить браузер с использованием Tor и
+убедиться, что Ваш IP-адрес скрыт от получателя. Зайдите на страницу  <a
+href="https://check.torproject.org/">проверки Tor</a> и посмотрите, работает
+Tor или нет.  (если сайт не работает, посмотрите <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">частые
+вопросы</a> по дополнительным способам проверки Tor.)
 </p>
 
-<p>Чтобы торифицировать(Torify) другие приложения которые поддерживают HTTP прокси,
-просто укажите им на Privoxy (то есть, localhost порт 8118). Для использования SOCKS
-напрямую (случай IM (системы мгновенного обмена сообщениями), Jabber, IRC, итд),
-укажите адрес и порт клиента Tor (localhost порт 9050), но ознакомьтесь
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">с этим
-разделом FAQ</a> описывающим небезопасность такого способа. Для приложений
-которые не поддерживают ни SOCKS ни HTTP, попробуйте
-<a href="http://tsocks.sourceforge.net/">tsocks</a> или
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
+<p>Если у Вас стоит брандмауэр, который ограничивает возможность для компьютера
+подключиться к самому себе (например, средства наподобие SELinux на Fedora
+Core 4), проверьте, разрешено ли приложениям подключаться к Polipo
+(localhost, порт 8118) и Tor (localhost, порт 9050). Если Ваш брандмауэр
+ограничивает исходящие соединения, разрешите Tor подключаться хотя бы к
+TCP-портам 80 и 443, и ознакомьтесь с <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">частыми
+вопросами</a>. Если Ваши настройки SELinux нарушают работу tor или privoxy,
+создайте файл с именем booleans.local в каталоге /etc/selinux/targeted.
+Откройте файл в текстовом редакторе и добавьте строчку
+"allow_ypbind=1". Перезагрузите машину для применения изменений.
 </p>
 
-<p>Информацию о том как торифицировать другие приложения можно поискать в
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
-HOWTO</a>.
-</p>
+<p>Если проблемы не исчезли, ознакомьтесь с <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">частыми
+вопросами</a>.</p>
 
-<hr />
-<a id="verify"></a>
-<h2><a class="anchor" href="#verify">Шаг четвёртый: Убедитесь что всё работает</a></h2>
+<hr /> <a id="server"></a> <a id="relay"></a>
+<h2><a class="anchor" href="#relay">Шаг 5: настройка узла</a></h2>
 <br />
 
-<p>
-Далее, попробуйте использовать браузер через Tor и убедитесь что
-ваш IP адрес не выдаётся. Посетите
-<a href="https://check.torproject.org/">Tor детектор</a>
-и проверьте что он скажет - используете вы Tor или нет.
-(Если сайт не работает, посмотрите
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">этот
-раздел FAQ</a> и узнайте больше способов протестировать Tor.)
-</p>
+<p>Сеть Tor основана на добровольцах, которые предоставляют траффик
+пользователям сети. Чем больше узлов, тем быстрее сеть. Если у Вас есть хотя
+бы 20Кб/с в обе стороны, пожалуйста, помогите сети Tor - запустите
+узел. Программа предоставляет достаточно функций, которые делают настройку
+узла Tor лёгкой и удобной для Вас, в том числе ограничение скорости канала,
+поддержка динамических IP-адресов и политики выхода, которые могут
+предотвратить жалобы в Ваш адрес.</p>
 
-<p>Если установлен персональный файерволл который ограничивает способность вашего
-компьютера коннектится к самому себе (например это SELinux на Fedora Core 4),
-разрешите соединения от локальных приложений к Privoxy (локальный порт 8118) и
-Tor (локальный порт 9050). Если ваш файерволл
-блокирует исходящие соединения, откройте по крайней мере TCP порты
-80 и 443, а потом ознакомьтесь с
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">
-этим разделом FAQ</a>. Если настройки SELinux мешают корректной работе
-tor или privoxy, создайте файл booleans.local в каталоге
-/etc/selinux/targeted. Откройте этот файл в любимом текстовом редакторе и
-укажите "allow_ypbind=1". Перезапустите машину для принятия этих настроек.
-</p>
+<p>Множество узлов в разных точках Интернета даёт пользователям Tor
+безопасность и конфиденциальность.<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">Вы
+можете повысить уровень безопасности</a>, так как при наличии узла удалённые
+серверы не смогут отличить Ваш запрос от перенаправленного с узла.</p>
 
-<p>Если это всё-таки не сработает, поищите подсказки в <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">FAQ</a>.</p>
-
-<hr />
-<a id="server"></a>
-<a id="relay"></a>
-<h2><a class="anchor" href="#relay">Шаг пятый: Настройте сервер</a></h2>
-<br />
-
-<p>Сеть Tor основывается на добровольцах делящихся своим трафиком. Чем больше людей
-запускают серверы, тем быстрее работает сеть Tor. Если у вас есть по крайней мере
-20 килобайт/сек в каждом направлении, пожалуйста помогите сети Tor настроив свой
-сервер. Мы реализовали много чего чтобы сделать серверы Tor лёгкими и удобными
-в использовании, включая ограничение трафика, ограничения выхода(exit policies),
-и поддержку динамических IP.</p>
-
-<p>Безопасноть пользователей Tor в первую очередь обеспечивается
-именно размещением самих серверов Tor в разных уголках Интернета.
-<a href="https://wiki.torproject.org/TheOnionRouter/TorFAQ#RelayAnonymity">Вы также получаете
-более сильную анонимность сами</a>,
-так как третьи стороны не могут знать кто инициировал соединения - ваш локальный компьютер
-или другие узлы сети Tor.</p>
-
-<p>Смотрите подробное описание <a href="<page docs/tor-doc-relay>">как настроить сервер</a>.</p>
+<p>Подробности в руководстве по  <a href="<page docs/tor-doc-relay>">настройке
+узла</a>.</p>
 
 <hr />
 
-<p>Если у вас есть пожелания по улучшению этого документа, пожалуйста <a
-href="<page contact>">присылайте их нам</a>. Спасибо!</p>
+<p>Если у Вас есть предложения по улучшению этого документа, пожалуйста, <a
+href="<page contact>">ознакомьте нас с ними</a>. Спасибо!</p>
 
-  </div><!-- #main -->
+  </div>
+<!-- #main -->
 </div>
+
 
 #include <foot.wmi>

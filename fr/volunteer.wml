@@ -542,47 +542,40 @@ href="https://svn.torproject.org/svn/weather/trunk/TODO">TODO</a>.
 </li>
 
 <li>
-<b>Améliorer la mise en paquets de Tor et Vidalia sur Debian/Ubuntu</b> <br
-/> Priorité: <i>Moyenne</i> <br /> Effort à fournir: <i>Moyen</i> <br />
-Compétences requises: <i>Moyennes</i> <br /> Tuteurs potentiels: <i>Erinn,
-Peter</i> <br />Vidalia ne fonctionne pas correctement sous Debian et Ubuntu
-avec les paquets par défaut de Tor. Les paquets Tor actuels lancement
-automatiquement Tor en tant que démon sous le compte utilisateur debian-tor
-et (visiblement) n'ont pas de directive <a
-href="<gitblob>doc/spec/control-spec.txt">ControlPort</a> définie dans le
-fichier de configuration torrc par défaut. En conséquence, Vidalia tente de
-démarrer sont propre processus Tor étant donné qu'il ne peut se connecter au
-Tor existant; à la suite de quoi , le processus Tor lancé par Vidalia génère
-un message d'erreur peu compréhensible indiquant que Tor ne peut pas
-utiliser ses ports d'écoute &mdash; ils sont déjà utilisé par le démon Tor
-initial.  <br /> La solution implique soit d'indiquer à l'utilisateur
-d'arrêter le démon existant et de laisser Vidalia démarrer son propre
-processus Tor soit d'expliquer à l'utilisateur comment configurer un port de
-contrôle et un mot de passe dans son torrc. Une meilleure solution pour
-Debian serait d'utiliser la directive ControlSocket qui permet à Vidalia de
-communiquer avec Tor via une socket Unix et cela pourrait être activé par
-défaut dans les paquets Debian de Tor. Vidalia peut ensuite s'authentifier
-sur Tor en utilisant l'authentification du système de fichier (cookie) si
-l'utilisateur qui a lancé Vidalia est également dans le groupe debian-tor.
-<br /> Ce projet implique d'abord le support de la directive ControlSocket
-dans Vidalia. L'étudiant développera et testera alors les paquets Vidalia
-pour Debian et Ubuntu de manière conforme aux standards d'empaquetage de
-Debian et s'assurera qu'ils fonctionnent correctement avec les paquets Tor
-existant. Nous pouvons aussi mettre en place un dépôt pour héberger les
-nouveaux paquets Vidalia.  <br /> Le défi qui suit consiste à trouver un
-moyen efficace pour Vidalia de pouvoir modifier la configuration de Tor
-(torrc) même si celle-ci est située dans <code>/etc/tor/torrc</code> et
-reste immuable. La meilleure idée que nous avons trouvée jusqu'à présent est
-de faire passer cette configuration par le ControlSocket lorsque Vidalia
-démarre mais c'est une méthode discutable car Tor se lance à chaque
-démarrage avec une configuration différente de celle que désire
-l'utilisateur. La deuxième idée consiste à faire écrire à Vidalia un fichier
-temporaire torrc et demander à l'utilisateur de le déplacer manuellement
-dans <code>/etc/tor/torrc</code> mais c'est également discutable car les
-utilisateurs ne devraient pas gérer ces fichiers directement.  <br />Une
-personne intéressée par ce projet doit disposer d'une certaine connaissance
-des règles d'empaquetage dans Debian et avoir une expérience en C++. Des
-compétences en QT seraient un vrai plus.
+<b>Improvements for Tor+Vidalia interaction on Linux/Unix platforms</b> <br
+/> Priority: <i>Medium</i> <br /> Effort Level: <i>Medium</i> <br /> Skill
+Level: <i>Medium</i> <br /> Likely Mentors: <i>Erinn, Peter</i> <br />
+Vidalia currently doesn't play nicely with Tor on Linux and Unix platforms.
+Currently, on Debian and Ubuntu, there is a configuration mechanism which
+allows Vidalia to override Tor's ability to start on boot (by sourcing
+<code>/etc/default/tor.vidalia</code> which sets <code>RUN_DAEMON=no</code>
+at the user's request), but full implementation of <a
+href="<gitblob>doc/spec/control-spec.txt">ControlPort</a> communication is
+still required.  <br /> A better solution on Linux and Unix platforms would
+be to use Tor's ControlSocket, which allows Vidalia to talk to Tor via a
+Unix domain socket, and could possibly be enabled by default in Tor's
+distribution packages.  Vidalia can then authenticate to Tor using
+filesystem-based (cookie)  authentication if the user running Vidalia is
+also in the distribution-specific tor group.  <br /> This project will first
+involve adding support for Tor's ControlSocket to Vidalia. The student will
+then develop and test this support on various distributions to make sure it
+behaves in a predictable and consistent manner on all of them.  <br /> The
+next challenge would be to find an intuitive and usable way for Vidalia to
+be able to change Tor's configuration (torrc) even though it is located in
+<code>/etc/tor/torrc</code> and thus immutable. In Debian and Ubuntu we
+handle this with the aforementioned <code>/etc/default/tor.vidalia</code>
+but this functionality could (or should) be less distribution-specific.  <br
+/> The best idea we've come up with so far is to feed Tor a new
+configuration via the ControlSocket when Vidalia starts, but that's bad
+because if the user is not using the latest Debian/Ubuntu packages, they may
+not have disabled Tor's ability to run on boot and will end up with a
+configuration that is different from what they want. The second best idea
+we've come up with is for Vidalia to write out a temporary torrc file and
+ask the user to manually move it to <code>/etc/tor/torrc</code>, but that's
+bad because users shouldn't have to mess with files directly.  <br /> A
+person undertaking this project should have prior knowledge of various Linux
+distributions and their packaging mechanisms as well as some C++ development
+experience. Previous experience with Qt is helpful, but not required.
 </li>
 
 
@@ -805,11 +798,9 @@ intégrer ce processus dans un fichier wml pour faciliter les traductions et
 regénérer les images en plusieurs langues lorsque nous construisons le site
 web.</li>
 
-<li>Comment pouvons-nous maintenir, améliorer et documenter plus facilement les
-différents systèmes LiveCD/USB ? <a href="http://amnesia.boum.org/">Le
-LiveCD/USB amnesia</a>et <a
-href="http://anonymityanywhere.com/incognito/">le LiveCD Incognito</a> sont
-quelques exemples.
+<li>How can we make the various LiveCD/USB systems easier to maintain, improve,
+and document? One example is <a href="https://amnesia.boum.org/">The
+(Amnesic) Incognito Live System</a>.
 </li>
 
 <li>

@@ -1,0 +1,81 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision$
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: CentOS/Fedora/OpenSUSE Instructions" CHARSET="UTF-8"
+<div class="center">
+
+<div class="main-column">
+
+<a id="rpms"></a>
+<h2><a class="anchor" href="#rpms">Пакеты Tor для дистрибутивов, основанных на
+Red Hat Packages' Manager (RPM).</a></h2>
+<br />
+
+<p>Не используйте пакеты в основных репозиториях. Зачастую они являются
+устаревшими. То есть Вы не сможете получать обновления компонентов и
+критические обновления безопасности.
+</p>
+
+<p>
+Вам потребуется установить источник Tor, прежде чем Вы сможете загрузить
+Tor. В случае с менеджером пакетов Yum, создайте в каталоге
+/etc/yum.repos.d/ файл с именем torproject.repo. Запишите в него следующее:
+<pre>[torproject]
+name=Tor and Vidalia
+enabled=1
+autorefresh=0
+baseurl=http://deb.torproject.org/torproject.org/rpm/DISTRIBUTION/
+type=rpm-md
+gpgcheck=1
+gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org
+</pre>
+
+Если Вы хотите поддерживать Tor в актуальном состоянии, Вам потребуется
+изменить строку DISTRIBUTION на одну из следующих: centos4, centos5, fc10,
+fc11, fc12, suse</p>
+
+<p>Если же Вы хотите, чтобы у Вас была установлена самая последняя (опытная)
+версия Tor, замените строку DISTRIBUTION одной из этих:
+centos4-experimental, centos5-experimental, fc10-experimental,
+fc11-experimental, fc12-experimental, suse-experimental</p>
+
+<p>
+Теперь Tor установлен и запущен. Ознакомьтесь со <a href="<page
+docs/tor-doc-unix>#polipo">следующим разделом</a> руководства "Tor on
+Linux/Unix".
+</p>
+
+<p style="font-size: small">
+DNS-запись <code>deb.torproject.org</code> ссылается на множество
+независимых серверов. Если у Вас не получается получить доступ к серверам
+обновления с использованием этого имени, вы моете попробовать одно из
+следующих имён: <code>deb-master.torproject.org</code>,
+<code>mirror.netcologne.de</code> или <code>tor.mirror.youam.de</code>.
+</p>
+
+<hr /> <hr /> <a id="source"></a>
+<h2><a class="anchor" href="#source">Сборка из исходных кодов</a></h2>
+<br />
+
+<p>
+Если вы хотите собрать пакет с Tor из исходных кодов, пожалуйста
+ознакомьтесь с <a href="<gitblob>doc/tor-rpm-creation.txt">инструкциями по
+созданию пакета</a>.
+</p>
+
+<hr />
+
+<p>Если у Вас есть предложения по улучшению этого документа <a href="<page
+contact>">сообщите нам</a>. Спасибо!</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+#include <foot.wmi>
