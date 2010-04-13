@@ -1,102 +1,96 @@
+
+
+
+
+
+
 ## translation metadata
-# Based-On-Revision: 21056
+# Revision: $Revision$
 # Translation-Priority: 4-optional
-# Last-Translator: bogdandr_at_op . pl
-
-#include "head.wmi" TITLE="Tor: Prowadzenie Mirrora" CHARSET="UTF-8"
-
+#include "head.wmi" TITLE="Tor: Running a Mirror" CHARSET="UTF-8"
 <div class="main-column">
 
 <h2>Tor: Prowadzenie Mirrora</h2>
 <hr />
 
-<p>Dziękujemy, że chcesz mirrorować strony Tora.
-Wszystkie nasze serwery-mirrory są publicznie wypisane na
-<a href="<page mirrors>">naszej stronie mirrorów</a>.
-Poniżej zamieszczamy kilka przykładowych komend i konfiguracji, by wstępne
-uruchamianie i utrzymywanie odbywały się jak najmniejszym wysiłkiem. Strona Tora
-i katalog dystrybucyjny w chwili obecnej wymagają 1,6 GB miejsca na dysku.
-Sam katalog /dist zajmuje 230 MB.</p>
+<p>Dziękujemy, że chcesz mirrorować strony Tora. Wszystkie nasze
+serwery-mirrory są publicznie wypisane na <a href="<page mirrors>">naszej
+stronie mirrorów</a>. Poniżej zamieszczamy kilka przykładowych komend i
+konfiguracji, by wstępne uruchamianie i utrzymywanie odbywały się jak
+najmniejszym wysiłkiem. Strona Tora i katalog dystrybucyjny w chwili obecnej
+wymagają 1,6 GB miejsca na dysku. Sam katalog /dist zajmuje 230 MB.</p>
 
 <p>
-Jeśli chcielibyście poprowadzić mirror (strona+dist), wystarczy po prostu ta komenda, by pobrać wszystko,
-czym mirror powinien dzielić się ze światem:
-<br /> <br />
-<tt>
-rsync -av --delete rsync://rsync.torproject.org/tor tor-mirror/
-</tt>
-<br/> <br/>
-Jeśli chcielibyście prowadzić tylko mirror samego katalogu dist/ (tylko dystrybucje),
-wystarczy ta komenda, by pobrać wszystko, czym taki mirror powinien dzielić się ze światem:
-<br /> <br />
-<tt>
-rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
-</tt>
+Jeśli chcielibyście poprowadzić mirror (strona+dist), wystarczy po prostu ta
+komenda, by pobrać wszystko, czym mirror powinien dzielić się ze światem:
+<br /> <br /> <tt> rsync -av --delete rsync://rsync.torproject.org/tor
+tor-mirror/ </tt> <br/> <br/> Jeśli chcielibyście prowadzić tylko mirror
+samego katalogu dist/ (tylko dystrybucje), wystarczy ta komenda, by pobrać
+wszystko, czym taki mirror powinien dzielić się ze światem: <br /> <br />
+<tt> rsync -av --delete rsync://rsync.torproject.org/tor/dist
+tor-mirror-dist/ </tt>
 
 
 <p>
-W celu zapewnienia, że mamy wiarygodne i aktualne mirrory,
-prosimy upewnić się, że Twój mirror wykonuje co najmniej następujące rzeczy:<br /><br />
+W celu zapewnienia, że mamy wiarygodne i aktualne mirrory, prosimy upewnić
+się, że Twój mirror wykonuje co najmniej następujące rzeczy:<br /><br />
+Aktualizuje się <b>nie rzadziej</b> niż co sześć godzin, ale nie częściej,
+niż co godzinę.<br /><br /> Pozwala "Directory Index / Indexes"
+(wyświetlanie indeksów) katalogu /dist.<br /><br /> Pozwala na "Multiviews"
+lub coś równoważnego, w celu lokalizacji języków.<br /><br /> Ma prawidłowy
+adres email w celach komunikacji administracyjnej, gdyby Twój serwer miał
+kłopoty.<br /><br /> Jest wysoce zalecane, by wszyscy operatorzy mirrorów
+zapisali się na <A
+href="http://archives.seul.org/tor/mirrors/">listę mailingową tor-mirrors</A> gdzie powinny iść wszystkie prośby modyfikacji (ADD, CHANGE, DELETE,
+jakiekolwiek inne prośby/zawiadomienia). Ponadto, można tu znaleźć wsparcie
+w jakichkolwiek sprawach technicznych przy uruchamianiu mirrora.<br /><br />
 
-Aktualizuje się <b>nie rzadziej</b> niż co sześć godzin, ale nie częściej, niż co godzinę.<br /><br />
-
-Pozwala "Directory Index / Indexes" (wyświetlanie indeksów) katalogu /dist.<br /><br />
-
-Pozwala na "Multiviews" lub coś równoważnego, w celu lokalizacji języków.<br /><br />
-
-Ma prawidłowy adres email w celach komunikacji administracyjnej, gdyby
-Twój serwer miał kłopoty.<br /><br />
-
-Jest wysoce zalecane, by wszyscy operatorzy mirrorów zapisali się na <A
-href="http://archives.seul.org/tor/mirrors/">listę mailingową tor-mirrors</A>, gdzie powinny
-iść wszystkie prośby modyfikacji (ADD, CHANGE, DELETE, jakiekolwiek inne prośby/zawiadomienia).
-Ponadto, można tu znaleźć wsparcie w jakichkolwiek sprawach technicznych przy uruchamianiu
-mirrora.<br /><br />
 </p>
-<br/> <br/>
+<br /><br />
 <p>
-Przykładowe zadanie crona do aktualizacji całego mirrora raz na 6 godzin może
-wyglądać następująco:</p>
+Przykładowe zadanie crona do aktualizacji całego mirrora raz na 6 godzin
+może wyglądać następująco:
 <pre>
 # m h  dom mon dow   command
-1 */6 * * * rsync -aq --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
+
+0 */6 * * * rsync -aq --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
 </pre>
-<br/>
-Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy przykładowy
-plik konfiguracji wirtualnego hosta:
+</tt>
+</p>
+<br/> Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy
+przykładowy plik konfiguracji wirtualnego hosta: <tt>
 <pre>
 &lt;VirtualHost 1.2.3.4:80&gt;
-	ServerAdmin youremail@example.com<br />
-	ServerName  1.2.3.4<br />
+        ServerAdmin youremail@example.com<br/>
+        ServerName  1.2.3.4<br/>
 
-	DocumentRoot /var/www/mirrors/torproject.org<br />
+        DocumentRoot /var/www/mirrors/torproject.org<br/>
 
-	&lt;Directory /var/www/mirrors/torproject.org/&gt;<br />
-		Options MultiViews Indexes<br />
-		DirectoryIndex index<br />
-		AllowOverride None<br />
-	&lt;/Directory&gt;<br />
+        &lt;Directory /var/www/mirrors/torproject.org/&gt;<br/>
+            Options MultiViews Indexes<br/>
+            DirectoryIndex index<br/>
+            AllowOverride None<br/>
+        &lt;/Directory&gt;<br/>
 
 &lt;/VirtualHost&gt;
 </pre>
-<br/> <br/>
-
-<p>
-Prosimy upewniaj się, że Twój mirror jest aktualny (sugerujemy zautomatyzowanie
-tego zadania za pomocą czegoś podobnego do '<tt>cron</tt>'). Nasza strona, kod
-źródłowy i wydania binarne często się zmieniają. Zalecana częstotliwość aktualizacji
-to raz na sześć godzin. Użytkownicy Tora na całym świecie będą Ci wdzięczni.
+</tt> <br/> <br/> Prosimy upewniaj się, że Twój mirror jest aktualny
+(sugerujemy zautomatyzowanie tego zadania za pomocą czegoś podobnego do
+'<tt>cron</tt>'). Nasza strona, kod źródłowy i wydania binarne często się
+zmieniają. Zalecana częstotliwość aktualizacji to raz na sześć
+godzin. Użytkownicy Tora na całym świecie będą Ci wdzięczni.
 </p>
-
+<br/>	
 <p>
 Jeśli prowadzisz mirror, proszę zapisz się na
-<A href="http://archives.seul.org/tor/mirrors/">listę mailingową tor-mirrors</A> i
-przedstaw się tam. Dodamy Cię do listy mirrorów. Na liście można też znaleźć pomoc
-w sprawach wsparcia dla mirrorów i spraw związanych z konfiguracją.
+<A href="http://archives.seul.org/tor/mirrors/">listę mailingową tor-mirrors</A>i przedstaw się tam. Dodamy Cię do listy mirrorów. Na liście można też
+znaleźć pomoc w sprawach wsparcia dla mirrorów i spraw związanych z
+konfiguracją.
 </p>
 
 
 
-  </div><!-- #main -->
+  </div>
+
 
 #include <foot.wmi>
