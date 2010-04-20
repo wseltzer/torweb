@@ -1,10 +1,13 @@
+
+
+
+
+
+
 ## translation metadata
-# Based-On-Revision: 19802
+# Revision: $Revision$
 # Translation-Priority: 3-low
-# Last-Translator: bogdandr_at_op . pl
-
-#include "head.wmi" TITLE="Tor: Instrukcje dla Debiana/Ubuntu" CHARSET="UTF-8"
-
+#include "head.wmi" TITLE="Tor: Debian/Ubuntu Instructions" CHARSET="UTF-8"
 <div class="center">
 
 <div class="main-column">
@@ -16,109 +19,159 @@ Debianie sid lub Debianie testing</a></h2>
 
 <p>
 Jeśli używasz Debiana stabilnego (lenny), niestabilnego (sid), lub testowego
-(squeeze), uruchom po prostu<br />
-<tt>apt-get install tor tor-geoipdb</tt>
+(squeeze), uruchom po prostu<br /><tt>apt-get install tor tor-geoipdb</tt>
+jako root.
 </p>
 
 <p>
-Teraz Tor jest zainstalowany i działa. Przejdź do <a href="<page
-docs/tor-doc-unix>#privoxy">kroku drugiego</a> na stronie instrukcji "Tor na Linux/Unix".
+Zauważ, że to nie zawsze może dać Ci najnowszą stabilną wersję Tora, ale
+będziesz otrzymywać ważne poprawki bezpieczeństwa. By upewnić się, że masz
+najnowszą stabilną wersję Tora, spójrz na opcję drugą poniżej.
 </p>
 
-<hr />
+<p>
+Teraz Tor jest zainstalowany i działa. Przejdźcie do <a href="<page
+docs/tor-doc-unix>#polipo">kroku drugiego</a> w instrukcjach dla "Tora na
+Linux/Unix"
+</p>
 
-<a id="ubuntu"></a>
-<a id="packages"></a>
-<h2><a class="anchor" href="#ubuntu">Opcja druga: Tor na Ubuntu lub Debianie etch</a></h2>
+<hr /> <a id="ubuntu"></a> <a id="packages"></a>
+<h2><a class="anchor" href="#ubuntu">Opcja druga: Tor na Ubuntu lub Debianie</a></h2>
 <br />
 
 <p>
-<b>Nie używaj paczek ze świata Ubuntu.</b> Nikt się nimi nie opiekuje i są przestarzałe.
-To oznacza, że nie będziesz mieć poprawek stabilności i bezpieczeństwa.
+<b>Nie używajcie paczek ze wszechświata Ubuntu.</b> Nikt się nimi nie
+zajmuje i są przestarzałe. To oznacza, że będziecie pozbawieni poprawek
+stabilności i bezpieczeństwa.
 </p>
 
 <p>
-Musisz skonfigurować repozytorium pakietów, zanim będziesz mógł/mogła pobrać Tora.
-Po pierwsze, musisz poznać nazwę swojej dystrybucji. Jeśli używasz Ubuntu 9.04, to
-jest to "jaunty". Ubuntu 8.10 to "intrepid", a Ubuntu 8.04 to "hardy". Jeśli używasz
-Debiana etch, to jest to "etch".
-Potem dodaj te linie do swojego pliku <tt>/etc/apt/sources.list</tt>:<br />
-</p>
+Musicie skonfigurować nasze repozytorium z paczkami, zanim będziecie mogli
+pobrać Vidalię. Najpierw musicie poznać nazwę swojej dystrybucji. Jeśli
+używacie Ubuntu 9.10, jest to "karmic", podczas gdy 9.04 to "jaunty", 8.10
+to "intrepid", a 8.04 to "hardy". Jeśli używacie Debiana Etch, nazwa to
+"etch", a Debian Lenny to "lenny". Potem dodajcie tę linię do swojego pliku
+<tt>/etc/apt/sources.list</tt>:<br />
 <pre>
-deb     http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
-deb-src http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 </pre>
-gdzie zamiast &lt;DISTRIBUTION&gt; wstawiasz jedno z powyższych słów (etch, jaunty, intrepid, hardy).
+w której wstawicie powyższą nazwę kodową swojej dystrybucji (etch, lenny,
+sid, karmic, jaunty, intrepid, hardy czy cokolwiek to jest) w miejsce
+&lt;DISTRIBUTION&gt;.
+</p>
 
 <p>
-Potem uruchom
-</p>
+Potem dodajcie klucz gpg wykorzystywany do podpisywania paczek, wykonując
+następujące komendy w linii poleceń:
 <pre>
-gpg --keyserver keys.gnupg.net --recv 94C09C7F
-gpg --export 94C09C7F | sudo apt-key add -
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+</pre>
+Teraz odświeżcie swoje źródła i zainstalujcie Tora, wykonując następujące
+komendy w linii poleceń:
+<pre>
 apt-get update
 apt-get install tor tor-geoipdb
 </pre>
-
-<p>
-Teraz Tor jest zainstalowany i działa. Przejdź do <a href="<page
-docs/tor-doc-unix>#privoxy">kroku drugiego</a> na stronie instrukcji "Tor na Linux/Unix".
 </p>
 
-<hr />
+<p>
+Teraz Tor jest zainstalowany i działa. Przejdźcie do <a href="<page
+docs/tor-doc-unix>#polipo">kroku drugiego</a> w instrukcjach dla "Tora na
+Linux/Unix"
+</p>
 
-<a id="development"></a>
-<h2><a class="anchor" href="#development">Opcja trzecia: używanie gałęzi rozwojowych
-Tora na Debianie lub Ubuntu</a></h2>
+<p style="font-size: small">
+Nazwa DNS <code>deb.torproject.org</code> jest w rzeczywistości zestawem
+niezależnych serwerów skonfigurowanych w okrężnej struktuzre DNS. Jeśli z
+jakiegoś powodu nie macie do niego dostępu, możecie spróbować nazwy jednej z
+jej części. Wypróbujcie <code>deb-master.torproject.org</code>,
+<code>mirror.netcologne.de</code> lub <code>tor.mirror.youam.de</code>.
+</p>
+
+<hr /> <a id="development"></a>
+<h2><a class="anchor" href="#development">Opcja trzecia: Używanie gałęzi
+rozwojowej Tora na Debianie lub Ubuntu</a></h2>
 <br />
 
-<p>Jeśli chcesz używać <a href="<page
-download>#packagediff">gałęzi rozwojowej</a> Tora (więcej cech i więcej błędów), musisz dodać
-inny zestaw linii do swojego pliku <tt>/etc/apt/sources.list</tt>:<br />
-</p>
+<p>Jesli chcecie używać <a href="<page download>#packagediff">gałęzi rozwojowej
+Tora (więcej funkcjonalności i więcej błędów), musicie dodać inny zestaw
+linii do swojego pliku <tt>/etc/apt/sources.list</tt>:<br />
 <pre>
-deb     http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
-deb-src http://mirror.noreply.org/pub/tor &lt;DISTRIBUTION&gt; main
-deb http://mirror.noreply.org/pub/tor experimental-0.2.1.x-&lt;DISTRIBUTION&gt; main
-deb-src http://mirror.noreply.org/pub/tor experimental-0.2.1.x-&lt;DISTRIBUTION&gt; main
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb     http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
 </pre>
-gdzie zamiast &lt;DISTRIBUTION&gt; wstawiasz nazwę swojej dystrybucji (etch, lenny, sid, jaunty,
-intrepid, hardy).
+w których ponownie wpisujecie nazwę swojej dystrybucji (etch, lenny, sid,
+karmic, jaunty, intrepid, hardy) zamiast &lt;DISTRIBUTION&gt;.
+</p>
 
 <p>
-Potem uruchom
-</p>
+Potem wykonajcie następujące komendy w linii poleceń:
 <pre>
-gpg --keyserver keys.gnupg.net --recv 94C09C7F
-gpg --export 94C09C7F | sudo apt-key add -
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 apt-get update
 apt-get install tor tor-geoipdb
 </pre>
-
-<p>
-Teraz Tor jest zainstalowany i działa. Przejdź do <a href="<page
-docs/tor-doc-unix>#privoxy">kroku drugiego</a> na stronie instrukcji "Tor na Linux/Unix".
 </p>
 
-<hr />
+<p>
+Teraz Tor jest zainstalowany i działa. Przejdźcie do <a href="<page
+docs/tor-doc-unix>#polipo">kroku drugiego</a> w instrukcjach dla "Tora na
+Linux/Unix"
+</p>
 
-<a id="source"></a>
-<h2><a class="anchor" href="#source">Budowanie ze źródła</a></h2>
+<hr /> <a id="source"></a>
+<h2><a class="anchor" href="#source">Kompilacja ze źródeł</a></h2>
 <br />
 
 <p>
-Jeśli chcesz zbudować własne paczki deb ze źródła, przeczytaj nasz <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorOnDebian#BuildFromSource">przewodnik
-budowania debów</a>.
+Jeśli chcecie kompilować własne deby ze źródeł, musicie najpierw dodać
+odpowiednią linię <tt>deb-src</tt> do <tt>sources.list</tt>.
+<pre>
+# For the stable version.
+# For the unstable version.
+
+deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+
+
+deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb-src http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
+</pre>
+Musicie też zainstalować niezbędne pakiety, by budować własne deby i pakiety
+nezbędne do kompilacji Tora:
+<pre>
+apt-get install build-essential fakeroot devscripts
+apt-get build-dep tor
+</pre>
+Wtedy możecie skompilować Tora w ~/debian-packages:
+<pre>
+mkdir ~/debian-packages; cd ~/debian-packages
+apt-get source tor
+cd tor-*
+debuild -rfakeroot -uc -us
+cd ..
+</pre>
+Teraz możecie zainstalować nową paczkę:
+<pre>
+sudo dpkg -i tor_*.deb
+</pre>
+</p>
+
+<p>
+Teraz Tor jest zainstalowany i działa. Przejdźcie do <a href="<page
+docs/tor-doc-unix>#polipo">kroku drugiego</a> w instrukcjach dla "Tora na
+Linux/Unix"
 </p>
 
 <hr />
 
-<p>Jeśli masz sugestie co do ulepszenia tego dokumentu, prosimy <a
-href="<page contact>">prześlij je do nas</a>. Dziękujemy!</p>
+<p>Jeśli macie pomysły na ulepszenie tej strony, prosimy <a href="<page
+contact>">je do nas wysłać</a>. Dziękujemy!</p>
 
-  </div><!-- #main -->
+  </div>
+<!-- #main -->
 </div>
 
-#include <foot.wmi>
 
+#include <foot.wmi>
