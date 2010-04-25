@@ -1018,12 +1018,12 @@ MALLOC OpenBSD, который не имеет как много ошибок ф
 использовать эту MALLOC осуществление вместо: <tt>./configure
 --enable-openbsd-malloc</tt></li>
 
-<li>Если у вас есть быстрый ретранслятор, то есть у вас много связей TLS
-открыты, вы, вероятно, потеряв много памяти в связи с OpenSSL внутреннего
-буфера (38KB+ на сокете). Мы обновили OpenSSL освободить неиспользуемую
-память буфера более агрессивно. При обновлении до OpenSSL 1.0.0-beta5,
-процесс сборки Tor будет автоматически распознавать и использовать эту
-возможность.</li>
+<li>If you're running a fast relay, meaning you have many TLS connections open,
+you are probably losing a lot of memory to OpenSSL's internal buffers (38KB+
+per socket). We've patched OpenSSL to <a
+href="http://archives.seul.org/or/dev/Jun-2008/msg00001.html">release unused
+buffer memory more aggressively</a>. If you update to OpenSSL 1.0.0-beta5,
+Tor's build process will automatically recognize and use this feature.</li>
 
 <li>Если вы используете Solaris, OpenBSD, NetBSD, или старый FreeBSD, Tor
 вероятно создает отдельные процессы, вместо использования

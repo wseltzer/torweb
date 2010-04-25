@@ -264,51 +264,57 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewal
 </p>
 
 <p>
-12. If your Tor relay provides other services on the same IP address &mdash;
-such as a public webserver &mdash; make sure that connections to the
-webserver are allowed from the local host too. You need to allow these
-connections because Tor clients will detect that your Tor relay is the <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">safest
-way to reach that webserver</a>, and always build a circuit that ends at
-your relay. If you don't want to allow the connections, you must explicitly
-reject them in your exit policy.
+12.  Αν ο αναμεταδότης σας Tor παρέχει άλλες υπηρεσίες με την ίδια διεύθυνση
+ΙΡ &mdash; όπως ένας δημόσιος διακομιστής ιστού &mdash; βεβαιωθείτε ότι
+επιτρέπονται οι συνδέσεις στον διακομιστή από τοπικούς υπολογιστές.  Πρέπει
+να επιτρέπετε αυτές τις συνδέσεις επειδή οι πελάτες Tor θα βλέπουν ότι ο
+αναμεταδότης σας είναι <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">ο
+ασφαλέστερος τρόπος σύνδεσης σε αυτόν τον διακομιστή</a> και θα δημιουργούν
+πάντοτε ένα κύκλωμα που θα καταλήγει στον αναμεταδότη σας.  Αν δεν
+επιθυμείτε να επιτρέπονται οι συνδέσεις αυτές πρέπει να τους απορρίπτετε
+ρητώς μέσα από τις ρυθμίσεις σας των πολιτικών εξόδου.
 </p>
 
 <p>
-13. (Unix only). Make a separate user to run the relay. If you installed the
-OS X package or the deb or the rpm, this is already done. Otherwise, you can
-do it by hand. (The Tor relay doesn't need to be run as root, so it's good
-practice to not run it as root. Running as a 'tor' user avoids issues with
-identd and other services that detect user name. If you're the paranoid
-sort, feel free to <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">put
-Tor into a chroot jail</a>.)
+13.  (Μόνο για Unix). Δημιουργήστε ξεχωριστό χρήστη για την εκτέλεση του
+αναμεταδότη.  Αν εγκαταστήσατε το πακέτο για OS X ή το πακέτο deb ή το
+πακέτο rpm, έχει ήδη γίνει αυτό.  Αλλιώς μπορείτε να δημιουργήσετε νέο
+χρήστη χειροκίνητα. (Ο αναμεταδότης Tor δεν χρειάζεται να εκτελείται ως
+root, γι' αυτό είναι καλό να μην εκτελείται ως χρήστης root.  Η εκτέλεσή του
+ως χρήστης 'tor' αποφεύγει προβλήματα με το identd και με άλλες υπηρεσίες
+που ανιχνεύουν το όνομα χρήστη.  Αν είστε ριψοκίνδυνος τύπος, <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">εγκαταστήστε
+το Tor σε περιβάλλον chroot</a>.)
 </p>
 
 <p>
-14. (Unix only.) Your operating system probably limits the number of open
-file descriptors per process to 1024 (or even less). If you plan to be
-running a fast exit node, this is probably not enough. On Linux, you should
-add a line like "toruser hard nofile 8192" to your /etc/security/limits.conf
-file (where toruser is the user that runs the Tor process), and then restart
-Tor if it's installed as a package (or log out and log back in if you run it
-yourself).
+14. (Μόνο Unix). Πιθανόν το λειτουργικό σας σύστημα περιορίζει τον αριθμό
+των ανοικτών περιγραφικών αρχείων (file descriptors) ανά διεργασία στα 1024
+(ή και ακόμη λιγότερα). Αν θέλετε να εκτελείτε έναν γρήγορο κόμβο εξόδου,
+αυτός ο αριθμός πιθανόν να μην είναι αρκετός.  Στο Linux πρέπει να
+προσθέσετε μια γραμμή όπως "toruser hard nofile 8192" στο αρχείο
+/etc/security/limits.conf (όπου toruser είναι ο χρήστης που εκτελεί την
+διεργασία Tor) και έπειτα να εκκινήσετε τον υπολογιστή σας αν εγκαταστάθηκε
+ως πακέτο (ή να επανασυνδεθείτε αν την εκτελείτε ο ίδιος).
 </p>
 
 <p>
-15. If you installed Tor via some package or installer, it probably starts
-Tor for you automatically on boot. But if you installed from source, you may
-find the initscripts in contrib/tor.sh or contrib/torctl useful.
+15. Αν εγκαταστήσατε το Tor μέσω κάποιου πακέτου ή εγκαταστάτη, πιθανόν το
+Tor να εκκινεί αυτόματα όταν εκκινεί ο υπολογιστής σας. Αλλά αν το
+εγκαταστήσατε από τον πηγαίο κώδικα μπορείτε να βρείτε χρήσιμα τα
+initscripts των αρχείων contrib/tor.sh ή contrib/torctl.
 </p>
 
 <p>
-When you change your Tor configuration, remember to verify that your relay
-still works correctly after the change. Be sure to set your "ContactInfo"
-line in the torrc so we can contact you if you need to upgrade or something
-goes wrong. If you have problems or questions, see the <a href="<page
-documentation>#Support">Support</a> section or <a href="<page
-contact>">contact us</a> on the tor-ops list. Thanks for helping to make the
-Tor network grow!
+Όταν αλλάζετε τις ρυθμίσεις του Tor, βεβαιωθείτε ότι ο αναμεταδότης σας
+λειτουργεί σωστά μετά τις αλλαγές. Βεβαιωθείτε ότι ρυθμίσατε την γραμμή
+"ConcactInfo" του αρχείου torrc ώστε να επικοινωνήσουμε μαζί σας αν
+χρειάζεστε κάποια αναβάθμιση ή αν κάτι είναι λάθος. Αν αντιμετωπίσετε
+προβλήματα ή έχετε ερωτήσεις, δείτε τις ενότητες <a href="<page
+documentation>#Support">Υποστήριξη</a> ή <a href="<page
+contact>">επικοινωνία</a> στην λίστα των tor-ops. Ευχαριστούμε που βοηθάτε
+στην ανάπτυξη του δικτύου Tor.
 </p>
 
 <hr />

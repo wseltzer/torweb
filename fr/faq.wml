@@ -989,13 +989,12 @@ grande charge processeur). Vous pouvez indiquer à Tor d'utiliser cette
 implémentation de la fonction malloc en utilisant à la place:
 <tt>./configure --enable-openbsd-malloc</tt></li>
 
-<li>Si vous faîtes fonctionner un relais rapide, ce qui implique que vous ayez
-de nombreuses connexion TLS ouvertes, vous perdez probablement beaucoup de
-mémoire à cause des buffers internes d'OpenSSL (plus de 38Ko par
-socket). Nous avons patché OpenSSL afin de libérer la mémoire de manière
-plus agressive. Si vous mettez à jour OpenSSL vers la version 1.0.0-beta5,
-le processus compilé de Tor la reconnaîtra automatiquement et utilisera
-cette fonctionnalité.</li>
+<li>If you're running a fast relay, meaning you have many TLS connections open,
+you are probably losing a lot of memory to OpenSSL's internal buffers (38KB+
+per socket). We've patched OpenSSL to <a
+href="http://archives.seul.org/or/dev/Jun-2008/msg00001.html">release unused
+buffer memory more aggressively</a>. If you update to OpenSSL 1.0.0-beta5,
+Tor's build process will automatically recognize and use this feature.</li>
 
 <li>Si vous utilisez Solaris, OpenBSD, NetBSD ou un vieux FreeBSD, Tor "forke"
 probablement ses processus plutôt que d'utiliser des "threads". Pensez à
