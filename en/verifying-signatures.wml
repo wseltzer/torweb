@@ -11,41 +11,77 @@
 
 <p>Each file on <a href="<page download>">our download page</a> is accompanied
 by a file with the same name as the package and the extension
-".asc".  For example, the current Installation Bundle for Windows:
-<package-win32-bundle-stable-sig>.</p>
+".asc". These .asc files are GPG signatures. They allow you to verify
+the file you've downloaded is exactly the one that we intended you to
+get. For example, vidalia-bundle-0.2.1.25-0.2.7.exe is accompanied by
+vidalia-bundle-0.2.1.25-0.2.7.exe.asc.</p>
 
-<p>These .asc files are PGP signatures. They allow you to verify the file you've downloaded
-is exactly the one that we intended you to get.</p>
-
-<p>Of course, you'll need to have our pgp keys in your keyring: if you don't
-know the pgp key, you can't be sure that it was really us who signed it. The
+<p>Of course, you'll need to have our GPG keys in your keyring: if you don't
+know the GPG key, you can't be sure that it was really us who signed it. The
 signing keys we use are:</p>
 <ul>
 <li>Roger's (0x28988BF5) typically signs the source code file.</li>
-<li>Nick's (0x165733EA, or its subkey 0x8D29319A)</li>
-<li>Andrew's (0x31B0974B)</li>
-<li>Peter's (0x94C09C7F, or its subkey 0xAFA44BDD)</li>
-<li>Matt's (0x5FA14861)</li>
-<li>Jacob's (0x9D0FACE4)</li>
-<li>Erinn's (0x63FEE659) and (0xF1F5C9B5)</li>
+<li>Nick's (0x165733EA, or its subkey 0x8D29319A).</li>
+<li>Andrew's (0x31B0974B) typically signs the windows packages.</li>
+<li>Peter's (0x94C09C7F, or its subkey 0xAFA44BDD).</li>
+<li>Matt's (0x5FA14861).</li>
+<li>Jacob's (0x9D0FACE4).</li>
+<li>Erinn's (0x63FEE659) and (0xF1F5C9B5) typically signs the linux packages.</li>
+</ul>
+
+<h3>Step Zero: Install GnuPG</h3>
+<hr />
+<p>You need to have GnuPG installed before you can verify
+signatures.</p>
+
+<ul>
+<li>Linux: see <a
+href="http://www.gnupg.org/download/">http://www.gnupg.org/download/</a>
+or install <i>gnupg</i> from the package management system.</li>
+<li>Windows: see <a
+href="http://www.gnupg.org/download/">http://www.gnupg.org/download/</a>. Look
+for the "version compiled for MS-Windows" under "Binaries".</li>
+<li>Mac: see <a
+href="http://macgpg.sourceforge.net/">http://macgpg.sourceforge.net/</a>.</li>
 </ul>
 
 <h3>Step One:  Import the keys</h3>
 <hr />
-<p>You can import keys directly from GnuPG as well:</p>
+<p>The next step is to import the key. This can be done directly from
+GnuPG. Make sure you import the correct key. For example, if you
+downloaded a Windows package, you will need to import Andrew's key.</p>
 
-<pre>gpg --keyserver subkeys.pgp.net --recv-keys 0x28988BF5</pre>
+<p><b>Windows:</b></p>
+<p>GnuPG for Windows is a command line tool, and you will need to use
+<i>cmd.exe</i>. Unless you edit your PATH environment variable, you will
+need to tell Windows the full path to the GnuPG program. If you installed GnuPG
+with the default values, the path should be something like this: <i>C:\Program
+Files\Gnu\GnuPg\gpg.exe</i>.</p>
 
-<p>or search for keys with</p>
+<p>To import the key 0x28988BF5, start <i>cmd.exe</i> and type:</p>
 
-<pre>gpg --keyserver subkeys.pgp.net --search-keys 0x28988BF5</pre>
+<pre>C:\Program Files\Gnu\GnuPg\gpg.exe --recv-keys 0x28988BF5</pre>
 
-<p>and when you select one, it will be added to your keyring.</p>
+<p><b>Mac and Linux</b></p>
+<p>Whether you have a Mac or you run Linux, you will need to use the terminal
+to run GnuPG. Mac users can find the terminal under "Applications". If you run
+Linux and use Gnome, the terminal should be under "Applications menu" and
+"Accessories". KDE users can find the terminal under "Menu" and "System".</p>
+
+<p>To import the key 0x28988BF5, start the terminal and type:</p>
+
+<pre>gpg --recv-keys 0x28988BF5</pre>
 
 <h3>Step Two:  Verify the fingerprints</h3>
 <hr />
-<p>Verify the pgp fingerprints using:</p>
+<p>After importing the key, you will want to verify that the fingerprint is correct.</p>
+
+<p><b>Windows:</b></p>
+<pre>C:\Program Files\Gnu\GnuPg\gpg.exe --fingerprint (insert keyid here)</pre>
+
+<p><b>Mac and Linux</b></p>
 <pre>gpg --fingerprint (insert keyid here)</pre>
+
 The fingerprints for the keys should be:
 
 <pre>
@@ -98,53 +134,58 @@ sub   1024g/7828F26A 2010-02-03
 
 </pre>
 
-<p>(Of course if you want to be really certain that those are the real ones
-then you should check this from more places or even better get into key signing
-and build a trust path to those keys.)</p>
-
 <h3>Step Three:  Verify the downloaded package</h3>
 <hr />
-<p>If you're using GnuPG, then put the .asc and the download in the same
-directory and type "gpg --verify (whatever).asc (whatever)". It will say
-something like "Good signature" or "BAD signature" using the following type of
-command:</p>
+<p> To verify the signature of the package you downloaded, you will need
+to download the ".asc" file as well.</p>
+
+<p>In the following examples, the user Alice downloads packages for
+Windows, Mac OS X and Linux and also verifies the signature of each
+package. All files are saved on the desktop.</p>
+
+<p><b>Windows:</b></p>
+<pre>C:\Program Files\Gnu\GnuPg\gpg.exe --verify C:\Users\Alice\Desktop\vidalia-bundle-0.2.1.25-0.2.7.exe.asc C:\Users\Alice\Desktop\vidalia-bundle-0.2.1.25-0.2.7.exe</pre>
+
+<p><b>Mac:</b></p>
+<pre>gpg --verify /Users/Alice/vidalia-bundle-0.2.1.25-0.2.7-i386.dmg.asc /Users/Alice/vidalia-bundle-0.2.1.25-0.2.7-i386.dmg</pre>
+
+<p><b>Linux</b></p>
+<pre>gpg --verify /home/Alice/Desktop/tor-0.2.1.25.tar.gz.asc /home/Alice/Desktop/tor-0.2.1.25.tar.gz</pre>
+
+<p>After verifying, GnuPG will come back saying something like "Good
+signature" or "BAD signature". The output should look something like
+this:</p>
 
 <pre>
-gpg --verify tor-0.1.0.17.tar.gz.asc tor-0.1.0.17.tar.gz
-gpg: Signature made Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
+gpg: Signature made Tue 16 Mar 2010 05:55:17 AM CET using DSA key ID 28988BF5
 gpg: Good signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
-gpg:                 aka "Roger Dingledine &lt;arma@mit.edu&gt;"
 gpg: WARNING: This key is not certified with a trusted signature!
 gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
 </pre>
 
 <p>
-Notice that there is a warning because you haven't assigned a trust index to
-this user. This means that your program verified the key made that signature.
-It's up to the user to decide if that key really belongs to the developers. The
-best method is to meet them in person and exchange gpg fingerprints. Keys can
-also be signed. If you look up Roger or Nick's keys, other people have
-essentially said "we have verified this is Roger/Nick". So if you trust that
-third party, then you have a level of trust for that arma/nick.
+Notice that there is a warning because you haven't assigned a trust
+index to this person. This means that GnuPG verified that the key made
+that signature, but it's up to you to decide if that key really belongs
+to the developer. The best method is to meet the developer in person and
+exchange key fingerprints.
 </p>
 
-<p>All this means is you can ignore the message or assign a trust level.</p>
-
 <p>For your reference, this is an example of a <em>BAD</em> verification. It
-means that the signature and file contents do not match:</p>
+means that the signature and file contents do not match. In this case,
+you should not trust the file contents:</p>
 
 <pre>
-gpg --verify tor-0.1.0.17.tar.gz.asc
-gpg: Signature made Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
+gpg: Signature made Tue 20 Apr 2010 12:22:32 PM CEST using DSA key ID 28988BF5
 gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
 </pre>
 
-<p>If you see a message like the above one, then you should not trust the file contents.</p>
-
 <p>If you are running Tor on Debian you should read the instructions on
-<a
-href="<page docs/debian>#packages">importing these keys to apt</a>.</p>
+<a href="<page docs/debian>#packages">importing these keys to apt</a>.</p>
+
+<p>If you wish to learn more about GPG, see <a
+href="http://www.gnupg.org/documentation/">http://www.gnupg.org/documentation/</a>.</p>
 
 </div><!-- #main -->
 
