@@ -15,12 +15,10 @@
 # 5. make
 # 6. ./publish
 
-TORSVNSTABLE = ../tor-stable
-TORGIT = ../tor/.git
-STABLETAG = tor-0.2.1.22
-DEVTAG = tor-0.2.2.12-alpha
-#TORSVNSTABLE = /home/arma/work/onion/git/tor-021
-#TORSVNHEAD = /home/arma/work/onion/git/tor
+#TORSVNSTABLE = /path/to/your/tor/stable
+#TORGIT = /path/to/your/tor/master
+STABLETAG = tor-0.2.1.25
+DEVTAG = tor-0.2.2.13-alpha
 
 WMLBASE = .
 SUBDIRS=docs eff gui torbrowser torbutton tordnsel projects torvm press gettor vidalia
