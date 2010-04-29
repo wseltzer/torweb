@@ -68,6 +68,19 @@ or improvements to the existing ones. The more the better, at this stage.
 </li>
 
 <li>
+<b>We need defenses too &mdash; not just attacks.</b>
+Most researchers find it easy and fun to come up with novel attacks on
+anonymity systems. We've seen this result lately in terms of improved
+congestion attacks, attacks based on remotely measuring latency or
+throughput, and so on. Knowing how things can go wrong is important,
+and we recognize that the incentives in academia aren't aligned with
+spending energy on designing defenses, but it sure would be great to
+get more attention to how to address the attacks. We'd love to help
+brainstorm about how to make Tor better. As a bonus, your paper might
+even end up with a stronger "countermeasures" section.
+</li>
+
+<li>
 <b>In-person help.</b>
 If you're doing interesting and important Tor research and need help
 understanding how the Tor network or design works, interpreting your
@@ -116,8 +129,46 @@ href="http://freehaven.net/anonbib/">these papers</a> (especially the
 ones in boxes).</p>
 
 <p>We need people to attack the system, quantify defenses,
-etc. See the "Research" section of the
-<a href="<page volunteer>#Research">volunteer</a> page.</p>
+etc. Here are some example projects:
+
+<ul>
+
+<li>The "website fingerprinting attack": make a list of a few
+hundred popular websites, download their pages, and make a set of
+"signatures" for each site. Then observe a Tor client's traffic. As
+you watch him receive data, you quickly approach a guess about which
+(if any) of those sites he is visiting. First, how effective is
+this attack on the deployed Tor design? The problem with all the
+previous attack papers is that they look at timing and counting of
+IP packets on the wire. But OpenSSL's TLS records, plus Tor's use of
+TCP pushback to do rate limiting, means that tracing by IP packets
+produces very poor results. The right approach is to realize that
+Tor uses OpenSSL, look inside the TLS record at the TLS headers, and
+figure out how many 512-byte cells are being sent or received. Then
+start exploring defenses: for example, we could change Tor's cell
+size from 512 bytes to 1024 bytes, we could employ padding techniques
+like <a href="http://freehaven.net/anonbib/#timing-fc2004">defensive
+dropping</a>, or we could add traffic delays. How much of an impact do
+these have, and how much usability impact (using some suitable metric)
+is there from a successful defense in each case?</li>
+</li>
+
+<!--
+<li>
+Path selection algorithms, directory fetching schedules for Tor-on-mobile
+that are compatible anonymity-wise with our current approaches.
+</li>
+
+<li>
+Figure out how bad 10 minutes is for maxcircuitdirtiness.
+</li>
+-->
+
+<li>More coming soon. See also the "Research" section of the
+<a href="<page volunteer>#Research">volunteer</a> page for other topics.
+</li>
+
+</ul>
 
   </div><!-- #main -->
 
