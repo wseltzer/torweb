@@ -134,10 +134,12 @@ représentant un service caché. Actuellement elles sont toutes en commentaire
 désactivés. Chaque groupe de lignes consiste en une ligne
 <var>HiddenServiceDir</var>, et une ou plus <var>HiddenServicePort</var> : </p>
 <ul>
-<li><var>HiddenServiceDir</var> est un répertoire où Tor va stocker les
-informations à propos du service caché.  En particulier, Tor va créer un
-fichier dedans, nommé <var>hostname</var> qui va vous donner le nom oignon
-de l'URL.  Vous n'avez pas à ajouter d'autre fichier dans ce répertoire.</li>
+<li><var>HiddenServiceDir</var> is a directory where Tor will store information
+about that hidden service.  In particular, Tor will create a file here named
+<var>hostname</var> which will tell you the onion URL.  You don't need to
+add any files to this directory. Make sure this is not the same directory as
+the hidserv directory you created when setting up thttpd, as your
+HiddenServiceDir contains secret information!</li>
 <li><var>HiddenServicePort</var> vous permet de spécifier un port virtuel (c'est
 celui que les gens penseront utiliser en accédant à votre service) et une
 adresse IP et un port pour les redirections vers ce port virtuel.</li>
@@ -151,12 +153,11 @@ HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
 HiddenServicePort 80 127.0.0.1:5222
 </pre>
 
-<p>Vous allez avoir à changer la ligne <var>HiddenServiceDir</var>, pour
-qu'elle pointe vers le repertoire qui est accessible en lecture/écriture par
-l'utilisateur qui fait tourner Tor. L'exemple du dessus devrait fonctionner
-si vous utilisez le paquet Tor OS X. Sous Unix, essayez
-"/home/username/hidserv/" et remplacez par votre propre nom de login à la
-place de "username". Sous Windows vous devriez mettre :</p>
+<p>You're going to want to change the <var>HiddenServiceDir</var> line, so it
+points to an actual directory that is readable/writeable by the user that
+will be running Tor. The above line should work if you're using the OS X Tor
+package. On Unix, try "/home/username/hidden_service/" and fill in your own
+username in place of "username". On Windows you might pick:</p>
 <pre>
 HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
 HiddenServicePort 80 127.0.0.1:5222
