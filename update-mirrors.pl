@@ -844,7 +844,7 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
-        }
+        },
 
         mirror044 => {
             adminContact => "margus.random at mail.ee",
