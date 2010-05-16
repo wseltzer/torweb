@@ -846,6 +846,25 @@ my %m = (
             hiddenServiceMirror => "",
         }
 
+        mirror044 => {
+            adminContact => "margus.random at mail.ee",
+            orgName => "CyberSIDE",
+            isoCC => "#E",
+            subRegion => "",
+            region => "EE",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://cyberside.planet.ee/tor/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://freedos.pri.ee/tor/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+        }
+
 );
 
 my $count = values %m;
