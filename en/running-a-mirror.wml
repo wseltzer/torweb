@@ -14,23 +14,15 @@ our mirrors are publicly listed on <a href="<page mirrors>">our mirrors
 page</a>.  We've included some sample commands and configuration below
 to make the initial setup and ongoing maintenance a minimal effort.
 The Tor website and distribution directory currently require 5.0 GB of
-disk space.  The /dist directory alone is roughly 1.5 GB.</p>
+disk space.</p>
 
 <p>
-If you would like to run a mirror (website + dist), it's as easy as this command to download
+If you would like to run a mirror, it's as easy as this command to download
 everything a mirror should share with the world:
 <br /> <br />
 <tt>
 rsync -av --delete rsync://rsync.torproject.org/tor tor-mirror/
 </tt>
-<br /> <br />
-If you would like to run only a dist/ mirror (distribution only), it's as easy as this command to 
-download everything a dist mirror should share with the world:
-<br /> <br />
-<tt>
-rsync -av --delete rsync://rsync.torproject.org/tor/dist tor-mirror-dist/
-</tt>
-
 
 <p>
 In order to assure we have reliable and up to date mirrors,
@@ -69,9 +61,9 @@ For mirror operators that use Apache, we have created a sample virtual host
 configuration file to use:
 <tt>
 <pre>
-&lt;VirtualHost 1.2.3.4:80&gt;
+&lt;VirtualHost 0.1.2.3:80&gt;
         ServerAdmin youremail@example.com<br/>
-        ServerName  1.2.3.4<br/>
+        ServerName  0.1.2.3<br/>
 
         DocumentRoot /var/www/mirrors/torproject.org<br/>
 
@@ -96,8 +88,6 @@ If you are running a mirror, please subscribe to the
 We will add you to the mirror list.  
 Help for mirror support and configuration issues may also be found on the list.
 </p>
-
-
 
   </div><!-- #main -->
 
