@@ -42,22 +42,21 @@ langues. Allez voir les <a href="<page translation>">conseils de
 traduction</a> si vous souhaitez le faire. Nous avons besoin plus
 spécialement de personnes pour traduire en Arabe ou en Persan pour les
 utilisateurs Tor situés dans les zones censurées.</li>
-<li>Évaluez et documentez <a
-href="https://wiki.torproject.org/wiki/TheOnionRouter/TorifyHOWTO">notre
-liste de programmes</a> pouvant être utilisés avec Tor.</li>
-<li>Nous avons toute une liste de <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">programmes
-potentiellement utiles qui s'interfacent avec Tor</a>. Lesquels sont utiles
-et dans quelles situations ? Contribuez à les tester et à documenter les
-résultats.</li>
+<li>Evaluate and document <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorifyHOWTO">our
+list of programs</a> that can be configured to use Tor.</li>
+<li>We have a huge list of <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/SupportPrograms">potentially
+useful programs that interface to Tor</a>. Which ones are useful in which
+situations? Please help us test them out and document your results.</li>
 </ol>
 
 <a id="Advocacy"></a>
 <h2><a class="anchor" href="#Advocacy">Plaidoyer</a></h2>
 <ol>
-<li>Créer un <a href="https://wiki.torproject.org/noreply/CommunityLogos">logo
-communautaire</a> sous licence Creative commons que chacun puisse utiliser
-et modifier</li>
+<li>Create a <a
+href="https://trac.torproject.org/projects/tor/wiki/CommunityLogos">community
+logo</a> under a Creative Commons license that all can use and modify</li>
 <li>Créer une présentation qui puisse être utilisée lors des nombreux meetings
 de groupe sur toute la planète.</li>
 <li>Créer une vidéo sur les utilisations positives de Tor, sur ce qu'est Tor ou
@@ -731,19 +730,17 @@ propositions en cours</a> ont également besoin de développeurs.
 <h2><a class="anchor" href="#OtherCoding">Autres idées de spécifications et de
 code</a></h2>
 <ol>
-<li>Les serveurs de Tor ne fonctionnent pas parfaitement sur Windows
-XP. SurWindows, Tor utilise l'appel système standard <tt>select()</tt>, qui
-utilise l'espace non paginé dans le pool. Ce qui implique que les serveurs
-de taille moyenne vont vider l'espace non paginé, <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">provocant
-l'instabilité et le plantage du système</a>. Nous devrions probablement
-utiliser des E/S recouvrables à la place. Une solution pourrait-être
-d'apprendre à la <a
-href="http://www.monkey.org/~provos/libevent/">libevent</a> comment utiliser
-les E/S recouvrables à la place de select() sous Windows, et alors d'adapter
-Tor à la nouvelle interface libevent. Christian King à <a
-href="https://tor-svn.freehaven.net/svn/libevent-urz/trunk/">bien
-démarré</a> sur ce point l'été 2007.</li>
+<li>Tor relays don't work well on Windows XP. On Windows, Tor uses the standard
+<tt>select()</tt> system call, which uses space in the non-page pool. This
+means that a medium sized Tor relay will empty the non-page pool, <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/WindowsBufferProblems">causing
+havoc and system crashes</a>. We should probably be using overlapped IO
+instead. One solution would be to teach <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a> how to use
+overlapped IO rather than select() on Windows, and then adapt Tor to the new
+libevent interface. Christian King made a <a
+href="https://svn.torproject.org/svn/libevent-urz/trunk/">good start</a> on
+this in the summer of 2007.</li>
 
 <li>Nous avons besoin maintenant de commencer l'élaboration de notre <a
 href="<page documentation>#DesignDoc">conception de résistance au
@@ -774,17 +771,15 @@ s'il existe déjà de bonnes bibliothèques de fuzz pour ce que nous voulons
 faire. La célébrité pour celui grâce à qui une nouvelle version pourra voir
 le jour !</li>
 
-<li>Tor utilise TCP pour le transport et TLS pour le chiffrage des liens. C'est
-simple et efficace, mais cela implique que toutes les unités (cellules) d'un
-lien sont mises en attente lorsqu'un seul paquet est perdu, et cela signifie
-que seuls des flux TCP peuvent être raisonnablement supportés. Nous avons
-dressé une <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">
-liste de raisons pour lesquelles nous n'avons pas bifurqué vers le transport
-par UDP</a>, mais ce serait bien de voir cette liste se raccourcir. Nous
-avons aussi proposé <a href="<gitblob>tor/doc/100-tor-spec-udp.txt">une
-spécification pour Tor et UDP</a> &mdash; lisez-la et faites-nous part de
-vos remarques et critiques, s'il-vous-plaît.</li>
+<li>Tor uses TCP for transport and TLS for link encryption. This is nice and
+simple, but it means all cells on a link are delayed when a single packet
+gets dropped, and it means we can only reasonably support TCP streams. We
+have a <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#YoushouldtransportallIPpacketsnotjustTCPpackets.">list
+of reasons why we haven't shifted to UDP transport</a>, but it would be
+great to see that list get shorter. We also have a proposed <a
+href="<gitblob>doc/spec/proposals/100-tor-spec-udp.txt">specification for
+Tor and UDP</a> &mdash; please let us know what's wrong with it.</li>
 
 <li>Nous ne sommes plus très loin d'avoir le support pour IPV6 entre les
 serveurs de sorties et les adresses finales. Si IPV6 vous tient à cœur,

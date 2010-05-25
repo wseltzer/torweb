@@ -27,11 +27,16 @@ Tor，也许在不使用网桥功能的情况下您仍然能够连接 Tor 网络
 </p>
 
 <p>
-注意：Tor 也可能因其它原因而不能工作。最新版本的 <a href="<page torbrowser/index>">WindowsTor
-浏览器套件</a>试图给予您更好的关于 Tor 故障原因的提示。当您遇到问题时，您也应该仔细阅读
-<ahref="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">FAQ：关于
-Tor 使用常见问题</a> 。如果您觉得问题很明显是被屏蔽了，或您就是想试一试网桥功能，请您继续阅读。请确定您正在使用<a href="<page
-download>#Dev">最新版 0.2.1.x 或 0.2.2.x </a>的 Tor 软件。
+Note that it's also possible that Tor is non-functional for other
+reasons. The latest version of <a href="<page torbrowser/index>">The Tor
+Browser Bundle</a> on Windows tries to give you better hints about why Tor
+is having problems connecting. You should also read <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#IinstalledTorandPolipobutitsnotworking.">the
+FAQ about problems with running Tor properly</a> when you have issues.  If
+you feel that the issue is clearly blocking, or you'd simply like to try
+because you're unsure or feeling adventurous, please read on. Ensure that
+you're using the <a href="<page download>#Dev">latest 0.2.1.x or 0.2.2.x
+bundle for your platform</a>.
 </p>
 
 <p>
@@ -120,9 +125,9 @@ href="#UsingBridges">配置方法</a>。
 如果您愿意提供帮助，但是无法运行<a href="<page docs/tor-doc-relay>">普通的
 Tor中继</a>，您可以运行一个网桥中继。您可以用以下任何一种方式配置：
 <ul>
-<li> 手动
-<ahref="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">编辑您的
-torrc 文件</a> 只需要修改以下四行：<br />
+<li> manually <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">edit
+your torrc file</a> to be just these four lines:<br />
 <pre><code>
 SocksPort 0
 ORPort 443
@@ -134,9 +139,10 @@ src="$(IMGROOT)/vidalia-bridges-setup.png" alt="Vidalia 的共享设置页" /></
 </ul>
 </p>
 
-<p>如果您在启动时看到“Could not bind to 0.0.0.0:443: Permission denied”这样的错误，您需要挑选一个
-1023 以上的端口作为 ORPort（例如
-8080），或者，配置<ahref="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">复杂的端口转发</a>。
+<p>If you get "Could not bind to 0.0.0.0:443: Permission denied" errors on
+startup, you'll need to pick a higher ORPort (e.g. 8080) or do <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#Myfirewallonlyallowsafewoutgoingports.">some
+complex port forwarding</a>.
 </p>
 
 <p>

@@ -13,23 +13,16 @@
 <h2>Tor: Prowadzenie Mirrora</h2>
 <hr />
 
-<p>Dziękujemy, że chcesz mirrorować strony Tora. Wszystkie nasze
-serwery-mirrory są publicznie wypisane na <a href="<page mirrors>">naszej
-stronie mirrorów</a>. Poniżej zamieszczamy kilka przykładowych komend i
-konfiguracji, by wstępne uruchamianie i utrzymywanie odbywały się jak
-najmniejszym wysiłkiem. Strona Tora i katalog dystrybucyjny w chwili obecnej
-wymagają 1,6 GB miejsca na dysku. Sam katalog /dist zajmuje 230 MB.</p>
+<p>Thank you for wanting to mirror the Tor website.  All of our mirrors are
+publicly listed on <a href="<page mirrors>">our mirrors page</a>.  We've
+included some sample commands and configuration below to make the initial
+setup and ongoing maintenance a minimal effort.  The Tor website and
+distribution directory currently require 5.0 GB of disk space.</p>
 
 <p>
-Jeśli chcielibyście poprowadzić mirror (strona+dist), wystarczy po prostu ta
-komenda, by pobrać wszystko, czym mirror powinien dzielić się ze światem:
-<br /> <br /> <tt> rsync -av --delete rsync://rsync.torproject.org/tor
-tor-mirror/ </tt> <br/> <br/> Jeśli chcielibyście prowadzić tylko mirror
-samego katalogu dist/ (tylko dystrybucje), wystarczy ta komenda, by pobrać
-wszystko, czym taki mirror powinien dzielić się ze światem: <br /> <br />
-<tt> rsync -av --delete rsync://rsync.torproject.org/tor/dist
-tor-mirror-dist/ </tt>
-
+If you would like to run a mirror, it's as easy as this command to download
+everything a mirror should share with the world: <br /> <br /> <tt> rsync
+-av --delete rsync://rsync.torproject.org/tor tor-mirror/ </tt>
 
 <p>
 W celu zapewnienia, że mamy wiarygodne i aktualne mirrory, prosimy upewnić
@@ -60,9 +53,9 @@ może wyglądać następująco:
 <br/> Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy
 przykładowy plik konfiguracji wirtualnego hosta: <tt>
 <pre>
-&lt;VirtualHost 1.2.3.4:80&gt;
+&lt;VirtualHost 0.1.2.3:80&gt;
         ServerAdmin youremail@example.com<br/>
-        ServerName  1.2.3.4<br/>
+        ServerName  0.1.2.3<br/>
 
         DocumentRoot /var/www/mirrors/torproject.org<br/>
 
@@ -87,8 +80,6 @@ Jeśli prowadzisz mirror, proszę zapisz się na
 znaleźć pomoc w sprawach wsparcia dla mirrorów i spraw związanych z
 konfiguracją.
 </p>
-
-
 
   </div>
 

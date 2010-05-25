@@ -13,24 +13,16 @@
 <h2>Tor: Mettre en place un Miroir</h2>
 <hr />
 
-<p>Merci de vouloir monter un miroir du site web de Tor. Tous nos miroirs sont
-listés publiquement sur <a href="<page mirrors>">notre page des
-miroirs</a>.  Nous avons inclus des exemples de commandes et de
-configuration ci-dessous afin de faciliter l'installation initiale et la
-maintenance en continue.  Le site web de Tor et le répertoire de
-distribution occupent 1,6 Go d'espace disque.  Le répertoire /dist occupe
-230Mo à lui tout seul.</p>
+<p>Thank you for wanting to mirror the Tor website.  All of our mirrors are
+publicly listed on <a href="<page mirrors>">our mirrors page</a>.  We've
+included some sample commands and configuration below to make the initial
+setup and ongoing maintenance a minimal effort.  The Tor website and
+distribution directory currently require 5.0 GB of disk space.</p>
 
 <p>
-Si vous désirez faire fonctionner un miroir (site web+dist), il suffit de
-lancer cette commande pour télécharger tout ce qu'un miroir doit partager
-avec le reste du monde: <br /> <br /> <tt> rsync -av --delete
-rsync://rsync.torproject.org/tor tor-mirror/ </tt> <br /> <br /> Si vous
-souhaitez faire tourner un miroir de distribution, il suffit de lancer cette
-commande pour télécharger tout ce dont a besoin un miroir de distribution:
-<br /> <br /> <tt> rsync -av --delete rsync://rsync.torproject.org/tor/dist
-tor-mirror-dist/ </tt>
-
+If you would like to run a mirror, it's as easy as this command to download
+everything a mirror should share with the world: <br /> <br /> <tt> rsync
+-av --delete rsync://rsync.torproject.org/tor tor-mirror/ </tt>
 
 <p>
 Pour être sûr d'avoir des miroirs fiables et à jour, merci de veiller que
@@ -62,9 +54,9 @@ heures ressemble à: <tt>
 <br/> Pour les opérateurs de miroir qui utilisent Apache, nous avons créé un
 exemple de fichier de configuration d'hôte virtuel: <tt>
 <pre>
-&lt;VirtualHost 1.2.3.4:80&gt;
+&lt;VirtualHost 0.1.2.3:80&gt;
         ServerAdmin youremail@example.com<br/>
-        ServerName  1.2.3.4<br/>
+        ServerName  0.1.2.3<br/>
 
         DocumentRoot /var/www/mirrors/torproject.org<br/>
 
@@ -90,8 +82,6 @@ Si vous mettez en place un miroir, merci de vous abonner à
 miroirs. Vous trouverez également de l'aide à propos de la gestion des
 miroirs et des problèmes de configuration sur la liste de diffusion.
 </p>
-
-
 
   </div>
 

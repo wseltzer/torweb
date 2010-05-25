@@ -40,22 +40,21 @@ href="<page contact>">skontaktuj się z nami</a>, jeśli masz kwalifikacje!</p>
 href="<page translation>">wskazówki do tłumaczenia</a>, jeśli chcesz
 pomóc. Potrzebujemy zwłaszcza tłumaczy na język arabski i Farsi dla wielu
 użytkowników Tora w cenzorowanych obszarach.</li>
-<li>Przejrzyj i udokumentuj <a
-href="https://wiki.torproject.org/wiki/TheOnionRouter/TorifyHOWTO">naszą
-listę programów</a>, które można skonfigurować do współpracy z Torem.</li>
-<li>Mamy ogromną listę <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/SupportPrograms">potencjalnie
-użytecznych programów, które współpracują z Torem</a>. Które z nich są
-przydatne w jakich sytuacjach? Prosimy pomóż nam je testować i zapisuj swoje
-wyniki.</li>
+<li>Evaluate and document <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorifyHOWTO">our
+list of programs</a> that can be configured to use Tor.</li>
+<li>We have a huge list of <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/SupportPrograms">potentially
+useful programs that interface to Tor</a>. Which ones are useful in which
+situations? Please help us test them out and document your results.</li>
 </ol>
 
 <a id="Advocacy"></a>
 <h2><a class="anchor" href="#Advocacy">Pokazanie się jako zwolennik Tora</a></h2>
 <ol>
-<li>Stwórz <a href="https://wiki.torproject.org/noreply/CommunityLogos">logo
-społeczności</a> pod licencją Creative Commons, którego wszyscy będą mogli
-używać i modyfikować</li>
+<li>Create a <a
+href="https://trac.torproject.org/projects/tor/wiki/CommunityLogos">community
+logo</a> under a Creative Commons license that all can use and modify</li>
 <li>Stwórz prezentację, której będzie można używać na spotkaniach różnych grup
 na całym świecie</li>
 <li>Stwórz film o Twoim pozytywnym wykorzystaniu Tora, czym jest Tor lub jak go
@@ -736,18 +735,17 @@ brakować deweloperów.
 <h2><a class="anchor" href="#OtherCoding">Inne pomysły związane z programowaniem
 i projektowaniem</a></h2>
 <ol>
-<li>Przekaźniki sieci Tora nie działają zbyt dobrze na Windows XP. Pod systemem
-Windows Tor używa standardowej funkcji systemowej <tt>select()</tt>, która
-zużywa miejsce w niestronicowanym obszarze pamięci. Znaczy to, że średnich
-rozmiarów przekaźnik sieci Tora zapełni dostępną przestrzeń, <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/WindowsBufferProblems">będąc
-przyczyną dziwnych zachowań i padów systemu</a>. Powinniśmy raczej używać
-nakładającego IO. Jednym z rozwiązań byłoby nauczenie biblioteki <a
-href="http://www.monkey.org/~provos/libevent/">libevent</a>, jak używać
-nakładającego IO zamiast select() pod Windows, po czym zaadaptować Tora do
-nowego interfejsu. Christian King zrobił <a
-href="https://svn.torproject.org/svn/libevent-urz/trunk/">pierwszy dobry
-krok</a> latem roku 2007.</li>
+<li>Tor relays don't work well on Windows XP. On Windows, Tor uses the standard
+<tt>select()</tt> system call, which uses space in the non-page pool. This
+means that a medium sized Tor relay will empty the non-page pool, <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/WindowsBufferProblems">causing
+havoc and system crashes</a>. We should probably be using overlapped IO
+instead. One solution would be to teach <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a> how to use
+overlapped IO rather than select() on Windows, and then adapt Tor to the new
+libevent interface. Christian King made a <a
+href="https://svn.torproject.org/svn/libevent-urz/trunk/">good start</a> on
+this in the summer of 2007.</li>
 
 <li>Musimy zacząć budować nasz <a href="<page documentation>#DesignDoc">projekt
 odporny na blokowanie</a>. Wchodzi w to przemyślenie projektu, zmiana wielu
@@ -776,15 +774,15 @@ href="http://en.wikipedia.org/wiki/Fuzz_testing">"fuzz"</a>. Sprawdzić, czy
 istnieją jakieś dobre biblioteki "fuzz", których nam potrzeba. Zdobądź sławę
 gdy wydamy nową wersję dzięki Tobie!</li>
 
-<li>Tor używa TCP do transportu i TLS do szyfrowania transmisji. To jest ładne i
-proste, ale oznacza to, że wszystkie komórki na łączu zostają opóźnione, gdy
-pojedynczy pakiet zostanie utracony, co oznacza, że rozsądnie obsługiwać
-możemy tylko strumienie TCP. Mamy <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#TransportIPnotTCP">listę
-powodów, dla których nie przenieśliśmy się na UDP</a>, ale byłoby dobrze
-skrócić tę listę. Mamy też proponowaną <a
-href="<gitblob>doc/spec/proposals/100-tor-spec-udp.txt">specyfikację dla
-Tora i UDP</a> &mdash; proszę dać znać, co z nią jest nie tak.</li>
+<li>Tor uses TCP for transport and TLS for link encryption. This is nice and
+simple, but it means all cells on a link are delayed when a single packet
+gets dropped, and it means we can only reasonably support TCP streams. We
+have a <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#YoushouldtransportallIPpacketsnotjustTCPpackets.">list
+of reasons why we haven't shifted to UDP transport</a>, but it would be
+great to see that list get shorter. We also have a proposed <a
+href="<gitblob>doc/spec/proposals/100-tor-spec-udp.txt">specification for
+Tor and UDP</a> &mdash; please let us know what's wrong with it.</li>
 
 <li>Jesteśmy wcale niedaleko od obsługi adresów IPv6 jako docelowych (na węzłach
 wyjściowych). Jeśli mocno ci zależy na IPv6, to jest to chyba najlepszy
