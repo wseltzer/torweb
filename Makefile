@@ -17,7 +17,7 @@
 
 #TORSVNSTABLE = /path/to/your/tor/stable
 #TORGIT = /path/to/your/tor/master
-STABLETAG = tor-0.2.1.25
+STABLETAG = tor-0.2.1.26
 DEVTAG = tor-0.2.2.13-alpha
 
 WMLBASE = .
