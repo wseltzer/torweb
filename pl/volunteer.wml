@@ -57,11 +57,11 @@ href="https://trac.torproject.org/projects/tor/wiki/CommunityLogos">community
 logo</a> under a Creative Commons license that all can use and modify</li>
 <li>Stwórz prezentację, której będzie można używać na spotkaniach różnych grup
 na całym świecie</li>
-<li>Stwórz film o Twoim pozytywnym wykorzystaniu Tora, czym jest Tor lub jak go
-używać. Kilka osób już zaczęło na <a
-href="http://media.torproject.org/video/">serwerze mediów Tora</a>, <a
-href="http://www.howcast.com/videos/90601-How-To-Circumvent-an-Internet-Proxy">Howcast</a>
-i <a href="http://www.youtube.com/freedom4internet">Youtube</a>.</li> 
+<li>Create a video about the positive uses of Tor, what Tor is, or how to use
+it.  Some have already started on <a
+href="http://media.torproject.org/video/">Tor's Media server</a>, <a
+href="http://www.howcast.com/videos/90601-How-To-Circumvent-an-Internet-Proxy">Howcast</a>,
+and <a href="http://www.youtube.com/thetorproject">Youtube</a>.</li> 
 <li>Stwórz plakat, lub zestaw plakatów, skupionych na jakimś motywie, np. "Tor
 to Wolność!"</li>
 </ol>
@@ -140,40 +140,37 @@ stanu Tora</a> napisaną przez Rogera.
 </li>
 
 <li>
-<b>Przepisać TorDNSEL, tym razem ze specyfikacją!</b> <br /> Priorytet:
-<i>Wysoki</i> <br /> Poziom wysiłku: <i>Średni</i> <br /> Poziom
-umiejętności: <i>Średni</i> <br /> Prawdopodobni opiekunowie: <i>Mike,
-Roger, Sebastian, Damian</i> <br /> <a href="<page tordnsel/index>">Tor DNS
-Exit List</a> jest programem w Haskellu , którym nikt się nie opiekuje, a
-który służy trzem celom. Po pierwsze, dostarcza interfejsu DNS w stylu rbl
-dla osób chcących sprawdzić, czy dany adres IP jest (lub ostatnio był)
-węzłem wyjściowym Tora. Po drugie, aktywnie buduje obwody w sieci Tora i
-łączy się sam ze sobą, by poznać właściwy wyjściowy adres IP każdego
-przekaźnika &mdash; niektóre z przekaźników wychodzą z innego adresu niż ten
-podany w ich deskryptorze. Po trzecie, eksportuje <a
-href="http://exitlist.torproject.org/exitAddresses">zestaw wniosków</a>, by
-<a href="https://check.torproject.org/">check.torproject.org</a> mógł
-zgadnąć, czy Twoja przeglądarka jest skonfigurowana, by używać Tora. <br />
-Ten projekt wykorzystałby <a
-href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>,
-zestaw skryptów Pythona do interakcji z Torem, by dowiedzieć się, jak nasz
-program do sprawdzania wyjścia z Tora powinien działać, po czym stworzyłby
-go &mdash; proawdopodobnie w Pythonie, gdyż Torflow jest w Pythonie. Głównym
-celem jest zmniejszenie fałszywych wyników pozytywnych tak bardzo, jak to
-jest możliwe, przez sprawienie, by dowiadywał się o nowych przekaźnikach tak
-szybko, jak to jest możliwe, spawienie, że faza testowania kończy się szybko
-i upewnianie się, że odpowiedzi sdzybko trafiają do skryptu Check. Jako
-bonus, powinniśmy ustandaryzować (wyspecyfikować) format pliku exitAddresses
-i przepisać skrypt <a
+<b>Rewrite TorDNSEL, this time with a spec!</b> <br /> Priority: <i>High</i>
+<br /> Effort Level: <i>Medium</i> <br /> Skill Level: <i>Medium</i> <br />
+Likely Mentors: <i>Mike, Roger, Sebastian, Damian</i> <br /> The <a
+href="<page tordnsel/index>">Tor DNS Exit List</a> is an unmaintained
+Haskell program that serves three purposes. First, it provides an rbl-style
+DNS interface for people to look up whether a given IP address is (or has
+recently been) a Tor exit relay. Second, it actively builds circuits over
+the Tor network and connects back to itself, to learn the actual exit IP
+address of each relay &mdash; some Tor relays exit from a different address
+than they advertise in their descriptor. Third, it exports a <a
+href="http://exitlist.torproject.org/exitAddresses">set of conclusions</a>
+so that <a href="https://check.torproject.org/">check.torproject.org</a> can
+guess for you whether your browser is configured to point to Tor.  <br />
+This project would make use of <a
+href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>, a
+set of Python scripts to interact with Tor, to figure out how our Tor Exit
+Checker should actually work, and then build it &mdash; probably in Python
+since Torflow is in Python. The main goal is to reduce false positives as
+much as possible, by making sure that it learns about new relays as soon as
+possible, making sure that the testing phase concludes quickly, and making
+sure the answers get passed to the Check script quickly. As a bonus, we
+should standardize (specify) the format of the exitAddresses file, and
+rewrite the <a
 href="https://svn.torproject.org/svn/check/trunk/cgi-bin/TorBulkExitList.py">Tor
-Bulk Exit List</a>, by używał tamtego pliku zamiast bieżących <a
-href="https://bugs.torproject.org/flyspray/index.php?do=details&id=1019">strasznych
-prowizorek DNS</a>. Jako dodatkowy bonus, powinniśmy pracować z Freenode,
-OFTC oraz innymi sieciami IRC, by upewnić się, że skrypty, które oferujemy
-są tymi, które oni chcieli, w sensie dokładnego identyfikowania, którzy z
-ich użytkowników przychodzą z sieci Tora. <br /> Możesz pobrać <a
-href="git://git.torproject.org/git/tordnsel">najnowszą wersję tordnsel</a>
-przez git.
+Bulk Exit List</a> script to use that file rather than its current <a
+href="https://trac.torproject.org/projects/tor/ticket/1019">horrible DNS
+hacks</a>. As an extra bonus, we should work with Freenode, OFTC, and/or
+other IRC networks to make sure that the scripts we offer are actually the
+scripts they want, in terms of accurately identifying which of their users
+are coming from the Tor network.  <br /> You can fetch the <a
+href="git://git.torproject.org/git/tordnsel">latest tordnsel</a> via git.
 </li>
 
 <li>
@@ -391,20 +388,20 @@ Skill Level: <i>High</i>
 Likely Mentors: <i>Mike</i>
 <br/>
 There are several <a
-href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5&amp;type=2">good
-feature requests</a> on the Torbutton Flyspray section. In particular, <a
-href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=523">Integrating
+href="https://trac.torproject.org/projects/tor/report/14">good
+feature requests</a> on the Torbutton Trac section. In particular, <a
+href="https://trac.torproject.org/projects/tor/ticket/523">Integrating
 'New Identity' with Vidalia</a>,
-<a href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=940">ways of
-managing multiple cookie jars/identities</a>, <a
-href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=637">preserving
+<a href="https://trac.torproject.org/projects/tor/ticket/940">ways of
+managing multiple cookie jars/identities</a>, 
+<a href="https://trac.torproject.org/projects/tor/ticket/637">preserving
 specific cookies</a> when cookies are cleared,
 <a
-href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=524">better
+href="https://trac.torproject.org/projects/tor/ticket/524">better
 referrer spoofing</a>, <a
-href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=564">correct
+href="https://trac.torproject.org/projects/tor/ticket/564">correct
 Tor status reporting</a>, and <a
-href="https://bugs.torproject.org/flyspray/index.php?do=details&amp;id=462">"tor://"
+href="https://trac.torproject.org/projects/tor/ticket/462">"tor://"
 and "tors://" urls</a> are all interesting
 features that could be added.
 <br />

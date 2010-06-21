@@ -11,16 +11,17 @@
 <div class="main-column">
 
 <a id="BridgeIntroduction"></a>
-<h2><a class="anchor" href="#BridgeIntroduction">Tor: Passerelles</a></h2>
+<h2><a class="anchor" href="#BridgeIntroduction">Tor : Passerelles</a></h2>
 <hr />
 
 <p>
 Les relais-passerelles (ou "passerelles" en plus court) sont des relais Tor
-qui ne sont pas listés dans l'annuaire principal de Tor. Puisqu'il n'existe
-aucune liste complète publique de ces relais, même si votre FAI filtre les
-connexions vers tous les relais Tor connus, il ne sera pas en mesure de
-bloquer toutes les passerelles. Si vous suspectez que votre accès au réseau
-Tor est bloqué, vous pouvez utiliser la fonction passerelle de Tor.
+qui ne sont pas affichés dans l'annuaire principal de Tor. Puisqu'il
+n'existe aucune liste complète publique de ces relais, même si votre FAI
+filtre les connexions vers tous les relais Tor connus, il ne sera pas en
+mesure de bloquer toutes les passerelles. Si vous suspectez que votre accès
+au réseau Tor est bloqué, vous pouvez utiliser la fonction passerelle de
+Tor.
 </p>
 
 <p>
@@ -36,16 +37,18 @@ Tor sans passerelle d'abord car il est possible que cela fonctionne.
 </p>
 
 <p>
-Note that it's also possible that Tor is non-functional for other
-reasons. The latest version of <a href="<page torbrowser/index>">The Tor
-Browser Bundle</a> on Windows tries to give you better hints about why Tor
-is having problems connecting. You should also read <a
-href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#IinstalledTorandPolipobutitsnotworking.">the
-FAQ about problems with running Tor properly</a> when you have issues.  If
-you feel that the issue is clearly blocking, or you'd simply like to try
-because you're unsure or feeling adventurous, please read on. Ensure that
-you're using the <a href="<page download>#Dev">latest 0.2.1.x or 0.2.2.x
-bundle for your platform</a>.
+A noter qu'il est également possible que Tor soit non-opérant pour d'autres
+raisons. La dernière version du <a href="<page torbrowser/index>">"Tout en
+un" Navigateur+Tor </a> pour Windows essaye de vous donner les causes
+possibles des problèmes que Tor rencontre pour se connecter. Vous devriez
+également lire <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">la
+FAQ sur les problèmes de fonctionnement de Tor</a> lorsque ces derniers
+surviennent.  Si vous avez l'intuition que le problème vient d'un bloquage
+évident ou si vous avez envie d'essayer parce que vous n'êtes pas sûr ou
+tout simplement, si vous voulez expérimenter, lisez ce qui
+suit. Assurez-vous d'utiliser la <a href="<page download>#Dev">dernière
+version 0.2.1.x ou 0.2.2.x pour votre plateforme</a>.
 </p>
 
 <p>
@@ -60,11 +63,10 @@ le configurer et si vous  avez des problèmes, n'hésitez pas à nous demander
 de l'aide.
 </p>
 
-<p>Freedom House a créé une vidéo qui montre comment récupérer et utiliser des
-passerelles Tor. Vous pouvez visionner cette vidéo sur <a
-href="http://www.youtube.com/freedom4internet">Youtube:
-Freedom4Internet</a>.  Vous connaissez une meilleure vidéo ou bien une autre
-qui est traduite dans votre langue ? Faîtes-le nous savoir !</p>
+<p>Freedom House has produced a video on how to get and use Tor bridges.  If
+you don't see a video below, view it at <a
+href="http://www.youtube.com/thetorproject">Youtube: Freedom4Internet</a>
+Know of a better video, or one translated into your language? Let us know!</p>
 
 <div class="center">
 <p><video id="v1" src="http://media.torproject.org/video/2009-using-a-bridge-relay-to-access-tor.ogv" autobuffer="true" controls="controls"></video></p>
@@ -138,7 +140,7 @@ adresses de passerelles.  Vous devriez recevoir pratiquement instantanément
 la réponse suivante:
 </p>
 <pre>
-Voici vos relais-passerelles:
+Voici vos relais-passerelles :
 
  bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
  bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
@@ -146,25 +148,24 @@ Voici vos relais-passerelles:
 
 </pre>
 <p>
-Une fois que vous aurez reçu l'email avec les informations de passerelles,
-vous pourrez continuer à configurer Vidalia comme indiqué <a
+Une fois que vous aurez reçu le courriel avec les informations de
+passerelles, vous pourrez continuer à configurer Vidalia comme indiqué <a
 href="#UsingBridges">ci-dessus</a>.
 </p>
 
 <a id="RunningABridge"></a>
-<h2><a class="anchor" href="#RunningABridge">Faire tourner une passerelle
-Tor</a></h2>
+<h2><a class="anchor" href="#RunningABridge">Exécuter une passerelle Tor</a></h2>
 <hr />
 
 <p>
 Si vous désirez apporter votre contribution mais que vous ne pouvez pas
-faire tourner un <a href="<page docs/tor-doc-relay>">relais Tor normal</a>,
-vous pouvez faire fonctionner un relais-passerelle à la place. Vous pouvez
-la configurer de la manière suivante:
+exécuter un <a href="<page docs/tor-doc-relay>">relais Tor normal</a>, vous
+pouvez faire fonctionner un relais-passerelle à la place. Vous pouvez la
+configurer de la manière suivante :
 <ul>
-<li> manually <a
-href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">edit
-your torrc file</a> to be just these four lines:<br />
+<li> editer manuellement a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">votre
+fichier torrc</a> avec les quatre lignes qui suivent:<br />
 <pre><code>
 SocksPort 0
 ORPort 443
@@ -177,10 +178,11 @@ Partage dans Vidalia" /></li>
 </ul>
 </p>
 
-<p>If you get "Could not bind to 0.0.0.0:443: Permission denied" errors on
-startup, you'll need to pick a higher ORPort (e.g. 8080) or do <a
-href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#Myfirewallonlyallowsafewoutgoingports.">some
-complex port forwarding</a>.
+<p>Si vous avez au démarrage des erreurs du type: "Could not bind to
+0.0.0.0:443: Permission denied", vous devez utiliser un numéro de port
+ORPort plus élevé (ex: 8080) ou mettre en place <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">des
+translations de port évoluées<a>.
 </p>
 
 <p>
