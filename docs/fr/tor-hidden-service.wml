@@ -22,8 +22,9 @@ n'utilisez pas d'adresse publique, vous pouvez faire tourner un service
 caché derrière votre pare-feu.
 </p>
 
-<p>If you have Tor installed, you can see hidden services in action by visiting
-<a href="http://duskgytldkxiuqc6.onion/">our example hidden service</a>.
+<p>Si vous avez installé Tor, vous pouvez accéder à des services cachés actifs
+sur le web en visitant <a href="http://duskgytldkxiuqc6.onion/">notre
+exemple de service caché</a>.
 </p>
 
 <p>Ce « howto » décrit les étapes pour paramétrer votre propre site web en
@@ -134,12 +135,13 @@ représentant un service caché. Actuellement elles sont toutes en commentaire
 désactivés. Chaque groupe de lignes consiste en une ligne
 <var>HiddenServiceDir</var>, et une ou plus <var>HiddenServicePort</var> : </p>
 <ul>
-<li><var>HiddenServiceDir</var> is a directory where Tor will store information
-about that hidden service.  In particular, Tor will create a file here named
-<var>hostname</var> which will tell you the onion URL.  You don't need to
-add any files to this directory. Make sure this is not the same directory as
-the hidserv directory you created when setting up thttpd, as your
-HiddenServiceDir contains secret information!</li>
+<li><var>HiddenServiceDir</var> est un répertoire où Tor va stocker les
+informations à propos du service caché.  En particulier, Tor va y créer un
+fichier, nommé <var>hostname</var> qui va vous donner le nom oignon de
+l'URL.  Vous n'avez pas à ajouter d'autre fichier dans ce
+répertoire. Vérifiez qu'il ne s'agit pas du même répertoire que le
+répertoire hidserv créé lors de l'installation de thttpd, car le
+HiddenServiceDir contient des informations confidentielles !</li>
 <li><var>HiddenServicePort</var> vous permet de spécifier un port virtuel (c'est
 celui que les gens penseront utiliser en accédant à votre service) et une
 adresse IP et un port pour les redirections vers ce port virtuel.</li>
@@ -153,11 +155,12 @@ HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
 HiddenServicePort 80 127.0.0.1:5222
 </pre>
 
-<p>You're going to want to change the <var>HiddenServiceDir</var> line, so it
-points to an actual directory that is readable/writeable by the user that
-will be running Tor. The above line should work if you're using the OS X Tor
-package. On Unix, try "/home/username/hidden_service/" and fill in your own
-username in place of "username". On Windows you might pick:</p>
+<p>Vous allez avoir à changer la ligne <var>HiddenServiceDir</var>, pour
+qu'elle pointe vers le répertoire qui est accessible en lecture/écriture par
+l'utilisateur qui utilise Tor. L'exemple ci-dessus devrait fonctionner si
+vous utilisez le paquet Tor OS X. Sous Unix, essayez
+"/home/username/hidserv/" et remplacez "username" par votre propre nom de
+login. Sous Windows vous pouvez choisir:</p>
 <pre>
 HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
 HiddenServicePort 80 127.0.0.1:5222

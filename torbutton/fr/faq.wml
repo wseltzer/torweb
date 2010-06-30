@@ -358,25 +358,12 @@ href="#securityissues">Existe-t-il d'autres problèmes que je dois connaître
 ?</a></strong>
 
 <p>
-Il existe quelques failles de sécurité sur Torbutton (qui sont toutes dues à
-des <a href="design/index.html#FirefoxBugs">bugs de sécurité de
-Firefox</a>). La plus importante en ce qui concerne l'anonymat est qu'il est
-possible d'utiliser du javascript pour encapsuler l'objet Date afin qu'il
-remonte votre fuseau horaire dans Firefox 2 et le code de dissimulation du
-fuseau horaire ne fonctionne pas du tout sous Firefox 3. Nous travaillons en
-lien avec l'équipe de Firefox pour résoudre l'un des bugs, <a
-href="https://bugzilla.mozilla.org/show_bug.cgi?id=392274">Bug 399274</a> ou
-<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=419598">Bug 419598</a>
-pour régler ce problème. Dans le même temps, il est possible de fixer la
-variable d'environnement <b>TZ</b> à <b>UTC</b> pour faire en sorte que le
-navigateur utilise UTC comme fuseau horaire. Sous Linux, vous pouvez ajouter
-<b>export TZ=UTC</b> au script /usr/bin/firefox ou éditer le fichier bashrc
-de votre système de la même manière. Sous Windows, vous pouvez soit régler
-une <a href="http://support.microsoft.com/kb/310519">variable
-d'environnement utilisateur ou système</a> pour TZ via les propriétés de Mon
-Poste de travail. Sous MacOS, la situation est <a
-href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html#//apple_ref/doc/uid/20002093-BCIJIJBH">beaucoup
-plus compliquée</a> malheureusement.
+
+There are a few known security issues with Torbutton (all of which are due
+to <a href="design/index.html#FirefoxBugs">unfixed Firefox security
+bugs</a>).  However, most of these relate to fingerprinting issues, as
+opposed to outright anonymity leaks.
+
 </p>
 
 <p>

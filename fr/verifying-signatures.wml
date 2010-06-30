@@ -33,7 +33,7 @@ Mac.</li>
 <li>Celle de Jacob (0xE012B42D).</li>
 <li>Celles d'Erinn (0x63FEE659) et (0xF1F5C9B5) signent généralement les paquets
 pour Linux.</li>
-<li>Mike's (0xDDC6C0AD) signs the Torbutton xpi.</li>
+<li>Celle de Mike (0xDDC6C0AD) signe le paquet xpi de Torbutton. </li>
 </ul>
 
 <h3>Étape zéro : Installer GnuPG</h3>
@@ -72,13 +72,13 @@ installé GnuPGavec les valeurs par défaut, le chemin devrait être celui-ci :
 <pre>C:\Program Files\Gnu\GnuPg\gpg.exe --recv-keys 0x28988BF5</pre>
 
 <p><b>Mac et Linux</b></p>
-<p>Whether you have a Mac or you run Linux, you will need to use the terminal
-to run GnuPG. Mac users can find the terminal under "Applications". If you
-run Linux and use Gnome, the terminal should be under "Applications menu"
-and "Accessories". KDE users can find the terminal under "Menu" and
-"System".</p>
+<p>Si vous utilisez Mac or Linux, vous devrez utilisez la console pour exécuter
+GnuPG. Les utilisateurs de Mac trouveront la console sous "Applications". Si
+vous travaillez sous Linux et utilisez Gnome, la console devrait être dans
+le répertoire "Applications", sous-répertoire "Accessoires". Les
+utilisateurs de KDE pourront trouver la console sous "Menu" et "Système". </p>
 
-<p>To import the key 0x28988BF5, start the terminal and type:</p>
+<p>Pour importer la clé 0x28988BF5, démarrez la console et tapez:</p>
 
 <pre>gpg --recv-keys 0x28988BF5</pre>
 
@@ -96,58 +96,52 @@ conforme.</p>
 Les empreintes des clés devraient être les suivantes :
 
 <pre>
-pub   1024D/28988BF5 2000-02-27
-      Key fingerprint = B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
-uid                  Roger Dingledine &lt;arma@mit.edu&gt;
+pub 1024D/28988BF5 2000-02-27
+Empreinte de clé = B117 2656 DFF9 83C3 042B C699 EB5A 896A 2898 8BF5
+uid Roger Dingledine &lt;arma@mit.edu&gt;
 
-pub   3072R/165733EA 2004-07-03
-      Key fingerprint = B35B F85B F194 89D0 4E28  C33C 2119 4EBB 1657 33EA
-uid                  Nick Mathewson &lt;nickm@alum.mit.edu&gt;
-uid                  Nick Mathewson &lt;nickm@wangafu.net&gt;
-uid                  Nick Mathewson &lt;nickm@freehaven.net&gt;
+pub 3072R/165733EA 2004-07-03
+Empreinte de clé = B35B F85B F194 89D0 4E28 C33C 2119 4EBB 1657 33EA
+uid Nick Mathewson &lt;nickm@alum.mit.edu&gt;
+uid Nick Mathewson &lt;nickm@wangafu.net&gt;
+uid Nick Mathewson &lt;nickm@freehaven.net&gt;
 
-pub  1024D/31B0974B 2003-07-17
-     Key fingerprint = 0295 9AA7 190A B9E9 027E  0736 3B9D 093F 31B0 974B
-uid                  Andrew Lewman (phobos) &lt;phobos@rootme.org&gt;
-uid                  Andrew Lewman &lt;andrew@lewman.com&gt;
-uid                  Andrew Lewman &lt;andrew@torproject.org&gt;
-sub   4096g/B77F95F7 2003-07-17
+pub 1024D/31B0974B 2003-07-17
+Empreinte de clé = 0295 9AA7 190A B9E9 027E 0736 3B9D 093F 31B0 974B
+uid Andrew Lewman (phobos) &lt;phobos@rootme.org&gt;
+uid Andrew Lewman &lt;andrew@lewman.com&gt;
+uid Andrew Lewman &lt;andrew@torproject.org&gt;
+sub 4096g/B77F95F7 2003-07-17
 
-pub   1024D/94C09C7F 1999-11-10
-      Key fingerprint = 5B00 C96D 5D54 AEE1 206B  AF84 DE7A AF6E 94C0 9C7F
-uid                  Peter Palfrader
-uid                  Peter Palfrader &lt;peter@palfrader.org&gt;
-uid                  Peter Palfrader &lt;weasel@debian.org&gt;
+pub 1024D/94C09C7F 1999-11-10
+Empreinte de clé = 5B00 C96D 5D54 AEE1 206B AF84 DE7A AF6E 94C0 9C7F
+uid Peter Palfrader
+uid Peter Palfrader &lt;peter@palfrader.org&gt;
+uid Peter Palfrader &lt;weasel@debian.org&gt;
 
-pub   1024D/5FA14861 2005-08-17
-      Key fingerprint = 9467 294A 9985 3C9C 65CB  141D AF7E 0E43 5FA1 4861
-uid                  Matt Edman &lt;edmanm@rpi.edu&gt;
-uid                  Matt Edman &lt;Matt_Edman@baylor.edu&gt;
-uid                  Matt Edman &lt;edmanm2@cs.rpi.edu&gt;
-sub   4096g/EA654E59 2005-08-17
+pub 1024D/5FA14861 2005-08-17
+Empreinte de clé = 9467 294A 9985 3C9C 65CB 141D AF7E 0E43 5FA1 4861
+uid Matt Edman &lt;edmanm@rpi.edu&gt;
+uid Matt Edman &lt;Matt_Edman@baylor.edu&gt;
+uid Matt Edman &lt;edmanm2@cs.rpi.edu&gt;
+sub 4096g/EA654E59 2005-08-17
 
-pub   1024D/9D0FACE4 2008-03-11 [expires: 2010-10-07]
-      Key fingerprint = 12E4 04FF D3C9 31F9 3405  2D06 B884 1A91 9D0F ACE4
-uid                  Jacob Appelbaum &lt;jacob@appelbaum.net&gt;
-sub   4096R/F8D04B59 2010-03-11 [expires: 2010-10-07]
+pub 1024D/9D0FACE4 2008-03-11 [expires: 2010-10-07]
+Empreinte de clé = 12E4 04FF D3C9 31F9 3405 2D06 B884 1A91 9D0F ACE4
+uid Jacob Appelbaum &lt;jacob@appelbaum.net&gt;
+sub 4096R/F8D04B59 2010-03-11 [expires: 2010-10-07]
 
-pub   2048R/63FEE659 2003-10-16
-      Key fingerprint = 8738 A680 B84B 3031 A630  F2DB 416F 0610 63FE E659
-uid                  Erinn Clark &lt;erinn@torproject.org&gt;
-uid                  Erinn Clark &lt;erinn@debian.org&gt;
-uid                  Erinn Clark &lt;erinn@double-helix.org&gt;
-sub   2048R/EB399FD7 2003-10-16
+pub 2048R/63FEE659 2003-10-16
+Empreinte de clé = 8738 A680 B84B 3031 A630 F2DB 416F 0610 63FE E659
+uid Erinn Clark &lt;erinn@torproject.org&gt;
+uid Erinn Clark &lt;erinn@debian.org&gt;
+uid Erinn Clark &lt;erinn@double-helix.org&gt;
+sub 2048R/EB399FD7 2003-10-16
 
-pub   1024D/F1F5C9B5 2010-02-03
-      Key fingerprint = C2E3 4CFC 13C6 2BD9 2C75  79B5 6B8A AEB1 F1F5 C9B5
-uid                  Erinn Clark &lt;erinn@torproject.org&gt;
-sub   1024g/7828F26A 2010-02-03
-
-pub   1024D/DDC6C0AD 2006-07-26
-      Key fingerprint = BECD 90ED D1EE 8736 7980  ECF8 1B0C A30C DDC6 C0AD
-uid                  Mike Perry &lt;mikeperry@fscked.org&gt;
-uid                  Mike Perry &lt;mikepery@fscked.org&gt;
-sub   4096g/AF0A91D7 2006-07-26
+pub 1024D/F1F5C9B5 2010-02-03
+Empreinte de clé = C2E3 4CFC 13C6 2BD9 2C75 79B5 6B8A AEB1 F1F5 C9B5
+uid Erinn Clark &lt;erinn@torproject.org&gt;
+sub 1024g/7828F26A 2010-02-03
 
 </pre>
 
@@ -169,32 +163,36 @@ les les fichiers sont enregistrés sur le bureau.</p>
 <p><b>Linux</b></p>
 <pre>gpg --verify /home/Alice/Desktop/tor-0.2.1.25.tar.gz.asc /home/Alice/Desktop/tor-0.2.1.25.tar.gz</pre>
 
-<p>After verifying, GnuPG will come back saying something like "Good signature"
-or "BAD signature". The output should look something like this:</p>
+<p>Après la vérification, GnuPG retournera un message du type "Signature
+valide" ou "Signature non valide". Le message devrait ressembler à ceci:</p>
 
 <pre>
-gpg: Signature made Tue 16 Mar 2010 05:55:17 AM CET using DSA key ID 28988BF5
-gpg: Good signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
+gpg --verify tor-0.1.0.17.tar.gz.asc tor-0.1.0.17.tar.gz
+gpg: Signature effectuée Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
+gpg: Signature valide de "Roger Dingledine &lt;arma@mit.edu&gt;"
+gpg:                 aka "Roger Dingledine &lt;arma@mit.edu&gt;"
+gpg: ATTENTION: Cette clé n'est pas certifiée par une signature valide
+gpg:          Rien n'indique que la signature appartienne au propriétaire.
 Primary key fingerprint: B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
 </pre>
 
 <p>
-Notice that there is a warning because you haven't assigned a trust index to
-this person. This means that GnuPG verified that the key made that
-signature, but it's up to you to decide if that key really belongs to the
-developer. The best method is to meet the developer in person and exchange
-key fingerprints.
+Notez qu'il y a une mise en garde du fait que vous n'avez pas assigné un
+index de confiance à cet utilisateur. Ceci signifie que votre programme a
+vérifié la clé qui a produit cette signature.  Il revient à l'utilisateur de
+décider si cette clé appartient réellement aux développeurs. La meilleur
+méthode est de les rencontrer en personne et d'échanger les empreintes gpg. 
 </p>
 
-<p>For your reference, this is an example of a <em>BAD</em> verification. It
-means that the signature and file contents do not match. In this case, you
-should not trust the file contents:</p>
+<p>Pour votre information, ceci est un exemple d'une <em>MAUVAISE</em>
+vérification. Il signifie que la signature et le contenu du fichier ne
+correspondent pas. Dans ce cas, vous ne devez pas faire confiance au contenu
+du fichier:</p>
 
 <pre>
-gpg: Signature made Tue 20 Apr 2010 12:22:32 PM CEST using DSA key ID 28988BF5
-gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
+gpg --verify tor-0.1.0.17.tar.gz.asc
+gpg: Signature effectuée Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
+gpg: MAUVAISE signature de "Roger Dingledine &lt;arma@mit.edu&gt;"
 </pre>
 
 <p>Si vous faites tourner Tor sur Debian vous devriez lire les intructions sur
@@ -202,7 +200,7 @@ comment <a
 href="https://wiki.torproject.org/noreply/TheOnionRouter/TorOnDebian">importer
 ces clés dans apt</a>.</p>
 
-<p>If you wish to learn more about GPG, see <a
+<p>Si vous voulez en savoir plus sur GPG, référez vous à <a
 href="http://www.gnupg.org/documentation/">http://www.gnupg.org/documentation/</a>.</p>
 
 </div>
