@@ -139,7 +139,7 @@ my %m = (
 
        mirror005 => {
             adminContact => "citizen428 AT gmail DOT com",
-            orgName => "Bbs",
+            orgName => "[[:bbs:]]",
             isoCC => "DE",
             subRegion => "",
             region => "Europe",
@@ -147,9 +147,11 @@ my %m = (
             ipv6 => "False",
             loadBalanced => "Unknown",
             httpWebsiteMirror => "http://tor.blingblingsquad.net/",
+            httpsWebsiteMirror => "",
             ftpWebsiteMirror => "",
             rsyncWebsiteMirror => "",
-            httpDistMirror => "",
+            httpDistMirror => "http://tor.blingblingsquad.net/dist",
+            httpsDistMirror => "",
             rsyncDistMirror => "",
             updateDate => "Unknown",
         },
