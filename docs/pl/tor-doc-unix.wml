@@ -1,0 +1,179 @@
+    <h1>Running the <a href="<page index>">Tor</a> client on Linux/BSD/Unix</h1>
+    <br />
+    
+    <p>
+    <b>To są instrukcje do instalacji klienta Tora. Jeśli chcesz przekazywać
+    ruch innych, by wspomóc rozwój sieci (prosimy), przeczytaj poradnik o <a
+    href="<page docs/tor-doc-relay>">Konfigurowaniu przekaźnika sieci
+    Tor</a>.</b>
+    </p>
+    
+    <hr /> <a id="installing"></a>
+    <h2><a class="anchor" href="#installing">Krok 1: Pobranie i instalacja Tora</a></h2>
+    <br />
+    
+    <p>
+    Najnowsze wydanie Tora można znaleźć na stronie <a href="<page
+    download/download>">pobierania</a>. Mamy tam też pakiety dla systemów Debian, Red
+    Hat, Gentoo, *BSD, etc. Jeśli używasz Ubuntu, nie używaj domyślnych paczek:
+    zamiast nich użyj <a href="<page docs/debian>#ubuntu">naszego repozytorium
+    deb</a>.
+    </p>
+    
+    <p>Jeśli masz zamiar kompilować Tora, najpierw zainstaluj <a
+    href="http://www.monkey.org/~provos/libevent/">libevent</a>, i upewnij się,
+    że masz OpenSSL i zlib (łącznie z pakietami -devel, jeśli są). Potem
+    uruchom:<br /> <tt>tar xzf tor-<version-stable>.tar.gz; cd
+    tor-<version-stable><br /> ./configure &amp;&amp; make</tt><br /> Możesz
+    teraz uruchomić Tora poprzez <tt>src/or/tor</tt>, lub możesz uruchomić
+    <tt>make install</tt> (jako root, jeśli potrzeba), by zainstalować Tora do
+    /usr/local, wtedy możesz go uruchamiać po prostu pisząc <tt>tor</tt>.
+    </p>
+    
+    <p>Tor comes configured as a client by default. It uses a built-in default
+    configuration file, and most people won't need to change any of the
+    settings. Tor is now installed.
+    </p>
+    
+    <hr /> <a id="privoxy"></a> <a id="polipo"></a>
+    <h2><a class="anchor" href="#polipo">Krok 2: Instalacja Polipo do przeglądania
+    sieci WWW</a></h2>
+    <br />
+    
+    <p>Po instalacji Tora musisz skonfigurować swoje aplikacje, by go używały.
+    </p>
+    
+    <p>
+    The first step is to set up web browsing. Start by installing <a
+    href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> from your
+    favorite repository. Polipo is a caching web proxy that does http pipelining
+    well, so it's well-suited for Tor's latencies. Make sure to get at least
+    Polipo 1.0.4, since earlier versions lack the SOCKS support required to use
+    Polipo with Tor. You should uninstall privoxy at this point (e.g. apt-get
+    remove privoxy or yum remove privoxy), so they don't conflict.
+    </p>
+    
+    <p>Po instalacji Polipo (z paczki lub źródeł)  <b>musisz skonfigurować Polipo,
+    by używało Tora</b>. Pobierz naszą <a
+    href="https://svn.torproject.org/svn/torbrowser/trunk/build-scripts/config/polipo.conf">konfigurację
+    Polipo dla Tora</a> i umieść go zamiast swojego bieżącego pliku
+    konfiguracyjnego Polipo (np. /etc/polipo/config lub ~/.polipo). Musisz
+    ponownie uruchomić Polipo, by zmiany odniosły skutek. Na przykład:<br />
+    <tt>/etc/init.d/polipo restart</tt>
+    </p>
+    
+    <p>Jeśli wolisz, możesz używać Privoxy z <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">tą
+    przykładową konfiguracją Privoxy</a>. Ale jako że oba pliki konfiguracyjne
+    używają portu 8118, nie powinieneś/aś używać Polipo i Privoxy jednocześnie.</p>
+    
+    <hr /> <a id="using"></a>
+    <h2><a class="anchor" href="#using">Krok 3: Konfiguracja aplikacji, by używały
+    Tora</a></h2>
+    <br />
+    
+    <p>After installing Tor and Polipo, you need to configure your applications to
+    use them. The first step is to set up web browsing.</p>
+    
+    <p>You should use Tor with Firefox and Torbutton, for best safety.  Simply
+    install the <a href="https://addons.mozilla.org/firefox/2275/">Torbutton
+    plugin</a>, restart your Firefox, and you're all set:
+    </p>
+    
+    <img alt="Rozszerzenie Torbutton dla Firefoksa"
+    src="../img/screenshot-torbutton.png" border="1"> <br />
+    
+    <p>
+    Jeśli masz zamiar używać Firefoksa na innym komputerze niż tam, gdzie jest
+    Tor, spójrz na <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">wpis
+    w FAQ na temat uruchamiania Tora na innym komputerze</a>.
+    </p>
+    
+    <p>By "storyfikować" inne aplikacje, które używają proxy dla HTTP, po prostu
+    skieruj je na Polipo (czyli localhost, port 8118). By aplikacje bezpośrednio
+    używały serwera SOCKS (do komunikatorów, Jabbera, IRC, itp.), skieruj je
+    bezpośrednio na Tora (localhost, port 9050), ale przeczytaj <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">ten
+    wpis do FAQ</a>, dlaczego to może być niebezpieczne. Jeśli aplikacja nie
+    obsługuje ani proxy dla HTTP, ani dla SOCKS, spójrz na <a
+    href="http://tsocks.sourceforge.net/">tsocks</a> lub <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
+    </p>
+    
+    <p>Po informacje, jak "storyfikować" inne aplikacje, spójrz na <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+    HOWTO</a>.
+    </p>
+    
+    <hr /> <a id="verify"></a>
+    <h2><a class="anchor" href="#verify">Krok 4: Upewnij się, że wszystko działa</a></h2>
+    <br />
+    
+    <p>
+    <!--PO4ASHARPBEGIN<a href="http://ipchicken.com/">
+    this site</a>PO4ASHARPEND-->
+    #to see what IP address it thinks you're using.
+    Next, you should try using your browser with Tor and make sure that your IP
+    address is being anonymized. Click on <a
+    href="https://check.torproject.org/">the Tor detector</a> and see whether it
+    thinks you're using Tor or not.  (If that site is down, see <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">this
+    FAQ entry</a> for more suggestions on how to test your Tor.)
+    </p>
+    
+    <p>If you have a personal firewall that limits your computer's ability to
+    connect to itself (this includes something like SELinux on Fedora Core 4),
+    be sure to allow connections from your local applications to Polipo (local
+    port 8118) and Tor (local port 9050). If your firewall blocks outgoing
+    connections, punch a hole so it can connect to at least TCP ports 80 and
+    443, and then see <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">this
+    FAQ entry</a>.  If your SELinux config is not allowing tor or privoxy to run
+    correctly, create a file named booleans.local in the directory
+    /etc/selinux/targeted.  Edit this file in your favorite text editor and
+    insert "allow_ypbind=1".  Restart your machine for this change to take
+    effect.
+    </p>
+    
+    <p>Jeśli dalej nie działa, spójrz na <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">ten
+    wpis FAQ</a>, by poszukać wskazówek.</p>
+    
+    <hr /> <a id="server"></a> <a id="relay"></a>
+    <h2><a class="anchor" href="#relay">Krok 5: Konfiguracja Tora jako przekaźnika
+    sieci</a></h2>
+    <br />
+    
+    <p>Sieć Tora polega na ochotnikach oddających część swojego łącza. Im więcej
+    ludzi uruchomi przekaźnik sieci, tym szybsza będzie sieć Tora. Jeśli masz co
+    najmniej 20 kilobajtów/s w obie strony, pomóż Torowi, konfigurując swojego
+    klienta tak, by był także przekaźnikiem sieci Tor. Mamy wiele cech, które
+    czynią przekaźniki Tora łatwymi i wygodnymi, łącznie z ograniczeniem
+    przepustowości, politykami wyjścia, byś mógł zmniejszyć ryzyko skarg, oraz
+    obsługą dynamicznych adresów IP.</p>
+    
+    <p>Posiadanie przekaźników w wielu różnych miejscach w sieci sprawia, że
+    użytkownicy są bezpieczni. <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">Ty
+    też możesz mieć lepszą anonimowość</a>, gdyż serwery, do których się
+    łączysz, nie mogą stwierdzić, czy połączenie pochodzi z Twojego komputera,
+    czy zostało przekierowane z innych.</p>
+    
+    <p>Przeczytaj szczegóły w naszym przewodniku <a href="<page
+    docs/tor-doc-relay>">Konfiguracji przekaźnika sieci Tor</a>.</p>
+    
+    <hr />
+    
+    <p>Jeśli masz pomysły na ulepszenie tej strony, prosimy <a href="<page
+    about/contact>">je do nas wysłać</a>. Dziękujemy!</p>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>   

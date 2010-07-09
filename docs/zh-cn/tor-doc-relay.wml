@@ -1,0 +1,258 @@
+## translation metadata
+# Revision: $Revision: 22144 $
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor Project: Relay Configuration Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page home>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/tor-doc-relay>">Configure Tor Relay</a>
+  </div> 
+  <div id="maincol">   
+    <h1>配置 Tor 中继</h1>
+    
+    <!-- BEGIN SIDEBAR -->
+    <div class="sidebar-left">
+    <h3>配置步骤</h3>
+    <ol>
+    <li><a href="<page docs/tor-doc-relay>#install">下载并安装</a></li>
+    <li><a href="<page docs/tor-doc-relay>#setup">配置</a></li>
+    <li><a href="<page docs/tor-doc-relay>#check">检查并确认</a></li>
+    <li><a href="<page docs/tor-doc-relay>#after">最终步骤</a></li>
+    </ol>
+    </div>
+    <!-- END SIDEBAR -->
+    
+    <hr />
+    
+    <p>Tor 网络依靠志愿者们贡献带宽运行。运行中继的人越多，Tor 网络的速度就越快。
+    如果你的网络连接速度达到至少每秒 20KB，请运行一台中继以帮助 Tor。
+    我们有许多特性使得 Tor 中继的运行简单而方便，包括<a href="<page docs/faq>#RelayFlexible">带宽的速率限制，
+    定制出口策略以避免滥用，以及对于动态 IP 地址的支持。</a></p>
+    
+    <p>你能在<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">几乎
+    所有</a>的操作系统上运行 Tor 中继，但是 Linux、FreeBSD 5.x+、OS X Tiger 或之后、
+    和 Windows Server 2003 或之后效果最佳。
+    </p>
+    
+    <hr />
+    <a id="zero"></a>
+    <a id="install"></a>
+    <h2><a class="anchor" href="#install">第一步：下载并安装 Tor</a></h2>
+    <br />
+    
+    <p>开始前，你需要确认 Tor 已经正常运行。</p>
+    
+    <p>访问<a href="<page download/easy-download>">下载页面</a>，
+    安装符合你所使用操作系统的“安装套件”。
+    </p>
+    
+    <p>如果可以的话，你也许还应该将它作为客户端使用一段时间以确认 Tor 确实工作正常。
+    </p>
+    
+    <hr />
+    <a id="setup"></a>
+    <h2><a class="anchor" href="#setup">第二步：将它设置成中继</a></h2>
+    <br />
+    
+    <ol>
+    <li>检查时间和时区是否正确。可能的话，与公共的<a
+    href="http://en.wikipedia.org/wiki/Network_Time_Protocol">时间服务器</a>同步时间。
+    </li>
+    
+    <li><strong>在 Vidalia 图形界面配置 Tor</strong>：
+    <ol>
+    <!-- 一些地方使用了：中文(英文)的形式，方便阅读 -->
+    <!-- 引用了 Vidalia 软件界面文字的部分需参考最新 Vidalia 软件界面 -->
+    <li>
+    	<dt>右键单击在任务栏中的 Vidalia 图标，选择 <tt>控制面板(Control Panel)</tt>。</dt>
+    	<dd><img src="../img/screenshot-win32-vidalia.png"></dd>
+    </li>
+    
+    <li>点击<tt>设置中继服务器(Setup Relaying)</tt>。</li>
+    
+    <li>
+    	<dt>如果你想成为公共中继（推荐），选择 <tt>Tor 网络中继(Relay Traffic for the Tor network)</tt>。或者如果你想成为 <a href="<page docs/faq>#RelayOrBridge">网桥</a> 帮助所在国家审查网络无法使用 Tor 的用户</dt>，选择 <tt>帮助用户访问 Tor 网络(Help censored users reach the Tor network)</tt> 。
+    <dd><img src="../img/screenshot-win32-configure-relay-1.png"></dd>
+    </li>
+    
+    <li>为中继输入一个昵称，为了在出现问题时我们能及时和你联系，还请输入联系方式。</li>
+    
+    <li>选择 <tt>Attempt to automatically configure port forwarding(尝试自动配置端口转发)</tt>。
+    点击 <tt>Test(测试)</tt> 按钮检查是否能正常工作。如能正常工作继续往下配置；
+    否则请查看下面第 3 点。
+    <!-- FIXME: 上面的两个GUI短语目前并没有翻译。--></li>
+    
+    <li><dt>选择 <tt>带宽限制(Bandwidth Limits)</tt> 标签。选择你想为像你一样的 Tor 用户提供的带宽。</dt>
+    <dd><img src="../img/screenshot-win32-configure-relay-2.png"></dd>
+    </li> 
+    
+    <li>选择<tt>服务策略(Exit Policies)</tt> 标签。如果你同意 Tor 用户通过你的中继使用这些服务，什么都不用修改。
+    取消选中那些你不想其他用户<a href="<page docs/faq>#ExitPolicies">通过你的中继</a>。访问的服务。如果你只想成为非出口的中继，取消选中所有服务。</dt>
+    <dd><img src="../img/screenshot-win32-configure-relay-3.png"></dd>
+    </li>
+    
+    <li>点击<tt>确定(OK)</tt>按钮。请看下面的第三步以确认中继工作正常。</li>
+    </ol>
+    
+    <br />
+    <strong>手动配置</strong>：
+    <ul>
+    <li>修改<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">你的 torrc 文件</a>
+    的最后部分。如果你想要成为公共中继（推荐），定义 ORPort，然后<a href="<page
+    docs/faq>#ExitPolicies">查看出口策略</a>；如果你想要成为<a href="<page
+    docs/faq>#RelayOrBridge">网桥</a>以帮助无法使用 Tor 的国家的用户，使用<a
+    href="<page docs/bridges>#RunningABridge">这些行</a>即可。
+    </li>
+    
+    </ul></li>
+    
+    <li>如果你使用防火墙，请为防火墙添加一个例外以使得进入的连接能够到达配置的端口
+    （ORPort，如果启用的话，还有 DirPort）。如果你有硬件防火墙（Linksys 路由器、
+    电缆调制解调器等），你需要参考 <a href="http://portforward.com/">portforward.com</a>。
+    另外，请确认你允许所有的<em>向外</em>连接，这样你的中继才能与其他 Tor 中继通信。
+    <!-- I'm always unable to figure out how to translate "incoming", "outgoing",
+    "inbound", "outbound" and the similar into proper Chinese terms. :( --> 
+    </li>
+    
+    <li>重启中继。如果<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">日志中有任何警告信息</a>，
+    想办法解决它们。
+    </li>
+    
+    <li>订阅 <a href="http://archives.seul.org/or/announce/">or-announce</a> 邮件列表。
+    该邮件列表流量非常小，它会在新的稳定版本发布时提醒你。你也可以考虑订阅<a
+    href="<page docs/documentation>#MailingLists">更高流量的 Tor 邮件列表</a>。
+    </li>
+    
+    </ol>
+    
+    <hr />
+    <a id="check"></a>
+    <h2><a class="anchor" href="#check">第三步：确认它在工作</a></h2>
+    <br />
+    
+    <p>一旦你的中继连接上了网络，它就会尝试检测能否从外部访问你所配置的端口。
+    这一过程通常很快，但最长有可能持续 20 分钟。请查看是否有“<tt>Self-testing indicates your ORPort
+    is reachable from the outside. Excellent.</tt>”这样的<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">日志条目</a>。
+    如果你没有看到这条消息，说明从外部不能访问你的中继——你应该重新检查防火墙设置，
+    检查测试的 IP 和端口是否正确，等等。
+    </p>
+    
+    <p>当确认能从外部访问中继时，它会向目录服务器上传一个“服务器描述符（server
+    descriptor）”。客户端因此知道你的中继的地址、端口、公钥等。为了确认中继
+    正常工作，你可以<a href="http://moria.seul.org:9032/tor/status/authority">手动
+    下载一份网络状态</a>，从中查找你所配置的中继的名字。在获得最新的目录前，
+    你需要等待几秒钟的时间。</p>
+    
+    <hr />
+    <a id="after"></a>
+    <h2><a class="anchor" href="#after">第四步：一旦它开始正常工作</a></h2>
+    <br />
+    
+    <p>
+    我们也推荐以下的步骤：
+    </p>
+    
+    <p>
+    6、阅读有关<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">安全操作</a>的信息，
+    了解如何增强中继的安全性。
+    </p>
+    
+    <p>
+    7、如果你运行一台以上的中继，这太好了！但是请在所有的中继配置文件中设置 <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">MyFamily
+    选项</a>。
+    </p>
+    
+    <p>
+    8、考虑速率限制。线缆调制解调器、DSL 和其他拥有非对称带宽（如下行速率大于上行速率）
+    的用户应将速率限制为较低的那个带宽，以避免拥塞。请查看<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">有关
+    速率限制的 FAQ 条目</a>。
+    </p>
+    
+    <p>
+    9、备份 Tor 中继的私钥（在 DataDirectory 目录里的“keys/secret_id_key”文件中）。
+    这是你的中继的“身份证”，你需要保证它的安全，这样就没有人能读取通过你的中继的流量了。
+    如果出于什么原因，你需要<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#UpgradeRelay">转移或还原
+    Tor 中继</a>，这是你需要保存的关键文件。
+    </p>
+    
+    <p>
+    10、如果你掌控你的域名的名字服务器，请考虑将反向的 DND 主机名设置成“anonymous-relay”、
+    “proxy”或“tor-proxy”，这样当他人在他们的 Web 日志中看到你的服务器的地址时，
+    他们将更快地知道发生了什么。如果你在运行出口节点，请将 <a
+    href="https://tor-svn.freehaven.net/svn/tor/trunk/contrib/tor-exit-notice.html">Tor
+    出口注意</a>放到与主机同名的虚拟主机上，这么做会使你和你的 ISP 收到的滥用指控少很多。
+    </p>
+    
+    <p>
+    11、如果你的计算机不在运行 Web 服务器，请考虑将 ORPort 改成 443，将 DirPort
+    改成 80。许多 Tor 用户由于防火墙的阻挡只能浏览 Web，这种修改使他们能够连接到你的
+    Tor 中继。Win32 中继直接在 torrc 里修改 ORPort 和 DirPort，然后重启即可。OS X
+    和 Unix 中继无法直接绑定这些端口（因为运行中继的用户不是 root），它们需要设置<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">端口
+    转发</a>以使得连接能够到达 Tor 中继。如果 80 端口和 443 端口已被占用，其他常用
+    的端口是 22、110 和 143。
+    </p>
+    
+    <p>
+    12、如果你的 Tor 中继在同一 IP 地址运行其它服务——例如公开的 Web 服务器——请确认
+    Web 服务器允许来自本地主机的连接。这是因为（当用户访问你的网站时）Tor 客户端会
+    发现你的 Tor 中继是<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">访问
+    你的 Web 服务器的最安全的方式</a>，总是会建立一条终止于你的中继的电路。
+    如果你不想允许这种连接，你必须在出口策略中明确地拒绝它们。
+    </p>
+    
+    <p>
+    13、（仅针对 Unix）。创建一个独立的用户运行中继。如果你安装的是 OS X 软件包、deb
+    软件包或者 rpm 软件包，这一步已经完成。在其他情况下，你可以自己动手完成这一步。
+    （Tor 中继不需要以 root 运行，因此不以 root 运行是一个好的实践。以一个“tor”用户运行
+    避免了 identd 和其他检查用户名的服务会带来的问题。如果你非常谨小慎微，你自然可以<a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">将 Tor 置于
+    chroot jail 中</a>。）
+    </p>
+    
+    <p>
+    14、（仅针对 Unix）。你的操作系统可能将每一进程能够打开的文件标识符的数目限制在
+    1024（甚至更少）。如果你计划运行一台快速的出口节点，这一数目也许不够。Linux 中，
+    你应该在 /etc/security/limits.conf 文件中添加一行，如“toruser hard nofile 8192”
+    （toruser 是运行 Tor 进程的用户），然后重新启动 Tor（如果 Tor 以软件包的方式
+    安装）或者登出再登陆（如果运行 Tor 的用户就是你）。
+    </p>
+    
+    <p>
+    15、如果你是通过软件包或安装文件安装的 Tor，它可能会在系统启动时自动启动 Tor。
+    如果你是自源文件安装的 Tor，contrib/tor.sh 或者 contrib/torctl 中的初始脚本
+    也许对你有用。
+    </p>
+    
+    <p>
+    当你修改了 Tor 的配置，请记得检查中继在配置修改以后依旧正常工作。
+    请确认你在 torrc 中设置了“ContactInfo”，这样当需要升级或者发生了什么问题时我们能与你取得联系。
+    如果你有疑问或者问题，请查看文档的<a href="<page docs/documentation>#Support">获得支持</a>部分
+    或者从 tor-ops 信箱<a href="<page about/contact>">联系我们</a>。
+    感谢你为 Tor 网络成长做出的贡献！
+    </p>
+    
+    <hr />
+    
+    <p>如果你有改进本文档的建议，请<a href="../contact.html.zh-cn">告诉我们</a>。
+    谢谢！</p>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>   

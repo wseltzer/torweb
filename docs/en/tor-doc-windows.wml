@@ -1,0 +1,187 @@
+## translation metadata
+# Revision: $Revision: 21995 $
+# Translation-Priority: 1-high
+
+#include "head.wmi" TITLE="Tor Project: MS Windows Install Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page home>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/tor-doc-windows>">Windows Client</a>
+  </div> 
+  <div id="maincol"> 
+    <h1>Running the <a href="<page home>">Tor</a> client on Microsoft Windows</h1>
+    <br />
+    
+    <p>
+    <b>Note that these are the installation instructions for running a Tor
+    client on Microsoft Windows (2000, XP, Vista, 7, and Server Editions).
+    If you want to relay traffic for others to help the network grow (please
+    do), read the <a href="<page docs/tor-doc-relay>">Configuring a relay</a>
+    guide.</b>
+    </p>
+    
+    <p>Freedom House has produced a video on how to install Tor.  You can
+    view it at <a href="http://media.torproject.org/video/2009-install-and-use-tor.ogv">How
+    to install Tor on Windows</a>.  Know of a better video, or one
+    translated into your language?  Let us know!</p>
+    
+    <div class="center">
+    <p><video id="v1" src="http://media.torproject.org/video/2009-install-and-use-tor.ogv" autobuffer="true" controls="controls"></video></p>
+    </div>
+    
+    <hr />
+    <a id="installing"></a>
+    <h2><a class="anchor" href="#installing">Step One: Download and Install Tor</a></h2>
+    <br />
+    
+    <p>
+    Microsoft Windows bundles contain <a href="<page home>">Tor</a>, <a
+    href="<page projects/vidalia>">Vidalia</a> (a GUI for Tor), <a
+    href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> (a plugin for Mozilla Firefox), and <a
+    href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+    (a web proxy) packaged into one bundle, with the four applications
+    pre-configured to work together.  Download either the <a
+    href="../<package-win32-bundle-stable>">stable</a> or the <a
+    href="../<package-win32-bundle-alpha>">experimental</a> version of
+    the Windows bundle, or look for more options on the <a href="<page
+    download/download>">download page</a>.
+    </p>
+    
+    <img alt="tor installer splash page" src="../img/screenshot-win32-installer-splash.png" />
+    
+    <p>If you have previously installed Tor, Vidalia, or Polipo
+    you can deselect whichever components you do not need to install
+    in the dialog shown below.
+    </p>
+    
+    <img alt="select components to install" src="../img/screenshot-win32-installer-components.png" />
+    
+    <p>After you have completed the installer, the components
+    you selected will automatically be started for you.
+    </p>
+    
+    <p>Tor comes configured as a client by default. It uses a built-in
+    default configuration file, and most people won't need to change any of
+    the settings. Tor is now installed.
+    </p>
+    
+    <hr />
+    <a id="using"></a>
+    <h2><a class="anchor" href="#using">Step Two: Configure your applications to use Tor</a></h2>
+    <br />
+    
+    <p>After installing Tor and Polipo, you need to configure your
+    applications to use them. The first step is to set up web browsing.</p>
+    
+    <p>You should use Tor with Firefox and Torbutton,
+    for best safety. The bundle installs the <a
+    href="https://addons.mozilla.org/firefox/2275/">Torbutton plugin</a>
+    for you. Restart your Firefox, and you're all set:
+    </p>
+    
+    <img alt="Torbutton plugin for Firefox" src="../img/screenshot-torbutton.png" border="1"/>
+    
+    <br />
+    
+    <p>
+    If you plan to run Firefox on a different computer than Tor, see the <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">FAQ
+    entry for running Tor on a different computer</a>.
+    </p>
+    
+    <p>To Torify other applications that support HTTP proxies, just
+    point them at Polipo (that is, localhost port 8118). To use SOCKS
+    directly (for instant messaging, Jabber, IRC, etc), you can point
+    your application directly at Tor (localhost port 9050), but see <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">this
+    FAQ entry</a> for why this may be dangerous. For applications
+    that support neither SOCKS nor HTTP, take a look at SocksCap or
+    <a href="http://www.freecap.ru/eng/">FreeCap</a>.
+    (FreeCap is free software; SocksCap is proprietary.)</p>
+    
+    <p>For information on how to Torify other applications, check out the
+    <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+    HOWTO</a>.
+    </p>
+    
+    <hr />
+    <a id="verify"></a>
+    <h2><a class="anchor" href="#verify">Step Three: Make sure it's working</a></h2>
+    <br />
+    
+    <p>
+    Check to see that Vidalia is running.  Vidalia uses a small green onion
+    to indicate Tor is running or a dark onion with a red "X" when Tor is
+    not running. You can start or stop Tor by right-clicking
+    on Vidalia's icon in your system tray and selecting "Start" or "Stop"
+    from the menu as shown below:
+    </p>
+    
+    <img alt="Vidalia Tray Icon" src="../img/screenshot-win32-vidalia.png"/>
+    
+    <p>
+    Next, you should try using your browser with Tor and make
+    sure that your IP address is being anonymized. Click on <a
+    href="https://check.torproject.org/">the Tor detector</a> and see
+    whether it thinks you're using Tor or not.  (If that site is down, see <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">this
+    FAQ entry</a> for more suggestions on how to test your Tor.)
+    </p>
+    
+    <p>If you have a personal firewall that limits your computer's
+    ability to connect to itself, be sure to allow connections from
+    your local applications to local port 8118 and port 9050. If
+    your firewall blocks outgoing connections, punch a hole so
+    it can connect to at least TCP ports 80 and 443, and then see <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">this
+    FAQ entry</a>.
+    </p>
+    
+    <p>If it's still not working, look at <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">this
+    FAQ entry</a> for hints.</p>
+    
+    <p>
+    Once it's working, learn more about
+    <a href="<page download/download>#Warning">what Tor does and does not offer</a>.
+    </p>
+    
+    <hr />
+    <a id="server"></a>
+    <a id="relay"></a>
+    <h2><a class="anchor" href="#relay">Step Four: Configure it as a relay</a></h2>
+    <br />
+    
+    <p>The Tor network relies on volunteers to donate bandwidth. The more
+    people who run relays, the faster the Tor network will be. If you have
+    at least 20 kilobytes/s each way, please help out Tor by configuring your
+    Tor to be a relay too. We have many features that make Tor relays easy
+    and convenient, including rate limiting for bandwidth, exit policies so
+    you can limit your exposure to abuse complaints, and support for dynamic
+    IP addresses.</p>
+    
+    <p>Having relays in many different places on the Internet is what
+    makes Tor users secure. <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">You
+    may also get stronger anonymity yourself</a>,
+    since remote sites can't know whether connections originated at your
+    computer or were relayed from others.</p>
+    
+    <p>Read more at our <a href="<page docs/tor-doc-relay>">Configuring a relay</a>
+    guide.</p>
+    
+    <hr />
+    
+    <p>If you have suggestions for improving this document, please <a
+    href="<page about/contact>">send them to us</a>. Thanks!</p>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>  

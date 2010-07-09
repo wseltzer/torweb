@@ -1,0 +1,428 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 22186 $
+# Translation-Priority: 4-optional
+#include "head.wmi" TITLE="NLnet Project: Speed Up Tor Hidden Services" CHARSET="UTF-8"
+<div class="main-column">
+
+
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h2>Projekt NLnet: Przyspieszenie usług ukrytych Tora</h2>
+<hr />
+
+<p>
+Tor Hidden Services allow users to set up anonymous information services,
+like websites, that can only be accessed through the Tor network and are
+protected against identification of the host that runs the services.  The
+most critical limitations of Tor Hidden Services are the time it takes until
+a Hidden Service is registered in the network and the latency of contact
+establishment when accessed by a user.  Due to design issues in the original
+Tor protocol, the connection to a new Hidden Service can take several
+minutes, which leads most users to give up before the connection has been
+established.  Using Tor Hidden Services for direct interactive user-to-user
+communication (e.g. messaging) is nearly impossible due to the high latency
+of Hidden Service circuit setup.
+</p>
+
+<p>
+Celem tego projektu jest przyspieszenie usług ukrytych Tora poprzez
+usprawnienie metody tworzenia obwodów między użytkownikiem a usługą, jak
+również sposobu, w jaki usługa jest rejestrowana w sieci.  W pierwszym kroku
+poprowadzone będą dokładne pomiary zachowania usług ukrytych w warunkach
+laboratoryjnych i rzeczywistych, by znaleźć główne przyczyny opóźnień.
+Opierając się na wynikach pomiarów, zaprojektowane i zweryfikowane będą
+strategie optymalizacji niechcianych implikacji związanymi z bezpieczeństwem
+i anonimowością sieci Tora.  Najbardziej obiecujące optymalizacje zostaną
+zaimplementowane, by dać użytkownikom widoczny efekt. Dokładne pomiary
+sukcesu zostaną stworzone w fazie diagnostyki, gdy już będzie jasne, gdzie
+tracony jest czas i jakie ulepszenia są możliwe.  Ostatecznym celem jest
+umożliwienie wprowadzenia zmian w protokole usług ukrytych i rozprowadzenia
+ich wśród użytkowników Tora w przeciągu 12 miesięcy.
+</p>
+
+<p>
+Ten projekt jest hojnie sponsorowany przez:
+</p>
+
+<p>
+<a href="http://www.nlnet.nl/news/2008/20080514-awards.html" ><img
+src="$(IMGROOT)/nlnet-160x60.png" alt="Fundacja NLnet" /></a>
+</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<thead>
+<tr>
+<th><big>Projekt</big></th>
+<th><big>Czas zakończenia</big></th>
+</tr>
+</thead>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Część A:</b> Analiza, pomiary i klaryfikacja problemu<br />
+<small><em>Jako że usługi ukryte Tora nie były aktywnie rozwijane przez
+około ostatni rok rozwoju Tora, niektóre aspekty tych problemów są nie do
+końca zbadane. Należy przeprowadzić dogłębną analizę przyczyn strat czasu,
+by znaleźć ich dokładne źródła. Część A będzie wymagać około miesiąca
+pracy. Wyniki analizy wpłyną na decyzje projektowe, które zostaną podjęte w
+Części B.</em></small>
+  </td>
+  <td>
+    15 Czerwca 2008
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Część B:</b> Projektowanie i sprawdzanie niezbędnych zmian<br />
+<small><em>Zmiany w usługach ukrytych wpłyną na podstawy funkcjonowania
+protokołu i dlatego wymagają dokładnego sprawdzenia możliwych skutków dla
+bezpieczeństwa i anonimowości. Na projekt i sprawdzanie przewidziany jest
+dwumiesięczny okres, zakończony wyczerpującą recenzją.</em></small>
+  </td>
+  <td>
+    15 Sierpnia 2008
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Część C:</b> Implementacja<br /> <small><em>Po projekcie, sprawdzeniu i
+przeglądzie, zmiany muszą zostać zaimplementowane i zintegrowane z bieżącym
+kodem Tora. Sama implementacja niezbędnych zmian zajmie około dwóch
+miesięcy.</em></small>
+  </td>
+  <td>
+    15 Października 2008
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Część D:</b> Implementacja i testowanie aż do wydania<br />
+<small><em>Zmiana jest bardzo ważna dla bezpieczeństwa i anonimowości sieci
+Tora, wymaga więc dogłębnego testowania i szukania błędów w warunkach
+laboratoryjnych i rzeczywistych. Okres trzech miesięcy jest przewidziany na
+testowanie i usuwanie błędów, podczas którego odpowiedzialny za to
+programista poświęci 1/3 swojego czasu na testowanie.  Część fazy testowania
+będzie okresem publicznej wersji beta.</em></small>
+  </td>
+  <td>
+    15 Stycznia 2009
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <b>Część E:</b> Wypuszczenie<br /> <small><em>Wypuszczenie zmian do sieci
+serwerów Tora będzie zsynchronizowane z regularnymi wydaniami Tora. Jako że
+regularne wydania zależą od wielu czynników zewnętrznych, jak zakończenie
+innych projektów, które powinny wyjść w tym samym wydaniu, właściwy czas
+wydania i instalacji u większości operatorów serwerów Tora może być różny. Z
+doświadczenia wiemy, że można oczekiwać okresu od trzech do czterech
+miesięcy.</em></small>
+  </td>
+  <td>
+    15 Maja 2009
+  </td>
+</tr>
+</table>
+
+<br /> <a id="Reports"></a>
+<h2><a class="anchor" href="#Reports">Miesięczne raporty o bieżącym stanie</a></h2>
+<p>
+Łącznie będzie osiem miesięcznych raportów zaczynających się od pierwszej
+części 15. czerwca 2008 i kończących się na ukończeniu implementacji i
+testów 15. stycznia 2009.
+</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<thead>
+<tr>
+<th><big>Miesiąc,</big></th>
+<th><big>Raport o stanie</big></th>
+</tr>
+</thead>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <a id="Jun08"></a> <a class="anchor" href="#Jun08">Czerwiec 08</a>
+  </td>
+  <td>
+    <small><em>Pierwotny cel analizy problemu, który prowadził do spowolnienia
+usług ukrytych, został osiągnięty. Częścią tej analizy był pomiar opóźnienia
+doświadczanego przez użytkownika podczas tworzenia lub łączenia się z
+usługą.  Ponadto, dane z kwietnia 2008 mogą zostać użyte do badania czasu
+wykonania wewnętrznych kroków nawiązywania połączenia z usługą
+ukrytą. Wyniki analizy zawarte są w 22-stronicowym <a
+href="http://freehaven.net/~karsten/hidserv/perfanalysis-2008-06-15.pdf">raporcie</a>
+upublicznionym na <a
+href="http://archives.seul.org/or/dev/Jun-2008/msg00019.html">liście
+mailingowej deweloperów</a> Tora.</em></small> <br/> <small><em>Analiza
+odkryła także kilka błędów odpowiedzialnych za część opóźnienia w
+udostępnianiu usługi ukrytej klientom. Kilka błędów zostało poprawionych po
+analizie, inne będą poprawione wkrótce. Badanie ukazało kilka możliwych
+podejść do polepszenia wydajności usług ukrytych. Część z tych pomysłów może
+zostać zastosowana natychmiast, inne wymagają głębszej analizy i nowych
+pomiarów. W trakcie analizy odkryliśmy, że część usprawnień wymaga głębszych
+zmian w Torze, które nie są bezpośrednio związane z usługami ukrytymi. Zmian
+tych nie da się osiągnąć w czasie przeznaczonym na ten projekt.</em></small>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <a id="Jul08"></a> <a class="anchor" href="#Jul08">Lipiec 08</a>
+  </td>
+  <td>
+    <small><em>Wszystkie błędy znalezione w analizie zostały naprawione, łącznie
+z 2 błędami naprawionymi w czasie analizy i jeszcze 4 znalezionymi w ciągu
+ostatnich 30 dni. Podczas gdy usunięcie błędów usunęło niechciane wąskie
+gardła wydajności związane z błędami w programowaniu, część zmian
+projektowych zauważonych w poprzedniej analizie ma efekty uboczne na
+anonimowości lub sumarycznym obciążeniu sieci. Efekty te muszą zostać
+zanalizowane w odniesieniu do poszczególnych celów wydajnościowych. <a
+href="http://freehaven.net/~karsten/hidserv/discussion-2008-07-15.pdf"
+>Raport</a> został wydany na <a
+href="http://archives.seul.org/or/dev/Jul-2008/msg00034.html" >listę
+mailingową deweloperów</a>, zawiera on 7 możliwych zmian projektu, które
+muszą zostać przedyskutowane. Okazało się, że część badań (pomiary wolnego
+łącza i wielki plan skalowania) zajmie więcej czasu, niż się spodziewano,
+więc zostały przełożonych na dalszą przyszłość niż część B. Bieżący plan
+zakłada przeprowadzenie tych badań do 15. stycznia i pracę z założeniami do
+czasu, gdy dostępne będą końcowe wyniki.</em></small>
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <a id="Aug08"></a> <a class="anchor" href="#Aug08">Sierpień 08</a>
+  </td>
+  <td>
+    <small><em>W przeciągu ostatnich 30 dni 7 zaproponowanych projektów zostało
+dalej rozpatrzonych i omówionych. Cztery z nich okazały się możliwe do
+zastosowania, biorąc pod uwagę wymagane zmiany kodu i możliwe implikacje na
+anonimowość.  Jeden został zakwalifikowany jako błąd, a nie zmiana
+projektu. Dwa musiały zostać wykluczone ze względów albo nieprzewidywalnych
+problemów z anonimowością albo niepewnością co do zysków
+wydajności.</em></small> <br/> <small><em>Łącznie z wynikami z 15. licpa,
+faza projektowania została zakończona.  Zadania dla zbliżającej się fazy
+implementacji są teraz całkiem jasne: należy usunąć jeden błąd i
+zaimplementować cztery zmiany projektowe. Ponadto, należy przeprowadzić
+badania zmienionego projektu, by sprawdzić jego przydatność.  <a
+href="http://freehaven.net/~karsten/hidserv/design-2008-08-15.pdf">Raport</a>
+z wynikami fazy projektowej został wydany na <a
+href="http://archives.seul.org/or/dev/Aug-2008/msg00025.html">listę
+mailingową deweloperów</a>.</em></small>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <a id="Sep08"></a> <a class="anchor" href="#Sep08">Wrzesień 08</a>
+  </td>
+  <td>
+    <small><em>W czasie pierwszej połowy fazy implementacji naprawiono dwa błędy
+związane z usługami ukrytymi: <a
+href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=767">pierwszy
+błąd</a> został odkryty w już fazie projektowania i był odpowiedzialny za
+wysoki odsetek niepowodzeń w czasie udostępniania usługi ukrytej w systemie;
+<a
+href="http://bugs.noreply.org/flyspray/index.php?id=814&amp;do=details">drugi
+błąd</a> został znaleziony w fazie implementacji i był odpowiedzialny za
+nieudane połączenia do działającej usługi ukrytej. Obie poprawki będą
+dołączone do najbliższej wersji niestabilnej i prawdopodobnie przeniesione
+do jednej z następnych wersji stabilnych.</em></small> <br/>
+<small><em>Cztery zmiany projektu, które zostały zaproponowane jako wynik
+fazy projektowania, zostały zaimplementowane w <a
+href="https://tor-svn.freehaven.net/svn/tor/branches/hidserv-design-changes/">eksperymentalnej
+gałęzi</a> drzewa rozwojowego wersji niestabilnej. Pierwsze testy
+funkcjonalne pokazały, że te zmiany działają i dają lepsze (widoczne)
+osiągi.  To musi być potwierdzone przez następne cztery tygodnie testów
+wewnętrznych.  Kolejnym celem jest przygotowanie wydania tej
+eksperymentalnej gałęzi, które można byłoby dać beta-testerom na początku
+zbliżającej się fazy testów.</em></small>
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <a id="Oct08"></a> <a class="anchor" href="#Oct08">Październik 08</a>
+  </td>
+  <td>
+    <small><em>The implementation phase has been concluded. The bugfixes that
+were found in the past 30 days have been released in developer version <a
+href="http://archives.seul.org/or/talk/Oct-2008/msg00093.html">0.2.1.6-alpha</a>.
+The four design changes that were identified in the design phase have been
+specified in <a
+href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/155-four-hidden-service-improvements.txt">proposal
+155</a>.  Three design changes have been included in the development
+codebase and will automatically be included in the next development
+version. The first two design changes improve connection establishment to a
+hidden service by reducing a timeout from 60 to 30 seconds and by making a
+second attempt in parallel after a delay of 15 seconds. The third design
+change affects publication of a hidden service in the network by advertising
+the service at 5 rather than 3 points in the network in parallel and
+succeeding as soon as 3 points are established. The fourth design change has
+turned out to be rather ineffective, but would add considerable code
+complexity and was therefore dismissed. By now there are no more open
+bugfixes or new designs. All changes are in the development codebase and can
+be tested in the next phase.</em></small>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <a id="Nov08"></a> <a class="anchor" href="#Nov08">Listopad 08</a>
+  </td>
+  <td>
+    <small><em>Usprawnienia zaimplementowane w poprzedniej fazie zostały wydane
+w wersji Tora 0.2.1.7-alpha. Użytkownicy mogą pobrać tę wersję rozwojową ze
+strony Tora i sprawdzić usprawnienia minimalnym wysiłkiem. Ponadto, dwie
+poprawki błędów (<a
+href="http://bugs.noreply.org/flyspray/index.php?id=767&amp;do=details">1</a>,
+<a
+href="http://bugs.noreply.org/flyspray/index.php?id=814&amp;do=details">2</a>),
+które znaleziono w trakcie projektu, zostały przeniesione też do gałęzi
+stabilnej i będą dołączone w najbliższej stabilnej wersji
+0.2.0.32.</em></small> <br/> <small><em>Głównym celem ostatnich 31 dni było
+przeprowadzenie nowych pomiarów, by sprawdzić, czy nowe usprawnienia są
+efektywne, czy nie. Pomiary były prowadzone przez dwa dni, od 6. listopada
+do 8. listopada. Niestety, sieć Tora miała wtedy poważny problem:
+przedawniony certyfikat centrum katalogowego spowodował olbrzymi ruch w
+sieci Tor, który <a
+href="http://archives.seul.org/or/talk/Nov-2008/msg00053.html">zmusił wielu
+operatorów do wyłączenia swoich przekaźników</a>. Drugi pomiar został
+przeprowadzony między 13. a 15. listopada. Surowe dane są dostępne <a
+href="http://freehaven.net/~karsten/hidserv/perfdata-2008-11-13.tar.gz">tutaj</a>
+(40 MB). Ale wyniki pokazują, że całkowita wydajność sieci jest dalej gorsza
+niż w Czerwcu 2008, gdy dokonano pierwszych pomiarów usług ukrytych. Widać
+to, gdy porównuje się żądania do serwerów katalogowych Tora, na które nie
+wpłynęły usprawnienia i które pokazują znacznie gorszą wydajność niż
+przedtem. Efekty polepszenia wydajności są widoczne, ale wartości
+bezwzględne nie są w tej chwili porównywalne. Nowe pomiary zostaną
+przeprowadzone w grudniu z nadzieją, że efekty tego problemu zostaną
+złagodzone.</em></small> <br/> <small><em>Ponadto, może istnieć <a
+href="http://bugs.noreply.org/flyspray/index.php?id=847&amp;do=details">błąd</a>
+w metodzie, której używa Tor do pobierania informacji katalogowych w czasie
+startu.  Mimo iż nie jest to powiązane z usługami ukrytymi, polepszenie w
+tej kwestii poprawiłoby też publikację usług ukrytych. Część pracy w ciągu
+najbliższych 30 dni będzie poświęcona na zbadanie tego błędu.  </em></small>
+  </td>
+</tr>
+
+<tr bgcolor="#e5e5e5">
+  <td>
+    <a id="Dec08"></a> <a class="anchor" href="#Dec08">Grudzień 08</a>
+  </td>
+  <td>
+    <small><em>Część ostatnich 30 dni została wykorzystana na naprawę błędów,
+które wpłynęły na poprzednie pomiary usług ukrytych. Pierwsza <a
+href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">poprawka</a>
+poprawia możliwość pojawienia się naruszenia ochrony pamięci, które bardzo
+prawdopodobnie było odpowiedzialne za pewną liczbę nieudanych prób
+pomiarów. Kolejny <a
+href="https://bugs.torproject.org/flyspray/index.php?id=847&amp;do=details">błąd</a>
+mógł prowadzić do sporych opóźnień w czasie uruchamiania: bardzo wolne
+serwery katalogowe zajmowały uruchamiających się klientów przez długi czas
+zanim te w końcu poddały się i uruchomiły z wykorzystaniem innego serwera. W
+wyniku tego, dwa najwolniejsze serwery katalogowe dały więcej pasma swoim
+węzłom, by złagodzić ten efekt. Trzeci <a
+href="https://bugs.torproject.org/flyspray/index.php?id=874&amp;do=details">błąd</a>
+został wprowadzony do kodu w czasie poprawek wydajności usług ukrytych w
+listopadzie; efektem tego było to, że procesy Tora posiadające uruchomione
+usługi ukryte przestawały o nich informować po przeładowaniu
+konfiguracji. Ponadto, ten błąd odsłonił fakt, że Tor w czasie przeładowania
+ponownie nawiązuje połączenia ze swoimi punktami przedstawiającymi, co mogło
+wpłynąć na stabilność usług ukrytych. Ten błąd został naprawiony i będzie
+dołączony w zbliżającej się wersji 0.2.1.9-alpha.</em></small> <br/>
+<small><em>Poza poprawkami błędów, przeprowadzono nowe pomiary między 8. a
+10. grudnia.  Będą to prawdopodobnie ostateczne pomiary do porównania
+bieżącej wydajności usług ukrytych z tą na początku projektu. Dane nie
+zostały całkowicie ocenione, więc trudno stawiać tezy o wydajności w chwili
+bieżącej. Jednak <a
+href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">wstępna
+ocena</a> pokazuje, że czasy publikacji usług znacznie się polepszyły. Jest
+to wynik szybszego uruchamiania się klientów Tora i polepszeń wydajności
+dodanych w listopadzie. Z drugiej strony, wyniki nawiązywania połączenia z
+usługą ukrytą są mniej obiecujące. Podczas gdy ulepszenia dodane w
+listopadzie zdają się mieć pozytywny wpływ na wydajność, niektóre podkroki
+wykazują znacznie gorszą wydajność.  Jednym z przykładów jest pobieranie
+deskryptorów usług ukrytych w celu skontaktowania się z usługą
+ukrytą. Możliwe wyjaśnienie jest takie, że nagły wzrost liczby węzłów z
+usługami ukrytymi we wrześniu miał negatywny wpływ na wydajność. Część pracy
+w ostatnich 31 dniach będzie polegać na bardziej szczegółowej ocenie tych
+danych i wysnuciu ostatecznego wniosku o osiągnięciach tego
+projektu.</em></small>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <a id="Jan09"></a> <a class="anchor" href="#Jan09">Styczeń 09</a>
+  </td>
+  <td>
+    <small><em>Faza testów została zakończona. Testy zostały przeprowadzone w
+publicznej fazie beta, w której wszystkie zmiany w usługach ukrytych stały
+się częścią serii 0.2.1.x-alpha. Wynikiem publicznej fazy beta jest kilka
+znalezionych błędów, które mogły już być naprawione.</em></small> <br/>
+<small><em>Kolejną częścią testów był drugi zestaw pomiarów przeprowadzonych
+w grudniu <a
+href="http://freehaven.net/~karsten/hidserv/comparison-2009-01-15.pdf">Porównanie</a>
+pomiarów z czerwca i grudnia odkryło, że zmiany z tego projektu dają
+efekt. Czasy publikacji usług mogą być ponad dwa razy mniejsze - z 2:12
+minut do 58 sekund średnio.  To polepszenie jest znacznie lepsze, niż się
+spodziewaliśmy. Mając taki postęp, można w przyszłości pomyśleć o
+zmniejszeniu czasu stabilizacji z 30 sekund do jakiejś niższej
+wartości. Jednak czas nawiązania połączenia zostaje na poziomie około 56
+sekund między żądaniem usługi ukrytej a nawiązaniem połączenia z ukrytym
+serwerem. Głównym powodem braku postępu jest przełączenie się między
+scentralizowanym a zdecentralizowanym przechowywaniem deskryptorów usług
+ukrytych. Ten pogarszający efekt dystrybucji katalogu usług ukrytych nie był
+wcześniej spodziewany. Przyszłe prace powinny skupić się na polepszeniu
+pobierania z rozproszonego katalogu usług ukrytych, na przykład poprzez
+prowadzenie równoległych żądań.</em></small> <br/> <small><em>Ten raport
+kończy serię comiesięcznych aktualizacji statusu. Wydanie serii 0.2.1.x
+zawierającej polepszenia wydajności usług krytych odbędzie się w przeciągu
+od najbliższych tygodni do miesięcy.</em></small>
+  </td>
+</tr>
+</table>
+
+<!-- Do we want a people section? If so, would it make sense to write what
+these people will be doing? And what exactly are these people going to
+do? :)
+<a id="People">
+</a>
+<h2><a class="anchor" href="#People">People</a></h2>
+<ul>
+<li><a href="<page about/people>#Core">Karsten Loesing</a></li>
+<li><a href="<page about/people>#Core">Steven Murdoch</a></li>
+</ul>
+-->
+<br /> <a id="Links"></a>
+<h2><a class="anchor" href="#Links">Linki</a></h2>
+<ul>
+<li>Dokument badań <b>Performance Measurements and Statistics of Tor Hidden
+Services</b> ("Pomiary wydajności i statystyki usług ukrytych Tora")  (<a
+href="http://www.uni-bamberg.de/fileadmin/uni/fakultaeten/wiai_lehrstuehle/praktische_informatik/Dateien/Publikationen/loesing2008performance.pdf">PDF</a>)
+napisali: Karsten Loesing, Werner Sandmann, Christian Wilms, i Guido
+Wirtz. We Wstępie do 2008 International Symposium on Applications and the
+Internet (SAINT), Turku, Finlandia, lipiec 2008.</li>
+
+
+
+<!-- In the future, put links to proposal, preliminary results, etc. here -->
+</ul>
+
+</div>
+
+
+
+#include <foot.wmi>

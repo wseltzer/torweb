@@ -1,0 +1,208 @@
+## translation metadata
+# Revision: $Revision: 22418 $
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor Project: Verifying Signatures" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page home>">Home &raquo; </a>
+    <a href="<page docs/verifying-signatures>">Verifying Signatures</a>
+  </div>
+  <div id="maincol"> 
+    <h1>How to verify signatures for packages</h1>
+    <hr />
+    
+    <p>Each file on <a href="<page download/download>">our download page</a> is accompanied
+    by a file with the same name as the package and the extension
+    ".asc". These .asc files are GPG signatures. They allow you to verify
+    the file you've downloaded is exactly the one that we intended you to
+    get. For example, vidalia-bundle-0.2.1.25-0.2.7.exe is accompanied by
+    vidalia-bundle-0.2.1.25-0.2.7.exe.asc.</p>
+    
+    <p>Of course, you'll need to have our GPG keys in your keyring: if you don't
+    know the GPG key, you can't be sure that it was really us who signed it. The
+    signing keys we use are:</p>
+    <ul>
+    <li>Roger's (0x28988BF5) typically signs the source code file.</li>
+    <li>Nick's (0x165733EA, or its subkey 0x8D29319A).</li>
+    <li>Andrew's (0x31B0974B) typically signs packages for windows and mac.</li>
+    <li>Peter's (0x94C09C7F, or its subkey 0xAFA44BDD).</li>
+    <li>Matt's (0x5FA14861).</li>
+    <li>Jacob's (0xE012B42D).</li>
+    <li>Erinn's (0x63FEE659) and (0xF1F5C9B5) typically signs the linux packages.</li>
+    <li>Mike's (0xDDC6C0AD) signs the Torbutton xpi.</li>
+    </ul>
+    
+    <h3>Step Zero: Install GnuPG</h3>
+    <hr />
+    <p>You need to have GnuPG installed before you can verify
+    signatures.</p>
+    
+    <ul>
+    <li>Linux: see <a
+    href="http://www.gnupg.org/download/">http://www.gnupg.org/download/</a>
+    or install <i>gnupg</i> from the package management system.</li>
+    <li>Windows: see <a
+    href="http://www.gnupg.org/download/">http://www.gnupg.org/download/</a>. Look
+    for the "version compiled for MS-Windows" under "Binaries".</li>
+    <li>Mac: see <a
+    href="http://macgpg.sourceforge.net/">http://macgpg.sourceforge.net/</a>.</li>
+    </ul>
+    
+    <h3>Step One:  Import the keys</h3>
+    <hr />
+    <p>The next step is to import the key. This can be done directly from
+    GnuPG. Make sure you import the correct key. For example, if you
+    downloaded a Windows package, you will need to import Andrew's key.</p>
+    
+    <p><b>Windows:</b></p>
+    <p>GnuPG for Windows is a command line tool, and you will need to use
+    <i>cmd.exe</i>. Unless you edit your PATH environment variable, you will
+    need to tell Windows the full path to the GnuPG program. If you installed GnuPG
+    with the default values, the path should be something like this: <i>C:\Program
+    Files\Gnu\GnuPg\gpg.exe</i>.</p>
+    
+    <p>To import the key 0x28988BF5, start <i>cmd.exe</i> and type:</p>
+    
+    <pre>C:\Program Files\Gnu\GnuPg\gpg.exe --recv-keys 0x28988BF5</pre>
+    
+    <p><b>Mac and Linux</b></p>
+    <p>Whether you have a Mac or you run Linux, you will need to use the terminal
+    to run GnuPG. Mac users can find the terminal under "Applications". If you run
+    Linux and use Gnome, the terminal should be under "Applications menu" and
+    "Accessories". KDE users can find the terminal under "Menu" and "System".</p>
+    
+    <p>To import the key 0x28988BF5, start the terminal and type:</p>
+    
+    <pre>gpg --recv-keys 0x28988BF5</pre>
+    
+    <h3>Step Two:  Verify the fingerprints</h3>
+    <hr />
+    <p>After importing the key, you will want to verify that the fingerprint is correct.</p>
+    
+    <p><b>Windows:</b></p>
+    <pre>C:\Program Files\Gnu\GnuPg\gpg.exe --fingerprint (insert keyid here)</pre>
+    
+    <p><b>Mac and Linux</b></p>
+    <pre>gpg --fingerprint (insert keyid here)</pre>
+    
+    The fingerprints for the keys should be:
+    
+    <pre>
+    pub   1024D/28988BF5 2000-02-27
+          Key fingerprint = B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
+    uid                  Roger Dingledine &lt;arma@mit.edu&gt;
+    
+    pub   3072R/165733EA 2004-07-03
+          Key fingerprint = B35B F85B F194 89D0 4E28  C33C 2119 4EBB 1657 33EA
+    uid                  Nick Mathewson &lt;nickm@alum.mit.edu&gt;
+    uid                  Nick Mathewson &lt;nickm@wangafu.net&gt;
+    uid                  Nick Mathewson &lt;nickm@freehaven.net&gt;
+    
+    pub  1024D/31B0974B 2003-07-17
+         Key fingerprint = 0295 9AA7 190A B9E9 027E  0736 3B9D 093F 31B0 974B
+    uid                  Andrew Lewman (phobos) &lt;phobos@rootme.org&gt;
+    uid                  Andrew Lewman &lt;andrew@lewman.com&gt;
+    uid                  Andrew Lewman &lt;andrew@torproject.org&gt;
+    sub   4096g/B77F95F7 2003-07-17
+    
+    pub   1024D/94C09C7F 1999-11-10
+          Key fingerprint = 5B00 C96D 5D54 AEE1 206B  AF84 DE7A AF6E 94C0 9C7F
+    uid                  Peter Palfrader
+    uid                  Peter Palfrader &lt;peter@palfrader.org&gt;
+    uid                  Peter Palfrader &lt;weasel@debian.org&gt;
+    
+    pub   1024D/5FA14861 2005-08-17
+          Key fingerprint = 9467 294A 9985 3C9C 65CB  141D AF7E 0E43 5FA1 4861
+    uid                  Matt Edman &lt;edmanm@rpi.edu&gt;
+    uid                  Matt Edman &lt;Matt_Edman@baylor.edu&gt;
+    uid                  Matt Edman &lt;edmanm2@cs.rpi.edu&gt;
+    sub   4096g/EA654E59 2005-08-17
+    
+    pub   1024D/9D0FACE4 2008-03-11 [expires: 2010-10-07]
+          Key fingerprint = 12E4 04FF D3C9 31F9 3405  2D06 B884 1A91 9D0F ACE4
+    uid                  Jacob Appelbaum &lt;jacob@appelbaum.net&gt;
+    sub   4096R/F8D04B59 2010-03-11 [expires: 2010-10-07]
+    
+    pub   2048R/63FEE659 2003-10-16
+          Key fingerprint = 8738 A680 B84B 3031 A630  F2DB 416F 0610 63FE E659
+    uid                  Erinn Clark &lt;erinn@torproject.org&gt;
+    uid                  Erinn Clark &lt;erinn@debian.org&gt;
+    uid                  Erinn Clark &lt;erinn@double-helix.org&gt;
+    sub   2048R/EB399FD7 2003-10-16
+    
+    pub   1024D/F1F5C9B5 2010-02-03
+          Key fingerprint = C2E3 4CFC 13C6 2BD9 2C75  79B5 6B8A AEB1 F1F5 C9B5
+    uid                  Erinn Clark &lt;erinn@torproject.org&gt;
+    sub   1024g/7828F26A 2010-02-03
+    
+    pub   1024D/DDC6C0AD 2006-07-26
+          Key fingerprint = BECD 90ED D1EE 8736 7980  ECF8 1B0C A30C DDC6 C0AD
+    uid                  Mike Perry &lt;mikeperry@fscked.org&gt;
+    uid                  Mike Perry &lt;mikepery@fscked.org&gt;
+    sub   4096g/AF0A91D7 2006-07-26
+    
+    </pre>
+    
+    <h3>Step Three:  Verify the downloaded package</h3>
+    <hr />
+    <p> To verify the signature of the package you downloaded, you will need
+    to download the ".asc" file as well.</p>
+    
+    <p>In the following examples, the user Alice downloads packages for
+    Windows, Mac OS X and Linux and also verifies the signature of each
+    package. All files are saved on the desktop.</p>
+    
+    <p><b>Windows:</b></p>
+    <pre>C:\Program Files\Gnu\GnuPg\gpg.exe --verify C:\Users\Alice\Desktop\vidalia-bundle-0.2.1.25-0.2.7.exe.asc C:\Users\Alice\Desktop\vidalia-bundle-0.2.1.25-0.2.7.exe</pre>
+    
+    <p><b>Mac:</b></p>
+    <pre>gpg --verify /Users/Alice/vidalia-bundle-0.2.1.25-0.2.7-i386.dmg.asc /Users/Alice/vidalia-bundle-0.2.1.25-0.2.7-i386.dmg</pre>
+    
+    <p><b>Linux</b></p>
+    <pre>gpg --verify /home/Alice/Desktop/tor-0.2.1.25.tar.gz.asc /home/Alice/Desktop/tor-0.2.1.25.tar.gz</pre>
+    
+    <p>After verifying, GnuPG will come back saying something like "Good
+    signature" or "BAD signature". The output should look something like
+    this:</p>
+    
+    <pre>
+    gpg: Signature made Tue 16 Mar 2010 05:55:17 AM CET using DSA key ID 28988BF5
+    gpg: Good signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
+    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg:          There is no indication that the signature belongs to the owner.
+    Primary key fingerprint: B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
+    </pre>
+    
+    <p>
+    Notice that there is a warning because you haven't assigned a trust
+    index to this person. This means that GnuPG verified that the key made
+    that signature, but it's up to you to decide if that key really belongs
+    to the developer. The best method is to meet the developer in person and
+    exchange key fingerprints.
+    </p>
+    
+    <p>For your reference, this is an example of a <em>BAD</em> verification. It
+    means that the signature and file contents do not match. In this case,
+    you should not trust the file contents:</p>
+    
+    <pre>
+    gpg: Signature made Tue 20 Apr 2010 12:22:32 PM CEST using DSA key ID 28988BF5
+    gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
+    </pre>
+    
+    <p>If you are running Tor on Debian you should read the instructions on
+    <a href="<page docs/debian>#packages">importing these keys to apt</a>.</p>
+    
+    <p>If you wish to learn more about GPG, see <a
+    href="http://www.gnupg.org/documentation/">http://www.gnupg.org/documentation/</a>.</p>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi> 

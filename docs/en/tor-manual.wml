@@ -1,0 +1,37 @@
+## translation metadata
+# Revision: $Revision: 13768 $
+
+#include "head.wmi" TITLE="Tor Project: manual"
+
+# Translators shouldn't translate this file, unless they want
+# to translate the whole man page too.
+
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page home>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/tor-doc-osx>">Tor Manual</a>
+  </div> 
+  <div id="maincol"> 
+    <:
+    	#die "Missing manpage" unless -f "$(TORSVNSTABLE)/doc/tor.1.txt";
+    	die "Missing manpage" unless -f "$(TORSVNSTABLE)/doc/tor.1.in";
+    	my $man = `man2html -M '' $(TORSVNSTABLE)/doc/tor.1.in`;
+    	#my $man = `man2html -M '' $(TORSVNSTABLE)/doc/tor.1.txt`;
+    	die "No manpage" unless $man;
+    
+    	$man =~ s,.*<body>,,is;
+    	$man =~ s,</body>.*,,is;
+    
+    	print $man;
+    :>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>  

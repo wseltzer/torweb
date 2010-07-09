@@ -1,0 +1,1 @@
+include $(WMLBASE)/Makefile.common

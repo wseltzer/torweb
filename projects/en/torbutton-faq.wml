@@ -1,0 +1,356 @@
+## translation metadata
+# Revision: $Revision: 0 $
+# Translation-Priority: 3-low
+
+#include "head.wmi" TITLE="Tor Project: Projects Overview" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
+<div id="content" class="clearfix">
+	<div id="breadcrumbs">
+    <a href="<page home>">Home &raquo; </a>
+    <a href="<page projects/projects>">Projects &raquo; </a>
+    <a href="<page projects/torbutton>">TorButton &raquo; </a>
+    <a href="<page projects/torbutton-faq>">TorButton FAQ</a>
+  </div>
+	<div id="maincol">  
+    <!-- PUT CONTENT AFTER THIS TAG -->
+    
+    <h2>Torbutton FAQ</h2>
+    <hr />
+    
+    <h3>Questions</h3>
+    <br />
+    <ul>
+    <li><a href="<page projects/torbutton-faq>#nojavascript">When I toggle Tor, my sites that use javascript stop working. Why?</a></li>
+    <li><a href="<page projects/torbutton-faq>#noreloads">I can't click on links or hit reload after I toggle Tor! Why?</a></li>
+    <li><a href="<page projects/torbutton-faq>#noflash">I can't view videos on YouTube and other flash-based sites. Why?</a></li>
+    <li><a href="<page projects/torbutton-faq>#oldtorbutton">Torbutton sure seems to do a lot of things, some of which I find annoying. Can't I just use the old version?</a></li>
+    <li><a href="<page projects/torbutton-faq>#weirdstate">My browser is in some weird state where nothing works right!</a></li>
+    <li><a href="<page projects/torbutton-faq>#noautocomplete">When I use Tor, Firefox is no longer filling in logins/search boxes for me. Why?</a></li>
+    <li><a href="<page projects/torbutton-faq>#thunderbird">What about Thunderbird support? I see a page, but it is the wrong version?</a></li>
+    <li><a href="<page projects/torbutton-faq>#extensionconflicts">Which Firefox extensions should I avoid using?</a></li>
+    <li><a href="<page projects/torbutton-faq>#recommendedextensions">Which Firefox extensions do you recommend?</a></li>
+    <li><a href="<page projects/torbutton-faq>#securityissues">Are there any other issues I should be concerned about?</a></li>
+    </ul>
+    <br />
+    
+    <a id="nojavascript"></a>
+    <strong><a class="anchor" href="#nojavascript">When I toggle Tor, my sites that use javascript stop working. Why?</a></strong>
+    
+    <p>
+    Javascript can do things like wait until you have disabled Tor before trying
+    to contact its source site, thus revealing your IP address. As such, Torbutton
+    must disable Javascript, Meta-Refresh tags, and certain CSS behavior when Tor
+    state changes from the state that was used to load a given page. These features
+    are re-enabled when Torbutton goes back into the state that was used to load
+    the page, but in some cases (particularly with Javascript and CSS) it is
+    sometimes not possible to fully recover from the resulting errors, and the
+    page is broken. Unfortunately, the only thing you can do (and still remain
+    safe from having your IP address leak) is to reload the page when you toggle
+    Tor, or just ensure you do all your work in a page before switching tor state.
+    </p>
+    
+    <a id="noreloads"></a>
+    <strong><a class="anchor" href="#noreloads">I can't click on links or hit reload after I toggle Tor! Why?</a></strong>
+    
+    <p>
+    Due to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=409737">Firefox
+    Bug 409737</a>, pages can still open popups and perform Javascript redirects
+    and history access after Tor has been toggled. These popups and redirects can
+    be blocked, but unfortunately they are indistinguishable from normal user
+    interactions with the page (such as clicking on links, opening them in new
+    tabs/windows, or using the history buttons), and so those are blocked as a
+    side effect. Once that Firefox bug is fixed, this degree of isolation will
+    become optional (for people who do not want to accidentally click on links and
+    give away information via referrers). A workaround is to right click on the
+    link, and open it in a new tab or window. The tab or window won't load
+    automatically, but you can hit enter in the URL bar, and it will begin
+    loading. Hitting enter in the URL bar will also reload the page without
+    clicking the reload button.
+    </p>
+    
+    <a id="noflash"></a>
+    <strong><a class="anchor" href="#noflash">I can't view videos on YouTube and
+    other Flash-based sites. Why?</a></strong>
+    
+    <p>
+    
+    YouTube and similar sites require third party browser plugins such as Flash.
+    Plugins operate independently from Firefox and can perform
+    activity on your computer that ruins your anonymity. This includes
+    but is not limited to: <a href="http://decloak.net">completely disregarding
+    proxy settings</a>, querying your <a
+    href="http://forums.sun.com/thread.jspa?threadID=5162138&amp;messageID=9618376">local
+    IP address</a>, and <a
+    href="http://epic.org/privacy/cookies/flash.html">storing their own
+    cookies</a>. It is possible to use a LiveCD or VMWare-based solution such as
+    <a href="<page projects/torvm>">Tor VM</a> or <a
+    href="https://amnesia.boum.org/">The (Amnesic) Incognito Live System</a> that creates a
+    secure, transparent proxy to protect you from proxy bypass, however issues
+    with local IP address discovery and Flash cookies still remain.  </p>
+    
+    <p>
+    
+    If you are not concerned about being tracked by these sites (and sites that
+    try to unmask you by pretending to be them), and are unconcerned about your
+    local censors potentially noticing you visit them, you can enable plugins by
+    going into the Torbutton Preferences-&gt;Security Settings-&gt;Dynamic Content
+    tab and unchecking "Disable plugins during Tor usage" box. If you do this
+    without Tor VM, The (Amnesic) Incognito Live System or appropriate
+    firewall rules, we strongly suggest you at least use <a
+    href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a> to <a
+    href="http://noscript.net/features#contentblocking">block plugins</a>. You do
+    not need to use the NoScript per-domain permissions if you check the <b>Apply
+    these restrictions to trusted sites too</b> option under the NoScript Plugins
+    preference tab. In fact, with this setting you can even have NoScript allow
+    Javascript globally, but still block all plugins until you click on their
+    placeholders in a page. We also recommend <a
+    href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better Privacy</a>
+    in this case to help you clear your Flash cookies.
+    
+    </p>
+    
+    <a id="oldtorbutton"></a>
+    <strong><a class="anchor" href="#oldtorbutton">Torbutton sure seems to do a lot of things, some of which I find
+    annoying. Can't I just use the old version?</a></strong>
+    
+    <p>
+    
+    <b>No.</b> Use of the old version, or any other vanilla proxy changer
+    (including FoxyProxy -- see below) without Torbutton is actively discouraged.
+    Seriously. Using a vanilla proxy switcher by itself is so insecure that you are
+    not only just wasting your time, you are also actually endangering yourself.
+    <b>Simply do not use Tor</b> and you will have the same (and in some cases,
+    better) security.  For more information on the types of attacks you are exposed
+    to with a "homegrown" solution, please see <a
+    href="design/index.html#adversary">The Torbutton
+    Adversary Model</a>, in particular the <a
+    href="design/index.html#attacks">Adversary
+    Capabilities - Attacks</a> subsection. If there are any specific Torbutton
+    behaviors that you do not like, please file a bug on <a
+    href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">the
+    bug tracker.</a> Most of Torbutton's security features can also be disabled via
+    its preferences, if you think you have your own protection for those specific
+    cases.
+    
+    </p>
+    
+    <a id="weirdstate"></a>
+    <strong><a class="anchor" href="#weirdstate">My browser is in some weird state where nothing works right!</a></strong>
+    
+    <p>
+    Try to disable Tor by clicking on the button, and then open a new window. If
+    that doesn't fix the issue, go to the preferences page and hit 'Restore
+    Defaults'. This should reset the extension and Firefox to a known good
+    configuration.  If you can manage to reproduce whatever issue gets your
+    Firefox wedged, please file details at <a
+    href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">the
+    bug tracker</a>.
+    </p>
+    
+    <a id="noautocomplete"></a>
+    <strong><a class="anchor" href="#noautocomplete">When I use Tor, Firefox is no longer filling in logins/search boxes
+    for me. Why?</a></strong>
+    
+    <p>
+    Currently, this is tied to the "<b>Block history writes during Tor</b>"
+    setting. If you have enabled that setting, all formfill functionality (both
+    saving and reading) is disabled. If this bothers you, you can uncheck that
+    option, but both history and forms will be saved. To prevent history
+    disclosure attacks via Non-Tor usage, it is recommended you disable Non-Tor
+    history reads if you allow history writing during Tor.
+    </p>
+    
+    <a id="thunderbird"></a>
+    <strong><a class="anchor" href="#thunderbird">What about Thunderbird support? I see a page, but it is the wrong
+    version?</a></strong>
+    
+    <p>
+    Torbutton used to support basic proxy switching on Thunderbird back in the 1.0
+    days, but that support has been removed because it has not been analyzed for
+    security. My developer tools page on addons.mozilla.org clearly lists Firefox
+    support only, so I don't know why they didn't delete that Thunderbird listing.
+    I am not a Thunderbird user and unfortunately, I don't have time to analyze
+    the security issues involved with toggling proxy settings in that app. It
+    likely suffers from similar (but not identical) state and proxy leak issues
+    with html mail, embedded images, javascript, plugins and automatic network
+    access. My recommendation is to create a completely separate Thunderbird
+    profile for your Tor accounts and use that instead of trying to toggle proxy
+    settings. But if you really like to roll fast and loose with your IP, you
+    could try another proxy switcher like ProxyButton, SwitchProxy or FoxyProxy
+    (if any of those happen to support thunderbird).
+    </p>
+    
+    <a id="extensionconflicts"></a>
+    <strong><a class="anchor" href="#extensionconflicts">Which Firefox extensions should I avoid using?</a></strong>
+    
+    <p>
+    This is a tough one. There are thousands of Firefox extensions: making a
+    complete list of ones that are bad for anonymity is near impossible. However,
+    here are a few examples that should get you started as to what sorts of
+    behavior are dangerous.
+    </p>
+    
+    <ol>
+     <li>StumbleUpon, et al
+     <p>
+     These extensions will send all sorts of information about the websites you
+     visit to the stumbleupon servers, and correlate this information with a
+     unique identifier. This is obviously terrible for your anonymity.
+     More generally, any sort of extension that requires registration, or even
+     extensions that provide information about websites you visit should be
+     suspect.
+     </p></li>
+     <li>FoxyProxy
+    <p>
+    While FoxyProxy is a nice idea in theory, in practice it is impossible to
+    configure securely for Tor usage without Torbutton. Like all vanilla third
+    party proxy plugins, the main risks are <a
+    href="http://www.metasploit.com/research/projects/decloak/">plugin leakage</a>
+    and <a href="http://ha.ckers.org/weird/CSS-history.cgi">history
+    disclosure</a>, followed closely by cookie theft by exit nodes and tracking by
+    adservers (see the <a href="design/index.html#adversary">Torbutton Adversary
+    Model</a> for more information). However, with Torbutton installed in tandem
+    and always enabled, it is possible to configure FoxyProxy securely (though it
+    is tricky). Since FoxyProxy's 'Patterns' mode only applies to specific urls,
+    and not to an entire tab, setting FoxyProxy to only send specific sites
+    through Tor will still allow adservers (whose hosts don't match your filters) to learn your real IP. Worse, when
+    sites use offsite logging services such as Google Analytics, you will
+    still end up in their logs with your real IP. Malicious exit nodes can also
+    cooperate with sites to inject images into pages that bypass your filters.
+    Setting FoxyProxy to only send certain URLs via Non-Tor is much more secure in
+    this regard, but be very careful with the filters you allow. For example,
+    something as simple as allowing *google* to go via Non-Tor will still cause you to end up
+    in all the logs of all websites that use Google Analytics!  See
+    <a href="http://foxyproxy.mozdev.org/faq.html#privacy-01">this question</a> on
+    the FoxyProxy FAQ for more information.
+     </p></li>
+    </ol>
+    
+    <a id="recommendedextensions"></a>
+    <strong><a class="anchor" href="#recommendedextensions">Which Firefox extensions do you recommend?</a></strong>
+    <ol>
+     <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a>
+    	<p>
+    Mentioned above, this extension allows more fine-grained referrer spoofing
+    than Torbutton currently provides. It should break less sites than Torbutton's
+    referrer spoofing option.</p></li>
+    
+     <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a>
+    <p>
+    If you use Tor excessively, and rarely disable it, you probably want to
+    install this extension to minimize the ability of sites to store long term
+    identifiers in your cache. This extension applies same origin policy to the
+    cache, so that elements are retrieved from the cache only if they are fetched
+    from a document in the same origin domain as the cached element.
+    </p></li>
+    
+     <li><a href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better
+    Privacy</a>
+     <p>
+    
+    Better Privacy is an excellent extension that protects you from cookies used
+    by Flash applications, which often persist forever and are not clearable via
+    normal Firefox "Private Data" clearing. Flash and all other plugins are
+    disabled by Torbutton by default, but if you are interested in privacy, you
+    may want this extension to allow you to inspect and automatically clear your
+    Flash cookies for your Non-Tor usage.
+    
+     </p>
+     </li>
+     <li><a href="https://addons.mozilla.org/firefox/addon/1865">AdBlock Plus</a>
+     <p>
+    
+    AdBlock Plus is an excellent addon for removing annoying, privacy-invading,
+    and <a
+    href="http://www.wired.com/techbiz/media/news/2007/11/doubleclick">malware-distributing</a>
+    advertisements from the web. It provides
+    <a href="http://adblockplus.org/en/subscriptions">subscriptions</a> that are
+    continually updated to catch the latest efforts of ad networks to circumvent
+    these filters. I recommend the EasyPrivacy+EasyList combination filter
+    subscription in the Miscellaneous section of the subscriptions page.
+    
+     </p>
+    </li> 
+    <li><a href="https://addons.mozilla.org/firefox/addon/82">Cookie Culler</a>
+     <p>
+    
+    Cookie Culler is a handy extension to give quick access to the cookie manager
+    in Firefox. It also provides the ability to protect certain cookies from
+    deletion, but unfortunately, this behavior does not integrate well with Torbutton. Kory Kirk is working on addressing this for this Google Summer of Code project for 2009.
+    
+     </p>
+     </li>
+    
+     <li><a href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a>
+     <p>
+     Torbutton currently mitigates all known anonymity issues with Javascript.
+     However, if you are concerned about Javascript exploits against your browser
+     or against websites you are logged in to, you may want to use NoScript. It
+     provides the ability to allow Javascript only for particular websites
+     and also provides mechanisms to force HTTPS urls for sites with
+    <a href="http://fscked.org/category/tags/insecurecookies">insecure
+     cookies</a>.<br>
+    
+     It can be difficult to configure such that the most sites will work
+     properly though. In particular, you want to make sure you do not remove
+     the Javascript whitelist for
+     addons.mozilla.org, as extensions are downloaded via http and verified by
+     javascript from the https page.
+    
+     </p></li>
+     <li><a href="https://addons.mozilla.org/en-US/firefox/addon/9727/">Request
+    Policy</a>
+     <p>
+    
+    Request Policy is similar to NoScript in that it requires that you configure
+    which sites are allowed to load content from other domains. It can be very
+    difficult for novice users to configure properly, but it does provide a good
+    deal of protection against ads, injected content, and cross-site request
+    forgery attacks.
+    
+     </p>
+     </li>
+    
+    </ol>
+    
+    <a id="securityissues"></a>
+    <strong><a class="anchor" href="#securityissues">Are there any other issues I should be concerned about?</a></strong>
+    
+    <p>
+    There are a few known security issues with Torbutton (all of which are due to
+    <a href="design/index.html#FirefoxBugs">unfixed
+    Firefox security bugs</a>). The most important for anonymity is that it is
+    possible to unmask the javascript hooks that wrap the Date object to conceal
+    your timezone in Firefox 2, and the timezone masking code does not work at all
+    on Firefox 3. We are working with the Firefox team to fix one of <a
+    href="https://bugzilla.mozilla.org/show_bug.cgi?id=392274">Bug 399274</a> or
+    <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=419598">Bug 419598</a>
+    to address this. In the meantime, it is possible to set the <b>TZ</b>
+    environment variable to <b>UTC</b> to cause the browser to use UTC as your
+    timezone. Under Linux, you can add an <b>export TZ=UTC</b> to the
+    /usr/bin/firefox script, or edit your system bashrc to do the same. Under
+    Windows, you can set either a <a
+    href="http://support.microsoft.com/kb/310519">User or System Environment
+    Variable</a> for TZ via My Computer's properties. In MacOS, the situation is
+    <a
+    href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html#//apple_ref/doc/uid/20002093-BCIJIJBH">a
+    lot more complicated</a>, unfortunately.
+    </p>
+    
+    <p>
+    In addition, RSS readers such as Firefox Livemarks can perform
+    periodic fetches. Due to <a
+    href="https://bugzilla.mozilla.org/show_bug.cgi?id=436250">Firefox Bug
+    436250</a>, there is no way to disable Livemark fetches during Tor. This can
+    be a problem if you have a lot of custom Livemark urls that can give away
+    information about your identity.
+    </p>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>       

@@ -1,0 +1,189 @@
+## translation metadata
+# Revision: $Revision: 22305 $
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor Project: Mac OS X Install Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page home>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/tor-doc-osx>">Mac OS X Client</a>
+  </div> 
+  <div id="maincol"> 
+    <h1>Tor auf Mac OS X als Client betreiben</h1>
+    
+    <p>
+    <b>Diese Anweisungen betreffen den Betrieb von Tor als Client auf Mac
+      OS X. Wenn du für andere Netzwerkverkehr weiterleiten willst, um das
+      Tor-Netzwerk wachsen zu lassen, lies bitte die Anleitung zur <a
+      href="<page docs/tor-doc-relay>">Konfiguration eines Servers</a>.</b>
+    </p>
+    
+    <hr />
+    <a id="installing"></a>
+    <h2><a class="anchor" href="#installing">Schritt Eins: Lade Tor
+      herunter und installiere das Programm</a></h2>
+    
+    <p>Die Installationsdatei für  Mac OS X fasst <a href="<page
+      index>">Tor</a>, <a
+      href="<page projects/vidalia>">Vidalia</a> (eine grafische
+      Oberfläche für Tor), <a href="<page projects/torbutton>">Torbutton</a> und <a
+      href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (ein Proxy)
+      in ein Paket zusammen. Alle Anwendungen sind vorkonfiguriert und
+      sollten direkt nach der Installation laufen. Lade entweder die <a
+      href="../<package-osx-bundle-stable>">stabile</a> oder die <a
+      href="../<package-osx-bundle-alpha>">experimentelle</a> Version
+      herunter. Andere Optionen findest du auf der <a href="<page
+      download/download>">Downloadseite</a> beschrieben.
+    </p>
+    
+    <p>Nachdem du die dmg-Datei runtergeladen hast, klicke doppelt darauf, damit 
+    sie eingebunden wird. Danach sollte sich der Finder mit dem Vidalia-Bundle 
+    öffnen. Die Installation ist ganz einfach, ziehe einfach die Datei in deinem 
+    Anwendungsordner. Optional kannst du noch das "install torbutton" Skript 
+    ausführen. Es installiert dir Torbutton in den Firefox, ansonsten bekommst du 
+    Torbutton auch über das Mozilla Erweiterungsportal wenn du nach "torbutton" 
+    suchst.</p>
+    
+    <p>Wenn du mit dem Installieren beendet ist, kannst du Vidalia
+      starten, indem du das Icon vom Ordner Applications auswählst. Eine
+      dunkle Zwiebel mit einem roten X heißt, dass Tor derzeit
+      abgeschalten ist. Wenn du Start (aus dem Menu Tor ganz oben)
+      anklickst, wird Tor gestartet.
+    </p>
+    
+    <p>Sobald Tor aktiv ist, ändert sich das Icon folgendermaßen:
+    </p>
+    
+    <p><img alt="vidalia running tor"
+      src="../img/screenshot-osx-vidalia.png" border="1" /></p>
+    
+    <p>Polipo ist als Teil des Tor-Paketes mit installiert worden. Das
+      Programm startet automatisch, wenn du den Computer anschaltest. Du
+      musst Polipo nicht konfigurieren. Das wurde bereits während der
+      Installation erledigt.
+    </p>
+    
+    <hr />
+    <a id="using"></a>
+    <h2><a class="anchor" href="#using">Schritt Zwei: Konfiguration der Anwendungen</a></h2>
+    
+    <p>Nachdem Tor und Privoxy installiert sind, musst du deine
+    Anwendungen so anpassen, dass diese Tor nutzen. Wir fangen mit dem
+    Browser an.</p>
+    
+    <p>Du solltest für die beste Sicherheit Tor mit Firefox und Torbutton benutzen.
+    Torbutton ist für dich installiert worden. Klicke auf den roten Knopf <q>Tor
+    Disabled</q>, um Tor zu aktivieren und du bist fertig: </p>
+    
+    <p><img alt="Torbutton plugin for Firefox"
+    src="../img/screenshot-torbutton.png" border="1" /></p>
+    
+    <p>
+    Wenn Firefox auf einem anderen Rechner als Tor laufen
+    soll, schaue dir den <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">Eintrag
+    in der FAQ dazu</a> an.</p>
+    
+    <p>Wir man andere Anwendungen torifiziert, ist in einem
+    <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+    HOWTO</a> beschrieben.
+    </p>
+    
+    <hr />
+    <a id="verify"></a>
+    <h2><a class="anchor" href="#verify">Schritt Drei: Stelle sicher, dass
+    alles funktioniert</a></h2>
+    
+    <p>Du solltest deinen Browser mit Tor benutzen und sicherstellen, dass
+    deine IP-Adresse anonymisiert wird. Klicke auf den
+    <a href="https://check.torproject.org/">Tor-Detektor</a> und sieh
+    nach, ob du Tor nutzt oder nicht.
+    (Wenn die Seite nicht erreichbar ist, du noch andere <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">Vorschläge,
+    wie du es testen kannst.</a>)
+    </p>
+    
+    <p>Solltest du eine Personal Firewall nutzen, die die Verbindungen des
+    Rechners einschränkt, stelle sicher, dass du dich mit dem lokalen Port
+    8118 und 9050 verbinden kannst. Wenn deine Firewall ausgehende
+    Verbindungen blockiert, stelle sicher, dass zumindest Verbindungen zu
+    den Ports 80 und 443 zugelassen werden und schaue dir den <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">Eintrag
+    in der FAQ</a> an.
+    </p>
+    
+    <p>Falls es immer noch nicht funktioniert, beschreibt ein <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">weiterer
+    FAQ-Eintrag, woran es liegen kann</a>.</p>
+    
+    <p>Wenn es denn geht, lerne mehr darüber,
+    <a href="<page download/download>#Warning">was Tor bietet und was nicht</a>.
+    </p>
+    
+    <hr />
+    <a id="server"></a>
+    <a id="relay"></a>
+    <h2><a class="anchor" href="#relay">Schritt Vier: Betreibe einen Server</a></h2>
+    
+    <p>Das Tor-Netzwerk vertraut auf Freiwillige, die Verkehr
+    weiterleiten. Je mehr Leute dies tun, desto schneller wird das Netz
+    werden. Falls du mindestens 20 kilobytes/s in jede Richtung hast, hilf
+    bitte mit einem Server aus. Es gibt viele Einstellungen, die es
+    vereinfachen, einen Tor-Server zu betreiben. Das schliesst die
+    Limitierung der Bandbreite, ExitPolicys und Unterstützung für
+    dynamische IP-Adressen mit ein.</p>
+    
+    <p>Tor-Servern in unterschiedlichsten Orten im Netz macht Tor
+    sicher. Außerdem bietet das auch dir <a
+    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">stärkere
+    Anonymität</a>, denn eine entfernte Seite kann nicht erkennen, ob die
+    Verbindung von dir oder dem Tor-Server kam.</p>
+    
+    <p>Lies mehr bei der <a href="<page docs/tor-doc-relay>">Anleitung für
+    einen Tor-Server</a>.</p>
+    
+    <hr />
+    <a id="uninstall"></a>
+    <h2><a class="anchor" href="#uninstall">Wie du Tor and Privoxy deinstallierst</a></h2>
+    
+    <p>Es gibt zwei Wege das Tor-Bundle zu deinstallieren. Entweder per Finder 
+    oder mittels einem Terminal-basiertem Deinstallationsprogramm. Wenn du Tor 
+    unter OSX deinstallieren willst, hier steht wie es geht:</p>
+    
+    <p>Ändere die Einstellungen in allen Anwendungen so, dass Tor nicht
+       mehr benutzt wird. Dies reicht, um Tor nicht mehr aktiv zu nutzen.</p>
+    
+    <p>Wenn du Tor komplett entfernen willst und dein Zugang die nötigen
+    Adminrechte hat, verfahre folgendermaßen:</p>
+    <ol>
+    <li> Öffne den Finder und klick auf Anwendungen"</li>
+    <li> Ziehe /Anwendungen/Vidalia in den Mülleimer</li>
+    <li> Entferne /Bibliotheken/Torbutton von deinem System</li>
+    <li> Entferne das Vidalia Verzeichniss aus deinem Benutzerordner</li>
+    </ol>
+    
+    <p>Tor, Vidalia und Polipo sind jetzt komplett von deinem System entfernt.</p>
+    
+    <p>Wenn du dich mit der Kommandozeile auskennst, kannst du auch folgendes manuell entfernen:</p>
+    <ul>
+    <li>/Applications/Vidalia.app/</li>
+    <li>/Library/Vidalia/</li>
+    <li>/Library/Torbutton/</li>
+    <li>~/.tor</li>
+    </ul>
+    
+    <hr />
+    
+    <p>Hast du Verbesserungen für das Dokument? Dann sende diese bitte an <a
+    href="<page about/contact>">uns</a>. Danke!</p>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>   
