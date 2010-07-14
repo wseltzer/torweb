@@ -48,7 +48,7 @@ sub translation_get_masterrevision() {
 
 sub translation_get_basedonrevision_langfile($$$) {
 	my ($dir, $lang, $page) = @_;
-	my $translation = getMetadata("$dir/$lang/$page");
+	my $translation = getMetadata("$lang/$dir/$page");
 
 	if (exists $translation->{'Based-On-Revision'}) {
 		return $translation->{'Based-On-Revision'};
@@ -67,7 +67,7 @@ sub translation_current() {
 
 sub file_is_obsolete($$$) {
 	my ($dir, $lang, $page) = @_;
-	my $translation = getMetadata("$dir/$lang/$page");
+	my $translation = getMetadata("$lang/$dir/$page");
 	return (exists $translation->{'Status'} && ($translation->{'Status'} eq 'obsolete'))
 };
 
