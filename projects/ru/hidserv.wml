@@ -242,25 +242,26 @@ href="http://archives.seul.org/or/dev/Aug-2008/msg00025.html">лист расс�
     <a id="Sep08"></a> <a class="anchor" href="#Sep08">Сентябрь 08</a>
   </td>
   <td>
-    <small><em>During the first half of the implementation phase two bugs could
-be fixed that were related to hidden services: the <a
-href="https://trac.torproject.org/projects/tor/ticket/767">first bug</a> has
-already been identified in the design phase and was responsible for an
-unusual high failure rate when making a hidden service available in the
-system; the <a
-href="https://trac.torproject.org/projects/tor/ticket/814">second bug</a>
-was found during the implementation phase and was responsible for failure to
-connect to a working hidden service. Both bugfixes will be included in the
-next unstable version and likely be backported to one of the next stable
-releases.</em></small> <br/> <small><em>The four design changes that were
-proposed as result of the design phase have been implemented in an <a
-href="https://tor-svn.freehaven.net/svn/tor/branches/hidserv-design-changes/">experimental
-branch</a> of the unstable development tree. Early function tests have shown
-that these changes work and provide better (perceived)  performance. This
-needs to be confirmed throughout the next four weeks in internal tests. The
-next goal is to prepare a release of this experimental branch that can be
-given out to beta testers at the beginning of the upcoming testing
-phase.</em></small>
+    <small><em>В течение первой половины фазы внедрения две ошибки, которые
+относились к скрытым сервисам, удалось исправить. <a
+href="http://bugs.noreply.org/flyspray/index.php?do=details&amp;id=767">Первая
+ошибка</a>была идентифицирована еще на стадии разработки и выражалась в
+невероятно высоком проценте сбоев при создании скрытых сервисов в системе,
+<a
+href="http://bugs.noreply.org/flyspray/index.php?id=814&amp;do=details">вторая
+ошибка</a> была найдена во время фазы внедрения, она заключалась в проблеме
+подключения к работающему скрытому сервису. Оба исправления будут включены в
+следующую нестабильную версию. После этого они, скорее всего, будут выпущены
+в одном из следующих стабильных релизов. Четыре структурных изменения,
+которые предлагались в результате фазы разработки были реализованы в <a
+href="https://tor-svn.freehaven.net/svn/tor/branches/hidserv-design-changes/">экспериментальной
+ветке</a> нестабильного дерева развития. Ранние тесты функциональности
+показали, что эти изменения работают и обеспечивают лучший (для восприятия)
+уровень производительности. Это должно будет подтвердиться в течение
+последующих четырех недель, когда будут проводиться внутренние
+тесты. Следующей целью является подготовка релиза этой экспериментальной
+ветви, который затем сможет быть передан бета тестировщикам в начале
+следующей фазы, фазы тестирования.</em></small>
   </td>
 </tr>
 
@@ -296,38 +297,40 @@ href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/155-four-hidde
     <a id="Nov08"></a> <a class="anchor" href="#Nov08">Ноябрь 08</a>
   </td>
   <td>
-    <small><em>The performance improvements that were implemented in the last
-phase have been released in Tor version 0.2.1.7-alpha. Users can download
-this development version from the Tor homepage and test the improvements
-with minimal effort. Further, two bugfixes (<a
-href="https://trac.torproject.org/projects/tor/ticket/767">1</a>, <a
-href="https://trac.torproject.org/projects/tor/ticket/814">2</a>)  that were
-found in the course of this project have been backported to the stable
-branch and will be included with the next stable version
-0.2.0.32.</em></small> <br/> <small><em>The main focus of the past 31 days
-was to perform new measurements to see whether the improvements are
-effective or not.  Measurements were conducted for two days in the time of
-November 6th to 8th. Unfortunately, the Tor network suffered a serious
-problem in this time: An expired directory authority certificate produced
-huge amounts of traffic within the Tor network which <a
-href="http://archives.seul.org/or/talk/Nov-2008/msg00053.html">forced many
-operators to shut down their relays</a>. A second measurement was performed
-between 13th and 15th. The raw data are available <a
-href="http://freehaven.net/~karsten/hidserv/perfdata-2008-11-13.tar.gz">here</a>
-(40 MB). But results show that the overall network performance is still
-worse than in June 2008 when the first hidden service measurements have been
-performed. This becomes visible when comparing requests to the Tor
-directories which have not been affected by the performance improvements and
-which exhibit significantly worse performance than before. The effects of
-performance improvements are visible, but absolute values are not comparable
-at this time. New measurements will be conducted in December in the hope
-that the effects of this problem have mitigated.</em></small> <br/>
-<small><em>Further, there might be a <a
-href="https://trac.torproject.org/projects/tor/ticket/847">bug</a> in the
-way how Tor downloads directory information during bootstrapping. Even
-though this is not related to hidden services, an improvement would benefit
-hidden service publication, too. Part of the work during the upcoming 30
-days will be to investigate this bug.  </em></small>
+    <small><em>Улучшения производительности, которые были сделаны в предыдущей
+фазе, были выпущены в виде версии Tor 0.2.1.7-alpha. Пользователи могут
+скачать эту экспериментальную версию с домашней страницы Tor и
+протестировать улучшения. Более того, две исправленные ошибки  (<a
+href="http://bugs.noreply.org/flyspray/index.php?id=767&amp;do=details">1</a>,
+<a
+href="http://bugs.noreply.org/flyspray/index.php?id=814&amp;do=details">2</a>),
+которые были найдены в течение этого проекта, были внедрены в стабильные
+релизы и будут включены в следующую стабильную версию 0.2.0.32. Главным
+фокусом нашей работы в течение последнего месяца было проведение новых
+измерений с целью определения эффективности внедренных улучшений. Первые
+измерения проводились в течение двух дней с 6 по 8 ноября. К сожалению, в
+сети Tor наблюдалась серьезная проблема в этот период времени: изъятый
+сертификат главной директории привел к сильному увеличению трафика внутри
+сети Tor, что <a
+href="http://archives.seul.org/or/talk/Nov-2008/msg00053.html">заставило
+многих операторов отключить свои ретрансляторы</a>. Вторые замеры
+проводились с 13 по15 ноября. Сырые данные доступны <a
+href="http://freehaven.net/~karsten/hidserv/perfdata-2008-11-13.tar.gz">здесь</a>
+(40Мб). Но результаты показывают, что общая производительность сети все еще
+ниже, чем это было в июне 2008, когда были проведены первые измерения работы
+скрытых сервисов. Это становится явным при сравнении запросов к директориям
+Tor, на которые не повлияли недавние улучшения производительности, и
+эффективность которых значительно хуже, чем была раньше. Эффекты улучшения
+производительности налицо, но абсолютные величины в настоящее время
+несравнимы. Новые замеры будут проведены в декабре с надеждой на то, что мы
+преодолеем эффекты, связанные с данной проблемой.</em></small> <br/>
+<small><em>Более того, возможно есть <a
+href="http://bugs.noreply.org/flyspray/index.php?id=847&amp;do=details">ошибка</a>
+в пути скачивания информации из директорий Tor во время самонастройки. Хотя
+это и не имеет прямого отношения к скрытым сервисам, улучшение позволило бы
+улучшить эффективность публикации скрытых сервисов. Часть запланированной на
+следующие 30 дней работы будет направлена на исследование этой
+ошибки. </em></small>
   </td>
 </tr>
 
@@ -336,43 +339,46 @@ days will be to investigate this bug.  </em></small>
     <a id="Dec08"></a> <a class="anchor" href="#Dec08">Декабрь 08</a>
   </td>
   <td>
-    <small><em>Part of the last 30 days has been used to fix bugs that have
-influenced the previous hidden service measurements. The first <a
-href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">bugfix</a>
-corrects a possible segmentation fault that was very likely responsible for
-a number of failed measurement runs. Another <a
-href="https://trac.torproject.org/projects/tor/ticket/847">bug</a> could be
-explained that lead to significant delays in bootstrapping: Very slow
-directory authorities occupied bootstrapping clients for a long time before
-clients finally gave up and bootstrapped using another authority. As a
-result, the slowest two directory authorities have dedicated more bandwidth
-to their nodes, so that the effect is mitigated. A third <a
-href="https://trac.torproject.org/projects/tor/ticket/874">bug</a> has been
-introduced with the hidden service performance improvements in November; the
-effect was that Tor processes running hidden services would stop advertising
-their service upon reloading their configuration. Further, this bug has
-uncovered that Tor has re-established its introduction points upon
-reloading, which might have affected hidden service stability. This bug has
-been fixed and will be included in the upcoming version
-0.2.1.9-alpha.</em></small> <br/> <small><em>Apart from fixing bugs, new
-measurements have been performed between December 8 and 10. These will very
-likely be the final measurements to compare hidden service performance now
-with the beginning of the project. The data have not been completely
-evaluated, so it is difficult to make a statement about improvements at this
-point. However, a <a
-href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">preliminary
-evaluation</a> shows that service publication times have improved
-significantly. This is a result of Tor clients bootstrapping faster and of
-the performance improvements added in November. In contrast to this, the
-results for establishing a connection to a hidden service are less
-promising. While the improvements added in November seem to have a positive
-effect on performance, some substeps exhibit significantly worse
-performance. One example is fetching hidden service descriptors in order to
-contact a hidden service. A possible explanation is that the sudden increase
-in the number of hidden service directory nodes in September has had a
-negative effect on performance. Part of the work in the final 31 days will
-be to evaluate these data in more detail and make a final conclusion on the
-achievements of this project.</em></small>
+    <small><em>Часть времени за последние 30 дней была использована на
+исправление ошибок, оказавших влияние на производительность при последних
+измерениях. Первое <a
+href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">исправление</a>устраняет
+возможную ошибку сегментации, которая, скорее всего, была причиной ряда
+неудавшихся измерений. Другая <a
+href="https://bugs.torproject.org/flyspray/index.php?id=847&amp;do=details">ошибка
+кода</a> могла обуславливать сильное увеличение задержек при самонастройке:
+очень медленные управления директорией задерживали самонастраивающихся
+клиентов в течение долгого времени, после чего клиенты сдавались и делали
+самонастройку с использованием других управлений. В результате две самые
+медленные управления директории выделяют своим узлам большую полосу
+пропускания, так что эта проблема – исправлена. Третья <a
+href="https://bugs.torproject.org/flyspray/index.php?id=874&amp;do=details">ошибка</a>появилась
+в связи с усовершенствованиями продуктивности скрытых сервисов в
+ноябре. Заключается она в том, что процессы работы скрытых сервисов Tor
+прекращали распространять информацию о своих сервисах, при перезагрузке
+конфигурации. Далее, эта ошибка привела к еще одному открытию. Tor
+пересоздает точки ввода при перезагрузке, что, возможно, повлияло на
+стабильность скрытых сервисов. Эта ошибка была исправлена, исправление
+войдет в следующую экспериментальную версию Tor 0.2.1.9-alpha.</em></small>
+<br/> <small><em>Помимо исправления ошибок, с 8 по 10 декабря были проведены
+новые измерения. Скорее всего, это будут последние измерения с целью
+сравнения эффективности внедренных усовершенствований. Не все данные удалось
+оценить на данный момент, поэтому сейчас трудно делать какие-либо заявления
+касательно внедренных усовершенствований. Однако <a
+href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">предварительная
+оценка</a> показывает, что время публикации сервисов значительно
+улучшилось. Это результат ускорения самонастройки клиента Tor и улучшений
+производительности, добавленных в ноябре. С другой стороны результаты по
+созданию цепочки соединения к скрытому сервису выглядят менее
+многообещающими. Хотя в целом добавленные в ноябре усовершенствования,
+похоже, демонстрируют позитивный эффект на производительность, некоторые
+подэтапы создания соединения все еще далеки от совершенства. Одним из
+примеров является получение дескрипторов скрытого сервиса для подключения к
+нему. Возможным объяснением этого факта мог бы быть резкий рост числа узлов
+директории скрытых сервисов в сентябре, который повлиял на общую
+производительность. Частью работы последнего месяца будет более детальная
+оценка собранных данных и подведение итогов по результатам
+проекта.</em></small>
   </td>
 </tr>
 
