@@ -21,7 +21,7 @@
 TORSVNSTABLE = /path/to/your/tor/stable
 TORGIT = /path/to/your/tor/master/.git
 STABLETAG = tor-0.2.1.26
-DEVTAG = tor-0.2.2.13-alpha
+DEVTAG = tor-0.2.2.14-alpha
 
 WMLBASE = .
 SUBDIRS=docs eff gui torbrowser torbutton tordnsel projects torvm press gettor vidalia
