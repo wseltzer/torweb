@@ -1,22 +1,25 @@
 # Directions for building the website:
 #
-# 1. Clone the Tor git repository, switch to branch maint-0.2.1, and
-# make TORSVNSTABLE point to it: 
+# 1. Clone the Tor git repository, switch to branch release-0.2.1, and
+#    make TORSVNSTABLE point to it:
 #
 # 	git clone git://git.torproject.org/tor/ tor-stable
-# 	cd tor-stable && git checkout maint-0.2.1
+# 	cd tor-stable && git checkout release-0.2.1
 #
 # 2. Clone the Tor git repository again and make TORGIT point to it:
 #
 # 	git clone git://git.torproject.org/tor/ tor
+#
+#    note that you need to either make this a bare repository or point
+#    TORGIT to the .git subdirectory in your clone.
 #
 # 3. Edit include/versions.wmi or others if you like
 # 4. Update STABLETAG and DEVTAG below if there is a new git tag
 # 5. make
 # 6. ./publish
 
-#TORSVNSTABLE = /path/to/your/tor/stable
-#TORGIT = /path/to/your/tor/master
+TORSVNSTABLE = /path/to/your/tor/stable
+TORGIT = /path/to/your/tor/master/.git
 STABLETAG = tor-0.2.1.26
 DEVTAG = tor-0.2.2.13-alpha
 
