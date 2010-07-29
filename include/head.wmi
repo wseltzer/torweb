@@ -69,7 +69,7 @@
 	            $dir = '.' unless defined $dir;
                 
               # translated version
-              if (-e "$(DOCROOT)/$lang/$dir/$base.wml") {
+              if (-e "$(DOCROOT)/$dir/$lang/$base.wml") {
                   printf '<li><a '.$class.' href="%s">%s</a></li>'."\n",
                          stripDotSlashs("$(DOCROOT)/$dir/$base.html.$(LANG)"),$navigation{$key};
               } 
@@ -83,7 +83,7 @@
                 printf '<li><a href="%s">%s</a></li>'."\n", $key, $navigation{$key};
               } else {
                 warn "$WML_SRC_FILENAME has a [page $key] (parses to
-docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$lang/$dir/$base.wml), but that doesn't exist.";
+docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$dir/$lang/$base.wml), but that doesn't exist.";
               }
             }
         }:>
@@ -119,7 +119,7 @@ docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$lang/$dir/$base.wml),
 
 	          $dir = '.' unless defined $dir;
               # try to use a translated version
-              if (-e "$(DOCROOT)/$lang/$dir/$base.wml") {
+              if (-e "$(DOCROOT)/$dir/$lang/$base.wml") {
                   printf '<li class="donate"><a '.$class.' href="%s">%s</a></li>'."\n",
                          stripDotSlashs("$(DOCROOT)/$dir/$base.html.$(LANG)"),$calltoaction{$key};
               } 
@@ -128,7 +128,7 @@ docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$lang/$dir/$base.wml),
               	printf '<li class="donate"><a '.$class.' href="%s">%s</a></li>'."\n",
                   stripDotSlashs("$(DOCROOT)/$dir/$base.html"), $calltoaction{$key};
               } else {
-                warn "$WML_SRC_FILENAME has a [page $key] (parses to docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$lang/$dir/$base.wml), but that doesn't exist.";
+                warn "$WML_SRC_FILENAME has a [page $key] (parses to docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$dir/$lang/$base.wml), but that doesn't exist.";
               }
             }    
           }:>
