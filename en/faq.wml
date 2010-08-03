@@ -719,29 +719,46 @@ Please contact us if you know any others.
 a password at start</a></h3>
 
 <p>
-The Vidalia bundle tries to start Tor itself, while setting a random
-password for the control port of Tor. Vidalia is the GUI that you see in
-front of you with a network map, message log, and control panel amongst
-other things. This control port allows Vidalia to control Tor. The random
-password allows only your Vidalia to control your Tor. There are two
-common situations where Vidalia will prompt for a password:
+Vidalia interacts with the Tor software via Tor's "control port". The
+control port lets Vidalia receive status updates from Tor, request a new
+identity, configure Tor's settings, etc. Each time Vidalia starts Tor,
+Vidalia sets a random password for Tor's control port to prevent other
+applications from also connecting to the control port and potentially
+compromising your anonymity.
+</p>
+
+<p>
+Usually this process of generating and setting a random control password
+happens in the background. There are two common situations, though,
+where Vidalia may prompt you for a password:
 </p>
 
 <ul>
-<li>Vidalia crashes, but leaves Tor running. What happens here is that
-Tor continues running with the last known random password. You re-start
-Vidalia, which generates a new random password, but Vidalia can't talk
-to Tor, because the random passwords are different. One solution is to
-go into your process or task manager, and terminate the Tor process. You
-can then restart Vidalia again, and all will work.</li>
-<li>You set Tor to run as a service. When Tor is set to run as a service,
-it starts up when the system boots up. If you configured Tor to start as a
-service through Vidalia, a random password was set and saved in Tor. When
-you reboot, Tor starts up and uses the random password it saved. You
-login and start up Vidalia. Vidalia attempts to talk to the already
-running Tor. Vidalia generates a random password, but it is different
-than the saved password in the Tor service. You need to reconfigure Tor
-to not be a service. See Tor as a service for more info.</li>
+<li>Vidalia crashed, but left Tor running with the last known random
+password. After you restart Vidalia, it generates a new random password,
+but Vidalia can't talk to Tor, because the random passwords are different.
+<br />
+If the dialog that prompts you for a control password has a Reset button,
+you can click the button and Vidalia will restart Tor with a new random
+control password.
+<br />
+If you do not see a Reset button, or if Vidalia is unable to restart
+Tor for you, you can still fix the problem manually. Simply go into your
+process or task manager, and terminate the Tor process. Then use Vidalia
+to restart Tor and all will work again.
+</li>
+<li>You had previously set Tor to run as a service. When Tor is set to
+run as a service, it starts up when the system boots. If you configured
+Tor to start as a service through Vidalia, a random password was set
+and saved in Tor. When you reboot, Tor starts up and uses the random
+password it saved. You login and start up Vidalia. Vidalia attempts to
+talk to the already running Tor. Vidalia generates a random password,
+but it is different than the saved password in the Tor service.
+<br />
+You need to reconfigure Tor to not be a service. See the FAQ entry on
+<a href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#HowdoIrunmyTorrelayasanNTservice">running Tor as a service</a>
+for more information on how to remove the Tor service.
+</li>
 </ul>
 
 <hr />
