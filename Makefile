@@ -21,7 +21,7 @@
 TORSVNSTABLE = tor-stable
 TORGIT = tor/.git
 STABLETAG = tor-0.2.1.26
-DEVTAG = tor-0.2.2.13-alpha
+DEVTAG = tor-0.2.2.14-alpha
 
 WMLBASE = .
 SUBDIRS =docs eff projects press about download download getinvolved donate
