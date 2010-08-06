@@ -515,10 +515,10 @@ my %m = (
 
         mirror027 => {
             adminContact => "",
-            orgName => " cybervalley ",
-            isoCC => " ",
+            orgName => "cybervalley",
+            isoCC => "IT",
             subRegion => "",
-            region => " ",
+            region => "Italy",
             ipv4 => "True",
             ipv6 => "False",
             loadBalanced => "No",
