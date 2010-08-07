@@ -82,6 +82,28 @@ sub FetchDate {
 # Add new mirrors to the bottom!
 my %m = (
 
+        
+        mirror000 => {
+            adminContact => "coralcdn.org",
+            orgName => "CoralCDN",
+            isoCC => "INT",
+            subRegion => "",
+            region => "INT",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "Yes",
+            httpWebsiteMirror => "http://www.torproject.org.nyud.net/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://www.torproject.org.nyud.net/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+
+        },
+
         mirror001 => {
             adminContact => "BarkerJr AT barkerjr DOT net",
             orgName => "BarkerJr",
