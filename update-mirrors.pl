@@ -456,7 +456,7 @@ my %m = (
 
         mirror021 => {
             adminContact => "",
-            orgName => "",
+            orgName => "India Tor Fans",
             isoCC => "IN",
             subRegion => "",
             region => "IN",
@@ -514,7 +514,7 @@ my %m = (
 
         mirror024 => {
             adminContact => "",
-            orgName => "",
+            orgName => "homosu",
             isoCC => "SE",
             subRegion => "",
             region => "SE",
