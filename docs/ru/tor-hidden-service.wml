@@ -22,8 +22,8 @@
 брандмауэром (не имея внешнего IP-адреса).
 </p>
 
-<p>If you have Tor installed, you can see hidden services in action by visiting
-<a href="http://duskgytldkxiuqc6.onion/">our example hidden service</a>.
+<p>Если у вас уже установлен Tor, Вы можете увидеть скрытые сервисы в действии
+<a href="http://duskgytldkxiuqc6.onion/">на нашем примере</a>.
 </p>
 
 <p>Данное руководство описывает порядок настройки вашего собственного скрытого
@@ -128,12 +128,12 @@ href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">част�
 неактивны. Каждая группа строк содержит строку <var>HiddenServiceDir</var> и
 одну (или более) строку <var>HiddenServicePort</var>:</p>
 <ul>
-<li><var>HiddenServiceDir</var> is a directory where Tor will store information
-about that hidden service.  In particular, Tor will create a file here named
-<var>hostname</var> which will tell you the onion URL.  You don't need to
-add any files to this directory. Make sure this is not the same directory as
-the hidserv directory you created when setting up thttpd, as your
-HiddenServiceDir contains secret information!</li>
+<li><var>HiddenServiceDir</var> - каталог, в котором Tor сохранит информацию о
+скрытом сервисе. В частности, в данном каталоге Tor создаст файл с названием
+<var>имя_сервера</var>, которое будет равно URL для Tor. Вручную добавлять
+файлы в этот каталог не требуется. Убедитесь, что это не каталог для
+hidserv, созданный при настройке thttpd, потому что в вашем HiddenServiceDir
+хранится секретная информация!</li>
 <li><var>HiddenServicePort</var> отвечает за назначение виртуального порта
 (т.е. какой порт будет доступен для пользователей) IP-адресу и порту для
 перенаправления соединений к запрошенному виртуальному порту.</li>
@@ -147,11 +147,13 @@ HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
 HiddenServicePort 80 127.0.0.1:5222
 </pre>
 
-<p>You're going to want to change the <var>HiddenServiceDir</var> line, so it
-points to an actual directory that is readable/writeable by the user that
-will be running Tor. The above line should work if you're using the OS X Tor
-package. On Unix, try "/home/username/hidden_service/" and fill in your own
-username in place of "username". On Windows you might pick:</p>
+<p>Вам, возможно, понадобится изменить значение в строке
+<var>HiddenServiceDir</var>, чтобы она указывала на реально существующую
+папку, в которую разрешено чтение и запись для пользователя, от чьего имени
+запускается Tor. Приведенная строка работоспособна в OS X. В UNIX попробуйте
+"/home/имя_пользователя/hidden_service/", где вместо "имя_пользователя"
+наберите имя Вашего пользователя. В Windows Вы можете использовать следующую
+строку:</p>
 <pre>
 HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
 HiddenServicePort 80 127.0.0.1:5222

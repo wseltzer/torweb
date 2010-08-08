@@ -14,42 +14,83 @@
 <hr />
 
 <p>Każdemu plikowi na <a href="<page download>">naszej stronie pobierania</a>
-towarzyszy plik z tą samą nazwą co paczka i rozszerzeniem ".asc". Na
-przykład aktualna paczka instalacyjna dla Windows:
-<package-win32-bundle-stable-sig>.</p>
+towarzyszy plik z tą samą nazwą co paczka i rozszerzeniem ".asc". Te pliki
+.asc to podpisy GPG. Pozwalają Ci zweryfikować, że plik, który pobrałeś/aś
+jest dokładnie tym, który my wystawiliśmy do pobierania. Na przykład,
+plikowi vidalia-bundle-0.2.1.25-0.2.7.exe towarzyszy
+vidalia-bundle-0.2.1.25-0.2.7.exe.asc.</p>
 
-<p>These .asc files are PGP signatures. They allow you to verify the file
-you've downloaded is exactly the one that we intended you to get.</p>
-
-<p>Oczywiście, musicie mieć nasze klucze PGP w swojej bazie kluczy: jeśli nie
-znacie klucza, nie możecie być pewni, że to naprawdę my podpisujemy. Klucze
-używane przez nas do podpisu to klucze:</p>
+<p>Oczywiście, musicie mieć nasze klucze GPG w swojej bazie kluczy: jeśli nie
+znacie klucza GPG, nie możecie być pewni, że to naprawdę my
+podpisujemy. Klucze używane przez nas do podpisu to:</p>
 <ul>
 <li>Rogera (0x28988BF5) zazwyczaj podpisuje plik z kodem źródłowym.</li>
-<li>Nicka (0x165733EA, lub jego podklucz 0x8D29319A)</li>
-<li>Andrzeja (0x31B0974B)</li>
-<li>Petera (0x94C09C7F, lub jego podklucz 0xAFA44BDD)</li>
-<li>Matta (0x5FA14861)</li>
-<li>Jacoba (0x9D0FACE4)</li>
-<li>Erinn (0x63FEE659) i (0xF1F5C9B5)</li>
+<li>Nicka (0x165733EA, lub jego podklucz 0x8D29319A).</li>
+<li>Andrzeja (0x31B0974B) zazwyczaj podpisuje paczki dla windows i mac.</li>
+<li>Petera (0x94C09C7F, lub jego podklucz 0xAFA44BDD).</li>
+<li>Matta (0x5FA14861).</li>
+<li>Jacoba (0x9D0FACE4).</li>
+<li>Erinn (0x63FEE659) i (0xF1F5C9B5) zazwyczaj podpisuje paczki dla Linuksa.</li>
+<li>Mike'a (0xDDC6C0AD) podpisuje xpi Torbuttona.</li>
+</ul>
+
+<h3>Krok zero: Instalacja GnuPG</h3>
+<hr />
+<p>Musisz mieć zainstalowane GnuPG, zanim będziesz mógł/mogła weryfikować
+podpisy.</p>
+
+<ul>
+<li>Linux: wejdź na <a
+href="http://www.gnupg.org/download/">http://www.gnupg.org/download/</a> lub
+zainstaluj <i>gnupg</i> z systemu zarządzania pakietami.</li>
+<li>Windows: wejdź na <a
+href="http://www.gnupg.org/download/">http://www.gnupg.org/download/</a>.
+Szukaj "version compiled for MS-Windows" ("wersja skompilowana dla
+MS-Windows") pod "Binaries" ("Binaria").</li>
+<li>Mac: wejdź na <a
+href="http://macgpg.sourceforge.net/">http://macgpg.sourceforge.net/</a>.</li>
 </ul>
 
 <h3>Krok pierwszy: Import kluczy</h3>
 <hr />
-<p>Możecie importować klucze także bezpośrednio z GnuPG:</p>
+<p>Kolejnym krokiem jest import klucza. Można to zrobić bezpośrednio z
+GnuPG. Upewnij się, że importujesz właściwy klucz. Na przykład, jeśli
+pobrałeś/aś paczkę dla Windows, musisz zaimportować klucz Andrzeja.</p>
 
-<pre>gpg --keyserver subkeys.pgp.net --recv-keys 0x28988BF5</pre>
+<p><b>Windows:</b></p>
+<p>GnuPG dla Windows jest narzędziem sterowanym linią poleceń i będziesz
+musiał/a używać <i>cmd.exe</i>. Jeśli nie zmienisz swojej zmiennej
+środowiskowej PATH, będziesz musiał/a podawać Windowsowi pełną ścieżkę do
+programu GnuPG. Jeśli zainstalowałeś/aś GnuPG z wartościami domyślnymi,
+ścieżka powinna wyglądać podobnie do <i>C:\Program
+Files\Gnu\GnuPg\gpg.exe</i>.</p>
 
-<p>lub szukać kluczy, wykonując</p>
+<p>Aby zaimportować klucz 0x28988BF5, uruchom <i>cmd.exe</i> i wpisz:</p>
 
-<pre>gpg --keyserver subkeys.pgp.net --search-keys 0x28988BF5</pre>
+<pre>C:\Program Files\Gnu\GnuPg\gpg.exe --recv-keys 0x28988BF5</pre>
 
-<p>a gdy wybierzecie jeden, zostanie on dodany do Waszej bazy kluczy.</p>
+<p><b>Mac and Linux</b></p>
+<p>Gdy masz Maka lub działasz na Linuksie, musisz używać terminala, by
+uruchamiać GnuPG. Użytkownicy Maków mogą znaleźć terminal pod "Applications"
+("Aplikacje"). Jeśli masz Linuksa i używasz Gnome, terminal powinien być pod
+"Applications menu" ("menu Aplikacje") i "Accessories"
+("Akcesoria"). Użytkownicy KDE mogą znaleźć terminal w "Menu" i "System".</p>
+
+<p>Aby zaimportować klucz 0x28988BF5, uruchom terminal i wpisz:</p>
+
+<pre>gpg --recv-keys 0x28988BF5</pre>
 
 <h3>Krok drugi: Sprawdzenie "odcisków palców" (skrótów) kluczy</h3>
 <hr />
-<p>Sprawdźcie odciski palców za pomocą:</p>
+<p>Po zaimportowaniu klucza, powinieneś/aś sprawdzić, że odcisk palca jest
+prawidłowy.</p>
+
+<p><b>Windows:</b></p>
+<pre>C:\Program Files\Gnu\GnuPg\gpg.exe --fingerprint (tu id klucza)</pre>
+
+<p><b>Mac and Linux</b></p>
 <pre>gpg --fingerprint (tu id klucza)</pre>
+
 Odciski palców kluczy powinny być następujące:
 
 <pre>
@@ -102,22 +143,30 @@ sub   1024g/7828F26A 2010-02-03
 
 </pre>
 
-<p>(Oczywiście, jeśli chcecie być naprawdę pewni, że to są nasze prawdziwe
-klucze, powinniście sprawdzić to w innych miejscach lub, nawet lepiej, wejść
-w podpisywanie kluczy i zbudować ścieżkę zaufania do tych kluczy.)</p>
-
 <h3>Krok trzeci: weryfikacja pobranej paczki</h3>
 <hr />
-<p>If you're using GnuPG, then put the .asc and the download in the same
-directory and type "gpg --verify (whatever).asc (whatever)". It will say
-something like "Good signature" or "BAD signature" using the following type
-of command:</p>
+<p> Aby zweryfikować podpis pobranej paczki, musisz pobrać też plik ".asc".</p>
+
+<p>W następujących przykładach, użytkownik Alicja pobiera paczki dla Windows,
+Mac OS X i Linuksa i weryfikuje podpis każdej paczki. Wszystkie pliki są
+zapisywane na pulpicie.</p>
+
+<p><b>Windows:</b></p>
+<pre>C:\Program Files\Gnu\GnuPg\gpg.exe --verify C:\Users\Alice\Desktop\vidalia-bundle-0.2.1.25-0.2.7.exe.asc C:\Users\Alice\Desktop\vidalia-bundle-0.2.1.25-0.2.7.exe</pre>
+
+<p><b>Mac:</b></p>
+<pre>gpg --verify /Users/Alice/vidalia-bundle-0.2.1.25-0.2.7-i386.dmg.asc /Users/Alice/vidalia-bundle-0.2.1.25-0.2.7-i386.dmg</pre>
+
+<p><b>Linux</b></p>
+<pre>gpg --verify /home/Alice/Desktop/tor-0.2.1.25.tar.gz.asc /home/Alice/Desktop/tor-0.2.1.25.tar.gz</pre>
+
+<p>Po weryfikacji GnuPG wyświetli informację w stylu "Good signature"
+("Poprawny podpis") lub "BAD signature" ("NIEPOPRAWNY podpis"). Powinno to
+wyglądać podobnie do tego:</p>
 
 <pre>
-gpg --verify tor-0.1.0.17.tar.gz.asc tor-0.1.0.17.tar.gz
-gpg: Signature made Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
+gpg: Signature made Tue 16 Mar 2010 05:55:17 AM CET using DSA key ID 28988BF5
 gpg: Good signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
-gpg:                 aka "Roger Dingledine &lt;arma@mit.edu&gt;"
 gpg: WARNING: This key is not certified with a trusted signature!
 gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
@@ -125,33 +174,28 @@ Primary key fingerprint: B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
 
 <p>
 Zauważcie, że pojawia się ostrzeżenie, gdyż nie określiliście stopnia
-zaufania do tego użytkownika. Znaczy to, że program zweryfikował, że ten
-podpis został wykonany tym kluczem. To od użytkownika zależy decydowanie,
-czy ten klucz rzeczywiście należy do deweloperów. Najlepszym sposobem jest
-spotkanie się z nimi osobiście i wymiana odcisków palców kluczy GPG. Klucze
-też mogą być podpisywane. Jeśli sprawdzicie klucze Rogera lub Nicka,
-zobaczycie, że inni poświadczyli "sprawdziliśmy, że to jest
-Roger/Nick". Więc jeśli ufasz tej osobie trzeciej, masz stopień zaufania do
-arma/nick.
+zaufania do tego użytkownika. Znaczy to, że GnuPG zweryfikował, że ten
+podpis został wykonany tym kluczem, ale to od użytkownika zależy
+decydowanie, czy ten klucz rzeczywiście należy do dewelopera. Najlepszym
+sposobem jest spotkanie się z nimi osobiście i wymiana odcisków palców
+kluczy.
 </p>
 
-<p>Wszystko to znaczy, że możesz zignorować tę wiadomość lub przyznać poziom
-zaufania.</p>
-
-<p>For your reference, this is an example of a <em>BAD</em> verification. It
-means that the signature and file contents do not match:</p>
+<p>Do Waszej wiadomości, oto jest przykład <em>NIEPRAWIDŁOWEJ</em> (nieudanej)
+weryfikacji. Oznacza ona, że podpis i zawartość pliku nie pasują. W takim
+przypadku, nie powinniście ufać zawartości pliku</p>
 
 <pre>
-gpg --verify tor-0.1.0.17.tar.gz.asc
-gpg: Signature made Wed Feb 23 01:33:29 2005 EST using DSA key ID 28988BF5
+gpg: Signature made Tue 20 Apr 2010 12:22:32 PM CEST using DSA key ID 28988BF5
 gpg: BAD signature from "Roger Dingledine &lt;arma@mit.edu&gt;"
 </pre>
-
-<p>Jeśli zobaczycie taką wiadomość, nie powinniście ufać zawartości pliku.</p>
 
 <p>Jeśli używacie Tora na Debianie, powinniście przeczytać instrukcje o <a
 href="<page docs/debian>#packages">importowaniu tych kluczy do programu
 apt</a>.</p>
+
+<p>Jeśli chcecie dowiedzieć się więcej o GPG, wejdźcie na <a
+href="http://www.gnupg.org/documentation/">http://www.gnupg.org/documentation/</a>.</p>
 
 </div>
 

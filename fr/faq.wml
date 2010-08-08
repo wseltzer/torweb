@@ -49,6 +49,7 @@ avoir un virus ou un spyware ?</a></li>
 
 <p>Utiliser un client Tor:</p>
 <ul>
+<li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at start</a></li>
 <li><a href="#ChooseEntryExit">Puis-je contrôler quels noeuds (ou pays) sont
 utilisés comme point d'entrée ou de sortie ?</a></li>
 </ul>
@@ -732,16 +733,10 @@ Pack Windows:
 <li><a href="<page torbrowser/index>">Le Pack Tor Navigateur</a> pour Windows
 contient un navigateur web pre-configuré et est entièrement autonome de
 manière à ce que vous puissiez le faire tourner sur une clef USB.</li>
-<li><a href="http://www.janusvm.com/tor_vm/">Tor VM</a> est un successeur de
-JanusVM. Il a besoin de vos tests !</li>
 <li><a href="http://janusvm.com/">JanusVM </a> est un noyau Linux et des
 logiciels s'exécutant dans VMWare qui se trouve entre votre ordinateur
 Windows et l'Internet, en vous assurant que votre trafic Internet est
 nettoyé et anonyme.</li>
-<li><a href="http://www.xerobank.com/xB_browser.html">xB Browser</a>,
-anciennement connu sous le nom de Torpark, est un pack pour Win32 contenant
-Firefox+Tor qui peut être installé sur une clef USB. Il a besoin d'une
-machine avec un système d'exploitation Win32.</li>
 </ol>
 
 <p>
@@ -755,12 +750,6 @@ IP. <a href="http://polippix.org/">Information et téléchargement</a>.</li>
 <li>ELE est un LiveCD Linux qui est centré sur les logiciels de protection de la
 vie privée. Il inclus Tor et vous pouvez le télécharger sur <a
 href="http://www.northernsecurity.net/download/ele/">http://www.northernsecurity.net/download/ele/</a>.</li>
-<li>Virtual Privacy Machine est un LiveCD Linux qui inclut Firefox, Privoxy,
-Tor, certains IRC et des applications de messagerie instantanée ainsi qu'un
-ensemble de règles ipchains visant à empêcher le trafic non-Tor de quitter
-accidentellement votre ordinateur. Plus d'informations sur <a
-href="https://wiki.torproject.org/noreply/VirtualPrivacyMachine">
-https://wiki.torproject.org/noreply/VirtualPrivacyMachine</a>.</li>
 <li>Anonym.OS est un LiveCD similaire au précédent, mais est basé sur OpenBSD
 plutôt que Linux pour une sécurité maximale. Il a été conçu pour être
 anonyme et sécurisé à partir de zéro, et possède donc des caractéristiques
@@ -776,6 +765,55 @@ href="http://phantomix.ytternhagen.de/">site web Phantomix</a>.</li>
 <p>
 Merci de nous contacter si vous en connaissez d'autres.
 </p>
+
+<hr /> <a id="VidaliaPassword"></a>
+<h3><a class="anchor" href="#VidaliaPassword">Tor/Vidalia prompts for a password
+at start</a></h3>
+
+<p>
+Vidalia interacts with the Tor software via Tor's "control port". The
+control port lets Vidalia receive status updates from Tor, request a new
+identity, configure Tor's settings, etc. Each time Vidalia starts Tor,
+Vidalia sets a random password for Tor's control port to prevent other
+applications from also connecting to the control port and potentially
+compromising your anonymity.
+</p>
+
+<p>
+Usually this process of generating and setting a random control password
+happens in the background. There are three common situations, though, where
+Vidalia may prompt you for a password:
+</p>
+
+<ol>
+<li>You're already running Vidalia and Tor. For example, this situation can
+happen if you installed the Vidalia bundle and now you're trying to run the
+Tor Browser Bundle. In that case, you'll need to close the old Vidalia and
+Tor before you can run this one.
+</li>
+<li>Vidalia crashed, but left Tor running with the last known random
+password. After you restart Vidalia, it generates a new random password, but
+Vidalia can't talk to Tor, because the random passwords are different.  <br
+/> If the dialog that prompts you for a control password has a Reset button,
+you can click the button and Vidalia will restart Tor with a new random
+control password.  <br /> If you do not see a Reset button, or if Vidalia is
+unable to restart Tor for you, you can still fix the problem
+manually. Simply go into your process or task manager, and terminate the Tor
+process. Then use Vidalia to restart Tor and all will work again.
+</li>
+<li>You had previously set Tor to run as a Windows NT service. When Tor is set
+to run as a service, it starts up when the system boots. If you configured
+Tor to start as a service through Vidalia, a random password was set and
+saved in Tor. When you reboot, Tor starts up and uses the random password it
+saved. You login and start up Vidalia. Vidalia attempts to talk to the
+already running Tor. Vidalia generates a random password, but it is
+different than the saved password in the Tor service.  <br /> You need to
+reconfigure Tor to not be a service. See the FAQ entry on <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#HowdoIrunmyTorrelayasanNTservice">running
+Tor as a Windows NT service</a> for more information on how to remove the
+Tor service.
+</li>
+</ol>
 
 <hr /> <a id="ChooseEntryExit"></a>
 <h3><a class="anchor" href="#ChooseEntryExit">Puis-je contrôler quels noeuds (ou
@@ -953,12 +991,12 @@ c'est juste une question de savoir si votre relais est sur une liste
 publique ou non.
 </p>
 
-<p>Right now, there are a small number of places in the world that filter
-connections to the Tor network. So getting a lot of bridges running right
-now is mostly a backup measure, a) in case the Tor network does get blocked
-somewhere, and b) for people who want an extra layer of security because
-they're worried somebody will recognize that it's a public Tor relay IP
-address they're contacting.
+<p>À l'heure actuelle, il y a peu d'endroits dans le monde où les connexions au
+réseau Tor sont filtrées. Ainsi, faire fonctionner beaucoup de passerelles
+dès maintenant est essentiellement une mesure de sauvegarde, a) dans le cas
+où le réseau Tor est bloqué quelque-part, et b) pour les personnes qui
+veulent une couche supplémentaire de sécurité car elles s'inquiètent que
+quelqu'un reconnaisse qu'ils contactent l'adresse IP d'un noeud public Tor.
 </p>
 
 <p>Alors, faut-il faire tourner un noeud normal ou une passerelle ? Si vous

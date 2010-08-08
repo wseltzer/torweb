@@ -17,17 +17,17 @@
 <hr />
 
 <p>
-Tor Hidden Services allow users to set up anonymous information services,
-like websites, that can only be accessed through the Tor network and are
-protected against identification of the host that runs the services.  The
-most critical limitations of Tor Hidden Services are the time it takes until
-a Hidden Service is registered in the network and the latency of contact
-establishment when accessed by a user.  Due to design issues in the original
-Tor protocol, the connection to a new Hidden Service can take several
-minutes, which leads most users to give up before the connection has been
-established.  Using Tor Hidden Services for direct interactive user-to-user
-communication (e.g. messaging) is nearly impossible due to the high latency
-of Hidden Service circuit setup.
+Usługi ukryte Tora pozwalają użytkownikom na zakładanie anonimowych serwisów
+informacyjnych, np. stron internetowych, które są dostępne tylko przez sieć
+Tora i są chronione przed identyfikacją komputera, na którym takie usługi są
+uruchomione.  Najważniejsze ograniczenia usług ukrytych to: czas potrzebny
+na rejestrację usługi ukrytej w sieci i czas potrzebny na nawiązanie
+połączenia przez użytkownika.  Z powodu spraw projektowych w oryginalnym
+protokole Tora połączenie z usługą ukrytą może trwać kilka minut, przez co
+większość użytkowników rezygnuje przed nawiązaniem połączenia. Używanie
+usług ukrytych do bezpośredniej interaktywnej komunikacji między
+użytkownikami (np. przesyłanie wiadomości) jest niemal niemożliwe z powodu
+długiego czasu tworzenia obwodu do usługi ukrytej.
 </p>
 
 <p>
@@ -228,25 +228,25 @@ mailingową deweloperów</a>.</em></small>
     <a id="Sep08"></a> <a class="anchor" href="#Sep08">Wrzesień 08</a>
   </td>
   <td>
-    <small><em>During the first half of the implementation phase two bugs could
-be fixed that were related to hidden services: the <a
-href="https://trac.torproject.org/projects/tor/ticket/767">first bug</a> has
-already been identified in the design phase and was responsible for an
-unusual high failure rate when making a hidden service available in the
-system; the <a
-href="https://trac.torproject.org/projects/tor/ticket/814">second bug</a>
-was found during the implementation phase and was responsible for failure to
-connect to a working hidden service. Both bugfixes will be included in the
-next unstable version and likely be backported to one of the next stable
-releases.</em></small> <br/> <small><em>The four design changes that were
-proposed as result of the design phase have been implemented in an <a
-href="https://tor-svn.freehaven.net/svn/tor/branches/hidserv-design-changes/">experimental
-branch</a> of the unstable development tree. Early function tests have shown
-that these changes work and provide better (perceived)  performance. This
-needs to be confirmed throughout the next four weeks in internal tests. The
-next goal is to prepare a release of this experimental branch that can be
-given out to beta testers at the beginning of the upcoming testing
-phase.</em></small>
+    <small><em>W czasie pierwszej połowy fazy implementacji naprawiono dwa błędy
+związane z usługami ukrytymi: <a
+href="https://trac.torproject.org/projects/tor/ticket/767">pierwszy błąd</a>
+został odkryty w już fazie projektowania i był odpowiedzialny za wysoki
+odsetek niepowodzeń w czasie udostępniania usługi ukrytej w systemie; <a
+href="https://trac.torproject.org/projects/tor/ticket/814">drugi błąd</a>
+został znaleziony w fazie implementacji i był odpowiedzialny za nieudane
+połączenia do działającej usługi ukrytej. Obie poprawki będą dołączone do
+najbliższej wersji niestabilnej i prawdopodobnie przeniesione do jednej z
+następnych wersji stabilnych.</em></small> <br/> <small><em>Cztery zmiany
+projektu, które zostały zaproponowane jako wynik fazy projektowania, zostały
+zaimplementowane w <a
+href="https://tor-svn.freehaven.net/svn/tor/branches/hidserv-design-changes/">eksperymentalnej
+gałęzi</a> drzewa rozwojowego wersji niestabilnej. Pierwsze testy
+funkcjonalne pokazały, że te zmiany działają i dają lepsze (widoczne)
+osiągi.  To musi być potwierdzone przez następne cztery tygodnie testów
+wewnętrznych.  Kolejnym celem jest przygotowanie wydania tej
+eksperymentalnej gałęzi, które można byłoby dać beta-testerom na początku
+zbliżającej się fazy testów.</em></small>
   </td>
 </tr>
 
@@ -255,24 +255,22 @@ phase.</em></small>
     <a id="Oct08"></a> <a class="anchor" href="#Oct08">Październik 08</a>
   </td>
   <td>
-    <small><em>The implementation phase has been concluded. The bugfixes that
-were found in the past 30 days have been released in developer version <a
+    <small><em>Faza implementacji została zakończona. Poprawki błędów
+znalezionych w ciągu ostatnich 30 dni zostały wydane w wersji rozwojowej <a
 href="http://archives.seul.org/or/talk/Oct-2008/msg00093.html">0.2.1.6-alpha</a>.
-The four design changes that were identified in the design phase have been
-specified in <a
-href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/155-four-hidden-service-improvements.txt">proposal
-155</a>.  Three design changes have been included in the development
-codebase and will automatically be included in the next development
-version. The first two design changes improve connection establishment to a
-hidden service by reducing a timeout from 60 to 30 seconds and by making a
-second attempt in parallel after a delay of 15 seconds. The third design
-change affects publication of a hidden service in the network by advertising
-the service at 5 rather than 3 points in the network in parallel and
-succeeding as soon as 3 points are established. The fourth design change has
-turned out to be rather ineffective, but would add considerable code
-complexity and was therefore dismissed. By now there are no more open
-bugfixes or new designs. All changes are in the development codebase and can
-be tested in the next phase.</em></small>
+Cztery zmiany projektu określone w fazie projektowania zostały zapisane w <a
+href="https://svn.torproject.org/svn/tor/trunk/doc/spec/proposals/155-four-hidden-service-improvements.txt">propozycji
+155</a>.  Trzy zmiany projektu zostały umieszczone w kodzie rozwojowym i
+będą automatycznie dołączone w następnej wersji rozwojowej. Pierwsze dwie
+zmiany poprawiają nawiązywanie połączenia do usługi ukrytej, zmniejszając
+okres czasu z 60 do 30 sekund oraz poprzez wykonanie drugiej próby
+równolegle po 15 sekundach. Trzecia zmiana wpływa na ogłaszanie usługi
+ukrytej w sieci, poprzez przedstawianie usługi w 5 zamiast w 3 punktach
+równolegle, a nawiązanie 3 połączeń wystarczy do pomyślnego zakończenia
+operacji.  Czwarta zmiana okazała się być dość mało wydajna, za to
+zwiększyłaby znacznie złożoność kodu, więc została porzucona. W tej chwili
+nie ma już znanych błędów ani nowych projektów. Wszystkie zmiany są w kodzie
+rozwojowym i mogą być testowane w następnej fazie.</em></small>
   </td>
 </tr>
 
@@ -281,38 +279,36 @@ be tested in the next phase.</em></small>
     <a id="Nov08"></a> <a class="anchor" href="#Nov08">Listopad 08</a>
   </td>
   <td>
-    <small><em>The performance improvements that were implemented in the last
-phase have been released in Tor version 0.2.1.7-alpha. Users can download
-this development version from the Tor homepage and test the improvements
-with minimal effort. Further, two bugfixes (<a
+    <small><em>Usprawnienia zaimplementowane w poprzedniej fazie zostały wydane
+w wersji Tora 0.2.1.7-alpha. Użytkownicy mogą pobrać tę wersję rozwojową ze
+strony Tora i sprawdzić usprawnienia minimalnym wysiłkiem. Ponadto, dwie
+poprawki błędów (<a
 href="https://trac.torproject.org/projects/tor/ticket/767">1</a>, <a
-href="https://trac.torproject.org/projects/tor/ticket/814">2</a>)  that were
-found in the course of this project have been backported to the stable
-branch and will be included with the next stable version
-0.2.0.32.</em></small> <br/> <small><em>The main focus of the past 31 days
-was to perform new measurements to see whether the improvements are
-effective or not.  Measurements were conducted for two days in the time of
-November 6th to 8th. Unfortunately, the Tor network suffered a serious
-problem in this time: An expired directory authority certificate produced
-huge amounts of traffic within the Tor network which <a
-href="http://archives.seul.org/or/talk/Nov-2008/msg00053.html">forced many
-operators to shut down their relays</a>. A second measurement was performed
-between 13th and 15th. The raw data are available <a
-href="http://freehaven.net/~karsten/hidserv/perfdata-2008-11-13.tar.gz">here</a>
-(40 MB). But results show that the overall network performance is still
-worse than in June 2008 when the first hidden service measurements have been
-performed. This becomes visible when comparing requests to the Tor
-directories which have not been affected by the performance improvements and
-which exhibit significantly worse performance than before. The effects of
-performance improvements are visible, but absolute values are not comparable
-at this time. New measurements will be conducted in December in the hope
-that the effects of this problem have mitigated.</em></small> <br/>
-<small><em>Further, there might be a <a
-href="https://trac.torproject.org/projects/tor/ticket/847">bug</a> in the
-way how Tor downloads directory information during bootstrapping. Even
-though this is not related to hidden services, an improvement would benefit
-hidden service publication, too. Part of the work during the upcoming 30
-days will be to investigate this bug.  </em></small>
+href="https://trac.torproject.org/projects/tor/ticket/814">2</a>), które
+znaleziono w trakcie projektu, zostały przeniesione też do gałęzi stabilnej
+i będą dołączone w najbliższej stabilnej wersji 0.2.0.32.</em></small> <br/>
+<small><em>Głównym celem ostatnich 31 dni było przeprowadzenie nowych
+pomiarów, by sprawdzić, czy nowe usprawnienia są efektywne, czy nie. Pomiary
+były prowadzone przez dwa dni, od 6. listopada do 8. listopada. Niestety,
+sieć Tora miała wtedy poważny problem: przedawniony certyfikat centrum
+katalogowego spowodował olbrzymi ruch w sieci Tor, który <a
+href="http://archives.seul.org/or/talk/Nov-2008/msg00053.html">zmusił wielu
+operatorów do wyłączenia swoich przekaźników</a>. Drugi pomiar został
+przeprowadzony między 13. a 15. listopada. Surowe dane są dostępne <a
+href="http://freehaven.net/~karsten/hidserv/perfdata-2008-11-13.tar.gz">tutaj</a>
+(40 MB). Ale wyniki pokazują, że całkowita wydajność sieci jest dalej gorsza
+niż w Czerwcu 2008, gdy dokonano pierwszych pomiarów usług ukrytych. Widać
+to, gdy porównuje się żądania do serwerów katalogowych Tora, na które nie
+wpłynęły usprawnienia i które pokazują znacznie gorszą wydajność niż
+przedtem. Efekty polepszenia wydajności są widoczne, ale wartości
+bezwzględne nie są w tej chwili porównywalne. Nowe pomiary zostaną
+przeprowadzone w grudniu z nadzieją, że efekty tego problemu zostaną
+złagodzone.</em></small> <br/> <small><em>Ponadto, może istnieć <a
+href="https://trac.torproject.org/projects/tor/ticket/847">błąd</a> w
+metodzie, której używa Tor do pobierania informacji katalogowych w czasie
+startu.  Mimo iż nie jest to powiązane z usługami ukrytymi, polepszenie w
+tej kwestii poprawiłoby też publikację usług ukrytych. Część pracy w ciągu
+najbliższych 30 dni będzie poświęcona na zbadanie tego błędu.  </em></small>
   </td>
 </tr>
 
@@ -321,43 +317,44 @@ days will be to investigate this bug.  </em></small>
     <a id="Dec08"></a> <a class="anchor" href="#Dec08">Grudzień 08</a>
   </td>
   <td>
-    <small><em>Part of the last 30 days has been used to fix bugs that have
-influenced the previous hidden service measurements. The first <a
-href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">bugfix</a>
-corrects a possible segmentation fault that was very likely responsible for
-a number of failed measurement runs. Another <a
-href="https://trac.torproject.org/projects/tor/ticket/847">bug</a> could be
-explained that lead to significant delays in bootstrapping: Very slow
-directory authorities occupied bootstrapping clients for a long time before
-clients finally gave up and bootstrapped using another authority. As a
-result, the slowest two directory authorities have dedicated more bandwidth
-to their nodes, so that the effect is mitigated. A third <a
-href="https://trac.torproject.org/projects/tor/ticket/874">bug</a> has been
-introduced with the hidden service performance improvements in November; the
-effect was that Tor processes running hidden services would stop advertising
-their service upon reloading their configuration. Further, this bug has
-uncovered that Tor has re-established its introduction points upon
-reloading, which might have affected hidden service stability. This bug has
-been fixed and will be included in the upcoming version
-0.2.1.9-alpha.</em></small> <br/> <small><em>Apart from fixing bugs, new
-measurements have been performed between December 8 and 10. These will very
-likely be the final measurements to compare hidden service performance now
-with the beginning of the project. The data have not been completely
-evaluated, so it is difficult to make a statement about improvements at this
-point. However, a <a
-href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">preliminary
-evaluation</a> shows that service publication times have improved
-significantly. This is a result of Tor clients bootstrapping faster and of
-the performance improvements added in November. In contrast to this, the
-results for establishing a connection to a hidden service are less
-promising. While the improvements added in November seem to have a positive
-effect on performance, some substeps exhibit significantly worse
-performance. One example is fetching hidden service descriptors in order to
-contact a hidden service. A possible explanation is that the sudden increase
-in the number of hidden service directory nodes in September has had a
-negative effect on performance. Part of the work in the final 31 days will
-be to evaluate these data in more detail and make a final conclusion on the
-achievements of this project.</em></small>
+    <small><em>Część ostatnich 30 dni została wykorzystana na naprawę błędów,
+które wpłynęły na poprzednie pomiary usług ukrytych. Pierwsza <a
+href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">poprawka</a>
+poprawia możliwość pojawienia się naruszenia ochrony pamięci, które bardzo
+prawdopodobnie było odpowiedzialne za pewną liczbę nieudanych prób
+pomiarów. Kolejny <a
+href="https://trac.torproject.org/projects/tor/ticket/847">błąd</a> mógł
+prowadzić do sporych opóźnień w czasie uruchamiania: bardzo wolne serwery
+katalogowe zajmowały uruchamiających się klientów przez długi czas zanim te
+w końcu poddały się i uruchomiły z wykorzystaniem innego serwera. W wyniku
+tego, dwa najwolniejsze serwery katalogowe dały więcej pasma swoim węzłom,
+by złagodzić ten efekt. Trzeci <a
+href="https://trac.torproject.org/projects/tor/ticket/874">błąd</a> został
+wprowadzony do kodu w czasie poprawek wydajności usług ukrytych w
+listopadzie; efektem tego było to, że procesy Tora posiadające uruchomione
+usługi ukryte przestawały o nich informować po przeładowaniu
+konfiguracji. Ponadto, ten błąd odsłonił fakt, że Tor w czasie przeładowania
+ponownie nawiązuje połączenia ze swoimi punktami przedstawiającymi, co mogło
+wpłynąć na stabilność usług ukrytych. Ten błąd został naprawiony i będzie
+dołączony w zbliżającej się wersji 0.2.1.9-alpha.</em></small> <br/>
+<small><em>Poza poprawkami błędów, przeprowadzono nowe pomiary między 8. a
+10. grudnia.  Będą to prawdopodobnie ostateczne pomiary do porównania
+bieżącej wydajności usług ukrytych z tą na początku projektu. Dane nie
+zostały całkowicie ocenione, więc trudno stawiać tezy o wydajności w chwili
+bieżącej. Jednak <a
+href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">wstępna
+ocena</a> pokazuje, że czasy publikacji usług znacznie się polepszyły. Jest
+to wynik szybszego uruchamiania się klientów Tora i polepszeń wydajności
+dodanych w listopadzie. Z drugiej strony, wyniki nawiązywania połączenia z
+usługą ukrytą są mniej obiecujące. Podczas gdy ulepszenia dodane w
+listopadzie zdają się mieć pozytywny wpływ na wydajność, niektóre podkroki
+wykazują znacznie gorszą wydajność.  Jednym z przykładów jest pobieranie
+deskryptorów usług ukrytych w celu skontaktowania się z usługą
+ukrytą. Możliwe wyjaśnienie jest takie, że nagły wzrost liczby węzłów z
+usługami ukrytymi we wrześniu miał negatywny wpływ na wydajność. Część pracy
+w ostatnich 31 dniach będzie polegać na bardziej szczegółowej ocenie tych
+danych i wysnuciu ostatecznego wniosku o osiągnięciach tego
+projektu.</em></small>
   </td>
 </tr>
 

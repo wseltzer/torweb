@@ -51,6 +51,7 @@
 
 <p>Tor Client တစ္ခု အလုပ္လုပ္ျခင္း :</p>
 <ul>
+<li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at start</a></li>
 <li><a href="#ChooseEntryExit">မိမိမွ မည္သည့္ ျဖတ္သန္းရာဆံုမွတ္မ်ား(သို႕မဟုတ္
 ႏုိင္ငံ) သည္ အဝင္/အထြက္ အျဖစ္ အသံုးျပဳသည္ကုိ ထိန္းခ်ဳပ္ႏုိင္ပါသလား ?</a></li>
 </ul>
@@ -762,17 +763,11 @@ Windows ပရုိဂရမ္အစုအစည္း :
 <li>Windows အတြက္ <a href="<page torbrowser/index>">Tor Browser အစုအစည္း</a>သည္
 ၾကိဳတင္ျပင္ဆင္သတ္မွတ္ထားေသာ web browser ပါဝင္၍ USB stick မွ ကိုယ္တိုင္
 အလုပ္လုပ္ႏုိင္ပါသည္။</li>
-<li><a href="http://www.janusvm.com/tor_vm/">Tor VM</a> သည္ JanusVM ကုိ
-ဆက္ခံသူျဖစ္ပါသည္။ သင့္ထံမွ စမ္းသပ္မႈကို လိုအပ္ေနပါသည္။</li>
 <li><a href="http://janusvm.com/">JanusVM</a> သည္ Kinux kernel ျဖစ္ျပီး VMWare
 တြင္ လုပ္ေဆာင္ေသာ ေဆာ့ဝဲျဖစ္ပါသည္။ ၎သည္ Windows ကြန္ပ်ဴတာႏွင့္
 အင္တာနက္အၾကားတြင္ တည္ရွိျပီး သင့္ အင္တာနက္ ပို႕လႊတ္မႈမ်ားသည္
 သန္႕စင္ျပီးျဖစ္ေၾကာင္းႏွင့္ အမည္ဝွက္လုပ္ေဆာင္ျပီးေၾကာင္း ေသခ်ာေစရန္
 လုပ္ေဆာင္ပါသည္။</li>
-<li><a href="http://www.xerobank.com/xB_browser.html">xB Browser</a> သည္ Torpark
-အျဖစ္ သိရွိခဲ့ျပီး ျဖစ္ကာ Firefox ႏွင့္ Tor ေပါင္းစည္းထားကာ USB key တြင္
-ထည့္သြင္းႏုိင္ျပီး Win32 အတြက္အစုအေဝးျဖစ္ပါသည္။ ၎သည္  လက္ခံမည့္ Win32
-လုပ္ေဆာင္မႈစနစ္တစ္ခု လိုအပ္ပါသည္။</li>
 </ol>
 
 <p>
@@ -787,11 +782,6 @@ href="http://polippix.org/">သတင္းအခ်က္အလက္ႏွင�
 အထူးျပဳထားပါသည္။ ၎တြင္ Tor ပါဝင္ျပီး <a
 href="http://www.northernsecurity.net/download/ele/">http://www.northernsecurity.net/download/ele/</a>
 တြင္ download လုပ္ႏုိင္ပါသည္။</li>
-<li>Virtual Privacy Machine is a Linux LiveCD that includes Firefox, Privoxy,
-Tor, some IRC and IM applications, and a set of ipchains rules aimed to
-prevent non-Tor traffic from accidentally leaving your computer. More
-information at <a
-href="https://trac.torproject.org/projects/tor/wiki/VirtualPrivacyMachine">https://trac.torproject.org/projects/tor/wiki/VirtualPrivacyMachine</a>.</li>
 <li>Anonym. OS သည္ အထက္ပါ CD မ်ားကဲ့သုိ႕ LiveCD ျဖစ္သည္။ သို႕ေသာ္ Linux ထက္
 လံုျခံဳမႈအျမင့္မားဆံုး ျဖစ္ေစရန္ OpenBSD အေျခခံထားသည္။ ၎သည္
 အမည္ဝွက္ျခင္းႏွင့္ လံုျခံဳမႈကုိ အေျခခံမွ အျမင့္မားဆံုးအထိ
@@ -811,6 +801,55 @@ href="http://theory.kaos.to/projects.html">Kaos.Theory</a> သို႕
 <p>
 ေက်းဇူးျပဳ၍ သင္အျခား LiveCD မ်ား သိရွိလွ်င္ ကၽြႏု္ပ္တို႕ကို ဆက္သြယ္ပါ။
 </p>
+
+<hr /> <a id="VidaliaPassword"></a>
+<h3><a class="anchor" href="#VidaliaPassword">Tor/Vidalia prompts for a password
+at start</a></h3>
+
+<p>
+Vidalia interacts with the Tor software via Tor's "control port". The
+control port lets Vidalia receive status updates from Tor, request a new
+identity, configure Tor's settings, etc. Each time Vidalia starts Tor,
+Vidalia sets a random password for Tor's control port to prevent other
+applications from also connecting to the control port and potentially
+compromising your anonymity.
+</p>
+
+<p>
+Usually this process of generating and setting a random control password
+happens in the background. There are three common situations, though, where
+Vidalia may prompt you for a password:
+</p>
+
+<ol>
+<li>You're already running Vidalia and Tor. For example, this situation can
+happen if you installed the Vidalia bundle and now you're trying to run the
+Tor Browser Bundle. In that case, you'll need to close the old Vidalia and
+Tor before you can run this one.
+</li>
+<li>Vidalia crashed, but left Tor running with the last known random
+password. After you restart Vidalia, it generates a new random password, but
+Vidalia can't talk to Tor, because the random passwords are different.  <br
+/> If the dialog that prompts you for a control password has a Reset button,
+you can click the button and Vidalia will restart Tor with a new random
+control password.  <br /> If you do not see a Reset button, or if Vidalia is
+unable to restart Tor for you, you can still fix the problem
+manually. Simply go into your process or task manager, and terminate the Tor
+process. Then use Vidalia to restart Tor and all will work again.
+</li>
+<li>You had previously set Tor to run as a Windows NT service. When Tor is set
+to run as a service, it starts up when the system boots. If you configured
+Tor to start as a service through Vidalia, a random password was set and
+saved in Tor. When you reboot, Tor starts up and uses the random password it
+saved. You login and start up Vidalia. Vidalia attempts to talk to the
+already running Tor. Vidalia generates a random password, but it is
+different than the saved password in the Tor service.  <br /> You need to
+reconfigure Tor to not be a service. See the FAQ entry on <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#HowdoIrunmyTorrelayasanNTservice">running
+Tor as a Windows NT service</a> for more information on how to remove the
+Tor service.
+</li>
+</ol>
 
 <hr /> <a id="ChooseEntryExit"></a>
 <h3><a class="anchor" href="#ChooseEntryExit">မိမိမွ မည္သည့္

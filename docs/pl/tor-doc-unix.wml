@@ -12,7 +12,7 @@
 
 <div class="main-column">
 
-<h1>Running the <a href="<page index>">Tor</a> client on Linux/BSD/Unix</h1>
+<h1>Uruchamianie klienta <a href="<page index>">Tora</a> na Linux/BSD/Unix</h1>
 <br />
 
 <p>
@@ -44,9 +44,9 @@ teraz uruchomić Tora poprzez <tt>src/or/tor</tt>, lub możesz uruchomić
 /usr/local, wtedy możesz go uruchamiać po prostu pisząc <tt>tor</tt>.
 </p>
 
-<p>Tor comes configured as a client by default. It uses a built-in default
-configuration file, and most people won't need to change any of the
-settings. Tor is now installed.
+<p>Tor jest domyślnie skonfigurowany jako klient. Używa wbudowanego domyślnego
+pliku konfiguracji i większość użytkowników nie będzie musiała zmieniać
+żadnych ustawień. Tor jest teraz zainstalowany.
 </p>
 
 <hr /> <a id="privoxy"></a> <a id="polipo"></a>
@@ -58,13 +58,15 @@ sieci WWW</a></h2>
 </p>
 
 <p>
-The first step is to set up web browsing. Start by installing <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> from your
-favorite repository. Polipo is a caching web proxy that does http pipelining
-well, so it's well-suited for Tor's latencies. Make sure to get at least
-Polipo 1.0.4, since earlier versions lack the SOCKS support required to use
-Polipo with Tor. You should uninstall privoxy at this point (e.g. apt-get
-remove privoxy or yum remove privoxy), so they don't conflict.
+Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW. Zacznij od
+instalacji <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> ze swojego
+ulubionego repozytorium. Polipo to pośrednik WWW z pamięcią podręczną, który
+dobrze wykonuje HTTP pipelining, więc dobrze pasuje do długich czasów
+oczekiwania w Torze. Pobierz wersję co najmniej Polipo 1.0.4, gdyż w
+poprzednich wersjach brakuje obsługi SOCKS wymaganej do używania Polipo z
+Torem. Powinieneś/aś teraz usunąć Privoxy (np. apt-get remove privoxy lub
+yum remove privoxy), by nie było konfliktów.
 </p>
 
 <p>Po instalacji Polipo (z paczki lub źródeł)  <b>musisz skonfigurować Polipo,
@@ -86,12 +88,13 @@ używają portu 8118, nie powinieneś/aś używać Polipo i Privoxy jednocześni
 Tora</a></h2>
 <br />
 
-<p>After installing Tor and Polipo, you need to configure your applications to
-use them. The first step is to set up web browsing.</p>
+<p>Po instalacji Tora i Polipo musisz skonfigurować swoje aplikacje, by ich
+używały. Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW.</p>
 
-<p>You should use Tor with Firefox and Torbutton, for best safety.  Simply
-install the <a href="https://addons.mozilla.org/firefox/2275/">Torbutton
-plugin</a>, restart your Firefox, and you're all set:
+<p>Powinieneś/aś używać Tora z Firefoksem i Torbuttonem, dla najlepszego
+bezpieczeństwa. Po prostu zainstaluj <a
+href="https://addons.mozilla.org/firefox/2275/">rozszerzenie Torbutton</a>,
+ponownie uruchom Firefoksa i gotowe:
 </p>
 
 <img alt="Rozszerzenie Torbutton dla Firefoksa"
@@ -128,26 +131,27 @@ HOWTO</a>.
 <!--PO4ASHARPBEGIN<a href="http://ipchicken.com/">
 this site</a>PO4ASHARPEND-->
 #to see what IP address it thinks you're using.
-Next, you should try using your browser with Tor and make sure that your IP
-address is being anonymized. Click on <a
-href="https://check.torproject.org/">the Tor detector</a> and see whether it
-thinks you're using Tor or not.  (If that site is down, see <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">this
-FAQ entry</a> for more suggestions on how to test your Tor.)
+Teraz powinieneś/aś spróbować użyć swojej przeglądarki z Torem i upewnić
+się, że Twój adres IP jest anonimizowany. Kliknij na <a
+href="https://check.torproject.org/">wykrywacz Tora</a> i sprawdź, cze jego
+zdaniem używasz Tora czy nie. (Jeśli ta strona akurat nie działa, przeczytaj
+<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">ten
+wpis w FAQ</a>, by poznać więcej sposobów na testowanie swojego Tora.)
 </p>
 
-<p>If you have a personal firewall that limits your computer's ability to
-connect to itself (this includes something like SELinux on Fedora Core 4),
-be sure to allow connections from your local applications to Polipo (local
-port 8118) and Tor (local port 9050). If your firewall blocks outgoing
-connections, punch a hole so it can connect to at least TCP ports 80 and
-443, and then see <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">this
-FAQ entry</a>.  If your SELinux config is not allowing tor or privoxy to run
-correctly, create a file named booleans.local in the directory
-/etc/selinux/targeted.  Edit this file in your favorite text editor and
-insert "allow_ypbind=1".  Restart your machine for this change to take
-effect.
+<p>Jeśli masz zaporę ogniową, która ogranicza możliwości Twojego komputera co
+do łączenia się z samym sobą (wliczając w to coś jak SELinux na Fedora Core
+4), zezwól w niej na połączenia od programów lokalnych do Polipo (port
+lokalny 8118) i Tora (port lokalny 9050). Jeśli zapora blokuje połączenia
+wychodzące, spraw, by można się było połączyć choć z portami 80 i 433, po
+czym przeczytaj <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">ten
+wpis do FAQ</a>. Jeśli Twoja konfiguracja SELinuksa nie pozwala na
+prawidłowe działanie Tora lub Privoxy, utwórz plik o nazwie booleans.local w
+katalogu /etc/selinux/targeted. Wyedytuj ten plik swoim ulubionym edytorem i
+dopisz "allow_ypbind=1". Aby zmiany odniosły efekt, ponownie uruchom
+komputer.
 </p>
 
 <p>Jeśli dalej nie działa, spójrz na <a
