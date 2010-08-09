@@ -49,23 +49,23 @@
 <ul>
 <li><a href="<page torbutton/index>">TorButton</a> это приложение к Firefox,
 которое помогает вам сохранять безопасность во время просмотра
-Интернет-страниц с использованием Tor. Первоначально оно просто подключало и
-отключало ваши прокси-свойства, но сейчас оно работает с <a
-href="https://www.torproject.org/torbutton/design/"> большим числом</a>
-частных рисков на уровне приложения.</li>
+Интернет-страниц с использованием Tor. Первоначально оно просто включало и
+отключало ваш прокси, но сейчас оно устраняет <a
+href="https://www.torproject.org/torbutton/design/"> большое число</a>
+рисков конфиденциальности уровня приложений.</li>
 <li><a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> это
 кеширующий http прокси-сервер, который осуществляет конвейеризацию и
 http/1.1. В основном мы включаем его в Firefox с Torbutton, потому что
 Firefox напрямую все еще <a
 href="https://bugzilla.mozilla.org/show_bug.cgi?id=280661">не может
-справляться</a> с прокси-серверами socks.</li>
-<li><a href="http://www.privoxy.org/">Privoxy</a> - другой fine http
-прокси-сервер, который вы можете использовать между своим Firefox и Tor. Мы
-перешли на Polipo из-за the http/1.1 и поддержки keepalive.</li>
+работать</a> с прокси-серверами socks.</li>
+<li><a href="http://www.privoxy.org/">Privoxy</a> - другой http прокси-сервер,
+который вы можете использовать между своим Firefox и Tor. Мы перешли на
+Polipo из-за поддержки http/1.1 и keepalive.</li>
 <li><a href="http://code.google.com/p/torsocks/">torsocks</a> (основан на его
 предшественнике <a href="http://tsocks.sourceforge.net/">tsocks</a>) - это
 упаковщик Linux / UNIX (но не OS X) для динамичного перемещения системных
-вызовов в вашем приложении теми, которые проходят через Tor.</li>
+вызовов в ваших приложениях на те, которые проходят через Tor.</li>
 <li><a href="http://monkey.org/~dugsong/dsocks/">dsocks</a> - альтернатива
 tsocks, которая работает на OS X / BSD.</li>
 </ul>
@@ -73,13 +73,13 @@ tsocks, которая работает на OS X / BSD.</li>
 <a id="Installers"></a>
 <h3><a class="anchor" href="#Installers">Инсталляторы</a></h3>
 <ul>
-<li>The <a href="http://www.torproject.org/torbrowser/">Tor Browser Bundle</a>
-is a zero-install version of Tor that can be run from the Desktop or a USB
-flash drive. We have TBBs for Windows and Linux, and at some point there
-will be a TBB for Mac OS X.</li>
-<li><a href="<page download-unix>">Debian and RPM repositories</a> contain our
-Debian and RPM packages. We recommend these over most distribution packages
-because they are kept up to date.</li>
+<li><a href="http://www.torproject.org/torbrowser/">Tor Browser Bundle</a> - это
+установочная версия  Tor, которую можно запустить с Рабочего стола или
+USB-флэш носителя. У нас есть TBB для Windows и Linux, и в определенный
+момент появятся TBB для Mac OS X.</li>
+<li><a href="<page download-unix>">Репозитории Debian и RPM</a> содержат наши
+пакеты Debian и RPM. Мы рекомендуем эти пакеты, а не какие-либо другие, так
+как они постоянно обновляются.</li>
 <li>рисунок osx</li>
 <li>torvm</li>
 <li>livecd's: <a href="https://amnesia.boum.org/">Amnesic инкогнито Live
@@ -103,12 +103,12 @@ href="https://data.peertech.org/files/demo/updater/index.html">инсталля�
 <a id="Implementations"></a>
 <h3><a class="anchor" href="#Implementations">Дополнительные разработки Tor</a></h3>
 <ul>
-<li><a href="http://www.torproject.org/docs/android.html.en">Orbot</a> is an
-Android version of Tor that internally depends on the Tor binary.</li>
-<li><a href="http://github.com/brl/JTor.git">JTor</a> is an independent client
-implementation of Tor written in Java.</li>
-<li><a href="http://onioncoffee.sourceforge.net/">OnionCoffee</a> is an outdated
-Tor client implementation in Java.</li>
+<li><a href="http://www.torproject.org/docs/android.html.en">Orbot</a> это
+андроид верися Tor, которая внутренне зависит от бинарного кода Tor.</li>
+<li><a href="http://github.com/brl/JTor.git">JTor</a>- это независимое
+клиентское приложение для Tor, написанное на Java.</li>
+<li><a href="http://onioncoffee.sourceforge.net/">OnionCoffee</a> - это
+устаревшее клиентское приложение Tor, написанное на Java.</li>
 <li>tortunnel</li>
 <li>jap?</li>
 </ul>
@@ -118,19 +118,21 @@ Tor client implementation in Java.</li>
 <ul>
 <li>torstatus</li>
 <li>xenobite's torstatus</li>
-<li><a href="https://check.torproject.org/">check.torproject.org</a> is a
-website that asks TorDNSEL whether a user is using Tor.</li>
-<li>The <a href="https://check.torproject.org/cgi-bin/TorBulkExitList.py">Bulk
-Tor Exit List Exporter</a> is a tool that uses TorDNSEL to export a list of
-possible Tor nodes that might contact a given IP address.</li>
-<li><a href="https://www.torproject.org/tordnsel/">TorDNSEL</a> is an active
-testing, DNS-based list of Tor exit nodes.</li>
+<li><a href="https://check.torproject.org/">check.torproject.org</a> - это
+веб-сайт, который запрашивает у TorDNSEL информацию о том, пользуется ли
+пользователь сервисом Tor.</li>
+<li><a href="https://check.torproject.org/cgi-bin/TorBulkExitList.py">Bulk Tor
+Exit List Exporter</a> - это инструмент, использующий TorDNSEL для экспорта
+списка возможных узлов Tor, которые могли контактировать с заданным
+IP-адресом.</li>
+<li><a href="https://www.torproject.org/tordnsel/">TorDNSEL</a> - это активно
+тестируемый, основанный на DNS список выходных узлов Tor.</li>
 </ul>
 
 <a id="Monitoring"></a>
 <h3><a class="anchor" href="#Monitoring">Мониторинг сети</a></h3>
 <ul>
-<li>weather</li>
+<li>погода</li>
 <li><a href="http://metrics.torproject.org/">Измерительный проект: Измерение
 сети Tor</a></li>
 <li>архивы</li>
@@ -140,16 +142,17 @@ testing, DNS-based list of Tor exit nodes.</li>
 <a id="Performance"></a>
 <h3><a class="anchor" href="#Performance">Работа сети</a></h3>
 <ul>
-<li><a href="https://svn.torproject.org/svn/torperf/trunk/README">TorPerf</a> is
-a little tool that measures Tor's performance as users experience it.
-TorPerf uses a trivial SOCKS client to download files of various sizes over
-the Tor network and notes how long substeps take.</li>
+<li><a href="https://svn.torproject.org/svn/torperf/trunk/README">TorPerf</a> -
+это небольшой инструмент, который измеряет производительность Tor во время
+работы пользователя.  TorPerf использует тривиальный клиент SOCKS для
+скачивания файлов различного размера через сеть Tor и фиксирует, какое время
+на это требуется.</li>
 <li>whytorisslow</li>
 <li>torflow</li>
 <li>bwauthority</li>
 <li>exitscanner</li>
 <li>NLnet <a href="<page projects/hidserv>">Ускорение скрытых сервисов</a></li>
-<li>udp-tor: joel, chris, ian, etc</li>
+<li>udp-tor: joel, chris, ian и т.д.</li>
 <li>NLnet <a href="<page projects/lowbandwidth>">Tor для клиентов с низкой
 полосой пропускания</a></li>
 </ul>
@@ -173,14 +176,15 @@ the Tor network and notes how long substeps take.</li>
 <a id="Infrastructure"></a>
 <h3><a class="anchor" href="#Infrastructure">Инфраструктура</a></h3>
 <ul>
-<li><a href="https://trac.torproject.org/projects/tor">Tor Bug Tracker &amp;
-Wiki</a> based on Trac</li>
-<li><a href="https://blog.torproject.org/">The Tor Blog based on Drupal</a></li>
-<li><a href="https://translation.torproject.org/">The Tor Translation Portal</a>
-based on Pootle</li>
+<li><a href="https://trac.torproject.org/projects/tor">Трэкер ошибок Tor
+Wiki</a>, основанный на Trac</li>
+<li><a href="https://blog.torproject.org/">Блог Tor, основанный на системе
+Drupal</a></li>
+<li><a href="https://translation.torproject.org/">Портал переводов Tor</a>,
+основанный на Pootle</li>
 <li>buildbot https://buildbot.vidalia-project.net/one_line_per_build</li>
 <li>https://data.peertech.org/torbld</li>
-<li><a href="http://www.torproject.org/mirrors.html.en">Tor Mirrors</a></li>
+<li><a href="http://www.torproject.org/mirrors.html.en">Зеркала Tor</a></li>
 <li>rsync</li>
 <li>a nagios?</li>
 <li>git, svn</li>
@@ -190,7 +194,7 @@ based on Pootle</li>
 <a id="HiddenServices"></a>
 <h3><a class="anchor" href="#HiddenServices">Скрытые сервисы</a></h3>
 <ul>
-<li>диаграммы и как они работают</li>
+<li>диаграммы того, как они работают</li>
 <li>tor2web</li>
 <li>onioncat</li>
 <li>shallot</li>
@@ -199,9 +203,9 @@ based on Pootle</li>
 <a id="Other"></a>
 <h3><a class="anchor" href="#Other">Другое</a></h3>
 <ul>
-<li><a href="https://git.torproject.org/puppetor.git/README">PuppeTor</a> is a
-Java framework that facilitates setting up a private Tor network and control
-its Tor processes.</li>
+<li><a href="https://git.torproject.org/puppetor.git/README">PuppeTor</a> Java
+инфраструктура, упрощающая настройку частной сети Tor и контролирование
+процессов Tor.</li>
 <li>torwall</li>
 <li>topf</li>
 <li>nym</li>
