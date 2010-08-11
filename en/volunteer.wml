@@ -238,64 +238,6 @@ resist an adversary even after the adversary knows the design, and
 then trading off censorship resistance with usability and robustness.
 </li>
 
-<!--<li>
-<b>Tuneup Tor!</b>
-<br />
-Priority: <i>Medium to High</i>
-<br />
-Effort Level: <i>Medium to High</i>
-<br />
-Skill Level: <i>High</i>
-<br />
-Likely Mentors: <i>Nick, Roger, Mike, Karsten</i>
-<br />
-Right now, Tor relays measure and report their own bandwidth, and Tor
-clients choose which relays to use in part based on that bandwidth.
-This approach is vulnerable to
-<a href="http://freehaven.net/anonbib/#bauer:wpes2007">attacks where
-relays lie about their bandwidth</a>;
-to address this, Tor currently caps the maximum bandwidth
-it's willing to believe any relay provides.  This is a limited fix, and
-a waste of bandwidth capacity to boot.  Instead,
-Tor should possibly measure bandwidth in a more distributed way, perhaps
-as described in the
-<a href="http://freehaven.net/anonbib/author.html#snader08">"A Tune-up for
-Tor"</a> paper
-by Snader and Borisov. One could use current testing code to
-double-check this paper's findings and verify the extent to which they
-dovetail with Tor as deployed in the wild, and determine good ways to
-incorporate them into their suggestions Tor network without adding too
-much communications overhead between relays and directory
-authorities.
-</li>-->
-
-<li>
-<b>Improving Polipo on Windows</b>
-<br />
-Priority: <i>Medium to High</i>
-<br />
-Effort Level: <i>Medium</i>
-<br />
-Skill Level: <i>Medium</i>
-<br />
-Likely Mentors: <i>Chris</i>
-<br />
-Help port <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> to
-Windows. Example topics to tackle include:
-<ol><li> the ability to asynchronously query name servers, find the
-system nameservers, and manage netbios and dns queries.</li>
-<li> manage events and buffers natively (i.e. in Unix-like OSes,
-Polipo defaults to 25% of ram, in Windows it's whatever the config
-specifies).</li>
-<li> some sort of GUI config and reporting tool, bonus if it has a
-systray icon with right clickable menu options. Double bonus if it's
-cross-platform compatible.</li>
-<li> allow the software to use the Windows Registry and handle proper
-Windows directory locations, such as "C:\Program Files\Polipo"</li>
-</ol>
-</li>
-
 <li>
 <b>Tor Controller Status Event Interface for Vidalia</b>
 <br />
@@ -419,7 +361,7 @@ Likely Mentors: <i>Nathan</i>
 <b>Android OS/C/Linux work:</b> The port of Tor to Android is basically a straight cross-compile to Linux ARM. There has been no work done in looking the optimization of Tor within a mobile hardware environment, on the ARM processor or other Android hardware, or on mobile networks. It should be noted, that even without optimization, Tor is handling the mobile network environment very well, automatically detecting change in IP addresses, reconnecting circuits, etc across switching from 2G to 3G to Wifi, and so forth. 
 </li>
 
-<!--<li>
+<li>
 <b>New Torbutton Features</b>
 <br />
 Priority: <i>Medium</i>
@@ -451,7 +393,7 @@ features that could be added.
 This work would be independent coding in Javascript and the fun world of <a
 href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
 with not too much involvement in the Tor internals.
-</li>-->
+</li>
 
 <!-- <li>
 <b>New Thandy Features</b>
@@ -565,26 +507,6 @@ the outgoing mail that it sends. At some point we should start a new
 push to build a Thunderbird extension similar to Torbutton.
 </li>
 
-<!--<li>
-<b>Intermediate Level Network Device Driver</b>
-<br />
-Priority: <i>Low</i>
-<br />
-Effort Level: <i>High</i>
-<br />
-Skill Level: <i>High</i>
-<br />
-Likely Mentors: <i>Martin</i>
-<br />
-The WinPCAP device driver used by Tor VM for bridged networking does
-not support a number of wireless and non-Ethernet network adapters.
-Implementation of a intermediate level network device driver for win32
-and 64bit would provide a way to intercept and route traffic over such
-networks. This project will require knowledge of and experience with
-Windows kernel device driver development and testing. Familiarity with
-Winsock and Qemu would also be helpful.
-</li>-->
-
 <li>
 <b>Improve Tor Weather</b>
 <br />
@@ -665,77 +587,7 @@ distributions and their packaging mechanisms as well as some C++ development
 experience. Previous experience with Qt is helpful, but not required.
 </li>
 
-<!--<li>
-<b>Tor/Polipo/Vidalia Auto-Update Framework</b>
-<br />
-We're in need of a good authenticated-update framework.
-Vidalia already has the ability to notice when the user is running an
-outdated or unrecommended version of Tor, using signed statements inside
-the Tor directory information. Currently, Vidalia simply pops
-up a little message box that lets the user know they should manually
-upgrade. The goal of this project would be to extend Vidalia with the
-ability to also fetch and install the updated Tor software for the
-user. We should do the fetches via Tor when possible, but also fall back
-to direct fetches in a smart way. Time permitting, we would also like
-to be able to update other
-applications included in the bundled installers, such as Polipo and
-Vidalia itself.
-<br />
-To complete this project, the student will first need to first investigate
-the existing auto-update frameworks (e.g., Sparkle on OS X) to evaluate
-their strengths, weaknesses, security properties, and ability to be
-integrated into Vidalia. If none are found to be suitable, the student
-will design their own auto-update framework, document the design, and
-then discuss the design with other developers to assess any security
-issues. The student will then implement their framework (or integrate
-an existing one) and test it.
-<br />
-A person undertaking this project should have good C++ development
-experience. Previous experience with Qt is helpful, but not required. One
-should also have a good understanding of common security
-practices, such as package signature verification. Good writing ability
-is also important for this project, since a vital step of the project
-will be producing a design document to review and discuss
-with others prior to implementation.
-</li>-->
-
 <li>
-<b>Improving the Tor QA process: Continuous Integration for builds</b>
-<br />
-Priority: <i>Medium</i>
-<br />
-Effort Level: <i>Medium</i>
-<br />
-Skill Level: <i>Medium</i>
-<br />
-Likely Mentors: <i>Erinn</i>
-<br />
-It would be useful to have automated build processes for Windows and
-probably other platforms. The purpose of having a continuous integration
-build environment is to ensure that Windows isn't left behind for any of
-the software projects used in the Tor project or its accompanying.<br />
-Buildbot may be a good choice for this as it appears to support all of
-the platforms Tor does. See the
-<a href="http://en.wikipedia.org/wiki/BuildBot">wikipedia entry for
-buildbot</a>.<br />
-There may be better options and the person undertaking this task should
-evaluate other options. Any person working on this automatic build
-process should have experience or be willing to learn how to build all
-of the respective Tor related code bases from scratch. Furthermore, the
-person should have some experience building software in Windows
-environments as this is the target audience we want to ensure we do not
-leave behind. It would require close work with the Tor source code but
-probably only in the form of building, not authoring.<br />
-Additionally, we need to automate our performance testing for all platforms.
-We've got buildbot (except on Windows &mdash; as noted above) to automate
-our regular integration and compile testing already,
-but we need to get our network simulation tests (as built in torflow)
-updated for more recent versions of Tor, and designed to launch a test
-network either on a single machine, or across several, so we can test
-changes in performance on machines in different roles automatically.
-</li>
-
-<!--<li>
 <b>Usability testing of Tor</b>
 <br />
 Priority: <i>Medium</i>
@@ -750,7 +602,7 @@ Especially the browser bundle, ideally amongst our target demographic.
 That would help a lot in knowing what needs to be done in terms of bug
 fixes or new features. We get this informally at the moment, but a more
 structured process would be better.
-</li>-->
+</li>
 
 <li>
 <b>An authenticating IRC proxy</b>
