@@ -589,6 +589,25 @@ my %m = (
             httpsDistMirror => "https://tor.tomyn.com/dist",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+
+        mirror027 => {
+            adminContact => "",
+            orgName => "mirrors.sykotik.org",
+            isoCC => "RO",
+            subRegion => "",
+            region => "RO",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "ftp://mirrors.sykotik.org/pub/tor/",
+            httpDistMirror => "http://mirrors.sykotik.org/pub/tor/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
