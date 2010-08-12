@@ -12,14 +12,12 @@ use Date::Format;
 # This is Free Software (GPLv3)
 # http://www.gnu.org/licenses/gpl-3.0.txt
 #
-#Contacted
-# http://tor.askapache.com/ HTTP 403 Contacted 20091027
-#
-#CHANGELOG
-#20091003 Code changes to elimiate the need for a trailing slash in addresses for script runtime
-#20091004 Code changes to increase out of date tolerance to 48 hours
-#20091028 Code changes to increase timout to 30 seconds (attempting to resolve "unknown" status'
-#20091028 Code changes to change user agent of script
+# CHANGELOG
+# 20091003 Code changes to elimiate the need for a trailing slash in addresses for script runtime
+# 20091004 Code changes to increase out of date tolerance to 48 hours
+# 20091028 Code changes to increase timout to 30 seconds (attempting to # resolve "unknown" status')
+# 20091028 Code changes to change user agent of script
+# 20100807 Remove dead mirrors.
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
@@ -84,6 +82,28 @@ sub FetchDate {
 # Add new mirrors to the bottom!
 my %m = (
 
+        
+        mirror000 => {
+            adminContact => "coralcdn.org",
+            orgName => "CoralCDN",
+            isoCC => "INT",
+            subRegion => "",
+            region => "INT",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "Yes",
+            httpWebsiteMirror => "http://www.torproject.org.nyud.net/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://www.torproject.org.nyud.net/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+            updateDate => "Unknown",
+
+        },
+
         mirror001 => {
             adminContact => "BarkerJr AT barkerjr DOT net",
             orgName => "BarkerJr",
@@ -94,33 +114,17 @@ my %m = (
             ipv6 => "False",
             loadBalanced => "No",
             httpWebsiteMirror => "http://www.oignon.net/",
-            httpsWebsiteMirror => "https://oignon.net/",
+            httpsWebsiteMirror => "https://www.oignon.net/",
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://www.oignon.net/dist/",
-            httpsDistMirror => "https://oignon.net/dist/",
+            httpsDistMirror => "https://www.oignon.net/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
 
        mirror002 => {
-            adminContact => "operator AT hermetix DOT org",
-            orgName => "Hermetix",
-            isoCC => "CA",
-            subRegion => "QC",
-            region => "North America",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.hermetix.org/",
-            rsyncWebsiteMirror => "",
-            httpDistMirror => "",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
-       mirror003 => {
             adminContact => "",
             orgName => "Boinc",
             isoCC => "CH",
@@ -137,9 +141,9 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror005 => {
+       mirror003 => {
             adminContact => "citizen428 AT gmail DOT com",
-            orgName => "Bbs",
+            orgName => "[[:bbs:]]",
             isoCC => "DE",
             subRegion => "",
             region => "Europe",
@@ -147,14 +151,16 @@ my %m = (
             ipv6 => "False",
             loadBalanced => "Unknown",
             httpWebsiteMirror => "http://tor.blingblingsquad.net/",
+            httpsWebsiteMirror => "https://tor.blingblingsquad.net/",
             ftpWebsiteMirror => "",
             rsyncWebsiteMirror => "",
-            httpDistMirror => "",
+            httpDistMirror => "http://tor.blingblingsquad.net/dist",
+            httpsDistMirror => "https://tor.blingblingsquad.net/dist",
             rsyncDistMirror => "",
             updateDate => "Unknown",
         },
 
-       mirror006 => {
+       mirror004 => {
             adminContact => "doc DOT kuehn AT nexgo DOT de",
             orgName => " spacecowboy ",
             isoCC => " ",
@@ -174,24 +180,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror007 => {
-            adminContact => "cm AT cybermirror DOT org",
-            orgName => "Cybermirror",
-            isoCC => "DE",
-            subRegion => "",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.cybermirror.org/",
-            ftpWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            httpDistMirror => "http://tor.cybermirror.org/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
-       mirror008 => {
+       mirror005 => {
             adminContact => "contact AT algorithmus DOT com",
             orgName => "Spline",
             isoCC => "DE",
@@ -208,7 +197,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-	mirror009 => {
+	    mirror006 => {
             adminContact => "BarkerJr AT barkerjr DOT net",
             orgName => "BarkerJr",
             isoCC => "US",
@@ -228,27 +217,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-	mirror010 => {
-            adminContact => "",
-            orgName => "zuola",
-            isoCC => "CN",
-            subRegion => "",
-            region => "CN",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.zuo.la/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.zuo.la/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
-       mirror011 => {
+       mirror007 => {
             adminContact => "info AT zentrum-der-gesundheit DOT de",
             orgName => "Zentrum der Gesundheit",
             isoCC => "DK",
@@ -265,24 +234,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror012 => {
-            adminContact => "kurt AT miroir-francais DOT fr",
-            orgName => "CRAN",
-            isoCC => "FR",
-            subRegion => "Ile de France",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "",
-            rsyncWebsiteMirror => "rsync://miroir-francais.fr::tor",
-            ftpWebsiteMirror => "ftp://miroir-francais.fr/pub/tor/",
-            httpDistMirror => "http://tor.miroir-francais.fr/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
-       mirror013 => {
+       mirror008 => {
             adminContact => "root AT amorphis DOT eu",
             orgName => "Amorphis",
             isoCC => "NL",
@@ -299,7 +251,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror014 => {
+       mirror009 => {
             adminContact => "mirror AT bit DOT nl",
             orgName => "BIT BV",
             isoCC => "NL",
@@ -316,7 +268,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror015 => {
+       mirror010 => {
             adminContact => "webmaster AT ccc DOT de",
             orgName => "CCC",
             isoCC => "NL",
@@ -333,7 +285,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror016 => {
+       mirror011 => {
             adminContact => "root AT kamagurka DOT org",
             orgName => "Kamagurka",
             isoCC => "NL",
@@ -350,7 +302,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror018 => {
+       mirror012 => {
             adminContact => "evert AT meulie DOT net",
             orgName => "Meulie",
             isoCC => "NO",
@@ -367,44 +319,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror019 => {
-            adminContact => "ghirai AT ghirai DOT com",
-            orgName => "Ghirai",
-            isoCC => "UK",
-            subRegion => "London",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://www.ghirai.com/tor/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
-	mirror020 => {
-            adminContact => "",
-            orgName => "ax",
-            isoCC => "HU",
-            subRegion => "",
-            region => "HU",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.initrd.net/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
-       mirror021 => {
+       mirror013 => {
 	    adminContact => "hostmaster AT zombiewerks DOT com",
             orgName => "TheOnionRouter",
             isoCC => "US",
@@ -421,77 +336,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror022 => {
-            adminContact => "jeroen AT unfix DOT org",
-            orgName => "Unfix",
-            isoCC => "CH",
-            subRegion => "",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "True",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.unfix.org/",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.unfix.org/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
-       mirror023 => {
-            adminContact => "jeroen AT unfix DOT org",
-            orgName => "Sixx",
-            isoCC => "CH",
-            subRegion => "",
-            region => "Europe",
-            ipv4 => "True",
-            ipv6 => "True",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "http://tor.sixxs.net/",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.sixxs.net/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
-       mirror024 => {
-            adminContact => "",
-            orgName => "StrangeCharm",
-            isoCC => "",
-            subRegion => "",
-            region => "FR",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://torproject.the-onion-router.net/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://torproject.the-onion-router.net/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
-
-       mirror025 => {
-            adminContact => "web2005a AT year2005a.wiretapped DOT net",
-            orgName => "Wiretapped",
-            isoCC => "AU",
-            subRegion => "Sydney",
-            region => "Oceania",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Unknown",
-            httpWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "ftp://ftp.mirrors.wiretapped.net/pub/security/cryptography/network/tor/",
-            httpDistMirror => "http://www.mirrors.wiretapped.net/security/cryptography/network/tor/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
-        },
-
-        mirror026 => {
+        mirror014 => {
             adminContact => "tormaster AT xpdm DOT us",
             orgName => "Xpdm",
             isoCC => "US",
@@ -511,12 +356,12 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        mirror027 => {
+        mirror015 => {
             adminContact => "",
-            orgName => " cybervalley ",
-            isoCC => " ",
+            orgName => "cybervalley",
+            isoCC => "IT",
             subRegion => "",
-            region => " ",
+            region => "Italy",
             ipv4 => "True",
             ipv6 => "False",
             loadBalanced => "No",
@@ -531,7 +376,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        mirror028 => {
+        mirror016 => {
             adminContact => "security AT hostoffice DOT hu",
             orgName => "Unknown",
             isoCC => "HU",
@@ -551,7 +396,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        mirror029 => {
+        mirror017 => {
             adminContact => "",
             orgName => "Technica-03",
             isoCC => "UA",
@@ -571,7 +416,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-	mirror030 => {
+	    mirror018 => {
             adminContact => "",
             orgName => "chaos darmstadt",
             isoCC => "DE",
@@ -591,7 +436,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-	mirror031 => {
+	mirror019 => {
             adminContact => "webmaster AT askapache DOT com",
             orgName => "AskApache",
             isoCC => "US",
@@ -611,47 +456,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-	mirror032 => {
-            adminContact => "",
-            orgName => "I'm on the roof",
-            isoCC => "US",
-            subRegion => "",
-            region => "US",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://mirror.imontheroof.com/tor-mirror/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://mirror.imontheroof.com/tor-mirror/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
-	mirror033 => {
-            adminContact => "",
-            orgName => "bullog",
-            isoCC => "CN",
-            subRegion => "",
-            region => "CN",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.bullog.org/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.bullog.org/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
-	mirror034 => {
+	mirror020 => {
             adminContact => " mail AT benjamin-meier DOT info ",
             orgName => "beme it",
             isoCC => "DE",
@@ -661,79 +466,19 @@ my %m = (
             ipv6 => "False",
             loadBalanced => "No",
             httpWebsiteMirror => "http://tor.beme-it.de/",
-            httpsWebsiteMirror => "",
+            httpsWebsiteMirror => "https://tor.beme-it.de/",
             rsyncWebsiteMirror => "rsync://tor.beme-it.de/tor",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.beme-it.de/dist/",
-            httpsDistMirror => "",
+            httpsDistMirror => "https://tor.beme-it.de/dist/",
             rsyncDistMirror => "rsync://tor.beme-it.de/tor/dist",
             hiddenServiceMirror => "",
             updateDate => "Unknown",
         },
 
-	mirror035 => {
+        mirror021 => {
             adminContact => "",
-            orgName => "shizhao",
-            isoCC => "CN",
-            subRegion => "",
-            region => "CN",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.shizhao.org/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.shizhao.org/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
-	mirror036 => {
-            adminContact => "",
-            orgName => "ranyunfei",
-            isoCC => "CN",
-            subRegion => "",
-            region => "CN",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.ranyunfei.com/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.ranyunfei.com/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
-	mirror037 => {
-            adminContact => "",
-            orgName => "wuerkaixi",
-            isoCC => "CN",
-            subRegion => "",
-            region => "CN",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.wuerkaixi.com/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.wuerkaixi.com/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
-        mirror038 => {
-            adminContact => "",
-            orgName => "",
+            orgName => "India Tor Fans",
             isoCC => "IN",
             subRegion => "",
             region => "IN",
@@ -751,26 +496,7 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        mirror039 => {
-            adminContact => "",
-            orgName => "",
-            isoCC => "AT",
-            subRegion => "",
-            region => "LU",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.idnr.at/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.idnr.at/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
-
-        mirror040 => {
+        mirror022 => {
             adminContact => "",
             orgName => "NIIF Institute",
             isoCC => "HU",
@@ -789,7 +515,7 @@ my %m = (
             hiddenServiceMirror => "",
         },
 
-        mirror041 => {
+        mirror023 => {
             adminContact => "sina at accessnow.org",
             orgName => "Access",
             isoCC => "IR",
@@ -808,28 +534,9 @@ my %m = (
             hiddenServiceMirror => "",
         },
 
-        mirror042 => {
-            adminContact => "kovtalex at mail.ru",
-            orgName => "",
-            isoCC => "RU",
-            subRegion => "",
-            region => "RU",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://www.tor.myeveryday.ru/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://www.tor.myeveryday.ru/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
-
-        mirror043 => {
+        mirror024 => {
             adminContact => "",
-            orgName => "",
+            orgName => "homosu",
             isoCC => "SE",
             subRegion => "",
             region => "SE",
@@ -846,7 +553,7 @@ my %m = (
             hiddenServiceMirror => "",
         },
 
-        mirror044 => {
+        mirror025 => {
             adminContact => "margus.random at mail.ee",
             orgName => "CyberSIDE",
             isoCC => "EE",
@@ -865,7 +572,7 @@ my %m = (
             hiddenServiceMirror => "",
         },
 
-        mirror045 => {
+        mirror026 => {
             adminContact => "me_ at tomyn dot com",
             orgName => "tomyn",
             isoCC => "UK",
@@ -880,6 +587,25 @@ my %m = (
             ftpWebsiteMirror => "ftp://tor.tomyn.com",
             httpDistMirror => "http://tor.tomyn.com/dist",
             httpsDistMirror => "https://tor.tomyn.com/dist",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+        },
+
+        mirror027 => {
+            adminContact => "",
+            orgName => "mirrors.sykotik.org",
+            isoCC => "RO",
+            subRegion => "",
+            region => "RO",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "ftp://mirrors.sykotik.org/pub/tor/",
+            httpDistMirror => "http://mirrors.sykotik.org/pub/tor/",
+            httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
         }
