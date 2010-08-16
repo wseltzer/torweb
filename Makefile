@@ -19,7 +19,7 @@
 # FIXME: these are the same
 export TORSVNSTABLE=/home/phobos/onionrouter/onionrouter/tor/
 export TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
-export STABLETAG=tor-0.2.1.26
+export STABLETAG=tor-0.2.2.14-alpha
 export DEVTAG=tor-0.2.2.14-alpha
 
 WMLBASE=.
