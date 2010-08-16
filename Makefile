@@ -17,13 +17,13 @@
 # 6. ./publish
 
 # FIXME: these are the same
-TORSVNSTABLE = /home/phobos/onionrouter/onionrouter/tor/
-TORGIT = /home/phobos/onionrouter/onionrouter/tor.git/.git
-STABLETAG = tor-0.2.1.26
-DEVTAG = tor-0.2.2.14-alpha
+TORSVNSTABLE=/home/phobos/onionrouter/onionrouter/tor/
+TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
+STABLETAG=tor-0.2.1.26
+DEVTAG=tor-0.2.2.14-alpha
 
 WMLBASE = .
-SUBDIRS =docs eff projects press about download download getinvolved donate
+SUBDIRS=docs eff projects press about download download getinvolved donate
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
