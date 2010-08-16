@@ -17,9 +17,8 @@
 # 6. ./publish
 
 # FIXME: these are the same
-#TORSVNSTABLE = tor/stable
-TORSVNSTABLE = tor-stable
-TORGIT = tor/.git
+TORSVNSTABLE = /home/phobos/onionrouter/onionrouter/tor/
+TORGIT = /home/phobos/onionrouter/onionrouter/tor.git/.git
 STABLETAG = tor-0.2.1.26
 DEVTAG = tor-0.2.2.14-alpha
 
