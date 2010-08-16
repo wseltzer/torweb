@@ -22,7 +22,7 @@ TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
 STABLETAG=tor-0.2.1.26
 DEVTAG=tor-0.2.2.14-alpha
 
-WMLBASE = .
+WMLBASE=.
 SUBDIRS=docs eff projects press about download download getinvolved donate
 
 include $(WMLBASE)/Makefile.common

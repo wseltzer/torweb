@@ -24,8 +24,8 @@ LANGS=en
 WMLFILES=$(wildcard $(patsubst %, %/*.wml, $(LANGS)))
 WMIFILES=$(wildcard $(patsubst %, %/*.wmi, $(LANGS)) $(WMLBASE)/include/*.wmi )
 
-HTMLFILES = $(shell perl -le 's,  (.*)/(.*).wml  ,        $$2.html.$$1    ,x, print $$_ for @ARGV' $(WMLFILES))
-DEPFILES  = $(shell perl -le 's,  (.*)/(.*).wml  ,  .deps/$$2.html.$$1.d  ,x, print $$_ for @ARGV' $(WMLFILES))
+HTMLFILES=$(shell perl -le 's,  (.*)/(.*).wml  ,        $$2.html.$$1    ,x, print $$_ for @ARGV' $(WMLFILES))
+DEPFILES=$(shell perl -le 's,  (.*)/(.*).wml  ,  .deps/$$2.html.$$1.d  ,x, print $$_ for @ARGV' $(WMLFILES))
 
 
 all: $(HTMLFILES)
