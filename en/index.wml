@@ -4,55 +4,6 @@
 
 #include "head.wmi" TITLE="Tor Project: Anonymity Online" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
 
-# note, translators will need to translate the javascript below also!
-# also, the script is here so that links are created for the correct language
-<!-- javascript to detect the client and suggest a download link -->
-<script language="javascript" type="text/javascript">
-
-function downloadRedirect() {
-  var destination = "<page download/thankyou>";
-  setTimeout("window.location='"+destination+"'",3000);
-}
-
-function clientSpecificDownload() {
-  document.write('<div id="download" onClick=downloadRedirect()>');
-  var platform = navigator.platform;
-  if (platform === "Win32" || platform === "Win64")
-  {
-    document.write('<a href="dist/tor-browser-<version-torbrowserbundle>_en-US.exe"> \
-        <span class="download-tor">Download <strong>Tor</strong></span><br /> \
-        </a>');
-  }
-  else if (platform === "MacIntel")
-  {
-    document.write('<a href="<package-osx-bundle-stable>"> \
-        <span class="download-tor">Download <strong>Tor</strong></span><br /> \
-        </a>');
-  }
-  else if (platform === "MacPPC")
-  {
-    document.write('<a href="<package-oldosx-bundle-stable>"> \
-        <span class="download-tor">Download <strong>Tor</strong></span><br /> \
-        </a>');
-  }
-  else if (platform === "Linux i686" || platform === "Linux x86_64")
-  {
-    document.write('<a href="<package-source-stable>"> \
-        <span class="download-tor">Download <strong>Tor</strong></span><br /> \
-        </a>');
-  } 
-  else
-  {
-    document.write('<a href="<page download/download>"> \
-        <span class="download-tor">Download <strong>Tor</strong></span><br /> \
-        </a>');
-  }
-
-  document.write('</div>');
-  document.write('<div class="incorrect"><a href="<page download/download>">Not what you\'re using?</a></div>');
-} 
-</script>
- 
 <div id="home">
     <div id="content" class="clearfix">
     	<div id="maincol">
@@ -65,22 +16,15 @@ function clientSpecificDownload() {
         	<h1 class="headline">Anonymity Online</h1>
           <p class="desc">Protect your privacy. Defend yourself against network surveillance and traffic analysis.</p>
 
-          <!-- javascript to detect browser -->
-          <script type="text/javascript">
-              clientSpecificDownload();
-          </script>
-
-          <!-- default to download page -->
-          <noscript>
-          <div id="download">
-          <a href="<page download/download>">
-            <span class="download-tor">Download <strong>Tor</strong></span><br />
-          </a>
-          </div>
-          </noscript>
-
+      <div id="download">
+        <a href="dist/tor-browser-<version-torbrowserbundle>_en-US.exe"> 
+          <span class="download-tor">Download <strong>Tor</strong></span><br /> 
+        </a>
+      </div>
+      <div class="incorrect">
+        <a href="<page download/download>">Not what you are using?</a>
+      </div>
         </div>
-        <!-- END BANNER -->
         <div class="subcol-container clearfix">
           <div class="subcol first">
             <h2>What is Tor?</h2>
