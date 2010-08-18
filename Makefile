@@ -18,8 +18,8 @@
 # 5. make
 # 6. ./publish
 
-TORSVNSTABLE = /path/to/your/tor/stable
-TORGIT = /path/to/your/tor/master/.git
+TORSVNSTABLE = /home/arma/work/onion/git/tor-021
+TORGIT = /home/arma/work/onion/git/tor/.git
 STABLETAG = tor-0.2.1.26
 DEVTAG = tor-0.2.2.14-alpha
 
