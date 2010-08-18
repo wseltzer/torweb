@@ -1,0 +1,111 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 22269 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Vidalia: Debian/Ubuntu Instructions" CHARSET="UTF-8"
+<div class="center">
+
+<div class="main-column">
+
+<a id="debian"></a> <a id="packages"></a>
+<h2><a class="anchor" href="#debian">Vidalia на Ubuntu или Debian</a></h2>
+<br />
+
+<p>
+<b>Не используйте пакеты из репозитория Ubuntu.</b> Они не поддерживаются и
+являются устаревшими. Вы не сможете получать важные обновления компонентов и
+критические обновления.
+</p>
+
+<p>
+Перед загрузкой Vidalia требуется настроить репозиторий Tor. Сначала
+выясните название своего дистрибутива. Если у вас Ubuntu 9.10 или 10.04, то
+это "karmic", 9.04 - это "jaunty", 8.10 - "intrepid", а 8.04 - "hardy". Если
+у Вас Debian Etch - это "etch", и Debian Lenny - это "lenny". Добавьте
+следующую строку в файл <tt>/etc/apt/sources.list</tt>:<br />
+<pre>
+deb     http://deb.torproject.org/torproject.org &lt;ИМЯ_ДИСТРИБУТИВА&gt; main
+</pre>
+где Вы подставляете имя дистрибутива (etch, lenny, sid, karmic, jaunty,
+intrepid, hardy) вместо строки &lt;ИМЯ_ДИСТРИБУТИВА&gt;.
+</p>
+
+<p>
+Добавьте gpg-ключ, используемый для подписи пакетов, с помощью команд
+<pre>
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+</pre>
+Теперь обновите источники и установите Vidalia с помощью команд
+<pre>
+apt-get update
+apt-get install vidalia 
+</pre>
+</p>
+
+<p>
+Теперь Vidalia установлена и запущена. Ознакомьтесь со <a href="<page
+docs/tor-doc-unix>#polipo">следующим шагом</a> руководства "Vidalia на
+Linux/Unix".
+</p>
+
+<p style="font-size: small">
+DNS-запись <code>deb.torproject.org</code> ссылается на множество
+независимых серверов. Если у Вас не получается получить доступ к серверам с
+использованием этого имени, вы моете попробовать одно из следующих имён:
+<code>deb-master.torproject.org</code>, <code>mirror.netcologne.de</code>
+или <code>vidalia.mirror.youam.de</code>.
+</p>
+
+<hr /> <a id="source"></a>
+<h2><a class="anchor" href="#source">Сборка из исходных кодов</a></h2>
+<br />
+
+<p>
+Если Вы хотите собрать свой пакет из исходных кодов, Вам потребуется
+добавить запись <tt>deb-src</tt> в файл <tt>sources.list</tt>.
+<pre>
+deb-src http://deb.torproject.org/torproject.org &lt;ИМЯ_ДИСТРИБУТИВА&gt; main
+</pre>
+Вам также потребуется установить пакеты, необходимые для сборки собственных
+пакетов, а также пакеты, необходимые для сборки Vidalia:
+<pre>
+apt-get install build-essential fakeroot devscripts qt4-dev-tools qt4-designer libqt4-dev g++ cmake
+apt-get build-dep vidalia
+</pre>
+Теперь Вы можете собрать Vidalia в ~/debian-packages:
+<pre>
+mkdir ~/debian-packages; cd ~/debian-packages
+apt-get source vidalia
+cd vidalia-*
+debuild -rfakeroot -uc -us
+cd ..
+</pre>
+Теперь Вы можете установить созданный пакет: 
+<pre>
+sudo dpkg -i vidalia_*.deb
+</pre>
+</p>
+
+<p>
+Теперь Vidalia установлена и запущена. Ознакомьтесь со <a href="<page
+docs/tor-doc-unix>#polipo">следующим шагом</a> руководства "Vidalia на
+Linux/Unix".
+</p>
+
+<hr />
+
+<p>Если у Вас есть предложения по улучшению этого документа, пожалуйста, <a
+href="<page contact>">ознакомьте нас с ними</a>. Спасибо!</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+
+#include <foot.wmi>

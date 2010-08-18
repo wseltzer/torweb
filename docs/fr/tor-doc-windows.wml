@@ -1,0 +1,198 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 21995 $
+# Translation-Priority: 1-high
+#include "head.wmi" TITLE="Tor: MS Windows Install Instructions" CHARSET="UTF-8"
+<div class="center">
+
+<div class="main-column">
+
+<h1>Installer et utiliser le client <a href="<page index>">Tor</a> sous MS
+Windows</h1>
+<br />
+
+<p>
+<b>Notez que ce sont les instructions d'installation pour utiliser le client
+Tor sous MS Windows (2000, XP, Vista, 7, et les éditions Serveur).  Si vous
+voulez installer un relais Tor pour faire grandir le réseau (n'hésitez pas
+!), lisez le guide <a href="<page docs/tor-doc-relay>">Configurer un
+serveur</a>.</b>
+</p>
+
+<p>Freedom House a produit une vidéo qui montre comment installer Tor.  Vous
+pouvez la regarder sur <a
+href="http://media.torproject.org/video/2009-install-and-use-tor.ogv">How to
+install Tor on Windows</a>.  Vous connaissez une meilleure vidéo ou une
+traduite dans votre lague ? Dites-le nous !</p>
+
+<div class="center">
+<p><video id="v1" src="http://media.torproject.org/video/2009-install-and-use-tor.ogv" autobuffer="true" controls="controls"></video></p>
+</div>
+
+<hr /> <a id="installing"></a>
+<h2><a class="anchor" href="#installing">Étape un : Télécharger et installer
+Tor</a></h2>
+<br />
+
+<p>
+L'installateur pour MS Windows contient <a href="<page index>">Tor</a>, <a
+href="<page vidalia/index>">Vidalia</a> (Une interface graphique pour Tor),
+<a href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> (une
+extension pour Mozilla Firefox), et <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (un proxy
+web filtrant) en un seul paquet, avec ces quatres applications
+pré-configurées pour fonctionner ensemble. Téléchargez soit la version <a
+href="../<package-win32-bundle-stable>">stable</a>, soit la version <a
+href="../<package-win32-bundle-alpha>">expérimentale</a> du paquet Windows,
+ou consultez les autres options sur <a href="<page download>">la  page de
+téléchargement</a>. 
+</p>
+
+<img alt="tor installer splash page"
+src="../img/screenshot-win32-installer-splash.png" />
+
+<p>Si vous aviez précédemment installé Tor, Vidalia ou Polipo, vous pouvez
+désélectionner les composants dont vous n'avez pas besoin dans la fenêtre
+présentée ci-dessous.
+</p>
+
+<img alt="select components to install"
+src="../img/screenshot-win32-installer-components.png" />
+
+<p>Une fois que vous aurez terminé l'installation, les composants logiciels que
+vous aurez sélectionnés seront automatiquement démarrés pour vous. 
+</p>
+
+<p>Tor est configuré en client par défaut. Il utilise un fichier de
+configuration par défaut que la majorité des utilisateurs n'ont pas besoin
+de modifier. Tor est maintenant installé.
+</p>
+
+<hr /> <a id="using"></a>
+<h2><a class="anchor" href="#using">Étape deux : Configurer vos applications
+pour qu'elles utilisent Tor</a></h2>
+<br />
+
+<p>Après avoir installé Tor et Polipo, vous devez configurer vos applications
+pour les utiliser. La prochaine action consiste à configurer le navigateur
+web. </p>
+
+<p>Vous devriez utiliser Tor avec Firefox et Torbutton, pour une meilleur
+assurance. Le Pack d'installation installe le <a
+href="https://addons.mozilla.org/firefox/2275/">l'extension Torbutton</a>
+pour vous. Redémarrez votre Firefox et c'est tout : 
+</p>
+
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png" border="1"/> <br />
+
+<p>
+Si vous envisagez de faire tourner Firefox sur un ordinateur différent de
+celui de Tor, consultez <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">l'entrée
+de la FAQ sur comment faire tourner Tor sur un ordinateur différent</a>. 
+</p>
+
+<p>Pour "Torréfier" d'autres application qui savent utiliser des proxys HTTP,
+il suffit de leur indiquer de passer par Polipo (c'est à dire "localhost"
+sur le port "8118"). Pour celles qui utilisent SOCKS directement (messagerie
+instantanée, Jabber, IRC, etc.), vous pouvez les faire passer directement
+par Tor ("localhost", port "9050"), mais regardez d'abord <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">cette
+entrée de la FAQ</a> qui vous dira les risques que cela comporte. Pour les
+applications qui n'utilisent ni SOCKS ni HTTP, jetez un oeil à SocksCap ou à
+<a href="http://www.freecap.ru/eng/">FreeCap</a>. (FreeCap est un logiciel
+libre; SocksCap est propriétaire.)</p>
+
+<p>Pour davantage d'informations sur "comment torréfier d'autres applications",
+regardez <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">le
+HOWTO Torréfaction</a>. 
+</p>
+
+<hr /> <a id="verify"></a>
+<h2><a class="anchor" href="#verify">Étape trois : S'assurer que ça
+fonctionne</a></h2>
+<br />
+
+<p>
+Vérifiez que Vidalia est fonctionel.  Vidalia utilise un petit oignon vert
+pour indiquer que Tor fonctionne ou un oignon gris avec un "X" rouge lorsque
+Tor ne fonctionne pas. Vous pouvez démarrer ou arrêter Tor en effectuant un
+clic-droit sur l'icône de Vidalia dans votre barre des tâches et en
+sélectionnant "Démarrer" ou "Arrêter" depuis le menu présenté ci-dessous:
+</p>
+
+<img alt="Vidalia Tray Icon" src="../img/screenshot-win32-vidalia.png"/>
+
+<p>
+Ensuite, vous devriez essayer votre navigateur web avec Tor activé pour vous
+assurer que votre adresse IP est anonymisée. Cliquez sur le <a
+href="https://check.torproject.org/">Tor detector</a> et voyez si vous
+utilisez bien Tor ou non.  (Si le site n'est pas disponible, regardez cette
+<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">rubrique
+de la FAQ</a> pour trouver d'autres moyens de tester le fonctionnement de
+votre client Tor.) 
+</p>
+
+<p>Si vous avez un pare-feu personnel qui empêche votre ordinateur de se
+connecter à lui-même, assurez-vous d'autoriser les connexions depuis vos
+applications locales vers les ports local "8118" et "9050". Si votre
+pare-feu bloque les connexions sortantes, ouvrez-le un peu, au moins pour
+les ports "TCP 80" et "TCP 443", et ensuite regardez <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">cette
+rubrique de la FAQ</a>. 
+</p>
+
+<p>Si ça ne marche toujours pas, allez-voir <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">cette
+rubrique de la FAQ</a> pour trouver des conseils.</p>
+
+<p>
+Une fois que cela fonctionne, apprenez en plus sur <a href="<page
+download>#Warning">ce que Tor propose et ne propose pas</a>. 
+</p>
+
+<hr /> <a id="server"></a> <a id="relay"></a>
+<h2><a class="anchor" href="#relay">Étape quatre : Configurez Tor en mode
+relais</a></h2>
+<br />
+
+<p>Le réseau Tor repose sur les personnes volontaires pour donner de la bande
+passante. Plus il y aura de personnes qui hébergent des relais Tor, plus le
+réseau Tor sera rapide. Si vous avez au moins 20ko/s symétriques, aidez le
+réseau Tor en configurant votre Tor en mode relais également. Nous avons
+implanté de nombreuses options pour faire que ce ne soit pas une grosse
+contrainte, par exemple la possibilité de fixer la bande-passante utilisée,
+celle de définir les règles de sorties du réseau Tor de manière à limiter
+les risques d'être ennuyé par des plaintes, ainsi que la gestion des
+connexions à adresses IP dynamiques. </p>
+
+<p>C'est le fait d'avoir des relais partout sur internet qui sécurise son
+utilisation. C'est aussi <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">avantageux
+pour son propre anonymat</a> d'héberger un noeud Tor , car les sites
+distants auxquels vous vous connectez personnellement ne pourront pas savoir
+si c'est vous qui vous connectez ou si vous ne faites que relayer les
+connexions d'autres.</p>
+
+<p>Pour plus d'informations, lire le guide : <a href="<page
+docs/tor-doc-relay>">Configurer un relais</a>. </p>
+
+<hr />
+
+<p>Si vous avez des suggestions à faire pour améliorer ce document, <a
+href="<page contact>">envoyez-nous un message</a>. Merci !</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+
+#include <foot.wmi>

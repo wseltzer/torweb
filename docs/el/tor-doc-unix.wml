@@ -1,0 +1,206 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 21798 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: Linux/BSD/Unix Install Instructions" CHARSET="UTF-8"
+<div class="center">
+
+<div class="main-column">
+
+<h1>Εκτέλεση του πελάτη <a href="<page index>">Tor</a> σε Linux/BSD/Unix</h1>
+<br />
+
+<p>
+<b>Σημειώστε ότι αυτές είναι οδηγίες εγκατάστασης για την εκτέλεση του
+προγράμματος/πελάτη Tor. Αν θέλετε να αναμεταδίδετε κυκλοφορία για άλλους
+ώστε να συμβάλλετε στην ανάπτυξη του δικτύου (παρακαλούμε να το κάνετε),
+διαβάστε τον οδηγό <a href="<page docs/tor-doc-relay>">Ρύθμιση ενός
+αναμεταδότη</a>.</b>
+</p>
+
+<hr /> <a id="installing"></a>
+<h2><a class="anchor" href="#installing">Πρώτο βήμα: Λήψη και εγκατάσταση του
+Tor</a></h2>
+<br />
+
+<p>
+Η τελευταία έκδοση του Tor μπορεί να βρεθεί στη σελίδα <a href="<page
+download-unix>">λήψεων</a>. Διαθέτουμε πακέτα για Debian, Red Hat, Gentoo,
+*BSD και άλλα. Αν χρησιμοποιειτε Ubuntu μην χρησιμοποιείτε τα αρχικά πακέτα:
+αντ' αυτών χρησιμοποιείστε <a href="<page docs/debian>#ubuntu">το αποθετήριο
+των deb</a>.
+</p>
+
+<p>Αν κατασκευάζετε τα αρχεία από τον πηγαίο κώδικα, πρώτα εγκαταστήστε το <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a> και βεβαιωθείτε
+ότι έχετε τα openssl και zlib (συμπεριλαμβανομένων και των πακέτων -devel,
+αν υπάρχουν). Μετά εκτελέστε: <br /> <tt>tar xzf
+tor-<version-stable>.tar.gz; cd tor-<version-stable></tt><br />
+<tt>./configure &amp;&amp; make</tt><br />.  Τώρα μπορείτε να τρέξετε το Tor
+από <tt>src/or/tor</tt> ή μπορείτε να εκτελέσετε <tt>make install</tt> (ως
+root, αν είναι αναγκαίο) για να εγκατασταθεί στον κατάλογο /usr/local και
+μετά μπορείτε να το ξεκινήσετε εκτελώντας <tt>tor</tt>.
+</p>
+
+<p>Το Tor είναι προρυθμισμένο ως πελάτης. Χρησιμοποιεί ένα ενσωματωμένο αρχείο
+αρχικών ρυθμίσεων και οι περισσότεροι χρήστες δεν θα χρειαστεί να κάνουν
+αλλαγές. Το Tor είναι τώρα εγκατεστημένο.
+</p>
+
+<hr /> <a id="privoxy"></a> <a id="polipo"></a>
+<h2><a class="anchor" href="#polipo">Δεύτερο βήμα: Εγκατάσταση του Polipo για
+περιήγηση στον Ιστό</a></h2>
+<br />
+
+<p>Μετά την εγκατάσταση του Tor πρέπει να ρυθμίσετε τις εφαρμογές σας ώστε να
+το χρησιμοποιούν.
+</p>
+
+<p>
+Το πρώτο βήμα είναι η ρύθμιση της περιήγησης στον ιστό. Ξεκινήστε
+εγκαθιστώντας το <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> από το
+αποθετήριο της προτίμησής σας. Το Polipo είναι ένας πληρεξουσιος διακομιστής
+ιστού (proxy server) που υποστηρίζει http pipelining και γι' αυτό είναι
+κατάλληλο για τις καθυστερήσεις του Tor.  Βεβαιωθείτε ότι θα παραλάβετε το
+Polipo με έκδοση τουλάχιστον 1.0.4, αφού οι παλαιότερες εκδόσεις δεν
+υποστηρίζουν το πρωτόκολο SOCKS που είναι απαραίτητο για το δίκτυο Tor. Σε
+αυτό το σημείο πρέπει να απεγκαταστήσετε το privoxy (π.χ., apt-get remove
+privoxy ή yum remove privoxy) για να μην υπάρχουν διενέξεις μεταξύ τους.
+</p>
+
+<p>Όταν εγκαταστήσετε το Polipo (είτε από πακέτο ή από τον πηγαίο κώδικα)
+<b>πρέπει να ρυθμίσετε το Polipo ώστε να χρησιμοποιεί το Tor</b>. Κατεβάστε
+τις <a
+href="https://svn.torproject.org/svn/torbrowser/trunk/build-scripts/config/polipo.conf">τις
+ρυθμίσεις του Polipo για το Tor</a> και αντιγράψτε το στην τρέχουσα θέση του
+αρχείου ρυθμίσεων (π.χ., /etc/polipo/config ή ~/.polipo). Πρέπει να
+επανεκκινήσετε το Polipo για να εφαρμοστούν οι αλλαγές.  Για παράδειγμα: <br
+/> <tt>/etc/init.d/polipo restart</tt>.
+</p>
+
+<p>Αντί για το Polipo μπορείτε να χρησιμοποιήσετε το Privoxy με <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">αυτό
+το παράδειγμα ρύθμισης</a>. Αλλά αφού και τα δύο αρχεία ρυθμίσεων
+χρησιμοποιούν την θύρα 8118, δεν πρέπει να εκτελείτε το Polipo και το
+Privoxy ταυτόχρονα.</p>
+
+<hr /> <a id="using"></a>
+<h2><a class="anchor" href="#using">Τρίτο Βημα: Ρυθμίστε τις εφαρμογές σας ώστε
+να χρησιμοποιούν το Tor</a></h2>
+<br />
+
+<p>Μετά την εγκατάσταση των Tor και Polipo πρέπει να ρυθμίσετε τις εφαρμογές
+σας για να τα χρησιμοποιούν. Το πρώτο βήμα είναι η ρύθμιση της περιήγησης
+στον ιστό.</p>
+
+<p>You should use Tor with Firefox and Torbutton, for best safety.  Simply
+install the <a href="https://addons.mozilla.org/firefox/2275/">πρόσθετο
+Torbutton</a>, επανεκκινήστε το Firefox και είστε έτοιμοι.
+</p>
+
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png" border="1"> <br />
+
+<p>
+Αν θέλετε να εκτελείτε τον Firefox σε διαφορετικό υπολογιστή, δείτε <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
+τις οδηγίες του FAQ για την εκτέλεση του Firefox σε διαφορετικό
+υπολογιστή</a>.
+</p>
+
+<p>Για να χρησιμοποιούν το Tor οι άλλες εφαρμογές που υποστηρίζουν
+πληρεξούσιους διακομιστές (proxy) HTTP, ενεργοποιείστε σε αυτές το Polipo
+(δηλαδή, την τοπική θύρα 8118). Για απευθείας χρήση του SOCKS (για άμεσα
+μηνύματα, Jabber, IRC, κλπ) μπορείτε να κατευθύνετε την εφαρμογή σας
+κατευθείαν στο Tor (τοπική θύρα 5050), αλλά διαβάστε <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">αυτή
+την καταχώρηση FAQ</a> για το πώς κάτι τέτοιο μπορεί να αποδειχθεί
+επικίνδυνο. Για εφαρμογές που δεν υποστήριζουν SOCKS ούτε HTTP, διαβάστε το
+<a href="http://tsocks.sourceforge.net/">tsocks</a> ή το <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
+</p>
+
+<p>Για πληροφορίες του τρόπου χρήσης του Tor από άλλες εφαρμογές, διαβάστε το
+<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+HOWTO</a>.
+</p>
+
+<hr /> <a id="verify"></a>
+<h2><a class="anchor" href="#verify">Βήμα Τέταρτο: Βεβαιωθείτε ότι δουλεύει</a></h2>
+<br />
+
+<p>
+<!--PO4ASHARPBEGIN<a href="http://ipchicken.com/">
+this site</a>PO4ASHARPEND-->
+#to see what IP address it thinks you're using.
+Χρησιμοποιείστε τον περιηγητή ιστού με το Tor βεβαιωθείτε ότι η διεύθυνσή
+σας IP είναι ανώνυμη. Κάνετε κλικ στον <a
+href="https://check.torproject.org/">Ανιχνευτή Tor</a> και θα διαπιστώσετε
+αν χρησιμοποιείτε Tor. (Αν η ιστοσελίδα αυτή δεν είναι διαθέσιμη, διαβάστε
+αυτό το <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">FAQ</a>
+για περισσότερες προτάσεις πώς να ελέγξετε το Tor σας.
+</p>
+
+<p>Αν έχετε κάποιο προσωπικό τείχος προστασίας που περιορίζει την δυνατότητα
+σύνδεσης του υπολογιστή στον ίδιο (κάτι σαν το SELinux του Fedora Core 4,
+μεταξύ άλλων), βεβαιωθείτε ότι επιτρέπετε συνδέσεις από τις τοπικές σας
+εφαρμογές προς το Polipo (τοπική θύρα 8118) και το Tor (τοπική θύρα
+9050). Αν το τείχος προστασίας φράσσει τις εξερχόμενες συνδέσεις,
+δημιουργήστε ένα "άνοιγμα" ώστε να μπορεί να συνδέεται τουλάχιστον με τις
+θύρες TCP 80 και 443 και διαβάστε <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">αυτό
+το FAQ</a>. Αν οι ρυθμίσεις του SELinux δεν επιτρέπουν στο tor ή στο privoxy
+να εκτελούνται ορθά, δημιουργήστε ένα αρχείο με όνομα booleans.local στον
+κατάλογο /etc/selinux/targeted. Επεξεργαστείτε το αρχείο αυτό με τον
+συντάκτη κειμένου της αρεσκείας σας και προσθέστε την γραμμή
+"allow_ypbind=1". Επανεκκινήστε τον υπολογιστή σας ώστε να εφαρμοσθούν οι
+αλλαγές.
+</p>
+
+<p>Αν εξακολουθεί να μην δουλεύει, ρίξτε μια ματιά <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">σε
+αυτό το FAQ</a> για συμβουλές.</p>
+
+<hr /> <a id="server"></a> <a id="relay"></a>
+<h2><a class="anchor" href="#relay">Βήμα Πέμπτο: Ρύθμιση ως ενδιάμεσου
+αναμεταδότη</a></h2>
+<br />
+
+<p>Το δίκτυο Tor βασίζεται σε εθελοντές που του παρέχουν εύρος ζώνης. Όσο
+περισσότεροι άνθρωποι εκτελούν ενδιάμεσους αναμεταδότες, τόσο γρηγορότερο θα
+είναι το δίκτυο Tor. Αν διαθέτετε τουλάχιστον 20 kilobytes/second προς κάθε
+κατεύθυνση, βοηθήστε το Tor ρυθμίζοντάς το ώστε να είναι και
+αναμεταδότης. Διαθέτουμε πολλά χαρακτηριστικά που καθιστούν τους
+αναμεταδότες Tor εύκολους και βολικούς, όπως τον περιορισμό του εύρους
+ζώνης, πολιτικές εξόδου ώστε να περιορίζετε την έκθεση σε διαμαρτυρίες κακής
+χρήσης και υποστήριξη δυναμικής διεύθυνσης ΙΡ, μεταξύ άλλων.</p>
+
+<p>Η ύπαρξη αναμεταδοτών σε πολλά σημεία του Διαδικτύου καθιστά το Tor ασφαλές
+για τους χρήστες. <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">Εσείς
+οι ίδιοι θα απολαμβάνετε ισυχρότερη ανωνυμία</a>, αφού οι απομακρυσμένοι
+διαδικτυακοί τόποι δεν μπορούν να γνωρίζουν αν οι συνδέσεις προέρχονται από
+τον υπολογιστή σας ή αναμεταδίδονται από άλλους.</p>
+
+<p>Διαβάστε περισσότερα στον οδηγό μας <a href="<page
+docs/tor-doc-relay>">Ρύθμιση ενός αναμεταδότη</a>.</p>
+
+<hr />
+
+<p>Αν έχετε προτάσεις για την βελτίωση αυτού του εγγράφου, παρακαλούμε να <a
+href="<page contact>">μας τις στείλετε</a>. Ευχαριστούμε!</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+
+#include <foot.wmi>

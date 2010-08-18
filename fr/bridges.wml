@@ -1,0 +1,215 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 22910 $
+# Translation-Priority: 1-high
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h2><a class="anchor" href="#BridgeIntroduction">Tor : Passerelles</a></h2>
+<hr />
+
+<p>
+Les relais-passerelles (ou "passerelles" en plus court) sont des relais Tor
+qui ne sont pas affichés dans l'annuaire principal de Tor. Puisqu'il
+n'existe aucune liste complète publique de ces relais, même si votre FAI
+filtre les connexions vers tous les relais Tor connus, il ne sera pas en
+mesure de bloquer toutes les passerelles. Si vous suspectez que votre accès
+au réseau Tor est bloqué, vous pouvez utiliser la fonction passerelle de
+Tor.
+</p>
+
+<p>
+L'ajout de passerelles à Tor est un pas en avant dans la course à la
+résistance au blocage. Il est parfaitement possible que même si votre FAI
+filtre l'Internet, vous n'ayez pas besoin d'une passerelle pour utiliser
+Tor. Plusieurs programmes de filtrage inspectent les requêtes non chiffrées
+vers l'annuaire Tor, mais à partir de la version 0.2.0.23-rc, Tor utilise
+par défaut des requêtes chiffrées vers l'annuaire. Ce changement implique
+que la majorité des programmes de filtrage ne sont dorénavant plus capables
+de reconnaître les connexions Tor. Ainsi, vous devriez essayer d'utiliser
+Tor sans passerelle d'abord car il est possible que cela fonctionne.
+</p>
+
+<p>
+A noter qu'il est également possible que Tor soit non-opérant pour d'autres
+raisons. La dernière version du <a href="<page torbrowser/index>">"Tout en
+un" Navigateur+Tor </a> pour Windows essaye de vous donner les causes
+possibles des problèmes que Tor rencontre pour se connecter. Vous devriez
+également lire <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">la
+FAQ sur les problèmes de fonctionnement de Tor</a> lorsque ces derniers
+surviennent.  Si vous avez l'intuition que le problème vient d'un bloquage
+évident ou si vous avez envie d'essayer parce que vous n'êtes pas sûr ou
+tout simplement, si vous voulez expérimenter, lisez ce qui
+suit. Assurez-vous d'utiliser la <a href="<page download>#Dev">dernière
+version 0.2.1.x ou 0.2.2.x pour votre plateforme</a>.
+</p>
+
+<p>
+Pour utiliser une passerelle, vous avez besoin d'en localiser une. Ensuite,
+vous aurez besoin de configurer Tor avec n'importe quelle adresse de
+passerelle que vous voulez utiliser. Vous pouvez faire cela avec Vidalia, le
+programme de contrôle de Tor.  Si votre connexion Internet impose
+l'utilisation d'un proxy, vous aurez également besoin de configurer Vidalia
+pour l'utiliser. Si vous ne pensez pas avoir besoin de configurer un proxy
+pour vote connexion Internet, ce que c'est probablement le cas.  Essayez de
+le configurer et si vous  avez des problèmes, n'hésitez pas à nous demander
+de l'aide.
+</p>
+
+<p>Freedom House has produced a video on how to get and use Tor bridges.  You
+can view it at <a href="http://www.youtube.com/thetorproject">Youtube:
+Freedom4Internet</a> or download it <a
+href="http://media.torproject.org/video/2009-using-a-bridge-relay-to-access-tor.ogv">directly</a>.
+Know of a better video, or one translated into your language? Let us know!</p>
+
+<p>
+Pour le moment, vous pouvez accéder à une passerelle en visitant <a
+href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+avec votre navigateur web. Si cette page est filtrée et que vous n'avez pas
+d'autres proxy ou de moyens d'y accéder, il existe <a
+href="#FindingMore">d'autres moyens de trouver des passerelles</a>.
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">Comprendre les passerelles</a></h2>
+<hr />
+
+<p>
+Comme exemple, vous récupérerez une entrée de passerelle qui ressemblera à :
+</p>
+<pre><samp>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
+</pre>
+
+<p>
+Il n'est pas indispensable de comprendre la composition d'une ligne de
+passerelle mais cela peut être utile. Vous pouvez passer ce point si vous le
+désirez.<br /> Le premier élément est l'adresse IP:
+<tt>'141.201.27.48'</tt><br /> Le deuxième élément est le port:
+<tt>'443'</tt><br /> Le troisième élément est l'empreinte qui est
+optionnelle: <tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br />
+</p>
+
+<a id="UsingBridges"></a>
+<h2><a class="anchor" href="#UsingBridges">Utiliser des passerelles avec Tor et
+Vidalia</a></h2>
+<hr />
+
+<p>
+Pour utiliser l'adresse de passerelle ci-dessus, rendez-vous sur la page de
+configuration du Réseau dans Vidalia et cliquer sur "Mon FAI bloque les
+connexions vers le réseau Tor".  Ajouter chaque adresse de passerelle une à
+une sur cette page de configuration en collant l'adresse dans la fenêtre
+"Ajouter une passerelle" et en cliquant sur le signe "+". Voici une image
+d'ajout de passerelle ci-dessous:
+</p>
+
+<br /><br /> <img src="$(IMGROOT)/vidalia-bridges.png" alt="Page de
+configuration réseau de Vidalia" /> <br /><br />
+
+<p>
+Vous pouvez ajouter toutes les adresses de passerelles que vous connaissez
+car plus y en a, plus la connexion sera fiable. Une seule passerelle devrait
+être suffisante pour atteindre le réseau Tor. Mais si vous n'en disposez que
+d'une seule et qu'elle s'éteint, vous serez coupé du réseau Tor.
+</p>
+
+<a id="FindingMore"></a>
+<h2><a class="anchor" href="#FindingMore">Trouver davantage de passerelles pour
+Tor</a></h2>
+<hr />
+
+<p>
+Un autre moyen pour trouver des adresses de passerelles publiques est
+d'envoyer un email à bridges@torproject.org avec la ligne "get bridges"
+incluse dans le corps du message. Vous devrez envoyer cette requête depuis
+un compte gmail, &mdash autrement, il serait trop facile pour un attaquant
+d'utiliser un grand nombre d'adresses email pour collecter toutes les
+adresses de passerelles.  Vous devriez recevoir pratiquement instantanément
+la réponse suivante:
+</p>
+<pre>
+Voici vos relais-passerelles :
+
+ bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+ bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+ bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+</pre>
+<p>
+Une fois que vous aurez reçu le courriel avec les informations de
+passerelles, vous pourrez continuer à configurer Vidalia comme indiqué <a
+href="#UsingBridges">ci-dessus</a>.
+</p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Exécuter une passerelle Tor</a></h2>
+<hr />
+
+<p>
+Si vous désirez apporter votre contribution mais que vous ne pouvez pas
+exécuter un <a href="<page docs/tor-doc-relay>">relais Tor normal</a>, vous
+pouvez faire fonctionner un relais-passerelle à la place. Vous pouvez la
+configurer de la manière suivante :
+<ul>
+<li> editer manuellement a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">votre
+fichier torrc</a> avec les quatre lignes qui suivent:<br />
+<pre><code>
+SocksPort 0
+ORPort 443
+BridgeRelay 1
+Exitpolicy reject *:*
+</code></pre></li>
+<li><a href="<page docs/tor-doc-relay>">ou utiliser Vidalia</a>:<br /> <img
+src="$(IMGROOT)/vidalia-bridges-setup.png" alt="page de configuration du
+Partage dans Vidalia" /></li>
+</ul>
+</p>
+
+<p>Si vous avez au démarrage des erreurs du type: "Could not bind to
+0.0.0.0:443: Permission denied", vous devez utiliser un numéro de port
+ORPort plus élevé (ex: 8080) ou mettre en place <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">des
+translations de port évoluées<a>.
+</p>
+
+<p>
+Lorsqu'il est configuré comme une passerelle, votre serveur n'apparaîtra
+<b>pas</b> dans le réseau public Tor.
+</p>
+
+<p>
+Votre passerelle publiera automatiquement son adresse à l'autorité des
+passerelles qui la redonnera via https ou par email comme cité
+ci-dessus. Vous pouvez également directement indiquer cette adresse à un
+utilisateur: si vous utilisez Vidalia, vous pouvez faire un copier-coller de
+l'adresse de passerelle dans la fenêtre de Configuration. Si vous êtes sous
+Linux ou BSD, vous pouvez créer l'adresse manuellement en utilisant le <a
+href="#Understanding">format ci-dessus</a> (vous trouverez l'empreinte dans
+les fichiers logs de Tor ou dans <tt>/var/lib/tor/fingerprint</tt> suivant
+votre plateforme).
+</p>
+
+<p>
+Si vous désirez en savoir plus d'un point de vue technique sur notre
+spécification de passerelle, vous pouvez lire la <a
+href="<gitglob>doc/spec/bridges-spec.txt">spécification des passerelles
+Tor</a>. Si vous êtes intéressé pour faire tourner une passerelle
+non-publiée ou qui ne respecte pas l'utilisation standard, merci de lire
+cette spécification.
+</p>
+
+  </div>
+
+
+
+#include <foot.wmi>

@@ -1,0 +1,203 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 22910 $
+# Translation-Priority: 1-high
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h2><a class="anchor"  href="#BridgeIntroduction">Tor: Broer</a></h2>
+<hr />
+
+<p>
+Broreléer (eller broer for å gjøre det kort) er en type Tor-relé som ikke er
+oppgitt i Tor sin hovedkatalog. Når det ikke er noen offentlig liste over
+alle, og til og med når din ISP filtrerer ut forbindelsene dine til alle
+kjente reléer, vil de sannsynligvis ikke klarte å stenge ute alle
+broene. Hvis du mistenker at din tilgang til Tor-nettverket blir blokkert,
+kan du bruke brofunksjonen i Tor.
+</p>
+
+<p>
+Tillegget med broer som en funksjon i Tor er et stort steg fremover når det
+kommer til å stå imot blokkering. Det er veldig sannsynlig at om så din egen
+ISP filtrerer internett, vil du ikke trenge å bruke en bro for å bruke
+Tor. Flere programmer som filtrerer trafikken din ser etter ukrypterte
+Tor-kataloger for å finne ut om du bruker Tor, men fra Tor versjon
+0.2.0.23-rc og senere vil alle forespørslene til katalogene være kryptert
+utifra standard. Denne forandringen vil bety at de fleste programmene som
+står for filtreringen vil ikke klare å kjenne igjen Tor sine
+forbindelser. Derfor burde du prøve å bruke Tor uten broer først, siden det
+er godt mulig det vil fungere best.
+</p>
+
+<p>
+Note that it's also possible that Tor is non-functional for other
+reasons. The latest version of <a href="<page torbrowser/index>">The Tor
+Browser Bundle</a> on Windows tries to give you better hints about why Tor
+is having problems connecting. You should also read <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#IinstalledTorandPolipobutitsnotworking.">the
+FAQ about problems with running Tor properly</a> when you have issues.  If
+you feel that the issue is clearly blocking, or you'd simply like to try
+because you're unsure or feeling adventurous, please read on. Ensure that
+you're using the <a href="<page download>#Dev">latest 0.2.1.x or 0.2.2.x
+bundle for your platform</a>.
+</p>
+
+<p>
+For å bruke en bro, trenger du først å lokalisere èn. Videre så trenger du å
+konfigurere Tor med adressen til broen du har planer om å bruke. Dette gjør
+du enkelt med Vidalia, Tor sitt grafiske kontrollrom. Hvis du trenger å gå
+igjennom en proxy for å koble deg til internett, er dette nok noe du må
+konfigurere i Vidalia først. Hvis du ikke tror at du trenger å være
+tilkoblet en proxy for å få tilgang til internett, så trenger du nok ikke
+det. Gi det et forsøk, og hvis du har problemer, spør om hjelp.
+</p>
+
+<p>Freedom House has produced a video on how to get and use Tor bridges.  You
+can view it at <a href="http://www.youtube.com/thetorproject">Youtube:
+Freedom4Internet</a> or download it <a
+href="http://media.torproject.org/video/2009-using-a-bridge-relay-to-access-tor.ogv">directly</a>.
+Know of a better video, or one translated into your language? Let us know!</p>
+
+<p>
+For øyeblikket kan du skaffe deg en bro ved å besøke <a
+href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+med din nettleser. Hvis denne siden er blokkert, og du ikke har noen andre
+proxyer eller måter å nå den på, er det <a href="#FindingMore">andre måter å
+finne broer på</a> også.
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">Forstå broer</a></h2>
+<hr />
+
+<p>
+Som et eksempel vil du få en bropost som ser ut som følgende:
+</p>
+<pre><samp>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
+</pre>
+
+<p>
+Å forstå komponentene av en bropost er strengt talt ikke nødvendig, men kan
+vise seg å være nyttig. Du kan hoppe over denne delen hvis du vil.<br /> Det
+første elementet er IP-adressen: <tt>'141.201.27.48'</tt><br /> Det andre
+elementet er porten: <tt>'443'</tt><br /> Det tredje elementet,
+fingeravtrykket, er valgfritt:
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br />
+</p>
+
+<a id="UsingBridges"></a>
+<h2><a class="anchor" href="#UsingBridges">Bruk av broer i Tor og Vidalia</a></h2>
+<hr />
+
+<p>
+For å bruke eksempelet og broadressen ovenfor, gå til Vidalia sin side for
+Nettverksinnstillinger og trykk på "Min ISP blokkerer forbindelsen til
+Tor-nettverket". Legg så til hver broadresse, ved å lime de inn i "Legg til
+bro"-vinduet og deretter trykke på "+"-tegnet. Hvordan dette er demonstrert
+på bildet under:
+</p>
+
+<br /><br /> <img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalia sin side
+for Nettverksinnstillinger" /> <br /><br />
+
+<p>
+Du bør legge til så mange broer som du vet om. Til flere broer som er lagt
+til, til mer stabilt blir det. Èn bro burde være nok til å nå
+Tor-nettverket, men hvis du kun har èn bro og den går ned, vil du bli
+avkoblet Tor-nettverket.
+</p>
+
+<a id="FindingMore"></a>
+<h2><a class="anchor" href="#FindingMore">Finne flere broer for Tor</a></h2>
+<hr />
+
+<p>
+En annen måte å finne flere broadresser på er å sende en epost til
+bridges@torproject.org med linjen "get bridges" for seg selv i
+tekstfeltet. Du må sende denne forespørselen fra en GMail konto, da &mdash;
+det ellers ville vært altfor enkelt for en angriper å lage flere falske
+eposter og så få vite om alle broene. Nærmest umiddelbart etterpå vil du
+motta et svar som inkluderer:
+</p>
+<pre>
+Here are your bridge relays:
+
+bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+</pre>
+<p>
+Når du har mottatt eposten med informasjon om broen kan du fortsette med å
+konfigurere Vidalia med stegene som er forklart <a
+href="#UsingBridges">ovenfor</a>.
+</p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Kjøre en Tor-bro</a></h2>
+<hr />
+
+<p>
+Hvis du vil hjelpe til men ikke kan kjøre en <a href="<page
+docs/tor-doc-relay>">normal Tor relé</a>, så har du muligheten til å kjøre
+en brorelé. Du kan konfigurere det slikt:
+<ul>
+<li> manually <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">edit
+your torrc file</a> to be just these four lines:<br />
+<pre><code>
+SocksPort 0
+ORPort 443
+BridgeRelay 1
+Exitpolicy reject *:*
+</code></pre></li>
+<li><a href="<page docs/tor-doc-relay>">eller ved bruk av Vidalia</a>:<br />
+<img src="$(IMGROOT)/vidalia-bridges-setup.png" alt="Vidalia sin side for
+Deling" /></li>
+</ul>
+</p>
+
+<p>If you get "Could not bind to 0.0.0.0:443: Permission denied" errors on
+startup, you'll need to pick a higher ORPort (e.g. 8080) or do <a
+href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#Myfirewallonlyallowsafewoutgoingports.">some
+complex port forwarding</a>.
+</p>
+
+<p>
+Når konfigurert som en bro vil <b>ikke</b> din server dukke opp i det
+offentlige Tor-nettverket
+</p>
+
+<p>
+Din brorelé vil automatisk publisere sin adresse til broautoriteten, som vil
+gi det ut via HTTPS eller epost som ovenfor. Du kan også fortelle en bruker
+om å bruke broen direkte: hvis du bruker Vidalia så kan du
+kopiere-og-lim-inn broadressen fra vinduet "Innstillinger". Hvis du er på
+Linux eller BSD så kan du konstruere broadressen manuelt med å bruke <a
+href="#Understanding">formatet ovenfor</a> (du kan finne fingeravtrykket i
+din Tor-loggfil eller i <tt>/var/lib/tor/fingerprint</tt>, avhengig av din
+plattform).
+</p>
+
+<p>
+Hvis du vil vite mer om designet rundt en bro fra et mer teknisk standpunkt
+så kan du lese <a
+href="<gitblob>doc/spec/bridges-spec.txt">Tor-brospesifikasjoner</a>. Hvis
+du er interessert i å kjøre en upublisert bro, eller til ukonvensjonell bruk
+av annet slag, vennligst les spesifikasjonene.
+</p>
+
+  </div>
+
+
+
+#include <foot.wmi>

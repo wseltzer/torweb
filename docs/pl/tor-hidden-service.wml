@@ -1,0 +1,272 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 22314 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: Hidden Service Configuration Instructions" CHARSET="UTF-8"
+<div class="center">
+
+<div class="main-column">
+
+<h1>Konfiguracja usług ukrytych <a href="<page index>">Tora</a></h1>
+<hr />
+
+<p>Tor umożliwia klientom i przekaźnikom sieci Tor oferowanie usług
+ukrytych. To znaczy, że możesz mieć serwer WWW, SSH etc. bez podawania
+swojego IP użytkownikom. Ponieważ nie używasz żadnego adresu publicznego,
+możesz prowadzić usługę ukrytą zza zapory ogniowej.
+</p>
+
+<p>Jeśli masz zainstalowanego Tora, możesz zobaczyć usługi ukryte w działaniu,
+odwiedzając <a href="http://duskgytldkxiuqc6.onion/">naszą przykładową
+usługę ukrytą</a>.
+</p>
+
+<p>Ten dokument opisuje kroki potrzebne do uruchomienia własnej ukrytej usługi
+WWW.  By poznać szczegóły techniczne tego, jak działa protokół usług
+ukrytych, przeczytaj naszą stronę <a href="<page hidden-services>">protokołu
+usług ukrytych</a>.
+</p>
+
+<hr /> <a id="zero"></a>
+<h2><a class="anchor" href="#zero">Krok 0: Uruchomienie Tora</a></h2>
+<br />
+
+<p>Zanim zaczniesz sprawdź, czy:</p>
+<ol>
+<li>Tor jest uruchomiony i działa,</li>
+<li>Rzeczywiście wszystko dobrze ustawiłeś/aś.</li>
+</ol>
+
+
+<p>Użytkownicy Windows powinni przeczytać <a href="<page
+docs/tor-doc-windows>">instrukcje dla Windows</a>, użytkownicy OS X powinni
+przeczytać <a href="<page docs/tor-doc-osx>">instrukcje dla OS X</a>, a
+użytkownicy Linux/BSD/Unix powinni przeczytać <a href="<page
+docs/tor-doc-unix>">instrukcje dla systemów Unix</a>.
+</p>
+
+<p>Po instalacji i konfiguracji Tora możesz zobaczyć ukryte usługi w działaniu,
+wchodząc na <a href="http://duskgytldkxiuqc6.onion/">naszą przykładową
+usługę ukrytą</a> lub <a href="http://gaddbiwdftapglkq.onion/">usługę ukrytą
+Wikileaks</a>. Zwykle trzeba poczekać 10-60 na załadowanie strony (lub
+stwierdzenie, że w danej chwili jest niedostępna). Jeśli próba od razu
+kończy się błędem mówiącym, że "nie można znaleźć serwera
+www.duskgytldkxiuqc6.onion, sprawdź nazwę i spróbuj ponownie", to znaczy, że
+nie skonfigurowałeś/aś Tora poprawnie; zajrzyj do <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">wpisu
+"to nie działa" w FAQ</a> po pomoc.
+</p>
+
+<hr /> <a id="one"></a>
+<h2><a class="anchor" href="#one">Krok 1: Zainstaluj lokalnie serwer WWW</a></h2>
+<br />
+
+<p>Po pierwsze, musisz uruchomić lokalnie serwer WWW. Uruchamianie serwera WWW
+może być skomplikowane, więc podamy tu tylko trochę podstawowych
+informacji. Jeśli utkniesz lub będziesz chciał/a zrobić coś więcej, znajdź
+znajomego, który Ci pomoże. Zalecamy instalację nowego, oddzielnego serwera
+do usługi ukrytej, gdyż nawet jeśli już masz jeden zainstalowany, możesz już
+go używać (lub później będziesz chciał/a go używać) do normalnego serwisu
+WWW.
+</p>
+
+<p>Jeśli jesteś na systemie Unix lub OS X i nie przeszkadza Ci używanie linii
+poleceń, najlepszym sposobem jest instalacja <a
+href="http://www.acme.com/software/thttpd/">thttpd</a>. Po prostu pobierz
+archiwum tar, rozpakuj je (utworzy się osobny katalog) i uruchom
+<kbd>./configure &amp;&amp; make</kbd>. Potem wykonaj <kbd>mkdir hidserv; cd
+hidserv</kbd>, i uruchom <kbd>../thttpd -p 5222 -h
+localhost</kbd>. Powrócisz do wiersza poleceń, a od tej pory masz
+uruchomiony serwer WWW na porcie 5222. Możesz umieścić pliki dla serwera w
+katalogu hidserv.
+</p>
+
+<p>Jeśli używasz systemu Windows, możesz wybrać serwer WWW <a
+href="http://savant.sourceforge.net/">Savant</a> lub <a
+href="http://httpd.apache.org/">Apache</a>, konfigurując go tak, by
+podłączał się tylko do komputera, na którym jest zainstalowany
+(localhost). Powinieneś też jakoś sprawdzić na jakim porcie nasłuchuje, gdyż
+ta informacja przyda się potem.
+</p>
+
+<p>(Powodem, dla którego serwer powinien działać tylko lokalnie jest upewnienie
+się, że nie jest on dostępny z zewnątrz. Jeśli ktoś mógłby się do niego
+połączyć bezpośrednio, mógłby potwierdzić, że to Twój komputer oferuje tę
+ukrytą usługę.)
+</p>
+
+<p>Po ustawieniu serwera WWW, sprawdź, czy działa: otwórz przeglądarkę i
+przejdź pod adres <a
+href="http://localhost:5222/">http://localhost:5222/</a>, gdzie 5222 jest
+numerem portu wybranym wcześniej. Potem spróbuj umieścić jakiś plik w
+głównym katalogu HTML serwera i sprawdź, czy pokazuje się on, gdy łączysz
+się ze swoim serwerem WWW.
+</p>
+
+<hr /> <a id="two"></a>
+<h2><a class="anchor" href="#two">Krok 2: Konfiguracja Twojej usługi ukrytej</a></h2>
+<br />
+
+<p>Teraz musisz skonfigurować swoją usługę ukrytą, by wskazywała na twój
+lokalny serwer WWW.
+</p>
+
+<p>Najpierw otwórz swój plik torrc swoim ulubionym edytorem. (Przeczytaj <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">wpis
+o torrc w FAQ</a>, by dowiedzieć się, co to znaczy.) Przejdź do środkowej
+sekcji i szukaj linii</p>
+
+<pre>
+\############### This section is just for location-hidden services ###
+</pre>
+
+<p>
+Ta sekcja pliku składa się z grup linii, z których każda reprezentuje jedną
+usługę ukrytą. W tej chwili wszystkie są zakomentowane (linie zaczynają się
+od krzyżyka #), więc usługi ukryte są wyłączone. Każda grupa linii składa
+się z jednej linii <var>HiddenServiceDir</var> i jednej lub więcej linii
+<var>HiddenServicePort</var>:</p>
+<ul>
+<li><var>HiddenServiceDir</var> jest katalogiem, w którym Tor będzie
+przechowywał informacje o tej usłudze ukrytej. W szczególności, Tor utworzy
+w tym katalogu plik o nazwie <var>hostname</var>, z którego odczytasz "adres
+cebulowy" (onion URL). Nie musisz dodawać żadnych plików do tego
+katalogu. Upewnij się, że nie jest to ten sam katalog hidserv, stworzony w
+czasie uruchamiania thttpd, gdyż Twój HiddenServiceDir zawiera tajne
+informacje!</li>
+<li><var>HiddenServicePort</var> pozwala określić port wirtualny
+(tzn. użytkownikom łączącym się z usługą ukrytą będzie się zdawało, że
+używają tego właśnie portu) i adres IP wraz z portem do przekierowywania
+połączeń na ten wirtualny port.</li>
+</ul>
+
+<p>Dodaj następujące linie do swojego pliku torrc:
+</p>
+
+<pre>
+HiddenServiceDir /Library/Tor/var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:5222
+</pre>
+
+<p>Powinieneś/aś zmienić linię <var>HiddenServiceDir</var> tak, by wskazywała
+na istniejący katalog, który jest odczytywalny/zapisywalny przez
+użytkownika, który uruchamia Tora. Powyższa linia powinna działać, gdy
+używasz paczki z Torem dla OS X.  Pod systemem Unix, sprobuj
+"/home/użytkownik/hidden_service/", podając własną nazwę użytkownika w
+miejsce "użytkownik". Pod systemem Windows można wpisać:</p>
+<pre>
+HiddenServiceDir C:\Documents and Settings\username\Application Data\hidden_service\\
+HiddenServicePort 80 127.0.0.1:5222
+</pre>
+
+<p>Teraz zapisz zmiany w pliku torrc, zamknij Tora i uruchom go ponownie.
+</p>
+
+<p>Jeśli Tor ponownie się uruchomi, to świetnie. W innym przypadku coś musi być
+źle. Najpierw przejrzyj plik z logami, by poszukać przyczyn. Będą w nim
+ostrzeżenia i błędy. Powinny one wskazać, co poszło nie tak. Zazwyczaj
+chodzi o literówki w pliku torrc lub złe uprawnienia do
+katalogów. (Przeczytaj <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">wpis o
+logach w FAQ</a>, jeśli nie wiesz jak włączyć lub znaleźć plik z logami.)
+</p>
+
+<p>Gdy Tor się uruchomi, automatycznie utworzy podany katalog
+<var>HiddenServiceDir</var> (jeśli trzeba), a w nim utworzy dwa pliki.</p>
+
+<dl>
+<dt><var>private_key</var></dt>
+<dd>Po pierwsze, Tor wygeneruje nową parę kluczy publiczny/prywatny do Twojej
+usługi ukrytej. Zostaje ona zapisana w pliku o nazwie "private_key". Nie
+dawaj tego klucza nikomu -- jeśli to zrobisz, inni będą mogli podszyć się
+pod Twoją usługę ukrytą.</dd>
+<dt><var>hostname</var></dt>
+<dd>Drugim plikiem, który zostanie utworzony, jest plik o nazwie "hostname".
+Zawiera on krótkie podsumowanie twojego klucza publicznego -- będzie
+wyglądać podobnie do tego: <tt>duskgytldkxiuqc6.onion</tt>. To jest
+publiczna nazwa Twojej usługi i możesz podawać ją innym, rozgłaszać na
+stronach internetowych, umieszczać na wizytówkach etc.</dd>
+</dl>
+
+<p>Jeśli Tor jest uruchomiony z prawami innego użytkownika niż ty, np. na
+systemach OS X, Debian, Red Hat, możesz potrzebować uprawnień roota, by
+zobaczyć te pliki.</p>
+
+<p>Po ponownym uruchomieniu, Tor zajmuje się pobieraniem punktów wstępu w sieci
+Tora i generowaniem <em>deskryptora usługi ukrytej</em>. Jest to podpisana
+lista punktów wstępnych razem z pełnym publicznym kluczem usługi. Tor
+anonimowo umieszcza ten deskryptor na serwerach katalogowych, a inni ludzie
+anonimowo go pobierają z serwerów katalogowych, gdy próbują połączyć się z
+Twoją usługą.
+</p>
+
+<p>Wypróbuj to: wklej zawartość pliku hostname do swojej przeglądarki WWW.
+Jeśli działa, zobaczysz stronę HTML, którą umieściłeś/aś w kroku
+pierwszym. Jeśli nie działa, poszukaj wskazówek w logach i zajmuj się tym do
+chwili, w której zadziała.
+</p>
+
+<hr /> <a id="three"></a>
+<h2><a class="anchor" href="#three">Krok 3: Bardziej zaawansowane wskazówki</a></h2>
+<br />
+
+<p>Jeśli planujesz udostępniać swoją usługę przez dłuższy czas, zrób gdzieś
+kopię zapasową pliku <var>private_key</var>.
+</p>
+
+<p>Powyżej unikaliśmy polecania serwera Apache, a) gdyż wielu ludzi może już go
+używać jako publicznego serwera na ich komputerach, i b) gdyż jest duży i ma
+wiele miejsc, w których mógłby podać twój adres IP lub inne informacje
+identyfikujące, np. na stronach 404. Jednak dla ludzi, którzy chcą więcej
+funkcjonalności, Apache może być dobrym rozwiązaniem. Czy ktoś mógłby
+napisać nam listę sposobów na zabezpieczenie Apache, gdy jest używany jako
+usługa ukryta? Savant prawdopodobnie też ma takie problemy.
+</p>
+
+<p>Jeśli chcesz przekierować wiele portów wirtualnych w ramach pojedynczej
+usługi ukrytej, po prostu dodaj więcej linii <var>HiddenServicePort</var>.
+Jeśli chcesz uruchomić wiele usług ukrytych z tego samego klienta Tora, po
+prostu dodaj kolejną linię <var>HiddenServiceDir</var>. Wszystkie
+następujące po niej linie <var>HiddenServicePort</var> odnoszą się do
+aktualnej linii <var>HiddenServiceDir</var>, dopóki nie dodasz kolejnej
+linii <var>HiddenServiceDir</var>:
+</p>
+
+<pre>
+HiddenServiceDir /usr/local/etc/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:8080
+
+HiddenServiceDir /usr/local/etc/tor/other_hidden_service/
+HiddenServicePort 6667 127.0.0.1:6667
+HiddenServicePort 22 127.0.0.1:22
+</pre>
+
+<p>Są też pewne sprawy dotyczące anonimowości, o których trzeba pamiętać:
+</p>
+<ul>
+<li>Jak wspomniano wyżej, uważaj z pozwoleniem dla serwera na podawanie
+informacji identyfikujących Ciebie, Twój komputer lub położenie.  Na
+przykład, czytelnicy mogą prawdopodobnie dowiedzieć się, czy używasz thttpd
+czy Apache i dowiedzieć się czegoś o Twoim systemie operacyjnym.</li>
+<li>Jeśli Twój komputer nie jest cały czas on-line, Twoja usługa ukryta też nie
+będzie. Jest to wyciek informacji dla obserwującego przeciwnika.</li>
+
+<!-- increased risks over time -->
+</ul>
+
+<hr />
+
+<p>Jeśli masz pomysły na ulepszenie tej strony, prosimy <a href="<page
+contact>">je do nas wysłać</a>. Dziękujemy!</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+
+#include <foot.wmi>
