@@ -43,7 +43,8 @@ have a virus or spyware?</a></li>
 
 <p>Running a Tor client:</p>
 <ul>
-<li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at start</a></li>
+<li><a href="#DoesntWork">I installed Tor and Polipo but it's not working.</a></li>
+<li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at start.</a></li>
 <li><a href="#ChooseEntryExit">Can I control which nodes (or country) are used for entry/exit?</a></li>
 </ul>
 
@@ -704,9 +705,76 @@ Please contact us if you know any others.
 
 <hr />
 
+<a id="DoesntWork"></a>
+<h3><a class="anchor" href="#DoesntWork">I installed Tor and Polipo but
+it's not working.</a></h3>
+
+<p>
+Are you sure Tor and Polipo are both running? If you're using Vidalia,
+you may have to click on the onion and select "Start" to launch Tor.
+</p>
+
+<p>
+Did you configure your web browser to http proxy to port 8118? Most people
+should do this simply by installing Torbutton and making sure it says
+"Tor enabled" at the bottom.
+</p>
+
+<p>
+If you are using Firefox and would like to use Tor via the Torbutton
+extension, make sure you don't have any other proxy add-on such as
+Foxy Proxy enabled, as it will bypass Torbutton's proxy settings
+for your browser. Note that using Foxy Proxy is NOT a sufficient
+substitute for Torbutton. There are many known attacks against
+a browser setup that does not include Torbutton. Read more in the
+<a href="<page torbutton/faq>">Torbutton FAQ</a> and
+the <a href="<page torbutton/design>">Torbutton design</a>
+specification.
+</p>
+
+<p>
+Check your <a href="<wiki>TorFAQ#HowdoIsetuploggingorseeTorslogs">Tor
+logs</a>. Do they give you any hints about what's going wrong?
+</p>
+
+<p>
+Check your system clock. If it's more than a few hours off, Tor will
+refuse to build circuits. For XP users, synchronize your clock under
+the clock -&gt; Internet time tab. In addition, correct the day and date
+under the 'Date &amp; Time' Tab.
+</p>
+
+<p>
+Is your Internet connection <a
+href="<wiki>TorFAQ#Myfirewallonlyallowsafewoutgoingports.">firewalled</a>,
+or do you normally need to use a <a
+href="<wiki>TorFAQ#MyInternetconnectionrequiresanHTTPorSOCKSproxy.">proxy</a>?
+Are you running programs like Norton Internet Security that block certain
+connections, even though you don't realize they do?
+</p>
+
+<p>
+If you installed Polipo yourself (not from a bundle), did you edit the
+config file as described? Did you restart Polipo after this change?
+</p>
+
+<p>
+For Red Hat Linux and related systems, do you have SELinux enabled? If
+so, it might be preventing Polipo from talking to Tor. We also run across
+BSD users periodically who have local firewall rules that prevent some
+connections to localhost.
+</p>
+
+<p>
+When it's working, Tor should report that it "has successfully opened
+a circuit.  Looks like client functionality is working."
+</p>
+
+<hr />
+
 <a id="VidaliaPassword"></a>
 <h3><a class="anchor" href="#VidaliaPassword">Tor/Vidalia prompts for
-a password at start</a></h3>
+a password at start.</a></h3>
 
 <p>
 Vidalia interacts with the Tor software via Tor's "control port". The
