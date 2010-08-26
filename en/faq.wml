@@ -711,7 +711,7 @@ it's not working.</a></h3>
 
 <p>
 Once you've installed the Tor bundle, there are two questions to ask:
-first, is your Tor able to establish a circuit? And second, is your
+first, is your Tor able to establish a circuit? Second, is your
 Firefox correctly configured to send its traffic through Tor?
 </p>
 
@@ -768,17 +768,22 @@ bundles include it, but sometimes people forget to install it. Make sure
 it says "Tor enabled" at the bottom right of your Firefox window. (For
 expert users, make sure your http proxy is set to localhost port
 8118.)</li>
-<li>Do you have incompatible Firefox extensions like Foxyproxy
-installed?  If so, uninstall them. (Note that using Foxy Proxy is NOT
+<li>Do you have incompatible Firefox extensions like FoxyProxy
+installed? If so, uninstall them. (Note that using FoxyProxy is NOT
 a sufficient substitute for Torbutton. There are many known attacks
 against a browser setup that does not include Torbutton. Read more
 in the <a href="<page torbutton/faq>">Torbutton FAQ</a> and the <a
 href="https://www.torproject.org/torbutton/design/">Torbutton design</a>
 specification.)</li>
-<li>Check that Polipo, the http proxy that passes traffic between Firefox
-and Tor, is running. On Windows, look in the task manager and check for
+<li>Check that Polipo (the http proxy that passes traffic between Firefox
+and Tor) is running. On Windows, look in the task manager and check for
 a polipo.exe. On OS X, open the utilities folder in your applications
 folder, and open Terminal.app. Then run "ps aux|grep polipo".</li>
+<li>If you're upgrading from OS X, some of the earlier OS X installers
+were broken in really unfortunate ways. You may find that <a href="<page
+docs/tor-doc-osx>#uninstall">uninstalling everything</a> and then
+installing a fresh bundle helps. Alas, the current uninstall instructions
+may not apply anymore to your old bundle. Sorry.</li>
 <li>If you're on Linux, make sure Privoxy isn't running, since it will
 conflict with the port that our Polipo configuration file picks.</li>
 <li>If you installed Polipo yourself (not from a bundle), did you edit the
