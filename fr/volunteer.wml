@@ -42,11 +42,12 @@ langues. Allez voir les <a href="<page translation>">conseils de
 traduction</a> si vous souhaitez le faire. Nous avons besoin plus
 spécialement de personnes pour traduire en Arabe ou en Persan pour les
 utilisateurs Tor situés dans les zones censurées.</li>
-<li>Evaluate and document <a href="<wiki>TorifyHOWTO">our list of programs</a>
-that can be configured to use Tor.</li>
-<li>We have a huge list of <a href="<wiki>SupportPrograms">potentially useful
-programs that interface to Tor</a>. Which ones are useful in which
-situations? Please help us test them out and document your results.</li>
+<li>Évaluer et documenter <a href="<wiki>TorifyHOWTO">notre liste de
+programmes</a> qui peuvent être configurés pour utiliser Tor.</li>
+<li>Nous avons toute une liste de <a href="<wiki>SupportPrograms">programmes
+potentiellement utiles qui s'interfacent avec Tor</a>. Lesquels sont utiles
+et dans quelles situations ? Contribuez à les tester et à documenter les
+résultats.</li>
 </ol>
 
 <a id="Advocacy"></a>
@@ -186,33 +187,39 @@ version de tordnsel</a> via git.
 </li>
 
 <li>
-<b>Improving Tor's ability to resist censorship</b> <br /> Priority:
-<i>Medium to High</i> <br /> Effort Level: <i>Medium to High</i> <br />
-Skill Level: <i>High</i> <br /> Likely Mentors: <i>Roger, Nick, Steven</i>
-<br /> The Tor 0.2.1.x series makes <a
-href="<svnprojects>design-paper/blocking.html">significant improvements</a>
-in resisting national and organizational censorship.  But Tor still needs
-better mechanisms for some parts of its anti-censorship design.  <br /> One
-huge category of work is adding features to our <a
-href="http://gitweb.torproject.org//bridgedb.git?a=tree">bridgedb</a>
-service (Python). Tor aims to give out <a href="<page bridges>">bridge relay
-addresses</a> to users that can't reach the Tor network directly, but
-there's an arms race between algorithms for distributing addresses and
-algorithms for gathering and blocking them. See <a
-href="<blog>bridge-distribution-strategies">our blog post on the topic</a>
-as an overview, and then look at <a
-href="http://archives.seul.org/or/dev/Dec-2009/msg00000.html">Roger's or-dev
-post</a> from December for more recent thoughts &mdash; lots of design work
-remains.  <br /> If you want to get more into the guts of Tor itself (C), a
-more minor problem we should address is that current Tors can only listen on
-a single address/port combination at a time. There's <a
-href="<gitblob>doc/spec/proposals/118-multiple-orports.txt">a proposal to
-address this limitation</a> and allow clients to connect to any given Tor on
-multiple addresses and ports, but it needs more work.  <br /> This project
-could involve a lot of research and design. One of the big challenges will
-be identifying and crafting approaches that can still resist an adversary
-even after the adversary knows the design, and then trading off censorship
-resistance with usability and robustness.
+<b>Améliorer les capacités de résistance à la censure de Tor</b> <br />
+Priorité: <i>Moyenne à Haute</i> <br /> Effort à fournir: <i>Moyen à
+Important</i> <br /> Compétences requises: <i>Hautes</i> <br /> Tuteurs
+potentiels: <i>Nick, Roger, Steven</i> <br /> La série 0.2.1.x de Tor a fait
+l'objet <a href="<svnprojects>design-paper/blocking.html">d'amélioration
+sensibles</a> dans la résistance aux censures des États et des
+organisations.  Néanmoins, Tor a toujours besoin de meilleurs mécanismes
+dans certaines parties de ses fonctionnalités anti-censure.  <br/> Une des
+catégories sur laquelle il faut centrer les efforts est l'ajout de
+fonctionnalités à notre service Python <a
+href="http://gitweb.torproject.org//bridgedb.git?a=tree">bridgedb</a>. Tor a
+pour objectif de distribuer des <a href="<page bridges>">adresses de
+passerelles</a> aux personnes qui ne peuvent accéder directement au réseau
+Tor. Néanmoins, il y a une course à l'échalotte entre les algorithmes de
+distribution d'adresses et les algorithmes de collecte et de bloquage de ces
+dernières. Consultez notre <a
+href="<blog>bridge-distribution-strategies">article de blog sur le sujet</a>
+comme introduction et <a
+href="http://archives.seul.org/or/dev/Dec-2009/msg00000.html">le message de
+Roger du mois de décembre sur la liste de diffusion or-dev</a> pour plus de
+détails &mdash; un gros travail de spécification reste à accomplir.  <br />
+Si vous voulez mettre les mains dans le cambouis de Tor (en C), un problème
+moins important que nous devons gérer est le fait que Tor ne peut écouter le
+réseau que sur une seule combinaison adresse/port à la fois. Il existe <a
+href="<gitblob>doc/spec/proposals/118-multiple-orports.txt">une proposition
+visant à réduire cette limite</a> et à permettre aux clients de se connecter
+à n'importe quel noeud Tor sur de multiples adresses et ports mais il y a
+besoin de plus de travail dessus.  <br /> Ce projet implique un gros travail
+de recherche et de conception. Un des défis le plus important est
+d'identifier et de sélectionner des approches résistantes aux attaques y
+compris lorsque l'attaquant en connaît la conception. Il sera alors possible
+de conjuguer résistance à la censure avec facilité d'utilisation et
+robustesse.
 </li>
 
 <li>
@@ -330,26 +337,28 @@ circuits et gère le passage d'un réseau 2G à 3G à Wifi.
 </li>
 
 <li>
-<b>New Torbutton Features</b> <br /> Priority: <i>Medium</i> <br /> Effort
-Level: <i>High</i> <br /> Skill Level: <i>High</i> <br /> Likely Mentors:
-<i>Mike</i> <br/> There are several <a
-href="https://trac.torproject.org/projects/tor/report/14">good feature
-requests</a> on the Torbutton Trac section. In particular, <a
-href="https://trac.torproject.org/projects/tor/ticket/523">Integrating 'New
-Identity' with Vidalia</a>, <a
-href="https://trac.torproject.org/projects/tor/ticket/940">ways of managing
-multiple cookie jars/identities</a>, <a
-href="https://trac.torproject.org/projects/tor/ticket/637">preserving
-specific cookies</a> when cookies are cleared, <a
-href="https://trac.torproject.org/projects/tor/ticket/524">better referrer
-spoofing</a>, <a
-href="https://trac.torproject.org/projects/tor/ticket/564">correct Tor
-status reporting</a>, and <a
-href="https://trac.torproject.org/projects/tor/ticket/462">"tor://" and
-"tors://" urls</a> are all interesting features that could be added.  <br />
-This work would be independent coding in Javascript and the fun world of <a
-href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>,
-with not too much involvement in the Tor internals.
+<b>Nouvelles fonctionnalités dans Torbutton<b> <br /> Priorité:
+<i>Moyenne</i> <br /> Effort à fournir: <i>Important</i> <br /> Compétences
+requises: <i>Hautes</i> <br /> Tuteurs potentiels: <i>Mike</i> <br /> Il
+existe plusieurs <a
+href="https://trac.torproject.org/projects/tor/report/14">demandes
+d'amélioration</a> dans la section Torbutton de Flyspray. En particulier, <a
+href="https://trac.torproject.org/projects/tor/ticket/523">l'intégration
+d'une 'Nouvelle Identité' avec Vidalia</a>, <a
+href="https://trac.torproject.org/projects/tor/ticket/940">les moyens de
+gérer plusieurs conteneurs de cookies par identité</a>, <a
+href="https://trac.torproject.org/projects/tor/ticket/637">la préservation
+de certains cookies</a> lorsque ceux-ci sont effacés, <a
+href="https://trac.torproject.org/projects/tor/ticket/524">une meilleure
+injection du champ referrer</a>, <a
+href="https://trac.torproject.org/projects/tor/ticket/564">une remontée
+correcte du statut de Tor</a>, et <a
+href="https://trac.torproject.org/projects/tor/ticket/462">la gestion des
+urls "tor://" et "tors://"</a> sont toutes des fonctionnalités intéressantes
+qui pourraient être ajoutées.  <br /> Ce travail devrait être réalisé en
+tant que code source indépendant réalisé en Javascript et en <a
+href="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">XUL</a>
+sans trop interférer avec le fonctionnement interne de Tor.
 </li>
 
 
@@ -503,12 +512,14 @@ avoir une expérience en C++. Des compétences en QT seraient un vrai plus.
 </li>
 
 <li>
-<b>Usability testing of Tor</b> <br /> Priority: <i>Medium</i> <br /> Effort
-Level: <i>Medium</i> <br /> Skill Level: <i>Low to Medium</i> <br /> Likely
-Mentors: <i>Andrew</i> <br /> Especially the browser bundle, ideally amongst
-our target demographic.  That would help a lot in knowing what needs to be
-done in terms of bug fixes or new features. We get this informally at the
-moment, but a more structured process would be better.
+<b>Tests d'utilisation de Tor</b> <br /> Priorité: <i>Moyenne</i> <br />
+Effort à fournir: <i>Moyen</i> <br /> Compétences requises: <i>Faibles à
+Moyennes</i> <br /> Tuteurs potentiels: <i>Andrew</i> <br /> Spécialement le
+Pack de Navigation, idéalement parmi notre coeur de cible.  Cela nous
+aiderait beaucoup à comprendre ce qui doit être réalisé en terme de
+correction de bugs ou de nouvelles fonctionnalités. Nous récupérons
+l'information de manière informelle pour le moment mais un processus plus
+structuré serait meilleur.
 </li>
 
 <li>
@@ -568,12 +579,13 @@ entre eux ou bien d'en laisser tomber un des deux.
 </li>
 
 <li>
-<b>Bring up new ideas!</b> <br /> Don't like any of these? Look at the <a
-href="<svnprojects>roadmaps/2008-12-19-roadmap-full.pdf">Tor development
-roadmap</a> for more ideas, or just try out Tor, Vidalia, and Torbutton, and
-find out what you think needs fixing.  Some of the <a
-href="<gittree>doc/spec/proposals">current proposals</a> might also be short
-on developers.
+<b>Amener de nouvelles idées !</b> <br />Vous n'aimez aucune de celles qui
+sont présentées ? Consultez <a
+href="<svnprojects>roadmaps/2008-12-19-roadmap-full.pdf">la feuille de route
+de développement</a> pour vous donner d'autres idées ou bien essayez
+simplement Tor, Vidalia et Torbutton pour trouver quelles sont les points à
+améliorer.  Quelques-unes <a href="<gittree>doc/spec/proposals/">des
+propositions en cours</a> ont également besoin de développeurs.
 </li>
 
 </ol>
@@ -582,16 +594,18 @@ on developers.
 <h2><a class="anchor" href="#OtherCoding">Autres idées de spécifications et de
 code</a></h2>
 <ol>
-<li>Tor relays don't work well on Windows XP. On Windows, Tor uses the standard
-<tt>select()</tt> system call, which uses space in the non-page pool. This
-means that a medium sized Tor relay will empty the non-page pool, <a
-href="<wiki>WindowsBufferProblems">causing havoc and system crashes</a>. We
-should probably be using overlapped IO instead. One solution would be to
-teach <a href="http://www.monkey.org/~provos/libevent/">libevent</a> how to
-use overlapped IO rather than select() on Windows, and then adapt Tor to the
-new libevent interface. Christian King made a <a
-href="https://svn.torproject.org/svn/libevent-urz/trunk/">good start</a> on
-this in the summer of 2007.</li>
+<li>Les relais Tor ne fonctionnent pas parfaitement sur Windows XP. Sous
+Windows, Tor utilise l'appel système standard <tt>select()</tt>, qui utilise
+l'espace non paginé dans le pool. Ce qui implique que les serveurs de taille
+moyenne vont vider l'espace non paginé, <a
+href="<wiki>WindowsBufferProblems">provoquant l'instabilité et le plantage
+du système</a>. Nous devrions probablement utiliser des E/S recouvrables à
+la place. Une solution pourrait-être d'apprendre à la <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a> comment utiliser
+les E/S recouvrables à la place de select() sous Windows, et alors d'adapter
+Tor à la nouvelle interface libevent. Christian King à <a
+href="https://tor-svn.freehaven.net/svn/libevent-urz/trunk/">bien
+démarré</a> sur ce point l'été 2007.</li>
 
 <li>Nous avons besoin maintenant de commencer l'élaboration de notre <a
 href="<page documentation>#DesignDoc">conception de résistance au
@@ -622,15 +636,17 @@ s'il existe déjà de bonnes bibliothèques de fuzz pour ce que nous voulons
 faire. La célébrité pour celui grâce à qui une nouvelle version pourra voir
 le jour !</li>
 
-<li>Tor uses TCP for transport and TLS for link encryption. This is nice and
-simple, but it means all cells on a link are delayed when a single packet
-gets dropped, and it means we can only reasonably support TCP streams. We
-have a <a
-href="<wiki>TorFAQ#YoushouldtransportallIPpacketsnotjustTCPpackets.">list of
-reasons why we haven't shifted to UDP transport</a>, but it would be great
-to see that list get shorter. We also have a proposed <a
-href="<gitblob>doc/spec/proposals/100-tor-spec-udp.txt">specification for
-Tor and UDP</a> &mdash; please let us know what's wrong with it.</li>
+<li>Tor utilise TCP pour le transport et TLS pour le chiffrage des liens. C'est
+simple et efficace, mais cela implique que toutes les unités (cellules) d'un
+lien sont mises en attente lorsqu'un seul paquet est perdu, et cela signifie
+que seuls des flux TCP peuvent être raisonnablement supportés. Nous avons
+dressé une <a
+href="<wiki>TorFAQ#YoushouldtransportallIPpacketsnotjustTCPpackets.">liste
+de raisons pour lesquelles nous n'avons pas bifurqué vers le transport par
+UDP</a>, mais ce serait bien de voir cette liste se raccourcir. Nous avons
+aussi proposé <a href="<gitblob>tor/doc/100-tor-spec-udp.txt">une
+spécification pour Tor et UDP</a> &mdash; lisez-la et faites-nous part de
+vos remarques et critiques, s'il-vous-plaît.</li>
 
 <li>Nous ne sommes plus très loin d'avoir le support pour IPV6 entre les
 serveurs de sorties et les adresses finales. Si IPV6 vous tient à cœur,

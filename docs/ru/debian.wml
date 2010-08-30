@@ -13,25 +13,25 @@
 <div class="main-column">
 
 <a id="debian"></a>
-<h2><a class="anchor" href="#debian">Вариант 1: TOR на Debian lenny, Debian sid
+<h2><a class="anchor" href="#debian">Вариант 1: Tor на Debian lenny, Debian sid
 или Debian testing</a></h2>
 <br />
 
 <p>
-Если у Вас Debian lenny, sid или squeeze, просто выполните команду<br />
-<tt>apt-get install tor tor-geoipdb</tt>
+Если у вас Debian lenny, sid или squeeze, просто запустите <br />
+<tt>apt-get install tor tor-geoipdb</tt> из корня.
 </p>
 
 <p>
-Обратите внимание, что этот способ не гарантирует установку последней версии
-TOR, но у Вас будет возможность получать важные обновления
-безопасности. Чтобы установить последнюю версию TOR, см.вариант 2 ниже. 
+Обратите внимание, что этот способ не гарантирует установку самой последней
+версии Tor, но у вас будет возможность получать важные обновления
+безопасности. Чтобы установить последнюю версию Tor, см. вариант 2 ниже.
 </p>
 
 <p>
-Теперь TOR установлен и работает. Ознакомьтесь со <a href="<page
+Теперь Tor установлен и работает. Ознакомьтесь со <a href="<page
 docs/tor-doc-unix>#polipo">следующим разделом</a> руководства "Tor на
-Linux/Unix". 
+Linux/Unix".
 </p>
 
 <hr /> <a id="ubuntu"></a> <a id="packages"></a>
@@ -41,33 +41,32 @@ Linux/Unix".
 <p>
 <b>Не используйте пакеты из репозиториев Ubuntu.</b> Они не поддерживаются и
 являются устаревшими. Т.е. Вы не сможете получать обновления компонентов и
-критические обновления. 
+критические обновления.
 </p>
 
 <p>
-You'll need to set up our package repository before you can fetch
-Tor. First, you need to figure out the name of your distribution. If you're
-using Ubuntu 10.04 it's "lucid", 9.10 is "karmic", 9.04 is "jaunty", 8.10 is
-"intrepid", and 8.04 is "hardy". If you're using Debian Etch, it's "etch",
-and Debian Lenny is "lenny". Then add this line to your
-<tt>/etc/apt/sources.list</tt> file:<br />
+Чтобы скачать Tor, сначала потребуется настроить наш репозиторий. Для начала
+выясните название своего дистрибутива. Если вы используете Ubuntu 10.04, это
+"lucid", 9.10 - "karmic", 9.04 - "jaunty", 8.10 - "intrepid", а если 8.04 -
+"hardy". Если вы используете Debian Etch, это «etch», а Debian Lenny -
+«lenny». Добавьте эту строку в файл <tt>/etc/apt/sources.list</tt>:<br />
 <pre>
-deb     http://deb.torproject.org/torproject.org &lt;ИМЯ_ДИСТРИБУТИВА&gt; main
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 </pre>
-where you put the codename of your distribution (i.e. etch, lenny, sid,
-lucid, karmic, jaunty, intrepid, hardy or whatever it is) in place of
+где вам нужно указать кодовое имя вашего дистрипутива (т.е. etch, lenny,
+sid, lucid, karmic, jaunty, intrepid, hardy и др.) вместо
 &lt;DISTRIBUTION&gt;.
 </p>
 
 <p>
-Добавьте gpg-ключ, используемый для подписи пакетов, с помощью этих команд в
-строке терминала: 
+Затем добавьте gpg-ключ, используемый для подписи пакетов, с помощью этих
+команд в строке терминала:
 <pre>
 gpg --keyserver keys.gnupg.net --recv 886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 </pre>
-Now refresh your sources and install Tor by running the following commands
-(as root) at your command prompt:
+Сейчас обновите источники и установите Tor путем запуска нижеперечисленных
+команд из корня:
 <pre>
 apt-get update
 apt-get install tor tor-geoipdb
@@ -75,34 +74,35 @@ apt-get install tor tor-geoipdb
 </p>
 
 <p>
-Теперь TOR установлен и работает. Ознакомьтесь со <a href="<page
+Теперь Tor установлен и работает. Ознакомьтесь со <a href="<page
 docs/tor-doc-unix>#polipo">следующим разделом</a> руководства "Tor на
-Linux/Unix". 
+Linux/Unix".
 </p>
 
 <p style="font-size: small">
-DNS-запись <code>deb.torproject.org</code> ссылается на множество
-независимых серверов. Если у Вас не получается получить доступ к серверам с
+Адрес <code>deb.torproject.org</code> ссылается на множество независимых
+серверов. Если у вас не получается получить доступ к серверам с
 использованием этого имени, вы моете попробовать одно из следующих имён:
 <code>deb-master.torproject.org</code>, <code>mirror.netcologne.de</code>
 или <code>tor.mirror.youam.de</code>.
 </p>
 
 <hr /> <a id="development"></a>
-<h2><a class="anchor" href="#development">Вариант 3: Использование текущей ветки
-разработки TOR на Debian или Ubuntu</a></h2>
+<h2><a class="anchor" href="#development">Вариант 3: Использование ,beta-версий
+Tor на Debian или Ubuntu</a></h2>
 <br />
 
-<p>Если Вы хотите использовать <a href="<page
-download>#packagediff">разрабатываемую версию</a> TOR (более функциональную,
-но и более «сырую»), Вам понадобится установить другой набор источников в
-файл <tt>/etc/apt/sources.list</tt>:<br />
+<p>Если вы хотите использовать <a href="<page
+download>#packagediff">beta-версию</a> Tor (более функциональную, но и более
+«сырую»), вам понадобится установить другой набор источников в файл
+<tt>/etc/apt/sources.list</tt>:<br />
 <pre>
-deb     http://deb.torproject.org/torproject.org &lt;ИМЯ_ДИСТРИБУТИВА&gt; main
-deb     http://deb.torproject.org/torproject.org experimental-&lt;ИМЯ_ДИСТРИБУТИВА&gt; main
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb     http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
 </pre>
-where you again substitute the name of your distro (etch, lenny, sid, lucid,
-karmic, jaunty, intrepid, hardy) in place of &lt;DISTRIBUTION&gt;.
+Где вместо &lt;DISTRIBUTION&gt; вам необходимо указать кодовое название
+вашего дистрибутива (etch, lenny, sid, lucid, karmic, jaunty, intrepid,
+hardy).
 </p>
 
 <p>
@@ -116,9 +116,9 @@ apt-get install tor tor-geoipdb
 </p>
 
 <p>
-Теперь TOR установлен и работает. Ознакомьтесь со <a href="<page
+Теперь Tor установлен и работает. Ознакомьтесь со <a href="<page
 docs/tor-doc-unix>#polipo">следующим разделом</a> руководства "Tor на
-Linux/Unix". 
+Linux/Unix".
 </p>
 
 <hr /> <a id="source"></a>
@@ -126,7 +126,7 @@ Linux/Unix".
 <br />
 
 <p>
-Если Вы хотите собрать свой пакет из исходных кодов, Вам потребуется
+Если вы хотите собрать свой пакет из исходных кодов, вам потребуется
 добавить запись <tt>deb-src</tt> в файл <tt>sources.list</tt>.
 <pre>
 # For the stable version.
@@ -139,12 +139,12 @@ deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 deb-src http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
 </pre>
 Вам также потребуется установить пакеты, необходимые для сборки собственных
-пакетов, а также пакеты, необходимые для сборки TOR: 
+пакетов, а также пакеты, необходимые для сборки Tor:
 <pre>
 apt-get install build-essential fakeroot devscripts
 apt-get build-dep tor
 </pre>
-Теперь Вы можете собрать TOR в ~/debian-packages: 
+Теперь вы можете собрать Tor в ~/debian-packages: 
 <pre>
 mkdir ~/debian-packages; cd ~/debian-packages
 apt-get source tor
@@ -152,21 +152,21 @@ cd tor-*
 debuild -rfakeroot -uc -us
 cd ..
 </pre>
-Теперь Вы можете установить собранный пакет: 
+Теперь вы можете установить собранный пакет: 
 <pre>
 sudo dpkg -i tor_*.deb
 </pre>
 </p>
 
 <p>
-Теперь TOR установлен и работает. Ознакомьтесь со <a href="<page
+Теперь Tor установлен и работает. Ознакомьтесь со <a href="<page
 docs/tor-doc-unix>#polipo">следующим разделом</a> руководства "Tor на
-Linux/Unix". 
+Linux/Unix".
 </p>
 
 <hr />
 
-<p>Если у Вас есть предложения по улучшению этого документа, пожалуйста, <a
+<p>Если у вас есть предложения по улучшению этого документа, пожалуйста, <a
 href="<page contact>">присылайте их нам</a>. Спасибо!</p>
 
   </div>

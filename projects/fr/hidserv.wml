@@ -241,25 +241,26 @@ diffusion des développeurs</a>.</em></small>
     <a id="Sep08"></a> <a class="anchor" href="#Sep08">Septembre 2008</a>
   </td>
   <td>
-    <small><em>During the first half of the implementation phase two bugs could
-be fixed that were related to hidden services: the <a
-href="https://trac.torproject.org/projects/tor/ticket/767">first bug</a> has
-already been identified in the design phase and was responsible for an
-unusual high failure rate when making a hidden service available in the
-system; the <a
-href="https://trac.torproject.org/projects/tor/ticket/814">second bug</a>
-was found during the implementation phase and was responsible for failure to
-connect to a working hidden service. Both bugfixes will be included in the
-next unstable version and likely be backported to one of the next stable
-releases.</em></small> <br/> <small><em>The four design changes that were
-proposed as result of the design phase have been implemented in an <a
-href="https://tor-svn.freehaven.net/svn/tor/branches/hidserv-design-changes/">experimental
-branch</a> of the unstable development tree. Early function tests have shown
-that these changes work and provide better (perceived)  performance. This
-needs to be confirmed throughout the next four weeks in internal tests. The
-next goal is to prepare a release of this experimental branch that can be
-given out to beta testers at the beginning of the upcoming testing
-phase.</em></small>
+    <small><em>Durant la première moitié de la phase d'implémentation, deux bugs
+relatifs aux services cachés ont pu être corrigés: <a
+href="https://trac.torproject.org/projects/tor/ticket/767">le premier</a>
+avait déjà été identifié dans la phase de conception et était responsable
+d'un grand taux d'échec lors de la mise en place du service caché dans le
+système. Le <a
+href="https://trac.torproject.org/projects/tor/ticket/814">second bug</a> a
+été trouvé pendant la phase d'implémentation et était responsable des echecs
+de connexions à un service caché actif. Ces deux corrections seront livrées
+dans la prochaine version instable et probablement incluses dans une des
+prochaines versions stables.</em></small> <br/> <small><em>Les quatre
+changements de conception qui ont été proposés ont été implémentés dans <a
+href="https://tor-svn.freehaven.net/svn/tor/branches/hidserv-design-changes/">une
+branche expérimentale</a> de l'arbre de développement non-stable. Les
+premiers tests fonctionnels montrent que ces changements fonctionnent et
+permettent de meilleures performances (ressenties). Cela doit être confirmé
+au cours des prochaines quatre semaines lors des tests internes. Le prochain
+objectif est de de préparer une version de cette branche expérimentale
+pouvant être livrée à des beta-testeurs au début de la prochaine phase de
+tests.</em></small>
   </td>
 </tr>
 
@@ -338,43 +339,44 @@ les 30 jours à venir concernera ce bug.  </em></small>
     <a id="Dec08"></a> <a class="anchor" href="#Dec08">Décembre 2008</a>
   </td>
   <td>
-    <small><em>Part of the last 30 days has been used to fix bugs that have
-influenced the previous hidden service measurements. The first <a
-href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">bugfix</a>
-corrects a possible segmentation fault that was very likely responsible for
-a number of failed measurement runs. Another <a
-href="https://trac.torproject.org/projects/tor/ticket/847">bug</a> could be
-explained that lead to significant delays in bootstrapping: Very slow
-directory authorities occupied bootstrapping clients for a long time before
-clients finally gave up and bootstrapped using another authority. As a
-result, the slowest two directory authorities have dedicated more bandwidth
-to their nodes, so that the effect is mitigated. A third <a
-href="https://trac.torproject.org/projects/tor/ticket/874">bug</a> has been
-introduced with the hidden service performance improvements in November; the
-effect was that Tor processes running hidden services would stop advertising
-their service upon reloading their configuration. Further, this bug has
-uncovered that Tor has re-established its introduction points upon
-reloading, which might have affected hidden service stability. This bug has
-been fixed and will be included in the upcoming version
-0.2.1.9-alpha.</em></small> <br/> <small><em>Apart from fixing bugs, new
-measurements have been performed between December 8 and 10. These will very
-likely be the final measurements to compare hidden service performance now
-with the beginning of the project. The data have not been completely
-evaluated, so it is difficult to make a statement about improvements at this
-point. However, a <a
-href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">preliminary
-evaluation</a> shows that service publication times have improved
-significantly. This is a result of Tor clients bootstrapping faster and of
-the performance improvements added in November. In contrast to this, the
-results for establishing a connection to a hidden service are less
-promising. While the improvements added in November seem to have a positive
-effect on performance, some substeps exhibit significantly worse
-performance. One example is fetching hidden service descriptors in order to
-contact a hidden service. A possible explanation is that the sudden increase
-in the number of hidden service directory nodes in September has had a
-negative effect on performance. Part of the work in the final 31 days will
-be to evaluate these data in more detail and make a final conclusion on the
-achievements of this project.</em></small>
+    <small><em>Une partie des 30 derniers jours a été consacrée à la correction
+de bugs qui ont influencé les dernières mesures sur les services cachés. La
+première <a
+href="http://archives.seul.org/or/cvs/Nov-2008/msg00100.html">correction</a>
+efface un problème d'erreur de segmentation reponsable en grande partie de
+nombreux échecs de mesures. Un autre <a
+href="https://trac.torproject.org/projects/tor/ticket/847">bug</a> était
+responsable du délai important dans l'amorçage: les autorités d'annuaire
+lentes occupaient pendant longtemps l'amorçage des clients avant que ces
+derniers abandonnent et utilisent une nouvelle autorité. Par conséquent,
+nous avons alloué davantage de bande passante aux deux plus lentes autorités
+d'annuaire, de manière à réduire ces désagréments. Un troisième <a
+href="https://trac.torproject.org/projects/tor/ticket/874">bug</a> a été
+introduit avec l'amélioration des performances des services cachés de
+novembre. L'effet entraîné était que les processus Tor qui faisaient tourner
+des services cachés arrêtaient d'annoncer ces services lors de
+l'actualisation de leur configuration. De plus, ce bug a révélé que Tor
+recréait ces points d'introduction à chaque actualisation ce qui pouvait
+affecter la stabilisation des services cachés. Ce bug a été corrigé et sera
+inclus dans la version 0.2.1.9-alpha à venir.</em></small> <br/>
+<small><em>En dehors de la correction de bugs, de nouvelles mesures ont été
+effectuées entre le 8 et le 10 décembre. Elles seront probablement les
+dernières pour comparer les performances actuelles des services cachés avec
+celles du début du projet. Les données n'ont pas complètement été évaluées,
+il est donc difficile de faire un jugement sur ces améliorations à ce
+stade. Toutefois, une <a
+href="http://freehaven.net/~karsten/hidserv/prelimreport-2008-12-15.pdf">analyse
+préliminaire</a> montre que les temps de publication des services ont été
+largement améliorés. C'est le résultat d'un amorçage plus rapide des clients
+et des améliorations ajoutées en novembre. En revanche, les résultats
+concernant l'établissement des connexions vers un service caché sont moins
+prometteurs. Un exemple est la récupération des descripteurs de services
+afin de rentrer en contact avec un service caché. Une explication possible
+est que l'augmentation soudaine du nombre de noeuds d'annuaire de services
+cachés au cours du mois de septembre a eut un effet négatif sur les
+performances. Une partie du travail de ces 31 derniers jours consistera à
+évaluer plus finement ces données et à rendre une conclusion sur
+l'achèvement de ce projet.</em></small>
   </td>
 </tr>
 
