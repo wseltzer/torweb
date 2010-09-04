@@ -107,6 +107,13 @@ for file in $po ; do
 
 			# Include foot.wmi
 			echo "#include <foot.wmi>" >> "$wmldir/$subdir/$wmlfile"
+
+			# If the file is mirrors.wml, include mirrors-table.wmi
+			if [ $wmlfile == "mirrors.wml" ]
+			then
+				sed -i 's/<!--PO4ASHARPBEGIN/#/' "$wmldir/$subdir/$wmlfile"
+				sed -i 's/PO4ASHARPEND-->//' "$wmldir/$subdir/$wmlfile"
+			fi
 		fi
 	}	
 
