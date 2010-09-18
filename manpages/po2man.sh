@@ -26,7 +26,7 @@ mandir="`dirname $wml`/tor/doc"
 
 # Location of the po files. Assuming that the translation directory is
 # relative to the website
-podir="`dirname $wml`/translation/projects/manpages"
+podir="`dirname $wml`/translation/projects/manpages/po"
 
 ### End config ###
 
