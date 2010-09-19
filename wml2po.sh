@@ -22,7 +22,7 @@ wmldir="$PWD"
 
 # Location of the pot files.
 # Assuming that the translation directory is relative to the website
-podir="`dirname $wmldir`/translation/projects/website/templates"
+podir="`dirname $wmldir`/translation/projects/website/po/templates"
 
 # Set the copyright holder of the files,
 # for example "The Tor Project, Inc"

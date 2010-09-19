@@ -19,7 +19,7 @@
 wmldir="$PWD"
 
 # Location of the po files,
-podir="`dirname $wmldir`/translation/projects/website"
+podir="`dirname $wmldir`/translation/projects/website/po"
 
 # A lot of the wml files have custom tags. These tags have been defined
 # in website/include/versions.wmi. Tags that people usually forget to close,
