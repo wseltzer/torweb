@@ -160,26 +160,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-       mirror004 => {
-            adminContact => "doc DOT kuehn AT nexgo DOT de",
-            orgName => " spacecowboy ",
-            isoCC => " ",
-            subRegion => "",
-            region => "DE",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor-proxy.de/tor-mirror/",
-            httpsWebsiteMirror => "https://tor-proxy.de/tor-mirror/",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor-proxy.de/tor-mirror/dist/",
-            httpsDistMirror => "https://tor-proxy.de/tor-mirror/dist/",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
        mirror005 => {
             adminContact => "contact AT algorithmus DOT com",
             orgName => "Spline",

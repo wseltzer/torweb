@@ -53,6 +53,6 @@ qrcode:
     "https://www.torproject.org/dist/android/alpha-orbot-latest.apk"
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
-translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
+#translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
 
 .PHONY: docs eff projects press about download download getinvolved donate
