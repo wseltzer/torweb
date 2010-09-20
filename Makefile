@@ -19,8 +19,8 @@
 # FIXME: these are the same
 export TORSVNSTABLE=/home/phobos/onionrouter/onionrouter/tor/
 export TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
-export STABLETAG=tor-0.2.2.14-alpha
-export DEVTAG=tor-0.2.2.14-alpha
+export STABLETAG=tor-0.2.2.16-alpha
+export DEVTAG=tor-0.2.2.16-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download download getinvolved donate
@@ -50,7 +50,7 @@ translations:
 	./po2wml.sh
 qrcode:
 	qrencode -o img/android/orbot-qr-code-latest.png \
-    "http://www.torproject.org/dist/android/alpha-orbot-latest.apk"
+    "https://www.torproject.org/dist/android/alpha-orbot-latest.apk"
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
