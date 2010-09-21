@@ -134,6 +134,20 @@ etc. Here are some example projects:</p>
 
 <ul>
 
+<li>Right now Tor clients are willing to reuse a given circuit for ten
+minutes after it's first used. The goal is to avoid loading down the
+network with too many circuit creations, yet to also avoid having
+clients use the same circuit for so long that the exit node can build a
+useful pseudonymous profile of them. Alas, ten minutes is probably way
+too long, especially if connections from multiple protocols (e.g. IM and
+web browsing) are put on the same circuit. If we keep fixed the overall
+number of circuit extends that the network needs to do, are there more
+efficient and/or safer ways for clients to allocate streams to circuits,
+or for clients to build preemptive circuits? Perhaps this research item
+needs to start with gathering some traces of what requests typical
+clients try to launch, so you have something realistic to try to optimize.
+</li>
+
 <li>The "website fingerprinting attack": make a list of a few
 hundred popular websites, download their pages, and make a set of
 "signatures" for each site. Then observe a Tor client's traffic. As
@@ -159,9 +173,6 @@ Path selection algorithms, directory fetching schedules for Tor-on-mobile
 that are compatible anonymity-wise with our current approaches.
 </li>
 
-<li>
-Figure out how bad 10 minutes is for maxcircuitdirtiness.
-</li>
 -->
 
 <li>More coming soon. See also the "Research" section of the
