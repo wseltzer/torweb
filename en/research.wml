@@ -134,6 +134,19 @@ etc. Here are some example projects:</p>
 
 <ul>
 
+<li>If we prevent the really loud users from using too much of the Tor
+network, how much can it help? We've instrumented Tor's entry relays
+so they can rate-limit connections from users, and we've instrumented
+the directory authorities so they can change the rate-limiting
+parameters globally across the network. Which parameter values improve
+performance for the Tor network as a whole? How should relays adapt
+their rate-limiting parameters based on their capacity and based on
+the network load they see, and what rate-limiting algorithms will work
+best? See the <a
+href="https://blog.torproject.org/blog/research-problem-adaptive-throttling-tor-clients-entry-guards">blog
+post</a> for details.
+</li>
+
 <li>Right now Tor clients are willing to reuse a given circuit for ten
 minutes after it's first used. The goal is to avoid loading down the
 network with too many circuit creations, yet to also avoid having
