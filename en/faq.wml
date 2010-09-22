@@ -51,6 +51,8 @@ start.</a></li>
 are used for entry/exit?</a></li>
 <li><a href="#GoogleCaptcha">Google makes me solve a Captcha or tells
 me I have spyware installed.</a></li>
+<li><a href="#GmailWarning">Gmail warns me that my account may have
+been compromised.</a></li>
 </ul>
 
 <p>Running a Tor relay:</p>
@@ -950,6 +952,50 @@ should clear up again after a short time.
 Torbutton 1.2.5 (released in mid 2010) detects Google captchas and can
 automatically redirect you to a more Tor-friendly search engine such as
 Ixquick or Bing.
+</p>
+
+<hr />
+
+<a id="GmailWarning"></a>
+<h3><a class="anchor" href="#GmailWarning">Gmail warns me that my account
+may have been compromised.</a></h3>
+
+<p>
+Sometimes, after you've used Gmail over Tor recently, you'll get a pop-up
+notice from Google that says your account may have been compromised. The
+window lists a series of IP addresses and locations throughout the world.
+</p>
+
+<p>
+In general this is a false alarm: Google saw a bunch of logins from
+different places, thought that was unusual for you, and wanted to let
+you know. If you use Tor to access a Google service, then it will appear
+like you're coming from lots of different places. Nothing to worry about
+in particular.
+</p>
+
+<p>
+But that doesn't mean you can entirely ignore the warning. It's
+<i>probably</i> a false positive, but it might not be. It is possible
+that somebody could at some point steal your Google cookie, which would
+allow them to log in to the Google service as you. They might steal it
+by breaking into your computer, or by watching your network traffic at
+Starbucks or sniffing your wireless at home (when you're not using Tor),
+or by watching traffic going over the Tor network. In theory none of
+this should be possible because Gmail and similar services should only
+send the cookie over an SSL link. In practice, alas, it's <a
+href="http://fscked.org/blog/fully-automated-active-https-cookie-hijacking">way
+more complex than that</a>.
+</p>
+
+<p>
+And if somebody <i>did</i> steal your google cookie, they might end
+up logging in from unusual places (though of course they also might
+not). So the summary is that since you're using Tor, this security
+measure that Google uses isn't so useful for you, because it's full of
+false positives. You'll have to use other approaches, like seeing if
+anything looks weird on the account, or looking at the timestamps for
+recent logins and wondering if you actually logged in at those times.
 </p>
 
 <hr />
