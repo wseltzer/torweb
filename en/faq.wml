@@ -43,9 +43,14 @@ have a virus or spyware?</a></li>
 
 <p>Running a Tor client:</p>
 <ul>
-<li><a href="#DoesntWork">I installed Tor and Polipo but it's not working.</a></li>
-<li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at start.</a></li>
-<li><a href="#ChooseEntryExit">Can I control which nodes (or country) are used for entry/exit?</a></li>
+<li><a href="#DoesntWork">I installed Tor and Polipo but it's not
+working.</a></li>
+<li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at
+start.</a></li>
+<li><a href="#ChooseEntryExit">Can I control which nodes (or country)
+are used for entry/exit?</a></li>
+<li><a href="#GoogleCaptcha">Google makes me solve a Captcha or tells
+me I have spyware installed.</a></li>
 </ul>
 
 <p>Running a Tor relay:</p>
@@ -904,6 +909,52 @@ If you want to access a service directly through Tor's SOCKS interface
 (eg. using ssh via connect.c), another option is to 
 set up an internal mapping in your configuration file using <tt>MapAddress</tt>. 
 See the manual page for details.
+</p>
+
+<hr />
+
+<a id="GoogleCaptcha"></a>
+<h3><a class="anchor" href="#GoogleCaptcha">Google makes me solve a
+Captcha or tells me I have spyware installed.</a></h3>
+
+<p>
+This is a known and intermittent problem; it does not mean that Google
+considers Tor to be spyware. Instead, Google tries to detect certain
+kinds of spyware or viruses that send distinctive queries to Google
+Search. It then notes the IP addresses from which those queries are
+received, and tries to warn the users of those IP addresses that it
+received queries indicating an infection.
+</p>
+
+<p>
+When you use Tor, you are sending queries through exit nodes that are also
+shared by thousands of other users. If some of those users are infected
+with software that Google detects, Google may mistakenly conclude that
+the exit nodes themselves are infected (because the requests appeared
+to originate from the exit nodes) and, for a limited period of time,
+will try (incorrectly) to warn all Google users who share an exit node
+with an infected machine that they are themselves infected.
+</p>
+
+<p>
+You may also get this sort of message when lots of Tor users are querying
+Google in a short period of time. Google interprets the high volume of
+traffic as somebody trying to "crawl" their website, so it slows down
+traffic from that IP address for a short time.
+</p>
+
+<p>
+To our knowledge, Google is not doing anything intentionally specifically
+to deter or block Tor use. The error message about an infected machine
+should clear up again after a short time.
+</p>
+
+<p>
+If we think of a measure that would prevent users from seeing this sort of
+spurious warning message, we will certainly suggest it to Google and to
+other web site developers. There may also be technical workarounds for
+Tor end-users affected by this problem; if you find a useful workaround
+and write up a description of it, please let us know.
 </p>
 
 <hr />
