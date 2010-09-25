@@ -569,7 +569,7 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
-        }
+        },
 
         mirror028 => {
             adminContact => "gouki",
