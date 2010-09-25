@@ -573,7 +573,7 @@ my %m = (
 
         mirror028 => {
             adminContact => "gouki",
-            orgName => "gouki",
+            orgName => "5ª Coluna",
             isoCC => "PT",
             subRegion => "",
             region => "PT",
