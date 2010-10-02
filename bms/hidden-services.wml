@@ -1,0 +1,165 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 22995 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: Hidden Service Protocol" CHARSET="UTF-8"
+<div class="main-column">
+
+<h2>Tor: Hidden Service Protocol</h2>
+<hr />
+
+<p>
+Tor က ဝဘ္ဆိုက္လႊင့္တင္ျခင္း၊ instant messaging server ေထာင္ျခင္းကဲ့သို႔ေသာ
+ဝန္ေဆာင္မႈမ်ားစြာေပးျခင္းျဖင့္ သံုးစဲြသူမ်ားအား သူတို႔၏တည္ေနရာမ်ားကို
+ေဖ်ာက္ကြယ္ေပးေနပါသည္။ tor ၏ "rendezvous points,"ကိုသံုးျခင္းအားျဖင့္
+သံုးစဲြသူမ်ားက တစ္ဦးႏွင့္တစ္ဦး၏ အမွတ္လကၡဏာဘာမွမသိရဘဲ hidden service
+ႏွင့္ခ်ိတ္ဆက္ႏိုင္ပါသည္။ rendezvous protocol မ်ား မည္သို႔အလုပ္လုပ္ေၾကာင္း
+နည္းပညာပိုင္းအရ အေသးစိတ္ေဖာ္ျပခ်က္မ်ားကို ဒီစာမ်က္ႏွာမွာ ေဖာ္ျပထားပါသည္။
+မည္ကဲ့သို႔ကို သိလိုပါက <a href="<page docs/tor-hidden-service>">configuring
+hidden services</a>စာမ်က္ႏွာတြင္ ၾကည့္ပါ။
+</p>
+
+<p>
+hidden service သည္ သံုးစဲြသူမ်ားက မဆက္သြယ္မွီမွာ သူ႔တည္ရွိမႈကို tor
+ကြန္ယက္ေပၚတြင္ေၾကာ္ျငာရန္လိုပါသည္။ ထို႔ေၾကာင့္ သူက ႀကံဳရာ relay
+မ်ားကိုေရြးလိုက္ၿပီး circuit မ်ားကိုတည္ေဆာက္လိုက္ကာ
+<em>မိတ္ဆက္pointမ်ား</em>အျဖစ္ အမ်ားျမင္သာေသာ key ေတြခ်ျပလိုက္ပါသည္။
+ေအာက္ပါပံုရွိ အစိမ္းေရာင္ ခ်ိတ္ဆက္မႈမ်ားသည္ တိုက္ရိုက္ခ်ိတ္ဆက္မႈမ်ားမဟုတ္ဘဲ
+circuit မ်ားျဖစ္ပါသည္။ Tor circuit အျပည့္ကိုသံုးျခင္းျဖင့္ hidden server မွ
+IPလိပ္စာရွိေသာ မိတ္ဆက္point မ်ားႏွင့္ တဲြဖက္လုပ္ေဆာင္ဖို႔ ခဲယဥ္းပါသည္။
+မိတ္ဆက္ point မ်ားသည္ hidden service ၏ identity ကိုေဖာ္ျပေပးေနသျဖင့္ ၄င္း
+ဆာဗာ၏ တည္ေနရာ (IP လိပ္စာ)ကိုသိဖို႔ မလိုလားပါ။
+</p>
+
+# maybe add a speech bubble containing "PK" to Bob, because that's what
+# Bob tells to his introduction points
+<img alt="Tor hidden service step one" src="$(IMGROOT)/THS-1.png" />
+
+
+
+<p>
+အဆင့္ ၂၊ hidden service မွ public key ႏွင့္ မိတ္ဆက္point တစ္ခုခ်င္းစီ၏
+အက်ဥ္းပါေသာ <em>hidden service descriptor</em>ကို စုေဝးပါသည္။ ထို႔ေနာက္ ထို
+descriptor ကို သူ႔တဦးထဲပိုင္ key ျဖင့္ျပၿပီး distributed hash table ဆီ
+upload တင္ေပးပါသည္။ ထို descriptor ကို သံုးစဲြသူက XYZ.onion ဟုရွာႏိုင္ပါသည္။
+XYZ သည္ စာလံုး ၁၆ လံုးပါနာမည္ျဖစ္ၿပီး service ၏ public key ဆီမွ သီးသန္႔
+ရရွိေပၚထြက္လာျခင္းျဖစ္သည္။ ထိုအဆင့္ၿပီးလွ်င္ hidden service ကို
+ထည့္သြင္းပါမည္။
+</p>
+
+<p>
+အလိုေလ်ာက္ေျပာင္းေပးေသာ service နာမည္ကိုသံုးဖို႔သည္ လက္ေတြ႔မျဖစ္ႏိုင္ဟု
+ထင္ရေသာ္လည္း အေရးႀကီးေသာအခ်က္ကိုေတာ့ ေထာက္ပံ့ေပးပါသည္။ မိတ္ဆက္point
+မ်ားအပါအဝင္အားလံုးသည္ ထုတ္ျပန္ထားေသာ သေကၤတျပ directory ျဖစ္ၿပီး သံုးစဲြသူက
+မွန္ကန္ေသာ hidden service သံုးေနသလားဆိုတာ သိႏိုင္ပါသည္။ <a
+href="https://zooko.com/distnames.html">Zooko's conjecture</a>မွာၾကည့္ပါ။
+လုပ္ပိုင္ခြင့္လဲႊေျပာင္းေပးျခင္း၊ လံုၿခံဳျခင္းႏွင့္
+လူအဓိပၸါယ္ျပည့္ဝျခင္းမ်ားအနက္ ၂ ခုကို သင္ရႏိုင္ပါသည္။ တေန႔ေန႔မွာေတာ့
+တစ္ဦးတစ္ေယာက္က hidden service နာမည္မ်ားအတြက္ <a
+href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html">Petname</a>ဒီဇိုင္းကို
+ၿပီးေျမာက္ေစပါလိမ့္မည္။
+</p>
+
+# maybe replace "database" with "DHT"; further: how incorrect
+# is it to *not* add DB to the Tor cloud, now that begin dir cells are in
+# use?
+<img alt="Tor hidden service step two" src="$(IMGROOT)/THS-2.png" />
+
+
+
+
+<p>
+အဆင့္ ၃၊ hidden service ကိုခ်ိတ္ဆက္ခ်င္ေသာ သံုးစဲြသူသည္ onion
+လိပ္စာမ်ားအေၾကာင္း အရင္ေလ့လာဖို႔ လိုပါမည္။ ထို႔ေနာက္ distributed hash table
+မွ descriptor ကိုေဒါင္းလုဒ္ခ်ၿပီး ကြန္ယက္တစ္ခုကို တည္ေထာင္ဖို႔လိုပါမည္။
+XYZ.onion အတြက္ descriptor ရွိလွ်င္ သံုးစဲြသူသည္ မိတ္ဆက္ point အစံုမ်ားႏွင့္
+အသံုးျပဳရန္ မွန္ကန္ေသာ public key ကိုသိႏိုင္ပါၿပီ။ (hidden service သည္
+offline သို႔မဟုတ္ ထြက္သြားတာၾကာၿပီျဖစ္ႏိုင္ပါသည္၊ သို႔မဟုတ္ onion လိပ္စာတြင္
+typo လည္းရွိႏိုင္ပါသည္)။ ထိုအခ်ိန္တြင္ သံုးစဲြသူသည္ ႀကံဳရာေရြးခ်ယ္ထားေသာ
+relay ထဲတြင္ circuit တစ္ခုကို ဖန္တီးၿပီး လွ်ိဳဳ႕ဝွက္ခ်က္တခုေပး၍
+<em>rendezvous point</em>တစ္ခုအျဖစ္ အသံုးျပဳဖို႔လုပ္ႏိုင္ပါသည္။
+</p>
+
+# maybe add "cookie" to speech bubble, separated from the surrounded
+# "IP1-3" and "PK"
+<img alt="Tor hidden service step three" src="$(IMGROOT)/THS-3.png" />
+
+
+
+<p>
+အဆင့္ ၄၊ descriptor ေတြ ရၿပီး rendezvous point ေတြလည္း အဆင္သင့္ျဖစ္ရန္
+သံုးစဲြသူက rendezvous point ရဲ႕လိပ္စာနဲ႔ လွ်ိဳဳ႕ဝွက္စကားလည္းပါတဲ့ (hidden
+service public key ကို encrypt လုပ္ထားတဲ့) <em>မိတ္ဆက္</em> message
+တည္ေဆာက္ရမွာပါ။ အဲ့ဒိ message ကို မိတ္ဆက္ point ေတြထဲက တစ္ခုဆီ ပို႔လိုက္ၿပီး
+hidden service ဆီ ေတာင္းခံစာေရာက္သြားပါမယ္။ ေနာက္တခါ tor circuit ေတြနဲ႔
+ဆက္သြယ္မႈျဖစ္ေပၚပါမယ္။ သံုးစဲြသူရဲ႕ IP လိပ္စာနဲ႔ေတာ့ ဘယ္သူမွ
+ပို႔လုိ႔မရပါဘူး။ ဒါေၾကာင့္ သံုးစဲြသူက အမည္မသိဘဲ ဆက္ၿပီးျပေနမွာပါ။
+</p>
+
+<img alt="Tor hidden service step four" src="$(IMGROOT)/THS-4.png" />
+
+<p>
+အဆင့္ ၅၊ hidden service က သံုးစဲြသူပို႔လာတဲ့ message ကို decrypt လုပ္ေပးၿပီး
+rendezvous point လိပ္စာနဲ႔ သူ႔မွာရွိတဲ့ လွ်ိဳ႕ဝွက္ကုဒ္ကိုရွာေပးပါတယ္။
+ၿပီးေနာက္ circuit ကို rendezvous point အျဖစ္ဖန္တီးၿပီး လွ်ိဳ႕ဝွက္ကုဒ္ကိုလည္း
+rendezvous message နဲ႔အတူ ျပန္ပို႔ေပးပါတယ္။
+</p>
+
+<p>
+At this point it is of special importance that the hidden service sticks to
+the same set of <a
+href="<wiki>TorFAQ#Whatsthisaboutentryguardformerlyknownashelpernodes">entry
+guards</a> when creating new circuits. Otherwise an attacker could run his
+own relay and force a hidden service to create an arbitrary number of
+circuits in the hope that the corrupt relay is picked as entry node and he
+learns the hidden server's IP address via timing analysis. This attack was
+described by &Oslash;verlier and Syverson in their paper titled <a
+href="http://freehaven.net/anonbib/#hs-attack06">Locating Hidden
+Servers</a>.
+</p>
+
+# it should say "Bob connects to Alice's ..."
+<img alt="Tor hidden service step five" src="$(IMGROOT)/THS-5.png" />
+
+
+<p>
+ေနာက္ဆံုးအဆင့္တြင္ ဆံုရပ္ (rendezvous) point က သံုးစဲြသူသည္ ခ်ိတ္ဆက္မႈကို
+ေအာင္ျမင္စြာလုပ္ႏိုင္ေၾကာင္း အစီရင္ခံမည္။ ထို႔ေနာက္ သံုးစဲြသူေရာ hidden
+server ေရာ၏ circuit မ်ား ဆံုရပ္ point ဆီတြင္
+အခ်င္းခ်င္းအဆက္အသြယ္ျပဳႏိုင္ၾကပါၿပီ။ ဆံုရပ္ point သည္ သံုးစဲြသူဆီမွ service
+သို႔ ရိုးရွင္းစြာ relay (end-to-end encrypted)လုပ္ေပးသည္။ service မွ
+သံုးစဲြသူဆီသို႔လည္း ထို႔တူပင္။
+</p>
+
+<p>
+အစစ္အမွန္ျဖစ္ေသာ ဆက္သြယ္မႈအတြက္ introduction circuit ကို
+အသံုးမျပဳရျခင္းအေၾကာင္းတစ္ခုမွာ relay တစ္ခုခ်င္းဆီသည္ ေပးထားေသာ hidden
+service တြင္ ျမင္သာထင္ရွားမေနသင့္ေသာေၾကာင့္ ျဖစ္သည္။ ထိုေၾကာင့္ပင္ ဆံုရပ္
+point သည္ hidden service ၏ identit ကို မစစ္ေဆးျခင္းျဖစ္သည္။
+</p>
+
+<p>
+အၾကမ္းဖ်င္းအားျဖင့္ သံုးစဲြသူႏွင့္ hidden service ၾကားရွိ ၿပီးျပည့္စံုေသာ
+ခ်ိတ္ဆက္မႈတြင္ relay ၆ ခုပါရွိသည္။ ၃ ခုသည္ သံုးစြဲသူက တတိယေျမာက္ဆံုရပ္ point
+ႏွင့္ေရြးခ်ယ္ျခင္းျဖစ္ၿပီး က်န္ ၃ ခုကို hidden service က ေရြးခ်ယ္ပါသည္။
+</p>
+
+<img alt="Tor hidden service step six" src="$(IMGROOT)/THS-6.png" />
+
+<p>
+hidden service portocol မ်ားအေၾကာင္း ဒီထက္ပို၍ အေသးစိတ္သိလိုပါက <a
+href="<svnprojects>design-paper/tor-design.pdf">Tor design paper</a> တြင္
+design description အေျခအျမစ္မ်ားကို ေတြ႔ႏိုင္ၿပီး <a
+href="<gitblob>doc/spec/rend-spec.txt">rendezvous specification</a>တြင္
+message fromat မ်ားကို ၾကည့္ႏိုင္သည္။
+</p>
+
+  </div>
+
+
+#include <foot.wmi>

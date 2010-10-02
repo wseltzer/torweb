@@ -19,7 +19,7 @@
 
 <p>
 Если у вас Debian lenny, sid или squeeze, просто запустите <br />
-<tt>apt-get install tor tor-geoipdb</tt> из корня.
+<tt>apt-get install tor tor-geoipdb</tt>с правами пользователя root.
 </p>
 
 <p>
@@ -45,11 +45,20 @@ Linux/Unix".
 </p>
 
 <p>
-Чтобы скачать Tor, сначала потребуется настроить наш репозиторий. Для начала
-выясните название своего дистрибутива. Если вы используете Ubuntu 10.04, это
-"lucid", 9.10 - "karmic", 9.04 - "jaunty", 8.10 - "intrepid", а если 8.04 -
-"hardy". Если вы используете Debian Etch, это «etch», а Debian Lenny -
-«lenny». Добавьте эту строку в файл <tt>/etc/apt/sources.list</tt>:<br />
+You'll need to set up our package repository before you can fetch
+Tor. First, you need to figure out the name of your distribution. Here's a
+quick mapping:
+<ul>
+<li> Ubuntu 10.04 or Trisquel 4.0 is "lucid"</li>
+<li> Ubuntu 9.10 or Trisquel 3.5 is "karmic"</li>
+<li> Ubuntu 9.04 is "jaunty"</li>
+<li> Ubuntu 8.10 is "intrepid"</li>
+<li> Ubuntu 8.04 is "hardy"</li> 
+<li> Debian Etch is "etch"</li>
+<li> Debian Lenny is "lenny"</li>
+</ul>
+
+Then add this line to your <tt>/etc/apt/sources.list</tt> file:<br />
 <pre>
 deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 </pre>
@@ -66,7 +75,7 @@ gpg --keyserver keys.gnupg.net --recv 886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 </pre>
 Сейчас обновите источники и установите Tor путем запуска нижеперечисленных
-команд из корня:
+команд с правами пользователя root:
 <pre>
 apt-get update
 apt-get install tor tor-geoipdb
@@ -81,8 +90,8 @@ Linux/Unix".
 
 <p style="font-size: small">
 Адрес <code>deb.torproject.org</code> ссылается на множество независимых
-серверов. Если у вас не получается получить доступ к серверам с
-использованием этого имени, вы моете попробовать одно из следующих имён:
+серверов.Если вы по каким-то причинам не можете получить доступ к серверам с
+использованием этого имени, вы можете попробовать одно из следующих имён:
 <code>deb-master.torproject.org</code>, <code>mirror.netcologne.de</code>
 или <code>tor.mirror.youam.de</code>.
 </p>

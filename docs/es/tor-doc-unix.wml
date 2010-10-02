@@ -1,0 +1,196 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 21798 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: Linux/BSD/Unix Install Instructions" CHARSET="UTF-8"
+<div class="center">
+
+<div class="main-column">
+
+<h1>Ejecución de la <a href="<page index>">Tor</a> cliente en Linux/BSD/Unix</h1>
+<br />
+
+<p>
+<b>Tenga en cuenta que estas son las instrucciones de instalación para
+ejecutar un cliente Tor. Si quiere retransmitir tráfico para otros y ayudar
+a crecer la red (por favor), lee la guía <a href="<page
+docs/tor-doc-relay>">Configuración de un relé</a></b>
+</p>
+
+<hr /> <a id="installing"></a>
+<h2><a class="anchor" href="#installing">Primer Paso: Descargar e instalar
+Tor</a></h2>
+<br />
+
+<p>
+La última versión de Tor se encuentra en la página<a href="<page
+download-unix>">descarga</a>. Tenemos paquetes para Debian, Red Hat, Gentoo,
+* BSD, etc allí también. Si estás usando Ubuntu, no use los paquetes por
+defecto: usar<a href="<page docs/debian>#ubuntu">nuestro repositorio deb</a>
+en lugar.
+</p>
+
+<p>Si vas a compilar desde las fuentes, primero instala <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a>, y asegúrese de
+tener openssl y zlib (incluyendo los - paquetes de desarrollo si se
+aplica). A continuación, ejecute: <br /> <tt>tar xzf
+tor-<version-stable>.tar.gz; cd tor-<version-stable></tt><br />
+<tt>./configure &amp;&amp; make</tt><br /> Ahora se puede ejecutar tor como
+<tt>src/or/tor</tt>, o puede ejecutar <tt>make install</tt> (como root si es
+necesario) para instalarlo en /usr/local/, y entonces usted puede comenzar
+simplemente ejecutando <tt>tor</tt>.
+</p>
+
+<p>Tor viene configurado como cliente por defecto. Utiliza un integrado en el
+archivo de configuración por defecto, y la mayoría de la gente no tendrá que
+cambiar cualquiera de las opciones. Tor está ya instalado.
+</p>
+
+<hr /> <a id="privoxy"></a> <a id="polipo"></a>
+<h2><a class="anchor" href="#polipo">Paso Dos: Instalar Privoxy para la
+navegación web</a></h2>
+<br />
+
+<p>Tras instalar Tor, necesita configurar sus aplicaciones para usarlo.
+</p>
+
+<p>
+El primer paso es configurar la navegación web. Comience por instalar <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> desde su
+favorito repositorio. Privoxy es un proxy web que hace el almacenamiento en
+caché HTTP pipelining bien, así que es muy apropiada para las latencias de
+Tor. Asegúrese de obtener por lo menos Privoxy 1.0.4, ya que las versiones
+anteriores carecen de los CALCETINES apoyo necesario utilizar Privoxy con
+Tor. Usted debe desinstalar privoxy en este momento (por ejemplo, apt-get
+remove privoxy o yum remove privoxy), para que no entren en conflicto.
+</p>
+
+<p>Una vez que haya instalado Privoxy (o bien desde paquete o desde fuentes),
+<b> necesitará configurar Privoxy para usar Tor </ b>. ¡Apúntese a nuestro
+<a
+href="https://svn.torproject.org/svn/torbrowser/trunk/build-scripts/config/polipo.conf">Polipo
+de configuración de Tor</a> y lo puso en el lugar de su actual polipo
+archivo de configuración (por ejemplo, /etc/polipo/config o
+~/.polipo). Tendrá que reiniciar Privoxy para que los cambios surtan
+efecto. Por ejemplo:<br /> <tt>/etc/init.d/polipo restart</tt>
+</p>
+
+<p>Si lo prefiere, puede en lugar de utilizar Privoxy con <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/PrivoxyConfig">este
+ejemplo de configuración de Privoxy</a>. Pero desde los archivos de
+configuración tanto utilizan el puerto 8118, no debe trabajar en tanto
+Privoxy y Privoxy al mismo tiempo.</p>
+
+<hr /> <a id="using"></a>
+<h2><a class="anchor" href="#using">Paso Tres: Configurar tus aplicaciones para
+que usen Tor</a></h2>
+<br />
+
+<p>Tras instalar Tor y Privoxy, necesita configurar sus aplicaciones para
+usarlos. El primer paso es configurar la navegación web.</p>
+
+<p>Usted debe usar Tor con Firefox y Torbutton, para mejor
+seguridad. Simplemente instale el <a
+href="https://addons.mozilla.org/firefox/2275/">Plugin Torbutton</a>,
+reinicie Firefox, y ya está todo listo:
+</p>
+
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png" border="1"> <br />
+
+<p>
+Si planea usar Firefox en un ordenador distinto del de Tor, vea la <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">
+Preguntas más frecuentes de entrada para ejecutar Tor en un ordenador
+diferente</a>.
+</p>
+
+<p>Para usar con TOR otras aplicaciones que soportan proxies HTTP, simplemente
+dirigirlas a Privoxy (eso significa localhost puerto 8118). Para usar SOCKS
+directamente (para mensajería instantánea, Jabber, IRC, etc), puede apuntar
+su aplicación directamente a Tor (localhost puerto 9050), pero ver <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">esta
+FAQ</a> por qué esto puede ser peligroso. Para aplicaciones que no soportan
+ni SOCKS ni HTTP, echar un vistazo a <a
+href="http://tsocks.sourceforge.net/">tsocks</a> o <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO#socat">socat</a>.
+</p>
+
+<p>Para obtener información sobre cómo usar con TOR otras aplicaciones, echa un
+vistazo a la <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+HOWTO</a>.
+</p>
+
+<hr /> <a id="verify"></a>
+<h2><a class="anchor" href="#verify">Paso cuatro: Asegúrese de que funciona</a></h2>
+<br />
+
+<p>
+<!--PO4ASHARPBEGIN<a href="http://ipchicken.com/">
+this site</a>PO4ASHARPEND-->
+#to see what IP address it thinks you're using.
+A continuación, debería intentar usar tu explorador con Tor y asegurarse de
+que su dirección IP está siendo anonimizada. Haga clic en <a
+href="https://check.torproject.org/">el detector de Tor</a>  y compruebe si
+cree que usas Tor o no.     (Si este sitio no responde, visite <<a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">esta
+FAQ</a> para más sugerencias sobre cómo comprobar su Tor.)
+</p>
+
+<p>Si usted tiene un cortafuegos personal que limita la capacidad de su
+ordenador para conectarse a sí misma (esto incluye también SELinux en Fedora
+Core 4), asegúrese de permitir conexiones de aplicaciones locales a Privoxy
+(puerto local 8118) y Tor (puerto local 9050) . Si tu cortafuegos bloquea
+conexiones salientes, abra un agujero para que pueda conectarse al menos a
+los puertos TCP 80 y 443, y luego ver <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">estaFAQ</a>
+Si su fichero de configuración SELinux no permite a tor oa privoxy
+ejecutarse correctamente, cree un archivo llamado booleans.local en el
+directorio/etc/selinux/targeted. Editar este archivo en tu editor de texto
+favorito e inserte "allow_ypbind=1". Reinicie su máquina para que este
+cambio surta efecto.
+</p>
+
+<p>Si aún no funciona, visita <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">estaFAQ</a>
+para seguir consejos.</p>
+
+<hr /> <a id="server"></a> <a id="relay"></a>
+<h2><a class="anchor" href="#relay">Paso Cinco: Configurarlo como repetidor</a></h2>
+<br />
+
+<p>La red Tor se apoya en voluntarios que donen ancho de banda. Cuanta más
+gente ejecute repetidores, más rápida será la red Tor. Si usted tiene por lo
+menos 20 kilobytes / s en ambos sentidos, por favor ayuda a Tor configurando
+su Tor para que sea repetidor también. Tenemos muchas características que
+hacen que los repetidores Tor fáciles y convenientes, incluyendo limitación
+del ancho de banda, políticas de salida para que pueda limitar su exposición
+a quejas de abuso, y soporte para IP dinámicas.</p>
+
+<p>Tener repetidores en muchos sitios diferentes de Internet es lo que hace a
+los usuarios de Tor seguros. <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">También
+puede obtener más anonimato</a>, haciendo que sitios remotos no puedan saber
+si las conexiones se originaron en su ordenador o fueron reenviadas desde
+otros.</p>
+
+<p>Lea más en nuestra guía <<a href="<page docs/tor-doc-relay>">Configuración
+de un relé</a>.</p>
+
+<hr />
+
+<p>Si tiene sugerencias para mejorar este documento, por favor <a href="<page
+contact>">envíanoslas</a>.. Gracias!</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+
+#include <foot.wmi>

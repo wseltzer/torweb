@@ -1,0 +1,106 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 21511 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="A public TorDNSEL service" CHARSET="UTF-8"
+<div class="main-column">
+
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h1>အမ်ားသံုး TorDNSEL service</h1>
+
+<h2>အမ်ားသံုး TorDNSEL service ဆိုတာဘာလဲ</h2>
+
+<p>TorDNSEL ဆိုသည္မွာ DNS အေျခခံ Tor exit nodes မ်ားစာရင္းျဖစ္၍ အၿမဲတမ္း
+စစ္ေဆးျပဳျပင္မႈရွိသည္။  Tor သည္ Exit Policy မ်ားကို အေထာက္အပံ့ျပဳရာတြင္
+Network Service တစ္ခု၏ Tor exit list သည္ ၎ Network ၏ IP address သာမက Port
+နံပါတ္မ်ားႏွင့္ပါ တြဲ၍အလုပ္လုပ္သည္။ပံုမွန္ DNSxls မ်ားႏွင့္မတူေသာအခ်က္မွာ ၎
+Service အတြက္ Tor Exit List ႏွင့္ပတ္သက္ေသာ Information မ်ားကို ၎၏ query
+မ်ားအတြင္းသို႔ ထည့္သြင္းေပးရန္လိုအပ္သည္။</p>
+
+<p>ယခင္ DNSELs မ်ားသည္ Exit Node အတြက္ IP address ရွာရာတြင္ Tor's network
+directory ကို အသံုးမျပဳေပ။ ထုိ႔ေၾကာင့္ ဤနည္းလမ္းသည္ directory ထဲတြင္ exit
+address မ်ားကုိေၾကျငာမထားပါက exit node
+မ်ားကုိမွန္ကန္စြာစာရင္းျပဳစုေပးႏိုင္ျခင္းမရွိေပ။ သို႔ရာတြင္ TorDNSEL ကမူ ၎
+Node မ်ားကုိ အၿမဲစစ္ေဆးျပဳျပင္ျခင္းေၾကာင့္ ပိုမိုတိက်ေသာ exit node စာရင္းကို
+ျပဳစုေပးႏိုင္သည္။</p> 
+
+<p>TorDNSEL၏ ေနာက္ခံအေၾကာင္းရင္းမ်ားႏွင့္ အလုပ္လုပ္ပံုအျပည့္အစံုကို တရားဝင္ <a
+href="<gitblob>doc/contrib/torel-design.txt">Design Document</a>
+တြင္ၾကည့္ရႈႏုိင္သည္။ ယခုလက္ရွိတြင္မူ အဆိုပါစာမ်က္ႏွာတြင္
+ေဖာ္ျပထားသည့္ပထမဆံုး Query အမ်ိဳးအစားအတြက္သာ အေထာက္အပ့ံေပးႏိုင္ပါသည္။</p>
+
+<h2>Public TorDNSEL service ကိုမည္သို႔အသံုးျပဳႏိုင္မည္နည္း။</h2>
+
+<p>dig Command ကုိ ေအာက္ပါအတိုင္း အသံုးျပဳ၍ Type 1 အမ်ိဳးအစား query မ်ားကို
+ေတာင္းဆုိႏိုင္ပါသည္။</p>
+
+<pre>dig 209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org</pre>
+
+<h2>ရလာတဲ့ အေျဖေတြက ဘာအဓိပၸါယ္လဲ။</h2>
+
+<p>Tor node တစ္ခုရွိပါက
+"209.137.169.81.6667.4.3.2.1.ip-port.exitlist.torproject.org" request အတြက္
+127.0.0.2 ဟု return ျပန္ပါလိမ့္မည္။ထိုအခါ သင္၏ DNS request မ်ားသည္ 1.2.3.4
+(သင္၏ ip address) port 6667 ကိုအသံုးျပဳ၍ 81.169.137.209 မွတဆင့္
+ထြက္ပါလိမ့္မည္။ အကယ္၍ ေဖာ္ျပပါကဲ့သုိ႔ exit node မ်ားမရွိပါက DNSEL သည္
+NXDOMAIN ဟု return ျပန္လိမ့္မည္။</p>
+
+<p>127.0.0.1 မွလြဲ၍ 127.0.0.0/8 network အတြင္းရွိ အျခား A အမ်ိဳးအစား record
+မ်ားသည္ ေနာက္အခါမွ အသံုးျပဳရန္ ခ်န္ထားေသာ address မ်ားျဖစ္သျဖင့္ (လက္ရွိတြင္
+အလိုအေလွ်ာက္ မသိႏိုင္) Clientမ်ားဘက္မွ ၎တို႔ကုိ Exit node မ်ားအျဖစ္
+သတ္မွတ္ေပးရမည္။ DNSEL ၏ သတ္မွတ္ authorized zone ျပင္ပမွလာေသာ query မ်ားကုိ
+REFUSED ဟု return ျပန္လိမ့္မည္။ DNSEL ၏ သတ္မွတ္ဇုန္အတြင္းမွ လာေသာ
+ပံုစံမမွန္သည့္ qurey မ်ားကုိမူ NXDOMAIN ဟု return ျပန္လိမ့္မည္။</p>
+
+<h2>DNSEL ကုိ support လုပ္တဲ့ ေဆာ့ဖ္ဝဲေတြမွာ ဘယ္လုိConfigure လုပ္ရမလဲ။</h2>
+
+<p>DNSEL support လုပ္ၿပီးသား ေဆာ့ဖ္ဝဲအသံုးျပဳသူမ်ားသည္ ေအာက္ပါ ဇုန္မ်ားအတုိင္း
+DNSEL ကုိ configure လုပ္ႏုိင္ပါသည္။</p>
+
+<pre>[service port].[reversed service
+address].ip-port.exitlist.torproject.org</pre>
+
+<p>ဥပမာ- IP address 1.2.3.4 ၏ port 6667 တြင္ run ေနေသာ IRC server
+တစ္ခုအတြက္ဆိုလွ်င္</p>
+<pre>6667.4.3.2.1.ip-port.exitlist.torproject.org</pre>
+
+<h2>TorDNSEL ကျပန္လာတဲ့ အေျဖေတြက ဘယ္ေလာက္မ်ားစိတ္ခ်ရပါ့မလဲ။</h2>
+
+<p>ယခုလက္ရွိေပးေနေသာ ဝန္ေဆာင္မႈမွာ စမ္းသပ္ဆဲအဆင့္တြင္ရွိေနေသးၿပီး တကယ္တမ္း real
+service တစ္ခုကဲ့သို႔ စစ္ေဆးမႈမ်ား မျပဳလုပ္ရေသးပါ။မွားယြင္းေသာ အေျဖမ်ား၊
+ဝန္ေဆာင္မႈျပတ္ေတာက္သြားျခင္းမ်ားအေၾကာင္း သတင္းေပးပုိ႔လာျခင္းကုိ လွိဳက္လွဲစြာ
+ႀကိဳဆုိပါသည္။ ေနာက္ပိုင္းစီမံကိန္းမ်ားတြင္ အမွားအယြင္းနည္းပါးေသာ DNSEL
+servers pool တစ္ခုျဖစ္လာေအာင္ တည္ေဆာက္ရန္ပါရွိပါသည္။ လက္ရွိအေနအထားတြင္မူ
+TorDNSEL သည္ တည္ေဆာက္ဆဲ အဆင့္တြင္သာရွိပါသည္။</p>
+
+<h2>ကုိယ္ပုိင္ TorDNSEL တစ္ခု ဘယ္လုိတည္ေဆာက္ရမလဲ။</h2>
+
+<p>TorDNSEL ႏွင့္ပတ္သက္ေသာ code အားလုံးကုိ <a
+href="http://p56soo2ibjkx23xo.onion/">official hidden service</a> တြင္
+ေလ့လာႏိုင္ပါသည္။</p>
+
+<p>TorDNSEL ႏွင့္ပတ္သက္ေသာ code အားလုံးကုိ <a
+href="http://p56soo2ibjkx23xo.onion/">official hidden service</a> တြင္
+ေလ့လာႏိုင္ပါသည္။ေနာက္ဆံုး Latest released source code မ်ားကို <a
+href="http://p56soo2ibjkx23xo.onion/dist/tordnsel-0.0.6.tar.gz">hidden
+service</a> ႏွင့္<a
+href="https://www.torproject.org/tordnsel/dist/tordnsel-0.0.6.tar.gz"> local
+mirror</a> ေဒါင္းလုပ္ရယူႏိုင္ပါသည္။ေဖာ္ျပထားေသာ Hidden service တြင္
+တင္ထားသည့္ the darcs repository မွ ေနာက္ဆံုးထြက္ revision မ်ားအေၾကာင္း
+အၿမဲစစ္ေဆးၾကည့္ရႈေနသင့္ပါသည္။</p>
+
+<p>ယခုေဖာ္ျပထားသည္မ်ားထက္ပုိၿပီး သိလုိသည္ျဖစ္ေစ၊ ဝန္ေဆာင္မႈႏွင့္ပတ္သက္၍
+တစ္စံုတစ္ခုသတင္းေပးပုိ႔လိုလွ်င္ျဖစ္ေစ <tt>tordnsel</tt> alias on our <a
+href="<page contact>">contact page</a> သို႔ email ေပးပုိ႔ႏိုင္ပါသည္။</p>
+
+</div> 
+
+
+
+#include <foot.wmi>

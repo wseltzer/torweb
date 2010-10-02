@@ -1,0 +1,198 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 21511 $
+# Translation-Priority: 4-optional
+#include "head.wmi" TITLE="Tor VM" CHARSET="UTF-8"
+<div class="main-column">
+
+
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h1>Tor VM</h1>
+
+
+<!-- BEGIN SIDEBAR -->
+<div class="sidebar-left">
+<h3>Using Tor VM</h3>
+<ul>
+<li><a href="#Download">Download</a></li>
+<li><a href="#Install">Install</a></li>
+<li><a href="#Run">Run VM</a></li>
+<li><a href="#RecommendedUse">Use Torbutton</a></li>
+<li><a href="#Shutdown">Shutdown</a></li>
+</ul>
+</div>
+
+
+<!-- END SIDEBAR -->
+<h2>Tor VM ဆိုတာဘာလဲ</h2>
+<p>Tor VM ဆုိသည္မွာ Windows အတြက္ျပဳလုပ္ထားေသာ  <a
+href="http://www.qemu.org/">Qemu</a> virtualization နည္းပညာကုိ
+အသံုးျပဳထားသည့္ transparent Tor proxy ျဖစ္ကာ clinet ႏွင့္ relay မ်ားအတြက္
+ပုိမို၍အမွားအယြင္းဒဏ္ကိုခံေစႏိုင္သည္။
+</p>
+<p>သင့္အေနျဖင့္ Tor VM ကုိ သင့္၏ system မွ traffic မ်ားကို အျခားမည္သည့္
+configuration မွ် လုပ္စရာမလိုပဲ Tor Networkသို႔ လမ္းညႊန္ (Route) ေပးသည့္ Tor
+နက္ေဝါ့ခ္ကဒ္ အတုအေယာင္တစ္ခုဟု မွတ္ယူႏိုင္သည္။
+</p>
+<p><a href="https://svn.torproject.org/svn/torvm/trunk/doc/design.html">Tor VM
+design document</a>တြင္  အျခားအေသးစိတ္အခ်က္အလက္မ်ားကို ၾကည့္ရႈႏိုင္သည္။</p>
+
+<hr /> <a id="Download"></a>
+<h2><a class="anchor" href="#Download">အဆင့္(၁): Tor VM ေဆာ့ဖ္ဝဲကုိ
+ေဒါင္းလုပ္ခ်ရန္</a></h2>
+
+<ul>
+<li><a href="dist/TorVM-0.0.2-Bundle.exe">Tor VM အသင့္သံုး Installer</a> (<a
+href="dist/TorVM-0.0.2-Bundle.exe.asc" style="font-size: 90%;">sig</a>)</li>
+
+<li><a href="dist/TorVM-0.0.2-NetInstaller.exe">Tor အတုအေယာင္ (VM) နက္ေဝါ့ခ္
+Installer</a> (<a href="dist/TorVM-0.0.2-NetInstaller.exe.asc"
+style="font-size: 90%;">sig</a>)</li>
+</ul>
+
+<hr /> <a id="Install"></a>
+<h2><a class="anchor" href="#Install">အဆင့္(၂): Tor VM ေဆာ့ဖ္ဝဲကုိ Install
+ျပဳလုပ္ျခင္း</a></h2>
+
+<p>အသင့္သံုး (Bundle) exe သို႔မဟုတ္ Network Installer exe ဖိုင္ကုိ double click
+ႏွိပ္ပါ။</p>
+
+<p><img src="img/bundle02.png" alt="Click to Run Bundle Installer" /></p>
+
+<p>Network Installer တြင္ လံုျခံဳစိတ္ခ်ရေသာ ေနာက္ဆံုး Tor update မ်ားပါဝင္ၿပီး
+၎သည္လိုအပ္ပါက ေနာက္ဆံုးထြက္ Bundle application package
+မ်ားကုိပါေဒါင္းလုပ္ျပဳလုပ္သြားမည္ျဖစ္ပါသည္။</p>
+
+<p><img src="img/netinst02.png" alt="Network Installer downloads bundle
+software on demand" /></p>
+
+
+<hr /> <a id="Run"></a>
+<h2><a class="anchor" href="#Run">အဆင့္(၃): Tor ကို run ျခင္း</a></h2>
+
+<p>Install လုပ္ျခင္း ၿပီးဆံုးသြားသည္ႏွင့္ တၿပိဳင္နက္ Windows ၏ ေနာက္ကြယ္တြင္
+Tor VM Controller စတင္ေနပါလိမ့္မည္။Install
+လုပ္ျခင္းၿပီးဆံုးသြားၿပီျဖစ္သျဖင့္ Installer Program ကို ပိတ္ႏိုင္ပါသည္။</p>
+
+<p><img src="img/run01.png" alt="Tor VM controller will start at end of
+install" /></p>
+
+<p>Network Devices မ်ားျပင္ဆင္ၿပီးသြားပါက Qemu virtual machine အသံုးျပဳထားေသာ
+Tor VM kernel သည္ Vidalia controller ႏွင့္အတူပြင့္လာပါလိမ့္မည္။ ထိုအခါ  Tor
+network သုိ႔ boot တက္ျခင္းကိုလုပ္ေဆာင္မည္ျဖစ္ၿပီး ၎သည္မိနစ္အနည္းငယ္
+ၾကာႏိုင္သျဖင့္ စိတ္ရွည္စြာေစာင့္ဆုိင္းေပးရပါမည္။</p>
+
+<p><img src="img/run02.png" alt="Bootstrap not complete until circuit created"
+/></p>
+
+<hr /> <a id="RecommendedUse"></a>
+<h2><a class="anchor" href="#RecommendedUse">အဆင့္(၄): Firefox ႏွင့္ Torbutton
+ကို အသံုးျပဳျခင္း</a></h2>
+
+<p>Tor circuit တစ္ခုကို ေကာင္းမြန္စြာ တည္ေဆာက္ၿပီးပါက User ေျပာင္းသည့္ (Switch
+User Menu) ေပၚလာလိမ့္မည္။ Firefox ႏွင့္ အျခား Tor application မ်ားသည္"Tor"
+ဆိုသည့္ restricted user account ျဖင့္သာ အသံုးျပဳရပါမည္။</p>
+
+<p><img src="img/tor-user-switch.png" alt="Switch to Tor restricted user
+account" /></p>
+
+<p>Tor ကိုအသံုးျပဳရန္အတြက္ Firefox ကိုဖြင့္၍ ညာဘက္ေအာက္ေျခတြင္ရွိေသာ Torbutton
+ကုိႏွိပ္ပါ။</p>
+
+<p><img src="img/torbutton04.png" alt="Click on Torbutton status icon to toggle
+ON" /></p>
+
+<p>Tor ကုိ <a
+href="https://check.torproject.org/">https://check.torproject.org/</a>
+မွတဆင့္အသံုးျပဳေနေၾကာင္း ေသခ်ာပါေစ။</p>
+
+<p><img src="img/torbutton05.png" alt="Verify Tor use at check.torproject.org"
+/></p>
+
+
+<hr /> <a id="ExperimentalUse"></a> 
+<h2><a class="anchor" href="#ExperimentalUse">စမ္းသပ္ဆဲအဆင့္: Flash
+ကိုအသံုးျပဳျခင္း</a></h2>
+
+<p><strong>အထူးသတိေပးခ်က္: Tor ကို ဤနည္းလမ္းျဖင့္ အသံုးျပဳျခင္းကို
+မေထာက္ခံပါ။</strong></p>
+
+<p>Torbutton ကို Right Click ႏွိပ္၍ ေပၚလာေသာ မီႏူးမွတဆင့္ "Preferences"
+ကိုေရြးပါ။</p>
+
+<p><img src="img/tbprefs.png" alt="Select Torbutton Preferences menu option" /></p>
+
+<p>"Disable plugins" ကုိႏွိပ္ပါ။</p>
+
+<p><img src="img/tbcontent.png" alt="Toggle disable plugins dynamic content
+security setting" /></p>
+
+<p>အေၾကာင္းအရာမ်ားကုိ ၾကည့္ရႈသည့္အခါ ဘေရာက္ဇာႏွင့္ Flash player
+တို႔မွအသံုးျပဳေသာ ေကာ္နတ္ရွင္မ်ားသည္Tor network ၏ transparent proxy
+လမ္းေၾကာင္းအတုိင္းထြက္သြားပါမည္။</p>
+
+<p><img src="img/flash02.png" alt="Flash player and other software now using
+Tor" /></p>
+
+<hr /> <a id="Shutdown"></a>
+<h2><a class="anchor" href="#Shutdown">အဆင့္(၅):Tor VM ကုိ ပိတ္ျခင္း</a></h2>
+
+<p>Windows Key + L ကုိႏွိပ္၍ administrator user သုိ႔ျပန္ေျပာင္းပါ။</p>
+
+<p><img src="img/win-el.png" alt="Windows Key + L to switch user" /></p>
+
+<p><img src="img/admin-user-switchback.png" alt="Switch back to admin user
+account" /></p>
+
+<p>VM ကိုပိတ္ရန္ႏွင့္ မူလ Network setting မ်ား ျပန္ရရွိရန္အတြက္ Vidalia ၏
+option မွတဆင့္ "Exit" ကိုေရြးပါ။ Tor ၏restricted user account သည္
+သူ႔အလိုအေလွ်ာက္ထြက္သြားပါမည္။</p>
+
+<p><img src="img/exit-vidalia.png" alt="Select Vidalia Exit option to close VM"
+/></p>
+
+<p>Network Settingမ်ား ျပန္လည္ခ်ိန္ညွိေနစဥ္အတြင္း Tor VM controller
+ကိုပိတ္မပစ္ပါႏွင့္။</p>
+
+<p><img src="img/vm-shutdown.png" alt="Do not close the Tor VM window while
+restoring network settings" /></p>
+
+
+<hr /> <a id="Remove"></a>
+<h2><a class="anchor" href="#Remove">Tor Software ကို ျပန္ျဖဳတ္ျခင္း</a></h2>
+
+<p>သင္၏ Windows Desktop ေပၚတြင္ Tor application အားလံုးကို ျပန္ျဖဳတ္ႏိုင္သည့္
+Script တစ္ခုရွိေနလိမ့္မည္။ ၎ကို run ၍Tor Software ႏွင့္ File မ်ားအားလံုးကို
+ဖ်က္ပစ္ႏိုင္ပါသည္။</p>
+
+<p><img src="img/uninstall.png" alt="The Uninstall_Tor script will remove all
+Tor packages and files" /></p>
+
+
+<hr /> <a id="Debug"></a>
+<h2><a class="anchor" href="#Debug">ျပႆနာမ်ားေျဖရွင္းျခင္းႏွင့္
+ေဆာ့ဖ္ဝဲအားနည္းခ်က္မ်ားကို သတင္းပို႔ျခင္း</a></h2>
+
+<p><a class="anchor" href="#Debug">ျပႆနာမ်ားေျဖရွင္းျခင္းႏွင့္
+ေဆာ့ဖ္ဝဲအားနည္းခ်က္မ်ားကို သတင္းပို႔ျခင္း</a>"Tor flyspray bug tracker" ရွိ
+Tor VM အစိတ္အပိုင္းသည္ အမွားအယြင္းမ်ားႏွင့္ လုပ္ေဆာင္ခ်က္မ်ားကို
+စီမံခန္႔ခြဲရာတြင္အသံုးျပဳပါသည္။ <a
+href="http://bugs.noreply.org/flyspray/index.php?tasks=all&amp;project=4"
+>Tor flyspray bug tracker</a>တြင္ လက္ရွိသိေကာင္းစရာမ်ား၊
+လာမည့္အေျပာင္းအလဲမ်ားကို ၾကည့္ရႈႏိုင္ပါသည္။</p>
+
+<p>လုပ္ေဆာင္ခ်က္မ်ား၊ ျပဳျပင္ေျပာင္းလဲရန္ အစီအစဥ္မ်ားကုိ <a
+href="https://svn.torproject.org/svn/torvm/trunk/TODO">Tor VM TODO</a>တြင္
+စာရြက္စာတမ္းမ်ား ျပဳလုပ္ထားပါသည္။</p>
+
+</div>
+
+
+
+#include <foot.wmi>

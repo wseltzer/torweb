@@ -5,7 +5,7 @@
 
 
 ## translation metadata
-# Revision: $Revision: 22381 $
+# Revision: $Revision: 23272 $
 # Translation-Priority: 4-optional
 #include "head.wmi" TITLE="Tor: Research" CHARSET="UTF-8"
 <div class="main-column">
@@ -142,6 +142,32 @@ href="http://freehaven.net/anonbib/">этими документами</a>.</p>
 
 <ul>
 
+<li>If we prevent the really loud users from using too much of the Tor network,
+how much can it help? We've instrumented Tor's entry relays so they can
+rate-limit connections from users, and we've instrumented the directory
+authorities so they can change the rate-limiting parameters globally across
+the network. Which parameter values improve performance for the Tor network
+as a whole? How should relays adapt their rate-limiting parameters based on
+their capacity and based on the network load they see, and what
+rate-limiting algorithms will work best? See the <a
+href="https://blog.torproject.org/blog/research-problem-adaptive-throttling-tor-clients-entry-guards">blog
+post</a> for details.
+</li>
+
+<li>Right now Tor clients are willing to reuse a given circuit for ten minutes
+after it's first used. The goal is to avoid loading down the network with
+too many circuit creations, yet to also avoid having clients use the same
+circuit for so long that the exit node can build a useful pseudonymous
+profile of them. Alas, ten minutes is probably way too long, especially if
+connections from multiple protocols (e.g. IM and web browsing) are put on
+the same circuit. If we keep fixed the overall number of circuit extends
+that the network needs to do, are there more efficient and/or safer ways for
+clients to allocate streams to circuits, or for clients to build preemptive
+circuits? Perhaps this research item needs to start with gathering some
+traces of what requests typical clients try to launch, so you have something
+realistic to try to optimize.
+</li>
+
 <li>"Атака снятия отпечатков пальцев с веб-сайта": сделайте список нескольких
 сотен популярных веб-сайтов, скачайте их страницы, и составьте набор
 "подписей" для каждого сайта. Затем отслеживайте трафик пользователя
@@ -172,9 +198,6 @@ Path selection algorithms, directory fetching schedules for Tor-on-mobile
 that are compatible anonymity-wise with our current approaches.
 </li>
 
-<li>
-Figure out how bad 10 minutes is for maxcircuitdirtiness.
-</li>
 -->
 <li>В ближайшее время появится больше. Ознакомьтесь с разделом "Исследования"
 страницы <a href="<page volunteer>#Research">волонтеров</a> для получения
