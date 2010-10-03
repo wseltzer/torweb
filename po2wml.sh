@@ -19,7 +19,7 @@
 wmldir="$PWD"
 
 # Location of the po files,
-podir="`dirname $wmldir`/translation/projects/website"
+podir="`dirname $wmldir`/translation/projects/website/po"
 
 # A lot of the wml files have custom tags. These tags have been defined
 # in website/include/versions.wmi. Tags that people usually forget to close,
@@ -96,35 +96,39 @@ for file in $po ; do
 		# The location of the english wml file
 		english="$wmldir/en/$wmlfile"
 
-		# Convert the files
-		po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		# Convert the translated file. Note that po4a will write the file and then delete it if less than 80% has been translated
+		po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
 
 		# Check to see if the file was written
-                if [ -e "$wmldir/$subdir/tmp-$wmlfile" ]
+                if [ -e "$wmldir/$subdir/$wmlfile" ]
 		then
-			mv "$wmldir/$subdir/tmp-$wmlfile" "$wmldir/$subdir/$wmlfile"
-
                         # Remove last three lines in file
 			sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/$wmlfile"
 
 			# Include foot.wmi
 			echo "#include <foot.wmi>" >> "$wmldir/$subdir/$wmlfile"
+
+			# If the file is mirrors.wml, include mirrors-table.wmi
+			if [ $wmlfile == "mirrors.wml" ]
+			then
+				sed -i 's/<!--PO4ASHARPBEGIN/#/' "$wmldir/$subdir/$wmlfile"
+				sed -i 's/PO4ASHARPEND-->//' "$wmldir/$subdir/$wmlfile"
+			fi
 		fi
 	}	
 
-	# Convert translations to directories such as website/torbrowser/nb/.	
+	# Convert translations to directories such as website/torbrowser/nb/.
+	# Again, po4a will write the file and then delete it if less than 80% has been translated
 	function subdir {
 		# The location of the english wml file
                 english="$wmldir/$subdir/en/$wmlfile"
 
 		# Convert the files
-		po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/$lang/tmp-$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/$lang/$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
 
 		# Check to see if the file was written
-		if [ -e "$wmldir/$subdir/$lang/tmp-$wmlfile" ]
+		if [ -e "$wmldir/$subdir/$lang/$wmlfile" ]
 		then
-			mv "$wmldir/$subdir/$lang/tmp-$wmlfile" "$wmldir/$subdir/$lang/$wmlfile"
-
 			# Remove last three lines in file
 			sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/$lang/$wmlfile"
 

@@ -569,6 +569,25 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+
+        mirror028 => {
+            adminContact => "gouki",
+            orgName => "5ª Coluna",
+            isoCC => "PT",
+            subRegion => "",
+            region => "PT",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor-www.5coluna.com",
+            httpsWebsiteMirror => "https://tor-www.5coluna.com",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor-www.5coluna.com/dist/",
+            httpsDistMirror => "https://tor-www.5coluna.com/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 

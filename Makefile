@@ -19,8 +19,8 @@
 # FIXME: these are the same
 export TORSVNSTABLE=/home/phobos/onionrouter/onionrouter/tor/
 export TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
-export STABLETAG=tor-0.2.2.16-alpha
-export DEVTAG=tor-0.2.2.16-alpha
+export STABLETAG=tor-0.2.2.17-alpha
+export DEVTAG=tor-0.2.2.17-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download download getinvolved donate
