@@ -4,27 +4,27 @@
 
 #include "head.wmi" TITLE="Tor: Download for Linux/Unix" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
 
-<div class="main-column">
+    <div id="content" class="clearfix">
+			<div id="breadcrumbs"><a href="<page index>">Home &raquo; </a><a href="<page download/download-unix>">Download</a></div>
+    	<div id="maincol-left">
+      	<h1>Download Tor for Unix, Linux, BSD</h1>
 
-<h2>Available Linux/Unix Packages</h2>
-<div class="warning">
-
-Warning: Want Tor to really work?  ...then please don't just install it
-and go on. You need to change some of your habits, and reconfigure your
-software! Tor by itself is NOT all you need to maintain your anonymity.
-Please take time to read the <a href="#Warning">warning</a> to familiarize yourself with the pitfalls and limits of Tor.
-</div>
-
-<div class="underline"></div>
-
-<table cellpadding="6" cellspacing="1" border="0" width="100%">
+        <!-- BEGIN TEASER WARNING -->
+      	<div class="warning">
+          <h2>Want Tor to really work?</h2>
+<p>...then please don't just install it and go on.  You need to change some of your habits, and reconfigure your software! Tor by itself is <em>NOT</em> all you need to maintain your anonymity. Read the <a href="#warning">full list of warnings</a>.
+</p>
+        </div>
+        <!-- END TEASER WARNING -->
+        <table class="topforty">
 <thead>
 <tr bgcolor="#009933" style="color: white; ">
-<th colspan="2">Platform</th>
-<th>Download Stable</th>
-<th>Download Unstable</th>
-<th>Installation and Configuration</th>
-</tr> </thead>
+  <th colspan="2">Platform</th>
+  <th>Download Stable</th>
+  <th>Download Unstable</th>
+  <th>Installation and Configuration</th>
+</tr>
+</thead>
 
 <tr>
 <td align="center"><img src="images/distros/debian.png" alt="Debian" /> <img src="images/distros/ubuntu.png" alt="Ubuntu" /> <img src="images/distros/knoppix.png" alt="Knoppix" /></td>
@@ -33,7 +33,7 @@ Please take time to read the <a href="#Warning">warning</a> to familiarize yours
 <td> <a href="<page docs/tor-doc-unix>">Linux/BSD/Unix</a> </td>
 </tr>
 
-<tr bgcolor="e5e5e5">
+<tr class="beige">
 <td align="center"><img src="images/distros/centos.png" alt="CentOS" /> <img src="images/distros/fedora.png" alt="Fedora" /> <img src="images/distros/suse.png" alt="openSUSE 11" /></td>
 <td>CentOS, Fedora, OpenSUSE</td>
 <td colspan="2"><a href="<page docs/rpms>">repository packages</a> </td>
@@ -49,7 +49,7 @@ Please take time to read the <a href="#Warning">warning</a> to familiarize yours
 </td>
 </tr>
 
-<tr bgcolor="e5e5e5">
+<tr class="beige">
 <td align="center"><img src="images/distros/freebsd.png" alt="FreeBSD" /></td>
 <td>FreeBSD</td>
 <td colspan="2"><kbd>portinstall -s security/tor</kbd></td>
@@ -62,18 +62,18 @@ Please take time to read the <a href="#Warning">warning</a> to familiarize yours
 <td colspan="2"><kbd>cd /usr/ports/net/tor &amp;&amp; make &amp;&amp; make install</kbd></td>
 <td>
 <a href="<page docs/tor-doc-unix>">Linux/BSD/Unix</a><br />
-<a href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/OpenbsdChrootedTor">Guide to chrooting Tor in OpenBSD</a>
+<a href="<wiki>/TheOnionRouter/OpenbsdChrootedTor">Guide to chrooting Tor in OpenBSD</a>
 </td>
 </tr>
 
-<tr bgcolor="e5e5e5">
+<tr class="beige">
 <td align="center"><img src="images/distros/netbsd.png" alt="NetBSD" /></td>
 <td>NetBSD</td>
 <td colspan="2"><kbd>cd /usr/pkgsrc/net/tor &amp;&amp; make install</kbd></td>
 <td><a href="<page docs/tor-doc-unix>">Linux/BSD/Unix</a></td>
 </tr>
 
-<tr bgcolor="e5e5e5">
+<tr class="beige">
 <td align="center"><img src="images/distros/terminal.png" alt="Source code" /></td>
 <td>Source tarballs</td>
 <td>
@@ -89,7 +89,6 @@ Please take time to read the <a href="#Warning">warning</a> to familiarize yours
 
 </table>
 
-<div class="underline"></div>
 <div class="nb">
 <a id="packagediff"></a>
 <h2><a class="anchor" href="#packagediff">What's the difference between Stable &amp; Unstable?</a></h2>
@@ -140,106 +139,12 @@ the list's RSS feed</a>.
 </form>
 </div>
 
-<div class="underline"></div>
-<div class="warning">
-<a id="Warning"></a>
-<h2><a class="anchor" href="#Warning">Warning: Want Tor to really
-work?</a></h2>
-
-<p>
-...then please don't just install it and go on.  You need to change
-some of your habits, and reconfigure your software!
-Tor by itself is <em>NOT</em> all you need to maintain your anonymity.
-There are several major pitfalls to watch out for:
-</p>
-
-<ol>
-<li>
-Tor only protects Internet applications that are configured to
-send their traffic through Tor &mdash; it doesn't magically anonymize
-all your traffic just because you install it.  We recommend you
-use <a href="http://www.mozilla.com/en-US/firefox/all-older.html">Firefox</a> with the <a
-href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> extension.
-</li>
-
-<li>
-Browser plugins such as Java, Flash, ActiveX, RealPlayer,
-Quicktime, Adobe's PDF plugin, and others can be manipulated
-into revealing your IP address. You should probably
-<a href="http://plugindoc.mozdev.org/faqs/uninstall.html">uninstall your
-plugins</a>
-(go to "about:plugins" to see what is installed), or investigate <a
-href="https://addons.mozilla.org/firefox/1237/">QuickJava</a>, <a
-href="https://addons.mozilla.org/firefox/433/">FlashBlock</a>, and
-<a href="http://noscript.net/">NoScript</a>
-if you really need them. Consider removing extensions that look up
-more information about the websites you type in (like Google toolbar),
-as they may bypass Tor and/or broadcast sensitive information. Some
-people prefer using two browsers (one for Tor, one for unsafe browsing).
-</li>
-
-<li>
-Beware of cookies: if you ever browse without Tor 
-and a site gives you a cookie, that cookie could identify you even when
-you start using Tor again. You should clear your cookies frequently. <a
-href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> can help
-protect any cookies you do not want to lose.
-</li>
-
-<li>
-Tor anonymizes the origin of your traffic,
-and it encrypts everything inside the Tor network, but <a
-href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#ExitEavesdroppers">it
-can't encrypt your traffic between the Tor network and its final
-destination.</a>
-If you are communicating sensitive information, you should use as much
-care as you would on the normal scary Internet &mdash; use HTTPS or other
-end-to-end encryption and authentication.
-</li>
-
-<li>
-While Tor blocks attackers
-on your local network from discovering or influencing your destination,
-it opens new risks: malicious or misconfigured Tor exit nodes can send
-you the wrong page, or even send you embedded Java applets disguised as
-domains you trust.
-</li>
-</ol>
-
-<br />
-<p>
-Be smart and learn more. Understand what Tor does and does not offer.
-This list of pitfalls isn't complete, and we need your
-help <a href="<page getinvolved/volunteer>#Documentation">identifying and documenting
-all the issues</a>.
-</p>
-</div>
-
-<div class="underline"></div>
-<div class="nb">
-<p>
-See our <a href="<page docs/verifying-signatures>">instructions
-on verifying package signatures</a>, which allows
-you to make sure you've downloaded the file we intended you to get.
-</p>
-
 <p>
 If you would like to research any past release of Tor source, packages,
 or other binaries, see <a href="http://archive.torproject.org/">the
 archive</a>.
 </p>
 
-<p>
-See the <a href="<page docs/documentation>#Developers">developer
-documentation</a> for instructions on fetching Tor from Git to get
-the very latest development version source code.
-You can also download the <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo source</a> or <a
-href="vidalia/dist/">Vidalia source</a>.
-</p>
-</div>
-
-<div class="underline"></div>
 <div class="nb">
 <p>
 If you have trouble downloading Tor from this site, here is a <a
@@ -256,6 +161,36 @@ changes in both stable and development versions, see the
 <a href="<gitblob>ChangeLog">ChangeLog</a>.
 </p>
 </div>
-</div><!-- #main -->
+      </div>
+      <!-- END MAINCOL -->
+      <div id="sidecol-right">
+        <div class="img-shadow">
+          <div class="infoblock">
+          	<h2>Verify Signatures</h2>
+            <p>Verify your downloads with our PGP signatures:</p>
+            <a href="<page docs/verifying-signatures>">Read how to
+verify the signatures</a>.
+          </div>
+        </div>
+        <!-- END INFOBLOCK -->
+        <div class="img-shadow">
+        	<div class="sidenav-sub">
+          	<h2>Having Trouble?</h2>
+          	<ul>
+            	<li class="dropdown"><a href="#">What are the differences between stable and unstable downloads?</a></li>
+            	<li class="dropdown"><a href="#">Why is the TorBrowser Bundle only available for Windows?</a></li>
+            	<li class="dropdown"><a href="#">What is the Expert Developer Package?</a></li>
+            	<li class="dropdown"><a href="#">What are the differences between stable and unstable downloads?</a></li>
+            	<li class="dropdown"><a href="#">Why is the TorBrowser Bundle only available for Windows?</a></li>
+            	<li class="dropdown"><a href="#">What is the Expert Developer Package?</a></li>
+            </ul>
+          </div>
+      	</div>
+        <!-- END SIDENAV -->
+      </div>
+      <!-- END SIDECOL -->
+    </div>
+    <!-- END CONTENT -->
+
 
 #include <foot.wmi>
