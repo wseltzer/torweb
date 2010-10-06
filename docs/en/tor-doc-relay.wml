@@ -35,7 +35,7 @@ complaints, and support for dynamic IP addresses</a>.
 </p>
 
 <p>You can run a Tor relay on <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">pretty
+href="<wiki>/TorFAQ#RelayOS">pretty
 much any</a> operating system. Tor relays work best on Linux, OS X Tiger
 or later, FreeBSD 5.x+, NetBSD 5.x+, and Windows Server 2003 or later.
 </p>
@@ -108,7 +108,7 @@ that the relay is working correctly.</li>
 <strong>Manual Configuration</strong>:
 <ul>
 <li>Edit the bottom part of <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">your
+href="<wiki>/TorFAQ#torrc">your
 torrc file</a>. If you want to be a public relay (recommended),
 make sure to define ORPort and <a href="<page
 faq>#ExitPolicies">look at ExitPolicy</a>; otherwise
@@ -129,7 +129,7 @@ other Tor relays.
 </li>
 
 <li>Restart your relay. If it <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">logs
+href="<wiki>/TorFAQ#Logs">logs
 any warnings</a>, address them.
 </li>
 
@@ -152,7 +152,7 @@ too.
 try to determine whether the ports you configured are reachable from
 the outside. This step is usually fast, but may take up to 20
 minutes. Look for a
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">log
+<a href="<wiki>/TorFAQ#Logs">log
 entry</a> like
 <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
 If you don't see this message, it means that your relay is not reachable
@@ -162,12 +162,10 @@ testing the IP and port you think it should be testing, etc.
 
 <p>When it decides that it's reachable, it will upload a "server
 descriptor" to the directories, to let clients know
-what address, ports, keys, etc your relay is using. You can <a
-href="http://194.109.206.212/tor/status-vote/current/consensus">load one of
-the network statuses manually</a> and
-look through it to find the nickname you configured, to make sure it's
-there. You may need to wait up to one hour to give enough time for it to
-make a fresh directory.</p>
+what address, ports, keys, etc your relay is using.  You can look in
+your data directory for a cached-consensus file to see if your relay is
+online in the Tor Network.  You may need to wait up to one hour to give
+enough time for it to make a fresh directory.</p>
 
 <hr />
 <a id="after"></a>
@@ -180,13 +178,13 @@ We recommend the following steps as well:
 
 <p>
 6. Read
-<a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">about operational security</a>
+<a href="<wiki>/OperationalSecurity">about operational security</a>
 to get ideas how you can increase the security of your relay.
 </p>
 
 <p>
 7. If you want to run more than one relay that's great, but please set <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">the
+href="<wiki>/TorFAQ#MultipleRelays">the
 MyFamily option</a> in all your relays' configuration files.
 </p>
 
@@ -194,7 +192,7 @@ MyFamily option</a> in all your relays' configuration files.
 8. Decide about rate limiting. Cable modem, DSL, and other users
 who have asymmetric bandwidth (e.g. more down than up) should
 rate limit to their slower bandwidth, to avoid congestion. See the <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
+href="<wiki>/TorFAQ#LimitBandwidth">rate
 limiting FAQ entry</a> for details.
 </p>
 
@@ -203,7 +201,7 @@ limiting FAQ entry</a> for details.
 in your DataDirectory). This is your relay's "identity," and
 you need to keep it safe so nobody can read the traffic that goes
 through your relay. This is the critical file to keep if you need to <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#UpgradeRelay">move
+href="<wiki>/TorFAQ#UpgradeRelay">move
 or restore your Tor relay</a> if something goes wrong.
 </p>
 
@@ -228,7 +226,7 @@ relays can simply change their ORPort and DirPort directly
 in their torrc and restart Tor. OS X or Unix relays can't bind
 directly to these ports (since they don't run as root), so they will
 need to set up some sort of <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
+href="<wiki>/TorFAQ#ServerForFirewalledClients">
 port forwarding</a> so connections can reach their Tor relay. If you are
 using ports 80 and 443 already but still want to help out, other useful
 ports are 22, 110, and 143.
@@ -239,7 +237,7 @@ ports are 22, 110, and 143.
 &mdash; such as a public webserver &mdash; make sure that connections to the
 webserver are allowed from the local host too. You need to allow these
 connections because Tor clients will detect that your Tor relay is the <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">safest
+href="<wiki>/TorFAQ#ExitEavesdroppers">safest
 way to reach that webserver</a>, and always build a circuit that ends
 at your relay. If you don't want to allow the connections, you must
 explicitly reject them in your exit policy.
@@ -252,7 +250,7 @@ done. Otherwise, you can do it by hand. (The Tor relay doesn't need to
 be run as root, so it's good practice to not run it as root. Running
 as a 'tor' user avoids issues with identd and other services that
 detect user name. If you're the paranoid sort, feel free to <a
-href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">put Tor
+href="<wiki>/TorInChroot">put Tor
 into a chroot jail</a>.)
 </p>
 
