@@ -34,8 +34,7 @@ for bandwidth, exit policies so you can limit your exposure to abuse
 complaints, and support for dynamic IP addresses</a>.
 </p>
 
-<p>You can run a Tor relay on <a
-href="<wiki>/TorFAQ#RelayOS">pretty
+<p>You can run a Tor relay on <a href="<wiki>/TorFAQ#WhydoesntmyWindowsorotherOSTorrelayrunwell">pretty
 much any</a> operating system. Tor relays work best on Linux, OS X Tiger
 or later, FreeBSD 5.x+, NetBSD 5.x+, and Windows Server 2003 or later.
 </p>
@@ -108,7 +107,7 @@ that the relay is working correctly.</li>
 <strong>Manual Configuration</strong>:
 <ul>
 <li>Edit the bottom part of <a
-href="<wiki>/TorFAQ#torrc">your
+href="<wiki>/TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">your
 torrc file</a>. If you want to be a public relay (recommended),
 make sure to define ORPort and <a href="<page
 faq>#ExitPolicies">look at ExitPolicy</a>; otherwise
@@ -129,7 +128,7 @@ other Tor relays.
 </li>
 
 <li>Restart your relay. If it <a
-href="<wiki>/TorFAQ#Logs">logs
+href="<wiki>/TorFAQ#WhatloglevelshouldIuse">logs
 any warnings</a>, address them.
 </li>
 
@@ -152,7 +151,7 @@ too.
 try to determine whether the ports you configured are reachable from
 the outside. This step is usually fast, but may take up to 20
 minutes. Look for a
-<a href="<wiki>/TorFAQ#Logs">log
+<a href="<wiki>/TorFAQ#WhatloglevelshouldIuse">log
 entry</a> like
 <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
 If you don't see this message, it means that your relay is not reachable
@@ -192,7 +191,7 @@ MyFamily option</a> in all your relays' configuration files.
 8. Decide about rate limiting. Cable modem, DSL, and other users
 who have asymmetric bandwidth (e.g. more down than up) should
 rate limit to their slower bandwidth, to avoid congestion. See the <a
-href="<wiki>/TorFAQ#LimitBandwidth">rate
+href="<wiki>/TorFAQ#HowcanIlimitthetotalamountofbandwidthusedbymyTorrelay">rate
 limiting FAQ entry</a> for details.
 </p>
 
@@ -201,7 +200,7 @@ limiting FAQ entry</a> for details.
 in your DataDirectory). This is your relay's "identity," and
 you need to keep it safe so nobody can read the traffic that goes
 through your relay. This is the critical file to keep if you need to <a
-href="<wiki>/TorFAQ#UpgradeRelay">move
+href="<wiki>/TorFAQ#Iwanttoupgrademovemyrelay.HowdoIkeepthesamekey">move
 or restore your Tor relay</a> if something goes wrong.
 </p>
 
@@ -226,7 +225,7 @@ relays can simply change their ORPort and DirPort directly
 in their torrc and restart Tor. OS X or Unix relays can't bind
 directly to these ports (since they don't run as root), so they will
 need to set up some sort of <a
-href="<wiki>/TorFAQ#ServerForFirewalledClients">
+href="<wiki>/TorFAQ#HowcanImakemyrelayaccessibletopeoplestuckbehindrestrictivefirewalls">
 port forwarding</a> so connections can reach their Tor relay. If you are
 using ports 80 and 443 already but still want to help out, other useful
 ports are 22, 110, and 143.
@@ -237,10 +236,10 @@ ports are 22, 110, and 143.
 &mdash; such as a public webserver &mdash; make sure that connections to the
 webserver are allowed from the local host too. You need to allow these
 connections because Tor clients will detect that your Tor relay is the <a
-href="<wiki>/TorFAQ#ExitEavesdroppers">safest
-way to reach that webserver</a>, and always build a circuit that ends
-at your relay. If you don't want to allow the connections, you must
-explicitly reject them in your exit policy.
+href="<wiki>/TorFAQ#WhatisExitEnclaving">safest way to reach that
+webserver</a>, and always build a circuit that ends at your relay. If
+you don't want to allow the connections, you must explicitly reject them
+in your exit policy.
 </p>
 
 <p>
