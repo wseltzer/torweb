@@ -23,7 +23,7 @@ export STABLETAG=tor-0.2.2.17-alpha
 export DEVTAG=tor-0.2.2.17-alpha
 
 WMLBASE=.
-SUBDIRS=docs eff projects press about download download getinvolved donate
+SUBDIRS=docs eff projects press about download getinvolved donate torbutton
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
