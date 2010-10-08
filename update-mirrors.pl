@@ -336,26 +336,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        mirror015 => {
-            adminContact => "",
-            orgName => "cybervalley",
-            isoCC => "IT",
-            subRegion => "",
-            region => "Italy",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://torproject.cybervalley.org/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
-        },
-
         mirror016 => {
             adminContact => "security AT hostoffice DOT hu",
             orgName => "Unknown",
