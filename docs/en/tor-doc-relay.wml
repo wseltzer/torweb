@@ -32,13 +32,12 @@
     people who run relays, the faster the Tor network will be. If you have
     at least 20 kilobytes/s each way, please help out Tor by configuring your
     Tor to be a relay too. We have many features that make Tor relays easy
-    and convenient, including <a href="<page docs/faq>#RelayFlexible">rate limiting
+    and convenient, including <a href="<wiki>TorFAQ#RelayFlexible">rate limiting
     for bandwidth, exit policies so you can limit your exposure to abuse
     complaints, and support for dynamic IP addresses</a>.
     </p>
     
-    <p>You can run a Tor relay on <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayOS">pretty
+    <p>You can run a Tor relay on <a href="<wiki>/TorFAQ#RelayOS">pretty
     much any</a> operating system. Tor relays work best on Linux, OS X Tiger
     or later, FreeBSD 5.x+, NetBSD 5.x+, and Windows Server 2003 or later.
     </p>
@@ -81,7 +80,10 @@
     <li>Click <tt>Setup Relaying</tt>.</li>
     
     <li>
-    	<dt>Choose <tt>Relay Traffic for the Tor network</tt> if you want to be a public relay (recommended), or choose 		<tt>Help censored users reach the Tor network</tt> if you want to be a <a href="<page docs/faq>#RelayOrBridge">bridge</a> for users in countries that censor their Internet.</dt>
+    	<dt>Choose <tt>Relay Traffic for the Tor network</tt> if you
+want to be a public relay (recommended), or choose 		<tt>Help
+censored users reach the Tor network</tt> if you want to be a <a
+href="<wiki>TorFAQ#RelayOrBridge">bridge</a> for users in countries that censor their Internet.</dt>
     <dd><img alt="vidalia basic settings" src="../img/screenshot-win32-configure-relay-1.png"></dd>
     </li>
     
@@ -98,8 +100,7 @@
     
     <li><dt>Choose the <tt>Exit Policies</tt> tab.  If you want to allow others
     to use your relay for these services, don't change anything.  Un-check
-    the services you don't want to allow people to <a href="<page
-    docs/faq>#ExitPolicies">reach from your relay</a>.  If you want to be a non-exit relay, un-check all services.</dt>
+    the services you don't want to allow people to <a href="<wiki>TorFAQ#ExitPolicies">reach from your relay</a>.  If you want to be a non-exit relay, un-check all services.</dt>
     <dd><img alt="vidalia exit policies" src="../img/screenshot-win32-configure-relay-3.png"></dd>
     </li>
     
@@ -110,12 +111,9 @@
     <br />
     <strong>Manual Configuration</strong>:
     <ul>
-    <li>Edit the bottom part of <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#torrc">your
-    torrc file</a>. If you want to be a public relay (recommended),
-    make sure to define ORPort and <a href="<page
-    docs/faq>#ExitPolicies">look at ExitPolicy</a>; otherwise
-    if you want to be a <a href="<page docs/faq>#RelayOrBridge">bridge</a>
+    <li>Edit the bottom part of <a href="<wiki>/TorFAQ#torrc">your torrc file</a>. If you want to be a public relay (recommended),
+    make sure to define ORPort and <a href="<wiki>TorFAQ#ExitPolicies">look at ExitPolicy</a>; otherwise
+    if you want to be a <a href="<wiki>TorFAQ#RelayOrBridge">bridge</a>
     for users in countries that censor their Internet,
     just use <a href="<page docs/bridges>#RunningABridge">these lines</a>.
     </li>
@@ -132,7 +130,7 @@
     </li>
     
     <li>Restart your relay. If it <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">logs
+    href="<wikifaq>#Logs">logs
     any warnings</a>, address them.
     </li>
     
@@ -155,7 +153,7 @@
     try to determine whether the ports you configured are reachable from
     the outside. This step is usually fast, but may take up to 20
     minutes. Look for a
-    <a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#Logs">log
+    <a href="<wikifaq>#Logs">log
     entry</a> like
     <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
     If you don't see this message, it means that your relay is not reachable
@@ -183,13 +181,13 @@
     
     <p>
     6. Read
-    <a href="https://wiki.torproject.org/noreply/TheOnionRouter/OperationalSecurity">about operational security</a>
+    <a href="<wiki>TheOnionRouter/OperationalSecurity">about operational security</a>
     to get ideas how you can increase the security of your relay.
     </p>
     
     <p>
     7. If you want to run more than one relay that's great, but please set <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#MultipleRelays">the
+    href="<wikifaq>#MultipleRelays">the
     MyFamily option</a> in all your relays' configuration files.
     </p>
     
@@ -197,7 +195,7 @@
     8. Decide about rate limiting. Cable modem, DSL, and other users
     who have asymmetric bandwidth (e.g. more down than up) should
     rate limit to their slower bandwidth, to avoid congestion. See the <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#LimitBandwidth">rate
+    href="<wikifaq>#LimitBandwidth">rate
     limiting FAQ entry</a> for details.
     </p>
     
@@ -206,7 +204,7 @@
     in your DataDirectory). This is your relay's "identity," and
     you need to keep it safe so nobody can read the traffic that goes
     through your relay. This is the critical file to keep if you need to <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#UpgradeRelay">move
+    href="<wikifaq>#UpgradeRelay">move
     or restore your Tor relay</a> if something goes wrong.
     </p>
     
@@ -231,7 +229,7 @@
     in their torrc and restart Tor. OS X or Unix relays can't bind
     directly to these ports (since they don't run as root), so they will
     need to set up some sort of <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ServerForFirewalledClients">
+    href="<wikifaq>#ServerForFirewalledClients">
     port forwarding</a> so connections can reach their Tor relay. If you are
     using ports 80 and 443 already but still want to help out, other useful
     ports are 22, 110, and 143.
@@ -242,7 +240,7 @@
     &mdash; such as a public webserver &mdash; make sure that connections to the
     webserver are allowed from the local host too. You need to allow these
     connections because Tor clients will detect that your Tor relay is the <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ExitEavesdroppers">safest
+    href="<wikifaq>#ExitEavesdroppers">safest
     way to reach that webserver</a>, and always build a circuit that ends
     at your relay. If you don't want to allow the connections, you must
     explicitly reject them in your exit policy.
@@ -255,7 +253,7 @@
     be run as root, so it's good practice to not run it as root. Running
     as a 'tor' user avoids issues with identd and other services that
     detect user name. If you're the paranoid sort, feel free to <a
-    href="https://wiki.torproject.org/noreply/TheOnionRouter/TorInChroot">put Tor
+    href="<wiki>TheOnionRouter/TorInChroot">put Tor
     into a chroot jail</a>.)
     </p>
     
