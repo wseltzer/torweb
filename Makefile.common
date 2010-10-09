@@ -14,17 +14,18 @@ WMLOPT  = \
           -D DOCROOT=$(WMLBASE) \
           -D IMGROOT=$(WMLBASE)/images \
           -D TORSVNSTABLE=$(TORSVNSTABLE) \
-          -D TORGIT=$(TORGIT) \
+          -D TORGIT=$(TORGIT)\
           -D DEVTAG=$(DEVTAG) \
           -D STABLETAG=$(STABLETAG)
 
-LANGS=bms de en es et fa fi fr it lv nl no pl pt ru se sk uk zh-cn
+#LANGS=ar bms de en es et fa it fi fr ja ko nl no pl pt ru se tr zh-cn
+LANGS=en
 
 WMLFILES=$(wildcard $(patsubst %, %/*.wml, $(LANGS)))
 WMIFILES=$(wildcard $(patsubst %, %/*.wmi, $(LANGS)) $(WMLBASE)/include/*.wmi )
 
-HTMLFILES = $(shell perl -le 's,  (.*)/(.*).wml  ,        $$2.html.$$1    ,x, print $$_ for @ARGV' $(WMLFILES))
-DEPFILES  = $(shell perl -le 's,  (.*)/(.*).wml  ,  .deps/$$2.html.$$1.d  ,x, print $$_ for @ARGV' $(WMLFILES))
+HTMLFILES=$(shell perl -le 's,  (.*)/(.*).wml  ,        $$2.html.$$1    ,x, print $$_ for @ARGV' $(WMLFILES))
+DEPFILES=$(shell perl -le 's,  (.*)/(.*).wml  ,  .deps/$$2.html.$$1.d  ,x, print $$_ for @ARGV' $(WMLFILES))
 
 
 all: $(HTMLFILES)
@@ -65,9 +66,6 @@ all: $(HTMLFILES)
 %.html.ko: ko/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
-%.html.lv: lv/%.wml en/%.wml
-	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
-
 %.html.nl: nl/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
@@ -86,13 +84,7 @@ all: $(HTMLFILES)
 %.html.se: se/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
-%.html.sk: sk/%.wml en/%.wml
-	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
-
 %.html.tr: tr/%.wml en/%.wml
-	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
-
-%.html.uk: uk/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
 %.html.zh-cn: zh-cn/%.wml en/%.wml
@@ -182,13 +174,6 @@ all: $(HTMLFILES)
 	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.html.lv.d: lv/%.wml .deps/.stamp
-	tmpfile=`mktemp -t tmp.XXXXXXX` \
-	lang=`dirname $<` && \
-	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
-	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
-	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
-	rm -f $$tmpfile
 .deps/%.html.nl.d: nl/%.wml .deps/.stamp
 	tmpfile=`mktemp -t tmp.XXXXXXX` \
 	lang=`dirname $<` && \
@@ -231,21 +216,7 @@ all: $(HTMLFILES)
 	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
-.deps/%.html.sk.d: sk/%.wml .deps/.stamp
-	tmpfile=`mktemp -t tmp.XXXXXXX` \
-	lang=`dirname $<` && \
-	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
-	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
-	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
-	rm -f $$tmpfile
 .deps/%.html.tr.d: tr/%.wml .deps/.stamp
-	tmpfile=`mktemp -t tmp.XXXXXXX` \
-	lang=`dirname $<` && \
-	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
-	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
-	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
-	rm -f $$tmpfile
-.deps/%.html.uk.d: uk/%.wml .deps/.stamp
 	tmpfile=`mktemp -t tmp.XXXXXXX` \
 	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \

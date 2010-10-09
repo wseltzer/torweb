@@ -1,30 +1,29 @@
 # Directions for building the website:
 #
-# 1. Clone the Tor git repository, switch to branch release-0.2.1, and
-#    make TORSVNSTABLE point to it:
+# FIXME: this is incorrect, because maint-0.2.1 and master merged
+# 1. Clone the Tor git repository, switch to branch maint-0.2.1, and
+# make TORSVNSTABLE point to it: 
 #
 # 	git clone git://git.torproject.org/tor/ tor-stable
-# 	cd tor-stable && git checkout release-0.2.1
+# 	cd tor-stable && git checkout maint-0.2.1
 #
 # 2. Clone the Tor git repository again and make TORGIT point to it:
 #
 # 	git clone git://git.torproject.org/tor/ tor
-#
-#    note that you need to either make this a bare repository or point
-#    TORGIT to the .git subdirectory in your clone.
 #
 # 3. Edit include/versions.wmi or others if you like
 # 4. Update STABLETAG and DEVTAG below if there is a new git tag
 # 5. make
 # 6. ./publish
 
-TORSVNSTABLE = /path/to/your/tor/stable
-TORGIT = /path/to/your/tor/master/.git
-STABLETAG = tor-0.2.1.26
-DEVTAG = tor-0.2.2.16-alpha
+# FIXME: these are the same
+export TORSVNSTABLE=/home/phobos/onionrouter/onionrouter/tor/
+export TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
+export STABLETAG=tor-0.2.2.17-alpha
+export DEVTAG=tor-0.2.2.17-alpha
 
-WMLBASE = .
-SUBDIRS=docs eff gui torbrowser torbutton tordnsel projects torvm press gettor vidalia
+WMLBASE=.
+SUBDIRS=docs eff projects press about download getinvolved donate torbutton
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
@@ -33,33 +32,29 @@ docs:
 	$(MAKE) -C "$@" WMLBASE=..
 eff:
 	$(MAKE) -C "$@" WMLBASE=..
-gui:
-	$(MAKE) -C "$@" WMLBASE=..
-torbrowser:
-	$(MAKE) -C "$@" WMLBASE=..
-torbutton:
-	$(MAKE) -C "$@" WMLBASE=..
-tordnsel:
-	$(MAKE) -C "$@" WMLBASE=..
 projects:
-	$(MAKE) -C "$@" WMLBASE=..
-torvm:
 	$(MAKE) -C "$@" WMLBASE=..
 press:
 	$(MAKE) -C "$@" WMLBASE=..
-gettor:
-	$(MAKE) -C "$@" WMLBASE=..
-vidalia:
-	$(MAKE) -C "$@" WMLBASE=..
+about:
+	$(MAKE) -C "$@" WMLBASE=.. 
+download:
+	$(MAKE) -C "$@" WMLBASE=.. 
+getinvolved:
+	$(MAKE) -C "$@" WMLBASE=.. 
+donate:
+	$(MAKE) -C "$@" WMLBASE=..  
+torbutton:
+	$(MAKE) -C "$@" WMLBASE=..  
 mirrors:
 	./update-mirrors.pl
 translations:
 	./po2wml.sh
 qrcode:
 	qrencode -o img/android/orbot-qr-code-latest.png \
-    "http://www.torproject.org/dist/android/alpha-orbot-latest.apk"
+    "https://www.torproject.org/dist/android/alpha-orbot-latest.apk"
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
-translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
+#translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
 
-.PHONY: docs eff gui torbrowser torbutton tordnsel projects torvm press gettor vidalia
+.PHONY: docs eff projects press about download getinvolved donate torbutton
