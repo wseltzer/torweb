@@ -1,23 +1,15 @@
 # Directions for building the website:
 #
-# FIXME: this is incorrect, because maint-0.2.1 and master merged
-# 1. Clone the Tor git repository, switch to branch maint-0.2.1, and
-# make TORSVNSTABLE point to it: 
-#
-# 	git clone git://git.torproject.org/tor/ tor-stable
-# 	cd tor-stable && git checkout maint-0.2.1
-#
-# 2. Clone the Tor git repository again and make TORGIT point to it:
+# 1. Clone the Tor git repository and make TORGIT point to it:
 #
 # 	git clone git://git.torproject.org/tor/ tor
 #
-# 3. Edit include/versions.wmi or others if you like
-# 4. Update STABLETAG and DEVTAG below if there is a new git tag
-# 5. make
-# 6. ./publish
+#    Note that you will need to point to the actual .git directory.
+# 2. Edit include/versions.wmi or others if you like
+# 3. Update STABLETAG and DEVTAG below if there is a new git tag
+# 4. make
+# 5. ./publish
 
-# FIXME: these are the same
-export TORSVNSTABLE=/home/phobos/onionrouter/onionrouter/tor/
 export TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
 export STABLETAG=tor-0.2.2.17-alpha
 export DEVTAG=tor-0.2.2.17-alpha
