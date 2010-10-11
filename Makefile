@@ -43,7 +43,7 @@ mirrors:
 translations:
 	./po2wml.sh
 qrcode:
-	qrencode -o img/android/orbot-qr-code-latest.png \
+	qrencode -o $(IMGROOT)/android/orbot-qr-code-latest.png \
     "https://www.torproject.org/dist/android/alpha-orbot-latest.apk"
 
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
