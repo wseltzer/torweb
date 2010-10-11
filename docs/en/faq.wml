@@ -46,7 +46,16 @@
     
     <p>Running a Tor client:</p>
     <ul>
-    <li><a href="#ChooseEntryExit">Can I control which nodes (or country) are used for entry/exit?</a></li>
+    <li><a href="#DoesntWork">I installed Tor and Polipo but it's not
+    working.</a></li>
+    <li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at
+    start.</a></li>
+    <li><a href="#ChooseEntryExit">Can I control which nodes (or country)
+    are used for entry/exit?</a></li>
+    <li><a href="#GoogleCaptcha">Google makes me solve a Captcha or tells
+    me I have spyware installed.</a></li>
+    <li><a href="#GmailWarning">Gmail warns me that my account may have
+    been compromised.</a></li>
     </ul>
     
     <p>Running a Tor relay:</p>
@@ -712,7 +721,154 @@
     <p>
     Please contact us if you know any others.
     </p>
-    
+
+<hr>
+
+<a id="DoesntWork"></a>
+<h3><a class="anchor" href="#DoesntWork">I installed Tor and Polipo but
+it's not working.</a></h3>
+
+<p>
+Once you've installed the Tor bundle, there are two questions to ask:
+first, is your Tor able to establish a circuit? Second, is your
+Firefox correctly configured to send its traffic through Tor?
+</p>
+
+<p>If Tor can establish a circuit, the onion icon in
+Vidalia will turn green. You can also check in the Vidalia
+Control Panel to make sure it says "Connected to the Tor
+network!" under Status. For those not using Vidalia, check your <a
+href="<wiki>TorFAQ#HowdoIsetuploggingorseeTorslogs">Tor logs</a> for
+a line saying that Tor "has successfully opened a circuit. Looks like
+client functionality is working."
+</p>
+
+<p>
+If Tor can't establish a circuit, here are some hints:
+</p>
+
+<ol>
+<li>Are you sure Tor is running? If you're using Vidalia, you may have
+to click on the onion and select "Start" to launch Tor.</li>
+<li>Check your system clock. If it's more than a few hours off, Tor will
+refuse to build circuits. For XP users, synchronize your clock under
+the clock -&gt; Internet time tab. In addition, correct the day and date
+under the 'Date &amp; Time' Tab.</li>
+<li>Is your Internet connection <a
+href="<wiki>TorFAQ#Myfirewallonlyallowsafewoutgoingports.">firewalled</a>,
+or do you normally need to use a <a
+href="<wiki>TorFAQ#MyInternetconnectionrequiresanHTTPorSOCKSproxy.">proxy</a>?
+</li>
+<li>Are you running programs like Norton Internet Security or SELinux that
+block certain connections, even though you don't realize they do? They
+could be preventing Tor from making network connections.</li>
+<li>Are you in China, or behind a restrictive corporate network firewall
+that blocks the public Tor relays? If so, you should learn about <a
+href="<page bridges>">Tor bridges</a>.</li>
+<li>Check your <a href="<wiki>TorFAQ#HowdoIsetuploggingorseeTorslogs">Tor
+logs</a>. Do they give you any hints about what's going wrong?</li>
+</ol>
+
+<p>
+Step two is to confirm that Firefox is correctly configured to send its
+traffic through Tor. Try the <a href="https://check.torproject.org/">Tor
+Check</a> site and see whether it thinks you are using Tor. See <a
+href="<wiki>TorFAQ#HowcanItellifTorisworkingandthatmyconnectionsreallyareanonymizedArethereexternalserversthatwilltestmyconnection">the
+Tor Check FAQ entry</a> for details.
+<p>
+
+<p>
+If it thinks you're not using Tor, here are some hints:
+</p>
+
+<ol>
+<li>Did you install the Torbutton extension for Firefox? The installation
+bundles include it, but sometimes people forget to install it. Make sure
+it says "Tor enabled" at the bottom right of your Firefox window. (For
+expert users, make sure your http proxy is set to localhost port
+8118.)</li>
+<li>Do you have incompatible Firefox extensions like FoxyProxy
+installed? If so, uninstall them. (Note that using FoxyProxy is NOT
+a sufficient substitute for Torbutton. There are many known attacks
+against a browser setup that does not include Torbutton. Read more
+in the <a href="<page torbutton/faq>">Torbutton FAQ</a> and the <a
+href="https://www.torproject.org/torbutton/design/">Torbutton design</a>
+specification.)</li>
+<li>If your browser says "The proxy server is refusing connections.",
+check that Polipo (the http proxy that passes traffic between Firefox
+and Tor) is running. On Windows, look in the task manager and check for
+a polipo.exe. On OS X, open the utilities folder in your applications
+folder, and open Terminal.app. Then run "ps aux|grep polipo".</li>
+<li>If you're upgrading from OS X, some of the earlier OS X installers
+were broken in really unfortunate ways. You may find that <a href="<page
+docs/tor-doc-osx>#uninstall">uninstalling everything</a> and then
+installing a fresh bundle helps. Alas, the current uninstall instructions
+may not apply anymore to your old bundle. Sorry.</li>
+<li>If you're on Linux, make sure Privoxy isn't running, since it will
+conflict with the port that our Polipo configuration file picks.</li>
+<li>If you installed Polipo yourself (not from a bundle), did you edit the
+config file as described? Did you restart Polipo after this change?</li>
+<li>For Red Hat Linux and related systems, do you have SELinux enabled? If
+so, it might be preventing Polipo from talking to Tor. We also run across
+BSD users periodically who have local firewall rules that prevent some
+connections to localhost.</li>
+</ol>
+
+<hr />
+
+<a id="VidaliaPassword"></a>
+<h3><a class="anchor" href="#VidaliaPassword">Tor/Vidalia prompts for
+a password at start.</a></h3>
+
+<p>
+Vidalia interacts with the Tor software via Tor's "control port". The
+control port lets Vidalia receive status updates from Tor, request a new
+identity, configure Tor's settings, etc. Each time Vidalia starts Tor,
+Vidalia sets a random password for Tor's control port to prevent other
+applications from also connecting to the control port and potentially
+compromising your anonymity.
+</p>
+
+<p>
+Usually this process of generating and setting a random control password
+happens in the background. There are three common situations, though,
+where Vidalia may prompt you for a password:
+</p>
+
+<ol>
+<li>You're already running Vidalia and Tor. For example, this situation
+can happen if you installed the Vidalia bundle and now you're trying to
+run the Tor Browser Bundle. In that case, you'll need to close the old
+Vidalia and Tor before you can run this one.
+</li>
+<li>Vidalia crashed, but left Tor running with the last known random
+password. After you restart Vidalia, it generates a new random password,
+but Vidalia can't talk to Tor, because the random passwords are different.
+<br />
+If the dialog that prompts you for a control password has a Reset button,
+you can click the button and Vidalia will restart Tor with a new random
+control password.
+<br />
+If you do not see a Reset button, or if Vidalia is unable to restart
+Tor for you, you can still fix the problem manually. Simply go into your
+process or task manager, and terminate the Tor process. Then use Vidalia
+to restart Tor and all will work again.
+</li>
+<li>You had previously set Tor to run as a Windows NT service. When Tor
+is set to
+run as a service, it starts up when the system boots. If you configured
+Tor to start as a service through Vidalia, a random password was set
+and saved in Tor. When you reboot, Tor starts up and uses the random
+password it saved. You login and start up Vidalia. Vidalia attempts to
+talk to the already running Tor. Vidalia generates a random password,
+but it is different than the saved password in the Tor service.
+<br />
+You need to reconfigure Tor to not be a service. See the FAQ entry on
+<a href="<wiki>TorFAQ#HowdoIrunmyTorrelayasanNTservice">running Tor as a Windows NT service</a>
+for more information on how to remove the Tor service.
+</li>
+</ol>
+
     <hr>
     
     <a id="ChooseEntryExit"></a>
@@ -771,7 +927,92 @@
     </p>
     
     <hr>
-    
+
+<a id="GoogleCaptcha"></a>
+<h3><a class="anchor" href="#GoogleCaptcha">Google makes me solve a
+Captcha or tells me I have spyware installed.</a></h3>
+
+<p>
+This is a known and intermittent problem; it does not mean that Google
+considers Tor to be spyware.
+</p>
+
+<p>
+When you use Tor, you are sending queries through exit relays that are also
+shared by thousands of other users. Tor users typically see this message
+when many Tor users are querying Google in a short period of time. Google
+interprets the high volume of traffic from a single IP address (the exit
+relay you happened to pick) as somebody trying to "crawl" their website,
+so it slows down traffic from that IP address for a short time.
+</p>
+<p>
+An alternate explanation is that Google tries to detect certain
+kinds of spyware or viruses that send distinctive queries to Google
+Search. It notes the IP addresses from which those queries are received
+(not realizing that they are Tor exit relays), and tries to warn any
+connections coming from those IP addresses that recent queries indicate
+an infection.
+</p>
+
+<p>
+To our knowledge, Google is not doing anything intentionally specifically
+to deter or block Tor use. The error message about an infected machine
+should clear up again after a short time.
+</p>
+
+<p>
+Torbutton 1.2.5 (released in mid 2010) detects Google captchas and can
+automatically redirect you to a more Tor-friendly search engine such as
+Ixquick or Bing.
+</p>
+
+<hr />
+
+<a id="GmailWarning"></a>
+<h3><a class="anchor" href="#GmailWarning">Gmail warns me that my account
+may have been compromised.</a></h3>
+
+<p>
+Sometimes, after you've used Gmail over Tor, Google presents a
+pop-up notification that your account may have been compromised. The
+notification window lists a series of IP addresses and locations throughout
+the world recently used to access your account.
+</p>
+
+<p>
+In general this is a false alarm: Google saw a bunch of logins from
+different places  and wanted to let
+you know. If you use Tor to access a Google service, then it will appear
+like you're coming from lots of different places. Nothing to worry about
+in particular.
+</p>
+
+<p>
+But that doesn't mean you can entirely ignore the warning. It's
+<i>probably</i> a false positive, but it might not be. It is possible
+that somebody could at some point steal your Google cookie, which would
+allow them to log in to the Google service as you. They might steal it
+by breaking into your computer, or by watching your network traffic at
+Starbucks or sniffing your wireless at home (when you're not using Tor),
+or by watching traffic going over the Tor network. In theory none of
+this should be possible because Gmail and similar services should only
+send the cookie over an SSL link. In practice, alas, it's <a
+href="http://fscked.org/blog/fully-automated-active-https-cookie-hijacking">way
+more complex than that</a>.
+</p>
+
+<p>
+And if somebody <i>did</i> steal your google cookie, they might end
+up logging in from unusual places (though of course they also might
+not). So the summary is that since you're using Tor, this security
+measure that Google uses isn't so useful for you, because it's full of
+false positives. You'll have to use other approaches, like seeing if
+anything looks weird on the account, or looking at the timestamps for
+recent logins and wondering if you actually logged in at those times.
+</p>
+
+<hr />
+
     <a id="RelayFlexible"></a>
     <h3><a class="anchor" href="#RelayFlexible">How stable does my relay
     need to be?</a></h3>
@@ -880,7 +1121,7 @@
     publically or not.
     </p>
     
-    <p>Right now, there are roughly zero places in the world that filter
+    <p>Right now, there are a small number of places in the world that filter
     connections to the Tor network. So getting a lot of bridges running
     right now is mostly a backup measure, a) in case the Tor network does
     get blocked somewhere, and b) for people who want an extra layer of
