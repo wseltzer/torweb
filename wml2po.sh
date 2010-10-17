@@ -22,7 +22,7 @@ wmldir="$PWD"
 
 # Location of the pot files.
 # Assuming that the translation directory is relative to the website
-podir="`dirname $wmldir`/translation/projects/website/po/templates"
+podir="`dirname $wmldir`/translation/projects/website/pot/templates"
 
 # Set the copyright holder of the files,
 # for example "The Tor Project, Inc"
@@ -32,7 +32,7 @@ copyright="The Tor Project, Inc"
 # in website/include/versions.wmi. Tags that people usually forget to close,
 # as well as tags that are not defined in versions.wmi, have been added.
 # See: https://svn.torproject.org/svn/website/trunk/include/versions.wmi
-customtag=`echo $(cat "$wmldir/include/versions.wmi" | awk '{ printf "<%s> " , $2 }' | sed 's/<>//g') "<svnsandbox> <svnwebsite> <svnprojects> <input> <hr> <br> <img> <gitblob> <package-androidbundle-alpha> <package-androidbundle-alpha-sig> <version-androidbundle-tor> <video controls>"`
+customtag=`echo $(cat "$wmldir/include/versions.wmi" | awk '{ printf "<%s> " , $2 }' | sed 's/<>//g') "<svnsandbox> <svnwebsite> <svnprojects> <input> <hr> <br> <img> <gitblob> <package-androidbundle-alpha> <package-androidbundle-alpha-sig> <version-androidbundle-tor> <video controls> <version-androidbundle-privoxy> <version-androidbundle-libevent> <wiki>"`
 
 # We also need to use the nodefault option of po4a; space separated list
 # of tags that the module should not try to set by default in any
