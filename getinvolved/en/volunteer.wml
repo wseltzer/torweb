@@ -1033,19 +1033,6 @@
     by their rotating UserAgents; malicious websites who only attack certain
     browsers; and whether the answers to question one impact this answer.
     </li>
-    <li>Right now Tor clients are willing to reuse a given circuit for ten
-    minutes after it's first used. The goal is to avoid loading down the
-    network with too many circuit extend operations, yet to also avoid having
-    clients use the same circuit for so long that the exit node can build a
-    useful pseudonymous profile of them. Alas, ten minutes is probably way
-    too long, especially if connections from multiple protocols (e.g. IM and
-    web browsing) are put on the same circuit. If we keep fixed the overall
-    number of circuit extends that the network needs to do, are there more
-    efficient and/or safer ways for clients to allocate streams to circuits,
-    or for clients to build preemptive circuits? Perhaps this research item
-    needs to start with gathering some traces of what connections typical
-    clients try to launch, so you have something realistic to try to optimize.
-    </li>
     <li>How many bridge relays do you need to know to maintain
     reachability? We should measure the churn in our bridges. If there is
     lots of churn, are there ways to keep bridge users more likely to stay
