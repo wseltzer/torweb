@@ -12,7 +12,7 @@
 
 export TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
 export STABLETAG=tor-0.2.2.17-alpha
-export DEVTAG=tor-0.2.2.17-alpha
+export DEVTAG=tor-0.2.2.18-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download getinvolved donate torbutton
