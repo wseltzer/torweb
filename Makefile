@@ -10,9 +10,9 @@
 # 4. make
 # 5. ./publish
 
-export TORGIT=/Users/hudson/src/tor-master.git/.git
-export STABLETAG=tor-0.2.2.17-alpha
-export DEVTAG=tor-0.2.2.18-alpha
+export TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
+export STABLETAG=tor-0.2.1.28
+export DEVTAG=tor-0.2.2.20-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download getinvolved donate torbutton
