@@ -221,6 +221,69 @@ meetings around the world.</li>
     </li>
     
     <li>
+    <b>Client Mode Use Cases for Arm</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Damian</i>
+    <p><a href="<page projects/arm>">Arm</a> is a Tor command line status
+    monitor on *nix environments (Linux, Mac, and BSD). It functions much like
+    top does, giving a CLI overlay of Tor's bandwidth usage, connections,
+    configuration, log, etc. Thus far its design has been geared for Tor relay
+    operators. However, this doesn't need to be the case. This project would be
+    to expand and simplify arm to make it useful for Tor's client users
+    too.</p>
+    
+    <p>This would include UI design, experimenting, and a lot of python
+    hacking. Here's some ideas for client functionality arm could provide:</p>
+    
+    <ul>
+      <li>A panel for client connections, showing each hop of the user's
+      circuits with the ISP, country, and jurisdiction where those relays
+      reside. Other interesting information would be the circuit's latency, how
+      long its been around, and its possible exit ports. Some of this will be
+      pretty tricky and require some experimentation to figure out what
+      information can be fetched safely (for instance, scraping rdns and whois
+      lookups could give hints about a relay's ISP, but we'd need to do it on
+      all Tor relays to avoid leaking our connections to the resolver).</li>
+      
+      <li>Options to let the user request new circuits (the &quot;New
+      Identity&quot; feature in Vidalia), select the exit country, etc.</li>
+      
+      <li>A panel showing Internet application and if their connections are
+      being routed through Tor or not (giving a warning if there's leaks).</li>
+      
+      <li>The status of the bridges we're configured to use (ie, are they up?).
+      This would include adding control port functionality to Tor for <a
+      href="https://trac.torproject.org/projects/tor/ticket/2068">ticket
+      2068</a>.</li>
+      
+      <li>A one click option to set Tor to be a client, relay, or bridge. The
+      goal would be to make it trivial for users to voluntarily contribute to
+      the Tor network.</li>
+      
+      <li>Menus as an alternative to hotkeys to make the interface more
+      intuitive and usable for beginners (<a
+      href="http://gnosis.cx/publish/programming/charming_python_6.html">example</a>).</li>
+      
+      <li>Look at Vidalia and TorK for ideas and solicit input from the Tor community.</li>
+      
+      <li>Make it easier for users to install arm by <a
+      href="https://secure.wikimedia.org/wikipedia/en/wiki/Opkg">packaging for
+      OpenWrt</a> (as a UI for the <a
+      href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/Torouter">Torouter
+      project</a>) and Macs.</li>
+    </ul>
+    
+    <p>For more project ideas see arm's <a
+    href="https://svn.torproject.org/svn/arm/trunk/TODO">TODO</a>.</p>
+    </li>
+    
+    <li>
     <b>Improve our unit testing process</b>
     <br>
     Priority: <i>Medium</i>
