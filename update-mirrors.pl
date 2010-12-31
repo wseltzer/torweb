@@ -568,6 +568,25 @@ my %m = (
             httpsDistMirror => "https://tor-www.5coluna.com/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+
+        mirror029 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "US",
+            subRegion => "WA",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://torproject.nwlinux.us",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://torproject.nwlinux.us/dist",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
