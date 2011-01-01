@@ -587,6 +587,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+        mirror030 => {
+            adminContact => "",
+            orgName => "LazyTiger",
+            isoCC => "FR",
+            subRegion => "",
+            region => "FR",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.taiga-san.net/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.taiga-san.net/dist",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
