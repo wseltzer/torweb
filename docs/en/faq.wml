@@ -992,31 +992,32 @@ may have been compromised.</a></h3>
 
 <p>
 Sometimes, after you've used Gmail over Tor, Google presents a
-pop-up notification that your account may have been compromised. The
-notification window lists a series of IP addresses and locations throughout
-the world recently used to access your account.
+pop-up notification that your account may have been compromised.
+The notification window lists a series of IP addresses and locations
+throughout the world recently used to access your account.
 </p>
 
 <p>
 In general this is a false alarm: Google saw a bunch of logins from
-different places  and wanted to let
-you know. If you use Tor to access a Google service, then it will appear
-like you're coming from lots of different places. Nothing to worry about
-in particular.
+different places, as a result of running the service via Tor, and decided
+it was a good idea to confirm the account was being accessed by it's
+rightful owner.
 </p>
 
 <p>
-But that doesn't mean you can entirely ignore the warning. It's
-<i>probably</i> a false positive, but it might not be. It is possible
-that somebody could at some point steal your Google cookie, which would
-allow them to log in to the Google service as you. They might steal it
-by breaking into your computer, or by watching your network traffic at
-Starbucks or sniffing your wireless at home (when you're not using Tor),
-or by watching traffic going over the Tor network. In theory none of
-this should be possible because Gmail and similar services should only
-send the cookie over an SSL link. In practice, alas, it's <a
-href="http://fscked.org/blog/fully-automated-active-https-cookie-hijacking">way
-more complex than that</a>.
+Even though this may be a biproduct of using the service via tor,
+that doesn't mean you can entirely ignore the warning. It is
+<i>probably</i> a false positive, but it might not be since it is
+possible for someone to hijack your Google cookie.
+</p>
+
+<p>
+Cookie hijacking is possible by either physical access to your computer
+or by watching your network traffic.  In theory only physical access
+should compromise your system because Gmail and similar services
+should only send the cookie over an SSL link. In practice, alas, it's <a
+href="http://fscked.org/blog/fully-automated-active-https-cookie-hijacking">
+way more complex than that</a>.
 </p>
 
 <p>
