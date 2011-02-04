@@ -29,7 +29,8 @@
     <li><a href="#WhySlow">Why is Tor so slow?</a></li>
     <li><a href="#Funding">What would The Tor Project do with more
     funding?</a></li>
-    <li><a href="#Metrics">How many people use Tor?  How many relays or exit nodes are there?</a></li>
+    <li><a href="#Metrics">How many people use Tor? How many relays or
+    exit nodes are there?</a></li>
     </ul>
 
     <p>Compilation and Installation:</p>
@@ -57,6 +58,8 @@
     me I have spyware installed.</a></li>
     <li><a href="#GmailWarning">Gmail warns me that my account may have
     been compromised.</a></li>
+    <li><a href="#FirewallPorts">My firewall only allows a few outgoing
+    ports.</a></li>
     </ul>
 
     <p>Running a Tor relay:</p>
@@ -554,7 +557,7 @@ encryption, what data you're sending to the destination.</dd>
     How many relays or exit nodes are there?</a></h3>
 
     <p>All this and more about measuring Tor can be found at the <a
-    href="https://metrics.torproject.org">Tor Metrics Portal</a>.</p>
+    href="https://metrics.torproject.org/">Tor Metrics Portal</a>.</p>
     <hr>
 
     <a id="HowUninstallTor"></a>
@@ -774,7 +777,7 @@ refuse to build circuits. For XP users, synchronize your clock under
 the clock -&gt; Internet time tab. In addition, correct the day and date
 under the 'Date &amp; Time' Tab.</li>
 <li>Is your Internet connection <a
-href="<wikifaq>#Myfirewallonlyallowsafewoutgoingports.">firewalled</a>,
+href="#FirewallPorts">firewalled by port</a>,
 or do you normally need to use a <a
 href="<wikifaq>#MyInternetconnectionrequiresanHTTPorSOCKSproxy.">proxy</a>?
 </li>
@@ -1031,7 +1034,37 @@ anything looks weird on the account, or looking at the timestamps for
 recent logins and wondering if you actually logged in at those times.
 </p>
 
-<hr />
+<hr>
+
+<a id="FirewallPorts"></a>
+<h3><a class="anchor" href="#FirewallPorts">My firewall only allows a
+few outgoing ports.</a></h3>
+
+<p>
+If your firewall works by blocking ports, then you can tell Tor to only
+use the ports that your firewall permits by adding "FascistFirewall 1" to
+your <a href="<wikifaq>#Imsupposedtoeditmytorrc.Whatdoesthatmean">torrc
+configuration file</a>, or by clicking "My firewall only lets me connect
+to certain ports" in Vidalia's Network Settings window.
+</p>
+
+<p>
+By default, when you set this Tor assumes that your firewall allows only
+port 80 and port 443 (HTTP and HTTPS respectively). You can select a
+different set of ports with the FirewallPorts torrc option.
+</p>
+
+<p>
+If you want to be more fine-grained with your controls, you can also
+use the ReachableAddresses config options, e.g.:
+</p>
+
+<pre>
+  ReachableDirAddresses *:80
+  ReachableORAddresses *:443
+</pre>
+
+<hr>
 
     <a id="RelayFlexible"></a>
     <h3><a class="anchor" href="#RelayFlexible">How stable does my relay
