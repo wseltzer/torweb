@@ -69,6 +69,7 @@
     with abuse issues.</a></li>
     <li><a href="#RelayOrBridge">Should I be a normal relay or bridge
     relay?</a></li>
+    <li><a href="#ManyRelays">I want to run more than one relay.</a></li>
     <li><a href="#RelayMemory">Why is my Tor relay using so much memory?</a></li>
     <li><a href="#WhyNotNamed">Why is my Tor relay not named?</a></li>
     </ul>
@@ -1189,6 +1190,43 @@ use the ReachableAddresses config options, e.g.:
     relay, since we need more exits. If you can't be an exit and only have
     a little bit of bandwidth, then flip a coin. Thanks for volunteering!
     </p>
+
+    <hr>
+
+<a id="ManyRelays"></a>
+<h3><a class="anchor" href="#ManyRelays">I want to run more than one
+relay.</a></h3>
+
+<p>
+Great. If you want to run several relays to donate more to the network,
+we're happy with that. But please don't run more than a few dozen on
+the same network, since part of the goal of the Tor network is dispersal
+and diversity.
+</p>
+
+<p>
+If you do decide to run more than one relay, please set the "MyFamily"
+config option in the torrc of each relay, listing all the relays
+(comma-separated) that are under your control:
+</p>
+
+<pre>
+    MyFamily $fingerprint1,$fingerprint2,$fingerprint3
+</pre>
+
+<p>
+where each fingerprint is the 40 character identity fingerprint (without
+spaces). You can also list them by nickname, but fingerprint is safer. Be
+sure to prefix the digest strings with a dollar sign ('$') so that the
+digest is not confused with a nickname in the config file.
+</p>
+
+<p>
+That way clients will know to avoid using more than one of your relays
+in a single circuit. You should set MyFamily if you have administrative
+control of the computers or of their network, even if they're not all in
+the same geographic location.
+</p>
 
     <hr>
 
