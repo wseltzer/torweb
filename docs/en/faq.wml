@@ -79,6 +79,7 @@
     <p>Anonymity and Security:</p>
     <ul>
     <li><a href="#KeyManagement">Tell me about all the keys Tor uses.</a></li>
+    <li><a href="#EntryGuards">What are Entry Guards?</a></li>
     </ul>
 
     <p>Alternate designs that we don't do (yet):</p>
@@ -1360,6 +1361,60 @@ the same geographic location.
     this level, we recommend you get involved with the security community
     and start meeting people.
     </p>
+
+    <hr>
+
+[https://www.torproject.org/docs/faq#EntryGuards Answer moved to our new FAQ page]
+
+<a id="EntryGuards"></a>
+<h3><a class="anchor" href="#EntryGuards">What are Entry Guards?</a></h3>
+
+<p>
+Tor (like all current practical low-latency anonymity designs) fails
+when the attacker can see both ends of the communications channel. For
+example, suppose the attacker is watching the Tor relay you choose
+to enter the network, and is also watching the website you visit. In
+this case, the research community knows no practical low-latency design
+that can reliably stop the attacker from correlating volume and timing
+information on the two sides.
+</p>
+
+<p>
+So, what should we do? Suppose the attacker controls, or can observe,
+C relays. Suppose there are N relays total.  If you select new entry and
+exit relays each time you use the network, the attacker will be able to
+correlate all traffic you send with probability (c/n)^2^. But profiling
+is, for most users, as bad as being traced all the time: they want to do
+something often without an attacker noticing, and the attacker noticing
+once is as bad as the attacker noticing more often. Thus, choosing many
+random entries and exits gives the user no chance of escaping profiling
+by this kind of attacker.
+</p>
+
+<p>
+The solution is "entry guards": each user selects a few relays at random
+to use as entry points, and uses only those relays for entry.  If those
+relays are not controlled or observed, the attacker can't win, ever,
+and the user is secure.  If those relays *are* observed or controlled
+by the attacker, the attacker sees a larger _fraction_ of the user's
+traffic -- but still the user is no more profiled than before.  Thus,
+the user has some chance (on the order of (n-c)/n) of avoiding profiling,
+whereas she had none before.
+</p>
+
+<p>
+You can read a bit more at http://freehaven.net/anonbib/#wright02,
+http://freehaven.net/anonbib/#wright03, or
+http://freehaven.net/anonbib/#hs-attack06.
+</p>
+
+<p>
+Restricting your entry nodes may also help against attackers who want
+to run a few Tor nodes and easily enumerate all of the Tor user IP
+addresses. (Even though they can't learn what destinations the users
+are talking to, they still might be able to do bad things with just a
+list of users.)
+</p>
 
     <hr>
 
