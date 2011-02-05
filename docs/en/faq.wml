@@ -1372,8 +1372,8 @@ the same geographic location.
 <p>
 Tor (like all current practical low-latency anonymity designs) fails
 when the attacker can see both ends of the communications channel. For
-example, suppose the attacker is watching the Tor relay you choose
-to enter the network, and is also watching the website you visit. In
+example, suppose the attacker controls or watches the Tor relay you choose
+to enter the network, and also controls or watches the website you visit. In
 this case, the research community knows no practical low-latency design
 that can reliably stop the attacker from correlating volume and timing
 information on the two sides.
@@ -1381,31 +1381,34 @@ information on the two sides.
 
 <p>
 So, what should we do? Suppose the attacker controls, or can observe,
-C relays. Suppose there are N relays total.  If you select new entry and
-exit relays each time you use the network, the attacker will be able to
-correlate all traffic you send with probability (c/n)^2^. But profiling
-is, for most users, as bad as being traced all the time: they want to do
-something often without an attacker noticing, and the attacker noticing
-once is as bad as the attacker noticing more often. Thus, choosing many
-random entries and exits gives the user no chance of escaping profiling
-by this kind of attacker.
+<i>C</i> relays. Suppose there are <i>N</i> relays total. If you select
+new entry and exit relays each time you use the network, the attacker
+will be able to correlate all traffic you send with probability
+<i>(c/n)<sup>2</sup></i>. But profiling is, for most users, as bad
+as being traced all the time: they want to do something often without
+an attacker noticing, and the attacker noticing once is as bad as the
+attacker noticing more often. Thus, choosing many random entries and exits
+gives the user no chance of escaping profiling by this kind of attacker.
 </p>
 
 <p>
 The solution is "entry guards": each user selects a few relays at random
-to use as entry points, and uses only those relays for entry.  If those
-relays are not controlled or observed, the attacker can't win, ever,
-and the user is secure.  If those relays *are* observed or controlled
-by the attacker, the attacker sees a larger _fraction_ of the user's
-traffic -- but still the user is no more profiled than before.  Thus,
-the user has some chance (on the order of (n-c)/n) of avoiding profiling,
-whereas she had none before.
+to use as entry points, and uses only those relays for her first hop. If
+those relays are not controlled or observed, the attacker can't win,
+ever, and the user is secure. If those relays <i>are</i> observed or
+controlled by the attacker, the attacker sees a larger <i>fraction</i>
+of the user's traffic &mdash; but still the user is no more profiled than
+before. Thus, the user has some chance (on the order of <i>(n-c)/n</i>)
+of avoiding profiling, whereas she had none before.
 </p>
 
 <p>
-You can read a bit more at http://freehaven.net/anonbib/#wright02,
-http://freehaven.net/anonbib/#wright03, or
-http://freehaven.net/anonbib/#hs-attack06.
+You can read more at <a href="http://freehaven.net/anonbib/#wright02">An
+Analysis of the Degradation of Anonymous Protocols</a>, <a
+href="http://freehaven.net/anonbib/#wright03">Defending Anonymous
+Communication Against Passive Logging Attacks</a>, and especially
+<a href="http://freehaven.net/anonbib/#hs-attack06">Locating Hidden
+Servers</a>.
 </p>
 
 <p>
@@ -1413,7 +1416,8 @@ Restricting your entry nodes may also help against attackers who want
 to run a few Tor nodes and easily enumerate all of the Tor user IP
 addresses. (Even though they can't learn what destinations the users
 are talking to, they still might be able to do bad things with just a
-list of users.)
+list of users.) However, that feature won't really become useful until
+we move to a "directory guard" design as well.
 </p>
 
     <hr>
