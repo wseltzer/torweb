@@ -90,6 +90,8 @@
     <ul>
     <li><a href="#EverybodyARelay">You should make every Tor user be a
     relay.</a></li>
+    <li><a href="#TransportIPnotTCP">You should transport all IP packets,
+    not just TCP packets.</a></li>
     </ul>
 
     <p>Abuse:</p>
@@ -1571,6 +1573,74 @@ we move to a "directory guard" design as well.
     <p>
     Please help on all of these!
     </p>
+
+<hr>
+
+<a id="TransportIPnotTCP"></a>
+<h3><a class="anchor" href="#TransportIPnotTCP">You should transport
+all IP packets, not just TCP packets.</a></h3>
+
+<p>
+This would be handy, because it would make Tor
+more generally useful. It would also solve the whole
+need to socksify applications, and it would resolve the <a
+href="<wikifaq>#HowdoIcheckifmyapplicationthatusesSOCKSisleakingDNSrequests">DNS
+leak problem</a> too. Lastly, it would solve the fact that exit relays
+need to allocate a lot of file descriptors to hold open all the exit
+connections.
+</p>
+
+<p>
+On the other hand, there are six reasons we haven't done this:
+</p>
+
+<li>IP packets reveal OS characteristics. We would still
+need to do IP-level packet normalization, to stop things like
+TCP fingerprinting attacks. This is unlikely to be a trivial
+task, given the diversity and complexity of TCP stacks. In
+fact, it's worse than this: check out the new class of <a
+href="<wikifaq>#DoesTorresistremotephysicaldevicefingerprinting">device
+fingerprinting attacks</a> which we would have to tackle as well.
+</li>
+<li>Application-level streams still need scrubbing. We still need Tor
+to be easy to integrate with user-level application-specific proxies
+such as Privoxy. So it's not just a matter of capturing packets and
+anonymizing them at the IP layer.
+</li>
+<li>Certain protocols will still leak information. For example, we must
+rewrite DNS requests so they are delivered to an unlinkable DNS server
+rather than the DNS server at a user's ISP; thus, we must understand
+the protocols we are transporting.
+</li>
+<li><a
+href="http://crypto.stanford.edu/~nagendra/projects/dtls/dtls.html">DTLS</a>
+(datagram TLS) will be in the 0.9.8 openssl release. We need to design
+a new end-to-end Tor protocol for avoiding tagging attacks and other
+potential anonymity and integrity issues now that we allow drops, resends,
+et cetera.
+</li>
+<li>Exit policies for arbitrary IP packets mean building a secure
+IDS. Our node operators tell us that exit policies are one of the main
+reasons they're willing to run Tor. Adding an Intrusion Detection System
+to handle exit policies would increase the security complexity of Tor,
+and would likely not work anyway, as evidenced by the entire field of IDS
+and counter-IDS papers. Many potential abuse issues are resolved by the
+fact that Tor only transports valid TCP streams (as opposed to arbitrary
+IP including malformed packets and IP floods), so exit policies become
+even <i>more</i> important as we become able to transport IP packets. We
+also need to compactly describe exit policies in the Tor directory,
+so clients can predict which nodes will allow their packets to exit &mdash;
+and clients need to predict all the packets they will want to send in
+a session before picking their exit node!
+</li>
+<li>The Tor-internal name spaces would need to be redesigned. We
+support hidden service ".onion" addresses (and other special addresses,
+like ".exit" which lets the user request a particular exit node), by
+intercepting the addresses when they are passed to the Tor client. Doing
+so at the IP level would require a more complex interface between Tor
+and the local DNS resolver.
+</li>
+</ol>
 
     <hr>
 
