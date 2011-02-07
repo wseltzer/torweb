@@ -48,7 +48,7 @@
     <ul>
     <li><a href="#torrc">I'm supposed to "edit my torrc". What does
     that mean?</a></li>
-    <li><a href="#logs">How do I set up logging, or see Tor's
+    <li><a href="#Logs">How do I set up logging, or see Tor's
     logs?</a></li>
     </ul>
 
@@ -816,63 +816,49 @@ configuration.
 
 <hr>
 
-<a id="logs"></a>
-<h3><a class="anchor" href="#logs">How do I set up logging, or see
+<a id="Logs"></a>
+<h3><a class="anchor" href="#Logs">How do I set up logging, or see
 Tor's logs?</a></h3>
 
 <p>
-If you installed a Tor bundle with Vidalia, then Vidalia has a window
-called "Message Log" that will show you Tor's log messages. You can
-click on "Settings" to see more details, or to save the messages to a
-file also. You're all set.
+If you installed a Tor bundle that includes Vidalia, then Vidalia has a
+window called "Message Log" that will show you Tor's log messages. You
+can click on "Settings" to see more details, or to save the messages to
+a file. You're all set.
 </p>
 
 <p>
 If you're not using Vidalia, you'll have to go find the log files by
-hand as described below.
-</p>
-
-<p>
-By default, Tor logs to "standard out" (also knows as "stdout") at
-log-level notice. However, some Tor packages (notably the ones for OS X,
-Debian, Red Hat, etc) change the default logging so it logs to a file,
-and then Tor runs in the background.
-</p>
-
-<p>
-If you're using a pre-packaged Tor, here are some likely places for your
-logs to go by default:
+hand. Here are some likely places for your logs to be:
 </p>
 
 <ul>
-<li>On Windows, there are no default log files currently. If you
-configure logging to a file in your torrc, they will show up in
-<code>\username\Application Data\tor\log\</code> or <code>\Application
-Data\tor\log\</code>
-</li>
 <li>On OS X, Debian, Red Hat, etc, the logs are in /var/log/tor/
 </li>
-<li>If you compiled Tor from source, your logs will go to
-<code>/usr/local/var/log/tor/</code>, but only if you enable them in
-the torrc file.
+<li>On Windows, there are no default log files currently. If you enable
+logs in your torrc file, they default to <code>\username\Application
+Data\tor\log\</code> or <code>\Application Data\tor\log\</code>
+</li>
+<li>If you compiled Tor from source, by default your Tor logs to <a
+href="http://en.wikipedia.org/wiki/Standard_streams">"stdout"</a>
+at log-level notice. If you enable logs in your torrc file, they
+default to <code>/usr/local/var/log/tor/</code>.
 </li>
 </ul>
 
 <p>
-If you want to change your logging setup, <a href="#torrc">open your
-torrc in an editor</a>.
-</p>
-
-<p>
-Find the section (near the top of the file) which contains the following line:
+To change your logging setup by hand, <a href="#torrc">edit your torrc</a>
+and find the section (near the top of the file) which contains the
+following line:
 </p>
 
 <pre>
-##torrc go to stdout at level "notice" unless redirected by something else, like one of the below lines.
+\## Logs go to stdout at level "notice" unless redirected by something
+\## else, like one of the below lines.
 <pre>
 
 <p>
-Now, assuming you want Tor to send complete debug, info, notice, warn,
+For example, if you want Tor to send complete debug, info, notice, warn,
 and err level messages to a file, append the following line to the end
 of the section:
 </p>
@@ -882,18 +868,9 @@ Log debug file c:/program files/tor/debug.log
 </pre>
 
 <p>
-Replace <code>c:/program files/tor/debug.log</code> with a
-directory/filename for your Tor log.
+Replace <code>c:/program files/tor/debug.log</code> with a directory
+and filename for your Tor log.
 </p>
-
-<p>
-If you also want Tor to output to stdout, append the following line to
-the section as well:
-</p>
-
-<pre>
-Log notice stdout
-</pre>
 
 <hr>
 
@@ -911,7 +888,7 @@ Firefox correctly configured to send its traffic through Tor?
 Vidalia will turn green. You can also check in the Vidalia
 Control Panel to make sure it says "Connected to the Tor
 network!" under Status. For those not using Vidalia, check your <a
-href="<wikifaq>#HowdoIsetuploggingorseeTorslogs">Tor logs</a> for
+href="#Logs">Tor logs</a> for
 a line saying that Tor "has successfully opened a circuit. Looks like
 client functionality is working."
 </p>
@@ -938,8 +915,8 @@ could be preventing Tor from making network connections.</li>
 <li>Are you in China, or behind a restrictive corporate network firewall
 that blocks the public Tor relays? If so, you should learn about <a
 href="<page docs/bridges>">Tor bridges</a>.</li>
-<li>Check your <a href="<wikifaq>#HowdoIsetuploggingorseeTorslogs">Tor
-logs</a>. Do they give you any hints about what's going wrong?</li>
+<li>Check your <a href="#Logs">Tor logs</a>. Do they give you any hints
+about what's going wrong?</li>
 </ol>
 
 <p>
