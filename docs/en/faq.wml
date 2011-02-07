@@ -48,6 +48,8 @@
     <ul>
     <li><a href="#torrc">I'm supposed to "edit my torrc". What does
     that mean?</a></li>
+    <li><a href="#logs">How do I set up logging, or see Tor's
+    logs?</a></li>
     </ul>
 
     <p>Running a Tor client:</p>
@@ -811,6 +813,87 @@ docs/tor-manual>">Tor manual page</a>. Remember, all lines beginning
 with # in torrc are treated as comments and have no effect on Tor's
 configuration.
 </p>
+
+<hr>
+
+<a id="logs"></a>
+<h3><a class="anchor" href="#logs">How do I set up logging, or see
+Tor's logs?</a></h3>
+
+<p>
+If you installed a Tor bundle with Vidalia, then Vidalia has a window
+called "Message Log" that will show you Tor's log messages. You can
+click on "Settings" to see more details, or to save the messages to a
+file also. You're all set.
+</p>
+
+<p>
+If you're not using Vidalia, you'll have to go find the log files by
+hand as described below.
+</p>
+
+<p>
+By default, Tor logs to "standard out" (also knows as "stdout") at
+log-level notice. However, some Tor packages (notably the ones for OS X,
+Debian, Red Hat, etc) change the default logging so it logs to a file,
+and then Tor runs in the background.
+</p>
+
+<p>
+If you're using a pre-packaged Tor, here are some likely places for your
+logs to go by default:
+</p>
+
+<ul>
+<li>On Windows, there are no default log files currently. If you
+configure logging to a file in your torrc, they will show up in
+<code>\username\Application Data\tor\log\</code> or <code>\Application
+Data\tor\log\</code>
+</li>
+<li>On OS X, Debian, Red Hat, etc, the logs are in /var/log/tor/
+</li>
+<li>If you compiled Tor from source, your logs will go to
+<code>/usr/local/var/log/tor/</code>, but only if you enable them in
+the torrc file.
+</li>
+</ul>
+
+<p>
+If you want to change your logging setup, <a href="#torrc">open your
+torrc in an editor</a>.
+</p>
+
+<p>
+Find the section (near the top of the file) which contains the following line:
+</p>
+
+<pre>
+##torrc go to stdout at level "notice" unless redirected by something else, like one of the below lines.
+<pre>
+
+<p>
+Now, assuming you want Tor to send complete debug, info, notice, warn,
+and err level messages to a file, append the following line to the end
+of the section:
+</p>
+
+<pre>
+Log debug file c:/program files/tor/debug.log
+</pre>
+
+<p>
+Replace <code>c:/program files/tor/debug.log</code> with a
+directory/filename for your Tor log.
+</p>
+
+<p>
+If you also want Tor to output to stdout, append the following line to
+the section as well:
+</p>
+
+<pre>
+Log notice stdout
+</pre>
 
 <hr>
 
