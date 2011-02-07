@@ -1532,7 +1532,7 @@ we move to a "directory guard" design as well.
     <a href="<page getinvolved/volunteer>#Research">research section of the
     volunteer page</a>: "Tor doesn't work very well when relays
     have asymmetric bandwidth (e.g. cable or DSL)". It might be that <a
-    href="<wikifaq>#YoushouldtransportallIPpacketsnotjustTCPpackets.">switching
+    href="<page docs/faq>#TransportIPnotTCP">switching
     to UDP transport</a> is the simplest answer here &mdash; which alas is
     not a very simple answer at all.
     </p>
@@ -1581,31 +1581,29 @@ we move to a "directory guard" design as well.
 all IP packets, not just TCP packets.</a></h3>
 
 <p>
-This would be handy, because it would make Tor
-more generally useful. It would also solve the whole
-need to socksify applications, and it would resolve the <a
-href="<wikifaq>#HowdoIcheckifmyapplicationthatusesSOCKSisleakingDNSrequests">DNS
-leak problem</a> too. Lastly, it would solve the fact that exit relays
-need to allocate a lot of file descriptors to hold open all the exit
-connections.
+This would be handy, because it would make Tor better able to handle
+new protocols like VoIP, it could solve the whole need to socksify
+applications, and it would solve the fact that exit relays need to
+allocate a lot of file descriptors to hold open all the exit connections.
 </p>
 
 <p>
-On the other hand, there are six reasons we haven't done this:
+We're heading in this direction: see <a
+href="https://trac.torproject.org/projects/tor/ticket/1855">this trac
+ticket</a> for directions we should investigate. Some of the hard
+problems are:
 </p>
 
-<li>IP packets reveal OS characteristics. We would still
-need to do IP-level packet normalization, to stop things like
-TCP fingerprinting attacks. This is unlikely to be a trivial
-task, given the diversity and complexity of TCP stacks. In
-fact, it's worse than this: check out the new class of <a
+<li>IP packets reveal OS characteristics. We would still need to do
+IP-level packet normalization, to stop things like TCP fingerprinting
+attacks. Given the diversity and complexity of TCP stacks, along with <a
 href="<wikifaq>#DoesTorresistremotephysicaldevicefingerprinting">device
-fingerprinting attacks</a> which we would have to tackle as well.
+fingerprinting attacks</a>, it looks like our best bet is shipping our
+own user-space TCP stack.
 </li>
-<li>Application-level streams still need scrubbing. We still need Tor
-to be easy to integrate with user-level application-specific proxies
-such as Privoxy. So it's not just a matter of capturing packets and
-anonymizing them at the IP layer.
+<li>Application-level streams still need scrubbing. We will still need
+user-side applications like Torbutton. So it won't become just a matter
+of capturing packets and anonymizing them at the IP layer.
 </li>
 <li>Certain protocols will still leak information. For example, we must
 rewrite DNS requests so they are delivered to an unlinkable DNS server
@@ -1614,10 +1612,10 @@ the protocols we are transporting.
 </li>
 <li><a
 href="http://crypto.stanford.edu/~nagendra/projects/dtls/dtls.html">DTLS</a>
-(datagram TLS) will be in the 0.9.8 openssl release. We need to design
-a new end-to-end Tor protocol for avoiding tagging attacks and other
-potential anonymity and integrity issues now that we allow drops, resends,
-et cetera.
+(datagram TLS) basically has no users, and IPsec sure is big. Once we've
+picked a transport mechanism, we need to design a new end-to-end Tor
+protocol for avoiding tagging attacks and other potential anonymity and
+integrity issues now that we allow drops, resends, et cetera.
 </li>
 <li>Exit policies for arbitrary IP packets mean building a secure
 IDS. Our node operators tell us that exit policies are one of the main
@@ -1633,12 +1631,10 @@ so clients can predict which nodes will allow their packets to exit &mdash;
 and clients need to predict all the packets they will want to send in
 a session before picking their exit node!
 </li>
-<li>The Tor-internal name spaces would need to be redesigned. We
-support hidden service ".onion" addresses (and other special addresses,
-like ".exit" which lets the user request a particular exit node), by
-intercepting the addresses when they are passed to the Tor client. Doing
-so at the IP level would require a more complex interface between Tor
-and the local DNS resolver.
+<li>The Tor-internal name spaces would need to be redesigned. We support
+hidden service ".onion" addresses by intercepting the addresses when
+they are passed to the Tor client. Doing so at the IP level will require
+a more complex interface between Tor and the local DNS resolver.
 </li>
 </ol>
 
