@@ -181,46 +181,6 @@ meetings around the world.</li>
     </li>
     
     <li>
-    <b>Tor Controller Status Event Interface for Vidalia</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Low to Medium</i>
-    <br>
-    Likely Mentors: <i>Matt</i>
-    <p>There are a number of status changes inside Tor of which the user may need
-    to be informed. For example, if the user is trying to set up his Tor as a
-    relay and Tor decides that its ports are not reachable from outside
-    the user's network, we should alert the user. Currently, all the user
-    gets is a couple of log messages in Vidalia's 'message log' window, which they
-    likely never see since they don't receive a notification that something
-    has gone wrong. Even if the user does actually look at the message log,
-    most of the messages make little sense to the novice user.</p>
-    <p>Tor has the ability to inform Vidalia of many such status
-    changes, and we recently implemented support for a couple of these
-    events. Still, there are many more status events which the user should
-    be informed of, and we need a better UI for actually displaying them
-    to the user.</p>
-    <p>The goal of this project then is to design and implement a UI for
-    displaying Tor status events to the user. For example, we might put a
-    little badge on Vidalia's tray icon that alerts the user to new status
-    events they should look at. Double-clicking the icon could bring up a
-    dialog that summarizes recent status events in simple terms and maybe
-    suggests a remedy for any negative events if they can be corrected by
-    the user. Of course, this is just an example and one is free to
-    suggest another approach.</p>
-    <p>A person undertaking this project should have good UI design and layout
-    skills and some C++ development experience. Previous experience with Qt and
-    Qt's Designer will be very helpful, but are not required. Some
-    English writing ability will also be useful, since this project will
-    likely involve writing small amounts of help documentation that should
-    be understandable by non-technical users. Bonus points for some graphic
-    design/Photoshop fu, since we might want/need some shiny new icons too.</p>
-    </li>
-    
-    <li>
     <b>Client Mode Use Cases for Arm</b>
     <br>
     Priority: <i>Medium</i>
@@ -310,33 +270,6 @@ meetings around the world.</li>
     </li>
     
     <li>
-    <b>Help with independent Tor client implementations</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>High</i>
-    <br>
-    Skill Level: <i>Medium to High</i>
-    <br>
-    Likely Mentors: <i>Bruce, Nathan</i>
-    <p>Others are currently working on Tor clients for Java, Android, and Maemo
-    environments.  The first step is to get a handle on the current state of
-    the project in which you are interested in helping; <a
-    href="http://github.com/brl/JTor">Tor for Java</a>,
-    <a href="https://svn.torproject.org/svn/projects/android/trunk/">Android/Orbot</a>,
-     or <a href="<page docs/N900>">Tor for Maemo</a>. Check out the
-    repository and familiarize yourself
-    with the source code.  Further, support for requesting or even providing
-    Tor hidden services would be neat, but not required.</p>
-    <p>A prospective developer should be able to understand and write new Java
-    code, including a Java cryptography API. Being able to read C code would be helpful,
-    too. One should be willing to read the existing documentation,
-    implement code based on it, and refine the documentation
-    when things are underdocumented. This project is mostly about coding and
-    to a small degree about design.</p>
-    </li>
-
-    <li>
     <b>More on Orbot &amp; Android OS-specific development</b>
     <br/>
     <br>
@@ -400,58 +333,29 @@ meetings around the world.</li>
     Skill Level: <i>Medium</i>
     <br>
     Likely Mentors: <i>Steven</i>
-    <br>
+    <p>
     Many users of Tor have poor-quality Internet connections, giving low
     bandwidth, high latency, and high packet loss/re-ordering. User
     experience is that Tor reacts badly to these conditions, but it is
     difficult to improve the situation without being able to repeat the
     problems in the lab.
-    <br>
+    </p>
+    
+    <p>
     This project would be to build a simulation environment which
     replicates the poor connectivity so that the effect on Tor performance
     can be measured. Other components would be a testing utility to
     establish what are the properties of connections available, and to
     measure the effect of performance-improving modifications to Tor.
-    <br>
+    </p>
+    
+    <p>
     The tools used would be up to the student, but dummynet (for FreeBSD)
     and nistnet (for Linux) are two potential components on which this
     project could be built. Students should be experienced with network
     programming/debugging and TCP/IP, and preferably familiar with C and a
     scripting language.
-    </li>
-    
-    <li>
-    <b>An Improved and More Usable Network Map in Vidalia</b>
-    <br>
-    Priority: <i>Low to Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Matt</i>
-    <br>
-    One of Vidalia's existing features is a network map that shows the user
-    the approximate geographic location of relays in the Tor network and
-    plots the paths the user's traffic takes as it is tunneled through the
-    Tor network. The map is currently not very interactive and has rather
-    poor graphics. Instead, we implemented KDE's Marble widget such
-    that it gives us a better quality map and enables improved interactivity,
-    such as allowing the user to click on individual relays or circuits to
-    display additional information. We want to add the ability
-    for users to click on a particular relay or a country containing one or
-    more Tor exit relays and say, "I want my connections to exit
-    from here."
-    <br>
-    This project will first involve getting familiar with Vidalia
-    and the Marble widget's API. One will then integrate the widget
-    into Vidalia and customize Marble to be better suited for our application,
-    such as making circuits clickable, storing cached map data in Vidalia's
-    own data directory, and customizing some of the widget's dialogs.
-    <br>
-    A person undertaking this project should have good C++ development
-    experience. Previous experience with Qt and CMake is helpful, but not
-    required.
+    </p>
     </li>
     
     <li>
@@ -464,12 +368,13 @@ meetings around the world.</li>
     Skill Level: <i>High</i>
     <br>
     Likely Mentors: <i>Mike</i>
-    <br>
+    <p>
     We're hearing from an increasing number of users that they want to use
     Thunderbird with Tor. However, there are plenty of application-level
     concerns, for example, by default Thunderbird will put your hostname in
     the outgoing mail that it sends. At some point we should start a new
     push to build a Thunderbird extension similar to Torbutton.
+    </p>
     </li>
     
     <li>
@@ -482,32 +387,40 @@ meetings around the world.</li>
     Skill Level: <i>Medium</i>
     <br>
     Likely Mentors: <i>Erinn, Peter</i>
-    <br>
+    <p>
     Vidalia currently doesn't play nicely with Tor on Linux and Unix platforms.
     Currently, on Debian and Ubuntu, there is a configuration mechanism which
     allows Vidalia to override Tor's ability to start on boot (by sourcing
     <code>/etc/default/tor.vidalia</code> which sets <code>RUN_DAEMON=no</code> at the user's
     request), but full implementation of <a href="<gitblob>doc/spec/control-spec.txt">ControlPort</a> 
     communication is still required.
-    <br>
+    </p>
+    
+    <p>
     A better solution on Linux and Unix platforms would be to use Tor's
     ControlSocket, which allows Vidalia to talk to Tor via a Unix domain socket,
     and could possibly be enabled by default in Tor's distribution packages.
     Vidalia can then authenticate to Tor using filesystem-based (cookie)
     authentication if the user running Vidalia is also in the distribution-specific
     tor group.
-    <br>
+    </p>
+    
+    <p>
     This project will first involve adding support for Tor's ControlSocket to
     Vidalia. The student will then develop and test this support on various
     distributions to make sure it behaves in a predictable and consistent manner on
     all of them.
-    <br>
+    </p>
+    
+    <p>
     The next challenge would be to find an intuitive and usable way for Vidalia to be
     able to change Tor's configuration (torrc) even though it is located in
     <code>/etc/tor/torrc</code> and thus immutable. In Debian and Ubuntu we handle
     this with the aforementioned <code>/etc/default/tor.vidalia</code> but this
-    functionality could (or should) be less distribution-specific. 
-    <br>
+    functionality could (or should) be less distribution-specific.
+    </p>
+    
+    <p>
     The best idea we've come up with so far is to feed Tor a new configuration via
     the ControlSocket when Vidalia starts, but that's bad because if the user is not
     using the latest Debian/Ubuntu packages, they may not have disabled Tor's
@@ -516,10 +429,13 @@ meetings around the world.</li>
     write out a temporary torrc file and ask the user to manually move it to
     <code>/etc/tor/torrc</code>, but that's bad because users shouldn't have to
     mess with files directly.
-    <br>
+    </p>
+    
+    <p>
     A person undertaking this project should have prior knowledge of various Linux
     distributions and their packaging mechanisms as well as some C++ development
     experience. Previous experience with Qt is helpful, but not required.
+    </p>
     </li>
     
     
@@ -533,11 +449,12 @@ meetings around the world.</li>
     Skill Level: <i>Low to Medium</i>
     <br>
     Likely Mentors: <i>Andrew</i>
-    <br>
+    <p>
     Especially the browser bundle, ideally amongst our target demographic.
     That would help a lot in knowing what needs to be done in terms of bug
     fixes or new features. We get this informally at the moment, but a more
     structured process would be better.
+    </p>
     </li>
     
     <li>
@@ -549,8 +466,8 @@ meetings around the world.</li>
     <br>
     Skill Level: <i>Medium to High</i>
     <br>
-    Likely Mentors: <i>Sebastian, Weasel, Roger</i>
-    <br>
+    Likely Mentors: <i>Sebastian, Peter, Roger</i>
+    <p>
     The world needs an authenticating irc proxy. As we're periodically
     reminded from the Penny Arcade web comic, "Internet user + anonymity =
     jerk". With respect to websites we're actually doing ok, since websites
@@ -574,6 +491,7 @@ meetings around the world.</li>
     layer that requires the users to authenticate.  Some work on this has
     begun by other volunteers, see their progress at <a
     href="http://github.com/anonirc/orc">http://github.com/anonirc/orc</a>.
+    </p>
     </li>
     
     <li>
@@ -586,7 +504,7 @@ meetings around the world.</li>
     Skill Level: <i>Medium</i>
     <br>
     Likely Mentors: <i>?</i>
-    <br>
+    <p>
     <a href="http://code.google.com/p/torsocks/">Torsocks</a> and <a
     href="http://code.google.com/p/dsocks/">dsocks</a> are wrappers that will
     run applications, intercept their outgoing network connections, and push
@@ -603,8 +521,117 @@ meetings around the world.</li>
     dsocks is installed, and call them appropriately. This probably means
     unifying their interfaces, and might involve sharing code between them
     or discarding one entirely.
+    </p>
     </li>
     
+    <li>
+    <b>Tor Controller Status Event Interface for Vidalia</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Low to Medium</i>
+    <br>
+    Likely Mentors: <i>Tomás?</i>
+    <p>There are a number of status changes inside Tor of which the user may need
+    to be informed. For example, if the user is trying to set up his Tor as a
+    relay and Tor decides that its ports are not reachable from outside
+    the user's network, we should alert the user. Currently, all the user
+    gets is a couple of log messages in Vidalia's 'message log' window, which they
+    likely never see since they don't receive a notification that something
+    has gone wrong. Even if the user does actually look at the message log,
+    most of the messages make little sense to the novice user.</p>
+    <p>Tor has the ability to inform Vidalia of many such status
+    changes, and we recently implemented support for a couple of these
+    events. Still, there are many more status events which the user should
+    be informed of, and we need a better UI for actually displaying them
+    to the user.</p>
+    <p>The goal of this project then is to design and implement a UI for
+    displaying Tor status events to the user. For example, we might put a
+    little badge on Vidalia's tray icon that alerts the user to new status
+    events they should look at. Double-clicking the icon could bring up a
+    dialog that summarizes recent status events in simple terms and maybe
+    suggests a remedy for any negative events if they can be corrected by
+    the user. Of course, this is just an example and one is free to
+    suggest another approach.</p>
+    <p>A person undertaking this project should have good UI design and layout
+    skills and some C++ development experience. Previous experience with Qt and
+    Qt's Designer will be very helpful, but are not required. Some
+    English writing ability will also be useful, since this project will
+    likely involve writing small amounts of help documentation that should
+    be understandable by non-technical users. Bonus points for some graphic
+    design/Photoshop fu, since we might want/need some shiny new icons too.</p>
+    </li>
+    
+    <li>
+    <b>An Improved and More Usable Network Map in Vidalia</b>
+    <br>
+    Priority: <i>Low to Medium</i>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Tomás?</i>
+    <p>
+    One of Vidalia's existing features is a network map that shows the user
+    the approximate geographic location of relays in the Tor network and
+    plots the paths the user's traffic takes as it is tunneled through the
+    Tor network. The map is currently not very interactive and has rather
+    poor graphics. Instead, we implemented KDE's Marble widget such
+    that it gives us a better quality map and enables improved interactivity,
+    such as allowing the user to click on individual relays or circuits to
+    display additional information. We want to add the ability
+    for users to click on a particular relay or a country containing one or
+    more Tor exit relays and say, "I want my connections to exit
+    from here."
+    </p>
+    
+    <p>
+    This project will first involve getting familiar with Vidalia
+    and the Marble widget's API. One will then integrate the widget
+    into Vidalia and customize Marble to be better suited for our application,
+    such as making circuits clickable, storing cached map data in Vidalia's
+    own data directory, and customizing some of the widget's dialogs.
+    </p>
+    
+    <p>
+    A person undertaking this project should have good C++ development
+    experience. Previous experience with Qt and CMake is helpful, but not
+    required.
+    </p>
+    </li>
+    
+    <!--
+    <li>
+    <b>Help with independent Tor client implementations</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>Medium to High</i>
+    <br>
+    Likely Mentors: <i>Bruce, Nathan</i>
+    <p>Others are currently working on Tor clients for Java, Android, and Maemo
+    environments.  The first step is to get a handle on the current state of
+    the project in which you are interested in helping; <a
+    href="http://github.com/brl/JTor">Tor for Java</a>,
+    <a href="https://svn.torproject.org/svn/projects/android/trunk/">Android/Orbot</a>,
+     or <a href="<page docs/N900>">Tor for Maemo</a>. Check out the
+    repository and familiarize yourself
+    with the source code.  Further, support for requesting or even providing
+    Tor hidden services would be neat, but not required.</p>
+    <p>A prospective developer should be able to understand and write new Java
+    code, including a Java cryptography API. Being able to read C code would be helpful,
+    too. One should be willing to read the existing documentation,
+    implement code based on it, and refine the documentation
+    when things are underdocumented. This project is mostly about coding and
+    to a small degree about design.</p>
+    </li>
+    -->
+
     <li>
     <b>Bring up new ideas!</b>
     <br>
