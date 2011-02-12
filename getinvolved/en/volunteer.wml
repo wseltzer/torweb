@@ -66,10 +66,476 @@ meetings around the world.</li>
     You are using Tor!" in any language.</li>
     </ol>
     
+    <a id="Projects"></a>
+    <h2><a class="anchor" href="#Projects">Projects</a></h2>
+    
+    <p>
+    Below are a list of Tor related projects we're developing and/or
+    maintaining. Most discussions happen on IRC so if you're interested in any
+    of these (or you have a project idea of your own), then please <a
+    href="<page about/contact>#irc">join us in #tor-dev</a>. Project
+    contributors are listed by their IRC nicks.
+    </p>
+    
+    <table id="projects">
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Language</th>
+        <th>Activity</th>
+        <th>Contributors</th>
+      </tr>
+      
+      <tr>
+        <td><a href="#project-tor">Tor</a></td>
+        <td>Core</td>
+        <td>C</td>
+        <td>Heavy</td>
+        <td>nickm, arma, etc</td>
+      </tr>
+      
+      <tr class="alt">
+        <td><a href="#project-tbb">TBB</a></td>
+        <td>Usability</td>
+        <td>Multiple</td>
+        <td>Heavy</td>
+        <td>helix</td>
+      </tr>
+      
+      <tr>
+        <td><a href="#project-torsocks">Torsocks</a></td>
+        <td>Usability</td>
+        <td>C</td>
+        <td>Light</td>
+        <td>mwenge</td>
+      </tr>
+      
+      <tr class="alt">
+        <td>*<a href="#project-torouter">Torouter</a></td>
+        <td>Usability</td>
+        <td>None</td>
+        <td>Light</td>
+        <td>ioerror, Runa</td>
+      </tr>
+      
+      <tr>
+        <td><a href="#project-vidalia">Vidalia</a></td>
+        <td>User Interface</td>
+        <td>C++, Qt</td>
+        <td>Light</td>
+        <td>chiiph</td>
+      </tr>
+      
+      <tr class="alt">
+        <td><a href="#project-arm">Arm</a></td>
+        <td>User Interface</td>
+        <td>Python, Curses</td>
+        <td>Heavy</td>
+        <td>atagar</td>
+      </tr>
+      
+      <tr>
+        <td><a href="#project-orbot">Orbot</a></td>
+        <td>User Interface</td>
+        <td>Java</td>
+        <td>None</td>
+        <td>n8fr8</td>
+      </tr>
+      
+      <tr class="alt">
+        <td><a href="#project-torbutton">Torbutton</a></td>
+        <td>Browser Add-on</td>
+        <td>Javascript</td>
+        <td>Moderate</td>
+        <td>mikeperry</td>
+      </tr>
+      
+      <tr>
+        <td>*<a href="#project-thandy">Thandy</a></td>
+        <td>Updater</td>
+        <td>Python</td>
+        <td>Light</td>
+        <td>Sebastian, helix</td>
+      </tr>
+      
+      <tr class="alt">
+        <td><a href="#project-torctl">TorCtl</a></td>
+        <td>Library</td>
+        <td>Python</td>
+        <td>Light</td>
+        <td>mikeperry</td>
+      </tr>
+      
+      <tr>
+        <td>*<a href="#project-jtor">JTor</a></td>
+        <td>Library</td>
+        <td>Java</td>
+        <td>None</td>
+        <td></td>
+      </tr>
+      
+      <tr class="alt">
+        <td><a href="#project-metrics">Metrics</a></td>
+        <td>Client Service</td>
+        <td>Java</td>
+        <td>Heavy</td>
+        <td>karsten</td>
+      </tr>
+      
+      <tr>
+        <td><a href="#project-torstatus">TorStatus</a></td>
+        <td>Client Service</td>
+        <td>PHP</td>
+        <td>None</td>
+        <td></td>
+      </tr>
+      
+      <tr class="alt">
+        <td><a href="#project-weather">Weather</a></td>
+        <td>Client Service</td>
+        <td>Python</td>
+        <td>Light</td>
+        <td>kaner</td>
+      </tr>
+      
+      <tr>
+        <td><a href="#project-gettor">GetTor</a></td>
+        <td>Client Service</td>
+        <td>Python</td>
+        <td>None</td>
+        <td></td>
+      </tr>
+      
+      <tr class="alt">
+        <td><a href="#project-torcheck">TorCheck</a></td>
+        <td>Client Service</td>
+        <td>Python, Perl</td>
+        <td>None</td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <td><a href="#project-bridgedb">BridgeDB</a></td>
+        <td>Backend Service</td>
+        <td>Python</td>
+        <td>None</td>
+        <td>kaner</td>
+      </tr>
+      
+      <tr class="alt">
+        <td><a href="#project-torflow">TorFlow</a></td>
+        <td>Backend Service</td>
+        <td>Python</td>
+        <td>None</td>
+        <td>mikeperry</td>
+      </tr>
+      
+      <tr>
+        <td>*<a href="#project-torbel">TorBEL</a></td>
+        <td>Backend Service</td>
+        <td>Python</td>
+        <td>None</td>
+        <td>Sebastian</td>
+      </tr>
+    </table>
+    
+    <sub>
+    * Project is still in an alpha state.
+    </sub>
+    
+    <br /><br />
+    
+    <a id="project-tor"></a>
+    <h3>Tor (<a href="https://gitweb.torproject.org/tor.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Tor+Client&component=Tor+Relay&component=vidalia&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Central project, providing the core software for using and participating in
+    the Tor network. Numerous people contribute to the project to varying
+    extents, but the chief architects are Nick Mathewson and Roger Dingledine.
+    </p>
+    
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#resistCensorship">Improving Tor's ability to resist
+    censorship</a></i><br />
+    <i><a href="#unitTesting">Improve our unit testing process</a></i><br />
+    <i><a href="#simulateSlowConnections">Simulator for slow Internet connections</a></i>
+    </p>
+    
+    <a id="project-tbb"></a>
+    <h3><a href="<page projects/torbrowser>">Tor Browser Bundle</a> (<a
+    href="https://gitweb.torproject.org/torbrowser.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Tor+bundles/installation&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    The Tor Browser Bundle is an easy-to-use portable package of Tor, Vidalia,
+    and Firefox preconfigured to work together out of the box. This is actively
+    being worked on by Erinn Clark.
+    </p>
+    
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#auditTBB">Audit Tor Browser Bundles for data leaks</a></i><br />
+    <i><a href="#usabilityTesting">Usability testing of Tor</a></i>
+    </p>
+    
+    <a id="project-torsocks"></a>
+    <h3><a href="http://code.google.com/p/torsocks/">Torsocks</a> (<a
+    href="https://gitweb.torproject.org/torsocks.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Torify&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Utility for adapting other applications to work with Tor. Development has
+    slowed and compatibility issues remain with some platforms, but it's
+    otherwise feature complete.
+    </p>
+    
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#torsocksForOSX">Make torsocks/dsocks work on OS X</a></i>
+    </p>
+    
+    <a id="project-torouter"></a>
+    <h3><a
+    href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/Torouter">Torouter</a> (<a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Torouter&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Project to provide an easy-to-use, embedded Tor instance for routers. This
+    had a couple months of high activity, but has since been rather quiet.
+    </p>
+    
+    <a id="project-vidalia"></a>
+    <h3><a href="<page projects/vidalia>">Vidalia</a> (<a
+    href="https://svn.torproject.org/vidalia/vidalia/trunk/">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Vidalia&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    The most commonly used user interface for Tor. Matt Edman started the
+    project in 2006 and brought it to its current stable state. Development
+    slowed for several years, though Tomás Touceda has since taken a lead with
+    pushing the project forward.
+    </p>
+    
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#vidaliaStatusEventInterface">Tor Controller Status Event Interface for Vidalia</a></i><br />
+    <i><a href="#vidaliaNetworkMap">An Improved and More Usable Network Map in Vidalia</a></i>
+    </p>
+    
+    <a id="project-arm"></a>
+    <h3><a href="http://www.atagar.com/arm/">Arm</a> (<a
+    href="https://svn.torproject.org/svn/arm/trunk/">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=arm&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Command-line monitor for Tor. This has been under very active development
+    by its author, Damian Johnson, since early 2009 to make it a better
+    general-purpose controller for *nix environments.
+    </p>
+    
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#armClientMode">Client Mode Use Cases for Arm</a></i>
+    </p>
+    
+    <a id="project-orbot"></a>
+    <h3><a href="https://guardianproject.info/apps/orbot/">Orbot</a> (<a
+    href="https://svn.torproject.org/svn/projects/android/trunk/Orbot/">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Orbot&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Provides Tor on the Android platform. This was under very active
+    development up through Fall 2010, after which things have been quiet.
+    </p>
+    
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#orbotDevelopment">More on Orbot & Android OS-specific development</a></i>
+    </p>
+    
+    <a id="project-torbutton"></a>
+    <h3><a href="<page torbutton/index>">Torbutton</a> (<a
+    href="https://gitweb.torproject.org/torbutton.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Torbutton&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Firefox addon that addresses many of the client-side threats to browsing
+    the Internet anonymously. Mike has since continued to adapt it to new
+    threats, updated versions of Firefox, and possibly <a
+    href="https://blog.torproject.org/blog/google-chrome-incognito-mode-tor-and-fingerprinting">Chrome
+    as well</a>.
+    </p>
+    
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#torbuttonForThunderbird">Torbutton equivalent for Thunderbird</a></i>
+    </p>
+    
+    <a id="project-thandy"></a>
+    <h3>Thandy (<a
+    href="https://gitweb.torproject.org/thandy.git">code</a>)</h3>
+    
+    <p>
+    Updater for Tor. The project began in the Summer of 2008 but wasn't
+    completed. Recently interest in it has been rekindled and many aspects of
+    its design (including the language it'll be in) are currently in flux.
+    </p>
+    
+    <a id="project-torctl"></a>
+    <h3>TorCtl (<a
+    href="https://gitweb.torproject.org/pytorctl.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Torctl&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Python bindings and utilities for using the Tor control port. It has been
+    stable for several years, with only minor revisions.
+    </p>
+    
+    <a id="project-jtor"></a>
+    <h3><a href="https://github.com/brl/JTor/wiki">JTor</a> (<a
+    href="https://github.com/brl/JTor">code</a>, <a
+    href="https://github.com/brl/JTor/issues">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Java implementation of Tor. This project isn't yet complete, and has been
+    inactive since Fall 2010.
+    </p>
+    
+    <a id="project-metrics"></a>
+    <h3><a href="https://metrics.torproject.org/">Metrics</a> (code: <a
+    href="https://gitweb.torproject.org/metrics-db.git">db</a>, <a
+    href="https://gitweb.torproject.org/metrics-utils.git">utils</a>, <a
+    href="https://gitweb.torproject.org/metrics-web.git">web</a>, <a
+    href="https://gitweb.torproject.org/metrics.git">general</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Metrics&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Processing and analytics of consensus data, provided to users via the
+    metrics portal. This has been under active development for several years by
+    Karsten Loesing.
+    </p>
+    
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#trackNetworkStatus">Help track the overall Tor Network status</a></i>
+    </p>
+    
+    <a id="project-torstatus"></a>
+    <h3><a href="https://trac.torproject.org/projects/tor/wiki/projects/TorStatus">TorStatus</a> (<a
+    href="https://svn.torproject.org/svn/torstatus/trunk/">code</a>)</h3>
+    
+    <p>
+    Portal providing an overview of the Tor network, and details on any of its
+    current relays. Though very actively used, this project has been
+    unmaintained for a long while.
+    </p>
+    
+    <a id="project-weather"></a>
+    <h3><a href="https://trac.torproject.org/projects/tor/wiki/projects/Weather">Weather</a> (<a
+    href="https://gitweb.torproject.org/weather.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Tor+Weather&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Provides automatic notification to subscribed relay operators when their
+    relay's unreachable. This underwent a rewrite by the <a
+    href="http://hfoss.wesleyan.edu/">Wesleyan HFOSS team</a>, which went live
+    in early 2011.
+    </p>
+    
+    <a id="project-gettor"></a>
+    <h3><a href="https://trac.torproject.org/projects/tor/wiki/projects/EmailAutoResponder">GetTor</a> (<a
+    href="https://svn.torproject.org/svn/projects/gettor/">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=GetTor&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    E-mail autoresponder providing Tor's packages over SMTP. This has been
+    relatively unchanged for quite a while.
+    </p>
+    
+    <a id="project-torcheck"></a>
+    <h3><a href="https://trac.torproject.org/projects/tor/wiki/projects/TorCheck">TorCheck</a> (<a
+    href="https://svn.torproject.org/svn/check/trunk/">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Tor+Check&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Provides a simple site for determining if the visitor is using Tor or not.
+    This has been relatively unchanged for quite a while.
+    </p>
+    
+    <a id="project-bridgedb"></a>
+    <h3><a href="https://trac.torproject.org/projects/tor/wiki/projects/BridgeDB">BridgeDB</a> (<a
+    href="https://gitweb.torproject.org/bridgedb.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=BridgeDB&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Backend bridge distributor, handling the various pools they're distributed
+    in. This was actively developed until Fall of 2010.
+    </p>
+    
+    <a id="project-torflow"></a>
+    <h3><a href="https://trac.torproject.org/projects/tor/wiki/projects/TorFlow">TorFlow</a> (<a
+    href="https://gitweb.torproject.org/torflow.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Torflow&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    Library and collection of services for actively monitoring the Tor network.
+    These include the Bandwidth Scanners (measuring throughput of relays) and
+    SoaT (scans for malicious or misconfigured exit nodes). SoaT was last
+    actively developed in the Summer of 2010, and the Bandwidth Scanners a few
+    months later. Both have been under active use since then, but development
+    has stopped.
+    </p>
+    
+    <a id="project-torbel"></a>
+    <h3><a
+    href="https://trac.torproject.org/projects/tor/wiki/projects/TorBulkExitlist">TorBEL</a> (<a
+    href="https://gitweb.torproject.org/tordnsel.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=TorDNSEL/TorBEL&order=priority">bug
+    tracker</a>)</h3>
+    
+    <p>
+    The Tor Bulk Exitlist provides a method of identifying if IPs belong to
+    exit nodes or not. This is a replacement for TorDNSEL which is a stable
+    (though unmaintained) Haskell application for this purpose. The initial
+    version of TorBEL was started in GSOC 2010 but since then the project has
+    been inactive.
+    </p>
+    
+    <!--
+    Copy and fill out the following for new projects:
+    
+    <a id="project-"></a>
+    <h3><a href=""></a> (<a
+    href="">code</a>, <a
+    href="">bug
+    tracker</a>)</h3>
+    
+    <p>
+    </p>
+    
+    -->
+    
     <a id="Coding"></a>
     <a id="Summer"></a>
-    <a id="Projects"></a>
-    <h2><a class="anchor" href="#Projects">Good Coding Projects</a></h2>
+    <h2><a class="anchor" href="#Coding">Project Ideas</a></h2>
     
     <p>
     You may find some of these projects to be good <a href="<page
@@ -86,6 +552,7 @@ meetings around the world.</li>
     
     <ol>
     
+    <a id="auditTBB"></a>
     <li>
     <b>Audit Tor Browser Bundles for data leaks</b>
     <br>
@@ -112,6 +579,7 @@ meetings around the world.</li>
     TBB, please contact Erinn.</p>
     </li>
     
+    <a id="trackNetworkStatus"></a>
     <li>
     <b>Help track the overall Tor Network status</b>
     <br>
@@ -140,6 +608,7 @@ meetings around the world.</li>
     Status wish list</a>.</p>
     </li>
     
+    <a id="resistCensorship"></a>
     <li>
     <b>Improving Tor's ability to resist censorship</b>
     <br>
@@ -149,7 +618,7 @@ meetings around the world.</li>
     <br>
     Skill Level: <i>High</i>
     <br>
-    Likely Mentors: <i>Roger, Nick, Steven</i>
+    Likely Mentors: <i>Roger, Nick, Steven, Jake</i>
     <p>The Tor 0.2.1.x series makes <a
     href="<svnprojects>design-paper/blocking.html">significant
     improvements</a> in resisting national and organizational censorship.
@@ -180,6 +649,7 @@ meetings around the world.</li>
     robustness.</p>
     </li>
     
+    <a id="armClientMode"></a>
     <li>
     <b>Client Mode Use Cases for Arm</b>
     <br>
@@ -243,6 +713,7 @@ meetings around the world.</li>
     href="https://svn.torproject.org/svn/arm/trunk/TODO">TODO</a>.</p>
     </li>
     
+    <a id="unitTesting"></a>
     <li>
     <b>Improve our unit testing process</b>
     <br>
@@ -269,6 +740,7 @@ meetings around the world.</li>
     changes in performance on machines in different roles automatically.</p>
     </li>
     
+    <a id="orbotDevelopment"></a>
     <li>
     <b>More on Orbot &amp; Android OS-specific development</b>
     <br/>
@@ -279,7 +751,7 @@ meetings around the world.</li>
     <br>
     Skill Level: <i>Medium to High</i>
     <br>
-    Likely Mentors: <i>Nathan</i>
+    Likely Mentors: <i>Nathan, Jake</i>
     <p><b>Android Java UI work:</b> Improved home screen to show better
     statistics about data transferred (up/down), number of circuits
     connected, quality of connection and so on. The "Tether Wifi"
@@ -323,6 +795,7 @@ meetings around the world.</li>
     from 2G to 3G to Wifi, and so forth.</p>
     </li>
     
+    <a id="simulateSlowConnections"></a>
     <li>
     <b>Simulator for slow Internet connections</b>
     <br>
@@ -358,6 +831,7 @@ meetings around the world.</li>
     </p>
     </li>
     
+    <a id="torbuttonForThunderbird"></a>
     <li>
     <b>Torbutton equivalent for Thunderbird</b>
     <br>
@@ -377,68 +851,7 @@ meetings around the world.</li>
     </p>
     </li>
     
-    <li>
-    <b>Improvements for Tor+Vidalia interaction on Linux/Unix platforms</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Erinn, Peter</i>
-    <p>
-    Vidalia currently doesn't play nicely with Tor on Linux and Unix platforms.
-    Currently, on Debian and Ubuntu, there is a configuration mechanism which
-    allows Vidalia to override Tor's ability to start on boot (by sourcing
-    <code>/etc/default/tor.vidalia</code> which sets <code>RUN_DAEMON=no</code> at the user's
-    request), but full implementation of <a href="<gitblob>doc/spec/control-spec.txt">ControlPort</a> 
-    communication is still required.
-    </p>
-    
-    <p>
-    A better solution on Linux and Unix platforms would be to use Tor's
-    ControlSocket, which allows Vidalia to talk to Tor via a Unix domain socket,
-    and could possibly be enabled by default in Tor's distribution packages.
-    Vidalia can then authenticate to Tor using filesystem-based (cookie)
-    authentication if the user running Vidalia is also in the distribution-specific
-    tor group.
-    </p>
-    
-    <p>
-    This project will first involve adding support for Tor's ControlSocket to
-    Vidalia. The student will then develop and test this support on various
-    distributions to make sure it behaves in a predictable and consistent manner on
-    all of them.
-    </p>
-    
-    <p>
-    The next challenge would be to find an intuitive and usable way for Vidalia to be
-    able to change Tor's configuration (torrc) even though it is located in
-    <code>/etc/tor/torrc</code> and thus immutable. In Debian and Ubuntu we handle
-    this with the aforementioned <code>/etc/default/tor.vidalia</code> but this
-    functionality could (or should) be less distribution-specific.
-    </p>
-    
-    <p>
-    The best idea we've come up with so far is to feed Tor a new configuration via
-    the ControlSocket when Vidalia starts, but that's bad because if the user is not
-    using the latest Debian/Ubuntu packages, they may not have disabled Tor's
-    ability to run on boot and will end up with a configuration that is different
-    from what they want. The second best idea we've come up with is for Vidalia to
-    write out a temporary torrc file and ask the user to manually move it to
-    <code>/etc/tor/torrc</code>, but that's bad because users shouldn't have to
-    mess with files directly.
-    </p>
-    
-    <p>
-    A person undertaking this project should have prior knowledge of various Linux
-    distributions and their packaging mechanisms as well as some C++ development
-    experience. Previous experience with Qt is helpful, but not required.
-    </p>
-    </li>
-    
-    
+    <a id="usabilityTesting"></a>
     <li>
     <b>Usability testing of Tor</b>
     <br>
@@ -455,8 +868,14 @@ meetings around the world.</li>
     fixes or new features. We get this informally at the moment, but a more
     structured process would be better.
     </p>
+    
+    <p>
+    Please note that since this isn't a coding project, it isn't suitable for
+    Google Summer of Code.
+    </p>
     </li>
     
+    <a id="authenticatingIrcProxy"></a>
     <li>
     <b>An authenticating IRC proxy</b>
     <br>
@@ -494,6 +913,7 @@ meetings around the world.</li>
     </p>
     </li>
     
+    <a id="torsocksForOSX"></a>
     <li>
     <b>Make torsocks/dsocks work on OS X</b>
     <br>
@@ -524,6 +944,7 @@ meetings around the world.</li>
     </p>
     </li>
     
+    <a id="vidaliaStatusEventInterface"></a>
     <li>
     <b>Tor Controller Status Event Interface for Vidalia</b>
     <br>
@@ -564,6 +985,7 @@ meetings around the world.</li>
     design/Photoshop fu, since we might want/need some shiny new icons too.</p>
     </li>
     
+    <a id="vidaliaNetworkMap"></a>
     <li>
     <b>An Improved and More Usable Network Map in Vidalia</b>
     <br>
@@ -632,6 +1054,69 @@ meetings around the world.</li>
     </li>
     -->
 
+    <!--
+    <li>
+    <b>Improvements for Tor+Vidalia interaction on Linux/Unix platforms</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Erinn, Peter</i>
+    <p>
+    Vidalia currently doesn't play nicely with Tor on Linux and Unix platforms.
+    Currently, on Debian and Ubuntu, there is a configuration mechanism which
+    allows Vidalia to override Tor's ability to start on boot (by sourcing
+    <code>/etc/default/tor.vidalia</code> which sets <code>RUN_DAEMON=no</code> at the user's
+    request), but full implementation of <a href="<gitblob>doc/spec/control-spec.txt">ControlPort</a> 
+    communication is still required.
+    </p>
+    
+    <p>
+    A better solution on Linux and Unix platforms would be to use Tor's
+    ControlSocket, which allows Vidalia to talk to Tor via a Unix domain socket,
+    and could possibly be enabled by default in Tor's distribution packages.
+    Vidalia can then authenticate to Tor using filesystem-based (cookie)
+    authentication if the user running Vidalia is also in the distribution-specific
+    tor group.
+    </p>
+    
+    <p>
+    This project will first involve adding support for Tor's ControlSocket to
+    Vidalia. The student will then develop and test this support on various
+    distributions to make sure it behaves in a predictable and consistent manner on
+    all of them.
+    </p>
+    
+    <p>
+    The next challenge would be to find an intuitive and usable way for Vidalia to be
+    able to change Tor's configuration (torrc) even though it is located in
+    <code>/etc/tor/torrc</code> and thus immutable. In Debian and Ubuntu we handle
+    this with the aforementioned <code>/etc/default/tor.vidalia</code> but this
+    functionality could (or should) be less distribution-specific.
+    </p>
+    
+    <p>
+    The best idea we've come up with so far is to feed Tor a new configuration via
+    the ControlSocket when Vidalia starts, but that's bad because if the user is not
+    using the latest Debian/Ubuntu packages, they may not have disabled Tor's
+    ability to run on boot and will end up with a configuration that is different
+    from what they want. The second best idea we've come up with is for Vidalia to
+    write out a temporary torrc file and ask the user to manually move it to
+    <code>/etc/tor/torrc</code>, but that's bad because users shouldn't have to
+    mess with files directly.
+    </p>
+    
+    <p>
+    A person undertaking this project should have prior knowledge of various Linux
+    distributions and their packaging mechanisms as well as some C++ development
+    experience. Previous experience with Qt is helpful, but not required.
+    </p>
+    </li>
+    -->
+    
     <li>
     <b>Bring up new ideas!</b>
     <br>
