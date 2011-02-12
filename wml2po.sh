@@ -41,7 +41,7 @@ nodefault='<input>'
 
 # The script can write the name of unprocessed files to a log.
 # If you want to enable this option, set the logfile here.
-logfile=""
+logfile="/home/runa/tor/wml2po.log"
 
 # This is the temp logfile. Leave this line even if you don't want to
 # log. This will be deleted when the script is done.
