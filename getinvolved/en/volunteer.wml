@@ -614,6 +614,36 @@ meetings around the world.</li>
     TBB, please contact Erinn.</p>
     </li>
     
+    <a id="firewallProbeTool"></a>
+    <li>
+    <b>Develop a fully automatic firewall-probing system</b>
+    <br>
+    Priority: <i>High</i>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Robert Ransom, Nick, Jacob</i>
+    <p>We would like to have a fully automatic firewall-probing system for
+    blocking systems with no long-term state (i.e. firewalls that can
+    examine each connection, but do not change their behaviour for future
+    connections based on the traffic they have seen).</p>
+    <p>Ideally, volunteers would only need to set up one or more test servers,
+    and run the probe client program on a publicly accessible computer
+    behind the firewall.</p>
+    <p>The test tool should:</p>
+    <ul>
+    <li>generate packet captures on both ends (and send them out to the
+        extent possible),</li>
+    <li>cycle through all the SSL configurations we might want to test
+        through a censorship device, and</li>
+    <li>also test some other protocols to see whether they are allowed
+        through the firewall (IMAP and other mail protocols, BitTorrent,
+        DTLS, etc.).</li>
+    </ul>
+    </li>
+    
     <a id="tailsStartMenu"></a>
     <li>
     <b>Custom GDM3 startup menu, aka. tails-greeter</b>
@@ -713,6 +743,27 @@ meetings around the world.</li>
     resist an adversary even after the adversary knows the design, and
     then trading off censorship resistance with usability and
     robustness.</p>
+    </li>
+    
+    <a id="geoIPUpgrade"></a>
+    <li>
+    <b>Improve our GeoIP file format</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium to High</i>
+    <br>
+    Likely Mentors: <i>Robert Ransom</i>
+    <p>Currently, Tor bridges and relays read an entire IP->country database
+    into memory from a text file during startup.  We would like to
+    distribute this database and store it on disk in a much more compact
+    form if possible.</p>
+    <p>We have <a href='https://trac.torproject.org/projects/tor/ticket/2506'>a
+    sketch of a design</a> for a moderately optimized format for IPv4 GeoIP
+    data; this project will involve both implementing the IPv4 format and
+    designing and implementing a format for IPv6 GeoIP data.</p>
     </li>
     
     <a id="armClientMode"></a>
