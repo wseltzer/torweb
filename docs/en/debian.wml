@@ -51,16 +51,17 @@ fixes.
 <p>
 You'll need to set up our package repository before you can fetch
 Tor. First, you need to figure out the name of your distribution. A
-quick command to run is <tt>lsb_release -c</tt>.  Here's a quick mapping:
+quick command to run is <tt>lsb_release -c</tt> or <tt>cat /etc/debian_version</tt>.
+Here's a quick mapping:
 <ul>
+<li> Debian unstable (sid) is "sid"</li>
+<li> Debian 6.0 (squeeze) is "squeeze"</li>
+<li> Debian 5.0 (lenny) is "lenny"</li>
 <li> Ubuntu 10.10 is "maverick"</li>
 <li> Ubuntu 10.04 or Trisquel 4.0 is "lucid"</li>
 <li> Ubuntu 9.10 or Trisquel 3.5 is  "karmic"</li>
-<li> Ubuntu 9.04 is "jaunty"</li>
-<li> Ubuntu 8.10 is "intrepid"</li>
-<li> Ubuntu 8.04 is "hardy"</li> 
-<li> Debian Etch is "etch"</li>
-<li> Debian Lenny is "lenny"</li>
+<li> Ubuntu 8.04 is "hardy"</li>
+<li> Ubuntu 6.06 is "dapper"</li>
 </ul>
 
 Then add this line to your
@@ -69,8 +70,8 @@ file:<br />
 <pre>
 deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 </pre>
-where you put the codename of your distribution (i.e. etch, lenny, sid,
-maverick, lucid, karmic, jaunty, intrepid, hardy or whatever it is)
+where you put the codename of your distribution (i.e. lenny, sid,
+maverick or whatever it is)
 in place of &lt;DISTRIBUTION&gt;.
 </p>
 
@@ -119,8 +120,8 @@ to your <tt>/etc/apt/sources.list</tt> file:<br />
 deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 deb     http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
 </pre>
-where you again substitute the name of your distro (etch, lenny,
-sid, maverick, lucid, karmic, jaunty, intrepid, hardy) in place of
+where you again substitute the name of your distro (lenny,
+sid, maverick, ...) in place of
 &lt;DISTRIBUTION&gt;.
 </p>
 
