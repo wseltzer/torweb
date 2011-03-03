@@ -1,0 +1,49 @@
+// Copyright (c) The Tor Project, Inc.
+// Vaata faili LICENSE litsentseerimistingimuste jaoks.
+// See on asciidoc fail, mida kasutatakse manuaali/HTML ülevaate genereerimiseks.
+// Õpi asciidoc'i siin: http://www.methods.co.nz/asciidoc/userguide.html
+tor-resolve(1)
+==============
+Peter Palfrader
+
+NIMI
+----
+tor-resolve - tõlgi masina nimi läbi Tori võrgu IP aadressiks
+
+KOKKUVÕTE
+---------
+**tor-resolve** [-4|-5] [-v] [-x] __masinanimi__ [__sockshost__[:__socksport__]]
+
+KIRJELDUS
+---------
+**tor-resolve** on lihtne programm ühenduse loomiseks SOCKS vaheserveriga, mis teab
+SOCKS RESOLVE käsku, serverile masinanime edastamiseks ning IP-aadressi saamiseks.
+
+By default, **tor-resolve** uses the Tor server running on 127.0.0.1 on
+SOCKS port 9050.  If this isn't what you want, you should specify an
+explicit __sockshost__ and/or __socksport__ on the command line.
+
+SUVANDID
+--------
+**-v**::
+    Näita palju informatsiooni.
+
+**-x**::
+    Teosta vastupidine päring: hangi PTR-kirje IPv4-addressi jaoks.
+
+**-5**::
+    Kasuta SOCKS5 protokolli. (Tavaline)
+
+**-4**::
+    Kasuta SOCKS4a protokolli SOCKS5 protokolli asemel. Ei toeta tagurpidist DNSI.
+
+VAATA KA
+--------
+**tor**(1), **torify**(1). +
+
+Vaata faili doc/socks-extensions.txt Tori pakettis protokolli detailide
+jaoks.
+
+AUTORID
+-------
+Roger Dingledine <arma@mit.edu>, Nick Mathewson <nickm@alum.mit.edu>.

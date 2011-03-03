@@ -1,0 +1,46 @@
+// Copyright (c) The Tor Project, Inc.
+// See LICENSE for licensing information
+// This is an asciidoc file used to generate the manpage/html reference.
+Peter Palfrader
+
+Name----
+tor-resolve - tor ကိုအသံုးျပဳ၍ IP လိပ္စာ၏ hostname ကို ဆံုးျဖတ္ေပးျခင္း
+
+Synopsis
+--------
+**tor-resolve** [-4|-5] [-v] [-x] __hostname__ [__sockshost__[:__socksport__]]
+
+Description
+-----------
+**tor-resolve** ဆိုသည္မွာ socks resolve command မ်ားကိုသိေသာ socks proxy proxy 
+ျဖင့္ ဆက္သြယ္ေပးသည့္ ရိုးရွင္းေသာ script တစ္ခုျဖစ္သည္။ hostname ကိုယူ၍ IP  ကိုယူ၍ IP 
+လိပ္စာကိုပန္ထုတ္ေပးသည္။
+
+By default, **tor-resolve** uses the Tor server running on 127.0.0.1 on
+SOCKS port 9050.  If this isn't what you want, you should specify an
+explicit __sockshost__ and/or __socksport__ on the command line.
+
+Options
+-------
+vervose output ျပျခင္း
+
+**-x**::
+lookup ျပန္လုပ္ပါ၊ IPv4 လိပ္စာအတြက္ PTR မွတ္တမ္းယူပါ
+
+**-5**::
+socks5 protocol ကိုသံုပါ
+
+**-4**::
+ပံုမွန္ုဖစ္ေသာ socks5 protol ကိုသံုခင္းထက္ socks4a protocol ကိုသံုပါ၊ 
+DNS ျပန္လွန္ျခင္းကိုတာ့ လုပ္ေဆာင္မေပးႏင္ပါ
+
+See Also
+--------
+**tor**(1), **torify**(1). +
+
+protocol အေသးစိတ္ကိုသိရန္ tor package ထဲရွိ doc/socks-extensions.txt
+ကိုၾကည့္ပါ
+
+Authors
+-------
+Roger Dingledine <arma@mit.edu>, Nick Mathewson <nickm@alum.mit.edu>.

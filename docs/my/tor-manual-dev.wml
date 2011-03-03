@@ -1,0 +1,30 @@
+## translation metadata
+# Revision: $Revision: 23689 $
+
+#include "head.wmi" TITLE="Tor Project: manual"
+
+# Translators shouldn't translate this file, unless they want
+# to translate the whole man page too.
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/tor-doc-osx>">Tor Dev Manual</a>
+  </div>
+  <div id="maincol">  
+    <:
+    	die "Missing git clone" unless -d "$(TORGIT)";
+    	my $man = `cat manpages/my/tor.1.txt | asciidoc -d manpage -s -o - -`;
+	die "No manpage because of asciidoc error or file not available from git" unless $man;
+    	print $man;
+    :>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>  
