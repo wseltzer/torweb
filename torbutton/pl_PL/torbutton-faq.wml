@@ -1,0 +1,400 @@
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 23887 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor Project: Torbutton FAQ" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
+<div id="content" class="clearfix">
+	<div id="breadcrumbs">
+    <a href="<page index>">Start &raquo; </a> <a href="<page
+torbutton/index>">Torbutton &raquo; </a> <a href="<page
+torbutton/torbutton-faq>">FAQ Torbuttona</a>
+  </div>
+	<div id="maincol">  
+    
+    
+    <!-- PUT CONTENT AFTER THIS TAG -->
+<h2>Torbutton: Najczęściej zadawane pytania</h2>
+    <hr>
+    
+    <h3>Pytania</h3>
+    <br>
+    <ul>
+    <li><a href="<page torbutton/torbutton-faq>#nojavascript">Gdy przełączam Tora,
+moje strony używające javascriptu przestają działać. Dlaczego?</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#noreloads">Nie mogę klikać na linki
+lub przeładować strony po przełączeniu Tora! Dlaczego?</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#noflash">Nie mogę oglądać filmów na
+YouTube i innych stronach opartych na flashu. Dlaczego?</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#oldtorbutton">Torbutton zdaje się
+robić wiele rzeczy, ale część z nich mi przeszkadza. Nie mogę po prostu
+używać starej wersji?</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#weirdstate">Moja przeglądarka jest w
+jakimś dziwnym stanie, gdzie nic nie działa dobrze!</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#noautocomplete">Gdy używam Tora,
+Firefox już nie uzupełnia za mnie okienek wyszukiwania i
+logowania. Dlaczego?</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#thunderbird">Co z obsługą
+Thunderbirda? Widzę stronę, ale to jest zła wersja?</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#extensionconflicts">>Których
+rozszerzeń do Firefoksa powinno się unikać?</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#recommendedextensions">Które
+rozszerzenia do Firefoksa polecacie?</a></li>
+    <li><a href="<page torbutton/torbutton-faq>#securityissues">>Czy są jeszcze
+jakieś sprawy, o których powinno się wiedzieć?</a></li>
+    </ul>
+    <br> <a id="nojavascript"></a> <strong><a class="anchor"
+href="#nojavascript">Gdy przełączam Tora, moje strony używające javascriptu
+przestają działać. Dlaczego?</a></strong>
+    
+    <p>
+    Javascript może robić takie rzeczy jak czekanie aż wyłączysz Tora, zanim
+połączy się ze swoją stroną źródłową, tym samym odkrywając Twój adres IP. W
+związku z tym, Torbutton musi wyłączyć Javascript, znaczniki Meta-Refresh i
+niektóre zachowania CSS, gdy zmieni się stan Tora na inny niż ten, który był
+użyty do załadowania strony. Wszystkie te cechy zostają ponownie włączone,
+gdy Torbutton wraca do stanu, w którym był w czasie ładowania strony, ale w
+niektórych przypadkach (zwłaszcza z Javascriptem i CSS) nie jest możliwe
+całkowite cofnięcie się z powstałych błędów i strona pozostaje zepsuta.
+Niestety, jedyną rzeczą, jaką możesz zrobić (i dalej obronić się przed
+ujawnieniem swojego adresu IP), jest przeładowanie strony po przełączeniu
+Tora lub wykonanie całej pracy przed zmianą stanu Tora.
+    </p>
+    
+    <a id="noreloads"></a> <strong><a class="anchor" href="#noreloads" >Nie mogę
+klikać na linki lub przeładować strony po przełączeniu Tora!
+Dlaczego?</a></strong>
+    
+    <p>
+    W związku z <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=409737">błędem Firefoksa
+numer 409737</a>, strony dalej mogą otwierać okienka wyskakujące i wykonywać
+przekierowania Javascript oraz mieć dostęp do historii po zmianie stanu
+Tora. Te okienka i przekierowania mogą być blokowane, ale niestety nie można
+ich odróżnić od normalnych działań użytkownika z taką stroną (takich jak
+kliknie na linki, otwieranie ich w nowych kartach/oknach, czy używanie
+przycisków historii), więc te są też blokowane, jako skutek uboczny. Po
+naprawie tego błędu w Firefoksie, ten stopień izolacji stanie się opcjonalny
+(dla ludzi, którzy nie chcą przypadkowo klikać na linki i przekazywać
+informacji poprzez adres zwrotny). Sposobem na obejście tego jest kliknięcie
+prawym klawiszem na link i otwarcie go w nowej karcie lub oknie.  Karta lub
+okno nie załadują automatycznie strony, ale można nacisnąć Enter w pasku
+adresu i strona zacznie się ładować. Naciśnięcie Entera w pasku adresu
+przeładuje stronę, bez klikania w przycisk odświeżenia.
+    </p>
+    
+    <a id="noflash"></a> <strong><a class="anchor" href="#noflash">Nie mogę
+oglądać filmów na YouTube i innych stronach opartych na
+flashu. Dlaczego?</a></strong>
+    
+    <p>
+    YouTube i podobne strony wymagają wtyczek do przeglądarek, takich jak Flash,
+pochodzących od firm trzecich. Wtyczki operują niezależnie od Firefoksa i
+mogą przeprowadzać dowolne działania na Twoim komputerze, które rujnują
+Twoją anonimowość. Te działania zawierają, lecz nie ograniczają się do: <a
+href="http://decloak.net">całkowitego ignorowania ustawień proxy</a>,
+sprawdzania Twojego <a
+href="http://forums.sun.com/thread.jspa?threadID=5162138&amp;messageID=9618376">lokalnego
+adresu IP</a>, i <a
+href="http://epic.org/privacy/cookies/flash.html">zapisywania własnych
+ciasteczek</a>. Jest możliwe skorzystanie z LiveCD, jak <a
+href="https://amnesia.boum.org/">The (Amnesic) Incognito Live System</a>,
+które tworzy bezpieczne, przezroczyste proxy, by chronić Cię przed omijaniem
+proxy, lecz problemy związane z lokalnym adresem IP i ciasteczkami Flash
+ciągle pozostają groźne.  </p>
+    
+    <p>
+    Jeśli nie martwisz się, że jesteś śledzony/a przez te strony (i strony
+udające, że są nimi, by Cię odkryć) i nie martwisz się, że lokalni cenzorzy
+potencjalnie dowiedzą się, że je odwiedzasz, możesz włączyć wtyczki poprzez
+wejście do preferencji Torbutton-&gt;Security Settings (Ustawienia
+bezpieczeństwa)-&gt;karta Dynamic Content (Dynamiczna zawartość) i
+wyłączenie "Disable plugins during Tor usage" ("Wyłącz wtyczki w czasie
+używania Tora"). Jeśli zrobisz to bez Tor VM, The (Amnesic) Incognito Live
+System czy odpowiednich reguł firewalla, mocno zalecamy, byś przynajmniej
+używał/a <a
+href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a> do <a
+href="http://noscript.net/features#contentblocking">blokowania
+wtyczek</a>. Nie musisz korzystać z mechanizmów zezwoleń dla stron w
+NoScript, jeśli zaznaczysz opcję <b>Apply these restrictions to trusted
+sites too</b> (Zastosuj te ograniczenia także dla zaufanych witryn) na
+karcie preferencji wtyczek w NoScript. W zasadzie, z włączoną tą opcją,
+możesz nawet sprawić, że NoScript będzie globalnie zezwalał na Javascript,
+ale ciągle blokował wszystkie wtyczki do chwili, w której klikniesz na ich
+obszary zastępujące na stronie. Polecamy też <a
+href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better
+Privacy</a> w takim przypadku, by pomagał Ci w kasowaniu Twoich ciasteczek
+Flash.
+    </p>
+
+    <p><em>Paczka Tora z Przeglądarką z założenia nie działa z Flashem ani innymi
+wtyczkami. Jeśli chcesz uruchamiać te wtyczki przez Tora, musisz
+zainstalować Tora i skonfigurować swoją zainstalowaną wersję Firefoksa.</em></p>
+    
+    <a id="oldtorbutton"></a> <strong><a class="anchor"
+href="#oldtorbutton">Torbutton zdaje się robić wiele rzeczy, ale część z
+nich mi przeszkadza. Nie mogę po prostu używać starej wersji?</a></strong>
+    
+    <p>
+    
+    <b>Nie.</b> Korzystanie ze starej wersji lub innego rozszerzenia do zmiany
+proxy (łącznie z FoxyProxy -- patrz niżej) bez Torbuttona jest mocno
+odradzane. Poważnie. Używanie samego innego rozszerzenia jest o tyle
+niebezpieczne, że nie tylko tracisz swój czas, ale także się narażasz.
+<b>Po prostu nie używaj Tora</b> i będziesz mieć takie samo (a w niektórych
+przypadkach lepsze) zabezpieczenie. By dowiedzieć się więcej o typach
+ataków, na jakie może Cię narazić "domowe" rozwiązanie, przeczytaj <a
+href="design/index.html#adversary">The Torbutton Adversary Model (Model
+Napastnika)</a>, a w szczególności podrozdział <a
+href="design/index.html#attacks">Adversary Capabilities - Attacks
+(Możliwości napastnika - Ataki)</a>. Jeśli są jakieś określone zachowania
+Torbuttona, które Ci się nie podobają, wypełnij zgłoszenie na <a
+href="https://trac.torproject.org/projects/tor/report/14">stronie zgłaszania
+błędów.</a> Większość cech Torbuttona zapewniających bezpieczeństwo można
+wyłączyć poprzez jego preferencje, jeśli zdaje Ci się, że masz własne
+zabezpieczenia na te przypadki.
+    
+    </p>
+    
+    <a id="weirdstate"></a> <strong><a class="anchor" href="#weirdstate" >Moja
+przeglądarka jest w jakimś dziwnym stanie, gdzie nic nie działa
+dobrze!</a></strong>
+    
+    <p>
+    Spróbuj wyłączyć Tora klikając na przycisk, po czym otwórz nowe okno. Jeśli
+to nie pomoże, otwórz preferencje i kliknij 'Restore Defaults' ("Przywróć
+ustawienia domyślne"). To powinno zresetować rozszerzenie i Firefoksa do
+znanej działającej konfiguracji.  Jeśli umiesz powtórzyć ten problem, podaj
+szczegóły na <a
+href="https://trac.torproject.org/projects/tor/report/14">stronie śledzenia
+błędów</a>.
+    </p>
+    
+    <a id="noautocomplete"></a> <strong><a class="anchor" href="#noautocomplete"
+>Gdy używam Tora, Firefox już nie uzupełnia za mnie okienek wyszukiwania i
+logowania. Dlaczego?</a></strong>
+    
+    <p>
+    W chwili obecnej, jest to powiązane z ustawieniem "<b>Blokuj zapis do
+historii w czasie używania Tora</b>" ("<b>Block history writes during
+Tor</b>"). Jeśli to ustawienie masz włączone, cała funkcjonalność
+wypełniania formularzy (zarówno zapisywanie, jak i odczytywanie), jest
+zablokowana. Jeśli Ci to przeszkadza, możesz wyłączyć tę opcję, ale
+zapisywane będą zarówno formularze, jak i historia. By zapobiec atakom
+odkrywającym historię w czasie nie używania Tora, zalecane jest wyłączenie
+odczytu historii w trybie bez Tora, jeśli zezwolono na zapis do historii w
+trybie z Torem.
+    </p>
+    
+    <a id="thunderbird"></a> <strong><a class="anchor" href="#thunderbird" >Co z
+obsługą Thunderbirda? Widzę stronę, ale to jest zła wersja?</a></strong>
+    
+    <p>
+    Torbutton obsługiwał podstawowe przełączanie proxy w Thunderbirdzie w
+czasach wersji 1.0, ale zostało to usunięte, gdyż nie zostało zanalizowane
+pod względem bezpieczeństwa. Moja strona z narzędziami deweloperskimi na
+addons.mozilla.org wyraźnie wskazuje na obsługę tylko Firefoksa, więc nie
+wiem, czemu nie usunęli tego listingu z Thunderbirdem. Nie jestem
+użytkownikiem Thunderbirda i niestety nie mam czasu na analizowanie
+zagadnień bezpieczeństwa związanych z przełączaniem proxy w tej
+aplikacji. Prawdopodobnie ma ona podobne (lecz nie identyczne) problemy z
+wyciekaniem stanu i proxy z pocztą HTML, wbudowanymi obrazkami,
+JavaScriptem, wtyczkami i automatycznym dostępem do sieci. Zalecam
+stworzenie całkowicie oddzielnego profilu Thunderbirda dla Twoich kont z
+Torem i używanie go zamiast próbowania przełączania ustawień proxy. Ale
+jeśli naprawdę lubisz bawić się swoim IP, możesz wypróbować inne narzędzie
+do przełączania proxy, jak ProxyButton, SwitchProxy czy FoxyProxy (jeśli
+obsługują Thunderbirda).
+    </p>
+    
+    <a id="extensionconflicts"></a> <strong><a class="anchor"
+href="#extensionconflicts" >Których rozszerzeń do Firefoksa powinno się
+unikać?</a></strong>
+    
+    <p>
+    To jest trudne pytanie. Rozszerzeń Firefoksa są tysiące, stworzenie pełnej
+listy tych, które zagrażają anonimowości, jest prawie niemożliwe. Jednakże,
+oto kilka przykładów, które powinny dać Ci pojęcie co do tego, jakie
+zachowania są niebezpieczne.
+    </p>
+    
+    <ol>
+     <li>StumbleUpon, itp.
+     <p>
+     Te rozszerzenia wysyłają mnóstwo informacji o stronach, które odwiedzasz, do
+serwerów stumbleupon i łączą te informacje z unikalnym identyfikatorem. To
+jest oczywiście straszne dla anonimowości. Ogólnie mówiąc, jakiekolwiek
+rozszerzenie wymagające rejestracji, a nawet rozszerzenia dostarczające
+informacji o odwiedzanych stronach powinny być uznane za podejrzane.
+     </p></li>
+     <li>FoxyProxy
+    <p>
+    Podczas gdy w teorii FoxyProxy jest niezłym pomysłem, to w praktyce nie
+można go skonfigurować bezpiecznie do Tora bez Torbuttona. Jak we wszystkich
+innych rozszerzeniach proxy, głównymi zagrożeniami są <a
+href="http://www.metasploit.com/research/projects/decloak/">wyciek
+wtyczek</a> i <a href="http://ha.ckers.org/weird/CSS-history.cgi">odkrycie
+historii</a>, zaraz za nimi są kradzieże ciasteczek przez węzły wyjściowe i
+śledzenie przez serwery z reklamami (przeczytaj <a
+href="design/index.html#adversary">Torbutton Adversary Model</a>, by poznać
+szczegóły). Lecz z zainstalowanym i zawsze włączonym Torbuttonem, możliwe
+jest bezpieczne skonfigurowanie FoxyProxy (choć jest to trudne). Jako że
+tryb wzorców (Patterns) w FoxyProxy odnosi się tylko do specyficznych
+adresów, a nie do całej karty, ustawienie FoxyProxy tak, by tylko niektóre
+strony były odwiedzane przez Tora, dalej pozwala serwerom reklamowym
+(których hosty nie pasują do Twoich filtrów) na poznanie Twojego prawdziwego
+IP. Co gorsza, jeśli te strony używają usług logowania na innych stronach
+jak Google Analytics, możesz wylądować w ich logach ze swoim prawdziwym
+adresem IP. Złośliwe węzły wyjściowe też mogą współpracować ze stronami, by
+wklejać obrazki do stron nie filtrowanych. Ustawienie FoxyProxy tak, by
+tylko część adresów wysyłał nie przez Tora jest znacznie bezpieczniejsze,
+ale trzeba być ostrożnym z filtrami, na które się pozwala. Na przykład
+ustawienie czegoś tak prostego jak *google*, by szło nie przez Tora dalej
+będzie powodować, że znajdziesz się we wszystkich logach wszystkich stron
+używających Google Analytics! Przeczytaj <a
+href="http://foxyproxy.mozdev.org/faq.html#privacy-01">to pytanie</a> na FAQ
+FoxyProxy dla dalszych szczegółów.
+     </p></li>
+    </ol>
+    
+    <a id="recommendedextensions"></a> <strong><a class="anchor"
+href="#recommendedextensions" >Które rozszerzenia do Firefoksa
+polecacie?</a></strong>
+    <ol>
+     <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a>
+    	<p>
+    Wspomniane wcześniej, to rozszerzenie pozwala na lepszą kontrolę adresów
+zwrotnych niż Torbutton w tej chwili. Powinno psuć mniej stron niż kontrola
+adresu zwrotnego w Torbuttonie.</p></li>
+    
+     <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a>
+    <p>
+    Jeśli dużo używasz Tora i rzadko go wyłączasz, prawodpodobnie przyda Ci się
+to rozszerzenie, by zminimalizować możliwości stron internetowych odnośnie
+przechowywania długotrwałych identyfikatorów w pamięci podręcznej. To
+rozszerzenie stosuje politykę tego samego adresu pochodzenia w pamięci
+podręcznej, więc elementy są z niej pobierane tylko jeśli są pobierane z
+dokumentu w tej samej strefie pochodzenia jak element w pamięci podręcznej.
+    </p></li>
+    
+     <li><a href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better
+Privacy</a>
+     <p>
+    
+    Better Privacy jest znakomitym rozszerzeniem, które chroni Cię przed
+ciasteczkami używanymi przez aplikacje Flash, które często zostają na zawsze
+i nie można ich usunąć przez normalne czyszczenie "Prywatnych danych" w
+Firefoksie. Flash i wszystkie inne wtyczki są domyślnie wyłączane przez
+Torbuttona, ale jeśli interesuje Cię prywatność, możesz być zainteresowany/a
+tym rozszerzeniem, które pozwoli Ci obejrzeć i automatycznie usuwać
+ciasteczka Flash w trakcie pracy bez Tora.
+    
+     </p>
+     </li>
+     <li><a href="https://addons.mozilla.org/firefox/addon/1865">AdBlock Plus</a>
+     <p>
+    
+    AdBlock Plus jest doskonałym dodatkiem do usuwania denerwujących,
+naruszających prywatność i <a
+href="http://www.wired.com/techbiz/media/news/2007/11/doubleclick">roznoszących
+złośliwe oprogramowanie</a> reklam z sieci. Zawiera <a
+href="http://adblockplus.org/en/subscriptions">subskrypcje</a>, które są
+ciągle aktualizowane, by wychwytywać najnowsze wysiłki sieci reklamowych,
+podejmowane w celu omijania tych filtrów. Polecam subskrypcję filtru
+kombinacyjnego EasyPrivacy+EasyList w sekcji Miscellaneous (Pozostałe) na
+stronie subskrypcji.
+    
+     </p>
+    </li> 
+    <li><a href="https://addons.mozilla.org/firefox/addon/82">Cookie Culler</a>
+     <p>
+    
+    Cookie Culler to przydatne rozszerzenie do szybkiego dostępu do menadżera
+ciasteczek w Firefoksie. Daje też możliwość ochrony pewnych ciasteczek przed
+usunięciem, ale niestety, to zachowanie nie integruje się dobrze z
+Torbuttonem. Kory Kirk pracuje nad tym w czasie projektu Google Summer of
+Code 2009.
+    
+     </p>
+     </li>
+    
+     <li><a href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a>
+     <p>
+     Torbutton w chwili obecnej łagodzi wszystkie znane problemy anonimowości
+związane z Javascriptem. Jednak, jeśli martwisz się exploitami Javascriptu w
+swojej przeglądarce lub na stronach, na których się logujesz, możesz używać
+NoScript. Daje on możliwość włączenia Javascriptu tylko dla niektórych stron
+i daje też mechanizmy wymuszania adresów HTTPS dla stron z <a
+href="http://fscked.org/category/tags/insecurecookies">niebezpiecznymi
+ciasteczkami</a>.<br /> Może być jednak trudny do skonfigurowania tak, by
+większość stron działała poprawnie. W szczególności, trzeba się upewnić, że
+nie usunie się addons.mozilla.org z białej listy Javascriptu, jako że
+rozszerzenia są pobierane przez HTTP, a sprawdzane przez Javascript ze
+strony HTTPS.
+    
+     </p></li>
+     <li><a href="https://addons.mozilla.org/en-US/firefox/addon/9727/">Request
+Policy</a>
+     <p>
+    
+    Request Policy jest podobne do NoScript w tym, że wymaga skonfigurowania,
+które strony mają pozwolenie na ładowanie zawartości z innych
+domen. Prawidłowa konfiguracja dla nowicjuszy może być bardzo trudna, ale
+daje to niezłą ochronę przed reklamami, wstrzykniętą zawartością i atakami
+fałszowania żądań cross-site (między stronami).
+    
+     </p>
+     </li>
+    
+    </ol>
+    
+    <a id="securityissues"></a> <strong><a class="anchor" href="#securityissues"
+>Czy są jeszcze jakieś sprawy, o których powinno się wiedzieć?</a></strong>
+    
+    <p>
+    Jest klika znanych prblemów związanych z bezpieczeństwem w Torbuttonie
+(wszystkie związane z <a href="design/index.html#FirefoxBugs">niezałatanymi
+błędami bezpieczeństwa w Firefoksie</a>. Najważniejsze dla anonimowości jest
+to, że jest możliwe odmaskowanie przechwyceń javascriptu, które owijają
+obiekt Date, by ukryć Twoją strefę czasowę w Firefoksie 2, a kod maskujący
+strefę czasową nie działa w ogóle w Firefoksie 3. Pracujemy z ludźmi od
+Firefoksa, by naprawić jeden z błędów: <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=392274">399274</a> lub <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=419598">419598</a>, aby
+rozwiązać ten problem. W międzyczasie, można ustawić zmienną środowiskową
+<b>TZ</b> na <b>UTC</b>, by przeglądarka używała UTC jako Twojej strefy
+czasowej. Pod Linuksem możesz dodać <b>export TZ=UTC</b> do skryptu
+/usr/bin/firefox lub zrobić to samo w systemowym pliku bashrc. Pod Windowsem
+można jedną ze <a href="http://support.microsoft.com/kb/310519">Zmiennych
+Środowiskowych TZ Użytkownika lub Systemu</a> korzystając z właściwości
+Mojego Komputera. Pod MacOS, sytuacja jest <a
+href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html#//apple_ref/doc/uid/20002093-BCIJIJBH">znacznie
+bardziej skomplikowana</a>, niestety.
+    </p>
+    
+    <p>
+    Ponadto, czytniki RSS takie jak Firefox Livemarks mogą przeprowadzać
+okresowe pobierania. W związku z <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=436250">błędem Firefoksa
+436250</a>, nie ma sposobu na wyłączenie tego pobierania w trybie Tora. To
+może być problem, jeśli posiada się dużo własnych adresów kanałów
+informacyjnych, które mogą przekazywać informacje o Twojej tożsamości.
+    </p>
+  </div>
+  
+  <!-- END MAINCOL -->
+<div id = "sidecol">
+
+
+  #include "side.wmi"
+#include "info.wmi"
+</div>
+  
+<!-- END SIDECOL -->
+</div>
+
+
+#include <foot.wmi>

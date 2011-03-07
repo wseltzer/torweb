@@ -1,0 +1,203 @@
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 24197 $
+# Translation-Priority: 2-medium
+#include "head.wmi" TITLE="Tor Project: Mac OS X Install Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Start &raquo; </a> <a href="<page
+docs/documentation>">Dokumentacja &raquo; </a> <a href="<page
+docs/tor-doc-osx>">Klient na Mac OS X</a>
+  </div> 
+  <div id="maincol">
+    <h1>Uruchamianie klienta <a href="<page index>">Tor</a> na Mac OS X</h1>
+    <br>
+    
+    <p>
+    <b>To są instrukcje do instalacji klienta Tora na systemie Mac OS X. Jeśli
+chcesz przekazywać ruch innych, by wspomóc rozwój sieci (prosimy),
+przeczytaj poradnik o <a href="<page docs/tor-doc-relay>">Konfigurowaniu
+przekaźnika sieci Tor</a>.</b>
+    </p>
+    
+    <hr> <a id="installing"></a>
+    <h2><a class="anchor" href="#installing">Krok 1: Pobranie i instalacja Tora</a></h2>
+    <br>
+    
+    <p>
+    Wersje instalacyjne dla Macintosh OS X zawierają <a href="<page
+index>">Tora</a>, <a href="<page projects/vidalia>">Vidalia</a> (graficzny
+interfejs dla Tora), <a href="<page torbutton/index>">Torbutton</a>, i <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (serwer
+pośredniczący proxy) w jednej paczce, ze wszystkimi czterema programami
+prekonfigurowanymi do współpracy ze sobą. Pobierz albo <a href="<page
+download/download>#tor">stabilną</a> albo <a href="<page
+download/download>#tor">eksperymentalną</a> wersję paczki dla OS X na
+Intelach, lub poszukaj innych rozwiązań na <a href="<page
+download/downloaddownload>">stronie pobierania</a>.
+    </p>
+    
+    <p>Po pobraniu dmg, kliknij go dwukrotnie i pozwól, by się zamontował. Przejdź
+do teraz otwartej paczki Vidalia (Vidalia Bundle) w Finderze. Paczkę łatwo
+jest zainstalować; po prostu przenieś i upuść cebulową ikonę Vidalii do
+folderu Aplikacji. Opcjonalnie, kliknij dwukrotnie skrypt "install
+torbutton", by zainstalować Torbutton do Firefoksa. Możesz też pobrać
+Torbuttona ze strony z dodatkami Mozilli, wyszukując "torbutton".</p>
+    
+    <p>Po zakończeniu instalacji możesz uruchomić program Vidalia poprzez wybranie
+jego ikony z twojego folderu Aplikacji. Ciemna cebula z czerwonym krzyżykiem
+na pasku oznacza, że w tej chwili Tor nie jest uruchomiony. Możesz uruchomić
+Tora wybierając Start z menu "Tor" u góry ekranu.
+    </p>
+    
+    <p>Gdy Tor działa, ikonka programu Vidalia wygląda następująco:
+    </p>
+    
+    <p><img alt="Vidalia z działającym Torem"
+src="$(IMGROOT)/screenshot-osx-vidalia.png" /></p>
+    
+    <p>Polipo jest instalowane jako część pakietu Tora. Po jego instalacji,
+uruchomi się automatycznie po restarcie komputera. Nie musisz konfigurować
+Polipo, by używało Tora &mdash; odpowiednia konfiguracja Polipo dla Tora
+została zainstalowana jako część pakietu instalacyjnego.
+    </p>
+    
+    <hr> <a id="using"></a>
+    <h2><a class="anchor" href="#using">Krok 2: Konfiguracja aplikacji, by używały
+Tora</a></h2>
+    <br>
+    
+    <p>Po instalacji musisz skonfigurować swoje aplikacje, by używały
+Tora. Pierwszym krokiem jest ustawienie sposobu przeglądania sieci WWW.</p>
+    
+    <p>Powinieneś/aś używać Tora z Firefoksem i Torbuttonem, dla najlepszego
+bezpieczeństwa. Torbutton został zainstalowany za Ciebie. Kliknij na
+czerwony przycisk "Tor Disabled" ("Tor wyłączony"), by włączyć Tora i
+gotowe: </p>
+    
+    <p><img alt="Rozszerzenie Torbutton dla Firefoksa"
+src="$(IMGROOT)/screenshot-torbutton.png" /></p>
+    
+    <p> Jeśli masz zamiar używać Firefoksa na innym komputerze niż tam, gdzie jest
+Tor, spójrz na <a href="<wikifaq>#SocksListenAddress">wpis w FAQ na temat
+uruchamiania Tora na innym komputerze</a>.  </p>
+    
+    <p>By "storyfikować" inne aplikacje, które używają proxy dla HTTP, po prostu
+skieruj je na Polipo (czyli localhost, port 8118). By aplikacje bezpośrednio
+używały serwera SOCKS (do komunikatorów, Jabbera, IRC, itp.), możesz
+skierować je bezpośrednio na Tora (localhost, port 9050), ale przeczytaj <a
+href="<wikifaq>#SOCKSAndDNS">ten wpis do FAQ</a>, dlaczego to może być
+niebezpieczne. Jeśli aplikacja nie obsługuje ani proxy dla HTTP, ani dla
+SOCKS, spójrz na  <a
+href="http://www.taiyo.co.jp/~gotoh/ssh/connect.html">connect</a> lub <a
+href="http://www.dest-unreach.org/socat/">socat</a>.</p>
+    
+    <p>Po informacje, jak "storyfikować" inne aplikacje, spójrz na <a
+href="<wiki>/TheOnionRouter/TorifyHOWTO">Torify HOWTO</a>.
+    </p>
+    
+    <hr> <a id="verify"></a>
+    <h2><a class="anchor" href="#verify">Krok 3: Upewnij się, że wszystko działa</a></h2>
+    <br>
+    
+    <p>
+    Teraz powinieneś/aś spróbować użyć swojej przeglądarki z Torem i upewnić
+się, że Twój adres IP jest anonimizowany. Kliknij na <a
+href="https://check.torproject.org/">wykrywacz Tora</a> i sprawdź, cze jego
+zdaniem używasz Tora czy nie. (Jeśli ta strona akurat nie działa, przeczytaj
+<a href="<wikifaq>#IsMyConnectionPrivate">ten wpis w FAQ</a>, by poznać
+więcej sposobów na testowanie swojego Tora.)
+    </p>
+    
+    <p>Jeśli masz zaporę ogniową, która ogranicza możliwości Twojego komputera co
+do łączenia się z samym sobą, zezwól w niej na połączenia od programów
+lokalnych na porty lokalne 8118 i 9050. Jeśli zapora blokuje połączenia
+wychodzące, spraw, by można się było połączyć choć z portami 80 i 433, po
+czym przeczytaj <a href="<wikifaq>#FirewalledClient">ten wpis do FAQ</a>.
+    </p>
+    
+    <p>Jeśli dalej nie działa, spójrz na <a href="<page docs/faq>#DoesntWork">ten
+wpis FAQ</a>, by poszukać wskazówek.</p>
+    
+    <p>
+    Gdy Tor już działa, poczytaj o tym, <a href="<page
+download/download>#Warning">co Tor oferuje, a czego nie</a>.
+    </p>
+    
+    <hr> <a id="server"></a> <a id="relay"></a>
+    <h2><a class="anchor" href="#relay">Krok 4: Konfiguracja Tora jako przekaźnika
+sieci</a></h2>
+    <br>
+    
+    <p>Sieć Tora polega na ochotnikach oddających część swojego łącza. Im więcej
+ludzi uruchomi przekaźnik sieci, tym szybsza będzie sieć Tora. Jeśli masz co
+najmniej 20 kilobajtów/s w obie strony, pomóż Torowi, konfigurując swojego
+klienta tak, by był także przekaźnikiem sieci. Mamy wiele cech, które czynią
+przekaźniki Tora łatwymi i wygodnymi, łącznie z ograniczeniem
+przepustowości, politykami wyjścia, byś mógł/mogła zmniejszyć ryzyko skarg,
+oraz obsługą dynamicznych adresów IP.</p>
+    
+    <p>Posiadanie przekaźników w wielu różnych miejscach w sieci sprawia, że
+użytkownicy Tora są bezpieczni. <a href="<wikifaq>#RelayAnonymity">Ty też
+możesz mieć lepszą anonimowość</a>, gdyż serwery, do których się łączysz,
+nie mogą stwierdzić, czy połączenie pochodzi z Twojego komputera, czy
+zostało przekierowane z innych.</p>
+    
+    <p>Przeczytaj szczegóły w naszym przewodniku <a href="<page
+docs/tor-doc-relay>">Konfiguracji przekaźnika sieci Tor</a>.</p>
+    
+    <hr> <a id="uninstall"></a>
+    <h2><a class="anchor" href="#uninstall">Jak odinstalować Tora i Polipo</a></h2>
+    <br>
+    
+    <p>Są dwa sposoby na odinstalowanie paczki z komputera, z wykorzystaniem
+Findera albo poprzez program odinstalowujący uruchamiany z linii poleceń
+(Terminala). Jeśli chcesz usunąć Tora z systemu OSX, oto jak to zrobić:</p>
+    
+    <p>Przywróć ustawienia Proxy w aplikacjach do ich poprzednich wartości. Jeśli
+chcesz tylko przestać używać Tora, możesz przerwać na tym kroku.</p>
+    
+    <p>Jeśli chcesz całkowicie usunąć Tora, a Twoje konto ma prawa Administratora,
+wykonaj co następuje:</p>
+    
+    <ol>
+    <li>Otwórz Findera i kliknij Aplikacje.</li>
+    <li>Przeciągnij /Applications/Vidalia do Kosza.</li>
+    <li>Usuń /Library/Torbutton z systemu.</li>
+    <li>W swoim katalogu domowym przejdź do Library, usuń katalog Vidalia</li>
+    </ol>
+    
+    <p>Tor, Vidalia i Polipo są teraz całkowicie usunięte z systemu.</p>
+    
+    <p>Jeśli znasz linię poleceń lub Terminal, możesz ręcznie wpisać następujące
+komendy:</p>
+    <ul>
+    <li>rm -r /Applications/Vidalia.app</li>
+    <li>rm -r /Library/Torbutton</li>
+    <li>rm -r ~/Library/Vidalia</li>
+    <li>rm -r ~/.tor</li>
+    </ul>
+    
+    <hr>
+    
+    <p>Jeśli masz pomysły na ulepszenie tej strony, prosimy <a href="<page
+about/contact>">je do nas wysłać</a>. Dziękujemy!</p>
+  </div>
+  
+  <!-- END MAINCOL -->
+<div id = "sidecol">
+
+
+  #include "side.wmi"
+#include "info.wmi"
+</div>
+  
+<!-- END SIDECOL -->
+</div>
+
+
+#include <foot.wmi>
