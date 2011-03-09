@@ -81,7 +81,7 @@ for file in $po ; do
 					# replace "lang" with the
 					# correct name of the language
 					# directory.
-					cp "$translated/tor-manual-dev.wml" "$wml/docs/$lang"
+					cp "$translated/en/tor-manual-dev.wml" "$wml/docs/$lang"
 				       	sed -i "0,/lang/ s/lang/"$lang"/" "$wml/docs/$lang/tor-manual-dev.wml"	
 				fi
 			fi
