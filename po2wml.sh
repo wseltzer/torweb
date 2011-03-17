@@ -61,6 +61,11 @@ po=`find $podir -regex '^'$podir'/.*/.*\.po' -type f`
 
 # For every wml, update po
 for file in $po ; do
+
+	# Validate input and write results to a log file
+	validate_script="`dirname $wmldir`/translation/tools/validate.py"
+	validate_log="`dirname $wmldir`/validate.log"
+	python "$validate_script" -i "$file" -l	"$validate_log"
 	
 	# Get the basename of the file we are dealing with
 	pofile=`basename $file`
