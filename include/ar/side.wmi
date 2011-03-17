@@ -1,0 +1,91 @@
+#! /usr/bin/wml
+<: use strict; :>
+<: use warnings; :>
+#use "perl-globals.wmi"
+#use "links.wmi"
+#use "versions.wmi"
+#use "sidenav.wmi"
+<div class="img-shadow">
+  <div id="sidenav">
+    <:
+      # recursively search menu structure to see if it contains a given page
+      sub containsSub($$);
+      sub containsSub($$) {
+          my ($elements, $page) = @_;
+          for my $ele (@{$elements}) {
+              if (containsSub($ele->{'subelements'},$page)){
+                  return 1;
+              } elsif ($page eq $ele->{'url'}) {
+                  return 1;
+              }
+
+          }
+          return 0;
+      } 
+
+      # generate navigation menu
+      sub printNavMenu($$$);
+      sub printNavMenu($$$) {
+          my ($navmenu, $page, $lang) = @_;
+          print '<ul>'."\n";
+          for my $navmenu (@{$navmenu}) {
+              # this menu entry is the current (active) page
+              if ($navmenu->{'url'} eq $page) {
+      
+                  # the current page has nested menu elements
+                  if ($navmenu->{'subelements'}) { # menu has dropdown
+                      printf '<li class="dropdown active"><a class="active" href="%s">%s</a></li>'."\n",
+                             pageToURL($navmenu->{'url'}, $lang), $navmenu->{'txt'}; 
+      
+                      print '<li>'."\n";
+                      printNavMenu($navmenu->{'subelements'},$page,$lang); 
+                      print '</li>'."\n";
+
+                  # the current (active) page does not have sub elements
+                  } else {
+                      printf '<li class="active"><a class="active" href="%s">%s</a></li>'."\n",
+                             pageToURL($navmenu->{'url'}, $lang), $navmenu->{'txt'}; 
+                  }
+      
+              # a subelement of this menu item is the current (active) page
+              } elsif (containsSub($navmenu->{'subelements'}, $page)) {
+                  printf '<li class="dropdown"><a class="active" href="%s">%s</a></li>'."\n",
+                         pageToURL($navmenu->{'url'}, $lang), $navmenu->{'txt'};
+
+                  print '<li>'."\n"; #encapsulate subelements
+                  # recurse to generate the expanded menu
+                  printNavMenu($navmenu->{'subelements'},$page,$lang); 
+                  print '</li>'."\n"; #encapsulate subelements
+      
+              # the menu entry is not active and does not enclose the active page
+              } else {
+
+                  # if there are subelements, set collapsed style
+                  if ($navmenu->{'subelements'}) {
+                      printf '<li class="dropdown"><a href="%s">%s</a></li>'."\n",
+                             pageToURL($navmenu->{'url'}, $lang), $navmenu->{'txt'};
+                  # regular menu entry
+                  } else {
+                      printf '<li><a href="%s">%s</a></li>'."\n",
+                             pageToURL($navmenu->{'url'}, $lang), $navmenu->{'txt'};
+                  }
+              }
+          }
+          print '</ul>'."\n";
+      }
+
+      my $lang = "$(LANG)";
+
+      use Cwd;
+      use Cwd 'abs_path';
+      use File::Spec;
+      
+      # get document path from site root
+      my $path = File::Spec->abs2rel(getcwd(),abs_path("$(DOCROOT)"));
+      my $page = $WML_SRC_BASENAME; 
+      printNavMenu($sidenav, $path.'/'.$page, $lang);
+    :>
+  </div>
+  <!-- END SIDENAV -->
+</div>
+<!-- END IMG-SHADOW -->
