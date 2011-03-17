@@ -1,0 +1,165 @@
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 24373 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: Hidden Service Protocol" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Start &raquo; </a> <a href="<page
+docs/documentation>">Dokumentacja &raquo; </a> <a href="<page
+docs/hidden-services>">Usługi Ukryte</a>
+  </div>
+  <div id="maincol"> 
+    <h2>Tor: Protokół Usług Ukrytych</h2>
+    <hr>
+    
+    <p>
+    Tor umożliwia użytkownikom ukrywanie swojego miejsca pobytu podczas
+oferowania różnych rodzajów usług, jak publikowanie w sieci czy serwer
+wiadomości. Korzystając z "punktów spotkania" Tora, inni użytkownicy Tora
+mogą łączyć się z tymi usługami i żadna ze stron nie będzie znała tożsamości
+sieciowej drugiej strony. Ta strona opisuje techniczne szczegóły protokołu
+spotkania. Bardziej bezpośrednie jak-to-zrobić znajduje się na naszej
+stronie <a href="<page docs/tor-hidden-service>">konfiguracji usług
+ukrytych</a>.
+    </p>
+    
+    <p>
+    Usługa ukryta musi ogłosić swoje istnienie w sieci Tora zanim klienci będą
+mogli się z nią skontaktować. W tym celu usługa wybiera losowo kilka
+przekaźników sieci, tworzy do nich obwody i prosi, by stały się one
+<em>punktami przedstawiającymi</em> ją, poprzez przekazanie im swojego
+klucza publicznego. Na poniższych obrazkach linki zielone to linki obwodu, a
+nie połączenia bezpośrednie. Używanie pełnych obwodów Tora utrudnia
+komukolwiek powiązanie punktów przedstawiających z adresem IP usługi
+ukrytej.Podczas gdy punktom przedstawiającym i innym przekazywana jest
+tożsamość usługi ukrytej (klucz publiczny), nie chcemy, by znały tożsamość
+serwera tej usługi (adresu IP).
+    </p>
+    
+    <img alt="Usługi ukryte Tora, krok 1" src="$(IMGROOT)/THS-1.png">
+    
+    <p>
+    Krok drugi: usługa ukryta tworzy <em>deskryptor usługi ukrytej</em>,
+zawierający podsumowanie jej punktów przedstawiających i jej klucz
+publiczny, oraz podpisuje go swoim kluczem prywatnym. Deskryptor ten jest
+wysyłany do rozproszonej tablicy haszowanej. Deskryptor ten będzie
+znajdowany przez klientów żądających połączenia z XYZ.onion, gdzie XYZ jest
+składającą się z 16 znaków nazwą w sposób jednoznaczny otrzymaną z klucza
+publicznego usługi ukrytej.  Po wykonaniu tego kroku, usługa ukryta jest
+uruchomiona.
+    </p>
+    
+    <p>
+    Although it might seem impractical to use an automatically-generated service
+name, it serves an important goal: Everyone &ndash; including the
+introduction points, the distributed hash table directory, and of course the
+clients &ndash; can verify that they are talking to the right hidden
+service. See also <a href="http://zooko.com/distnames.html">Zooko's
+conjecture</a> that out of Decentralized, Secure, and Human-Meaningful, you
+can achieve at most two. Perhaps one day somebody will implement a <a
+href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html">Petname</a>
+design for hidden service names?
+    </p>
+    
+    <img alt="Usługi ukryte Tora, krok 2" src="$(IMGROOT)/THS-2.png">
+    
+    <p>
+    Krok trzeci: Klient chcący połączyć się z usługą ukrytą musi najpierw poznać
+jej adres onion. Po zrobieniu tego, klient może zacząć połączenie od
+pobrania deskryptora z rozproszonej tablicy haszowanej. Jeśli istnieje
+deskryptor dla XYZ.onion (usługa ukryta może być offline, dawno nieaktualna
+lub może być literówka w adresie), klient zna zestaw punktów
+przedstawiających i właściwy klucz publiczny, którego ma używać. W tym
+czasie klient tworzy obwód do innego losowo wybranego przekaźnika i prosi
+go, by stał się <em>punktem spotkania</em>, przekazując mu jednorazowy
+klucz.
+    </p>
+    
+    <img alt="Usługi ukryte Tora, krok 3" src="$(IMGROOT)/THS-3.png">
+    
+    <p>
+    Kork czwarty: Gdy deskryptor jest obecny i punkt spotkania jest gotowy,
+klient tworzy wiadomość <em>początkową</em> (zaszyfrowaną kluczem publicznym
+usługi ukrytej), zawierającą adres punku spotkania i ten sam klucz
+jednorazowy. Klient wysyła tę wiadomość do jednego z punktów
+przedstawiających z prośbą o dostarczenie jej do usługi ukrytej. Tu także
+cała komunikacja odbywa się przez obwody Tora: nikt nie może powiązać
+wysłania wiadomości początkowej do adresu IP klienta, więc klient pozostaje
+anonimowy.
+    </p>
+    
+    <img alt="Usługi ukryte Tora, krok 4" src="$(IMGROOT)/THS-4.png">
+    
+    <p>
+    Krok piąty: Usługa ukryta odszyfrowuje wiadomość początkową klienta i
+znajduje adres punktu spotkania wraz z kluczem jednorazowym. Usługa tworzy
+obwód do punktu spotkania i wysyła do niego klucz jednorazowy w wiadomości
+spotkania.
+    </p>
+    
+    <p>
+    W tym momencie ważny jest fakt, że usługa ukryta trzyma się ciągle tych
+samych <a
+href="<wikifaq>#Whatsthisaboutentryguardformerlyknownashelpernodes"
+>wejściowych węzłów-strażników</a> w czasie tworzenia nowych obwodów. W
+innym przypadku napastnik mógłby prowadzić własny przekaźnik sieci i zmusić
+usługę ukrytą do tworzenia dowolnej liczby obwodów z nadzieją, że jego
+przekaźnik zostałby wybrany na punkt wejścia i poznałby adres IP usługi
+ukrytej poprzez analizę czasów.  Ten atak został opisany przez
+&Oslash;verlier'a i Syversona w ich dokumencie pod tytułem <a
+href="http://freehaven.net/anonbib/#hs-attack06" >Znajdowanie Ukrytych
+Serwerów (Locating Hidden Servers)</a>.
+    </p>
+    
+    <img alt="Usługi ukryte Tora, krok 5" src="$(IMGROOT)/THS-5.png">
+    
+    <p>
+    W ostatnim kroku punkt spotkania powiadamia klienta o pomyślnym nawiązaniu
+połączenia.  Po tym fakcie zarówno klient, jak i usługa ukryta mogą używać
+swoich obwodów do punktu spotkania do łączności między sobą. Punkt spotkania
+po prostu przekazuje wiadomości (zaszyfrowane na całej trasie od odbiorcy do
+nadawcy) od klienta do usługi ukrytej i na odwrót.
+    </p>
+    
+    <p>
+    Jednym z powodów niekorzystania z obwodu przedstawiającego do właściwego
+połączenia jest to, że żaden węzeł nie powinien wydawać się być
+odpowiedzialnym za daną usługę ukrytą. To dlatego punkty spotkania nigdy nie
+poznają tożsamości usługi ukrytej.
+    </p>
+    
+    <p>
+    W ogólnym przypadku, połączenia między klientem a usługą ukrytą składa się z
+6 przekaźników: 3 z nich zostały wybrane przez klienta, przy czym trzeci
+jest punktem spotkania, a pozostałe 3 zostały wybrane przez usługę ukrytą.
+    </p>
+    
+    <img alt="Usługi ukryte Tora, krok 6" src="$(IMGROOT)/THS-6.png">
+    
+    <p>
+    There are more detailed descriptions about the hidden service protocol than
+this one. See the <a href="<svnprojects>design-paper/tor-design.pdf">Tor
+design paper</a> for an in-depth design description and the <a
+href="<specblob>rend-spec.txt">rendezvous specification</a> for the message
+formats.
+    </p>
+  </div>
+  
+  <!-- END MAINCOL -->
+<div id = "sidecol">
+
+
+  #include "side.wmi"
+#include "info.wmi"
+</div>
+  
+<!-- END SIDECOL -->
+</div>
+
+
+#include "foot.wmi"

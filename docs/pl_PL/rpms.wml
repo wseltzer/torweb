@@ -1,0 +1,90 @@
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 23943 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor Project: CentOS/Fedora/OpenSUSE Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Start &raquo; </a> <a href="<page
+docs/documentation>">Dokumentacja &raquo; </a> <a href="<page
+docs/rpms>">RPMy</a>
+  </div>
+  <div id="maincol"> 
+    <a id="rpms"></a>
+    <h2><a class="anchor" href="#rpms">Paczki Tora dla dystrybucji Linuksa opartych
+na RPM.</a></h2>
+    <br>
+    
+    <p>Nie używajcie paczek z natywnych repozytoriów. Są często przestarzałe. To
+oznacza, że będziecie pozbawieni poprawek stabilności i bezpieczeństwa.
+    </p>
+    
+    <p>
+    Musicie skonfigurować nasze repozytorium z paczkami, zanim będziecie mogli
+pobrać Tora. Zakładając, że macie program yum, w katalogu /etc/yum.repos.d/
+stwórzcie plik o nazwie torproject.repo. Otwórzcie go w edytorze i wpiszcie
+następujące informacje:
+    <pre>[torproject]
+    name=Tor and Vidalia
+    enabled=1
+    autorefresh=0
+    baseurl=http://deb.torproject.org/torproject.org/rpm/DISTRIBUTION/
+    type=rpm-md
+    gpgcheck=1
+    gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org
+    </pre>
+    
+    Jeśli chcecie być na bieżąco z wersjami stabilnymi Tora, powinniście zmienić
+DISTRIBUTION na jedno z następujących: centos4, centos5, fc13, fc14, suse</p>
+    
+    <p>Jeśli chcecie być na bieżąco z wersjami eksperymentalnymi, zmieńcie
+DISTRIBUTION na jedno z następujących: centos4-experimental,
+centos5-experimental, fc13-experimental, fc14-experimental,
+suse-experimental</p>
+    
+    <p>
+    Teraz Tor jest zainstalowany i działa. Przejdźcie do <a href="<page
+docs/tor-doc-unix>#polipo">kroku drugiego</a> w instrukcjach dla "Tora na
+Linux/Unix"
+    </p>
+    
+    <p style="font-size: small">
+    Nazwa DNS <code>deb.torproject.org</code> jest w rzeczywistości zestawem
+niezależnych serwerów skonfigurowanych w okrężnej struktuzre DNS. Jeśli z
+jakiegoś powodu nie macie do niego dostępu, możecie spróbować nazwy jednej z
+jej części. Wypróbujcie <code>deb-master.torproject.org</code>,
+<code>mirror.netcologne.de</code> lub <code>tor.mirror.youam.de</code>.
+    </p>
+    
+    <hr> <hr> <a id="source"></a>
+    <h2><a class="anchor" href="#source">Kompilacja ze źródeł</a></h2>
+    <br>
+    
+    <p>
+    Jeśli chcecie kompilować ze źródeł, postępujcie zgodnie z <a
+href="<gitblob>doc/tor-rpm-creation.txt">instrukcjami tworzenia rpm</a>.
+    </p>
+    
+    <hr>
+    
+    <p>Jeśli masz pomysły na ulepszenie tej strony, prosimy <a href="<page
+about/contact>">je do nas wysłać</a>. Dziękujemy!</p>
+  </div>
+  
+  <!-- END MAINCOL -->
+<div id = "sidecol">
+
+
+  #include "side.wmi"
+#include "info.wmi"
+</div>
+  
+<!-- END SIDECOL -->
+</div>
+
+
+#include "foot.wmi"
