@@ -114,6 +114,15 @@ for file in $po ; do
 				sed -i 's/<!--PO4ASHARPBEGIN/#/' "$wmldir/$subdir/$wmlfile"
 				sed -i 's/PO4ASHARPEND-->//' "$wmldir/$subdir/$wmlfile"
 			fi
+
+			# If the file is an Arabic translation, make
+			# sure it is using the right CSS
+			if [ $subdir = "ar" ]
+			then
+				orig_include=`grep '#include "head.wmi"' "$wmldir/$subdir/$wmlfile"`
+				new_include=`echo $orig_include 'STYLESHEET="css/master-rtl.css"'`
+				sed -i "s@$orig_include@$new_include@" "$wmldir/$subdir/$wmlfile"
+			fi
 		fi
 	}	
 
@@ -134,6 +143,15 @@ for file in $po ; do
 
 			# Include foot.wmi
 			echo "#include <foot.wmi>" >> "$wmldir/$subdir/$lang/$wmlfile"
+
+			# If the file is an Arabic translation, make
+			# sure it is using the right CSS
+			if [ $lang = "ar" ]
+			then
+				orig_include=`grep '#include "head.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+				new_include=`echo $orig_include 'STYLESHEET="css/master-rtl.css"'`
+				sed -i "s@$orig_include@$new_include@" "$wmldir/$subdir/$lang/$wmlfile"
+			fi
 		fi
 	}
 
