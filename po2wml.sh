@@ -64,7 +64,7 @@ for file in $po ; do
 
 	# Validate input and write results to a log file
 	validate_script="`dirname $wmldir`/translation/tools/validate.py"
-	validate_log="`dirname $wmldir`/website-validate.log"
+	validate_log="`dirname $wmldir`/validate/website-validate.log"
 	python "$validate_script" -i "$file" -l	"$validate_log"
 	
 	# Get the basename of the file we are dealing with
