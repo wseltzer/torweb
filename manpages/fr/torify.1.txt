@@ -1,8 +1,8 @@
-//Droits d'auteur The Tor Project, Inc.
-//Se référer au fichier LICENSE pour toute information sur la license
+//Droits d'auteur (c) The Tor Project, Inc.
+//Se référer au fichier LICENSE pour toute information sur la licence
 //Ceci est un fichier asciidoc utilisé pour générer la page principale manpage/html.
 //Apprenez asciidoc sur http://www.methods.co.nz/asciidoc/userguide.html
-TOR(1)
+torify(1)
 ======
 Peter Palfrader Jacob Appelbaum
 
@@ -12,31 +12,29 @@ torify - adaptateur pour torsocks ou pour tsocks et tor
 
 SYNOPSIS
 --------
-**torify** __application__ [__arguments_de_l_application__]
+**torify** __application__[__arguments_de_l_application__]
 
 DESCRIPTION
 -----------
-**torify** est un simple adaptateur (wrapper) qui essaye de trouver le meilleur
-adaptateur de Tor disponible sur le système. Il appelle torsocks ou tsocks avec un
-fichier de configuration Tor spécifique. +
+**torify** est un adaptateur simple qui tente de trouver le meilleur adaptateur de Tor disponible sur le système. Il appelle torsocks ou tsocks avec un fichier de configuration Tor spécifique. +
 
 torsocks est un adaptateur amélioré qui rejette explicitement le trafic UDP,
-effectue des requêtes DNS sécurisées et transforme correctement en socks vos
+effectue des requêtes DNS sécurisées et utilise proprement socks pour vos
 connexions TCP. +
 
 tsocks est un adaptateur entre la bibliothèque tsocks et une application qui
-veux fonctionner à travers le protocole socks. +
+veut fonctionner à travers le protocole socks. +
 
 Merci de prendre conscience que les deux méthodes utilisent LD_PRELOAD et
 donc que torify ne peut pas s'appliquer sur des exécutables suid.
 
 AVERTISSEMENT
 -------
-Vous devez prendre conscience du fait que tsocks ne s'occupe de transformer
-les connexions TCP en conexions socks. En conséquence, celà n'inclus pas les
+Vous devez prendre conscience que les tsocks fonctionnent seulement si les
+connexions TCP ont été socksifié. En conséquence, celà n'inclus pas les
 requêtes de nom d'hôte qui seront toujours routées par la voie normale de
-votre système jusqu'à ce qu'elles soient résolues. L'outil **tor-resolve**
-peut s'avérer utile dans de tels cas. La FAQ Tor sur
+votre système jusqu'à ce qu'elles soient résolues. L'outil
+**tor-resolve**(1) peut s'avérer utile dans de tels cas. La FAQ Tor sur
 https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ dispose de plus
 d'informations sur ce sujet. +
 

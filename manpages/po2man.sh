@@ -37,8 +37,8 @@ po=`find $podir -type f -name \*.1.po`
 for file in $po ; do
 
 	# Validate input and write results to a log file
-	validate_script="`dirname $wmldir`/translation/tools/validate.py"
-	validate_log="`dirname $wmldir`/manpages-validate.log"
+	validate_script="/home/runa/tor/translation/tools/validate.py"
+	validate_log="/home/runa/tor/validate/manpages-validate.log"
 	python "$validate_script" -i "$file" -l "$validate_log"
 
 	# Get the basename of the file we are dealing with
