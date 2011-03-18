@@ -36,6 +36,11 @@ po=`find $podir -type f -name \*.1.po`
 # For every po found, create and/or update the translated manpage.
 for file in $po ; do
 
+	# Validate input and write results to a log file
+	validate_script="`dirname $wmldir`/translation/tools/validate.py"
+	validate_log="`dirname $wmldir`/manpages-validate.log"
+	python "$validate_script" -i "$file" -l "$validate_log"
+
 	# Get the basename of the file we are dealing with
 	pofile=`basename $file`
 
