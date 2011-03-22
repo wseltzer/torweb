@@ -233,6 +233,13 @@ for file in $po ; do
 			nosubdir
 		fi
 
+		# If the current directory is "pl_PL" use "pl" instead
+		if [ $subdir = "pl_PL" ]
+		then
+			subdir="pl"
+			nosubdir
+		fi
+
 		# Convert everything else
 		if [[ $subdir != "en" && $subdir != "zh_CN" && $subdir != "nb" && $subdir != "sv" ]]
 		then
@@ -259,7 +266,14 @@ for file in $po ; do
 			lang="se"
 			subdir
 		fi
-		
+	
+		# If the current language is "pl_PL" use "pl" instead
+		if [ $lang = "pl_PL" ]
+		then
+			lang="pl"
+			subdir
+		fi
+
 		# Convert everything else
 		if [[ $lang != "en" && $lang != "zh_CN" && $lang != "nb" && $lang != "sv" ]]
 		then
