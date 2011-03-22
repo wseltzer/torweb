@@ -110,9 +110,6 @@ for file in $po ; do
                         # Remove last three lines in file
 			sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/$wmlfile"
 
-			# Remove lines that are translator comments
-			sed -i '/^<td># Translators:/ d' "$wmldir/$subdir/$wmlfile"
-
 			# If the file is mirrors.wml, include mirrors-table.wmi
 			if [ $wmlfile == "mirrors.wml" ]
 			then
@@ -170,8 +167,12 @@ for file in $po ; do
 			# Remove last three lines in file
 			sed -i -e :a -e '$d;N;2,3ba' -e 'P;D' "$wmldir/$subdir/$lang/$wmlfile"
 
-			# Remove lines that are translator comments
-			sed -i '/^<td># Translators:/ d' "$wmldir/$subdir/$lang/$wmlfile"
+			# Remove a specific comment from a specific file
+			if [ $wmlfile == "download-easy.wml" ]			
+			then
+				translator_comment="# Translators: please point to the version of TBB in your language, if there is one."
+				sed -i "s/$translator_comment//" "$wmldir/$subdir/$lang/$wmlfile"
+			fi
 
 			# If the file is an Arabic translation, include the
 			# right header, css, menu files and footer
