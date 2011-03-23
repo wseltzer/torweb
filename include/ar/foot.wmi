@@ -1,4 +1,6 @@
 #!/usr/bin/env wml
+#use "functions.wmi"
+
     <div id="footer">
     	<div class="onion"><img src="$(IMGROOT)/onion.jpg" alt="Tor"></div>
       <div class="about">
@@ -69,6 +71,19 @@
         </ul>
       </div>
       <!-- END COL -->
+
+	<!-- List available languages -->
+	<div class="col">
+	<h4>Languages</h4>
+	<: if (has_translations()) {  :>
+		<p>
+		This page is also available in the following languages:
+		<: print list_translations() :>.<br />
+		How to set <a href="http://www.debian.org/intro/cn#howtoset">the default document language</a>.
+		</p>
+	 <: }; :>
+	</div>
+
 <!-- LANGUAGE SWITCH CGI 
       <div class="col wider">
       	<h4>لغات</h4>
