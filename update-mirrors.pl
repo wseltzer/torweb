@@ -457,7 +457,7 @@ my %m = (
         },
 
         mirror023 => {
-            adminContact => "sina at accessnow.org",
+            adminContact => "SiNA",
             orgName => "Ninjas",
             isoCC => "IR",
             subRegion => "",
