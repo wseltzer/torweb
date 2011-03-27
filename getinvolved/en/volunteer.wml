@@ -402,7 +402,10 @@ meetings around the world.</li>
     
     <p>
     <b>Project Ideas:</b><br />
-    <i><a href="#orbotDevelopment">More on Orbot &amp; Android OS-specific development</a></i>
+    <i><a href="#orbot-torbutton">TorButton for Mobile Firefox 4 or Custom Browser on Android</a></i><br />
+    <i><a href="#orbot-userInterface">Build a better user interface for Orbot</a></i><br />
+    <i><a href="#orbot-optimisation">Core Tor mobile optimisation</a></i><br />
+    <i><a href="#orbot-orlibAndOutreach">Orbot integration library and community outreach</a></i>
     </p>
     
     <a id="project-torbutton"></a>
@@ -650,6 +653,53 @@ meetings around the world.</li>
     <p>For more information see <a href="https://tails.boum.org/todo/boot_menu/">https://tails.boum.org/todo/boot_menu/</a></p>
     </li>
 
+    <a id="orbot-torbutton"></a>
+    <li>
+    <b>TorButton for Mobile Firefox 4 or Custom Browser on Android</b>
+    <br>
+    Priority: <i>High</i>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Nathan (n8fr8), Jake, Mike Perry</i>
+    <p>Initial work has been done on implementing a proxy-setting add-on for
+    Firefox on Android (see <a
+    href="https://github.com/guardianproject/ProxyMob">ProxyMob</a>), but a
+    full port of TorButton needs to be done (dependent upon Firefox 4 port of
+    TorButton). The other approach is to implement a custom &quot;Tor
+    Browser&quot; based on Firefox or Webkit browser. See <a
+    href="http://code.google.com/p/torora/wiki/Android">Torora</a> for progress
+    on this so far.</p>
+    </li>
+    
+    <a id="orbot-userInterface"></a>
+    <li>
+    <b>Build a better user interface for Orbot</b>
+    <br>
+    Priority: <i>High</i>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nathan (n8fr8), Jake</i>
+    <p>Improved home screen to show confirmation of connection (via a TorCheck
+    API call), better statistics about data transferred (up/down), number of
+    circuits connected, quality of connection and so on. The &quot;Tether
+    Wifi&quot; Android application is a good model to follow in how it shows a
+    realtime count of bytes transferred as well as notifications when wifi
+    clients connect. In addition, better handling of Tor system and error
+    messages would also be very helpful, include use of standard Android
+    operating systems notifications. The addition of a wizard or tutorial
+    walkthrough for novice users to explain to them exactly what is and what is
+    not anonymized or protected would greatly improve the likelihood they will
+    use Orbot correctly. All of this should work on the range of screens and
+    device types now offered for Android, from 2&quot; phone to 10&quot;
+    Tablet.</p>
+    </li>
+    
     <a id="resistCensorship"></a>
     <li>
     <b>Improving Tor's ability to resist censorship</b>
@@ -726,7 +776,7 @@ meetings around the world.</li>
     <br>
     Skill Level: <i>Medium</i>
     <br>
-    Likely Mentors: <i>Damian</i>
+    Likely Mentors: <i>Damian (atagar)</i>
     <p><a href="<page projects/arm>">Arm</a> is a Tor command line status
     monitor on *nix environments (Linux, Mac, and BSD). It functions much like
     top does, giving a CLI overlay of Tor's bandwidth usage, connections,
@@ -800,60 +850,6 @@ meetings around the world.</li>
     updated for more recent versions of Tor, and designed to launch a test
     network either on a single machine, or across several, so we can test
     changes in performance on machines in different roles automatically.</p>
-    </li>
-    
-    <a id="orbotDevelopment"></a>
-    <li>
-    <b>More on Orbot &amp; Android OS-specific development</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>High</i>
-    <br>
-    Skill Level: <i>Medium to High</i>
-    <br>
-    Likely Mentors: <i>Nathan, Jake</i>
-    <p><b>Android Java UI work:</b> Improved home screen to show better
-    statistics about data transferred (up/down), number of circuits
-    connected, quality of connection and so on. The "Tether Wifi"
-    Android application is a good model to follow in how it shows
-    a realtime count of bytes transferred as well as notifications
-    when wifi clients connect. In addition, better display/handling
-    of Tor system/error messages would also be very helpful. Finally,
-    the addition of a wizard or tutorial walkthrough for novice
-    users to explain to them exactly what is and what is not anonymized
-    or protected would greatly improve the likelihood they will use
-    Orbot correctly.</p>
-    
-    <p><b>Android Java OS/Core app work:</b> Better system-wide
-    indication, either via the notification bar, "Toast" pop-up dialogs
-    or some other indicator, that an application's traffic is indeed
-    moving through Orbot/Tor. For instance, right now you need to
-    first go to a torcheck web service to ensure your browser is
-    routing via Tor. Orbot should be able to notify you that circuits
-    are being opened, used, etc. The aforementioned data transfer
-    tracker might provide this type of awareness as well.</p>
-    
-    <p><b>Android Java Library/Community Outreach work:</b> We need
-    to package a simple library for use with third-party application
-    to easily enable them to support "Torification" on non-rooted
-    devices (i.e. w/o transparent proxying). This library should
-    include a wrapper for the Apache HTTPClient library, a utility
-    class for detecting the state of Orbot connectivity, and other
-    relevant/useful things an Android app might need to anonymize
-    itself. This work would include the creation of the library,
-    documentation, and sample code. Outreach or effort to implement
-    the library within other open-source apps would follow.</p>
-    
-    <p><b>Android OS/C/Linux work:</b> The port of Tor to Android
-    is basically a straight cross-compile to Linux ARM. There has
-    been no work done in looking the optimization of Tor within a
-    mobile hardware environment, on the ARM processor or other
-    Android hardware, or on mobile networks. It should be noted,
-    that even without optimization, Tor is handling the mobile
-    network environment very well, automatically detecting change
-    in IP addresses, reconnecting circuits, etc. across switching
-    from 2G to 3G to Wifi, and so forth.</p>
     </li>
     
     <a id="simulateSlowConnections"></a>
@@ -1070,6 +1066,74 @@ meetings around the world.</li>
     design/Photoshop fu, since we might want/need some shiny new icons too.</p>
     </li>
     
+    <a id="orbot-optimisation"></a>
+    <li>
+    <b>Core Tor mobile optimisation</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Nathan (n8fr8), Jake</i>
+    <p>
+    The existing port of Tor to Android is basically a straight
+    cross-compile to Linux ARM. There has been no work done in looking at
+    possible optimizations of Tor within a mobile hardware environment or on
+    mobile networks. In addition, a number of additional Android OS APIs are
+    available (such as wireless network status) that could be taken
+    advantage of.
+    </p>
+    
+    <p>
+    It should be noted, that even without optimisation, Tor is handling the
+    mobile network environment very well, automatically detecting change in
+    IP addresses, opening circuits, etc, as the device switches from no
+    coverage to 2G, 3G or Wifi constantly as it changes position. However,
+    this observation of &quot;very well&quot;, is just based on user
+    experience, and not any detailed study of what exactly is happening, and
+    what threats might exist because of this constantly changing network state.
+    </p>
+    
+    <p>
+    Finally, the build process needs to be moved to the Android NDK from the
+    custom GCC toolchain we are now using, and compatibility with Android
+    2.3 and 3.x Honeycomb OS need to be verified.
+    </p>
+    
+    <p>
+    For more information see the <a
+    href="https://svn.torproject.org/svn/projects/android/trunk/Orbot/BUILD">Orbot
+    build documentation</a>.
+    </p>
+    </li>
+    
+    <a id="orbot-orlibAndOutreach"></a>
+    <li>
+    <b>Orbot integration library and community outreach</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Low</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nathan (n8fr8)</i>
+    <p>
+    We need additional work on <a
+    href="https://github.com/guardianproject/orlib">ORLib</a>, our library for
+    use with third-party application to easily enable them to support
+    &quot;Torification&quot; on non-rooted devices (i.e. w/o transparent
+    proxying). This library includes a SOCKS client, a wrapper for the Apache
+    HTTPClient library, a utility class for detecting the state of Orbot
+    connectivity, and other relevant/useful things an Android app might need to
+    anonymize itself. This work would includes direct development of the
+    library, documentation, and sample code. Outreach or effort to implement
+    the library within other open-source apps is also needed.
+    </p>
+    </li>
+    
     <a id="vidaliaNetworkMap"></a>
     <li>
     <b>An Improved and More Usable Network Map in Vidalia</b>
@@ -1120,7 +1184,7 @@ meetings around the world.</li>
     <br>
     Skill Level: <i>Medium</i>
     <br>
-    Likely Mentors: <i>Damian</i>
+    Likely Mentors: <i>Damian (atagar)</i>
     <p>
     Arm has several unique features, some of the most interesting being its
     connection listing (correlating netstat results against the Tor consensus)
