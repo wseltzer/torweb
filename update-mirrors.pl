@@ -572,7 +572,7 @@ my %m = (
 
         mirror029 => {
             adminContact => "",
-            orgName => "",
+            orgName => "NW Linux",
             isoCC => "US",
             subRegion => "WA",
             region => "US",
