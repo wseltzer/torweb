@@ -4,7 +4,7 @@
 
 
 ## translation metadata
-# Revision: $Revision: 24458 $
+# Revision: $Revision: 24471 $
 # Translation-Priority: 4-optional
 #include "head.wmi" TITLE="Tor: Volunteer" CHARSET="UTF-8"
 <div id="content" class="clearfix">
@@ -56,10 +56,6 @@ wyniki.</li>
     <a id="Advocacy"></a>
     <h2><a class="anchor" href="#Advocacy">Pokazanie się jako zwolennik Tora</a></h2>
     <ol>
-    <li>Stwórz <a
-href="https://trac.torproject.org/projects/tor/wiki/CommunityLogos">logo
-społeczności</a> pod licencją Creative Commons, którego wszyscy będą mogli
-używać i modyfikować.</li>
     <li>Stwórz prezentację, której będzie można używać na spotkaniach różnych grup
 na całym świecie.</li>
     <li>Stwórz film o Twoim pozytywnym wykorzystaniu Tora, czym jest Tor lub jak go
@@ -405,8 +401,12 @@ jesieni 2010, po czym sprawy zamilkły.
     </p>
     
     <p>
-    <b>Pomysły do projektu:</b><br /> <i><a href="#orbotDevelopment">Więcej na
-temat rozwoju specyficznego dla Orbota i Systemu Android</a></i>
+    <b>Project Ideas:</b><br /> <i><a href="#orbot-torbutton">TorButton for
+Mobile Firefox 4 or Custom Browser on Android</a></i><br /> <i><a
+href="#orbot-userInterface">Build a better user interface for
+Orbot</a></i><br /> <i><a href="#orbot-optimisation">Core Tor mobile
+optimisation</a></i><br /> <i><a href="#orbot-orlibAndOutreach">Orbot
+integration library and community outreach</a></i>
     </p>
     
     <a id="project-torbutton"></a>
@@ -647,6 +647,40 @@ zadania.</p>
 href="https://tails.boum.org/todo/boot_menu/">https://tails.boum.org/todo/boot_menu/</a></p>
     </li>
 
+    <a id="orbot-torbutton"></a>
+    <li>
+    <b>TorButton for Mobile Firefox 4 or Custom Browser on Android</b> <br>
+Priority: <i>High</i> <br> Effort Level: <i>High</i> <br> Skill Level:
+<i>High</i> <br> Likely Mentors: <i>Nathan (n8fr8), Jake, Mike Perry</i>
+    <p>Initial work has been done on implementing a proxy-setting add-on for
+Firefox on Android (see <a
+href="https://github.com/guardianproject/ProxyMob">ProxyMob</a>), but a full
+port of TorButton needs to be done (dependent upon Firefox 4 port of
+TorButton). The other approach is to implement a custom &quot;Tor
+Browser&quot; based on Firefox or Webkit browser. See <a
+href="http://code.google.com/p/torora/wiki/Android">Torora</a> for progress
+on this so far.</p>
+    </li>
+    
+    <a id="orbot-userInterface"></a>
+    <li>
+    <b>Build a better user interface for Orbot</b> <br> Priority: <i>High</i>
+<br> Effort Level: <i>Medium</i> <br> Skill Level: <i>Medium</i> <br> Likely
+Mentors: <i>Nathan (n8fr8), Jake</i>
+    <p>Improved home screen to show confirmation of connection (via a TorCheck API
+call), better statistics about data transferred (up/down), number of
+circuits connected, quality of connection and so on. The &quot;Tether
+Wifi&quot; Android application is a good model to follow in how it shows a
+realtime count of bytes transferred as well as notifications when wifi
+clients connect. In addition, better handling of Tor system and error
+messages would also be very helpful, include use of standard Android
+operating systems notifications. The addition of a wizard or tutorial
+walkthrough for novice users to explain to them exactly what is and what is
+not anonymized or protected would greatly improve the likelihood they will
+use Orbot correctly. All of this should work on the range of screens and
+device types now offered for Android, from 2&quot; phone to 10&quot; Tablet.</p>
+    </li>
+    
     <a id="resistCensorship"></a>
     <li>
     <b>Polepszanie zdolności Tora opierania się cenzurze</b> <br> Priorytet:
@@ -702,9 +736,9 @@ Since the core of this project is researching IPv6 GeoIP data and
     
     <a id="armClientMode"></a>
     <li>
-    <b>Przypadki użycia klienta dla Arma</b> <br> Priorytet: <i>Średni</i> <br>
-Poziom wysiłku: <i>Wysoki</i> <br> Poziom umiejętności: <i>Średni</i> <br>
-Prawdopodobni opiekunowie:<i>Damian</i>
+    <b>Client Mode Use Cases for Arm</b> <br> Priority: <i>Medium</i> <br>
+Effort Level: <i>High</i> <br> Skill Level: <i>Medium</i> <br> Likely
+Mentors: <i>Damian (atagar)</i>
     <p><a href="<page projects/arm>">Arm</a> to monitor stanu Tora na linii poleceń
 w środowiskach *nix (Linux, Mac i BSD). Działa podobnie do programu top,
 dając na linii poleceń stan wykorzystania łącza Tora, połączeń,
@@ -781,52 +815,6 @@ href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>) do
 nowszych wersji Tora i zaprojektować je tak, by uruchamiać sieci testowe
 albo na jednej maszynie, albo na kilku, abyśmy mogli automatycznie badać
 zmiany wydajności na maszynach pełniących różne zadania.</p>
-    </li>
-    
-    <a id="orbotDevelopment"></a>
-    <li>
-    <b>Więcej o Orbocie i rozwoju specyficznym dla systemu Android</b> <br> <br
-/> Priorytet: <i>Średni</i> <br> Poziom wysiłku: <i>Wysoki</i> <br> Poziom
-umiejętności: <i>Średni do Wysokiego</i> <br> Prawdopodobni opiekunowie:
-<i>Nathan, Jake</i>
-    <p><b>Praca z interfejsem użytkownika w Javie na Androidzie:</b> Lepszy ekran
-powitalny, by pokazywać lepsze statystyki o transferze danych
-(wysyłanie/odbieranie), liczbie podłączonych obwodów, jakości połączenia i
-tak dalej. Aplikacja "Tether Wifi" na Androida jest dobrym modelem do
-naśladowania w tym, jak pokazuje w czasie rzeczywistym ilość wysłanych i
-odebranych bajtów oraz powiadomienia o połączeniu klienta wifi. Ponadto,
-lepsze wyświetlanie/załatwianie wiadomości systemowych lub o błędach Tora
-też byłoby bardzo pomocne. W końcu dodanie kreatora lub przewodnika dla
-początkujących użytkowników, by wyjaśnić im, co jest, a co nie jest
-anonimizowane lub chronione, bardzo zwiększyłoby prawdopodobieństwo, że będą
-używać Orbota prawidłowo.</p>
-    
-    <p><b>Praca z systemem w Javie/wnętrzem aplikacji:</b> Lepszy wskaźnik
-systemowy, poprzez pasek powiadomień, okna dialogowe "Toast" lub inny
-mechanizm, że dane aplikacji są rzeczywiście przekazywane przez
-Orbota/Tora. Na przykład, teraz musisz najpierw wejść na usługę torcheck, by
-upewnić się, że Twoja przeglądarka przechodzi przez Tora. Orbot powinien móc
-powiadamiać Cię, że obwody są otwierane, używane itd. Wspomniane wcześniej
-śledzenie transferu danych też mogłoby dostarczać tego typu uświadamiania.</p>
-    
-    <p><b>Praca z biblioteką Javy w Androidzie/Zasięgiem w społeczeństwie</b>
-Potrzebujemy mieć paczkę z prostą biblioteką do wykorzystania z aplikacjami
-innych producentów, by łatwo umożliwić im "Toryfikację" na nie-głównych
-urządzeniach (bez przezroczystego proxy) Ta biblioteka powinan zwierać
-owijkę na bibliotekę Apache HTTPClient, klasę narzędziową do sprawdzenia
-stanu połączenia Orbota i inne istotne/przydatne rzeczy, których aplikacja
-na Androida może potrzebować do zanonimizowania się. Ta praca powinna
-składać się ze stworzenia biblioteki, dokumentacji i przykładowego
-kodu. Wychodzenie z tym projektem lub podjęcie wysiłku implementacji
-biblioteki w innych otwartych aplikacjach byłoby następnym krokiem.</p>
-    
-    <p><b>Praca Android OS/C/Linux</b> przeniesienie Tora na Androida jest w
-zasadzie prostą kompilacją na Linux ARM. Nie została wykonana żadna praca
-odnośnie optymalizacji Tora w środowisku sprzętu przenośnego na prcesorze
-ARM lub innym sprzęcie z Androidem lub w sieciach mobilnych. Należy
-zauważyć, że nawet bez optymalizacji, Tor bardzo dobrze radzi sobie ze
-środowiskiem sieci mobilnych, automatycznie wykrywając zmiany adresu IP,
-ponownie łącząc obwody itd, przełączając się z 2G na 3G i Wifi i tak dalej.</p>
     </li>
     
     <a id="simulateSlowConnections"></a>
@@ -1011,6 +999,61 @@ nie-technicznych użytkowników. Dodatkowe punkty za jakiś projekt graficzny
 /Photoshop fu, gdyż moglibyśmy chcieć/potrzebować nowych ikonek.</p>
     </li>
     
+    <a id="orbot-optimisation"></a>
+    <li>
+    <b>Core Tor mobile optimisation</b> <br> Priority: <i>Medium</i> <br> Effort
+Level: <i>Medium</i> <br> Skill Level: <i>High</i> <br> Likely Mentors:
+<i>Nathan (n8fr8), Jake</i>
+    <p>
+    The existing port of Tor to Android is basically a straight cross-compile to
+Linux ARM. There has been no work done in looking at possible optimizations
+of Tor within a mobile hardware environment or on mobile networks. In
+addition, a number of additional Android OS APIs are available (such as
+wireless network status) that could be taken advantage of.
+    </p>
+    
+    <p>
+    It should be noted, that even without optimisation, Tor is handling the
+mobile network environment very well, automatically detecting change in IP
+addresses, opening circuits, etc, as the device switches from no coverage to
+2G, 3G or Wifi constantly as it changes position. However, this observation
+of &quot;very well&quot;, is just based on user experience, and not any
+detailed study of what exactly is happening, and what threats might exist
+because of this constantly changing network state.
+    </p>
+    
+    <p>
+    Finally, the build process needs to be moved to the Android NDK from the
+custom GCC toolchain we are now using, and compatibility with Android 2.3
+and 3.x Honeycomb OS need to be verified.
+    </p>
+    
+    <p>
+    For more information see the <a
+href="https://svn.torproject.org/svn/projects/android/trunk/Orbot/BUILD">Orbot
+build documentation</a>.
+    </p>
+    </li>
+    
+    <a id="orbot-orlibAndOutreach"></a>
+    <li>
+    <b>Orbot integration library and community outreach</b> <br> Priority:
+<i>Medium</i> <br> Effort Level: <i>Low</i> <br> Skill Level: <i>Medium</i>
+<br> Likely Mentors: <i>Nathan (n8fr8)</i>
+    <p>
+    We need additional work on <a
+href="https://github.com/guardianproject/orlib">ORLib</a>, our library for
+use with third-party application to easily enable them to support
+&quot;Torification&quot; on non-rooted devices (i.e. w/o transparent
+proxying). This library includes a SOCKS client, a wrapper for the Apache
+HTTPClient library, a utility class for detecting the state of Orbot
+connectivity, and other relevant/useful things an Android app might need to
+anonymize itself. This work would includes direct development of the
+library, documentation, and sample code. Outreach or effort to implement the
+library within other open-source apps is also needed.
+    </p>
+    </li>
+    
     <a id="vidaliaNetworkMap"></a>
     <li>
     <b>Poprawiona i bardziej użyteczna mapa sieci w programie Vidalia</b> <br>
@@ -1045,9 +1088,8 @@ doświadczenie z Qt i CMake będzie przydatne, ale nie jest wymagane.
     
     <a id="armGui"></a>
     <li>
-    <b>GUI dla Arma</b> <br> Priorytet: <i>Niski</i> <br> Poziom wysiłku:
-<i>Wysoki</i> <br> Poziom umiejętności: <i>Średni</i> <br> Prawdopodobni
-opiekunowie: <i>Damian</i>
+    <b>GUI for Arm</b> <br> Priority: <i>Low</i> <br> Effort Level: <i>High</i>
+<br> Skill Level: <i>Medium</i> <br> Likely Mentors: <i>Damian (atagar)</i>
     <p>
     Arm ma wiele unikalnych funkcjonalności, niektóre z ciekawszych to lista
 połączeń (korelowanie wyników netstat z dokumentem konsensusu Tora) i edytor
@@ -1295,8 +1337,8 @@ na zwiększenie szans użytkowników mostków na pozostanie połączonymi?
     </ol>
     
     <p>
-    <a href="<page about/contact>">Daj nam znać</a>, jeśli poczyniłeś/aś postępy nad
-którąkolwiek z tych rzeczy!
+    <a href="<page about/contact>">Daj nam znać</a>, jeśli poczyniłeś/aś postępy
+nad którąkolwiek z tych rzeczy!
     </p>
   </div>
   
