@@ -10,7 +10,7 @@
 # 4. make
 # 5. ./publish
 
-export TORGIT=/home/phobos/onionrouter/onionrouter/tor.git/.git
+export TORGIT=/home/runa/test/tor/.git
 export STABLETAG=tor-0.2.2.23-alpha
 export DEVTAG=tor-0.2.2.23-alpha
 
