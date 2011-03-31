@@ -124,6 +124,65 @@ for file in $po ; do
 				echo '#include "foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
 			fi
 
+			# If the translation is Polish, include the
+			# correct header, menu files and footer
+			if [ $subdir = "pl" ]
+			then
+				# Head
+				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$wmlfile"`
+				new_head=`echo $orig_head | sed s@head.wmi@pl/head.wmi@`
+				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$wmlfile"
+
+				# Side (not all files include this)
+				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$wmlfile"`
+				if [ -n "$orig_side" ]
+				then
+					new_side=`echo '#include "pl/side.wmi"'`
+					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$wmlfile"
+				fi
+
+				# Info (not all files include this)
+				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$wmlfile"`
+				if [ -n "$orig_info" ]
+				then
+					new_info=`echo '#include "pl/info.wmi"'`
+					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$wmlfile"
+				fi
+
+				# Footer
+				echo '#include "pl/foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
+			fi
+
+			# If the translation is Arabic, include the
+			# correct header, css, menu files and footer
+			if [ $subdir = "ar" ]
+			then
+				# Head
+				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$wmlfile"`
+				temp_head=`echo $orig_head | sed s@head.wmi@ar/head.wmi@`
+				new_head=`echo $temp_head 'STYLESHEET="css/master-rtl.css"'`
+				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$wmlfile"
+
+				# Side (not all files include this)
+				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$wmlfile"`
+				if [ -n "$orig_side" ]
+				then
+					new_side=`echo '#include "ar/side.wmi"'`
+					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$wmlfile"
+				fi
+
+				# Info (not all files include this)
+				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$wmlfile"`
+				if [ -n "$orig_info" ]
+				then
+					new_info=`echo '#include "ar/info.wmi"'`
+					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$wmlfile"
+				fi
+
+				# Footer
+				echo '#include "ar/foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
+			fi
+
 			# If the directory does not include sidenav.wmi,
 			# copy it from the English directory (only if
 			# the English directory has this file)
@@ -131,7 +190,6 @@ for file in $po ; do
 			then
 				cp "$wmldir/en/sidenav.wmi" "$wmldir/$subdir"
 			fi
-
 		fi
 	}	
 
@@ -162,6 +220,64 @@ for file in $po ; do
 			if [[ $lang != "ar" && $lang != "pl" ]]
 			then
 				echo '#include "foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
+			fi
+
+                        # If the translation is Polish, include the
+                        # correct header, menu files and footer
+			if [ $lang = "pl" ]
+			then
+				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+				new_head=`echo $orig_head | sed s@head.wmi@pl/head.wmi@`
+				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$lang/$wmlfile"
+
+				# Side (not all files include this)
+				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+				if [ -n "$orig_side" ]
+				then
+					new_side=`echo '#include "pl/side.wmi"'`
+					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$lang/$wmlfile"
+				fi
+
+				# Info (not all files include this)
+				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+				if [ -n "$orig_info" ]
+				then
+					new_info=`echo '#include "pl/info.wmi"'`
+					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$lang/$wmlfile"
+				fi
+
+				# Footer
+				echo '#include "pl/foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
+			fi
+
+			# If the file is an Arabic translation, include the
+			# correct header, css, menu files and footer
+			if [ $lang = "ar" ]
+			then
+				# Head
+				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+				temp_head=`echo $orig_head | sed s@head.wmi@ar/head.wmi@`
+				new_head=`echo $temp_head 'STYLESHEET="css/master-rtl.css"'`
+				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$lang/$wmlfile"
+
+				# Side (not all files include this)
+				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+				if [ -n "$orig_side" ]
+				then
+					new_side=`echo '#include "ar/side.wmi"'`
+					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$lang/$wmlfile"
+				fi
+
+				# Info (not all files include this)
+				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+				if [ -n "$orig_info" ]
+				then
+					new_info=`echo '#include "ar/info.wmi"'`
+					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$lang/$wmlfile"
+				fi
+
+				# Footer
+				echo '#include "ar/foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
 			fi
 
 			# If the directory does not include sidenav.wmi,
@@ -204,76 +320,10 @@ for file in $po ; do
 		then
 			subdir="pl"
 			nosubdir
-
-			# If the file was written, include the right
-			# header, menu files and footer
-			if [ -e "$wmldir/$subdir/$wmlfile" ]
-			then
-				# Head
-				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$wmlfile"`
-				new_head=`echo $orig_head | sed s@head.wmi@pl/head.wmi@`
-				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$wmlfile"
-
-				# Side (not all files include this)
-				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$wmlfile"`
-				if [ -n "$orig_side" ]
-				then
-					new_side=`echo '#include "pl/side.wmi"'`
-					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$wmlfile"
-				fi
-
-				# Info (not all files include this)
-				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$wmlfile"`
-				if [ -n "$orig_info" ]
-				then
-					new_info=`echo '#include "pl/info.wmi"'`
-					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$wmlfile"
-				fi
-
-				# Footer
-				echo '#include "pl/foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
-			fi
-		fi
-
-		# If the file is an Arabic translation, include
-		# the right header, css, menu files and footer
-                if [ $subdir = "ar" ]
-		then
-			# Convert the file first
-			nosubdir
-
-			# If it was written, do the following
-			if [ -e "$wmldir/$subdir/$wmlfile" ]
-			then
-				# Head
-				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$wmlfile"`
-				temp_head=`echo $orig_head | sed s@head.wmi@ar/head.wmi@`
-				new_head=`echo $temp_head 'STYLESHEET="css/master-rtl.css"'`
-				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$wmlfile"
-
-				# Side (not all files include this)
-				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$wmlfile"`
-				if [ -n "$orig_side" ]
-				then
-					new_side=`echo '#include "ar/side.wmi"'`
-					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$wmlfile"
-				fi
-	
-				# Info (not all files include this)
-				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$wmlfile"`
-				if [ -n "$orig_info" ]
-				then
-					new_info=`echo '#include "ar/info.wmi"'`
-					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$wmlfile"
-				fi
-
-				# Footer
-				echo '#include "ar/foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
-			fi
 		fi
 
 		# Convert everything else
-		if [[ $subdir != "en" && $subdir != "zh_CN" && $subdir != "nb" && $subdir != "sv" && $subdir != "ar" ]]
+		if [[ $subdir != "en" && $subdir != "zh_CN" && $subdir != "nb" && $subdir != "sv" && $subdir != "pl_PL" ]]
 		then
 			nosubdir
 		fi
@@ -304,77 +354,10 @@ for file in $po ; do
 		then
 			lang="pl"
 			subdir
-
-			# If the file was written, include the right
-			# header, menu files and footer
-			if [ -e "$wmldir/$subdir/$lang/$wmlfile" ]
-			then
-				# Head
-				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
-				new_head=`echo $orig_head | sed s@head.wmi@pl/head.wmi@`
-				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$lang/$wmlfile"
-
-				# Side (not all files include this)
-				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
-				if [ -n "$orig_side" ]
-				then
-					new_side=`echo '#include "pl/side.wmi"'`
-					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$lang/$wmlfile"
-				fi
-
-				# Info (not all files include this)
-				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
-				if [ -n "$orig_info" ]
-				then
-					new_info=`echo '#include "pl/info.wmi"'`
-					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$lang/$wmlfile"
-				fi
-
-				# Footer
-				echo '#include "pl/foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
-			fi
-
-		fi
-
-		# If the file is an Arabic translation, include the
-		# right header, css, menu files and footer
-		if [ $lang = "ar" ]
-		then
-			# Convert the file first
-			subdir
-
-			# If it was written, do the following
-			if [ -e "$wmldir/$subdir/$lang/$wmlfile" ]
-			then
-				# Head
-				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
-				temp_head=`echo $orig_head | sed s@head.wmi@ar/head.wmi@`
-				new_head=`echo $temp_head 'STYLESHEET="css/master-rtl.css"'`
-				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$lang/$wmlfile"
-
-				# Side (not all files include this)
-				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
-				if [ -n "$orig_side" ]
-				then
-					new_side=`echo '#include "ar/side.wmi"'`
-					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$lang/$wmlfile"
-				fi
-
-				# Info (not all files include this)
-				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
-				if [ -n "$orig_info" ]
-				then
-					new_info=`echo '#include "ar/info.wmi"'`
-					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$lang/$wmlfile"
-				fi
-
-				# Footer
-				echo '#include "ar/foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
-			fi
 		fi
 
 		# Convert everything else
-		if [[ $lang != "en" && $lang != "zh_CN" && $lang != "nb" && $lang != "sv" && $lang != "ar" ]]
+		if [[ $lang != "en" && $lang != "zh_CN" && $lang != "nb" && $lang != "sv" && $lang != "pl_PL" ]]
 		then
 			subdir
 		fi
