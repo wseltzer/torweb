@@ -4,9 +4,9 @@
 
 
 ## translation metadata
-# Revision: $Revision: 24472 $
+# Revision: $Revision: 24503 $
 # Translation-Priority: 2-medium
-#include "head.wmi" TITLE="Tor Project: FAQ" CHARSET="UTF-8"
+#include "pl/head.wmi" TITLE="Tor Project: FAQ" CHARSET="UTF-8"
 <div id="content" class="clearfix">
   <div id="breadcrumbs">
     <a href="<page index>">Start &raquo; </a> <a href="<page
@@ -350,8 +350,9 @@ o Torze?</a></h3>
     <ol>
     <li>Przeczytaj to <a href="<page docs/faq>">FAQ</a>.</li>
     <li>Przeczytaj <a href="<page docs/documentation>">dokumentację</a>.</li>
-    <li>Przeczytaj <a href="http://archives.seul.org/or/talk">Archiwa OR-TALK</a> i
-sprawdź, czy na Twoje pytanie nie ma już odpowiedzi. </li>
+    <li>Read through the <a
+href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-talk">tor-talk
+archives</a> and see if your question is already answered.</li>
     <li>Dołącz do naszego <a href="irc://irc.oftc.net#tor">kanału irc</a>, podaj
 problem i czekaj na pomoc.</li>
     <li>Wyślie e-mail do tor-assistants małpa torproject.org. Są to ochotnicy,
@@ -1285,13 +1286,13 @@ nie ma aż tylu błędów związanych z fragmentacją (ale ceną jest większe
 użycie procesora). Możesz powiedzieć Torowi, by używał tej implementacji
 malloc: <tt>./configure --enable-openbsd-malloc</tt></li>
 
-    <li>Jeśli prowadzisz szybki przekaźnik, co znaczy, że masz otwartych wiele
-połączeń TLS, prawdopodobnie tracisz wiele pamięci na werwnętrzne bufory
-OpenSSL (ponad 38kB na gniazdo). Załataliśmy OpenSSL, by <a
-href="http://archives.seul.org/or/dev/Jun-2008/msg00001.html">bardziej
-agresywnie zwalniał nieużywaną pamięć na bufory</a>. Jeśli zainstalujesz
-OpenSSL 1.0.0-beta5, proces kompilacji Tora automatycznie rozpozna i
-skorzysta z tej cechy.</li>
+    <li>If you're running a fast relay, meaning you have many TLS connections open,
+you are probably losing a lot of memory to OpenSSL's internal buffers (38KB+
+per socket). We've patched OpenSSL to <a
+href="https://lists.torproject.org/pipermail/tor-dev/2008-June/001519.html">release
+unused buffer memory more aggressively</a>. If you update to OpenSSL
+1.0.0-beta5, Tor's build process will automatically recognize and use this
+feature.</li>
 
     <li>Jeśli jesteś na systemie Solaris, OpenBSD, NetBSD, lub starym FreeBSD, Tor
 prawdopodobnie uruchamia osobne procesy zamiast używać wątków. Rozważ zmianę
@@ -1639,12 +1640,12 @@ href="<wiki>TheOnionRouter/TorAbuseTemplates">zebrany tutaj</a>.
 <div id = "sidecol">
 
 
-  #include "side.wmi"
-#include "info.wmi"
+#include "pl/side.wmi"
+#include "pl/info.wmi"
 </div>
   
 <!-- END SIDECOL -->
 </div>
 
 
-#include "foot.wmi"
+#include "pl/foot.wmi"
