@@ -11,7 +11,7 @@
      <address><email>mikeperry.fscked/org</email></address>
     </affiliation>
    </author>
-   <pubdate>Apr 3 2011</pubdate>
+   <pubdate>Apr 4 2011</pubdate>
  </articleinfo>
 
 <sect1>
@@ -332,13 +332,13 @@ acceptable style.. Don't really want to make my own stylesheet -->
  <listitem id="proxy"><command>Proxy Obedience</command> 
  <para>The browser
 MUST NOT bypass Tor proxy settings for any content.</para></listitem>
- <listitem id="isolation"><command>Network Isolation</command>
- <para>Pages MUST NOT perform any network activity in a Tor state different
- from the state they were originally loaded in.</para></listitem>
  <listitem id="state"><command>State Separation</command>
  <para>Browser state (cookies, cache, history, 'DOM storage'), accumulated in
  one Tor state MUST NOT be accessible via the network in
  another Tor state.</para></listitem>
+ <listitem id="isolation"><command>Network Isolation</command>
+ <para>Pages MUST NOT perform any network activity in a Tor state different
+ from the state they were originally loaded in.</para></listitem>
  <listitem id="undiscoverability"><command>Tor Undiscoverability</command><para>With
 the advent of bridge support in Tor 0.2.0.x, there are now a class of Tor
 users whose network fingerprint does not obviously betray the fact that they
@@ -349,7 +349,8 @@ reveal its presence while Tor is disabled.</para></listitem>
  <listitem id="location"><command>Location Neutrality</command><para>The browser SHOULD NOT leak location-specific information, such as
  timezone or locale via Tor.</para></listitem>
  <listitem id="setpreservation"><command>Anonymity Set
-Preservation</command><para>The browser SHOULD NOT leak any other anonymity set reducing information 
+Preservation</command><para>The browser SHOULD NOT leak any other anonymity
+set reducing or fingerprinting information
  (such as user agent, extension presence, and resolution information)
 automatically via Tor. The assessment of the attacks above should make it clear
 that anonymity set reduction is a very powerful method of tracking and
@@ -577,10 +578,10 @@ years past.
  <title><ulink
 url="https://gitweb.torproject.org/torbutton.git/blob_plain/HEAD:/src/components/torRefSpoofer.js">@torproject.org/torRefSpoofer;1</ulink></title>
  <para>
-This component handles optional referrer spoofing for Torbuton. It implements a
+This component handles optional referer spoofing for Torbutton. It implements a
 form of "smart" referer spoofing using <ulink
 url="https://developer.mozilla.org/en/Setting_HTTP_request_headers">http-on-modify-request</ulink>
-to modify the Referrer header. The code sends the default browser referrer
+to modify the Referer header. The code sends the default browser referer
 header only if the destination domain is a suffix of the source, or if the
 source is a suffix of the destination. Otherwise, it sends no referer. This
 strange suffix logic is used as a heuristic: some rare sites on the web block
@@ -2043,7 +2044,7 @@ sent. The default value is 1. The smart referer spoofing is implemented by the
 </para>
 <para>
 This setting also does not directly satisfy any Torbutton requirement, but
-some may desire to mask their referrer for general privacy concerns.
+some may desire to mask their referer for general privacy concerns.
 </para>
 </sect3>
 
@@ -2188,7 +2189,7 @@ bug interferes with Torbutton's ability to satisfy its <link
 linkend="setpreservation">Anonymity Set Preservation</link> requirement.
      </para>
     </listitem>
-
+<!--
    <listitem><ulink
 url="https://bugzilla.mozilla.org/show_bug.cgi?id=280661">Bug 280661 - SOCKS proxy server
 connection timeout hard-coded</ulink>
@@ -2202,6 +2203,7 @@ of privacy and security issues of its own (in addition to being unmaintained).
 
     </para>
    </listitem>
+-->
    <listitem><ulink
 url="https://bugzilla.mozilla.org/show_bug.cgi?id=418986">Bug 418986 - window.screen
 provides a large amount of identifiable information</ulink>
@@ -2284,7 +2286,7 @@ linkend="setpreservation">Anonymity Set Preservation</link> requirement.
       </para>
      </listitem>
     <listitem><ulink
-url="https://bugzilla.mozilla.org/show_bug.cgi?id=122752">SOCKS
+url="https://bugzilla.mozilla.org/show_bug.cgi?id=122752">Bug 122752 - SOCKS
 Username/Password Support</ulink>
     <para>
 We need <ulink url="https://developer.mozilla.org/en/nsIProxyInfo">Firefox
@@ -2334,6 +2336,7 @@ requirement on Firefox 3.
      </listitem>
     </orderedlist>
   </sect2>
+<!-- XXX: Need to create a bug for DOM storage APIs at some point -->
   <sect2 id="FirefoxWishlist">
    <title>Bugs blocking functionality</title>
    <para>
@@ -2342,7 +2345,7 @@ The following bugs impact Torbutton and similar extensions' functionality.
 
     <orderedlist>
 
-
+<!--
    <listitem><ulink
 url="https://bugzilla.mozilla.org/show_bug.cgi?id=445696">Bug 445696 -
 Extensions cannot determine if Firefox is full screen</ulink>
@@ -2355,8 +2358,9 @@ to resize maximized and minimized windows when it should not.
 
    </para>
    </listitem>
+-->
    <listitem><ulink
-url="https://bugzilla.mozilla.org/show_bug.cgi?id=629820">nsIContentPolicy::shouldLoad not
+url="https://bugzilla.mozilla.org/show_bug.cgi?id=629820">Bug 629820 - nsIContentPolicy::shouldLoad not
 called for web request in Firefox Mobile</ulink>
     <para>
 
@@ -2371,6 +2375,7 @@ which will also cause more problems for porting Torbutton.
 
     </para>
    </listitem>
+<!--
    <listitem><ulink
 url="https://bugzilla.mozilla.org/show_bug.cgi?id=290456">Bug 290456 -
 Block/clear Flash MX "cookies" as well</ulink>
@@ -2386,6 +2391,7 @@ it would be nice if there was a standard way to do this from a Firefox API.
 
    </para>
    </listitem>
+-->
    <listitem><ulink
 url="https://bugzilla.mozilla.org/show_bug.cgi?id=417869">Bug 417869 -
 Browser context is difficult to obtain from many XPCOM callbacks</ulink>
@@ -2476,6 +2482,7 @@ workarounds.
   </para>
 
     <orderedlist>
+<!--
     <listitem><ulink
 url="https://bugzilla.mozilla.org/show_bug.cgi?id=435151">Bug 435151 - XPCSafeJSObjectWrapper breaks evalInSandbox</ulink>
      <para>
@@ -2490,6 +2497,7 @@ properly though.
 
      </para>
      </listitem>
+-->
      <listitem><ulink
 url="https://bugzilla.mozilla.org/show_bug.cgi?id=440892">Bug 440892 -
 network.protocol-handler.warn-external are ignored</ulink>
