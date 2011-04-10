@@ -552,25 +552,6 @@ my %m = (
         },
 
         mirror028 => {
-            adminContact => "gouki",
-            orgName => "5ª Coluna",
-            isoCC => "PT",
-            subRegion => "",
-            region => "PT",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor-www.5coluna.com",
-            httpsWebsiteMirror => "https://tor-www.5coluna.com",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor-www.5coluna.com/dist/",
-            httpsDistMirror => "https://tor-www.5coluna.com/dist/",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
-
-        mirror029 => {
             adminContact => "",
             orgName => "NW Linux",
             isoCC => "US",
@@ -588,7 +569,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
         },
-        mirror030 => {
+        mirror029 => {
             adminContact => "",
             orgName => "LazyTiger",
             isoCC => "FR",
@@ -606,7 +587,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
         },
-        mirror031 => {
+        mirror030 => {
             adminContact => "",
             orgName => "searchprivate",
             isoCC => "US",
@@ -624,7 +605,7 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
         },
-        mirror032 => {
+        mirror031 => {
             adminContact => "",
             orgName => "cyberarmy",
             isoCC => "AT",
