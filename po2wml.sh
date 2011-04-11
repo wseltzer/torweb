@@ -119,7 +119,7 @@ for file in $po ; do
 
 			# Include the English footer for most of the
 			# translations
-			if [[ $subdir != "ar" && $subdir != "pl" ]]
+			if [[ $subdir != "ar" && $subdir != "pl" && $subdir != "de" ]]
 			then
 				echo '#include "foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
 			fi
@@ -152,6 +152,35 @@ for file in $po ; do
 				# Footer
 				echo '#include "pl/foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
 			fi
+
+                        # If the translation is German, include the
+                        # correct header, menu files and footer
+                        if [ $subdir = "de" ]
+                        then
+                                # Head
+                                orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$wmlfile"`
+                                new_head=`echo $orig_head | sed s@head.wmi@de/head.wmi@`
+                                sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$wmlfile"
+
+                                # Side (not all files include this)
+                                orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$wmlfile"`
+                                if [ -n "$orig_side" ]
+                                then
+                                        new_side=`echo '#include "de/side.wmi"'`
+                                        sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$wmlfile"
+                                fi  
+
+                                # Info (not all files include this)
+                                orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$wmlfile"`
+                                if [ -n "$orig_info" ]
+                                then
+                                        new_info=`echo '#include "de/info.wmi"'`
+                                        sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$wmlfile"
+                                fi  
+
+                                # Footer
+                                echo '#include "de/foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
+                        fi  
 
 			# If the translation is Arabic, include the
 			# correct header, css, menu files and footer
@@ -217,7 +246,7 @@ for file in $po ; do
 
 			# Include the English footer for most of the
 			# translations 
-			if [[ $lang != "ar" && $lang != "pl" ]]
+			if [[ $lang != "ar" && $lang != "pl" && $subdir != "de" ]]
 			then
 				echo '#include "foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
 			fi
@@ -249,6 +278,34 @@ for file in $po ; do
 				# Footer
 				echo '#include "pl/foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
 			fi
+
+                        # If the translation is German, include the
+                        # correct header, menu files and footer
+                        if [ $lang = "de" ]
+                        then
+                                orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+                                new_head=`echo $orig_head | sed s@head.wmi@de/head.wmi@`
+                                sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$lang/$wmlfile"
+
+                                # Side (not all files include this)
+                                orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+                                if [ -n "$orig_side" ]
+                                then
+                                        new_side=`echo '#include "de/side.wmi"'`
+                                        sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$lang/$wmlfile"
+                                fi
+
+                                # Info (not all files include this)
+                                orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$lang/$wmlfile"`
+                                if [ -n "$orig_info" ]
+                                then
+                                        new_info=`echo '#include "de/info.wmi"'`
+                                        sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$lang/$wmlfile"
+                                fi
+
+                                # Footer
+                                echo '#include "de/foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
+                        fi
 
 			# If the file is an Arabic translation, include the
 			# correct header, css, menu files and footer
