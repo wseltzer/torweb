@@ -1,0 +1,98 @@
+## translation metadata
+# Revision: $Revision$
+# Translation-Priority: 2-medium
+
+# this structure defines the side nav bar for the /docs pages
+# and is the input for include/side.wmi
+
+# fields:
+#
+# url - the path to the wml page, as used the the <page> tag. This tag ensures
+# that links will point to the current language if supported, and alternately
+# the english version 
+#
+# txt - the link text to be displayed. Different translations will
+# need to supply alternate txt 
+
+<:
+  my $sidenav;
+  $sidenav = [
+      {'url'  => 'docs/documentation',
+       'txt'  => 'Dokumentations Übersicht',
+      }, 
+      {
+       'url'  => 'docs/installguide',
+       'txt'  => 'Installations Anleitung',
+       'subelements' => [
+          {'url'  => 'docs/tor-doc-windows',
+           'txt'  => 'Installation auf Windows',
+          },
+          {'url'  => 'docs/tor-doc-unix',
+           'txt'  => 'Installation auf Linux/BSD/Unix',
+          },
+          {'url'  => 'docs/tor-doc-osx',
+           'txt'  => 'Installation auf Mac OS X',
+          },
+          {'url'  => 'docs/android',
+           'txt'  => 'Installation auf Android',
+          },
+          {'url'  => 'docs/N900',
+           'txt'  => 'Installation auf Maemo/N900',
+          },
+          {'url'  => 'docs/verifying-signatures',
+           'txt'  => 'Überprüfe unsere GPG Signatur',
+          },
+          {'url'  => 'docs/tor-doc-web',
+           'txt'  => 'Richte deinen Browser zur Nutzung von Tor ein',
+          }],
+      },
+      {'url'  => 'docs/manual',
+       'txt'  => 'Handbücher',
+       'subelements' => [
+          {'url'  => 'docs/tor-doc-relay',
+           'txt'  => 'Konfiguration eines Relais',
+          },
+          {'url'  => 'docs/tor-hidden-service',
+           'txt'  => 'Konfiguration eines versteckten Dienstes',
+          }, 
+          {'url'  => 'docs/bridges',
+           'txt'  => 'Konfiguration eines Brücken Relais',
+          }, 
+          {'url'  => 'docs/running-a-mirror',
+           'txt'  => 'Konfiguration eines Spiegelservers',
+          },
+          {'url'  => 'docs/tor-manual',
+           'txt'  => 'Tor -stable Handbuch',
+          },
+          {'url'  => 'docs/tor-manual-dev',
+           'txt'  => 'Tor -alpha Handbuch',
+          },
+          {'url'  => 'docs/proxychain',
+           'txt'  => 'Konfigurieren von Tor für die Verwendung eines Proxy Servers',
+          }],
+      },
+      {
+       'url'  => '<wiki>',
+       'txt'  => 'Tor Wiki',
+      }, 
+      {'url'  => 'docs/faq',
+       'txt'  => 'Allgemeine FAQ',  
+      },
+      {'url'  => 'torbutton/torbutton-faq',
+       'txt'  => 'Torbutton FAQ',
+      },
+      {'url'  => 'docs/faq-abuse',
+       'txt'  => 'Missbrauch FAQ',
+      },
+      {'url'  => 'docs/trademark-faq',
+       'txt'  => 'Trademark FAQ',
+      },
+      {'url'  => 'eff/tor-legal-faq',
+       'txt'  => 'Tor rechtliches FAQ',
+      },
+      {'url'  => 'eff/tor-dmca-response',
+       'txt'  => 'Tor DMCA Antwort',
+      },  
+  ];
+:>
+

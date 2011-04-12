@@ -1,0 +1,196 @@
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 24267 $
+# Translation-Priority: 3-low
+#include "ar/head.wmi" TITLE="Tor Project: Debian/Ubuntu Instructions" CHARSET="UTF-8" STYLESHEET="css/master-rtl.css"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a> <a href="<page
+docs/documentation>">Documentation &raquo; </a> <a href="<page
+docs/debian>">Debian/Ubuntu Instructions</a>
+  </div>
+  <div id="maincol"> 
+<a id="debian"></a>
+<h2><a class="anchor" href="#debian">الخيار الأول: تور على دِبيان ليني أو دِبيان
+غيرالمستقرة أو دِبيان الإختبارية</a></h2>
+<br />
+
+<p>
+إذا كنت تستعمل دِبيان المستقرة (ليني) أو غير المستقرة (sid) أو الإختبارية
+(سكوييز)، نفد فقط الأمر <br /> <tt>apt-get install tor tor-geoipdb</tt>
+بصلاحيات الجذر.
+</p>
+
+<p>
+Note that this might not always give you the latest stable Tor version, but
+you will receive important security fixes. To make sure that you're running
+the latest stable version of Tor, see option two below.
+</p>
+
+<p>
+تور الأن متبث ومشغل. إنتقل إلى <a href="<page
+docs/tor-doc-unix>#polipo">الخطوة الثانية</a> من تعليمات "Tor on
+Linux/Unix".
+</p>
+
+<hr /> <a id="ubuntu"></a> <a id="packages"></a>
+<h2><a class="anchor" href="#ubuntu">الخيار الثاني: تور على أوبنتو أو دِبيان</a></h2>
+<br />
+
+<p>
+<b>لا تستخدم حزم أوبنتو universe.</b> فهي لم تعد مدعومة وإصداراتها
+قديمة. وهذا يعني إفتقادها للإستقرار والإصلاحات الأمنية. 
+</p>
+
+<p>
+You'll need to set up our package repository before you can fetch
+Tor. First, you need to figure out the name of your distribution. A quick
+command to run is <tt>lsb_release -c</tt> or <tt>cat
+/etc/debian_version</tt>.  Here's a quick mapping:
+<ul>
+<li> دِبيان غير المستقرة (sid) هي "sid"</li>
+<li> دِبيان 6.0 (سكوييز) هي "squeeze"</li>
+<li> دِبيان 5.0 (ليني) هي "lenny"</li>
+<li> أوبنتو 10.10 هي "maverick"</li>
+<li> أو 10.04 أو ترِسكال 4.0 هما "lucid"</li>
+<li> أوبنتو 9.10 أو ترِسكال 3.5 هما "karmic"</li>
+<li> أوبنتو 8.04 هي "hardy"</li>
+<li> أوبنتو 6.06 هي "dapper"</li>
+</ul>
+
+ثم أضف هذا السطر إلى <tt>/etc/apt/sources.list</tt> الملف:<br /> 
+<pre>
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+</pre>
+حيث يمكنك وضع الاسم الرمزى لتوزيعتك (i.e. lenny, sid, maverick أو أيا كانت)
+مكان &lt;DISTRIBUTION&gt;.
+</p>
+
+<p>
+ثم أضف مفتاح gpg المستعمل لتوقيع الحزم عن طريق تنفيذ الأوامر التالية في محث
+الأوامر :
+<pre>
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+</pre>
+قُم الأن بإنعاش المصادر و ثبّت تور بتنفيد الأمر التالي (بصلا حيات الجدر) على
+محث الأوامر:
+<pre>
+apt-get update
+apt-get install tor tor-geoipdb
+</pre>
+</p>
+
+<p>
+تور الأن متبث ومشغل. إنتقل إلى <a href="<page
+docs/tor-doc-unix>#polipo">الخطوة الثانية</a> من تعليمات "Tor on
+Linux/Unix".
+</p>
+
+<p style="font-size: small">
+The DNS name <code>deb.torproject.org</code> is actually a set of
+independent servers in a DNS round robin configuration.  If you for some
+reason cannot access it you might try to use the name of one of its part
+instead.  Try <code>deb-master.torproject.org</code>,
+<code>mirror.netcologne.de</code> or <code>tor.mirror.youam.de</code>.
+</p>
+
+<hr /> <a id="development"></a>
+<h2><a class="anchor" href="#development">الخيار الثالث: إستعمال فرع التطوير من
+تور على دِبيان أو أوبنتو.</a></h2>
+<br />
+
+<p>إذا كنت تريد استخدام <a href="<page download/download>#packagediff">فرع
+التطوير</a> من تور (المزيد من الميزات والمزيد من العلل)، تحتاج إلى إضافة
+مجموعة مختلفة من السطور إلى <tt>/etc/apt/sources.list</tt> الملف:<br />
+<pre>
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb     http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
+</pre>
+حيث يمكنك مرة أخرى إستبدال &lt;DISTRIBUTION&gt; باسم توزيعك (lenny, sid,
+maverick, ...)
+</p>
+
+<p>
+ثم شغّل الأوامر التالية في محث الأوامر الخاص بك :
+<pre>
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+apt-get update
+apt-get install tor tor-geoipdb
+</pre>
+</p>
+
+<p>
+تور الأن متبث ومشغل. إنتقل إلى <a href="<page
+docs/tor-doc-unix>#polipo">الخطوة الثانية</a> من تعليمات "Tor on
+Linux/Unix".
+</p>
+
+<hr /> <a id="source"></a>
+<h2><a class="anchor" href="#source">البناء من المصدر</a></h2>
+<br />
+
+<p>
+إذا كنت ترغب في بناء حزم دبيانية خاصة بك من المصدر يجب أولا إضافة سطر
+<tt>deb-src</tt> المناسب إلى <tt>sources.list</tt>.
+<pre>
+# For the stable version.
+# For the unstable version.
+
+deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+
+
+deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb-src http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
+</pre>
+تحتاج أيضا إلى تثبيت الحزم اللازمة لبناء الحزم الدبيانية الخاصة بك والحزم
+المطلوبة لبناء تور:
+<pre>
+apt-get install build-essential fakeroot devscripts
+apt-get build-dep tor
+</pre>
+ثم يمكنك بناء تور في ~/debian-packages:
+<pre>
+mkdir ~/debian-packages; cd ~/debian-packages
+apt-get source tor
+cd tor-*
+debuild -rfakeroot -uc -us
+cd ..
+</pre>
+الأن يمكنك تثبيت الحزمة الجديدة:
+<pre>
+sudo dpkg -i tor_*.deb
+</pre>
+</p>
+
+<p>
+تور الأن متبث ومشغل. إنتقل إلى <a href="<page
+docs/tor-doc-unix>#polipo">الخطوة الثانية</a> من تعليمات "Tor on
+Linux/Unix".
+</p>
+
+<hr />
+
+<p>إذا كان لديك اقتراحات لتحسين هذه الوثيقة ، يرجى <a href="<page
+about/contact>">إرسالها إلينا</a> . شكرا!</p>
+
+
+  <!-- END MAIN COL -->
+</div>
+  <div id = "sidecol">
+
+
+#include "ar/side.wmi"
+#include "ar/info.wmi"
+</div>
+  
+<!-- END SIDECOL -->
+</div>
+
+
+#include "ar/foot.wmi"
