@@ -569,6 +569,24 @@ my %m = (
             httpsDistMirror => "https://www.torservers.net/mirrors/torproject.org/dist",
             rsyncDistMirror => "",
             hiddenServiceMirror => "http://hbpvnydyyjbmhx6b.onion/mirrors/torproject.org/",
+        },
+        mirror034 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "AT",
+            subRegion => "",
+            region => "AT",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.webersiedlung.at/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
