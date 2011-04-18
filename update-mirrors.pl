@@ -473,11 +473,11 @@ my %m = (
             loadBalanced => "No",
             httpWebsiteMirror => "http://torproject.nwlinux.us",
             httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
+            rsyncWebsiteMirror => "rsync://nwlinux.us/tor-web",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://torproject.nwlinux.us/dist",
             httpsDistMirror => "",
-            rsyncDistMirror => "",
+            rsyncDistMirror => "rsync://nwlinux.us/tor-dist",
             hiddenServiceMirror => "",
         },
         mirror029 => {
