@@ -1,0 +1,195 @@
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 24504 $
+# Translation-Priority: 1-high
+#include "de/head.wmi" TITLE="Tor Project: MS Windows Install Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Startseite &raquo; </a> <a href="<page
+docs/documentation>">Dokumentation &raquo; </a> <a href="<page
+docs/tor-doc-windows>">Windows-Client</a>
+  </div> 
+  <div id="maincol"> 
+    <h1>Ausführung des <a href="<page index>">Tor</a> Clients auf Microsoft Windows</h1>
+    <br>
+    
+    <p>
+    <b>Bitte beachte, dass dies Anweisungen sind um Tor auf Microsoft Windows
+(XP, Vista, 7, und Server Editionen) auszuführen. Wenn du Netzwerkverkehr
+für andre weiterleiten möchtest, um damit dem Wachstum des Netzwerks zu
+helfen (Bitte tu das), dann lies die <a href="<page
+docs/tor-doc-relay>">Konfigurierung eines Relais</a> Anleitung.</b>
+    </p>
+    
+    <p>Freedom House hatt ein Video Produziert, das Zeigt wie man Tor
+installiert. Du kannst es hier anschauen <a
+href="https://media.torproject.org/video/2009-install-and-use-tor.ogv">Wie
+man Tor auf Windows Installiert</a>.  Du kennst ein besseres Video, oder
+eines, was in deine Sprache übersetzt ist? Lass es uns Wissen!</p>
+    
+    <div class="center">
+    <p><video id="v1" src="https://media.torproject.org/video/2009-install-and-use-tor.ogv" autobuffer="true" controls="controls"></video></p>
+    </div>
+    
+    <hr> <a id="installing"></a>
+    <h2><a class="anchor" href="#installing">Schritt Eins: Runterladen und
+Installieren von Tor</a></h2>
+    <br>
+    
+    <p>
+    Das Vidalia-Packet für Windows enthält <a href="<page index>">Tor</a>, <a
+href="<page projects/vidalia>">Vidalia</a> (ein GUI fürr Tor), <a
+href="<page torbutton/index>">Torbutton</a> (ein Plugin für Mozilla
+Firefox), und <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (ein
+Web-Proxy) gepackt in ein Packet, und mit den Programmen so eingestellt,
+sodass sie miteinander arbeiten.  Lade dir entweder die <a
+href="../<package-win32-bundle-stable>">stabile</a> oder die <a
+href="../<package-win32-bundle-alpha>">experimentelle</a> Version des
+Vidalia-Packets, oder schaue für mehr Auswahl auf die <a href="<page
+download/download>">Download Seite</a>.
+    </p>
+    
+    <img alt="tor installer splash page"
+src="$(IMGROOT)/screenshot-win32-installer-splash.png">
+    
+    <p>Solltest du schon Tor, Vidalia, oder Polipo installiert haben, dann kannst
+du bei allen Komponenten, die du nicht installieren musst, das Häckchen
+entfernen, wie im unteren Bild gezeigt.
+    </p>
+    
+    <img alt="select components to install"
+src="$(IMGROOT)/screenshot-win32-installer-components.png">
+    
+    <p>Sobald du mit der Installation fertig bist, werden alle Komponenten die du
+gewählt hast, automatisch für dich gestartet.
+    </p>
+    
+    <p>Tor kommt standardmäßig vorkonfiguriert als Client. Es benutzt die
+eingebaute Standart-Konfigurationsdatei, und die meisten Leute werden nie
+eine der Einstellungen verändern müssen. Tor ist jetzt installiert.
+    </p>
+    
+    <hr> <a id="using"></a>
+    <h2><a class="anchor" href="#using">Schritt Zwei: Konfiguration deiner
+Programme, damit sie Tor benutzen</a></h2>
+    <br>
+    
+    <p>Nachdem Tor und Polipo installiert sind, musst du deine Programme so
+Konfigurieren, dass sie Tor und Polipo benutzen. Der erste Schritt ist,
+Web-Browsing einzustellen.</p>
+    
+    <p>Du solltest Tor mit Firefox und dem Torbutton für beste Sicherheit
+verwenden. Das Packet installiert das <a href="<page
+torbutton/index>">Torbutton Plugin</a> für dich. Starte Firefox neu, und du
+bist fertig:
+    </p>
+    
+    <img alt="Torbutton plugin for Firefox"
+src="$(IMGROOT)/screenshot-torbutton.png"/> <br>
+    
+    <p>
+    Solltest du planen, Firefox auf einem anderen Computer als Tor auszuführen,
+schau dir den <a href="<wikifaq>#SocksListenAddress">FAQ Eintrag um Tor auf
+einem anderen Computer auszuführen</a> an.
+    </p>
+    
+    <p>Um andere Programme mit Tor zu benutzen, die HTTP Proxies unterstützen, lass
+sie einfach über Polipo laufen (das sind, localhost port 8118). Um SOCKS
+direkt zu benutzen (für Instant-Messaging, Jabber, IRC, etc), kannst du
+deine Programme direkt über Tor laufen lassen (localhost port 9050), aber
+schau dir <a href="<wikifaq>#SOCKSAndDNS">diesen FAQ Eintrag</a> an der
+beschreibt, warum das gefährlich sein könnte. Für Programme die werder SOCKS
+noch HTTP unterstützen, schau dir SocksCap oder <a
+href="http://www.freecap.ru/eng/">FreeCap</a> an.  (FreeCap ist freie
+Software; SocksCap ist kommerziell.)</p>
+    
+    <p>Für Informationen, wie man Tor mit anderen Programmen benutzt, schau dir das
+<a href="<wiki>/TheOnionRouter/TorifyHOWTO">Torify HOWTO</a> an.
+    </p>
+    
+    <hr> <a id="verify"></a>
+    <h2><a class="anchor" href="#verify">Schritt Drei: Stell sicher, dass es
+Funktioniert</a></h2>
+    <br>
+    
+    <p>
+    Schau nach, ob Vidalia ausgeführt wird.  Vidalia benutzt eine grüne Zwiebel,
+um anzuzeigen das Tor ausgeführt wird oder eine dunkle Zwiebel mit einem
+roten "X" wenn Tor nicht ausgeführt wird. Du kannst Tor starten oder
+stoppen, indem du auf das Vidalia Icon Rechst-Klickst und "Start" oder
+"Stop" vom Menü auswählst, wie unten gezeigt:
+    </p>
+    
+    <img alt="Vidalia Tray Icon" src="$(IMGROOT)/screenshot-win32-vidalia.png"/>
+    
+    <p>
+    Als nächstes solltest du versuchen, deinen Browser mit Tor zu benutzen, und
+stelle fest, ob deine IP-Adresse anonymisiert ist. Klick auf <a
+href="https://check.torproject.org/">den Tor detector</a> und schau, ob er
+denkt, dass du Tor benutzt oder nicht.  (Sollte diese seite nicht erreichbar
+sein, dann schau dir <a href="<wikifaq>#IsMyConnectionPrivate">diesen FAQ
+Eintrag</a> führ mehr vorschläge, wie du dein Tor teseten kannst, an.)
+    </p>
+    
+    <p>Solltest du eine Firewall installiert haben, die Fähigkeit des Computers
+limitiert sich mit sich selbst zu verbinden, stelle sicher, dass du
+verbindung von deinen Programmen zu den lokalen Ports 8118 und 9050
+erlaubst. Sollte deine Firewall ausgehende Verbindungen blockieren, versuche
+es so einzurichten, dass du eine Verbindung zu den TCP-Ports 80 und 443
+bekommst, und lies dann <a href="<wikifaq>#FirewalledClient">diesen FAQ
+Eintrag</a>.
+    </p>
+    
+    <p>Sollte es noch immer nicht Funktionieren, schaue dir <a href="<page
+docs/faq>#DoesntWork">diesen FAQ Eintrag</a> an, um Tipps zu erhalten.</p>
+    
+    <p>
+    Sobald es funktioniert, lehrne mehr über <a href="<page
+download/download>#Warning">was Tor anbietet und was es nicht anbietet</a>.
+    </p>
+    
+    <hr> <a id="server"></a> <a id="relay"></a>
+    <h2><a class="anchor" href="#relay">Schritt Vier: Als Relais konfigurieren</a></h2>
+    <br>
+    
+    <p>Das Tor-Netzwerk vertraut auf Freiwillige, die Bandbreite zur verfügung
+stellen. Desto mehr Leute Relais betreiben, desto schneller wird das
+Tor-Netzwerk sein. Solltest du mindestens 20 kilobytes/s Up- und Downloade
+haben, hilf bitte aus, indem du dein Tor auch als Relais konfigurierst. Wir
+haben viele Funktionen, die Tor-Relais einfach und bequem machen, wie
+z.b. Bandbreiten-Limitierung, Ausgangsrichtlinien die Missbrauchsbeschwerden
+limitieren, und Unterstützung für dynamische IP-Adressen.</p>
+    
+    <p>Relais an verschiedenen Orten im Internet zu haben, ist was Tor-Benutzer
+sicher macht. <a href="<wikifaq>#RelayAnonymity">Du kannst dadurch auch eine
+stärkere Anonymität für dich selbst bekommen</a>, da Remote-Seiten nicht
+wissen können, ob verbindungen von deinem Computer kommen, oder von einem
+anderen weitergeleitet wurden.</p>
+    
+    <p>Lies mehr in unserer <a href="<page docs/tor-doc-relay>">Konfiguration eines
+Relais</a> Anleitung.</p>
+    
+    <hr>
+    
+    <p>Solltest du Vorschläge haben, wie man dieses Dokument verbessen kann, bitte
+<a href="<page about/contact>">sende sie zu uns</a>. Danke!</p>
+  </div>
+  
+  <!-- END MAINCOL -->
+<div id = "sidecol">
+
+
+#include "de/side.wmi"
+#include "de/info.wmi"
+</div>
+  
+<!-- END SIDECOL -->
+</div>
+
+
+#include "de/foot.wmi"
