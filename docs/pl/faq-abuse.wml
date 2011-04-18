@@ -4,7 +4,7 @@
 
 
 ## translation metadata
-# Revision: $Revision: 24197 $
+# Revision: $Revision: 24652 $
 # Translation-Priority: 3-low
 #include "pl/head.wmi" TITLE="Tor Project: Abuse FAQ" CHARSET="UTF-8"
 <div id="content" class="clearfix">
@@ -18,7 +18,7 @@ docs/faq-abuse>">FAQ o nadużyciach</a>
     <!-- PUT CONTENT AFTER THIS TAG -->
 <h1>FAQ o nadużyciach</h1>
     <!-- BEGIN SIDEBAR -->
-# #<div class="sidebar-left">
+<hr> # #<div class="sidebar-left">
     #<h3>Pytania</h3>
     #<ul>
     #<li><a href="<page docs/faq-abuse>#WhatAboutCriminals">Czy Tor nie umożliwia
@@ -45,7 +45,26 @@ nadużyć Tora.</a></li>
     #</ul>
     #</div>
     <!-- END SIDEBAR -->
-# #<hr> <a id="WhatAboutCriminals"></a>
+#
+    <h3>Pytania</h3>
+    <ul>
+    <li><a href="#WhatAboutCriminals">Doesn't Tor enable criminals to do bad
+things?</a></li>
+    <li><a href="#DDoS">What about distributed denial of service attacks?</a></li>
+    <li><a href="#WhatAboutSpammers">What about spammers?</a></li>
+    <li><a href="#HowMuchAbuse">Does Tor get much abuse?</a></li>
+    <li><a href="#TypicalAbuses">So what should I expect if I run an exit relay?</a></li>
+    <li><a href="#IrcBans">Tor is banned from the IRC network I want to use.</a></li>
+    <li><a href="#SMTPBans">Your nodes are banned from the mail server I want to
+use.</a></li>
+    <li><a href="#Bans">I want to ban the Tor network from my service.</a></li>
+    <li><a href="#TracingUsers">I have a compelling reason to trace a Tor user. Can
+you help?</a></li>
+    <li><a href="#RemoveContent">I want some content removed from a .onion
+address.</a></li>
+    <li><a href="#LegalQuestions">I have legal questions about Tor abuse.</a></li>
+    </ul>
+    <hr> <a id="WhatAboutCriminals"></a>
     <h3><a class="anchor" href="#WhatAboutCriminals">Czy Tor nie umożliwia
 przestępcom robienia złych rzeczy?</a></h3>
     
@@ -76,15 +95,10 @@ powstrzymało ich od robienia swych złych rzeczy. Jednocześnie, Tor i inne
 środki ochrony prywatności mogą <em>zwalczać</em> kradzież tożsamości,
 przestępstwa fizyczne, jak śledzenie, itd. </p>
     
+    #<a id="Pervasive"></a> #<h3><a class="anchor" href="#Pervasive">If the whole world starts using #Tor,
+won't civilization collapse?</a></h3>
     
-    
-    <!--
-    <a id="Pervasive">
-</a>
-    <h3><a class="anchor" href="#Pervasive">If the whole world starts using
-    Tor, won't civilization collapse?</a></h3>
-    -->
-<a id="DDoS"></a>
+    <a id="DDoS"></a>
     <h3><a class="anchor" href="#DDoS">A co z atakami typu "distributed denial of
 service" (DDoS)?</a></h3>
     
@@ -175,6 +189,13 @@ eff/tor-dmca-response>">Szablon odpowiedzi na taką informację</a>, który
 wytłumaczy, czemu Twój dostawca może prawdopodobnie zignorować taką
 wiadomość bez żadnych skutków prawnych. [Różne porty]</li>
     </ul>
+
+    <p>For a complete set of template responses to different abuse complaint types,
+see <a href="<wiki>TheOnionRouter/TorAbuseTemplates">the collection of
+templates on the Tor wiki</a>. You can also proactively reduce the amount of
+abuse you get by following <a
+href="<blog>tips-running-exit-node-minimal-harassment">these tips for
+running an exit node with minimal harassment</a>.</p>
     
     <p>Możesz także dowiedzieć się, że IP Twojego przekaźnika sieci Tor jest
 blokowane przy próbie dostępu do pewnych stron lub usług internetowych. To
@@ -361,15 +382,28 @@ href="#WhatAboutCriminals">i tak się w to nie złapią</a>, gdyż użyją innyc
 środków by zapewnić sobie anonimowość (kradzież tożsamości, włamywanie się
 do komputerów i używanie ich do przekierowania swojego ruchu itd.).
     </p>
-    
+
     <p>
-    Pamiętać należy jednak, że to nie znaczy, że Tor jest nie
-narażony. Tradycyjne techniki policyjne w dalszym ciągu mogą być efektywne
-względem Tora, jak np. przesłuchiwanie podejrzanych, pluskwy podsłuchowe i
-na klawiaturę, analiza charakteru pisma, operacje specjalne i inne fizyczne
-środki śledcze.
+    This ultimately means that it is the responsibility of site owners to
+protect themselves against compromise and security issues that can come from
+anywhere. This is just part of signing up for the benefits of the
+Internet. You must be prepared to secure yourself against the bad elements,
+wherever they may come from. Tracking and increased surveillance are not the
+answer to preventing abuse.
     </p>
-    
+
+    <p>
+    But remember that this doesn't mean that Tor is invulnerable. Traditional
+police techniques can still be very effective against Tor, such as
+investigating means, motive, and opportunity, interviewing suspects, writing
+style analysis, technical analysis of the content itself, sting operations,
+keyboard taps, and other physical investigations. The Tor Project is also
+happy to work with everyone including law enforcement groups to train them
+how to use the Tor software to safely conduct investigations or anonymized
+activities online.
+    </p>
+
+
     <a id="RemoveContent"></a>
     <h3><a class="anchor" href="#RemoveContent">Chcę, aby usunięto jakąś treść z
 adresu .onion.</a></h3>
@@ -382,17 +416,18 @@ kliencie Tora w dowolnym miejscu Internetu. Usługi ukryte są zaprojektowane
 tak, by chronić zarówno użytkownika, jak i dostawcę usługi, przed odkryciem,
 kim są i skąd pochodzą. Projekt usług ukrytych oznacza, że właściciel i
 lokalizacja strony .onion jest ukryta nawet przed nami.</p>
-    <p>Ale pamiętaj, że to nie oznacza, że usługi ukryte nie są podatne na
-ataki. Tradycyjne techniki policyjne mogą nadal być przeciwko nim efektywne,
-jak na przykład przesłuchania podejrzanych, pluskwy podsłuchowe i na
-klawiaturę, analiza charakteru pisma, operacje specjalne i inne fizyczne
-środki śledcze.</p>
-    <p>Jeśli otrzymałeś/aś skargę o dziecięcej pornografii, zgłoś ją do National
-Center for Missing and Exploited Children, które jest narodowym punktem
-koordynacji działań odnośnie dziecięcej pornografii: <a
-href="http://www.missingkids.com/">http://www.missingkids.com/</a>. Nie
-oglądamy linków, które zgłaszasz.</p>
-    
+    <p>But remember that this doesn't mean that hidden services are
+invulnerable. Traditional police techniques can still be very effective
+against them, such as interviewing suspects, writing style analysis,
+technical analysis of the content itself, sting operations, keyboard taps,
+and other physical investigations.</p>
+
+    <p>If you have a complaint about child abuse materials, you may wish to report
+it to the National Center for Missing and Exploited Children, which serves
+as a national coordination point for investigation of child pornography: <a
+href="http://www.missingkids.com/">http://www.missingkids.com/</a>.  We do
+not view links you report.</p>
+
     <a id="LegalQuestions"></a>
     <h3><a class="anchor" href="#LegalQuestions">Mam pytania prawne dotyczące
 nadużyć Tora.</a></h3>
@@ -413,4 +448,8 @@ pytania prawne. </p>
 #include "pl/info.wmi"
 </div>
   
+<!-- END SIDECOL -->
+</div>
+
+
 #include "pl/foot.wmi"
