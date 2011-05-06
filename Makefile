@@ -10,7 +10,7 @@
 # 4. make
 # 5. ./publish
 
-export TORGIT=/home/runa/dev/tor/.git
+export TORGIT=/home/runa/tordev/tor/.git
 export STABLETAG=tor-0.2.2.25-alpha
 export DEVTAG=tor-0.2.2.25-alpha
 
