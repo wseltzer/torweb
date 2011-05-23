@@ -1,0 +1,200 @@
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 24208 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Tor: Linux/BSD/Unix Install Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Koti &raquo; </a> <a href="<page
+docs/documentation>">Ohjeistus &raquo; </a> <a href="<page
+docs/tor-doc-unix>">Linux/BSD/Unix -asiakas</a>
+  </div> 
+  <div id="maincol"> 
+    <h1><a href="<page index>">Tor</a> -asiakasohjelman käyttö
+Linux/BSD/Unix-käyttöjärjestelmissä</h1>
+    <br>
+    
+    <p>
+    Huomaathan, että nämä asennusohjeet koskevat Tor-asiakasohjelman
+käyttöä. Jos haluat välittää toisten liikennettä ja auttaa näin verkkoa
+kasvamaan (tee toki niin), lue ohjeet <a href="<page
+docs/tor-doc-relay>">Välityspalvelimen asetusten säätäminen</a>.</b>
+    </p>
+    
+    <hr> <a id="installing"></a>
+    <h2><a class="anchor" href="#installing">Ensimmäinen vaihe: Lataa ja asenna
+Tor</a></h2>
+    <br>
+    
+    <p>
+    Tor:n viimeisin julkaisu löytyy <a href="<page
+download/download>">lataukset</a>-sivulta. Sieltä löydät myös Debian-, Red
+Hat-, Gentoo-, *BSD-, ynnä muut paketit. Jos käytät Ubuntua, älä käytä
+oletuspaketteja: käytä sen sijaan <a href="<page
+docs/debian>#ubuntu">deb-pakettivarastoamme</a>. CentOS / Fedora / OpenSUSE
+-käyttäjien tulisi vastaavasti käyttää <a href="<page
+docs/rpms>">rpm-pakettivarastoamme</a>.
+    </p>
+    
+    <p>Jos rakennat lähdekoodista, asenna ensin <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a> ja varmista,
+että sinulla on asennettuna openssl ja zlib (mukaanlukien -devel paketit jos
+saatavilla). Suorita sen jälkeen:<br><tt>tar xzf
+tor-<version-stable>.tar.gz; cd tor-<version-stable></tt><br><tt>./configure
+&amp;&amp; make</tt><br> Nyt voit käynnistää torin - <tt>src/or/tor</tt>,
+tai voit suorittaa komennon <tt>make install</tt> (tarvittaessa roottina)
+asentaaksesi sen hakemistoon /usr/local, jonka jälkeen voit käynnistää sen
+yksinkertaisesti komennolla <tt>tor</tt>.
+    </p>
+    
+    <p>Tor on oletuksena asetettu toimimaan asiakasohjelmana. Se käyttää
+sisäänrakennettua asetustiedostoa, eikä useimpien tarvitse muuttaa mitään
+näistä asetuksista. Tor on nyt asennettu.
+    </p>
+    
+    <hr> <a id="privoxy"></a> <a id="polipo"></a>
+    <h2><a class="anchor" href="#polipo">Toinen vaihe: Asenna Polipo verkon
+selaamista varten</a></h2>
+    <br>
+    
+    <p>Asennettuasi Tor:n sinun on asetettava sovelluksesi käyttämään sitä.
+    </p>
+    
+    <p>
+    Ensimmäinen askel on verkon selaamisen säätäminen. Aloita asentamalla <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo>Polipo</a>
+käyttämästäsi pakettivarastosta. Polipo on välimuistina toimiva
+välityspalvelin, joka suoriutuu hyvin http-pipeliningista, joten se sopii
+hyvin Tor:n latensseille. Varmista, että asennat vähintään Polipon version
+1.0.4, sillä aiemmista versioista puuttuu SOCKS-tuki, jota tarvitaan, jotta
+Tor toimisi Polipon kanssa. Tässä vaiheessa on syytä poistaa privoxy (siis
+apt-get remove privoxy tai yum remove privoxy), jotta ne eivät joudu
+ristiriitaan.
+    </p>
+    
+    <p>Kun olet asentanut Polipon (joko paketista tai lähdekoodista), <b>sinun on
+asetettava Polipo käyttämään Toria</b>. Hae laatimamme <a
+href="<tbbrepo>/build-scripts/config/polipo.conf">Polipon asetukset
+Tor:lle</a> ja korvaa sillä nykyinen Polipon asetustiedosto
+(esim. /etc/polipo/config tai ~/.polipo). Polipo on käynnistettävä
+uudelleen, jotta muutokset tulevat
+voimaan. Esimerkiksi:<br><tt>/etc/init.d/polipo restart</tt>
+    </p>
+    
+    <p>Voit halutessasi käyttää Polipon sijasta Privoxya <a
+href="<wiki>TheOnionRouter/PrivoxyConfig">näillä Privoxyn
+esimerkkiasetuksilla</a>. Polipoa ja Privoxya ei kuitenkaan pidä ajaa yhtä
+aikaa, koska molemmat asetustiedostot käyttävät porttia 8118,</p>
+    
+    <hr> <a id="using"></a>
+    <h2><a class="anchor" href="#using">Kolmas vaihe: aseta sovelluksesi käyttämään
+Tor:ia</a></h2>
+    <br>
+    
+    <p>Asennettuasi Tor:n ja Polipon sinun on asetettava sovelluksesi käyttämään
+niitä. Ensimmäinen askel on verkkoselaimen säätäminen.</p>
+    
+    <p>Parhaan turvallisuuden saat käyttämällä Toria Firefoxin ja Torbuttonin
+avulla. Asenna vain <a href="<page torbutton/index>">Torbutton-lisäosa</a>,
+käynnistä Firefox uudelleen ja siinä kaikki:
+    </p>
+    
+    <img alt="Torbutton-lisäosa Firefoxille"
+src="$(IMGROOT)/screenshot-torbutton.png" > <br>
+    
+    <p>
+    Jos aiot käyttää Firefoxia eri tietokoneella kuin Toria, katso <a
+href="<wikifaq>#SocksListenAddress">FAQ:n kohta Torin käyttämisestä eri
+tietokoneella</a>.
+    </p>
+    
+    <p>Muiden HTTP-välityspalvelimia tukevien sovellusten Torraamiseksi osoita ne
+vain Polipoon (siis localhost, portti 8118). Käyttääksesi SOCKSia suoraan
+(esimerkiksi pikaviestimiin, Jabberiin, IRCiin jne.) voit osoittaa
+sovelluksesi suoraan Toriin (localhost, portti 9050), mutta katso <a
+href="<wikifaq>#SOCKSAndDNS">tästä FAQ:n kohdasta</a> miksi tämä voi olla
+vaarallista. Jos käytät sovelluksia, jotka eivät tue sen paremmin SOCKSia
+kuin HTTP:täkään, tutustu <a
+href="https://code.google.com/p/torsocks/">torsocksiin</a> tai <a
+href="<wiki>TheOnionRouter/TorifyHOWTO#socat">socatiin</a>.
+    </p>
+    
+    <p>Tietoa muiden ohjelmien torraamisesta löytyy <a
+href="<wiki>TheOnionRouter/TorifyHOWTO">Torify HOWTO</a>:sta.
+    </p>
+    
+    <hr> <a id="verify"></a>
+    <h2><a class="anchor" href="#verify">Neljäs vaihe: Varmista että se toimii</a></h2>
+    <br>
+    
+    <p>
+    Kokeile seuraavaksi käyttää webbiselaintasi Torin kanssa ja varmista, että
+IP-osoitteesi todella anonymisoidaan. Klikkaa <a
+href="https://check.torproject.org/">Tor-tunnistimen</a> linkkiä ja katso
+käytätkö sen mielestä Toria vai et.  #<a href="http://ipchicken.com/">tälle
+sivulle</a> #nähdäksesi mitä IP-osoitetta sen mielestä käytät.  (Jos sivu on
+alhaalla, <a href="<wikifaq>#IsMyConnectionPrivate">tästä FAQ:n kohdasta</a>
+löytyy lisää vinkkejä Torin testaamiseksi.)
+    </p>
+    
+    <p>Jos käytät henkilökohtaista palomuuria, joka rajoittaa tietokoneesi kykyä
+yhdistää itseensä (tällainen on esimerkiksi Fedora Core 4:n SELinux), muista
+sallia paikallisten sovellusten yhteydet Polipoon (paikallinen portti 8118)
+ja Toriin (paikallinen portti 9050). Jos palomuurisi estää ulos menevät
+yhteydet, tee siihen aukko niin, että se antaa yhdistää ainakin
+TCP-portteihin 80 ja 443, ja lue sitten <a
+href="<wikifaq>#FirewalledClient">tämä FAQ:n kohta</a>. Jos SELinuxin
+asetukset eivät anna torin tai polipon toimia oikein, luo hakemistoon
+/etc/selinux/targeted tiedosto nimeltä booleans.local. Avaa tiedosto
+tekstieditorissa ja lisää siihen "allow_ybind=1". Käynnistä koneesi
+uudelleen, jotta muutokset tulevat voimaan.
+    </p>
+    
+    <p>Eikö toimi vieläkään? Etsi lisää vinkkejä <a href="<page
+docs/faq>#DoesntWork">tästä FAQ:n kohdasta</a>.</p>
+    
+    <hr> <a id="server"></a> <a id="relay"></a>
+    <h2><a class="anchor" href="#relay">Viides vaihe: Aseta se
+välityspalvelimeksi</a></h2>
+    <br>
+    
+    <p>Tor-verkko on kaistatilaa tarjoavien vapaaehtoisten varassa. Mitä useammat
+ihmiset pitävät yllä välityspalvelimia, sitä nopeampi Tor-verkosta
+tulee. Jos käytössäsi on vähintään 20 kilobittiä/s kumpaankin suuntaan,
+autathan Toria asettamalla oman Torisi myös välityspalvelmieksi. Käytössämme
+on monia ominaisuuksia, jotka tekevät Tor-välityspalvelimista helppoja ja
+mukavia, kuten kaistanleveyden käytön rajoittaminen, poistumiskäytännöt,
+joiden avulla voit rajoittaa sinuun kohdistuvia valituksia väärinkäytöstä,
+ja dynaamisten IP-osoitteiden tuki.</p>
+    
+    <p>Juuri se, että välityspalvelimia on monissa paikoissa eri puolilla
+internetiä, suojaa Torin käyttäjiä. Voit saada myös itsellesi vahvemman
+anonymiteetin, koska sivustot eivät voi tietää, olivatko yhteydet lähtöisin
+sinun koneeltasi vai välitetty muilta koneilta.</p>
+    
+    <p>Lue lisää <a href="<page docs/tor-doc-relay>">Välityspalvelimen
+asettaminen</a> -oppaastamme.</p>
+    
+    <hr>
+    
+    <p>Jos sinulla on ehdotuksia tämän asiakirjan parantamiseksi, <a href="<page
+about/contact>">lähetäthän ne meille</a>. Kiitos!</p>
+  </div>
+  
+  <!-- END MAINCOL -->
+<div id = "sidecol">
+
+
+  #include "side.wmi"
+#include "info.wmi"
+</div>
+  
+<!-- END SIDECOL -->
+</div>
+
+
+#include "foot.wmi"

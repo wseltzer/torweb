@@ -1,0 +1,229 @@
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 24504 $
+# Translation-Priority: 1-high
+#include "head.wmi" TITLE="Tor Project: Bridges" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Accueil &raquo;</a> <a href="<page
+docs/documentation>">Documentation &raquo;</a> <a href="<page
+docs/bridges>">Ponts</a>
+  </div>
+  <div id="maincol"> 
+    <a id="BridgeIntroduction"></a>
+    <h2><a class="anchor" href="#BridgeIntroduction">Tor: Ponts</a></h2>
+    <hr>
+    
+    <p>
+    Les relais-ponts (ou «ponts» en abrégé) sont des relais Tor qui ne figurent
+pas dans le répertoire principal de Tor. Comme il n'en existe pas de liste
+publique, même si votre FAI filtre les connexions à tous les relais Tor
+connus, ils ne sera probablement pas en mesure de bloquer tous les ponts. Si
+vous soupçonnez que votre accès au réseau Tor est bloqué, vous pouvez
+utiliser la fonctionnalité pont de Tor.
+    </p>
+    
+    <p>
+    L'ajout de ponts pour Tor est un pas en avant dans la course contre le
+blocage de sites. Il est parfaitement possible que, même si votre FAI filtre
+Internet, vous n'avez pas besoin d'un pont pour utiliser Tor. De nombreux
+programmes de filtrage cherchent en clair des demandes de répertoire Tor
+afin de reconnaître que vous utilisez Tor, Tor, mais la version 0.2.0.23-rc
+et suivantes utilisent des requêtes aux répertoires cryptée par défaut. Ce
+changement signifie que la plupart des programmes de filtrage sont
+maintenant incapables de reconnaître les connexions Tor. Donc, vous devriez
+essayer d'utiliser Tor sans ponts, car il pourrait fonctionner.
+    </p>
+    
+    <p>
+    Notez qu'il est également possible que Tor ne fonctionne pas pour d'autres
+raisons. La dernière version du <a href="<page
+projects/torbrowser>">Paquetage Navigateur de Tor</a> sur Windows tente de
+vous donner de meilleurs conseils lorsque Tor a des problèmes de
+connexion. Vous devriez également lire <a
+href="<wikifaq>#IinstalledTorandPolipobutitsnotworking.">la FAQ sur les
+problèmes liés à l'utilisation de Tor</a> lorsque vous avez des
+questions. Si vous pensez que le problème relève clairement du blocage, ou
+si vous désirez simplementfaire un essai parce que vous n'êtes pas sûr ou
+que vous-vous sentez l'âme aventureuse, s'il vous plaît lisez la
+suite. Assurez-vous que vous utilisez la <a href="<page
+download/download>#Dev">dernière version 0.2.1.x ou 0.2.2.x de votre
+plate-forme</a> .
+    </p>
+    
+    <p>
+    Pour utiliser une passerelle, vous devez en trouver une. En outre, vous
+aurez besoin de configurer Tor avec l'adresse du pont que vous avez
+l'intention d'utiliser. Vous pourrez faire cela avec Vidalia, qui est
+l'interface de controle de Tor. Si votre connexion Internet nécessite
+l'utilisation d'un proxy, vous aurez probablement besoin de configurer
+Vidalia à cette fin avant toute connexion. Si habituellement vous ne
+configurez pas un proxy pour votre connexion Internet, c'est que vous n'en
+avez probablement pas besoin. Faites un essai, et si vous avez des questions
+contactez-nous.
+    </p>
+    
+    <p>Freedom House a produit une vidéo sur la façon d'obtenir et d'utiliser les
+ponts Tor. Si vous ne voyez pas la vidéo ci-dessous, allez à <a
+href="http://www.youtube.com/thetorproject">Youtube: Freedom4Internet</a>
+Vous connaissez une vidéo de meilleure qualité, ou une qui est traduite dans
+votre langue? Faites-nous-le savoir!</p>
+    
+    <div class="center">
+    <p><video id="v1" src="https://media.torproject.org/video/2009-using-a-bridge-relay-to-access-tor.ogv" autobuffer="true" controls="controls"></video></p>
+    </div>
+    
+    <p>
+    Vous pouvez obtenir un pont en visitant <a
+href="https://bridges.torproject.org/">https: / / bridges.torproject.org
+/</a> avec votre navigateur web. Si cette page est filtrée pour vous, et
+vous n'avez pas de proxy ou d'autres moyens pour l'atteindre, il y a aussi
+<a href="#FindingMore">d'autres façons de trouver des ponts</a>.
+    </p>
+    
+    <a id="Understanding"></a>
+    <h2><a class="anchor" href="#Understanding">Comprendre les Ponts</a></h2>
+    <hr>
+    
+    <p>
+    A titre d'exemple, vous obtiendrez une entrée de pont ou bridge qui
+ressemble à ce qui suit:
+    </p>
+    <pre><samp>
+    bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+    </samp>
+    </pre>
+    
+    <p>
+    Comprendre les éléments d'une ligne de ponts n'est pas strictement
+nécessaire mais peut s'avérer utile. Vous pouvez sauter cette section si
+vous le souhaitez. <br> Le premier élément est l'adresse IP:
+<tt>'141.201.27.48 '</tt><br> Le deuxième élément est le port: <tt>'443
+'</tt> <br> Le troisième élément, l'empreinte, est facultatif:
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413 '</tt><br>
+    </p>
+    
+    <a id="UsingBridges"></a>
+    <h2><a class="anchor" href="#UsingBridges">Utiliser des ponts avec Tor et
+Vidalia</a></h2>
+    <hr>
+    
+    <p>
+    Pour utiliser l'adresse du pont dans l'exemple ci-dessus, allez à Vidalia,
+page des options réseau, et cliquez sur "Mon FAI bloque les connexions au
+réseau Tor". Ajoutez chaque pont une adresse à la fois dans la page
+Paramètres du réseau Vidalia, en le collant dans "Ajouter une passerelle" et
+puis en cliquant sur le signe "+". L'ajout d'un pont est représenté
+ci-dessous:
+    </p>
+    
+    <br><br><img src="$(IMGROOT)/vidalia-bridges.png" alt="Page des options
+réseau de Vidalia"><br><br>
+    
+    <p>
+    Il vaut mieux ajouter autant de ponts que vous pouvez, des ponts
+supplémentaires augmentant la fiabilité. Un pont devrait être suffisant pour
+atteindre le réseau Tor, mais si vous avez seulement un pont et qu'il tombe
+en panne, vous serez coupé du réseau Tor.
+    </p>
+    
+    <a id="FindingMore"></a>
+    <h2><a class="anchor" href="#FindingMore">Trouver plus de ponts pour Tor</a></h2>
+    <hr>
+    
+    <p>
+    Une autre façon de trouver des adresses de ponts publics est d'envoyer un
+mail à bridges@torproject.org avec la ligne "get bridges" seule dans le
+corps de l'e-mail. Vous aurez besoin d'envoyer cette demande à partir d'un
+compte Gmail, faute de quoi cela serait trop facile pour un attaquant de
+créer un grand nombre d'adresses e-mail pour en savoir davantage sur tous
+les ponts. Presque instantanément, vous recevrez une réponse qui comprend:
+    </p>
+    <pre>
+   Voici vos relais-ponts:
+   
+    bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+    bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+    bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+   
+    </pre>
+    <p>
+    Une fois que vous avez reçu l'e-mail avec les informations sur les ponts,
+vous pouvez poursuivre les étapes de configuration de Vidalia décrites <a
+href="#UsingBridges">ci-dessus</a> .
+    </p>
+    
+    <a id="RunningABridge"></a>
+    <h2><a class="anchor" href="#RunningABridge">Utilisation d'un Pont Tor</a></h2>
+    <hr>
+    
+    <p>
+    Si vous souhaitez aider et que vous ne pouvez pas installer un <a
+href="<page docs/tor-doc-relay>">relais Tor normal</a> , vous pouvez
+installer un relais-pont. Vous pouvez le configurer ainsi:
+    <ul>
+    <li> <a href="<page docs/faq>#torrc">modifiez votre fichier torrc</a>
+manuellement pour avoir seulement ces quatre lignes: <br>
+    <pre><code>
+    SocksPort 0
+    ORPort 443
+    BridgeRelay 1
+    Exitpolicy reject *:*
+    </code></pre></li>
+    <li><a href="<page docs/tor-doc-relay>">ou en utilisant Vidalia</a> : <br><img
+src="$(IMGROOT)/vidalia-bridges-setup.png" alt="Paramètres de partage de
+Vidalia"></li>
+    </ul>
+    </p>
+    
+    <p>Si vous obtenez l'erreur "Impossible de se connecter à 0.0.0.0:443:
+Permission refusée" au démarrage, vous aurez besoin de choisir une plus
+grande valeur d'ORPort (par exemple 8080) ou de mettre en place <a
+href="<page
+docs/faq>#HowcanImakemyrelayaccessibletopeoplestuckbehindrestrictivefirewalls">des
+redirections complexes de ports</a> .
+    </p>
+    
+    <p>
+    Lorsque vous mettez en place un pont, votre serveur n'apparaîtra <b>pas</b>
+dans le réseau public de Tor.
+    </p>
+    
+    <p>
+    Votre pont va automatiquement publier son adresse à l'administrateur des
+ponts, qui va le distribuer via https ou e-mail comme indiqué
+ci-dessus. Vous pouvez aussi donner à un utilisateur l'adresse de votre
+pont: si vous utilisez Vidalia, vous pouvez copier-coller l'adresse de la
+passerelle dans la fenêtre Paramètres. Si vous êtes sous Linux ou BSD, vous
+pouvez construire l'adresse de la passerelle manuellement en utilisant le <a
+href="#Understanding">le format ci-dessus</a> (vous pouvez trouver
+l'empreinte dans vos fichiers journaux ou dans
+<tt>/var/lib/tor/fingerprint</tt> selon votre plate-forme).
+    </p>
+    
+    <p>
+    Si vous souhaitez en savoir plus sur notre conception des ponts d'un point
+de vue technique, vous pouvez lire les <a
+href="<specblob>bridges-spec.txt">spécifications des Ponts Tor</a>. Si vous
+envisagez de faire tourner un pont inédit ou d'autres utilisations
+non-standard, merci de lire le cahier des charges.
+    </p>
+  </div>
+  
+  <!-- END MAINCOL -->
+<div id = "sidecol">
+
+
+  #include "side.wmi"
+#include "info.wmi"
+</div>
+  
+<!-- END SIDECOL -->
+</div>
+
+
+#include "foot.wmi"
