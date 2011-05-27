@@ -20,7 +20,84 @@
 <td class="nopad"><div class="title"><a name="Windows">Microsoft Windows</a></div></td>
 </tr>
 <tr>
-<td>The Tor Software for Windows comes bundled in four different ways:
+<td>
+ <!-- DONATION WIDGET BEGIN -->
+<script type="text/javascript" src="../jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+function displayVals() {
+      var t3 = jQuery("#t3").val();
+      var amount = jQuery("#amount").val();
+      if(t3 != 0){
+	    jQuery('#a3').val(amount);
+	    jQuery('#p3').val(1);
+		 jQuery('#cmd').val('_xclick-subscriptions');
+		 jQuery('#item_name').val('Tor Project Membership');
+		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo"><small>(Requires a PayPal Account)</small></h6>');
+	  }else{
+	  	jQuery('#a3').val(0);
+	  	jQuery('#p3').val(0);
+		jQuery('#cmd').val('_donations');
+   	jQuery('#item_name').val('Donation to the Tor Project');
+		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
+	  }
+	  if( !t3 ) {
+	   jQuery('#cmd').val('_donations');
+   	jQuery('#item_name').val('Donation to the Tor Project');
+		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
+     }
+}
+
+jQuery(function(){
+ 	jQuery("#amount").change(displayVals);
+ 	jQuery("#t3").change(displayVals);
+ 	displayVals();
+});
+
+</script>
+	    <form class="dbox dl" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<h2>Donate to Tor</h2>
+		<p>
+		    <select name="currency_code" class="cur">
+			  <option value="USD" selected="selected">$</option>
+			  <option value="EUR">&euro;</option>
+			  <option value="GBP">&pound;</option>
+			  <option value="YEN">&yen;</option>
+			</select>
+			<input type="text" id="amount" class="amount" name="amount" value="5" size="10">		
+		</p>
+		<p>
+		<input type="hidden" id="a3" name="a3" value="0">
+			<select id="t3" name="t3">
+				<option value="0">One-time Donation</option>
+				<option value="M">Monthly Subscription</option>
+			</select>		
+		</p>
+
+		<p>
+
+		     <input type="hidden" id="p3" name="p3" value="1">
+
+		     <input type="hidden" name="sra" value="1">
+		     <input type="hidden" name="src" value="1">
+		     <input type="hidden" name="no_shipping" value="1">
+		     <input type="hidden" name="no_note" value="1">
+
+		     <input type="hidden" id="cmd" name="cmd" value="_donations">
+		     <input type="hidden" name="business" value="donations@torproject.org">
+		     <input type="hidden" id="item_name" name="item_name" value="Donation to the Tor Project">
+		     <input type="hidden" name="return" value="https://www.torproject.org/donate">
+		     <input type="hidden" name="cancel_return" value="https://www.torproject.org/donate">
+		</p>
+		<h6 id="ppinfo" style="height:0px;"></h6>		
+		<p>
+		     <input class="donate-btn" type="submit" name="donate" value="Donate">
+		</p>
+		<p><a href="../donate/donate.html.en" >Other donation options...</a></p>
+		</form>
+
+ <!-- DONATION WIDGET END -->
+
+The Tor Software for Windows comes bundled in four different ways:
 <ul>
 <li>The <strong>Tor Browser Bundle</strong> contains everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></li>
 <li>The <strong>Vidalia Bundle</strong> contains Tor, <a href="<page projects/vidalia>">Vidalia</a>, Polipo, and Torbutton for installation on your system. You need your own Firefox, and you'll need to configure other applications if you want them to use Tor.</li>

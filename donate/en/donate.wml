@@ -8,162 +8,154 @@
     <a href="<page index>">Home &raquo; </a>
     <a href="<page donate/donate>">Donate</a>
   </div>
-  <div id="maincol">
-  <h1>Monetary Donations</h1>
+<div id="maincol">
+  <h1>Make A Donation</h1>
    <p><strong>Your support is critical to our success.</strong> The
    Tor Project is a US 501(c)(3) non-profit dedicated to the research,
    development, and education of online anonymity and privacy. Donations
    to The Tor Project may be tax deductible to persons who are in the
    US; or who pay taxes in countries with reciprocity with the US on
    charitable donations. Our tax ID
-   number is 20-8096820.  We are listed on <a
+   number is 20-8096820. We are listed on <a
    href="http://www2.guidestar.org/organizations/20-8096820/tor-project.aspx">GuideStar</a>.
-   We're happy to accept donations via:
-  <ul>
+   We're happy to accept donations via:</p>
+  <ul class="hlist">
     <li><a href="#paypal">Paypal</a></li>
     <li><a href="#amazon">Amazon Payments</a></li>
     <li><a href="#google">Google Checkout</a></li>
     <li><a href="#givv">Givv.org</a></li>
-    <li><a href="#cash">checks, money orders, bank transfers, stock grants or
+    <li class="last"><a href="#cash">checks, money orders, bank transfers, stock grants or
 other more sophisticated transactions.</a></li>
-  </ul></p>
-    <p>If you want to make an anonymous donation, please do so in an anonymous way.  Contact us at donations@torproject.org for more details.</p>
-    <!-- BEGIN PAYPAL SUBSCRIPTION -->
-    <div class="title toptwenty">Tor Project Subscription via PayPal</div>
-    <div class="left hundred">
-	<div class="paypal focus">
-    <a id="paypal"></a>
-    <a class="anchor" href="#paypal"></a>
-	  <h4>Monthly Subscription to The Tor Project</h4>
-	    <table>
-	    <form id="subscribe" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-	      <div class="toppad">
-		<tr>
-		    <td>Choose your currency:</td>
-		      <td>
-			<select name="currency_code">
-			  <option value="USD" selected="selected">$</option>
-			  <option value="EUR">&euro;</option>
-			  <option value="GBP">&pound;</option>
-			  <option value="YEN">&yen;</option>
-			</select>
-		      </td>
-		  </tr>
-		  <tr>
-		     <input type="hidden" name="p3" value="1">
-		     <input type="hidden" name="t3" value="M">
+  </ul>
+    <p>If you want to make an anonymous donation, please do so in an anonymous way. Contact us at donations@torproject.org for more details.</p>
+<!-- BEGIN PAYPAL -->
+<script type="text/javascript" src="../jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+function displayVals() {
+      var t3 = jQuery('#t3').val();
+      var amount = jQuery('#amount').val();
+		var radioVal = jQuery('input[@name="amount"]:checked').val();
+      if(t3 != 0){
+       if( !amount ) { 
+		    jQuery('#a3').val(radioVal);
+		 }else{
+		    jQuery('#a3').val(amount);
+		 }
+	    jQuery('#p3').val(1);
+		 jQuery('#cmd').val('_xclick-subscriptions');
+		 jQuery('#item_name').val('Tor Project Membership');
+		 jQuery('#ppinfo').replaceWith('<small id="ppinfo">Requires a PayPal Account</small>');
+	  }else{
+  	  	jQuery('#a3').val(0);
+	  	jQuery('#p3').val(0);
+		jQuery('#cmd').val('_donations');
+   	jQuery('#item_name').val('Donation to the Tor Project');
+		jQuery('#ppinfo').replaceWith('<small id="ppinfo">Does Not Require a PayPal Account</small>');
+	  }
+	  if( !t3 ) {
+      jQuery('#cmd').val('_donations');
+   	jQuery('#item_name').val('Donation to the Tor Project');
+		jQuery('#ppinfo').replaceWith('<small id="ppinfo">Does Not Require a PayPal Account</small>');
+     }
+}
+
+jQuery(function(){
+ 	jQuery("input[@name='amount']:checked").change(displayVals);
+ 	jQuery("#amount").change(displayVals);
+ 	jQuery("#t3").change(displayVals);
+ 	displayVals();
+
+});
+</script>
+
+  <div class="hundred toptwenty">
+	<div class="dbox donate">
+    <a name="paypal"></a>
+		<h3>Donate via PayPal</h3>
+	   <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		  <p class="type">
+			<label for="type">Donation Type:</label>
+			<select id="t3" name="t3">
+			 <option value="0">One-time Donation</option>
+			 <option value="M">Monthly Subscription</option>
+			</select>		
+			<small id="ppinfo">Does Not Require a PayPal Account</small>		
+		  </p>
+	      <div class="drow">
+	 		 <div>
+	        <span>
+		      <select name="currency_code" class="cur">
+			    <option value="USD" selected="selected">$</option>
+			    <option value="EUR">&euro;</option>
+			    <option value="GBP">&pound;</option>
+			    <option value="YEN">&yen;</option>
+			   </select>
+			  </span>
+			  <ul class="amounts">	
+		      <li><input type="radio" name="amount" value="2000.00"><label for="2000">2000</label></li>
+	  	      <li><input type="radio" name="amount" value="1000.00"><label for="1000">1000</label></li>
+		      <li><input type="radio" name="amount" value="500.00"><label for="500">500</label></li>
+		      <li><input type="radio" name="amount" value="250.00"><label for="250">250</label></li>
+		      <li><input type="radio" name="amount" value="100.00"><label for="100">100</label></li>
+		      <li><input type="radio" name="amount" value="50.00"><label for="50">50</label></li>
+		      <li><input type="radio" name="amount" value="20.00" checked="checked"><label for="20">20</label></li>
+		      <li><input type="radio" name="amount" value="10.00"><label for="10">10</label></li>
+		      <li><input type="radio" name="amount" value="5.00"><label for="5">5</label></li>
+		    </ul>
+		   </div>
+		   <div>
+		    <label for="custom">or enter a donation amount:</label><input type="text" id="amount" class="amount" name="amount">
+			 <input type="hidden" id="a3" name="a3" value="0">		
+			 <input class="donate-btn" type="submit" name="donate" value="Donate" alt="Subscribe to Tor with PayPal - it's fast, free and secure!">
+	       <!-- <input type="image" src="../images/btn_donateCC_LG.gif" name="submit" alt="Subscribe to Tor with PayPal - it's fast, free and secure!"> -->
+		   </div>
+		     <input type="hidden" id="p3" name="p3" value="1">
 		     <input type="hidden" name="sra" value="1">
 		     <input type="hidden" name="src" value="1">
 		     <input type="hidden" name="no_shipping" value="1">
 		     <input type="hidden" name="no_note" value="1">
-		     <input type="image" src="$(IMGROOT)/btn_donateCC_LG.gif" name="submit" alt="Subscribe to Tor with PayPal - it's fast, free and secure!"/>
-		     <input type="hidden" name="cmd" value="_xclick-subscriptions">
+		     <input type="hidden" id="cmd" name="cmd" value="_donations">
 		     <input type="hidden" name="business" value="donations@torproject.org">
-		     <input type="hidden" name="item_name" value="Tor Project Membership">
-		     <input type="hidden" name="return" value="https://www.torproject.org/donate"/>
-		     <input type="hidden" name="cancel_return" value="https://www.torproject.org/donate"/>
-		     <input class="donate-btn" type="submit" name="donate" value="Donate">
-		  </tr>
-		  <tr>
-		    <td><input type="radio" name="amount" value="5.00">5/mo</td>
-		    <td><input type="radio" name="amount" value="10.00">10/mo</td>
-		    <td><input type="radio" name="amount" value="20.00" checked="checked">20/mo</td>
-		  </tr>
-		  <tr>
-		    <td><input type="radio" name="amount" value="50.00">50/mo</td>
-		    <td><input type="radio" name="amount" value="100.00">100/mo</td>
-		    <td><input type="radio" name="amount" value="250.00">250/mo</td>
-		  </tr>
+		     <input type="hidden" id="item_name" name="item_name" value="Donation to the Tor Project">
+		     <input type="hidden" name="return" value="https://www.torproject.org/donate">
+		     <input type="hidden" name="cancel_return" value="https://www.torproject.org/donate">
+		  </div>
+	 </form>
+	</div>
+  </div>
+<!-- END PAYPAL -->
+  <div class="hundred toptwenty">
+<!-- BEGIN AMAZON -->
+    <a name="amazon"></a>
+	 <div class="dbox dsmall">
+		<h3>Donate via Amazon Payments</h3>
+	    <form action="https://authorize.payments.amazon.com/pba/paypipeline" method="post">
+	      <div class="drow toppad">
+		    <div>
+		     <label for="amazon">&#x24;</label>
+		     <input type="text" name="amount" size="6" value="20">
+			  <input class="donate-btn" type="image" src="http://g-ecx.images-amazon.com/images/G/01/asp/golden_small_donate_withmsg_whitebg.gif">
+		    </div>
+		    <input type="hidden" name="immediateReturn" value="1">
+		    <input type="hidden" name="collectShippingAddress" value="0">
+		    <input type="hidden" name="minimumDonationAmount" value="USD 5">
+		    <input type="hidden" name="isDonationWidget" value="1">
+		    <input type="hidden" name="description" value="Supporting Online Anonymity &amp; Privacy">
+		    <input type="hidden" name="amazonPaymentsAccountId" value="XGSROLNTXRNC3N1P4TXKMNK14LN1D6SZUD8SN1">
+		    <input type="hidden" name="returnUrl" value="https://www.torproject.org/donate/donate.html.en">
+		    <input type="hidden" name="processImmediate" value="1">
+		    <input type="hidden" name="cobrandingStyle" value="logo">
+		    <input type="hidden" name="abandonUrl" value="https://www.torproject.org/donate/donate.html.en">
 		  </div>
 		</form>
-		</table>
-		</div>
-	  </div>
-  <!-- END PAYPAL SUBSCRIPTION -->
-  <!-- BEGIN PAYPAL ONE TIME -->
-    <div class="title toptwenty">Single Donation via PayPal</div>
-    <div class="left hundred">
-	<div class="paypal focus">
-	  <h4>Make a one-time donation</h4>
-	    <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-	      <table>
-		  <tr colspan="2">
-		    <td>Choose your currency:</td>
-		      <td>
-			<select name="currency_code">
-			  <option value="USD" selected="selected">$</option>
-			  <option value="EUR">&euro;</option>
-			  <option value="GBP">&pound;</option>
-			  <option value="YEN">&yen;</option>
-			</select>
-		      </td>
-	      </tr>
-	      <tr colspan="2">
-		    <input type="hidden" name="no_shipping" value="1">
-		    <input type="image" src="$(IMGROOT)/btn_donateCC_LG.gif" name="submit" alt="Make a single donation with PayPal - it's fast, free and secure!"/>
-		    <input type="hidden" name="cmd" value="_xclick">
-		    <input type="hidden" name="business" value="donations@torproject.org">
-		    <input type="hidden" name="item_name" value="Donation to the Tor Project">
-		    <input type="hidden" name="return" value="https://www.torproject.org/donate/donate.html.en"/>
-		    <input type="hidden" name="cancel_return" value="https://www.torproject.org/donate/donate.html.en"/>
-	      </tr>
-	      <tr>
-		    <td><input type="radio" name="amount" value="10.00"> 10</td>
-		    <td><input type="radio" name="amount" value="20.00" checked="checked"> 20</td>
-		    <td><input type="radio" name="amount" value="50.00"> 50</td>
-		    <td><input type="radio" name="amount" value="100.00"> 100</td>
-	      </tr>
-	      <tr>
-		    <td><input type="radio" name="amount" value="250.00"> 250</td>
-		    <td><input type="radio" name="amount" value="500.00"> 500</td>
-		    <td><input type="radio" name="amount" value="1000.00"> 1,000</td>
-		    <td><input type="radio" name="amount" value="5000.00"> 5,000</td>
-	      </tr>
-	    </table>
-        </form>
-      </div>
-      </div>
-    <!-- END PAYPAL ONE-TIME -->
-    <!-- BEGIN AMAZON -->
-    <div class="title topforty">Single Donation via Amazon Payments</div>
-    <div class="hundred left">
-      <div class="paypal focus">
-    <a id="amazon"></a>
-    <a class="anchor" href="#amazon"></a>
-      	<h4>Make a single donation.</h4>
-	<form action="https://authorize.payments.amazon.com/pba/paypipeline" method="post">
-	<table>
-	<tr>
-	    <input type="hidden" name="immediateReturn" value="1">
-	    <input type="hidden" name="collectShippingAddress" value="0">
-	    <input type="hidden" name="minimumDonationAmount" value="USD 10">
-	    <input type="hidden" name="isDonationWidget" value="1">
-	    <input type="hidden" name="description" value="Supporting Online Anonymity &amp; Privacy">
-	    <input type="hidden" name="amazonPaymentsAccountId" value="XGSROLNTXRNC3N1P4TXKMNK14LN1D6SZUD8SN1">
-	    <input type="hidden" name="returnUrl" value="https://www.torproject.org/donate/donate.html.en">
-	    <input type="hidden" name="processImmediate" value="1">
-	    <input type="hidden" name="cobrandingStyle" value="logo">
-	    <input type="hidden" name="abandonUrl" value="https://www.torproject.org/donate/donate.html.en">
-      </tr>
-	  <td>&nbsp;</td>
-	  <td>$<input type="text" name="amount" size="8" value="10"></td>
-	  <td>&nbsp;</td>
-      <tr>
-	  <td colspan="3"><input type="image" src="http://g-ecx.images-amazon.com/images/G/01/asp/golden_small_donate_withmsg_whitebg.gif"></td>
-      </tr>
-      </table>
-      </form>
-    </div>
-    </div>
-    <!-- END AMAZON -->
-    <!-- BEGIN GOOGLE -->
-    <div class="title topforty">Single Donation via Google Checkout</div>
-    <div class="hundred left">
-      <div class="paypal focus">
+		<small>Requires an Amazon Account</small>		
+	 </div>
+<!-- END AMAZON -->
+<!-- BEGIN GOOGLE -->
     <a id="google"></a>
-    <a class="anchor" href="#google"></a>
-      	<h4>Make a single donation.</h4>
-
+    <div class="dbox dsmall">
+      <h3>Donate via Google Checkout</h3>
+      
 <script type="text/javascript">
 function validateAmount(amount){
   if(amount.value.match( /^[0-9]+(\.([0-9]+))?$/)){
@@ -175,64 +167,55 @@ function validateAmount(amount){
   }
 }
 </script>
-<form action="https://checkout.google.com/cws/v2/Donations/250937139555708/checkoutForm" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm" onSubmit="return validateAmount(this.item_price_1)" target="_top">
-<table>
-<tr>
-    <input name="item_name_1" type="hidden" value="Donate to the Tor
-Project"/>
-    <input name="item_description_1" type="hidden" value="Tor is written
-for and supported by people like you"/>
-    <input name="item_quantity_1" type="hidden" value="1"/>
-    <input name="item_currency_1" type="hidden" value="USD"/>
-    <input name="item_is_modifiable_1" type="hidden" value="true"/>
-    <input name="item_min_price_1" type="hidden" value="0.01"/>
-    <input name="item_max_price_1" type="hidden" value="25000.0"/>
-    <input name="_charset_" type="hidden" value="utf-8"/>
-</tr>
-<tr>
-<td>
-    &#x24; <input id="item_price_1" name="item_price_1" onfocus="this.style.color='black'; this.value='';" size="6" type="text" value="25.00"/>
-    <input alt="Donate" src="https://checkout.google.com/buttons/donateNow.gif?merchant_id=250937139555708&amp;w=115&amp;h=50&amp;style=trans&amp;variant=text&amp;loc=en_US" type="image"/>
-</td>
-</tr>
-</table>
-</form>
-</div>
-</div>
-    <!-- END GOOGLE -->
-    <!-- BEGIN GIVV -->
-    <div class="title topforty">Donate via Givv.org</div>
-    	<div class="hundred left">
+
+		<form action="https://checkout.google.com/cws/v2/Donations/250937139555708/checkoutForm" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm" onSubmit="return validateAmount(this.item_price_1)" target="_top">
+	 	 <div class="drow toppad">
+	 	  <div>
+    		<label for="google">&#x24;</label>
+    		<input id="item_price_1" name="item_price_1" size="6" type="text" value="20">
+    		<input class="donate-btn" alt="Donate" src="https://checkout.google.com/buttons/checkout.gif?merchant_id=&w=168&h=44&style=trans&variant=text&loc=en_US" type="image">
+		  </div>
+     	  <input name="item_name_1" type="hidden" value="Donate to the Tor Project">
+    	  <input name="item_description_1" type="hidden" value="Tor is written for and supported by people like you">
+    	  <input name="item_quantity_1" type="hidden" value="1">
+    	  <input name="item_currency_1" type="hidden" value="USD">
+    	  <input name="item_is_modifiable_1" type="hidden" value="true">
+    	  <input name="item_min_price_1" type="hidden" value="0.01">
+    	  <input name="item_max_price_1" type="hidden" value="25000.0">
+    	  <input name="_charset_" type="hidden" value="utf-8">
+	    </div>
+      </form>
+		<small>Requires a Google Account</small>		
+    </div>
+<!-- END GOOGLE -->
+<!-- BEGIN GIVV -->
     <a id="givv"></a>
-    <a class="anchor" href="#givv"></a>
-        <p>Givv.org is a new way to think about making your impact. Make one monthly donation. To as many nonprofits as you like.
-	Automatic, one-click giving. You stay anonymous and stay in control!
-	<strong><a href="http://givv.org/recipients/the-tor-project">Continue to Givv.org &raquo;</a></strong></p>
-      </div>
-    <!-- END GIVV -->
-    <!-- BEGIN CHECK -->
-    <div class="title toptwenty">Donate via Check, Cash, or Money Order</div>
-    	<div class="left hundred">
-    <a id="cash"></a>
-    <a class="anchor" href="#cash"></a>
-      	<p>You can send checks or money orders to:</p>
+    <div class="dbox dsmall givv">
+      <h3>Donate via Givv.org</h3>
+      <p>Givv.org is a new way to think about making your impact. Make one monthly donation. To as many nonprofits as you like. Automatic, one-click giving. <strong>You stay anonymous and stay in control!</strong></p>
+	   <p style="text-align:center;"><strong><a href="http://givv.org/recipients/the-tor-project">Continue to Givv.org &raquo;</a></strong></p>
+    </div>
+<!-- END GIVV -->
+   </div>
+<!-- BEGIN CHECK -->
+   <a id="cash"></a>
+   <div class="hundred toptwenty">
+     <div class="dbox donate">
+       <h3>Donate via Check, Cash, Money Order, Bank Transfer, Stock Grant, or Another More Sophisticated Transaction</h3>
+       <h4>You can send checks or money orders to:</h4>
 	    <p>The Tor Project, Inc<br>
         969 Main Street, Suite 206<br>
         Walpole, MA 02081-2972 USA</p>
-      </div>
-	<!-- END CHECK -->
-    <div class="title toptwenty">
-      Donate via Wire or Bank Transfer
-    </div>
-    <div class="left hundred">
-        <h3>US Transfers</h3>
+<!-- END CHECK -->
+    	  <h3 style="margin-top:20px;">Donate via Wire or Bank Transfer</h3>
+        <h4>US Transfers</h4>
         <p>For US donations via wire or ACH transfer, please contact us for the relevant information.</p>
-        <h3>European Transfers</h3>
+        <h4>European Transfers</h4>
         <p>Wau Holland Stiftung<br>
         IBAN DE03 5204 0021 0277 281202<br>
         SWIFT BIC COBADEFF520</p>
-        <p><strong>Classic style German account information is:</strong><br>
-        Konto: 2772812-02<br>
+        <h4>Classic style German account information is:</h4>
+        <p>Konto: 2772812-02<br>
         Inhaber: Wau Holland Stiftung<br>
         Bank: Commerzbank Kassel<br>
         BLZ: 52040021</p>
@@ -254,12 +237,13 @@ for and supported by people like you"/>
           a donation receipt upon request (if provided with address
           information).</li>
         </ul>
-      </div>
-    <!-- END TRANSFER -->
-    <!-- END MAINCOL -->
+     </div>
+   </div>
+<!-- END TRANSFER -->
+<!-- END MAINCOL -->
 </div>
   <div id = "sidecol">
-#include "side.wmi"
+#include "side-donate.wmi"
 #include "info.wmi"
   </div>
   <!-- END SIDECOL -->
