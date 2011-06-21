@@ -4,7 +4,7 @@
 
 
 ## translation metadata
-# Revision: $Revision: 24208 $
+# Revision: $Revision: 24819 $
 # Translation-Priority: 3-low
 #include "head.wmi" TITLE="Tor: Linux/BSD/Unix Install Instructions" CHARSET="UTF-8"
 <div id="content" class="clearfix">
@@ -85,10 +85,10 @@ uudelleen, jotta muutokset tulevat
 voimaan. Esimerkiksi:<br><tt>/etc/init.d/polipo restart</tt>
     </p>
     
-    <p>Voit halutessasi käyttää Polipon sijasta Privoxya <a
-href="<wiki>doc/PrivoxyConfig">näillä Privoxyn
-esimerkkiasetuksilla</a>. Polipoa ja Privoxya ei kuitenkaan pidä ajaa yhtä
-aikaa, koska molemmat asetustiedostot käyttävät porttia 8118,</p>
+    <p>If you prefer, you can instead use Privoxy with <a
+href="<wiki>doc/PrivoxyConfig">this sample Privoxy configuration</a>. But
+since the config files both use port 8118, you shouldn't run both Polipo and
+Privoxy at the same time.</p>
     
     <hr> <a id="using"></a>
     <h2><a class="anchor" href="#using">Kolmas vaihe: aseta sovelluksesi käyttämään
@@ -112,19 +112,18 @@ href="<wikifaq>#SocksListenAddress">FAQ:n kohta Torin käyttämisestä eri
 tietokoneella</a>.
     </p>
     
-    <p>Muiden HTTP-välityspalvelimia tukevien sovellusten Torraamiseksi osoita ne
-vain Polipoon (siis localhost, portti 8118). Käyttääksesi SOCKSia suoraan
-(esimerkiksi pikaviestimiin, Jabberiin, IRCiin jne.) voit osoittaa
-sovelluksesi suoraan Toriin (localhost, portti 9050), mutta katso <a
-href="<wikifaq>#SOCKSAndDNS">tästä FAQ:n kohdasta</a> miksi tämä voi olla
-vaarallista. Jos käytät sovelluksia, jotka eivät tue sen paremmin SOCKSia
-kuin HTTP:täkään, tutustu <a
-href="https://code.google.com/p/torsocks/">torsocksiin</a> tai <a
-href="<wiki>doc/TorifyHOWTO#socat">socatiin</a>.
+    <p>To Torify other applications that support HTTP proxies, just point them at
+Polipo (that is, localhost port 8118). To use SOCKS directly (for instant
+messaging, Jabber, IRC, etc), you can point your application directly at Tor
+(localhost port 9050), but see <a href="<wikifaq>#SOCKSAndDNS">this FAQ
+entry</a> for why this may be dangerous. For applications that support
+neither SOCKS nor HTTP, take a look at <a
+href="https://code.google.com/p/torsocks/">torsocks</a> or <a
+href="<wiki>doc/TorifyHOWTO#socat">socat</a>.
     </p>
     
-    <p>Tietoa muiden ohjelmien torraamisesta löytyy <a
-href="<wiki>doc/TorifyHOWTO">Torify HOWTO</a>:sta.
+    <p>For information on how to Torify other applications, check out the <a
+href="<wiki>doc/TorifyHOWTO">Torify HOWTO</a>.
     </p>
     
     <hr> <a id="verify"></a>

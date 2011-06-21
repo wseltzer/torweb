@@ -4,7 +4,7 @@
 
 
 ## translation metadata
-# Revision: $Revision: 24720 $
+# Revision: $Revision: 24819 $
 # Translation-Priority: 2-medium
 #include "pl/head.wmi" TITLE="Tor Project: FAQ" CHARSET="UTF-8"
 <div id="content" class="clearfix">
@@ -153,23 +153,24 @@ lokalnymi podsłuchiwaczami, jak na przykład w kawiarence z darmowym
 internetem wifi.
     </p>
     <p>
-    Dostawcy prostych proxy dają też pojedynczy niedobry punkt. Wiedzą, kim
-jesteś i co oglądasz w Internecie. Mogą obserwować Twój ruch, jak przechodzi
-przez ich serwer. W niektórych przypadkach mogą obserwować Twój zaszyfrowany
-ruch, gdy przekierowują go do strony Twojego banku lub sklepów
-internetowych. Musisz im ufać, że nie robią żadnej z takich rzeczy jak
-obserwacja ruchu, wstrzykiwanie własnych reklam w Twój ruch czy zapisywanie
-szczegółów o Tobie.
+    Simple proxy providers also create a single point of failure.  The provider
+knows who you are and where you browse on the Internet.  They can see your
+traffic as it passes through their server.  In some cases, they can even see
+inside your encrypted traffic as they relay it to your banking site or to
+ecommerce stores.  You have to trust the provider isn't doing any number of
+things, such as watching your traffic, injecting their own advertisements
+into your traffic stream, and recording your personal details.
     </p>
     <p>
-    Tor przekazuje Twój ruch przez co najmniej 3 różne serwery, zanim wyśle go
-do miejsca przeznaczenia. Tor nie zmienia ani nawet nie wie, co przez niego
-wysyłasz. Tylko przekierowuje Twój ruch, całkowicie zaszyfrowany, przez sieć
-Tora i sprawia, że wyskakuje gdzieś indziej na świecie, całkowicie
-nienaruszony. Klient Tora jest wymagany, gdyż zakładamy, że masz zaufanie do
-swojego komputera. Klient Tora zarządza szyfrowaniem i wybraną ścieżką przez
-sieć Tora. Przekaźniki rozmieszczone na całym świecie tylko przekazują
-zaszyfrowane pakiety między sobą.</p>
+    Tor passes your traffic through at least 3 different servers before sending
+it on to the destination. Because there's a separate layer of encryption for
+each of the three relays, Tor does not modify, or even know, what you are
+sending into it.  It merely relays your traffic, completely encrypted
+through the Tor network and has it pop out somewhere else in the world,
+completely intact.  The Tor client is required because we assume you trust
+your local computer.  The Tor client manages the encryption and the path
+chosen through the network.  The relays located all over the world merely
+pass encrypted packets between themselves.</p>
     <p>
     <dl>
     <dt>Czy pierwszy serwer nie widzi, kim jestem?</dt><dd>Być może. Zły pierwszy z trzech serwerów może widzieć zaszyfrowany ruch Tora
@@ -217,15 +218,13 @@ poziomów połączenia i aplikacji.
     </p>
 
     <p>
-    Jest wiele innych programów, których można używać z Torem, ale nie
-zbadaliśmy problemów anonimowości poziomu aplikacji w tych programach dość
-dobrze, by móc polecić bezpieczną konfigurację. Nasze wiki ma listę
-instrukcji <a href="<wiki>doc/TorifyHOWTO">toryfikacji
-poszczególnych aplikacji</a>. Jest też <a
-href="<wiki>doc/SupportPrograms">lista aplikacji pomagających w
-przekierowaniu ruchu sieciowego przez Tora</a>. Prosimy o dodawanie wpisów
-do tej listy i pomaganie nam w utrzymaniu jej w zgodności ze stanem
-faktycznym!
+    There are plenty of other programs you can use with Tor, but we haven't
+researched the application-level anonymity issues on them well enough to be
+able to recommend a safe configuration. Our wiki has a list of instructions
+for <a href="<wiki>doc/TorifyHOWTO">Torifying specific
+applications</a>. There's also a <a href="<wiki>doc/SupportPrograms">list of
+applications that help you direct your traffic through Tor</a>.  Please add
+to these lists and help us keep them accurate!
     </p>
 
     <hr> <a id="WhyCalledTor"></a>
@@ -421,13 +420,14 @@ problemy, a wtedy my będziemy mogli bardziej skupić się na ich naprawieniu.
     </li>
 
     <li>
-    Jest kilka kroków, które każdy może podjąć, by polepszyć wydajność Tora. <a
-href="<wiki>doc/FireFoxTorPerf">Możesz skonfigurować Firefoksa,
-by lepiej radził sobie z Torem</a>, <a
-href="http://www.pps.jussieu.fr/~jch/software/polipo/tor.html">możesz używać
-Polipo z Torem</a>, lub spróbować <a href="<page
-download/download>">zainstalować najnowszą wersję Tora</a>. Jeśli to
-podziała, pomóż innym, dokumentując, co zrobiłeś, i dając nam o tym znać.
+    There are some steps that individuals can take to improve their Tor
+performance. <a href="<wiki>doc/FireFoxTorPerf">You can configure your
+Firefox to handle Tor better</a>, <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/tor.html">you can use
+Polipo with Tor</a>, or you can try <a href="<page
+download/download>">upgrading to the latest version of Tor</a>.  If this
+works well, please help by documenting what you did, and letting us know
+about it.
     </li>
 
     <li>
@@ -1235,12 +1235,12 @@ jest to tylko kwestia tego, czy Twój przekaźnik jest umieszczany na
 publicznych listach, czy nie.
     </p>
 
-    <p>W tej chwili na świecie jest mała liczba miejsc, które filtrują połączenia
-do sieci Tora. Dlatego posiadanie dużej liczby mostków obecnie jest tylko
-środkiem zapasowym a) w przypadku, gdy sieć Tora faktycznie jest gdzieś
-blokowana, i b) dla ludzi chcących dodatkowej warstwy zabezpieczenia, gdyż
-martwią się tym, że ktoś pozna, że adres, z którym się kontaktują, jest
-adresem IP publicznego przekaźnika Tora.
+    <p>Right now, there are a small number of places in the world that filter
+connections to the Tor network. So getting a lot of bridges running right
+now is mostly a backup measure, a) in case the Tor network does get blocked
+in more places, and b) for people who want an extra layer of security
+because they're worried somebody will recognize that it's a public Tor relay
+IP address they're contacting.
     </p>
 
     <p>Masz więc prowadzić normalny przekaźnik, czy mostek? Jeśli masz szybkie
@@ -1645,8 +1645,8 @@ docs/faq-abuse>">FAQ o nadużyciach Tora</a>.
 Internetu o moim przekaźniku wyjściowym?</a></h3>
 
     <p>
-    Zbiór szablonów odpowiedzi dla ISPs został <a
-href="<wiki>doc/TorAbuseTemplates">zebrany tutaj</a>.
+    A collection of templates for successfully responding to ISPs is <a
+href="<wiki>doc/TorAbuseTemplates">collected here</a>.
     </p>
 
     <hr>
