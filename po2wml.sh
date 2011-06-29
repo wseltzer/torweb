@@ -251,6 +251,17 @@ for file in $po ; do
 				echo '#include "foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
 			fi
 
+			# If the file is overview.wml, make sure we
+			# include the correct set of images
+			if [ $wmlfile = "overview.wml" ] && [[ $lang = "de" || $lang = "es" || $lang = "fr" || 
+				$lang = "ja" || $lang = "nl" || $lang = "no" || $lang = "pl" || $lang = "ru" || 
+				$lang = "zh" ]]
+			then
+				sed -i "s/htw1.png/htw1_$lang.png/" "$wmldir/$subdir/$lang/$wmlfile"
+				sed -i "s/htw2.png/htw2_$lang.png/" "$wmldir/$subdir/$lang/$wmlfile"
+				sed -i "s/htw3.png/htw3_$lang.png/" "$wmldir/$subdir/$lang/$wmlfile"
+			fi
+
                         # If the translation is Polish, include the
                         # correct header, menu files and footer
 			if [ $lang = "pl" ]
