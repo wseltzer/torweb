@@ -316,6 +316,13 @@ for file in $po ; do
 
                                 # Footer
                                 echo '#include "de/foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
+
+				# If the file is tor-doc-windows, make
+				# sure we include the German video
+				if [ $wmlfile = "tor-doc-windows.wml" ]
+				then
+					sed -i "s@src\=\"https://media.torproject.org/video/2009-install-and-use-tor.ogv\"@src\=\"https://media.torproject.org/video/2011-install-and-use-tor-de.mp4@" "$wmldir/$subdir/$lang/$wmlfile"
+				fi
                         fi
 
 			# If the file is an Arabic translation, include the
