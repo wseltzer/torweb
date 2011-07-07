@@ -14,10 +14,10 @@
     <br>
     
     <p>
-    <b>Note that these are the installation instructions for running a Tor
-    client. If you want to relay traffic for others to help the network grow
-    (please do), read the <a
-    href="<page docs/tor-doc-relay>">Configuring a relay</a> guide.</b>
+    <b>Note that these are the installation instructions for running a
+    Tor client. The easiest way to do this is to simply download the <a
+    href="<page projects/torbrowser>"Tor Browser Bundle</a> and you are
+    done. </b>
     </p>
     
     <hr>
@@ -78,20 +78,16 @@
     entry for running Tor on a different computer</a>.
     </p>
     
-    <p>To Torify other applications that support HTTP proxies, just
-    point them at Polipo (that is, localhost port 8118). To use SOCKS
-    directly (for instant messaging, Jabber, IRC, etc), you can point
-    your application directly at Tor (localhost port 9050), but see <a
-    href="<wikifaq>#SOCKSAndDNS">this
-    FAQ entry</a> for why this may be dangerous. For applications
-    that support neither SOCKS nor HTTP, take a look at <a
-    href="https://code.google.com/p/torsocks/">torsocks</a> or <a
-    href="<wiki>doc/TorifyHOWTO#socat">socat</a>.
+    <p>To Torify other applications that support SOCKS proxies, just
+    point them at Tor's SOCKS port (127.0.0.1 port 9050). See <a
+    href="<wikifaq>#SOCKSAndDNS">this FAQ entry</a> for why this may be
+    dangerous. For applications that support neither SOCKS nor HTTP, take
+    a look at <a href="https://code.google.com/p/torsocks/">torsocks</a>
+    or <a href="<wiki>doc/TorifyHOWTO#socat">socat</a>.
     </p>
     
     <p>For information on how to Torify other applications, check out the
-    <a href="<wiki>doc/TorifyHOWTO">Torify
-    HOWTO</a>.
+    <a href="<wiki>doc/TorifyHOWTO">Torify HOWTO</a>.
     </p>
     
     <hr>
@@ -101,30 +97,26 @@
     
     <p>
     Next, you should try using your browser with Tor and make
-    sure that your IP address is being anonymized. Click on
-    <a href="https://check.torproject.org/">the
-    Tor detector</a>
-    and see whether it thinks you're using Tor or not.
-    #<a href="http://ipchicken.com/">this site</a>
-    #to see what IP address it thinks you're using.
-    (If that site is down, see <a
-    href="<wikifaq>#IsMyConnectionPrivate">this
-    FAQ entry</a> for more suggestions on how to test your Tor.)
+    sure that your IP address is being anonymized. Click on <a
+    href="https://check.torproject.org/">the Tor detector</a>
+    and see whether it thinks you're using Tor or not.  #<a
+    href="http://ipchicken.com/">this site</a> #to see what IP
+    address it thinks you're using.  (If that site is down, see <a
+    href="<wikifaq>#IsMyConnectionPrivate">this FAQ entry</a> for more
+    suggestions on how to test your Tor.)
     </p>
     
-    <p>If you have a personal firewall that limits your computer's
-    ability to connect to itself (this includes something like SELinux on
-    Fedora Core 4), be sure to allow connections from
-    your local applications to Polipo (local port 8118) and Tor (local port
-    9050). If
-    your firewall blocks outgoing connections, punch a hole so
-    it can connect to at least TCP ports 80 and 443, and then see <a
-    href="<wikifaq>#FirewalledClient">this
-    FAQ entry</a>.  If your SELinux config is not allowing tor or privoxy to
-    run correctly, create a file named booleans.local in the directory
-    /etc/selinux/targeted.  Edit this file in your favorite text editor and
-    insert "allow_ypbind=1".  Restart your machine for this change to take
-    effect.
+    <p>If you have a personal firewall that limits your computer's ability
+    to connect to itself (this includes something like SELinux on Fedora
+    Core 4), be sure to allow connections from your local applications to
+    Tor (local port 9050). If your firewall blocks outgoing connections,
+    punch a hole so it can connect to at least TCP ports 80 and 443, and
+    then see <a href="<wikifaq>#FirewalledClient">this FAQ entry</a>.
+    If your SELinux config is not allowing tor or privoxy to run
+    correctly, create a file named booleans.local in the directory
+    /etc/selinux/targeted.  Edit this file in your favorite text editor
+    and insert "allow_ypbind=1".  Restart your machine for this change
+    to take effect.
     </p>
     
     <p>If it's still not working, look at <a
@@ -139,19 +131,18 @@
     
     <p>The Tor network relies on volunteers to donate bandwidth. The more
     people who run relays, the faster the Tor network will be. If you have
-    at least 20 kilobytes/s each way, please help out Tor by configuring your
+    at least 20 KiloBytes/s each way, please help out Tor by configuring your
     Tor to be a relay too. We have many features that make Tor relays easy
     and convenient, including rate limiting for bandwidth, exit policies so
     you can limit your exposure to abuse complaints, and support for dynamic
     IP addresses.</p>
     
     <p>Having relays in many different places on the Internet is what
-    makes Tor users secure. <a
-    href="<wikifaq>#RelayAnonymity">You
-    may also get stronger anonymity yourself</a>,
-    since remote sites can't know whether connections originated at your
-    computer or were relayed from others.</p>
-    
+    makes Tor users secure. <a href="<wikifaq>#RelayAnonymity">You may
+    also get stronger anonymity yourself</a>, since remote sites can't
+    know whether connections originated at your computer or were relayed
+    from others.</p>
+
     <p>Read more at our <a href="<page docs/tor-doc-relay>">Configuring a relay</a>
     guide.</p>
     
