@@ -52,47 +52,12 @@
     </p>
     
     <hr>
-    <a id="privoxy"></a>
-    <a id="polipo"></a>
-    <h2><a class="anchor" href="#polipo">Step Two: Install Polipo for Web Browsing</a></h2>
-    <br>
-    
-    <p>After installing Tor, you need to configure your applications to use it.
-    </p>
-    
-    <p>
-    The first step is to set up web browsing. Start by installing <a
-    href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> from
-    your favorite repository. Polipo is a caching web proxy that does http
-    pipelining well, so it's well-suited for Tor's latencies. Make sure
-    to get at least Polipo 1.0.4, since earlier versions lack the SOCKS support
-    required to use Polipo with Tor. You should uninstall privoxy at this
-    point (e.g. apt-get remove privoxy or yum remove privoxy), so they don't
-    conflict.
-    </p>
-    
-    <p>Once you've installed Polipo (either from package or from
-    source), <b>you will need to configure Polipo to use Tor</b>. Grab our <a
-    href="<tbbrepo>/build-scripts/config/polipo.conf">Polipo
-    configuration for Tor</a> and put it in place of your current polipo
-    config file (e.g. /etc/polipo/config or ~/.polipo).
-    You'll need to restart Polipo for the changes to take effect. For
-    example:<br>
-    <tt>/etc/init.d/polipo restart</tt>
-    </p>
-    
-    <p>If you prefer, you can instead use Privoxy with <a
-    href="<wiki>doc/PrivoxyConfig">this
-    sample Privoxy configuration</a>. But since the config files both use
-    port 8118, you shouldn't run both Polipo and Privoxy at the same time.</p>
-    
-    <hr>
     <a id="using"></a>
-    <h2><a class="anchor" href="#using">Step Three: Configure your applications to use Tor</a></h2>
+    <h2><a class="anchor" href="#using">Step Two: Configure your applications to use Tor</a></h2>
     <br>
     
-    <p>After installing Tor and Polipo, you need to configure your
-    applications to use them. The first step is to set up web browsing.</p>
+    <p>After installing Tor, you need to configure your applications to
+    use them. The first step is to set up web browsing.</p>
     
     <p>You should use Tor with Firefox and Torbutton, for best safety.
     Simply install the <a
@@ -131,7 +96,7 @@
     
     <hr>
     <a id="verify"></a>
-    <h2><a class="anchor" href="#verify">Step Four: Make sure it's working</a></h2>
+    <h2><a class="anchor" href="#verify">Step Three: Make sure it's working</a></h2>
     <br>
     
     <p>
@@ -169,7 +134,7 @@
     <hr>
     <a id="server"></a>
     <a id="relay"></a>
-    <h2><a class="anchor" href="#relay">Step Five: Configure it as a relay</a></h2>
+    <h2><a class="anchor" href="#relay">Step Four: Configure it as a relay</a></h2>
     <br>
     
     <p>The Tor network relies on volunteers to donate bandwidth. The more
