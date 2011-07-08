@@ -39,11 +39,12 @@ podzieleniu się z nami tym sposobem, z chęcią przyjmiemy taką wiadomość.</
 href="<page getinvolved/translation>">wskazówki do tłumaczenia</a>, jeśli
 chcesz pomóc. Potrzebujemy zwłaszcza tłumaczy na język arabski i Farsi dla
 wielu użytkowników Tora w cenzorowanych obszarach.</li>
-    <li>Evaluate and document <a href="<wiki>doc/TorifyHOWTO">our list of
-programs</a> that can be configured to use Tor.</li>
-    <li>We have a huge list of <a href="<wiki>doc/SupportPrograms">potentially
-useful programs that interface to Tor</a>. Which ones are useful in which
-situations? Please help us test them out and document your results.</li>
+    <li>Przejrzyj i udokumentuj <a href="<wiki>doc/TorifyHOWTO">naszą listę
+programów</a>, które można skonfigurować do pracy z Torem.</li>
+    <li>Mamy ogromną listę <a href="<wiki>doc/SupportPrograms">potencjalnie
+użytecznych programów, które współpracują z Torem</a>. Które z nich są
+przydatne w jakich sytuacjach? Prosimy pomóż nam je testować i zapisuj swoje
+wyniki.</li>
     </ol>
     
     <a id="Advocacy"></a>
@@ -333,8 +334,8 @@ torsocks/dsocks działało na OS X</a></i>
     
     <a id="project-torouter"></a>
     <h3><a href="<wiki>doc/Torouter">Torouter</a> (<a
-href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Torouter&order=priority">bug
-tracker</a>)</h3>
+href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Torouter&order=priority">śledzenie
+błędów</a>)</h3>
     
     <p>
     Projekt mający na celu dostarczenie łatwej w użyciu, wbudowanej wersji Tora
@@ -1128,17 +1129,18 @@ deweloperów.
     <h2><a class="anchor" href="#OtherCoding">Inne pomysły związane z programowaniem
 i projektowaniem</a></h2>
     <ol>
-    <li>Tor relays don't work well on Windows XP. On Windows, Tor uses the standard
-<tt>select()</tt> system call, which uses space in the non-page pool. This
-means that a medium sized Tor relay will empty the non-page pool, <a
-href="<wiki>doc/WindowsBufferProblems">causing havoc and system
-crashes</a>. We should probably be using overlapped IO instead. One solution
-would be to teach <a
-href="http://www.monkey.org/~provos/libevent/">libevent</a> how to use
-overlapped IO rather than select() on Windows, and then adapt Tor to the new
-libevent interface. Christian King made a <a
-href="https://svn.torproject.org/svn/libevent-urz/trunk/">good start</a> on
-this in the summer of 2007.</li>
+    <li>Przekaźniki sieci Tora nie działają zbyt dobrze na Windows XP. Pod systemem
+Windows Tor używa standardowej funkcji systemowej <tt>select()</tt>, która
+zużywa miejsce w niestronicowanym obszarze pamięci. Znaczy to, że średnich
+rozmiarów przekaźnik sieci Tora zapełni dostępną przestrzeń, <a
+href="<wiki>doc/WindowsBufferProblems">będąc przyczyną dziwnych zachowań i
+padów systemu</a>. Powinniśmy raczej używać nakładającego IO. Jednym z
+rozwiązań byłoby nauczenie biblioteki <a
+href="http://www.monkey.org/~provos/libevent/">libevent</a>, jak używać
+nakładającego IO zamiast select() pod Windows, po czym zaadaptować Tora do
+nowego interfejsu. Christian King zrobił <a
+href="https://svn.torproject.org/svn/libevent-urz/trunk/">pierwszy dobry
+krok</a> latem roku 2007.</li>
     
     <li>Musimy zacząć budować nasz <a href="<page
 docs/documentation>#DesignDoc">projekt odporny na blokowanie</a>. Wchodzi w
