@@ -379,6 +379,13 @@ for file in $po ; do
 			subdir="zh-cn"
 			nosubdir
 		fi
+
+		# If the current subdirectory is "pt_BR" use "pt-br" instead
+		if [ $subdir = "pt_BR" ]
+		then
+			subdir="pt-br"
+			nosubdir
+		fi
 		
 		# If the current directory is "nb" use "no" instead
 		if [ $subdir = "nb" ]
@@ -402,7 +409,7 @@ for file in $po ; do
 		fi
 
 		# Convert everything else
-		if [[ $subdir != "en" && $subdir != "zh_CN" && $subdir != "nb" && $subdir != "sv" && $subdir != "pl_PL" ]]
+		if [[ $subdir != "en" && $subdir != "zh_CN" && $subdir != "pt_BR" && $subdir != "nb" && $subdir != "sv" && $subdir != "pl_PL" ]]
 		then
 			nosubdir
 		fi
@@ -411,6 +418,13 @@ for file in $po ; do
 		if [ $lang = "zh_CN" ]
 		then
 			lang="zh-cn"
+			subdir
+		fi
+
+		# If the current language is "pt_BR" use "pt-br" instead
+		if [ $lang = "pt_BR" ]
+		then
+			lang="pt-br"
 			subdir
 		fi
 
@@ -436,7 +450,7 @@ for file in $po ; do
 		fi
 
 		# Convert everything else
-		if [[ $lang != "en" && $lang != "zh_CN" && $lang != "nb" && $lang != "sv" && $lang != "pl_PL" ]]
+		if [[ $lang != "en" && $lang != "zh_CN" && $lang != "pt_BR" && $lang != "nb" && $lang != "sv" && $lang != "pl_PL" ]]
 		then
 			subdir
 		fi
