@@ -322,10 +322,10 @@ for file in $po ; do
 				if [ $wmlfile = "tor-doc-windows.wml" ]
 				then
 					orig_video=`grep src=\"https:\/\/media.torproject.org\/video\/2009-install-and-use-tor.ogv\" "$wmldir/$subdir/$lang/$wmlfile"`
-					new_video=`echo "<p>Das nachfolgende Video, wurde von <a href=\"http://www.sempervideo.de/\">SemperVideo</a> erstellt.</p> $orig_video"`
+					translated_video=`echo "<p>Das nachfolgende Video, wurde von SemperVideo erstellt.</p> <p><video id=\"v1\" src=\"https://media.torproject.org/video/2011-install-and-use-tor-de.ogv\" autobuffer=\"true\" controls=\"controls\"></video></p>"`
+					new_video=`echo "$orig_video $translated_video"`
 				
 					sed -i "s@$orig_video@$new_video@" "$wmldir/$subdir/$lang/$wmlfile"
-					sed -i "s@src\=\"https://media.torproject.org/video/2009-install-and-use-tor.ogv\"@src\=\"https://media.torproject.org/video/2011-install-and-use-tor-de.ogv\"@" "$wmldir/$subdir/$lang/$wmlfile"
 				fi
                         fi
 
