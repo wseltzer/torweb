@@ -373,20 +373,21 @@ for file in $po ; do
 	# subdirectory.
 	if [ $onedirup == $lang ]
 	then
-		# If the current subdirectory is "zh_CN" use "zh-cn" instead
-		if [ $subdir = "zh_CN" ]
+		# If the current subdirectory is of the form "xx_XX",
+		# rename to "xx-xx" instead (except for pl_PL)
+		if [[ $subdir =~ "_" && $subdir != "pl_PL" ]]
 		then
-			subdir="zh-cn"
+			subdir="`echo $subdir | sed s/_/-/ | tr '[A-Z]'	'[a-z]'`"
 			nosubdir
 		fi
 
-		# If the current subdirectory is "pt_BR" use "pt-br" instead
-		if [ $subdir = "pt_BR" ]
+		# If the current directory is "pl_PL" use "pl" instead
+		if [ $subdir = "pl_PL" ]
 		then
-			subdir="pt-br"
+			subdir="pl"
 			nosubdir
 		fi
-		
+
 		# If the current directory is "nb" use "no" instead
 		if [ $subdir = "nb" ]
 		then
@@ -401,30 +402,24 @@ for file in $po ; do
 			nosubdir
 		fi
 
-		# If the current directory is "pl_PL" use "pl" instead
-		if [ $subdir = "pl_PL" ]
-		then
-			subdir="pl"
-			nosubdir
-		fi
-
 		# Convert everything else
-		if [[ $subdir != "en" && $subdir != "zh_CN" && $subdir != "pt_BR" && $subdir != "nb" && $subdir != "sv" && $subdir != "pl_PL" ]]
+		if [[ $subdir != "en" && $subdir != "pl_PL" && ! ($subdir =~ "_") && $subdir != "nb" && $subdir != "sv" ]]
 		then
 			nosubdir
 		fi
 	else
-		# If the current language is "zh_CN" use "zh-cn" instead
-		if [ $lang = "zh_CN" ]
+		# If the current languge is of the form "xx_XX", rename
+		# to "xx-xx" instead (except for pl_PL)
+		if [[ $lang =~ "_" && $subdir != "pl_PL" ]]
 		then
-			lang="zh-cn"
+			lang="`echo $lang | sed s/_/-/ | tr '[A-Z]' '[a-z]'`"
 			subdir
 		fi
 
-		# If the current language is "pt_BR" use "pt-br" instead
-		if [ $lang = "pt_BR" ]
+		# If the current language is "pl_PL" use "pl" instead
+		if [ $lang = "pl_PL" ]
 		then
-			lang="pt-br"
+			$lang="pl"
 			subdir
 		fi
 
@@ -442,15 +437,8 @@ for file in $po ; do
 			subdir
 		fi
 	
-		# If the current language is "pl_PL" use "pl" instead
-		if [ $lang = "pl_PL" ]
-		then
-			lang="pl"
-			subdir
-		fi
-
 		# Convert everything else
-		if [[ $lang != "en" && $lang != "zh_CN" && $lang != "pt_BR" && $lang != "nb" && $lang != "sv" && $lang != "pl_PL" ]]
+		if [[ $lang != "en" && $lang != "pl_PL" && ! ($lang =~ "_") && $lang != "nb" && $lang != "sv" ]]
 		then
 			subdir
 		fi
