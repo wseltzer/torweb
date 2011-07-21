@@ -419,7 +419,7 @@ for file in $po ; do
 		# If the current language is "pl_PL" use "pl" instead
 		if [ $lang = "pl_PL" ]
 		then
-			$lang="pl"
+			lang="pl"
 			subdir
 		fi
 
