@@ -373,14 +373,6 @@ for file in $po ; do
 	# subdirectory.
 	if [ $onedirup == $lang ]
 	then
-		# If the current subdirectory is of the form "xx_XX",
-		# rename to "xx-xx" instead (except for pl_PL)
-		if [[ $subdir =~ "_" && $subdir != "pl_PL" ]]
-		then
-			subdir="`echo $subdir | sed s/_/-/ | tr '[A-Z]'	'[a-z]'`"
-			nosubdir
-		fi
-
 		# If the current directory is "pl_PL" use "pl" instead
 		if [ $subdir = "pl_PL" ]
 		then
@@ -402,20 +394,20 @@ for file in $po ; do
 			nosubdir
 		fi
 
+                # If the current subdirectory is of the form "xx_XX",
+                # rename to "xx-xx" instead (except for pl_PL)
+                if [[ $subdir =~ "_" && $subdir != "pl_PL" ]]
+                then
+                        subdir="`echo $subdir | sed s/_/-/ | tr '[A-Z]' '[a-z]'`"
+                        nosubdir
+                fi  
+
 		# Convert everything else
 		if [[ $subdir != "en" && $subdir != "pl_PL" && ! ($subdir =~ "_") && $subdir != "nb" && $subdir != "sv" ]]
 		then
 			nosubdir
 		fi
 	else
-		# If the current languge is of the form "xx_XX", rename
-		# to "xx-xx" instead (except for pl_PL)
-		if [[ $lang =~ "_" && $lang != "pl_PL" ]]
-		then
-			lang="`echo $lang | sed s/_/-/ | tr '[A-Z]' '[a-z]'`"
-			subdir
-		fi
-
 		# If the current language is "pl_PL" use "pl" instead
 		if [ $lang = "pl_PL" ]
 		then
@@ -436,7 +428,15 @@ for file in $po ; do
 			lang="se"
 			subdir
 		fi
-	
+
+                # If the current languge is of the form "xx_XX", rename
+                # to "xx-xx" instead (except for pl_PL)
+                if [[ $lang =~ "_" && $lang != "pl_PL" ]]
+                then
+                        lang="`echo $lang | sed s/_/-/ | tr '[A-Z]' '[a-z]'`"
+                        subdir
+                fi
+
 		# Convert everything else
 		if [[ $lang != "en" && $lang != "pl_PL" && ! ($lang =~ "_") && $lang != "nb" && $lang != "sv" ]]
 		then
