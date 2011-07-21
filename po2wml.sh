@@ -410,7 +410,7 @@ for file in $po ; do
 	else
 		# If the current languge is of the form "xx_XX", rename
 		# to "xx-xx" instead (except for pl_PL)
-		if [[ $lang =~ "_" && $subdir != "pl_PL" ]]
+		if [[ $lang =~ "_" && $lang != "pl_PL" ]]
 		then
 			lang="`echo $lang | sed s/_/-/ | tr '[A-Z]' '[a-z]'`"
 			subdir
