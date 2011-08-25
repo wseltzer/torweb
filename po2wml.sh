@@ -212,6 +212,36 @@ for file in $po ; do
 				echo '#include "ar/foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
 			fi
 
+			# If the translation is Farsi, include the
+			# correct header, css, menu files and footer
+			if [ $subdir = "fa" ]
+			then
+				# Head
+				orig_head=`grep '#include "head.wmi"' "$wmldir/$subdir/$wmlfile"`
+				temp_head=`echo $orig_head | sed s@head.wmi@fa/head.wmi@`
+				new_head=`echo $temp_head 'STYLESHEET="css/master-rtl.css"'`
+				sed -i "s@$orig_head@$new_head@" "$wmldir/$subdir/$wmlfile"
+
+				# Side (not all files include this)
+				orig_side=`grep '#include "side.wmi"' "$wmldir/$subdir/$wmlfile"`
+				if [ -n "$orig_side" ]
+				then
+					new_side=`echo '#include "fa/side.wmi"'`
+					sed -i "s@$orig_side@$new_side@" "$wmldir/$subdir/$wmlfile"
+				fi
+
+				# Info (not all files include this)
+				orig_info=`grep '#include "info.wmi"' "$wmldir/$subdir/$wmlfile"`
+				if [ -n "$orig_info" ]
+				then
+					new_info=`echo '#include "fa/info.wmi"'`
+					sed -i "s@$orig_info@$new_info@" "$wmldir/$subdir/$wmlfile"
+				fi
+
+				# Footer
+				echo '#include "fa/foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
+			fi
+
 			# If the directory does not include sidenav.wmi,
 			# copy it from the English directory (only if
 			# the English directory has this file)
