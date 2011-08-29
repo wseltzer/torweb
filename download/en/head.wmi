@@ -1,0 +1,197 @@
+#! /usr/bin/wml
+<: use strict; :>
+<: use warnings; :>
+#use "perl-globals.wmi"
+#use "links.wmi"
+#use "versions.wmi"
+#use "navigation.wmi"
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>$(TITLE)</title>
+  <link rel="shortcut icon" type="image/x-icon" href="$(IMGROOT)/favicon.ico">
+  <ifneq "$(REDIRECT)" "" "<meta http-equiv="refresh" content="0;url=$(DOCROOT)/$(REDIRECT)">">
+  <ifneq "$(REDIRECT_GLOBAL)" "" "<meta http-equiv="refresh" content="0;url=$(REDIRECT_GLOBAL)">">
+  <ifeq "$(ANNOUNCE_RSS)" "yes" "<link rel="alternate" title="Tor Project OR-announce" href="http://rss.gmane.org/gmane.network.onion-routing.announce"
+type="application/rss+xml">">
+
+  # begin WML to generate css/js paths 
+  <ifneq "$(STYLESHEET)" "" "<link rel="stylesheet" type="text/css" href="$(DOCROOT)/$(STYLESHEET)">">
+  <ifeq "$(STYLESHEET)" "" "<link rel="stylesheet" type="text/css" href="$(DOCROOT)/css/master.css">">
+
+  #<link href="css/master.css" rel="stylesheet" type="text/css">
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" type="text/css" href="$(DOCROOT)/css/ie8-and-down.css">
+  <![endif]-->
+  <!--[if lte IE 7]>
+  <link rel="stylesheet" type="text/css" href="$(DOCROOT)/css/ie7-and-down.css">
+  <![endif]-->
+  <!--[if IE 6]>
+  <link rel="stylesheet" type="text/css" href="$(DOCROOT)/css/ie6.css">
+  <![endif]-->
+
+#  <script language="javascript" type="text/javascript" src="$(DOCROOT)/global.js"></script>
+  # end WML to generate css/js paths 
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="author" content="The Tor Project, Inc.">
+  <meta name="keywords" content="anonymity online, tor, tor project, censorship circumvention, traffic analysis, anonymous communications research">
+  <script type="text/javascript" src="../js/jquery.min.js">
+#/* jQuery */
+  </script>
+  <script type="text/javascript" src="../js/jquery.client.min.js">
+/* "jQuery Browser And OS Detection Plugin" by Stoiman
+   Source: http://www.stoimen.com/blog/2009/07/16/jquery-browser-and-os-detection-plugin/
+   License: Public Domain (http://www.stoimen.com/blog/2009/07/16/jquery-browser-and-os-detection-plugin/#comment-12498) */
+  </script>
+  <script type="text/javascript" src="../js/dlpage01.js">
+#/* Displays detected section */
+  </script>
+  <script async type="text/javascript" src="../js/jquery.accordion.min.js">
+/* Modified version of "Stupid Simple jQuery Accordian Menu" originally developed by Ryan Stemkoski
+   Source: http://www.stemkoski.com/stupid-simple-jquery-accordion-menu/
+   License: Public Domain (http://www.stemkoski.com/stupid-simple-jquery-accordion-menu/#comment-32882) */
+  </script>
+  <script async type="text/javascript">
+#/* switches package links depending on selection */
+  function updateLang() {
+    var caller = $( this );
+    var pkg = caller.attr('id');
+    var lang = caller.val();
+    var wintbb = '../dist/torbrowser/tor-browser-<version-torbrowserbundle>_'+lang+'.exe';
+    var osxtbb = '../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-'+lang+'.zip';
+    var lintbb32 = '../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-'+lang+'.tar.gz';
+    var lintbb64 = '../dist/torbrowser/linux/tor-browser-gnu-linux-x86_64-<version-torbrowserbundlelinux64>-dev-'+lang+'.tar.gz';
+    if(pkg == 'win-tbb'){
+      $('.'+pkg).replaceWith('<a class="button win-tbb" href="'+wintbb+'"><span class="strong">Download</span><span class="normal">Tor Browser Bundle</span></a>');
+      $('.'+pkg+'-sig').replaceWith('<a class="win-tbb-sig" href="'+wintbb+'.asc">sig</a>');
+    }else if(pkg == 'osx-tbb'){
+      $('.'+pkg).replaceWith('<a class="button osx-tbb" href="'+osxtbb+'"><span class="strong">Download</span><span class="normal">Tor Browser Bundle (Beta)</span></a>');
+      $('.'+pkg+'-sig').replaceWith('<a class="osx-tbb-sig" href="'+osxtbb+'.asc">sig</a>');
+    }else if(pkg == 'lin-tbb32'){
+      $('.'+pkg).replaceWith('<a class="button lin-tbb32" href="'+lintbb32+'"><span class="strong">Download</span><span class="normal">i686 / 32-bit (Beta)</span></a>');
+      $('.'+pkg+'-sig').replaceWith('<a class="lin-tbb32-sig" href="'+lintbb32+'.asc">sig</a>');
+    }else if(pkg == 'lin-tbb64'){
+      $('.'+pkg).replaceWith('<a class="button lin-tbb64" href="'+lintbb64+'"><span class="strong">Download</span><span class="normal">x86_64 / 64-bit (Beta)</span></a>');
+      $('.'+pkg+'-sig').replaceWith('<a class="lin-tbb64-sig" href="'+lintbb64+'.asc">sig</a>');
+    }
+  }
+
+  $(function(){
+    $('.lang').ready(updateLang);
+    $('.lang').change(updateLang);
+    /* Only show language selector if javascript is enabled */
+    $('.lang').css('display', 'block');
+  });
+  </script>
+  <script async type="text/javascript" src="../js/ppwidget.js">
+#/* Script For Donation Widget */
+  </script>
+</head>
+<body onload="resetAll()" onunload="">
+<div id="wrap">
+  <div id="header">
+    <h1 id="logo"><a href="<page index>">Tor</a></h1>
+      # navigation menu generation
+      <div id="nav">
+        <ul>
+        <:{
+            # create a hash and maintain order of keys
+            my %navigation;
+            my @keys;
+            while (@navigation) {
+              my $key = shift @navigation;
+              my $val = shift @navigation;
+              push @keys, $key;
+              $navigation{$key} = $val;
+            }
+
+            my $page = $WML_SRC_BASENAME;
+            my $lang = "$(LANG)";
+
+            for my $key (@keys) {
+              my ($dir, $base) = $key =~ m,^(?:(.*)/)?(.*?)$,;  
+
+              # in directory of active link, set class active 
+              my $class;
+              if ((defined $dir) and ($WML_SRC_DIRNAME =~/$dir/) or ($WML_SRC_BASENAME eq $base)) {
+                $class = 'class="active"';
+              } else {
+                $class = '';
+              }
+
+	            $dir = '.' unless defined $dir;
+                
+              # translated version
+              if (-e "$(DOCROOT)/$dir/$lang/$base.wml") {
+                  printf '<li><a '.$class.' href="%s">%s</a></li>'."\n",
+                         stripDotSlashs("$(DOCROOT)/$dir/$base.html.$(LANG)"),$navigation{$key};
+              } 
+              # english version
+              elsif (-e "$(DOCROOT)/$dir/en/$base.wml") {
+              	printf '<li><a '.$class.' href="%s">%s</a></li>'."\n",
+                  stripDotSlashs("$(DOCROOT)/$dir/$base.html"), $navigation{$key};
+              }
+              # full url
+              elsif ($key =~/^http/) {
+                printf '<li><a href="%s">%s</a></li>'."\n", $key, $navigation{$key};
+              } else {
+                warn "$WML_SRC_FILENAME has a [page $key] (parses to
+docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$dir/$lang/$base.wml), but that doesn't exist.";
+              }
+            }
+        }:>
+        </ul>
+      </div>
+      <!-- END NAV -->
+     # end navigation generation
+      <div id="calltoaction">
+        <ul>
+          <:{
+            my %calltoaction;
+            my @keys;
+            while (@calltoaction) {
+              my $key = shift @calltoaction;
+              my $val = shift @calltoaction;
+              push @keys, $key;
+              $calltoaction{$key} = $val;
+            } 
+
+            my $page = $WML_SRC_BASENAME;
+            my $lang = "$(LANG)";
+            for my $key (@keys) {
+              my ($dir, $base) = $key =~ m,^(?:(.*)/)?(.*?)$,;  
+
+              # in directory, set active 
+              my $class;
+              if ((defined $dir) and ($WML_SRC_DIRNAME =~/$dir/) or ($WML_SRC_BASENAME eq $base)) {
+              #if ($WML_SRC_BASENAME eq $base) {
+                $class = 'class="active"';
+              } else {
+                $class = '';
+              }
+
+	          $dir = '.' unless defined $dir;
+              # try to use a translated version
+              if (-e "$(DOCROOT)/$dir/$lang/$base.wml") {
+                  printf '<li class="donate"><a '.$class.' href="%s">%s</a></li>'."\n",
+                         stripDotSlashs("$(DOCROOT)/$dir/$base.html.$(LANG)"),$calltoaction{$key};
+              } 
+              # default to english version
+              elsif (-e "$(DOCROOT)/$dir/en/$base.wml") {
+              	printf '<li class="donate"><a '.$class.' href="%s">%s</a></li>'."\n",
+                  stripDotSlashs("$(DOCROOT)/$dir/$base.html"), $calltoaction{$key};
+              } else {
+                warn "$WML_SRC_FILENAME has a [page $key] (parses to docdir: $(DOCROOT)/; dir: $dir; base: $base -> $(DOCROOT)/$dir/$lang/$base.wml), but that doesn't exist.";
+              }
+            }    
+          }:>
+        </ul>
+      </div>
+      <!-- END CALLTOACTION -->
+  </div>
+  <!-- END HEADER -->
+
+#<ifneq "$(REDIRECT)" "" "Redirecting to <a href="$(DOCROOT)/$(REDIRECT)">$(DOCROOT)/$(REDIRECT)</a>.">
+#<ifneq "$(REDIRECT_GLOBAL)" "" "Redirecting to <a href="$(REDIRECT_GLOBAL)">$(REDIRECT_GLOBAL)</a>.">

@@ -3,265 +3,224 @@
 # Translation-Priority: 3-low
 #include "head.wmi" TITLE="Download Tor" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
 
+#<!-- ATTENTION TRANSLATOR -->
+#<!-- You MUST copy 'head.wmi' and 'lang.wmi' along with this file! -->
+
+#<!-- TBB DEFAULT LANGUAGE: Change 'en-US' below to your language code (if package exists)-->
+#<!-- IMPORTANT: You MUST also change the default selection in 'lang.wmi' -->
+<define-tag lang>en-US</define-tag>
+
 <div id="content" class="clearfix">
-<div id="breadcrumbs"><a href="<page index>">Home &raquo; </a><a href="<page download/download>">Download</a></div>
-<div id="maincol-left">
-<h1>Download Tor</h1>
+  <div id="breadcrumbs"><a href="<page index>">Home &raquo; </a><a href="<page download/download>">Download</a></div>
+  <div id="maincol-left">
 <!-- BEGIN TEASER WARNING -->
-<div class="warning">
-<h2>Want Tor to really work?</h2>
-<p>...then please don't just install it and go on.  You need to change some of your habits, and reconfigure your software! Tor by itself is <em>NOT</em> all you need to maintain your anonymity. Read the <a href="#warning">full list of warnings</a>.
-</p>
-</div>
+    <div class="warning-top">
+      <h2>Want Tor to really work?</h2>
+	<p>...then please don't just install it and go on.  You need to change some of your habits, and reconfigure your software! Tor by itself is <em>NOT</em> all you need to maintain your anonymity. Read the <a href="#warning">full list of warnings</a>.
+	</p>
+      </div>
 <!-- END TEASER WARNING -->
+<!-- START DOWNLOADS -->
 <!-- START WINDOWS -->
-<table class="topforty">
-<tr>
-<td class="nopad"><div class="title"><a name="Windows">Microsoft Windows</a></div></td>
-</tr>
-<tr>
-<td>
- <!-- DONATION WIDGET BEGIN -->
-<script type="text/javascript" src="$(DOCROOT)/jquery.min.js"></script>
-<script type="text/javascript">
-function displayVals() {
-      var t3 = jQuery("#t3").val();
-      var amount = jQuery("#amount").val();
-      if(t3 != 0){
-	    jQuery('#a3').val(amount);
-	    jQuery('#p3').val(1);
-		 jQuery('#cmd').val('_xclick-subscriptions');
-		 jQuery('#item_name').val('Tor Project Membership');
-		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo"><small>(Requires a PayPal Account)</small></h6>');
-	  }else{
-	  	jQuery('#a3').val(0);
-	  	jQuery('#p3').val(0);
-		jQuery('#cmd').val('_donations');
-   	jQuery('#item_name').val('Donation to the Tor Project');
-		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
-	  }
-	  if( !t3 ) {
-	   jQuery('#cmd').val('_donations');
-   	jQuery('#item_name').val('Donation to the Tor Project');
-		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
-     }
-}
+      <div id="windows" style="border-top: 0px;" class="accordionButton">
+	<span class="windows24">Microsoft Windows</span>
+      </div>
+      <div class="accordionContent">
+	<div class="fauxhead"></div>
+<!-- TOR BROWSER BUNDLE -->
+	<div class="package" style="padding-top: 13px; border-top: 0px;">
+	  <form class="downloads">
+	    <a class="button win-tbb" href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_<lang>.exe"><span class="strong">Download</span><span class="normal">Tor Browser Bundle</span></a>
+	    <select name="language" id="win-tbb" class="lang">
+#include <lang.wmi>
+	    </select>
+	    <div class="sig">
+	      (<a class="win-tbb-sig" href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_<lang>.exe.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	    <a class="additional" href="<page projects/torbrowser-details>#build">Source Code</a>
+	  </form>
 
-jQuery(function(){
- 	jQuery("#amount").change(displayVals);
- 	jQuery("#t3").change(displayVals);
- 	displayVals();
-});
+	  <h2>Tor Browser Bundle</h2>
+	  <em>Version <version-torbrowserbundle> - Windows 7, Vista, and XP</em>
+	  <p>Everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></p>
+	</div>
+<!-- VIDALIA BUNDLE -->
+	<div class="package">
+	  <div class="downloads">
+	    <a class="button" href="<package-win32-bundle-stable>"><span class="strong">Download</span><span class="normal">Vidalia Bundle</span></a>
+	    <div class="sig">
+	      (<a href="<package-win32-bundle-stable>.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	    <a class="additional" href="<package-win32-bundle-alpha>">Download Unstable</a> (<a href="<package-win32-bundle-alpha>.asc">sig</a>)
+	  </div>
 
-</script>
-	    <form class="dbox dl" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-	<h2>Donate to Tor</h2>
-		<p>
-		    <select name="currency_code" class="cur">
-			  <option value="USD" selected="selected">$</option>
-			  <option value="EUR">&euro;</option>
-			  <option value="GBP">&pound;</option>
-			  <option value="YEN">&yen;</option>
-			</select>
-			<input type="text" id="amount" class="amount" name="amount" value="5" size="10">		
-		</p>
-		<p>
-		<input type="hidden" id="a3" name="a3" value="0">
-			<select id="t3" name="t3">
-				<option value="0">One-time Donation</option>
-				<option value="M">Monthly Subscription</option>
-			</select>		
-		</p>
+	  <h2>Vidalia Bundle</h2>
+	  <em>Windows 7, Vista, and XP</em>
+	  <p>Contains Tor, <a href="<page projects/vidalia>">Vidalia</a>, Polipo, and Torbutton for installation on your system. You need your own Firefox, and you'll need to configure other applications if you want them to use Tor. <a href="<page docs/tor-doc-windows>">Installation Guide &raquo;</a></p>
+	</div>
+<!-- VIDALIA BRIDGE BUNDLE -->
+	<div class="package">
+	  <div class="downloads">
+	    <a class="button" href="../dist/vidalia-bundles/vidalia-bridge-bundle-<version-win32-bridge-bundle-alpha>.exe"><span class="strong">Download</span><span class="normal">Vidalia Bridge Bundle (Beta)</span></a>
+	    <div class="sig">
+	      (<a href="../dist/vidalia-bundles/vidalia-bridge-bundle-<version-win32-bridge-bundle-alpha>.exe.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	  </div>
 
-		<p>
+	  <h2>Vidalia Bridge Bundle</h2>
+	  <em>Windows 7, Vista, and XP</em>
+	  <p>A Vidalia Bundle which is configured to be a <a href="<page docs/bridges>">bridge</a> by default. This helps censored users reach the Tor network. <a href="<page docs/tor-doc-windows>">Installation Guide &raquo;</a></p>
+	</div>
+<!-- EXPERT BUNDLE -->
+	<div class="package">
+	  <div class="downloads">
+	    <a class="button" href="../dist/win32/tor-<version-win32-stable>-win32.exe"><span class="strong">Download</span><span class="normal">Expert Bundle</span></a>
+	    <div class="sig">
+	      (<a href="../dist/win32/tor-<version-win32-stable>-win32.exe.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	    <a class="additional" href="../dist/win32/tor-<version-win32-alpha>-win32.exe">Download Unstable</a> (<a href="../dist/win32/tor-<version-win32-alpha>-win32.exe.asc">sig</a>)
+	  </div>
 
-		     <input type="hidden" id="p3" name="p3" value="1">
-
-		     <input type="hidden" name="sra" value="1">
-		     <input type="hidden" name="src" value="1">
-		     <input type="hidden" name="no_shipping" value="1">
-		     <input type="hidden" name="no_note" value="1">
-
-		     <input type="hidden" id="cmd" name="cmd" value="_donations">
-		     <input type="hidden" name="business" value="donations@torproject.org">
-		     <input type="hidden" id="item_name" name="item_name" value="Donation to the Tor Project">
-		     <input type="hidden" name="return" value="https://www.torproject.org/donate/thankyou">
-		     <input type="hidden" name="cancel_return" value="https://www.torproject.org/download">
-		</p>
-		<h6 id="ppinfo" style="height:0px;"></h6>		
-		<p>
-		     <input class="donate-btn" type="submit" name="donate" value="Donate">
-		</p>
-		<p><a href="<page donate/donate>">Other donation options...</a></p>
-		</form>
-
- <!-- DONATION WIDGET END -->
-
-The Tor Software for Windows comes bundled in four different ways:
-<ul>
-<li>The <strong>Tor Browser Bundle</strong> contains everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></li>
-<li>The <strong>Vidalia Bundle</strong> contains Tor, <a href="<page projects/vidalia>">Vidalia</a>, Polipo, and Torbutton for installation on your system. You need your own Firefox, and you'll need to configure other applications if you want them to use Tor.</li>
-<li>The <strong>Bridge-by-Default Vidalia Bundle</strong> is a
-<strong>Vidalia Bundle</strong> which is configured to be a <a
-href="<page docs/bridges>">bridge</a> in order to help censored users
-reach the Tor network.</li>
-<li>The <strong>Expert Bundle</strong> contains just Tor and nothing else.  You'll need to configure Tor and all of your applications manually.</li>
-</ul>
-<p>There are two versions of each package, a stable and alpha release.  Stable packages are released when we believe the features and code will not change for many months.  Alpha or unstable packages are released so you can help us test new features and bugfixes. Even though they have a higher version number than the stable versions listed above, there is a much higher chance of serious reliability and security bugs in these downloads.  Please be prepared to <a href="https://bugs.torproject.org/">report bugs</a>.</p>
-<p>The current stable version of Tor for Windows is <version-win32-stable>.  The current alpha/unstable version of Tor for Windows is <version-win32-alpha>.</p>
-</td>
-</tr>
-<tr class="gray">
-<td><span class="windows">
-Tor Browser Bundle (English) version <version-torbrowserbundle>, works with
-Windows 7, Vista, and XP. <a href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_en-US.exe">Download</a>&nbsp;(<a href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_en-US.exe.asc">sig</a>)
-</span>
-</td>
-</tr>
-<tr>
-<td><span class="windows">
-Tor Browser Instant Messaging Bundle (English) has been
-<a href="https://blog.torproject.org/blog/tor-im-browser-bundle-discontinued-temporarily">temporarily discontinued</a>.
-</span>
- </td>
-</tr>
- <tr class="gray">
- <td><span class="windows">
-Download <a href="<page projects/torbrowser>">other language versions and the source code</a> of the Tor Browser Bundle.
-</span>
-</td>
-</tr>
- <tr><td><span class="windows">
- Stable Vidalia Bundle works with Windows 7, Vista, XP, <a href="<package-win32-bundle-stable>">Download Stable</a>&nbsp;(<a href="<package-win32-bundle-stable>.asc">sig</a>)
- </span></td>
- </tr>
- <tr class="gray"><td><span class="windows">Unstable Vidalia Bundle works with Windows 7, Vista, XP, <a href="<package-win32-bundle-alpha>">Download Unstable</a>&nbsp;(<a href="<package-win32-bundle-alpha>.asc">sig</a>)</span></td>
- </tr>
- <tr class="gray"><td><span class="windows">Unstable Bridge-by-Default Vidalia Bundle works with Windows 7, Vista, XP, <a href="../dist/vidalia-bundles/vidalia-bridge-bundle-<version-win32-bridge-bundle-alpha>.exe">Download Unstable</a>&nbsp;(<a href="../dist/vidalia-bundles/vidalia-bridge-bundle-<version-win32-bridge-bundle-alpha>.asc">sig</a>)</span></td>
- </tr>
- <tr>
- <td><span class="windows">Stable Expert Bundle works with Windows 98SE, ME, Windows 7, Vista, XP, 2000, 2003 Server, <a href="../dist/win32/tor-<version-win32-stable>-win32.exe">Download Stable</a>&nbsp;(<a href="../dist/win32/tor-<version-win32-stable>-win32.exe.asc">sig</a>)</span></td>
-</tr>
- <tr class="gray">
- <td><span class="windows">Unstable Expert Bundle works with Windows 98SE, ME, Windows 7, Vista, XP, 2000, 2003 Server,
-<a href="../dist/win32/tor-<version-win32-alpha>-win32.exe">Download Unstable</a>&nbsp;(<a href="../dist/win32/tor-<version-win32-alpha>-win32.exe.asc">sig</a>)
- </span></td>
- </tr>
- <tr>
-<td>
-<a href="<page docs/tor-doc-windows>">Documentation for Microsoft Windows clients</a>
-</td>
-</tr>
-</table>
+	  <h2>Expert Bundle</h2>
+	  <em>Windows 7, Vista, XP, 2000, 2003 Server, ME, and Windows 98SE</em>
+	  <p>Contains just Tor and nothing else. You'll need to configure Tor and all of your applications manually.</p>
+	</div>
+      </div>
 <!-- END WINDOWS -->
 <!-- START OS X -->
-<table class="topforty">
-<tr>
-<td class="nopad"><div class="title"><a name="mac">Apple OS X</a></div></td>
-</tr>
-<tr>
-<td class="intro">The Tor Software for OS X comes bundled in two different ways:  
-<ul>
-<li>The <strong>Tor Browser Bundle</strong> contains everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></li>
-<li>The <strong>Vidalia Bundle</strong> contains Tor, <a href="<page projects/vidalia>">Vidalia</a>, Polipo, and Torbutton for installation on your system.  You need your own Firefox, and you'll need to configure other applications if you want them to use Tor.</li>
-</ul>
-<p>There are two versions of each package, a stable and alpha release.  Stable packages are released when we believe the features and code will not change for many months.  Alpha or unstable packages are released so you can help us test new features and bugfixes. Even though they have a higher version number than the stable versions listed above, there is a much higher chance of serious reliability and security bugs in these downloads.  Please be prepared to <a href="https://bugs.torproject.org/">report bugs</a>.</p>
-<p>The current stable version of Tor for OS X is <version-osx-x86-stable>.  The current alpha/unstable version of Tor for OS X is <version-osx-x86-alpha>.</p>
-</td>
-</tr>
-<tr class="gray">
-<td><span class="mac">Tor Browser Bundle for OS X Intel (beta version), 
-<a href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-en-US.zip">Download</a>&nbsp;
-(<a href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-en-US.zip.asc">sig</a>)
-</span>
-</td>
-</tr>
-<tr>
-<td><span class="mac">Stable Vidalia Bundle for OS X Intel, <a href="<package-osx-x86-bundle-stable>">Download Stable</a>&nbsp;(<a href="<package-osx-x86-bundle-stable>.asc">sig</a>)</span></td>
-</tr>
-<tr class="gray">
-<td><span class="mac">Unstable Vidalia Bundle for OS X Intel, <a href="<package-osx-x86-bundle-alpha>">Download Unstable</a>&nbsp;(<a href="<package-osx-x86-bundle-alpha>.asc">sig</a>)</span></td>
-</tr>
-<tr>
-<td><span class="mac">Stable Vidalia Bundle for OS X PowerPC, <a href="<package-osx-ppc-bundle-stable>">Download Stable</a>&nbsp;(<a href="<package-osx-ppc-bundle-stable>.asc">sig</a>)</span></td>
-</tr>
-<tr class="gray">
-<td><span class="mac">Unstable Vidalia Bundle for OS X PowerPC, <a href="<package-osx-ppc-bundle-alpha>">Download Unstable</a>&nbsp;(<a href="<package-osx-ppc-bundle-alpha>.asc">sig</a>)</span></td>
-</tr>
-<tr>
-<td><a href="<page docs/tor-doc-osx>">Documentation for Apple OS X clients</a>.</td>
-</tr>
-</table>
+      <div id="apple" class="accordionButton">
+	<span class="mac24">Apple OS X</span></div>
+      <div class="accordionContent">
+	<div class="fauxhead"></div>
+<!-- TOR BROWSER BUNDLE -->
+	<div class="package" style="padding-top: 13px; border-top: 0px;">
+	  <form class="downloads">
+	    <a class="button osx-tbb" href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-<lang>.zip"><span class="strong">Download</span><span class="normal">Tor Browser Bundle (Beta)</span></a>
+	    <select name="language" id="osx-tbb" class="lang">
+#include <lang.wmi>
+	    </select>
+	    <div class="sig">
+	      (<a class="osx-tbb-sig" href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-<lang>.zip.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	    <a href="<page projects/torbrowser-details>#build">Source Code</a>
+	  </form>
+
+	  <h2>Tor Browser Bundle</h2>
+	  <em>Version <version-torbrowserbundleosx> - OS X Intel</em>
+	  <p>Everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></p>
+	</div>
+<!-- VIDALIA BUNDLE -->
+	<div class="package">
+	  <div class="downloads">
+	    <a class="button" href="<package-osx-x86-bundle-stable>"><span class="strong">Download</span><span class="normal">OS X Intel</span></a>
+	    <div class="sig">
+	      (<a href="<package-osx-x86-bundle-stable>.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	    <a class="button" href="<package-osx-ppc-bundle-stable>"><span class="strong">Download</span><span class="normal">OS X Power PC</span></a>
+	    <div class="sig">
+	      (<a href="<package-osx-ppc-bundle-stable>.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	    Download Unstable<br /><a class="additional" href="<package-osx-x86-bundle-alpha>">OS X Intel</a> (<a href="<package-osx-x86-bundle-alpha>.asc">sig</a>)<br /><a class="additional" href="<package-osx-ppc-bundle-alpha>">OS X PowerPC</a> (<a href="<package-osx-ppc-bundle-alpha>.asc">sig</a>)
+	  </div>
+
+	  <h2>Vidalia Bundle</h2>
+	  <em>OS X Intel, OS X Power PC</em>
+	  <p>Contains Tor, <a href="<page projects/vidalia>">Vidalia</a>, Polipo, and Torbutton for installation on your system. You need your own Firefox, and you'll need to configure other applications if you want them to use Tor. <a href="<page docs/tor-doc-osx>">Installation Guide &raquo;</a></p>
+	</div>
+      </div>
  <!-- END OS X -->
  <!-- START UNIX -->
- <table class="topforty">
-<tr>
-<td class="nopad"><div class="title"><a name="linux">Linux/Unix</a></div></td></tr>
-<tr>
-<td class="intro">The Tor Software comes bundled in two different ways:  
-<ul>
-<li>The <strong>Tor Browser Bundle</strong> contains everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></li>
-<li>Read how to use <a href="<page download/download-unix>">our repositories for the Tor software</a>.</li>
-</ul>
-</td>
-</tr>
-<tr class="gray">
-<td><span class="linux">Tor Browser Bundle for GNU/Linux (beta version) on i686, 
-<a href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-en-US.tar.gz">Download</a>&nbsp;
-(<a href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-en-US.tar.gz.asc">sig</a>)</span></td>
-</tr>
-<tr>
-<td><span class="linux">Tor Browser Bundle for GNU/Linux (beta version) on x86_64,
-<a href="../dist/torbrowser/linux/tor-browser-gnu-linux-x86_64-<version-torbrowserbundlelinux64>-dev-en-US.tar.gz">Download</a>&nbsp;
-(<a href="../dist/torbrowser/linux/tor-browser-gnu-linux-x86_64-<version-torbrowserbundlelinux64>-dev-en-US.tar.gz.asc">sig</a>)</span></td>
-</tr>
-<tr class="gray">
-<td><span class="linux">Use <a href="<page download/download-unix>">our repositories</a> for all other Tor-related software.</span></td>
-</tr>
-</table>
-<table class="topforty">
-<tr>
-<td class="nopad"><div class="title"><a name="smartphones">Tor for Smartphones</a></div></td>
-</tr>
-<tr class="gray">
-<td colspan="2">Android-based phones, tablets, computers</td>
-<td><a href="../dist/android/<version-androidbundle-tor>-orbot-<version-androidbundle-orbot>.apk">Android Bundle</a></td>
-<td><a href="<page docs/android>">Android Instructions</a></td>
-</tr>
-<tr>
-<td colspan="2">iPhone, iPod Touch, iPad</td>
-<td colspan="2"><span class="mac"><a href="http://sid77.slackware.it/iphone/">Test packages by Marco</a></span></td>
-</tr>
-<tr class="gray">
-<td>Nokia Maemo/N900</td>
-<td></td>
-<td><span class="nokia"><a href="<page docs/N900>">Experimental instructions</a></span></td>
-<td></td>
-</tr>
-</table>
+      <div id="linux" class="accordionButton">
+	<span class="linux24">Linux, BSD, &amp; Unix</span></div>
+      <div class="accordionContent">
+	<div class="fauxhead"></div>
+  <!-- TOR BROWSER BUNDLE -->
+	<div class="package" style="padding-top: 13px; border-top: 0px;">
+	  <form class="downloads">
+	    <a class="button lin-tbb32" href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-<lang>.tar.gz"><span class="strong">Download</span><span class="normal">i686 / 32-bit (Beta)</span></a>
+	    <select name="language" id="lin-tbb32" class="lang">
+#include <lang.wmi>
+	    </select>
+	    <div class="sig">
+	      (<a class="lin-tbb32-sig" href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-<lang>.tar.gz.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+
+	    <a class="button lin-tbb64" href="../dist/torbrowser/linux/tor-browser-gnu-linux-x86_64-<version-torbrowserbundlelinux64>-dev-<lang>.tar.gz"><span class="strong">Download</span><span class="normal">x86_64 / 64-bit (Beta)</span></a>
+	    <select name="language" id="lin-tbb64" class="lang">
+#include <lang.wmi>
+	    </select>
+	    <div class="sig">
+	      (<a class="lin-tbb64-sig" href="../dist/torbrowser/linux/tor-browser-gnu-linux-x86_64-<version-torbrowserbundlelinux64>-dev-<lang>.tar.gz.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	    <a class="additional" href="<page projects/torbrowser-details>#build">Source Code</a>
+	  </form>
+
+	  <h2>Tor Browser Bundle</h2>
+	  <em>Version <version-torbrowserbundlelinux32> - Linux, BSD, and Unix</em>
+	  <p>Everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></p>
+	  <p>Use <a href="<page download/download-unix>">our repositories</a> for all other Tor-related software.</p>
+	</div>
+      </div>
 <!-- END UNIX -->
+<!-- START SMARTPHONES -->
+      <div id="smartphone" class="accordionButton">
+	<span class="smartphone24">Tor for Smartphones</span></div>
+      <div class="accordionContent">
+	<div class="fauxhead"></div>
+<!-- ANDROID -->
+	<div class="package" style="padding-top: 13px; border-top: 0px;">
+	  <div class="downloads">
+	    <a class="button" style="margin-bottom: 5px;" href="../dist/android/<version-androidbundle-tor>-orbot-<version-androidbundle-orbot>.apk"><span class="strong">Download</span><span class="normal">Android Bundle</span></a>
+	    <a class="additional" href="<page docs/android>">Installation Instructions</a>
+	  </div>
+
+	  <h2>Android Bundle</h2>
+	  <p>For Android-based phones, tablets, and computers.</p>
+	</div>
+<!-- iOS -->
+	<div class="package">
+	  <div class="downloads" style="padding-top: 20px;">
+	    <a class="additional" style="font-weight: bold;" href="http://sid77.slackware.it/iphone/">Test Packages by Marco</a>
+	  </div>
+
+	  <h2>Tor for Apple iOS</h2>
+	  <p>For iPhone, iPod Touch, and iPad.</p>
+	</div>
+<!-- Nokia -->
+	<div class="package" style="border-bottom: 0px;">
+	  <div class="downloads">
+	    <a class="additional" style="font-weight: bold;" href="<page docs/N900>">Experimental Instructions</a>
+	  </div>
+
+	  <h2>Nokia Maemo/N900</h2>
+	</div>
+      </div>
+<!-- END SMARTPHONES -->
 <!-- BEGIN SOURCE -->
-<table class="topforty">
-<tr>
-<td class="nopad"><div class="title"><a name="source">Source&nbsp;Code</a></div></td>
-</tr>
-<tr>
-<td colspan="2">The current stable version of Tor is <version-stable>.  Its <a
-href="https://gitweb.torproject.org/tor.git/blob/release-0.2.1:/ChangeLog">release
-notes</a> are available.</td>
-<td colspan="2">The current unstable/alpha version of Tor is <version-alpha>.  Its
-<a
-href="https://gitweb.torproject.org/tor.git/blob/refs/heads/release-0.2.2:/ChangeLog">Changelog
-</a> is available.</td>
-</tr>
-<tr class="gray">
-<td>Source Tarballs</td>
-<td>./configure &amp;&amp; make &amp;&amp; src/or/tor</td>
-<td><a href="../dist/tor-<version-stable>.tar.gz">Download Stable</a> (<a href="../dist/tor-<version-stable>.tar.gz.asc">sig</a>)</td>
-<td><a href="../dist/tor-<version-alpha>.tar.gz">Download Unstable</a> (<a href="../dist/tor-<version-alpha>.tar.gz.asc">sig</a>)</td>
-</tr>
-</table>
+      <div class="accordionButton">
+	<span class="sourcecode24">Source Code</span></div>
+      <div class="accordionContent">
+	<div class="fauxhead"></div>
+	<div class="package" style="padding-top: 13px; border-top: 0px; border-bottom: 1px solid #888888;">
+	  <div class="downloads">
+	    <a class="button" href="../dist/tor-<version-stable>.tar.gz"><span class="strong">Download</span><span class="normal">Source Code</span></a>
+	    <div class="sig">
+	      (<a href="../dist/tor-<version-stable>.tar.gz.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	    <a class="button" href="../dist/tor-<version-alpha>.tar.gz"><span class="strong">Download</span><span class="normal">Source Code (Unstable)</span></a>
+	    <div class="sig">
+	      (<a href="../dist/tor-<version-alpha>.tar.gz.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	  </div>
+
+	  <h2>Source Tarball</h2>
+	  <p> Configure with: <code style="color: #666666;">./configure &amp;&amp; make &amp;&amp; src/or/tor</code></p>
+	  <p>The current stable version of Tor is 0.2.1.30. Its <a href="https://gitweb.torproject.org/tor.git/blob/release-0.2.1:/ChangeLog">release notes</a> are available.</p>
+	  <p>The current unstable/alpha version of Tor is 0.2.2.30-rc. Its <a href="https://gitweb.torproject.org/tor.git/blob/refs/heads/release-0.2.2:/ChangeLog">Changelog</a> is available.</p>
+	</div>
+      </div>
 <!-- END SOURCE -->
+<!-- END DOWNLOADS -->
 <br>
 <!-- BEGIN WARNING -->
 <div class="warning">
@@ -351,30 +310,47 @@ all the issues</a>.
 <!-- END WARNING -->
 </div>
 <!-- END MAINCOL -->
+<!-- START SIDECOL -->
 <div id="sidecol-right">
-<div class="img-shadow">
-<div class="sidenav-sub">
-<h2>Jump to:</h2>
-<ul>
-<li class="dropdown"><a href="#Windows">Microsoft Windows</a></li>
-<li class="dropdown"><a href="#mac">Apple OS X</a></li>
-<li class="dropdown"><a href="#linux">Linux/Unix</a></li>
-<li class="dropdown"><a href="#smartphones">Smartphones</a></li>
-<li class="dropdown"><a href="#source">Source Code</a></li>
-</ul>
-</div>
-</div>
-<!-- END SIDENAV -->
-<div class="img-shadow">
-<div class="infoblock">
-<h2>What is the (sig) link?</h2>
-<p>These are GPG signatures to allow you to verify that
-your downloaded file is really from The Tor Project and not
-an imposter.</p>
-<a href="<page docs/verifying-signatures>">Learn more &raquo;</a>
-</div>
-</div>
-<!-- END INFOBLOCK -->
+<!-- START DONATION WIDGET -->
+<form class="dbox dl" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <h2>Donate to Tor</h2>
+      <p>
+	<select name="currency_code" class="cur">
+	  <option value="USD" selected="selected">$</option>
+	  <option value="EUR">&euro;</option>
+	  <option value="GBP">&pound;</option>
+	  <option value="YEN">&yen;</option>
+	</select>
+	<input type="text" id="amount" class="amount" name="amount" value="5" size="10">
+      </p>
+      <p>
+	<input type="hidden" id="a3" name="a3" value="0">
+	  <select id="t3" name="t3">
+	    <option value="0">One-time Donation</option>
+	    <option value="M">Monthly Subscription</option>
+	  </select>
+      </p>
+      <p>
+	<input type="hidden" id="p3" name="p3" value="1">
+	<input type="hidden" name="sra" value="1">
+	<input type="hidden" name="src" value="1">
+	<input type="hidden" name="no_shipping" value="1">
+	<input type="hidden" name="no_note" value="1">
+	<input type="hidden" id="cmd" name="cmd" value="_donations">
+	<input type="hidden" name="business" value="donations@torproject.org">
+	<input type="hidden" id="item_name" name="item_name" value="Donation to the Tor Project">
+	<input type="hidden" name="return" value="<page donate/thankyou>">
+	<input type="hidden" name="cancel_return" value="<page download/download>">
+      </p>
+      <h6 id="ppinfo" style="height:0px;"></h6>
+      <p>
+	<input class="donate-btn" type="submit" name="donate" value="Donate">
+      </p>
+      <p><a href="<page donate/donate>">Other donation options...</a></p>
+</form>
+<!-- END DONATION WIDGET -->
+<!-- START INFO -->
 <div class="img-shadow">
 <div class="sidenav-sub">
 <h2>Having Trouble?</h2>
@@ -383,7 +359,7 @@ an imposter.</p>
 </ul>
 </div>
 </div>
-<!-- END SIDENAV -->
+<!-- END INFO -->
 </div>
 <!-- END SIDECOL -->
 </div>
