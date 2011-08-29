@@ -1,10 +1,10 @@
 ## translation metadata
 # Revision: $Revision$
 # Translation-Priority: 3-low
-#include "head.wmi" TITLE="Download Tor" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
+#include "dlhead.wmi" TITLE="Download Tor" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
 
 #<!-- ATTENTION TRANSLATOR -->
-#<!-- You MUST copy 'head.wmi' and 'lang.wmi' along with this file! -->
+#<!-- You MUST copy 'dlhead.wmi' and 'lang.wmi' along with this file! -->
 
 #<!-- TBB DEFAULT LANGUAGE: Change 'en-US' below to your language code (if package exists)-->
 #<!-- IMPORTANT: You MUST also change the default selection in 'lang.wmi' -->
@@ -313,6 +313,35 @@ all the issues</a>.
 <!-- START SIDECOL -->
 <div id="sidecol-right">
 <!-- START DONATION WIDGET -->
+  <script async type="text/javascript">
+  function displayVals() {
+    var t3 = $("#t3").val();
+    var amount = $("#amount").val();
+    if(t3 != 0){
+      $('#a3').val(amount);
+      $('#p3').val(1);
+      $('#cmd').val('_xclick-subscriptions');
+      $('#item_name').val('Tor Project Membership');
+      $('#ppinfo').replaceWith('<h6 id="ppinfo"><small>(Requires a PayPal Account)</small></h6>');
+    }else{
+      $('#a3').val(0);
+      $('#p3').val(0);
+      $('#cmd').val('_donations');
+      $('#item_name').val('Donation to the Tor Project');
+      $('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
+    }
+    if( !t3 ) {
+      $('#cmd').val('_donations');
+      $('#item_name').val('Donation to the Tor Project');
+      $('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
+    }
+  }
+  $(function(){
+    $("#amount").change(displayVals);
+    $("#t3").change(displayVals);
+    displayVals();
+  });
+  </script>
 <form class="dbox dl" action="https://www.paypal.com/cgi-bin/webscr" method="post">
     <h2>Donate to Tor</h2>
       <p>
@@ -340,8 +369,8 @@ all the issues</a>.
 	<input type="hidden" id="cmd" name="cmd" value="_donations">
 	<input type="hidden" name="business" value="donations@torproject.org">
 	<input type="hidden" id="item_name" name="item_name" value="Donation to the Tor Project">
-	<input type="hidden" name="return" value="<page donate/thankyou>">
-	<input type="hidden" name="cancel_return" value="<page download/download>">
+	<input type="hidden" name="return" value="https://www.torproject.org/donate/thankyou.html">
+	<input type="hidden" name="cancel_return" value="https://www.torproject.org/download/download.html">
       </p>
       <h6 id="ppinfo" style="height:0px;"></h6>
       <p>
