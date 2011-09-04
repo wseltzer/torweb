@@ -259,7 +259,12 @@ for file in $po ; do
                 english="$wmldir/$subdir/en/$wmlfile"
 
 		# Convert the files
-		po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/$lang/$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		if [ $wmlfile = "download.wml" ]
+		then
+			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/$lang/$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault" -o ontagerror="silent"
+		else
+			po4a-translate -f wml -m "$english" -p "$file" -l "$wmldir/$subdir/$lang/$wmlfile" --master-charset utf-8 -L utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		fi
 
 		# Check to see if the file was written
 		if [ -e "$wmldir/$subdir/$lang/$wmlfile" ]
@@ -272,6 +277,15 @@ for file in $po ; do
 			then
 				translator_comment="# Translators: please point to the version of TBB in your language, if there is one."
 				sed -i "s/$translator_comment//" "$wmldir/$subdir/$lang/$wmlfile"
+			fi
+
+			# Fix download.wml
+                        if [ $wmlfile = "download.wml" ]
+			then
+				sed -i 's/<!--PO4ASHARPBEGINinclude <lang.wmi>/#include <lang.wmi>/g' "$wmldir/$subdir/$lang/$wmlfile"
+				sed -i 's/<!--PO4ASHARPBEGINinclude <foot.wmi>//g' "$wmldir/$subdir/$lang/$wmlfile"
+				sed -i 's/<!--PO4ASHARPBEGIN//g;s/PO4ASHARPEND-->//g' "$wmldir/$subdir/$lang/$wmlfile"
+				echo "#include <foot.wmi>" >> "$wmldir/$subdir/$lang/$wmlfile"
 			fi
 
 			# Include the English footer for most of the
