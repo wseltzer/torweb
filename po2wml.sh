@@ -119,7 +119,7 @@ for file in $po ; do
 
 			# Include the English footer for most of the
 			# translations
-			if [[ $subdir != "ar" && $subdir != "pl" && $subdir != "de" ]]
+			if [[ $subdir != "ar" && $subdir != "pl" && $subdir != "de" && $subdir != "fa" ]]
 			then
 				echo '#include "foot.wmi"' >> "$wmldir/$subdir/$wmlfile"
 			fi
@@ -276,7 +276,7 @@ for file in $po ; do
 
 			# Include the English footer for most of the
 			# translations 
-			if [[ $lang != "ar" && $lang != "pl" && $lang != "de" ]]
+			if [[ $lang != "ar" && $lang != "pl" && $lang != "de" && $lang != "fa" ]]
 			then
 				echo '#include "foot.wmi"' >> "$wmldir/$subdir/$lang/$wmlfile"
 			fi
