@@ -498,11 +498,9 @@ table tr img {
   background: url("../images/table-title.jpg") repeat-x left bottom #885CA4;
   color: #FFFFFF;
   margin: 0;
-  padding-left: 10px;
   font-size: 1.1em;
   font-weight: bold;
   height: 32px;
-  width: 700px;
   float: left;
   _float: none;  /* Float works in all browsers but IE6 */
   border: 1px solid #FFFFFF;
@@ -514,13 +512,42 @@ table tr img {
   -moz-border-radius-topright: 7px;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
+  position: relative;
+  padding-left: 30px;
+  width: 680px;
   }
 
   .accordionButton:hover {
     text-shadow: 1px 1px 0px rgba(17, 17, 17, 1);
     }
 
-.accordionContent {	
+.on:before,
+.off:before {
+  position: absolute;
+  content: '';
+  height: 0px;
+  width: 0px;
+  font-size:0px;
+  line-height:0px;
+  }
+  
+.on:before {
+  top: 14px;
+  left: 10px;
+  border-left:7px solid transparent;
+  border-right:7px solid transparent;
+  border-top:7px solid #FFFFFF;
+  }
+  
+.off:before {
+  top: 9px;
+  left: 14px;
+  border-bottom:7px solid transparent;  /* left arrow slant */
+  border-top:7px solid transparent; /* right arrow slant */
+  border-left:7px solid #FFFFFF; /* bottom, add background color here */
+  }
+  
+  .accordionContent {	
   width: 708px;
   float: left;
   _float: none;  /* Float works in all browsers but IE6 */

@@ -3,6 +3,8 @@ $(function(){
   $(".accordianContent").css('display', 'none');
   /* Only show language selector if javascript is enabled */
   $('.lang').css('display', 'block');
+  $('.accordionButton').removeClass('on');
+  $('.accordionButton').addClass('off');
 });
 
 /* Uses result of jquery.client to open the relevant section */
