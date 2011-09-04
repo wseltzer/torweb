@@ -162,8 +162,14 @@ for file in $wml ; do
 	# and the correct copyright.
 	if [ $poexist = 0 ]
 	then
-		# Convert it
-		po4a-gettextize -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		# Do something special for download.wml and its js
+		if [ $wmlfile = "download.wml" ] 
+		then
+			po4a-gettextize -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault" -o ontagerror="silent"
+		else
+			# Convert it
+			po4a-gettextize -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		fi
 
 		# Check to see if the file exists
 		if [ -e "$popath/$pofile" ]
@@ -193,7 +199,12 @@ for file in $wml ; do
 
 		# Update the file with po4a-updatepo to make the
 		# word wrapping perfect
-		po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		if [ $wmlfile = "download.wml" ]
+		then
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault" -o ontagerror="silent"
+		else
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		fi
 
 		# Delete the backup
 		rm -f "$popath/$pofile~"
@@ -207,7 +218,12 @@ for file in $wml ; do
 		before=`grep -vE '^("POT-Creation-Date:|#)' "$popath/$pofile" | md5sum | cut -d " " -f1`
 
 		# Update the pot file
-		po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		if [ $wmlfile = "download.wml" ]
+		then
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault" -o ontagerror="silent"
+		else
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		fi
 
 		# Calculate the new hash
 		after=`grep -vE '^("POT-Creation-Date:|#)' "$popath/$pofile" | md5sum | cut -d " " -f1`
@@ -234,7 +250,12 @@ for file in $wml ; do
 	if [ $poexist = 2 ]
 	then
 		# Update the file
-		po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		if [ $wmlfile = "download.wml" ]
+		then
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault" -o ontagerror="silent"
+		else
+			po4a-updatepo -f wml -m "$file" -p "$popath/$pofile" --master-charset utf-8 -o customtag="$customtag" -o nodefault="$nodefault"
+		fi
 	fi
 	
 	# Write to the logfile
