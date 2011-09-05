@@ -195,6 +195,12 @@ for file in $wml ; do
 				svn add "$popath/$pofile"
 				echo "$popath/$pofile" > $tmplog
 			fi
+
+			# Remove po4a comments from download.wml
+			if [ $wmlfile = "download.wml" ]
+			then
+				sed -i 's/PO4ASHARPEND-->//g' "$popath/$pofile"
+			fi
 		fi
 
 		# Update the file with po4a-updatepo to make the
@@ -240,6 +246,12 @@ for file in $wml ; do
 			echo "$popath/$pofile" > $tmplog
 		else
 			echo "$popath/$pofile" > $tmplog
+
+			if [ $wmlfile = "download.wml" ]
+			then
+				sed -i 's/PO4ASHARPEND-->//g' "$popath/$pofile"
+			fi
+
 		fi
 	fi
 
