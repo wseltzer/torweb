@@ -61,19 +61,23 @@ type="application/rss+xml">">
     var lang = caller.val();
     var wintbb = '../dist/torbrowser/tor-browser-<version-torbrowserbundle>_'+lang+'.exe';
     var osxtbb = '../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-'+lang+'.zip';
+    var osxtbb64 = '../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-x86_64-'+lang+'.zip';
     var lintbb32 = '../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-'+lang+'.tar.gz';
     var lintbb64 = '../dist/torbrowser/linux/tor-browser-gnu-linux-x86_64-<version-torbrowserbundlelinux64>-dev-'+lang+'.tar.gz';
     if(pkg == 'win-tbb'){
-      $('.'+pkg).replaceWith('<a class="button win-tbb" href="'+wintbb+'"><span class="strong">Download</span><span class="normal">Tor Browser Bundle</span></a>');
+      $('.'+pkg).replaceWith('<a class="button win-tbb" href="'+wintbb+'"><span class="strong">Download</span><span class="normal"><button-win-tbb32></span></a>');
       $('.'+pkg+'-sig').replaceWith('<a class="win-tbb-sig" href="'+wintbb+'.asc">sig</a>');
     }else if(pkg == 'osx-tbb'){
-      $('.'+pkg).replaceWith('<a class="button osx-tbb" href="'+osxtbb+'"><span class="strong">Download</span><span class="normal">Tor Browser Bundle (Beta)</span></a>');
+      $('.'+pkg).replaceWith('<a class="button osx-tbb" href="'+osxtbb+'"><span class="strong">Download</span><span class="normal"><button-osx-tbb32></span></a>');
       $('.'+pkg+'-sig').replaceWith('<a class="osx-tbb-sig" href="'+osxtbb+'.asc">sig</a>');
+    }else if(pkg == 'osx-tbb64'){
+      $('.'+pkg).replaceWith('<a class="button osx-tbb64" href="'+osxtbb64+'"><span class="strong">Download</span><span class="normal"><button-osx-tbb64></span></a>');
+      $('.'+pkg+'-sig').replaceWith('<a class="osx-tbb64-sig" href="'+osxtbb64+'.asc">sig</a>');
     }else if(pkg == 'lin-tbb32'){
-      $('.'+pkg).replaceWith('<a class="button lin-tbb32" href="'+lintbb32+'"><span class="strong">Download</span><span class="normal">i686 / 32-bit (Beta)</span></a>');
+      $('.'+pkg).replaceWith('<a class="button lin-tbb32" href="'+lintbb32+'"><span class="strong">Download</span><span class="normal"><button-lin-tbb32></span></a>');
       $('.'+pkg+'-sig').replaceWith('<a class="lin-tbb32-sig" href="'+lintbb32+'.asc">sig</a>');
     }else if(pkg == 'lin-tbb64'){
-      $('.'+pkg).replaceWith('<a class="button lin-tbb64" href="'+lintbb64+'"><span class="strong">Download</span><span class="normal">x86_64 / 64-bit (Beta)</span></a>');
+      $('.'+pkg).replaceWith('<a class="button lin-tbb64" href="'+lintbb64+'"><span class="strong">Download</span><span class="normal"><button-lin-tbb64></span></a>');
       $('.'+pkg+'-sig').replaceWith('<a class="lin-tbb64-sig" href="'+lintbb64+'.asc">sig</a>');
     }
   }
@@ -83,35 +87,6 @@ type="application/rss+xml">">
     $('.lang').change(updateLang);
     /* Only show language selector if javascript is enabled */
     $('.lang').css('display', 'block');
-  });
-  </script>
-  <script async type="text/javascript">
-  function displayVals() {
-    var t3 = $("#t3").val();
-    var amount = $("#amount").val();
-    if(t3 != 0){
-      $('#a3').val(amount);
-      $('#p3').val(1);
-      $('#cmd').val('_xclick-subscriptions');
-      $('#item_name').val('Tor Project Membership');
-      $('#ppinfo').replaceWith('<h6 id="ppinfo"><small>(Requires a PayPal Account)</small></h6>');
-    }else{
-      $('#a3').val(0);
-      $('#p3').val(0);
-      $('#cmd').val('_donations');
-      $('#item_name').val('Donation to the Tor Project');
-      $('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
-    }
-    if( !t3 ) {
-      $('#cmd').val('_donations');
-      $('#item_name').val('Donation to the Tor Project');
-      $('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
-    }
-  }
-  $(function(){
-    $("#amount").change(displayVals);
-    $("#t3").change(displayVals);
-    displayVals();
   });
   </script>
 </head>
