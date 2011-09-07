@@ -605,7 +605,7 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
-        }
+        },
         mirror036 => {
             adminContact => "",
             orgName => "",
@@ -623,7 +623,7 @@ my %m = (
             httpsDistMirror => "https://www.coevoet.nl/tor/dist",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
-      }
+      },
         mirror037 => {
             adminContact => "",
             orgName => "",
