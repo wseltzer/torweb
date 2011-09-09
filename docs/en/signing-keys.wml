@@ -14,20 +14,26 @@
 
     <p>The signing keys we use are:</p>
     <ul>
-    <li>Roger's (0x28988BF5) typically signs the source code file.</li>
-    <li>Nick's (0x165733EA, or its subkey 0x8D29319A).</li>
-    <li>Andrew's (0x31B0974B) typically signed older packages for windows and mac.</li>
-    <li>Peter's (0xC82E0039, or its subkey 0xE1DEC577).</li>
-    <li>Tomás's (0x9A753A6B) signs current Vidalia release tarballs and tags.</li>
-    <li>Matt's (0x5FA14861) signed older Vidalia release tarballs.</li>
-    <li>Damian's (0x9ABBEEC6) signs Arm releases</li>
-    <li>Jacob's (0xE012B42D).</li>
-    <li>Erinn's (0x63FEE659) and (0xF1F5C9B5) typically signs all windows, mac, and most linux packages.</li>
-    <li>Mike's (0xDDC6C0AD) signs the Torbutton xpi.</li>
-    <li>Karsten's (0xF7C11265) signs the metrics archives and tools.</li>
-    <li>Robert Hogan's (0x22F6856F) signs torsocks release tarballs and tags.</li>
-    <li>Nathan's (0xB374CBD2) signs the Android APK file for Orbot.</li>
-    <li>Tor Project Archive (0x886DDD89) signs the deb.torproject.org repositories and archives</li>
+    <li>Roger Dingledine (0x28988BF5 and 0x19F78451) or Nick Mathewson
+    (0x165733EA, or its subkey 0x8D29319A) sign the Tor source code
+    tarballs.</li>
+    <li>Erinn Clark (0x63FEE659) signs the Tor Browser Bundles, Vidalia
+    bundles, and many other packages. She signs RPMs with her other key
+    (0xF1F5C9B5). Andrew Lewman (0x31B0974B) used to sign packages for
+    Windows and OS X.</li>
+    <li>Tor Project Archive (0x886DDD89) signs the deb.torproject.org
+    repositories and archives.</li>
+    <li>Nathan Freitas (0xB374CBD2) signs the Android APK file for
+    Orbot.</li>
+    <li>Tomás Touceda (0x9A753A6B) signs current Vidalia tarballs. Matt
+    Edman (0x5FA14861) signed older Vidalia tarballs.</li>
+    <li>Damian Johnson (0x9ABBEEC6) signs Arm releases.</li>
+    <li>Mike Perry (0xDDC6C0AD) signs the Torbutton xpi.</li>
+    <li>Karsten Loesing (0xF7C11265) signs the metrics archives and
+    tools.</li>
+    <li>Robert Hogan (0x22F6856F) signs torsocks release tarballs.</li>
+    <li>Other developers include Peter Palfrader (0xC82E0039, or its
+    subkey 0xE1DEC577) and Jacob Appelbaum (0xE012B42D).</li>
     </ul>
 
     The fingerprints for the keys should be:
@@ -37,11 +43,33 @@
           Key fingerprint = B117 2656 DFF9 83C3 042B  C699 EB5A 896A 2898 8BF5
     uid                  Roger Dingledine &lt;arma@mit.edu&gt;
 
+    pub   4096R/19F78451 2010-05-07
+          Key fingerprint = F65C E37F 04BA 5B36 0AE6  EE17 C218 5258 19F7 8451
+    uid                  Roger Dingledine &lt;arma@mit.edu&gt;
+    uid                  Roger Dingledine &lt;arma@freehaven.net&gt;
+    uid                  Roger Dingledine &lt;arma@torproject.org&gt;
+    sub   4096R/BA694D6A 2011-04-26 [expires: 2012-05-08]
+
     pub   3072R/165733EA 2004-07-03
           Key fingerprint = B35B F85B F194 89D0 4E28  C33C 2119 4EBB 1657 33EA
     uid                  Nick Mathewson &lt;nickm@alum.mit.edu&gt;
     uid                  Nick Mathewson &lt;nickm@wangafu.net&gt;
     uid                  Nick Mathewson &lt;nickm@freehaven.net&gt;
+    uid                  [jpeg image of size 3369]
+    sub   3072R/8D29319A 2004-07-03
+    sub   3072R/F25B8E5E 2004-07-03
+
+    pub   2048R/63FEE659 2003-10-16
+          Key fingerprint = 8738 A680 B84B 3031 A630  F2DB 416F 0610 63FE E659
+    uid                  Erinn Clark &lt;erinn@torproject.org&gt;
+    uid                  Erinn Clark &lt;erinn@debian.org&gt;
+    uid                  Erinn Clark &lt;erinn@double-helix.org&gt;
+    sub   2048R/EB399FD7 2003-10-16
+
+    pub   1024D/F1F5C9B5 2010-02-03
+          Key fingerprint = C2E3 4CFC 13C6 2BD9 2C75  79B5 6B8A AEB1 F1F5 C9B5
+    uid                  Erinn Clark &lt;erinn@torproject.org&gt;
+    sub   1024g/7828F26A 2010-02-03
 
     pub  1024D/31B0974B 2003-07-17
          Key fingerprint = 0295 9AA7 190A B9E9 027E  0736 3B9D 093F 31B0 974B
@@ -50,11 +78,16 @@
     uid                  Andrew Lewman &lt;andrew@torproject.org&gt;
     sub   4096g/B77F95F7 2003-07-17
 
-    pub   4096R/C82E0039 2003-03-24
-          Key fingerprint = 25FC 1614 B8F8 7B52 FF2F  99B9 62AF 4031 C82E 0039
-    uid                  Peter Palfrader
-    uid                  Peter Palfrader &lt;peter@palfrader.org&gt;
-    uid                  Peter Palfrader &lt;weasel@debian.org&gt;
+    pub   2048R/886DDD89 2009-09-04 [expires: 2014-09-03]
+          Key fingerprint = A3C4 F0F9 79CA A22C DBA8  F512 EE8C BC9E 886D DD89
+    uid                  deb.torproject.org archive signing key
+    sub   2048R/219EC810 2009-09-04 [expires: 2012-09-03]
+
+    pub   3072D/B374CBD2 2010-06-09 [expires: 2012-06-09]
+          Key fingerprint = B92B CA64 72F7 C6F0 8D47  8503 D2AC D203 B374 CBD2
+    uid                  Nathan of Guardian <nathan@guardianproject.info>
+    uid                  [jpeg image of size 6978]
+    sub   4096g/B5878C3B 2010-06-09 [expires: 2012-06-09]
 
     pub   1024D/9A753A6B 2009-09-11
           Key fingerprint = 553D 7C2C 626E F16F 27F3  30BC 95E3 881D 9A75 3A6B
@@ -75,24 +108,6 @@
     sub   2048g/146276B2 2009-06-17
     sub   2048R/87F30690 2010-08-07
 
-    pub   4096R/E012B42D 2010-05-07
-          Key fingerprint = D8C9 AF51 CAA9 CAEA D3D8  9C9E A34F A745 E012 B42D
-    uid                  Jacob Appelbaum &lt;jacob@appelbaum.net&gt;
-    uid                  Jacob Appelbaum &lt;jacob@torproject.org&gt;
-    sub   4096R/7CA91A52 2010-05-07 [expires: 2011-05-07]
-
-    pub   2048R/63FEE659 2003-10-16
-          Key fingerprint = 8738 A680 B84B 3031 A630  F2DB 416F 0610 63FE E659
-    uid                  Erinn Clark &lt;erinn@torproject.org&gt;
-    uid                  Erinn Clark &lt;erinn@debian.org&gt;
-    uid                  Erinn Clark &lt;erinn@double-helix.org&gt;
-    sub   2048R/EB399FD7 2003-10-16
-
-    pub   1024D/F1F5C9B5 2010-02-03
-          Key fingerprint = C2E3 4CFC 13C6 2BD9 2C75  79B5 6B8A AEB1 F1F5 C9B5
-    uid                  Erinn Clark &lt;erinn@torproject.org&gt;
-    sub   1024g/7828F26A 2010-02-03
-
     pub   1024D/DDC6C0AD 2006-07-26
           Key fingerprint = BECD 90ED D1EE 8736 7980  ECF8 1B0C A30C DDC6 C0AD
     uid                  Mike Perry &lt;mikeperry@fscked.org&gt;
@@ -109,15 +124,16 @@
     uid                  Robert Hogan &lt;robert@roberthogan.net&gt;
     sub   1024g/FC4A9460 2006-08-19
 
-    pub   3072D/B374CBD2 2010-06-09 [expires: 2011-06-09]
-          Key fingerprint = B92B CA64 72F7 C6F0 8D47  8503 D2AC D203 B374 CBD2
-    uid                  Nathan of Guardian &lt;nathan@guardianproject.info&gt;
-    sub   4096g/B5878C3B 2010-06-09 [expires: 2011-06-09]
+    pub   4096R/C82E0039 2003-03-24
+          Key fingerprint = 25FC 1614 B8F8 7B52 FF2F  99B9 62AF 4031 C82E 0039
+    uid                  Peter Palfrader
+    uid                  Peter Palfrader &lt;peter@palfrader.org&gt;
+    uid                  Peter Palfrader &lt;weasel@debian.org&gt;
 
-    pub   2048R/886DDD89 2009-09-04 [expires: 2014-09-03]
-          Key fingerprint = A3C4 F0F9 79CA A22C DBA8  F512 EE8C BC9E 886D DD89
-    uid                  deb.torproject.org archive signing key
-    sub   2048R/219EC810 2009-09-04 [expires: 2012-09-03]
+    pub   4096R/42DDE84F 2011-04-19 [expires: 2012-04-18]
+    uid                  Jacob Appelbaum &lt;jacob@torproject.org&gt;
+    uid                  Jacob Appelbaum &lt;jacob@appelbaum.net&gt;
+    sub   4096R/437C9647 2011-04-19 [expires: 2012-04-18]
     </pre>
 
   </div>
