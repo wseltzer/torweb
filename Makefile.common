@@ -18,7 +18,7 @@ WMLOPT  = \
           -D STABLETAG=$(STABLETAG)
 
 #LANGS=ar bms de en es et fa it fi fr ja ko nl no pl pt ru se tr zh-cn
-LANGS=ar ar-se bms cy da de en es et fa fi fr hu id it ja ko nl no pl pt pt-br ru se tr vn zh-cn
+LANGS=ar bms cy da de en es et fa fi fr hu id it ja ko nl no pl pt pt-br ru se tr vn zh-cn
 
 WMLFILES=$(wildcard $(patsubst %, %/*.wml, $(LANGS)))
 WMIFILES=$(wildcard $(patsubst %, %/*.wmi, $(LANGS)) $(WMLBASE)/include/*.wmi )
@@ -33,9 +33,6 @@ all: $(HTMLFILES)
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
 %.html.ar: ar/%.wml en/%.wml
-	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
-
-%.html.ar-se: ar-se/%.wml en/%.wml
 	lang=`dirname $<` && wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $@
 
 %.html.bms: bms/%.wml en/%.wml
@@ -121,13 +118,6 @@ all: $(HTMLFILES)
 	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
 	rm -f $$tmpfile
 .deps/%.html.ar.d: ar/%.wml .deps/.stamp
-	tmpfile=`mktemp -t tmp.XXXXXXX` \
-	lang=`dirname $<` && \
-	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
-	wml $(WMLOPT) -I $$lang -I $(WMLBASE)/$$lang -D LANG=$$lang $< -o $$OUT --depend | tee $$tmpfile > $@ && \
-	sed -e s',\(^[^ ]*\):,.deps/\1.d:,' < $$tmpfile >> $@ && \
-	rm -f $$tmpfile
-.deps/%.html.ar-se.d: ar-se/%.wml .deps/.stamp
 	tmpfile=`mktemp -t tmp.XXXXXXX` \
 	lang=`dirname $<` && \
 	OUT=`echo $@ | sed -e 's,\.deps/\(.*\)\.d$$,\1,'` && \
