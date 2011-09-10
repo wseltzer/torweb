@@ -12,6 +12,39 @@
     <h1>How to verify signatures for packages</h1>
     <hr>
 
+    <h3>What is a signature and why should I check it?</h3>
+    <hr>
+
+    <p>How do you know that the Tor program you have is really the
+    one we made? Many Tor users have very real adversaries who might
+    try to give them a fake version of Tor &mdash; and it doesn't matter
+    how secure and anonymous Tor is if you're not running the real Tor.</p>
+
+    <p>An attacker could try a variety of attacks to get you to download
+    a fake Tor. For example, he could trick you into thinking some other
+    website is a great place to download Tor. That's why you should
+    always download Tor from <b>https</b>://www.torproject.org/. The
+    https part means there's encryption and authentication between your
+    browser and the website, making it much harder for the attacker
+    to modify your download. But it's not perfect. Some places in the
+    world block the Tor website, making users try somewhere else. Large
+    companies sometimes force employees to use a modified browser,
+    so the company can listen in on all their browsing. We've even <a
+    href="https://blog.torproject.org/blog/diginotar-debacle-and-what-you-should-do-about-it">seen</a>
+    attackers who have the ability to trick your browser into thinking
+    you're talking to the Tor website with https when you're not.</p>
+
+    <p>Some software sites list <a
+    href="http://en.wikipedia.org/wiki/Cryptographic_hash_function">sha1
+    hashes</a> alongside the software on their website, so users can
+    verify that they downloaded the file without any errors. These
+    "checksums" help you answer the question "Did I download this file
+    correctly from whoever sent it to me?" They do a good job at making
+    sure you didn't have any random errors in your download, but they
+    don't help you figure out whether you were downloading it from the
+    attacker. The better question to answer is: "Is this file that I
+    just downloaded the file that Tor intended me to get?"</p>
+
     <p>Each file on <a href="<page download/download>">our download
     page</a> is accompanied by a file with the same name as the
     package and the extension ".asc". These .asc files are GPG
@@ -23,10 +56,9 @@
     <h3>Windows</h3>
     <hr>
 
-    <p>You need to have GnuPG installed
-    before you can verify signatures. Go to <a
-    href="http://www.gnupg.org/download/">http://www.gnupg.org/download/</a>
-    and look for the "version compiled for MS-Windows" under "Binaries".</p>
+    <p>You need to have GnuPG installed before
+    you can verify signatures. Download it from <a
+    href="http://gpg4win.org/download.html">http://gpg4win.org/download.html</a>.</p>
 
     <p>Once it's installed, use GnuPG to import the key that signed your
     package. Since GnuPG for Windows is a command-line tool, you will need
