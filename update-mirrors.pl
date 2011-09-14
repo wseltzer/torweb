@@ -663,7 +663,7 @@ my %m = (
       },
         mirror041 => {
             adminContact => "",
-            orgName => "",
+            orgName => "Host4site",
             isoCC => "IL",
             subRegion => "",
             region => "IL",
