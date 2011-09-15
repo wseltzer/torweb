@@ -627,7 +627,7 @@ my %m = (
       },
         mirror039 => {
             adminContact => "",
-            orgName => "",
+            orgName => "CCC-Hanau",
             isoCC => "DE",
             subRegion => "",
             region => "DE",
@@ -637,7 +637,7 @@ my %m = (
             httpWebsiteMirror => "http://tor.key-server.org",
             httpsWebsiteMirror => "https://tor.key-server.org",
             rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
+            ftpWebsiteMirror => "ftp://key-server.org/tor",
             httpDistMirror => "http://tor.key-server.org/dist",
             httpsDistMirror => "https://tor.key-server.org/dist",
             rsyncDistMirror => "",
