@@ -681,7 +681,7 @@ my %m = (
       },
         mirror042 => {
             adminContact => "",
-            orgName => "",
+            orgName => "FoDT.IT",
             isoCC => "AT",
             subRegion => "",
             region => "AT",
@@ -691,7 +691,7 @@ my %m = (
             httpWebsiteMirror => "http://tor.fodt.it/",
             httpsWebsiteMirror => "",
             rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
+            ftpWebsiteMirror => "ftp://ftp.fodt.it/pub/mirror/tor/",
             httpDistMirror => "http://tor.fodt.it/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
