@@ -4,7 +4,7 @@
 
 
 ## translation metadata
-# Revision: $Revision: 24819 $
+# Revision: $Revision: 25053 $
 # Translation-Priority: 2-medium
 #include "pl/head.wmi" TITLE="Tor Project: Relay Configuration Instructions" CHARSET="UTF-8"
 <div id="content" class="clearfix">
@@ -264,15 +264,13 @@ href="<wiki>doc/TorInChroot">umieścić Tora w chrootowanym środowisku</a>.)
     </p>
 
     <p>
-    14. (Tylko Unix) Twój system operacyjny prawdopodobnie ogranicza liczbę
-otwartych deskryptorów plików dla każdego procesu do 1024 (lub nawet
-mniej). Jeśli planujesz uruchomienie szybkiego węzła wyjściowego, to ta
-ilość prawdopodobnie nie wystarczy. W systemie Linux powinieneś dodać linię
-postaci "toruser hard nofile 8192" do swojego pliku
-/etc/security/limits.conf (gdzie toruser oznacza użytkownika, na którego
-prawach uruchomiony jest Tor), po czym ponownie uruchomić Tora, jeśli jest
-zainstalowany jako pakiet (lub wylogować się i zalogować ponownie, jeśli
-uruchamiasz go sam).
+    14. (Unix only.) Your operating system probably limits the number of open
+file descriptors per process to 1024 (or even less). If you plan to be
+running a fast exit node, this is probably not enough. On Linux, you should
+add a line like "toruser hard nofile 8192" to your /etc/security/limits.conf
+file (where toruser is the user that runs the Tor process), and then restart
+Tor if it's installed as a package (or log out and log back in if you run it
+yourself). The Debian/Ubuntu package does this step for you.
     </p>
 
     <p>
