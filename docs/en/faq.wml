@@ -48,26 +48,26 @@
     <li><a href="#LiveCD">Is there a LiveCD or other bundle that includes Tor?</a></li>
     </ul>
 
-    <p>Running Tor:</p>
+    <p>Tor Browser Bundle:</p>
+    <ul>
+    <li><a href="#GoogleCaptcha">Google makes me solve a Captcha or tells
+    me I have spyware installed.</a></li>
+    <li><a href="#GmailWarning">Gmail warns me that my account may have
+    been compromised.</a></li>
+    </ul>
+
+    <p>Advanced Tor usage:</p>
     <ul>
     <li><a href="#torrc">I'm supposed to "edit my torrc". What does
     that mean?</a></li>
     <li><a href="#Logs">How do I set up logging, or see Tor's
     logs?</a></li>
-    </ul>
-
-    <p>Running a Tor client:</p>
-    <ul>
     <li><a href="#DoesntWork">I installed Tor and Polipo but it's not
     working.</a></li>
     <li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at
     start.</a></li>
     <li><a href="#ChooseEntryExit">Can I control which nodes (or country)
     are used for entry/exit?</a></li>
-    <li><a href="#GoogleCaptcha">Google makes me solve a Captcha or tells
-    me I have spyware installed.</a></li>
-    <li><a href="#GmailWarning">Gmail warns me that my account may have
-    been compromised.</a></li>
     <li><a href="#FirewallPorts">My firewall only allows a few outgoing
     ports.</a></li>
     </ul>
@@ -727,6 +727,90 @@ other than our official HTTPS website.
 
 <hr>
 
+<a id="GoogleCaptcha"></a>
+<h3><a class="anchor" href="#GoogleCaptcha">Google makes me solve a Captcha or tells me I have spyware installed.</a></h3>
+
+<p>
+This is a known and intermittent problem; it does not mean that Google
+considers Tor to be spyware.
+</p>
+
+<p>
+When you use Tor, you are sending queries through exit relays that are also
+shared by thousands of other users. Tor users typically see this message
+when many Tor users are querying Google in a short period of time. Google
+interprets the high volume of traffic from a single IP address (the exit
+relay you happened to pick) as somebody trying to "crawl" their website,
+so it slows down traffic from that IP address for a short time.
+</p>
+<p>
+An alternate explanation is that Google tries to detect certain
+kinds of spyware or viruses that send distinctive queries to Google
+Search. It notes the IP addresses from which those queries are received
+(not realizing that they are Tor exit relays), and tries to warn any
+connections coming from those IP addresses that recent queries indicate
+an infection.
+</p>
+
+<p>
+To our knowledge, Google is not doing anything intentionally specifically
+to deter or block Tor use. The error message about an infected machine
+should clear up again after a short time.
+</p>
+
+<p>
+Torbutton 1.2.5 (released in mid 2010) detects Google captchas and can
+automatically redirect you to a more Tor-friendly search engine such as
+Ixquick or Bing.
+</p>
+
+<hr />
+
+<a id="GmailWarning"></a>
+<h3><a class="anchor" href="#GmailWarning">Gmail warns me that my account may have been compromised.</a></h3>
+
+<p>
+Sometimes, after you've used Gmail over Tor, Google presents a
+pop-up notification that your account may have been compromised.
+The notification window lists a series of IP addresses and locations
+throughout the world recently used to access your account.
+</p>
+
+<p>
+In general this is a false alarm: Google saw a bunch of logins from
+different places, as a result of running the service via Tor, and decided
+it was a good idea to confirm the account was being accessed by it's
+rightful owner.
+</p>
+
+<p>
+Even though this may be a biproduct of using the service via tor,
+that doesn't mean you can entirely ignore the warning. It is
+<i>probably</i> a false positive, but it might not be since it is
+possible for someone to hijack your Google cookie.
+</p>
+
+<p>
+Cookie hijacking is possible by either physical access to your computer
+or by watching your network traffic.  In theory only physical access
+should compromise your system because Gmail and similar services
+should only send the cookie over an SSL link. In practice, alas, it's <a
+href="http://fscked.org/blog/fully-automated-active-https-cookie-hijacking">
+way more complex than that</a>.
+</p>
+
+<p>
+And if somebody <i>did</i> steal your google cookie, they might end
+up logging in from unusual places (though of course they also might
+not). So the summary is that since you're using Tor, this security
+measure that Google uses isn't so useful for you, because it's full of
+false positives. You'll have to use other approaches, like seeing if
+anything looks weird on the account, or looking at the timestamps for
+recent logins and wondering if you actually logged in at those times.
+</p>
+
+<hr>
+
 <a id="torrc"></a>
 <h3><a class="anchor" href="#torrc">I'm supposed to "edit my torrc". What does that mean?</a></h3>
 
@@ -1044,90 +1128,6 @@ for more information on how to remove the Tor service.
     </p>
 
     <hr>
-
-<a id="GoogleCaptcha"></a>
-<h3><a class="anchor" href="#GoogleCaptcha">Google makes me solve a Captcha or tells me I have spyware installed.</a></h3>
-
-<p>
-This is a known and intermittent problem; it does not mean that Google
-considers Tor to be spyware.
-</p>
-
-<p>
-When you use Tor, you are sending queries through exit relays that are also
-shared by thousands of other users. Tor users typically see this message
-when many Tor users are querying Google in a short period of time. Google
-interprets the high volume of traffic from a single IP address (the exit
-relay you happened to pick) as somebody trying to "crawl" their website,
-so it slows down traffic from that IP address for a short time.
-</p>
-<p>
-An alternate explanation is that Google tries to detect certain
-kinds of spyware or viruses that send distinctive queries to Google
-Search. It notes the IP addresses from which those queries are received
-(not realizing that they are Tor exit relays), and tries to warn any
-connections coming from those IP addresses that recent queries indicate
-an infection.
-</p>
-
-<p>
-To our knowledge, Google is not doing anything intentionally specifically
-to deter or block Tor use. The error message about an infected machine
-should clear up again after a short time.
-</p>
-
-<p>
-Torbutton 1.2.5 (released in mid 2010) detects Google captchas and can
-automatically redirect you to a more Tor-friendly search engine such as
-Ixquick or Bing.
-</p>
-
-<hr />
-
-<a id="GmailWarning"></a>
-<h3><a class="anchor" href="#GmailWarning">Gmail warns me that my account may have been compromised.</a></h3>
-
-<p>
-Sometimes, after you've used Gmail over Tor, Google presents a
-pop-up notification that your account may have been compromised.
-The notification window lists a series of IP addresses and locations
-throughout the world recently used to access your account.
-</p>
-
-<p>
-In general this is a false alarm: Google saw a bunch of logins from
-different places, as a result of running the service via Tor, and decided
-it was a good idea to confirm the account was being accessed by it's
-rightful owner.
-</p>
-
-<p>
-Even though this may be a biproduct of using the service via tor,
-that doesn't mean you can entirely ignore the warning. It is
-<i>probably</i> a false positive, but it might not be since it is
-possible for someone to hijack your Google cookie.
-</p>
-
-<p>
-Cookie hijacking is possible by either physical access to your computer
-or by watching your network traffic.  In theory only physical access
-should compromise your system because Gmail and similar services
-should only send the cookie over an SSL link. In practice, alas, it's <a
-href="http://fscked.org/blog/fully-automated-active-https-cookie-hijacking">
-way more complex than that</a>.
-</p>
-
-<p>
-And if somebody <i>did</i> steal your google cookie, they might end
-up logging in from unusual places (though of course they also might
-not). So the summary is that since you're using Tor, this security
-measure that Google uses isn't so useful for you, because it's full of
-false positives. You'll have to use other approaches, like seeing if
-anything looks weird on the account, or looking at the timestamps for
-recent logins and wondering if you actually logged in at those times.
-</p>
-
-<hr>
 
 <a id="FirewallPorts"></a>
 <h3><a class="anchor" href="#FirewallPorts">My firewall only allows a few outgoing ports.</a></h3>
