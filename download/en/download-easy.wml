@@ -1,182 +1,253 @@
 ## translation metadata
 # Revision: $Revision$
-# Translation-Priority: 1-high
+# Translation-Priority: 3-low
 
-#include "head.wmi" TITLE="Tor: Easy Download Selector" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
+#<!-- ATTENTION TRANSLATOR -->
+#<!-- You MUST copy '/include/lang.wmi' along with this file! -->
+
+#<!-- TBB DEFAULT LANGUAGE: Change 'en-US' below to your language code (if package exists)-->
+#<!-- IMPORTANT: You MUST also change the default selection in 'lang.wmi' -->
+<define-tag lang>en-US</define-tag>
+
+#<!-- Download button text for language enabled packages -->
+<define-tag button-win-tbb32>Tor Browser Bundle</define-tag>
+<define-tag button-win-tbb64>Currently Unused</define-tag>
+<define-tag button-osx-tbb32>Tor Browser Bundle (Beta)</define-tag>
+<define-tag button-osx-tbb64>64-bit (Beta)</define-tag>
+<define-tag button-lin-tbb32>Tor Browser Bundle (Beta)</define-tag>
+<define-tag button-lin-tbb64>64-bit (Beta)</define-tag>
+
+#include "dlhead.wmi" TITLE="Download Tor" CHARSET="UTF-8" ANNOUNCE_RSS="yes"
 
 <div id="content" class="clearfix">
-<div id="breadcrumbs"><a href="<page index>">Home &raquo; </a><a href="<page download/download-easy>">Easy Download Selector</a></div>
-<div id="maincol-left">
+  <div id="breadcrumbs"><a href="<page index>">Home &raquo; </a><a href="<page download/download>">Download</a></div>
+  <div id="maincol-left">
 <!-- BEGIN TEASER WARNING -->
+    <div class="warning-top">
+      <h2>Want Tor to really work?</h2>
+	<p>...then please don't just install it and go on.  You need to change some of your habits, and reconfigure your software! Tor by itself is <em>NOT</em> all you need to maintain your anonymity. Read the <a href="#warning">full list of warnings</a>.
+	</p>
+      </div>
+<!-- END TEASER WARNING -->
+<!-- START DOWNLOADS -->
+<!-- START DOWNLOADS -->
+<!-- START WINDOWS -->
+      <div class="easy windows">
+	<div class="package" style="padding-top: 13px; border-top: 0px;">
+	  <form class="downloads">
+	    <a class="button win-tbb" href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_<lang>.exe"><span class="strong">Download</span><span class="normal"><button-win-tbb32></span></a>
+	    <select name="language" id="win-tbb" class="lang">
+#include <lang.wmi>
+	    </select>
+	    <div class="sig" style="margin-bottom: 5px;">
+	      <a class="lang-alt" href="<page projects/torbrowser>#Download-torbrowserbundle">Other Languages</a>
+	      (<a class="win-tbb-sig" href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_<lang>.exe.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	  </form>
+	  <h2>Tor Browser Bundle for Windows</h2>
+	  <em>Version <version-torbrowserbundle> - Windows 7, Vista, and XP</em>
+	  <p>Everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></p>
+	  <p class="alt-dl">Not Using Windows? Download for <a class="mac-alt" href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-<lang>.zip">Mac</a> or <a class="lin-alt" href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-<lang>.tar.gz">Linux</a></p>
+	</div>
+      </div>
+<!-- START MAC -->
+      <div class="easy mac">
+	<div class="package" style="padding-top: 13px; border-top: 0px;">
+	  <form class="downloads">
+	    <a class="button mac-tbb" href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-<lang>.zip"><span class="strong">Download</span><span class="normal"><button-osx-tbb32></span></a>
+	    <select name="language" id="mac-tbb" class="lang">
+#include <lang.wmi>
+	    </select>
+	    <div class="sig" style="margin-bottom: 5px;">
+	      <a class="lang-alt" href="<page projects/torbrowser>#Download-torbrowserbundleosx">Other Languages</a>
+	      (<a class="mac-tbb-sig" href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-<lang>.zip.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	  </form>
+	  <h2>Tor Browser Bundle for Mac</h2>
+	  <em>Version <version-torbrowserbundleosx> - OS X</em>
+	  <p>Everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></p>
+	  <p class="alt-dl">Not Using Mac? Download for <a class="win-alt" href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_<lang>.exe">Windows</a> or <a class="lin-alt" href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-<lang>.tar.gz">Linux</a></p>
+	</div>
+      </div>
+<!-- START LINUX -->
+      <div class="easy linux">
+	<div class="package" style="padding-top: 13px; border-top: 0px;">
+	  <form class="downloads">
+	    <a class="button lin-tbb32" href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-<lang>.tar.gz"><span class="strong">Download</span><span class="normal"><button-lin-tbb32></span></a>
+	    <select name="language" id="lin-tbb32" class="lang">
+#include <lang.wmi>
+	    </select>
+	    <div class="sig" style="margin-bottom: 5px;">
+	      <a class="lang-alt" href="<page projects/torbrowser>#Download-torbrowserbundlelinux">Other Languages</a>
+	      (<a class="lin-tbb32-sig" href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-<lang>.tar.gz.asc">sig</a>) <a class="siginfo" href="<page docs/verifying-signatures>">What's This?</a>
+	    </div>
+	  </form>
+	  <h2>Tor Browser Bundle for Linux</h2>
+	  <em>Version <version-torbrowserbundlelinux32> - Linux, Unix, BSD</em>
+	  <p>Everything you need to safely browse the Internet. This package requires no installation. Just extract it and run. <a href="<page projects/torbrowser>">Learn more &raquo;</a></p>
+	  <p class="alt-dl">Not Using Linux? Download for <a class="mac-alt" href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-<lang>.zip">Mac</a> or <a class="win-alt" href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_<lang>.exe">Windows</a></p>
+	</div>
+      </div>
+      <p class="all-dl">Looking For Something Else? <a href="<page download/download>">View All Downloads</a></p>
+<!-- END DOWNLOADS --><br>
+<!-- BEGIN WARNING -->
 <div class="warning">
-<h2>Want Tor to really work?</h2>
-<p>...then please don't just install it and go on. You need to change some of
-your habits, and reconfigure your software! Tor by itself is <em>NOT</em> all
-you need to maintain your anonymity. Read the <a
-href="<page download/download>#warning">full list of warnings</a>.
+<a name="warning"></a>
+<a name="Warning"></a>
+<h2><a class="anchor" href="#warning">Want Tor to really work?</a></h2>
+<p>...then please don't just install it and go on.  You need to change some of your habits, and reconfigure your software! Tor by itself is <em>NOT</em> all you need to maintain your anonymity. There are several major pitfalls to watch out for:
+</p>
+
+<ol>
+<li>
+Tor only protects Internet applications that are configured to
+send their traffic through Tor &mdash; it doesn't magically anonymize
+all your traffic just because you install it.  We recommend you
+use <a href="http://www.mozilla.com/en-US/firefox/all-older.html">Firefox</a> with the <a
+href="<page torbutton/index>">Torbutton</a> extension.
+</li>
+
+<li>
+Torbutton blocks browser plugins such as Java, Flash, ActiveX, RealPlayer,
+Quicktime, Adobe's PDF plugin, and others: they can be manipulated
+into revealing your IP address. For example, that means Youtube is
+disabled. If you really need your Youtube, you can <a href="<page
+torbutton/torbutton-faq>#noflash">reconfigure Torbutton</a> to allow it; but
+be aware that you're opening yourself up to potential attack. Also,
+extensions like Google toolbar look up more information about the
+websites you type in: they may bypass Tor and/or broadcast sensitive
+information. Some people prefer using two browsers (one for Tor, one
+for non-Tor browsing).
+</li>
+
+<li>
+Beware of cookies: if you ever browse without Tor and a site gives
+you a cookie, that cookie could identify you even when you start
+using Tor again. Torbutton tries to handle your cookies safely. <a
+href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> can help
+protect any cookies you do not want to lose.
+</li>
+
+<li>
+Tor anonymizes the origin of your traffic, and it encrypts everything
+between you and the Tor network and everything inside the Tor network,
+but <a href="<wikifaq>#SoImtotallyanonymousifIuseTor">it
+can't encrypt your traffic between the Tor network and its final
+destination.</a> If you are communicating sensitive information, you
+should use as much care as you would on the normal scary Internet &mdash;
+use HTTPS or other end-to-end encryption and authentication.  <a
+href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> is a
+Firefox extension produced as a collaboration between The Tor Project
+and the Electronic Frontier Foundation. It encrypts your communications
+with a number of major websites.
+</li>
+
+<li>
+While Tor blocks attackers on your local network from discovering
+or influencing your destination, it opens new risks: malicious or
+misconfigured Tor exit nodes can send you the wrong page, or even send
+you embedded Java applets disguised as domains you trust. Be careful
+opening documents or applications you download through Tor, unless you've
+verified their integrity.
+</li>
+
+<li>
+Tor tries to prevent attackers from learning what destinations you connect
+to. It doesn't prevent somebody watching your traffic from learning that
+you're using Tor. You can mitigate (but not fully resolve) the risk
+by using a <a href="<page docs/bridges>">Tor bridge relay</a> rather than
+connecting directly to the public Tor network, but ultimately the best
+protection here is a social approach: the more Tor users there are near
+you and the more <a href="<page about/torusers>">diverse</a> their interests,
+the less dangerous it will be that you are one of them.
+</li>
+
+<li> Do not use <a
+href="https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea">BitTorrent
+and Tor</a> together.
+</li>
+</ol>
+<br>
+<p>
+Be smart and learn more. Understand what Tor does and does not offer.
+This list of pitfalls isn't complete, and we need your
+help <a href="<page getinvolved/volunteer>#Documentation">identifying and documenting
+all the issues</a>.
 </p>
 </div>
-<!-- END TEASER WARNING -->
-<br>
-
-<table class="toppad" summary="">
-<tbody>
-<tr style="vertical-align:top;">
-<td class="nopad" height="1" style="vertical-align:top;">
-<h2>Tor Browser Bundle</h2>
-
-</td>
-
- <!-- DONATION WIDGET BEGIN -->
-<script type="text/javascript" src="$(DOCROOT)/jquery.min.js"></script>
-<script type="text/javascript">
-function displayVals() {
-      var t3 = jQuery("#t3").val();
-      var amount = jQuery("#amount").val();
-      if(t3 != 0){
-	    jQuery('#a3').val(amount);
-	    jQuery('#p3').val(1);
-		 jQuery('#cmd').val('_xclick-subscriptions');
-		 jQuery('#item_name').val('Tor Project Membership');
-		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo"><small>(Requires a PayPal Account)</small></h6>');
-	  }else{
-	  	jQuery('#a3').val(0);
-	  	jQuery('#p3').val(0);
-		jQuery('#cmd').val('_donations');
-   	jQuery('#item_name').val('Donation to the Tor Project');
-		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
-	  }
-	  if( !t3 ) {
-	   jQuery('#cmd').val('_donations');
-   	jQuery('#item_name').val('Donation to the Tor Project');
-		 jQuery('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
-     }
-}
-
-jQuery(function(){
- 	jQuery("#amount").change(displayVals);
- 	jQuery("#t3").change(displayVals);
- 	displayVals();
-});
-
-</script>
-<td class="nopad" rowspan="8" style="width:220px;vertical-align:top;">
-	<form class="dbox" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-		<h2>Donate to Tor</h2>
-		<p>
-		    <select name="currency_code" class="cur">
-			  <option value="USD" selected="selected">$</option>
-			  <option value="EUR">&euro;</option>
-			  <option value="GBP">&pound;</option>
-			  <option value="YEN">&yen;</option>
-			</select>
-			<input type="text" id="amount" class="amount" name="amount" value="5" size="10">		
-		</p>
-		<p>
-			<input type="hidden" id="a3" name="a3" value="0">
-			<select id="t3" name="t3">
-				<option value="0">One-time Donation</option>
-				<option value="M">Monthly Subscription</option>
-			</select>		
-		</p>
-		<p>
-		   <input type="hidden" id="p3" name="p3" value="1">
-		   <input type="hidden" name="sra" value="1">
-	      <input type="hidden" name="src" value="1">
-		   <input type="hidden" name="no_shipping" value="1">
-	      <input type="hidden" name="no_note" value="1">
-		   <input type="hidden" id="cmd" name="cmd" value="_donations">
-	      <input type="hidden" name="business" value="donations@torproject.org">
-	      <input type="hidden" id="item_name" name="item_name" value="Donation to the Tor Project">
-	      <input type="hidden" name="return" value="https://www.torproject.org/donate/thankyou">
-		   <input type="hidden" name="cancel_return" value="https://www.torproject.org/download-easy">
-		</p>
-		<h6 id="ppinfo" style="height:0px;"></h6>		
-		<p>
-		   <input class="donate-btn" type="submit" name="donate" value="Donate">
-		</p>
-		<p>
-			<a href="<page donate/donate>">Other donation options...</a>
-		</p>
-	</form>
-</td>
- <!-- DONATION WIDGET END -->
-
-</tr>
-<tr>
-<td>The <strong>Tor Browser Bundle</strong> contains everything you need
-to safely browse the Internet. This package requires no installation.
-Just extract it and run. <a href="<page projects/torbrowser>">Learn more
-&amp; other languages &raquo;</a></td>
-
-</tr>
-<tr class="gray">
-<td><span class="windows">
-# Translators: please point to the version of TBB in your language, if there is one.
-<a href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_en-US.exe">Windows 7, Vista, XP</a>&nbsp;
-(<a href="../dist/torbrowser/tor-browser-<version-torbrowserbundle>_en-US.exe.asc">sig</a>)
-</span>
-</td>
-</tr>
-<tr>
-<td><span class="mac">
-# Translators: please point to the version of TBB in your language, if there is one.
-<a href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-en-US.zip">Apple OS X Intel</a>&nbsp;
-(<a href="../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx>-dev-osx-i386-en-US.zip.asc">sig</a>)
-</span>
-</td>
-</tr>
-<tr class="gray">
-<td><span class="linux">
-# Translators: please point to the version of TBB in your language, if there is one.
-<a href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-en-US.tar.gz">GNU/Linux i686</a>&nbsp;
-(<a href="../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-en-US.tar.gz.asc">sig</a>)
-</span>
-</td>
-</tr>
-<tr>
-<td>
-<p>Looking for something else? <a href="<page download/download>">View All Downloads</a>.</p>
-</td>
-</tr>
-<tr class="gray">
-<td colspan="2">
-<p>To keep informed of security advisories and new stable releases, subscribe to the <a
-href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-announce">tor-announce
-mailing list</a>. You can also <a
-href="http://rss.gmane.org/gmane.network.onion-routing.announce">watch
-the list's RSS feed</a>.</p>
-<p>Interested in <a href="<page about/overview>">learning more about Tor in general</a>?</p> 
-</td>
-</tr>
-</tbody>
-</table>
+<!-- END WARNING -->
 </div>
 <!-- END MAINCOL -->
+<!-- START SIDECOL -->
 <div id="sidecol-right">
-<div class="img-shadow">
-<div class="sidenav-sub">
-<h2>Advanced Choices:</h2>
-<ul>
-<li class="dropdown"><a href="<page download/download>#Windows">Microsoft Windows</a></li>
-<li class="dropdown"><a href="<page download/download>#mac">Apple OS X</a></li>
-<li class="dropdown"><a href="<page download/download>#linux">Linux/Unix</a></li>
-<li class="dropdown"><a href="<page download/download>#smartphones">Smartphones</a></li>
-<li class="dropdown"><a href="<page download/download>#source">Source Code</a></li>
-</ul>
-</div>
-</div>
-<!-- END SIDENAV -->
-<div class="img-shadow">
-<div class="infoblock">
-<h2>What is the (sig) link?</h2>
-<p>These are GPG signatures to allow you to verify that
-your downloaded file is really from The Tor Project and not
-an imposter.</p>
-<a href="<page docs/verifying-signatures>">Learn more &raquo;</a>
-</div>
-</div>
-<!-- END INFOBLOCK -->
+<!-- START DONATION WIDGET -->
+  <script async type="text/javascript">
+  function displayVals() {
+    var t3 = $("#t3").val();
+    var amount = $("#amount").val();
+    if(t3 != 0){
+      $('#a3').val(amount);
+      $('#p3').val(1);
+      $('#cmd').val('_xclick-subscriptions');
+      $('#item_name').val('Tor Project Membership');
+      $('#ppinfo').replaceWith('<h6 id="ppinfo"><small>(Requires a PayPal Account)</small></h6>');
+    }else{
+      $('#a3').val(0);
+      $('#p3').val(0);
+      $('#cmd').val('_donations');
+      $('#item_name').val('Donation to the Tor Project');
+      $('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
+    }
+    if( !t3 ) {
+      $('#cmd').val('_donations');
+      $('#item_name').val('Donation to the Tor Project');
+      $('#ppinfo').replaceWith('<h6 id="ppinfo" style="height:0px;"></h6>');
+    }
+  }
+  $(function(){
+    $("#amount").change(displayVals);
+    $("#t3").change(displayVals);
+    displayVals();
+  });
+  </script>
+<form class="dbox dl" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <h2>Donate to Tor</h2>
+      <p>
+	<select name="currency_code" class="cur">
+	  <option value="USD" selected="selected">$</option>
+	  <option value="EUR">&euro;</option>
+	  <option value="GBP">&pound;</option>
+	  <option value="YEN">&yen;</option>
+	</select>
+	<input type="text" id="amount" class="amount" name="amount" value="5" size="10">
+      </p>
+      <p>
+	<input type="hidden" id="a3" name="a3" value="0">
+	  <select id="t3" name="t3">
+	    <option value="0">One-time Donation</option>
+	    <option value="M">Monthly Subscription</option>
+	  </select>
+      </p>
+      <p>
+	<input type="hidden" id="p3" name="p3" value="1">
+	<input type="hidden" name="sra" value="1">
+	<input type="hidden" name="src" value="1">
+	<input type="hidden" name="no_shipping" value="1">
+	<input type="hidden" name="no_note" value="1">
+	<input type="hidden" id="cmd" name="cmd" value="_donations">
+	<input type="hidden" name="business" value="donations@torproject.org">
+	<input type="hidden" id="item_name" name="item_name" value="Donation to the Tor Project">
+	<input type="hidden" name="return" value="https://www.torproject.org/donate/thankyou.html">
+	<input type="hidden" name="cancel_return" value="https://www.torproject.org/download/download.html">
+      </p>
+      <h6 id="ppinfo" style="height:0px;"></h6>
+      <p>
+	<input class="donate-btn" type="submit" name="donate" value="Donate">
+      </p>
+      <p><a href="<page donate/donate>">Other donation options...</a></p>
+</form>
+<!-- END DONATION WIDGET -->
+<!-- START INFO -->
 <div class="img-shadow">
 <div class="sidenav-sub">
 <h2>Having Trouble?</h2>
@@ -185,12 +256,10 @@ an imposter.</p>
 </ul>
 </div>
 </div>
-<!-- END SIDENAV -->
+<!-- END INFO -->
 </div>
-</div><!-- #main -->
-<div class="">
-<p><small>All trademarks are the property of their respective owners.</small></p>
+<!-- END SIDECOL -->
 </div>
+<!-- END CONTENT -->
 
 #include <foot.wmi>
-

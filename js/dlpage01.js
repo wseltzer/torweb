@@ -1,23 +1,24 @@
 $(function(){
   /* If javascript is enabled this hides all sections by default */
-  $(".accordianContent").css('display', 'none');
+  $(".easy").css('display', 'none');
   /* Only show language selector if javascript is enabled */
   $('.lang').css('display', 'block');
-  $('.accordionButton').removeClass('on');
-  $('.accordionButton').addClass('off');
+  $('.lang-alt').css('display', 'none');
+  $('.expander').css('display', 'block');
+  $('.sidenav').css('display', 'none');
 });
 
 /* Uses result of jquery.client to open the relevant section */
 function OScheck() {
   var clientos = $.client.os;
   if(clientos == "Linux"){
-    $('#linux').addClass('open');
+    $('.easy.linux').css('display', 'block');
   }else if(clientos == "Windows"){
-    $('#windows').addClass('open');
+    $('.easy.windows').css('display', 'block');
   }else if(clientos == "Mac"){
-    $('#apple').addClass('open');
-  }else if(clientos == "iPhone/iPod"){
-    $('#smartphone').addClass('open');
+    $('.easy.mac').css('display', 'block');
+  }else{
+    $('.easy').css('display', 'block');
   }
 }
   $(function(){
@@ -32,3 +33,4 @@ function resetAll() {
     f[i].reset();
   }
 }
+
