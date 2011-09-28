@@ -12,7 +12,7 @@
 
 export TORGIT=/home/runa/tordev/tor/.git
 export STABLETAG=tor-0.2.2.33
-export DEVTAG=tor-0.2.3.4-alpha
+export DEVTAG=tor-0.2.3.5-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download getinvolved donate torbutton
