@@ -696,6 +696,24 @@ my %m = (
             httpsDistMirror => "https://factor.cc/tor/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+      },
+        mirror044 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "NL",
+            subRegion => "",
+            region => "NL",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://www.torproject.nl/",
+            httpsWebsiteMirror => "https://www.torproject.nl/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://www.torproject.nl/dist/",
+            httpsDistMirror => "https://www.torproject.nl/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
       }
 );
 
