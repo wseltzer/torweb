@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The Design and Implementation of the Tor Browser [DRAFT]</title><meta name="generator" content="DocBook XSL Stylesheets V1.75.2" /></head><body><div class="article" title="The Design and Implementation of the Tor Browser [DRAFT]"><div class="titlepage"><div><div><h2 class="title"><a id="design"></a>The Design and Implementation of the Tor Browser [DRAFT]</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Mike</span> <span class="surname">Perry</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:mikeperry#torproject org">mikeperry#torproject org</a>&gt;</code></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Erinn</span> <span class="surname">Clark</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:erinn#torproject org">erinn#torproject org</a>&gt;</code></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Steven</span> <span class="surname">Murdoch</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:sjmurdoch#torproject org">sjmurdoch#torproject org</a>&gt;</code></p></div></div></div></div><div><p class="pubdate">Oct 4 2011</p></div></div><hr /></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#id2857732">1. Introduction</a></span></dt><dd><dl><dt><span class="sect2"><a href="#adversary">1.1. Adversary Model</a></span></dt></dl></dd><dt><span class="sect1"><a href="#DesignRequirements">2. Design Requirements and Philosophy</a></span></dt><dd><dl><dt><span class="sect2"><a href="#security">2.1. Security Requirements</a></span></dt><dt><span class="sect2"><a href="#privacy">2.2. Privacy Requirements</a></span></dt><dt><span class="sect2"><a href="#philosophy">2.3. Philosophy</a></span></dt></dl></dd><dt><span class="sect1"><a href="#Implementation">3. Implementation</a></span></dt><dd><dl><dt><span class="sect2"><a href="#proxy-obedience">3.1. Proxy Obedience</a></span></dt><dt><span class="sect2"><a href="#state-separation">3.2. State Separation</a></span></dt><dt><span class="sect2"><a href="#disk-avoidance">3.3. Disk Avoidance</a></span></dt><dt><span class="sect2"><a href="#app-data-isolation">3.4. Application Data Isolation</a></span></dt><dt><span class="sect2"><a href="#identifier-linkability">3.5. Cross-Origin Identifier Unlinkability</a></span></dt><dt><span class="sect2"><a href="#fingerprinting-linkability">3.6. Cross-Origin Fingerprinting Unlinkability</a></span></dt><dt><span class="sect2"><a href="#new-identity">3.7. Long-Term Unlinkability via "New Identity" button</a></span></dt><dt><span class="sect2"><a href="#click-to-play">3.8. Click-to-play for plugins and invasive content</a></span></dt><dt><span class="sect2"><a href="#firefox-patches">3.9. Description of Firefox Patches</a></span></dt></dl></dd><dt><span class="sect1"><a href="#Packaging">4. Packaging</a></span></dt><dd><dl><dt><span class="sect2"><a href="#build-security">4.1. Build Process Security</a></span></dt><dt><span class="sect2"><a href="#addons">4.2. External Addons</a></span></dt><dt><span class="sect2"><a href="#prefs">4.3. Pref Changes</a></span></dt><dt><span class="sect2"><a href="#update-mechanism">4.4. Update Security</a></span></dt></dl></dd><dt><span class="sect1"><a href="#Testing">5. Testing</a></span></dt><dd><dl><dt><span class="sect2"><a href="#SingleStateTesting">5.1. Single state testing</a></span></dt></dl></dd></dl></div><div class="sect1" title="1. Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id2857732"></a>1. Introduction</h2></div></div></div><p>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The Design and Implementation of the Tor Browser [DRAFT]</title><meta name="generator" content="DocBook XSL Stylesheets V1.75.2" /></head><body><div class="article" title="The Design and Implementation of the Tor Browser [DRAFT]"><div class="titlepage"><div><div><h2 class="title"><a id="design"></a>The Design and Implementation of the Tor Browser [DRAFT]</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Mike</span> <span class="surname">Perry</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:mikeperry#torproject org">mikeperry#torproject org</a>&gt;</code></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Erinn</span> <span class="surname">Clark</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:erinn#torproject org">erinn#torproject org</a>&gt;</code></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Steven</span> <span class="surname">Murdoch</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:sjmurdoch#torproject org">sjmurdoch#torproject org</a>&gt;</code></p></div></div></div></div><div><p class="pubdate">Oct 6 2011</p></div></div><hr /></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#id2597772">1. Introduction</a></span></dt><dd><dl><dt><span class="sect2"><a href="#adversary">1.1. Adversary Model</a></span></dt></dl></dd><dt><span class="sect1"><a href="#DesignRequirements">2. Design Requirements and Philosophy</a></span></dt><dd><dl><dt><span class="sect2"><a href="#security">2.1. Security Requirements</a></span></dt><dt><span class="sect2"><a href="#privacy">2.2. Privacy Requirements</a></span></dt><dt><span class="sect2"><a href="#philosophy">2.3. Philosophy</a></span></dt></dl></dd><dt><span class="sect1"><a href="#Implementation">3. Implementation</a></span></dt><dd><dl><dt><span class="sect2"><a href="#proxy-obedience">3.1. Proxy Obedience</a></span></dt><dt><span class="sect2"><a href="#state-separation">3.2. State Separation</a></span></dt><dt><span class="sect2"><a href="#disk-avoidance">3.3. Disk Avoidance</a></span></dt><dt><span class="sect2"><a href="#app-data-isolation">3.4. Application Data Isolation</a></span></dt><dt><span class="sect2"><a href="#identifier-linkability">3.5. Cross-Origin Identifier Unlinkability</a></span></dt><dt><span class="sect2"><a href="#fingerprinting-linkability">3.6. Cross-Origin Fingerprinting Unlinkability</a></span></dt><dt><span class="sect2"><a href="#new-identity">3.7. Long-Term Unlinkability via "New Identity" button</a></span></dt><dt><span class="sect2"><a href="#click-to-play">3.8. Click-to-play for plugins and invasive content</a></span></dt><dt><span class="sect2"><a href="#firefox-patches">3.9. Description of Firefox Patches</a></span></dt></dl></dd><dt><span class="sect1"><a href="#Packaging">4. Packaging</a></span></dt><dd><dl><dt><span class="sect2"><a href="#build-security">4.1. Build Process Security</a></span></dt><dt><span class="sect2"><a href="#addons">4.2. External Addons</a></span></dt><dt><span class="sect2"><a href="#prefs">4.3. Pref Changes</a></span></dt><dt><span class="sect2"><a href="#update-mechanism">4.4. Update Security</a></span></dt></dl></dd><dt><span class="sect1"><a href="#Testing">5. Testing</a></span></dt><dd><dl><dt><span class="sect2"><a href="#SingleStateTesting">5.1. Single state testing</a></span></dt></dl></dd></dl></div><div class="sect1" title="1. Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id2597772"></a>1. Introduction</h2></div></div></div><p>
 
 This document describes the <a class="link" href="#adversary" title="1.1. Adversary Model">adversary model</a>,
 <a class="link" href="#DesignRequirements" title="2. Design Requirements and Philosophy">design requirements</a>,
@@ -58,11 +58,11 @@ order to execute their attacks.
 The adversary can run exit nodes, or alternatively, they may control routers
 upstream of exit nodes. Both of these scenarios have been observed in the
 wild.
-     </p></li><li class="listitem"><span class="command"><strong>Adservers and/or Malicious Websites</strong></span><p>
+     </p></li><li class="listitem"><span class="command"><strong>Ad servers and/or Malicious Websites</strong></span><p>
 The adversary can also run websites, or more likely, they can contract out
-ad space from a number of different adservers and inject content that way. For
-some users, the adversary may be the adservers themselves. It is not
-inconceivable that adservers may try to subvert or reduce a user's anonymity 
+ad space from a number of different ad servers and inject content that way. For
+some users, the adversary may be the ad servers themselves. It is not
+inconceivable that ad servers may try to subvert or reduce a user's anonymity 
 through Tor for marketing purposes.
      </p></li><li class="listitem"><span class="command"><strong>Local Network/ISP/Upstream Router</strong></span><p>
 The adversary can also inject malicious content at the user's upstream router
@@ -80,7 +80,7 @@ The adversary can perform the following attacks from a number of different
 positions to accomplish various aspects of their goals. It should be noted
 that many of these attacks (especially those involving IP address leakage) are
 often performed by accident by websites that simply have Javascript, dynamic 
-CSS elements, and plugins. Others are performed by adservers seeking to
+CSS elements, and plugins. Others are performed by ad servers seeking to
 correlate users' activity across different IP addresses, and still others are
 performed by malicious agents on the Tor network and at national firewalls.
 
@@ -187,7 +187,8 @@ adversary.
      </p></li></ol></div></div></div></div><div class="sect1" title="2. Design Requirements and Philosophy"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="DesignRequirements"></a>2. Design Requirements and Philosophy</h2></div></div></div><p>
 
 The Tor Browser Design Requirements are meant to describe the properties of a
-Private Browsing Mode that defends against both network and forensic adversaries. 
+Private Browsing Mode that defends against both network and local forensic
+adversaries. 
 
   </p><p>
 
@@ -237,7 +238,9 @@ operating system to write <span class="emphasis"><em>any information</em></span>
 of private browsing to disk outside of the application's control. The user
 must be able to ensure that secure removal of the software is sufficient to
 remove evidence of the use of the software. All exceptions and shortcomings
-due to operating system behavior MUST BE wiped by an uninstaller.
+due to operating system behavior MUST BE wiped by an uninstaller. However, due
+to permissions issues with access to swap, implementations MAY choose to leave
+it out of scope, and/or leave it to the user to implement encrypted swap.
 
 </p></li><li class="listitem"><span class="command"><strong>Update Safety</strong></span><p>The browser SHOULD NOT perform unsafe updates or upgrades.</p></li></ol></div></div><div class="sect2" title="2.2. Privacy Requirements"><div class="titlepage"><div><div><h3 class="title"><a id="privacy"></a>2.2. Privacy Requirements</h3></div></div></div><p>
 
@@ -259,10 +262,12 @@ to be the entire fully qualified domain name
    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><span class="command"><strong>Cross-Origin Identifier Unlinkability</strong></span><p>
 
 User activity on one url bar origin MUST NOT be linkable to their activity in
-any other url bar origin by any third party. This property specifically applies to
-linkability from stored browser identifiers, authentication tokens, and shared
-state. This functionality SHOULD NOT interfere with federated login in a
-substantial way.
+any other url bar origin by any third party automatically or without user
+interaction or approval. This requirement specifically applies to linkability
+from stored browser identifiers, authentication tokens, and shared state. The
+requirement does not apply to linkable information the user manually submits
+to sites, or due information submitted during manual link traversal. This
+functionality SHOULD NOT interfere with federated login in a substantial way.
 
   </p></li><li class="listitem"><span class="command"><strong>Cross-Origin Fingerprinting Unlinkability</strong></span><p>
 
@@ -417,13 +422,13 @@ launch a helper app.
 Tor Browser State is separated from existing browser state through use of a
 custom Firefox profile. Furthermore, plugins are disabled, which prevents
 Flash cookies from leaking from a pre-existing Flash directory.
-   </p></div><div class="sect2" title="3.3. Disk Avoidance"><div class="titlepage"><div><div><h3 class="title"><a id="disk-avoidance"></a>3.3. Disk Avoidance</h3></div></div></div><div class="sect3" title="Design Goal:"><div class="titlepage"><div><div><h4 class="title"><a id="id2886678"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
+   </p></div><div class="sect2" title="3.3. Disk Avoidance"><div class="titlepage"><div><div><h3 class="title"><a id="disk-avoidance"></a>3.3. Disk Avoidance</h3></div></div></div><div class="sect3" title="Design Goal:"><div class="titlepage"><div><div><h4 class="title"><a id="id2616664"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
 Tor Browser MUST (at user option) prevent all disk records of browser activity.
 The user should be able to optionally enable URL history and other history
 features if they so desire. Once we <a class="ulink" href="https://trac.torproject.org/projects/tor/ticket/3100" target="_top">simplify the
 preferences interface</a>, we will likely just enable Private Browsing
 mode by default to handle this goal.
-    </blockquote></div></div><div class="sect3" title="Implementation Status:"><div class="titlepage"><div><div><h4 class="title"><a id="id2874561"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
+    </blockquote></div></div><div class="sect3" title="Implementation Status:"><div class="titlepage"><div><div><h4 class="title"><a id="id2606128"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
 For now, Tor Browser blocks write access to the disk through Torbutton
 using several Firefox preferences. 
 
@@ -488,7 +493,7 @@ the url bar origin for which browser state exists, possibly with a
 context-menu option to drill down into specific types of state or permissions.
 An example of this simplification can be seen in Figure 1.
 
-   </p><div class="figure"><a id="id2867838"></a><p class="title"><b>Figure 1. Improving the Privacy UI</b></p><div class="figure-contents"><div class="mediaobject" align="center"><img src="CookieManagers.png" align="middle" alt="Improving the Privacy UI" /></div><div class="caption"><p></p>
+   </p><div class="figure"><a id="id2612402"></a><p class="title"><b>Figure 1. Improving the Privacy UI</b></p><div class="figure-contents"><div class="mediaobject" align="center"><img src="CookieManagers.png" align="middle" alt="Improving the Privacy UI" /></div><div class="caption"><p></p>
 
 On the left is the standard Firefox cookie manager. On the right is a mock-up
 of how isolating identifiers to the URL bar origin might simplify the privacy
@@ -578,6 +583,7 @@ Users should be able to click-to-play flash objects from trusted sites. To
 make this behavior unlinkable, we wish to include a settings file for all platforms that disables flash
 cookies using the <a class="ulink" href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager03.html" target="_top">Flash
 settings manager</a>.
+
      </p><p><span class="command"><strong>Implementation Status:</strong></span>
 
 We are currently <a class="ulink" href="https://trac.torproject.org/projects/tor/ticket/3974" target="_top">having
@@ -608,11 +614,17 @@ Unlinkability <a class="link" href="#privacy" title="2.2. Privacy Requirements"
 MUST prompt users before following redirects that would cause the user to
 automatically navigate between two different url bar origins.
 
-    </p><p><span class="command"><strong>Implementation status:</strong></span>
+</p><p>
 
-There are numerous ways for the user to be redirected, and the Firefox API
-support to detect each of them is poor. We have a <a class="ulink" href="https://trac.torproject.org/projects/tor/ticket/3600" target="_top">trac bug
-open</a> to implement what we can.
+However, to
+reduce the occurrence of warning fatigue, these warning messages MAY be limited
+to automated redirect cycles only. For example, the automated redirect
+sequence <span class="command"><strong>User Click -&gt; t.co -&gt; bit.ly -&gt; cnn.com</strong></span> can be
+assumed to be benign, but the redirect sequence <span class="command"><strong>User Click -&gt; t.co -&gt;
+bit.ly -&gt; cnn.com -&gt; 2o7.net -&gt; scorecardresearch.net -&gt; cnn.com</strong></span> is
+clearly due to tracking. Non-automated redirect cycles that require
+user input at some step (such as federated login systems) need not be
+interrupted by the UI.
 
     </p><p>
 
@@ -621,6 +633,12 @@ accepting cross-origin redirects, or by clicking normal links) because it is
 assumed that private browsing sessions will be relatively short-lived,
 especially with frequent use of the <a class="link" href="#new-identity" title="3.7. Long-Term Unlinkability via &quot;New Identity&quot; button">New
 Identity</a> button.
+
+    </p><p><span class="command"><strong>Implementation status:</strong></span>
+
+There are numerous ways for the user to be redirected, and the Firefox API
+support to detect each of them is poor. We have a <a class="ulink" href="https://trac.torproject.org/projects/tor/ticket/3600" target="_top">trac bug
+open</a> to implement what we can.
 
     </p></li><li class="listitem">window.name
      <p>
@@ -639,7 +657,36 @@ time we encounter a blank referer. This behavior allows window.name to persist
 for the duration of a link-driven navigation session, but as soon as the user
 enters a new URL or navigates between https/http schemes, the property is cleared.
 
-     </p></li><li class="listitem">Exit node usage
+     </p></li><li class="listitem">Auto form-fill
+     <p>
+
+We disable the password saving functionality in the browser as part of our
+<a class="link" href="#disk-avoidance" title="3.3. Disk Avoidance">Disk Avoidance</a> requirement. However,
+since users may decide to re-enable disk history records and password saving,
+we also set the <a class="ulink" href="http://kb.mozillazine.org/Signon.autofillForms" target="_top">signon.autofillForms</a>
+preference to false to prevent saved values from immediately populating
+fields upon page load. Since Javascript can read these values as soon as they
+appear, setting this preference prevents automatic linkability from stored passwords.
+
+     </p></li><li class="listitem">HSTS supercookies
+      <p>
+An extreme (but not impossible) attack to mount is the creation of <a class="ulink" href="https://secure.wikimedia.org/wikipedia/en/wiki/HTTP_Strict_Transport_Security" target="_top">HSTS</a>
+supercookies. Since HSTS effectively stores one bit of information per domain
+name, an adversary in possession of numerous domains can use them to construct
+cookies based on stored HSTS state.
+
+      </p><p><span class="command"><strong>Design Goal:</strong></span>
+
+There appears to be three options for us: 1. Disable HSTS entirely, and rely
+instead on HTTPS-Everywhere. 2. Restrict the number of HSTS-enabled third
+parties allowed per url bar origin. 3. Prevent third parties from storing HSTS
+rules. We have not yet decided upon the best approach.
+
+      </p><p><span class="command"><strong>Implementation Status:</strong></span> Currently, HSTS state is
+cleared by <a class="link" href="#new-identity" title="3.7. Long-Term Unlinkability via &quot;New Identity&quot; button">New Identity</a>, but we don't
+defend against the creation of these cookies between <span class="command"><strong>New
+Identity</strong></span> invocations.
+      </p></li><li class="listitem">Exit node usage
      <p><span class="command"><strong>Design Goal:</strong></span>
 
 Every distinct navigation session (as defined by a non-blank referer header)
@@ -715,11 +762,22 @@ Javascript to query for the existence of specific fonts. With a large enough
 pre-built list to query, a large amount of fingerprintable information may
 still be available.
 
+     </p><p>
+
+The sure-fire way to address font linkability is to ship the browser with a
+font for every language, typeface, and style in use in the world, and to only
+use those fonts at the exclusion of system fonts.  However, this set may be
+impractically large. It is possible that a smaller <a class="ulink" href="https://secure.wikimedia.org/wikipedia/en/wiki/Unicode_typeface#List_of_Unicode_fonts" target="_top">common
+subset</a> may be found that provides total coverage. However, we believe
+that with strong url bar origin identifier isolation, a simpler approach can reduce the
+number of bits available to the adversary while avoiding the rendering and
+language issues of supporting a global font set.
+
      </p><p><span class="command"><strong>Design Goal:</strong></span>
 
-To address the Javascript issue, we intend to <a class="ulink" href="https://trac.torproject.org/projects/tor/ticket/2872" target="_top">limit the number of
-fonts</a> an origin can load, gracefully degrading to built-in and/or
-remote fonts once the limit is reached.
+We intend to <a class="ulink" href="https://trac.torproject.org/projects/tor/ticket/2872" target="_top">limit the number of
+fonts</a> a url bar origin can load, gracefully degrading to built-in
+and/or remote fonts once the limit is reached.
 
      </p><p><span class="command"><strong>Implementation Status:</strong></span>
 
@@ -805,7 +863,7 @@ amount of time it takes to mount a successful attack. <a class="ulink" href="htt
 even with the default precision in most browsers, they required up to 120
 seconds of amortization and repeated trials to get stable results from their
 feature set. We intend to work with the research community to establish the
-optimum tradeoff between quantization+jitter and amortization time.
+optimum trade-off between quantization+jitter and amortization time.
 
 
      </p><p><span class="command"><strong>Implementation Status:</strong></span>
@@ -852,22 +910,24 @@ Currently we simply disable WebGL.
      </p></li></ol></div></div><div class="sect2" title="3.7. Long-Term Unlinkability via &quot;New Identity&quot; button"><div class="titlepage"><div><div><h3 class="title"><a id="new-identity"></a>3.7. Long-Term Unlinkability via "New Identity" button</h3></div></div></div><p>
 In order to avoid long-term linkability, we provide a "New Identity" context
 menu option in Torbutton.
-   </p><div class="sect3" title="Design Goal:"><div class="titlepage"><div><div><h4 class="title"><a id="id2853903"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
+   </p><div class="sect3" title="Design Goal:"><div class="titlepage"><div><div><h4 class="title"><a id="id2626323"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
 
 All linkable identifiers and browser state MUST be cleared by this feature.
 
-    </blockquote></div></div><div class="sect3" title="Implementation Status:"><div class="titlepage"><div><div><h4 class="title"><a id="id2874701"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
-   First, Torbutton disables
-all open tabs and windows via nsIContentPolicy blocking, and then closes each
-tab and window. The extra step for blocking tabs is done as a precaution to
-ensure that any asynchronous Javascript is in fact properly disabled. After
-closing all of the windows, we then clear the following state: OCSP (by
-toggling security.OCSP.enabled), cache, site-specific zoom and content
-preferences, Cookies, DOM storage, safe browsing key, the Google wifi
-geolocation token (if exists), HTTP auth, SSL Session IDs, and the last opened URL
-field (via the pref general.open_location.last_url). After clearing the
-browser state, we then send the NEWNYM signal to the Tor control port to cause
-a new circuit to be created.
+    </blockquote></div></div><div class="sect3" title="Implementation Status:"><div class="titlepage"><div><div><h4 class="title"><a id="id2612376"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
+
+   First, Torbutton disables all open tabs and windows via nsIContentPolicy
+blocking, and then closes each tab and window. The extra step for blocking
+tabs is done as a precaution to ensure that any asynchronous Javascript is in
+fact properly disabled. After closing all of the windows, we then clear the
+following state: OCSP (by toggling security.OCSP.enabled), cache,
+site-specific zoom and content preferences, Cookies, DOM storage, safe
+browsing key, the Google wifi geolocation token (if exists), HTTP auth, SSL
+Session IDs, HSTS state, and the last opened URL field (via the pref
+general.open_location.last_url). After clearing the browser state, we then
+send the NEWNYM signal to the Tor control port to cause a new circuit to be
+created.
+
     </blockquote></div></div></div><div class="sect2" title="3.8. Click-to-play for plugins and invasive content"><div class="titlepage"><div><div><h3 class="title"><a id="click-to-play"></a>3.8. Click-to-play for plugins and invasive content</h3></div></div></div><p>
 Some content types are too invasive and/or too opaque for us to properly
 eliminate their linkability properties. For these content types, we use
@@ -895,7 +955,8 @@ Firebox version, but not much else.
 
 This patch exposes a pref 'permissions.memory_only' that properly isolates the
 permissions manager to memory, which is responsible for all user specified
-site permissions, as well as stored HTTPS STS policy from visited sites.
+site permissions, as well as stored <a class="ulink" href="https://secure.wikimedia.org/wikipedia/en/wiki/HTTP_Strict_Transport_Security" target="_top">HSTS</a>
+policy from visited sites.
 
 The pref does successfully clear the permissions manager memory if toggled. It
 does not need to be set in prefs.js, and can be handled by Torbutton.
@@ -952,7 +1013,7 @@ ruin our day, and censorship filters). Hence we rolled our own.
 This patch prevents random URLs from being inserted into content-prefs.sqllite in
 the profile directory as content prefs change (includes site-zoom and perhaps
 other site prefs?).
-     </p></li></ol></div></div></div><div class="sect1" title="4. Packaging"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Packaging"></a>4. Packaging</h2></div></div></div><p> </p><div class="sect2" title="4.1. Build Process Security"><div class="titlepage"><div><div><h3 class="title"><a id="build-security"></a>4.1. Build Process Security</h3></div></div></div><p> </p></div><div class="sect2" title="4.2. External Addons"><div class="titlepage"><div><div><h3 class="title"><a id="addons"></a>4.2. External Addons</h3></div></div></div><p> </p><div class="sect3" title="Included Addons"><div class="titlepage"><div><div><h4 class="title"><a id="id2886800"></a>Included Addons</h4></div></div></div></div><div class="sect3" title="Excluded Addons"><div class="titlepage"><div><div><h4 class="title"><a id="id2882777"></a>Excluded Addons</h4></div></div></div></div><div class="sect3" title="Dangerous Addons"><div class="titlepage"><div><div><h4 class="title"><a id="id2864076"></a>Dangerous Addons</h4></div></div></div></div></div><div class="sect2" title="4.3. Pref Changes"><div class="titlepage"><div><div><h3 class="title"><a id="prefs"></a>4.3. Pref Changes</h3></div></div></div><p> </p></div><div class="sect2" title="4.4. Update Security"><div class="titlepage"><div><div><h3 class="title"><a id="update-mechanism"></a>4.4. Update Security</h3></div></div></div><p> </p></div></div><div class="sect1" title="5. Testing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Testing"></a>5. Testing</h2></div></div></div><p>
+     </p></li></ol></div></div></div><div class="sect1" title="4. Packaging"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Packaging"></a>4. Packaging</h2></div></div></div><p> </p><div class="sect2" title="4.1. Build Process Security"><div class="titlepage"><div><div><h3 class="title"><a id="build-security"></a>4.1. Build Process Security</h3></div></div></div><p> </p></div><div class="sect2" title="4.2. External Addons"><div class="titlepage"><div><div><h3 class="title"><a id="addons"></a>4.2. External Addons</h3></div></div></div><p> </p><div class="sect3" title="Included Addons"><div class="titlepage"><div><div><h4 class="title"><a id="id2621568"></a>Included Addons</h4></div></div></div></div><div class="sect3" title="Excluded Addons"><div class="titlepage"><div><div><h4 class="title"><a id="id2614080"></a>Excluded Addons</h4></div></div></div></div><div class="sect3" title="Dangerous Addons"><div class="titlepage"><div><div><h4 class="title"><a id="id2613296"></a>Dangerous Addons</h4></div></div></div></div></div><div class="sect2" title="4.3. Pref Changes"><div class="titlepage"><div><div><h3 class="title"><a id="prefs"></a>4.3. Pref Changes</h3></div></div></div><p> </p></div><div class="sect2" title="4.4. Update Security"><div class="titlepage"><div><div><h3 class="title"><a id="update-mechanism"></a>4.4. Update Security</h3></div></div></div><p> </p></div></div><div class="sect1" title="5. Testing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Testing"></a>5. Testing</h2></div></div></div><p>
 
 The purpose of this section is to cover all the known ways that Tor browser
 security can be subverted from a penetration testing perspective. The hope
