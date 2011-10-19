@@ -8,7 +8,7 @@ svn update # get changes
 make -j3 # abuse the cores
 
 # don't copy over stuff with permissions that make it useless
-chmod a+r * -R
+chmod -R a+r *
 rsync --exclude .svn --exclude .deps --exclude svn --exclude dist --exclude releases --exclude torbutton-current.xpi --exclude project -Prvz --delete . vescum.torproject.org:/srv/www-master.torproject.org/htdocs
 
 echo "Forcing mirror update"
