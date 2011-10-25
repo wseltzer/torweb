@@ -78,8 +78,8 @@
     that mean?</a></li>
     <li><a href="#Logs">How do I set up logging, or see Tor's
     logs?</a></li>
-    <li><a href="#DoesntWork">I installed Tor and Polipo but it's not
-    working.</a></li>
+    <li><a href="#DoesntWork">Tor is running, but it's not working
+    correctly.</a></li>
     <li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at
     start.</a></li>
     <li><a href="#ChooseEntryExit">Can I control which nodes (or country)
@@ -1085,12 +1085,11 @@ and filename for your Tor log.
 <hr>
 
 <a id="DoesntWork"></a>
-<h3><a class="anchor" href="#DoesntWork">I installed Tor and Polipo but it's not working.</a></h3>
+<h3><a class="anchor" href="#DoesntWork">I installed Tor but it's not working.</a></h3>
 
 <p>
-Once you've installed the Tor bundle, there are two questions to ask:
-first, is your Tor able to establish a circuit? Second, is your
-Firefox correctly configured to send its traffic through Tor?
+Once you've got the Tor bundle up and running, the first questions to ask is if 
+your Tor is able to establish a circuit? 
 </p>
 
 <p>If Tor can establish a circuit, the onion icon in
@@ -1110,12 +1109,11 @@ If Tor can't establish a circuit, here are some hints:
 <li>Are you sure Tor is running? If you're using Vidalia, you may have
 to click on the onion and select "Start" to launch Tor.</li>
 <li>Check your system clock. If it's more than a few hours off, Tor will
-refuse to build circuits. For XP users, synchronize your clock under
-the clock -&gt; Internet time tab. In addition, correct the day and date
-under the 'Date &amp; Time' Tab.</li>
-<li>Is your Internet connection <a
-href="#FirewallPorts">firewalled by port</a>,
-or do you normally need to use a <a
+refuse to build circuits. For Microsoft Windows users, synchronize your
+clock under the clock -&gt; Internet time tab. In addition, correct the
+day and date under the 'Date &amp; Time' Tab.</li>
+<li>Is your Internet connection <a href="#FirewallPorts">firewalled
+by port</a>, or do you normally need to use a <a
 href="<wikifaq>#MyInternetconnectionrequiresanHTTPorSOCKSproxy.">proxy</a>?
 </li>
 <li>Are you running programs like Norton Internet Security or SELinux that
@@ -1126,52 +1124,6 @@ that blocks the public Tor relays? If so, you should learn about <a
 href="<page docs/bridges>">Tor bridges</a>.</li>
 <li>Check your <a href="#Logs">Tor logs</a>. Do they give you any hints
 about what's going wrong?</li>
-</ol>
-
-<p>
-Step two is to confirm that Firefox is correctly configured to send its
-traffic through Tor. Try the <a href="https://check.torproject.org/">Tor
-Check</a> site and see whether it thinks you are using Tor. See <a
-href="<wikifaq>#HowcanItellifTorisworkingandthatmyconnectionsreallyareanonymizedArethereexternalserversthatwilltestmyconnection">the
-Tor Check FAQ entry</a> for details.
-</p>
-
-<p>
-If it thinks you're not using Tor, here are some hints:
-</p>
-
-<ol>
-<li>Did you install the Torbutton extension for Firefox? The installation
-bundles include it, but sometimes people forget to install it. Make sure
-it says "Tor enabled" at the bottom right of your Firefox window. (For
-expert users, make sure your http proxy is set to localhost port
-8118.)</li>
-<li>Do you have incompatible Firefox extensions like FoxyProxy
-installed? If so, uninstall them. (Note that using FoxyProxy is NOT
-a sufficient substitute for Torbutton. There are many known attacks
-against a browser setup that does not include Torbutton. Read more
-in the <a href="<page torbutton/torbutton-faq>">Torbutton FAQ</a> and the <a
-href="https://www.torproject.org/torbutton/design/">Torbutton design</a>
-specification.)</li>
-<li>If your browser says "The proxy server is refusing connections.",
-check that Polipo (the http proxy that passes traffic between Firefox
-and Tor) is running. On Windows, look in the task manager and check for
-a polipo.exe. On OS X, open the utilities folder in your applications
-folder, and open Terminal.app. Then run "ps aux|grep polipo".</li>
-<li>If you're upgrading from OS X, some of the earlier OS X installers
-were broken in really unfortunate ways. You may find that <a href="<page
-docs/tor-doc-osx>#uninstall">uninstalling everything</a> and then
-installing a fresh bundle helps. Alas, the current uninstall instructions
-may not apply anymore to your old bundle. Sorry.</li>
-<li>If you're on Linux, make sure Privoxy isn't running, since it will
-conflict with the port that our Polipo configuration file picks.</li>
-<li>If you installed Polipo yourself (not from a bundle), did you edit the
-config file as described? Did you restart Polipo after this change? Are
-you sure?</li>
-<li>For Red Hat Linux and related systems, do you have SELinux enabled? If
-so, it might be preventing Polipo from talking to Tor. We also run across
-BSD users periodically who have local firewall rules that prevent some
-connections to localhost.</li>
 </ol>
 
 <hr />
