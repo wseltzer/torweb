@@ -1,16 +1,13 @@
 #!/bin/sh
 set -e # stop if we encounter an error
 
-make clean # clean cruft
-
-svn update # get changes
-
-make -j3 # abuse the cores
+svn update
+make -j3
 
 # don't copy over stuff with permissions that make it useless
 chmod -R a+r *
-rsync --exclude .svn --exclude .deps --exclude svn --exclude dist --exclude releases --exclude torbutton-current.xpi --exclude project -Prvz --delete . vescum.torproject.org:/srv/www-master.torproject.org/htdocs
+rsync --exclude .svn --exclude .deps --exclude svn --exclude dist --exclude releases --exclude torbutton-current.xpi --exclude project -Prvz --delete . vescum:/srv/www-master.torproject.org/htdocs
 
 echo "Forcing mirror update"
-ssh vescum.torproject.org '/home/mirroradm/bin/trigger-mirrors'
-ssh vescum.torproject.org chmod g+w -R /srv/www-master.torproject.org/htdocs
+ssh vescum '/home/mirroradm/bin/trigger-mirrors'
+ssh vescum chmod g+w -R /srv/www-master.torproject.org/htdocs
