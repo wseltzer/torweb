@@ -2,7 +2,7 @@
 #
 # 1. Clone the Tor git repository and make TORGIT point to it:
 #
-# 	git clone git://git.torproject.org/tor/ tor
+# 	git clone git://git.torproject.org/tor/ tor.git
 #
 #    Note that you will need to point to the actual .git directory.
 # 2. Edit include/versions.wmi or others if you like
@@ -10,7 +10,7 @@
 # 4. make
 # 5. ./publish
 
-export TORGIT=/home/runa/tordev/tor/.git
+export TORGIT=set this to your tor.git path
 export STABLETAG=tor-0.2.2.34
 export DEVTAG=tor-0.2.3.7-alpha
 
