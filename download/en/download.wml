@@ -281,11 +281,14 @@
 <a name="warning"></a>
 <a name="Warning"></a>
 <h2><a class="anchor" href="#warning">Want Tor to really work?</a></h2>
-<p>...then please don't just install it and go on.  You need to change some of your habits, and reconfigure your software! Tor by itself is <em>NOT</em> all you need to maintain your anonymity. There are several major pitfalls to watch out for:
+	<p>You need to change some of your habits, as some things won't work exactly as
+you are used to. Please read the <a href="#warning">full list of warnings</a> for details.
 </p>
 
 <ol>
-<li>
+<li><b>Use the Tor Browser</b>
+
+<p>
 
 Tor only protects Internet applications that are configured to send their
 traffic through Tor &mdash; it doesn't magically anonymize all of your traffic
@@ -293,60 +296,77 @@ just because you install it. We strongly recommend you use the <a href="<page
 projects/torbrowser>">Tor Browser Bundle</a>. It is pre-configured to protect
 your privacy and anonymity on the web as long as you're browsing with Tor
 Browser itself. Almost any other web browser configuration is likely to be
-unsafe. Similarly, we do not recommend installing additional addons into the
-Tor Browser, as these may bypass Tor or otherwise impede your anonymity.
+unsafe.
+
+</p>
 
 </li>
 
-<li>
+<li><b>Don't enable or install browser plugins</b>
+
+<p>
 
 The Tor Browser will block browser plugins such as Java, Flash, ActiveX,
 RealPlayer, Quicktime, Adobe's PDF plugin, and others: they can be manipulated
-into revealing your IP address. For example, that means Youtube is disabled by
-default. Youtube provides an experimental <a
-href="https://www.youtube.com/html5">non-Flash HTML5 mode</a> that works for
-many videos, but you you must vist that link opt-in manually. Youtube's
-support for the HTML5 feaure is buggy and incomplete, so we are also working
+into revealing your IP address. Similarly, we do not recommend installing
+additional addons or plugins into the Tor Browser, as these may bypass Tor or
+otherwise impede your anonymity. This means Youtube is disabled by default.
+Youtube provides an experimental
+<a href="https://www.youtube.com/html5">non-Flash HTML5 mode</a> that works for
+many videos, but you you must visit that link opt-in manually. Youtube's
+support for the HTML5 feature is buggy and incomplete, so we are also working
 to provide a safe way to temporarily enable Flash in future Tor Browser
 versions.
 
-</li>
-
-<li>
-
-Similarly, Tor Browser will warn you before automatically opening
-documents that are handled by external applications. <b>DO NOT IGNORE THIS
-WARNING</b>. You should be very careful when downloading documents via Tor
-(especially DOC and PDF files) as these documents can contain Internet
-resources that will be downloaded outside of Tor by the application that
-opens them. These documents can be modified by malicious exit nodes, or by
-someone who is trying to trick you into revealing your non-Tor IP address. If
-you must work with DOC and/or PDF files, we strongly recommend using a
-disconnected computer, a <a href="https://www.virtualbox.org/">VirtualBox</a>
-free <a href="http://virtualboxes.org/">image</a> with networking disabled, or 
-<a href="http://tails.boum.org/">Tails</a>.
+</p>
 
 </li>
 
-<li>
+<li><b>Use HTTPS versions of websites</b>
 
+<p>
 Tor anonymizes the origin of your traffic, and it encrypts everything between
 you and the Tor network and everything inside the Tor network, but 
 <a href="<wikifaq>#SoImtotallyanonymousifIuseTor">it can't encrypt your traffic
 between the Tor network and its final destination.</a> To help ensure
-privacy for this last leg, the Tor Browser Bundle includes 
-<a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> to encrypt
-your communications with a number of major websites, but you should still
+privacy for the last leg, the Tor Browser Bundle includes 
+<a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> to force
+the use of HTTPS with a number of major websites, but you should still
 watch the browser URL bar to ensure that websites you provide sensitive information
 to display a 
 <a href="https://support.mozilla.com/en-US/kb/Site%20Identity%20Button">blue or
 green validation</a>, include <b>https://</b> in the URL bar, 
 and display the proper name for the current website.
+</p>
 
 </li>
 
-<li>
+<li><b>Don't open documents downloaded through Tor while online</b>
 
+<p>
+
+The Tor Browser will warn you before automatically opening documents
+that are handled by external applications. <b>DO NOT IGNORE THIS WARNING</b>.
+You should be very careful when downloading documents via Tor (especially DOC
+and PDF files) as these documents can contain Internet resources that will be
+downloaded outside of Tor by the application that opens them. These documents
+can be modified by malicious exit nodes, or by a website who is trying to trick
+you into revealing your non-Tor IP address. If you must work with DOC and/or
+PDF files, we strongly recommend using a disconnected computer, a 
+<a href="https://www.virtualbox.org/">VirtualBox</a> free 
+<a href="http://virtualboxes.org/">image</a> with networking disabled, or 
+<a href="http://tails.boum.org/">Tails</a>. Under no circumstances is it safe to
+use <a
+href="https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea">BitTorrent
+and Tor</a> together.
+
+</p>
+
+</li>
+
+<li><b>Use bridges and/or find company</b>
+
+<p>
 Tor tries to prevent attackers from learning what destinations you connect
 to. It doesn't prevent somebody watching your traffic from learning that
 you're using Tor. You can mitigate (but not fully resolve) the risk
@@ -355,13 +375,11 @@ connecting directly to the public Tor network, but ultimately the best
 protection here is a social approach: the more Tor users there are near
 you and the more <a href="<page about/torusers>">diverse</a> their interests,
 the less dangerous it will be that you are one of them.
+</p>
 
 </li>
 
-<li> Do not use <a
-href="https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea">BitTorrent
-and Tor</a> together.
-</li>
+
 </ol>
 <br>
 <p>
