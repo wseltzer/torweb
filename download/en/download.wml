@@ -286,59 +286,65 @@
 
 <ol>
 <li>
-Tor only protects Internet applications that are configured to send
-their traffic through Tor &mdash; it doesn't magically anonymize all
-your traffic just because you install it.  We recommend you use the
-<a href="<page projects/torbrowser>">Tor Browser Bundle</a>. It is
-pre-configured to protect your privacy and anonymity on the web as long
-as you're browsing with Tor Browser.
+
+Tor only protects Internet applications that are configured to send their
+traffic through Tor &mdash; it doesn't magically anonymize all of your traffic
+just because you install it. We strongly recommend you use the <a href="<page
+projects/torbrowser>">Tor Browser Bundle</a>. It is pre-configured to protect
+your privacy and anonymity on the web as long as you're browsing with Tor
+Browser itself. Almost any other web browser configuration is likely to be
+unsafe. Similarly, we do not recommend installing additional addons into the
+Tor Browser, as these may bypass Tor or otherwise impede your anonymity.
+
 </li>
 
 <li>
-Tor Browser and Torbutton block browser plugins such as Java, Flash,
+
+The Tor Browser will block browser plugins such as Java, Flash,
 ActiveX, RealPlayer, Quicktime, Adobe's PDF plugin, and others: they
 can be manipulated into revealing your IP address. For example, that
-means Youtube is disabled. If you really need your Youtube, you can <a
-href="<page torbutton/torbutton-faq>#noflash">reconfigure Torbutton</a>
+means Youtube is disabled. If you really need your Youtube, you can
+<a href="<page torbutton/torbutton-faq>#noflash">reconfigure Torbutton</a>
 to allow it; but be aware that you're opening yourself up to potential
-attack. Also, extensions like Google toolbar look up more information
-about the websites you type in: they may bypass Tor and/or broadcast
-sensitive information. Some people prefer using two browsers (one for Tor,
-one for non-Tor browsing).
+attack.
+
 </li>
 
 <li>
-Beware of cookies: if you ever browse without Tor and a site gives
-you a cookie, that cookie could identify you even when you start
-using Tor again. Torbutton tries to handle your cookies safely. <a
-href="https://addons.mozilla.org/firefox/82/">CookieCuller</a> can help
-protect any cookies you do not want to lose.
+
+Similarly, the Tor Browser Bundle will warn you before automatically opening
+documents that are handled by external applications. <b>DO NOT IGNORE THIS
+WARNING</b>. You should be very careful when downloading documents via Tor
+(especially DOC and PDF files) as these documents can contain Internet
+resources that will be downloaded outside of Tor by the application that
+opens them. These documents can be modified by malicious exit nodes, or by
+someone who is trying to trick you into revealing your non-Tor IP address. If
+you must work with DOC and/or PDF files, we strongly recommend using a
+disconnected computer, a <a href="https://www.virtualbox.org/">VirtualBox</a>
+free <a href="http://virtualboxes.org/">image</a> with networking disabled, or 
+<a href="http://tails.boum.org/">Tails</a>.
+
 </li>
 
 <li>
-Tor anonymizes the origin of your traffic, and it encrypts everything
-between you and the Tor network and everything inside the Tor network,
-but <a href="<wikifaq>#SoImtotallyanonymousifIuseTor">it
-can't encrypt your traffic between the Tor network and its final
-destination.</a> If you are communicating sensitive information, you
-should use as much care as you would on the normal scary Internet &mdash;
-use HTTPS or other end-to-end encryption and authentication.  <a
-href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> is a
-Firefox extension produced as a collaboration between The Tor Project
-and the Electronic Frontier Foundation. It encrypts your communications
-with a number of major websites.
+
+Tor anonymizes the origin of your traffic, and it encrypts everything between
+you and the Tor network and everything inside the Tor network, but 
+<a href="<wikifaq>#SoImtotallyanonymousifIuseTor">it can't encrypt your traffic
+between the Tor network and its final destination.</a> To help ensure
+privacy for this last leg, the Tor Browser Bundle includes 
+<a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> to encrypt
+your communications with a number of major websites, but you should still
+watch the browser URL bar to ensure that websites you provide sensitive information
+to display a 
+<a href="https://support.mozilla.com/en-US/kb/Site%20Identity%20Button">blue or
+green validation</a>, include <b>https://</b> in the URL bar, 
+and display the proper name for the current website.
+
 </li>
 
 <li>
-While Tor blocks attackers on your local network from discovering
-or influencing your destination, it opens new risks: malicious or
-misconfigured Tor exit nodes can send you the wrong page, or even send
-you embedded Java applets disguised as domains you trust. Be careful
-opening documents or applications you download through Tor, unless you've
-verified their integrity.
-</li>
 
-<li>
 Tor tries to prevent attackers from learning what destinations you connect
 to. It doesn't prevent somebody watching your traffic from learning that
 you're using Tor. You can mitigate (but not fully resolve) the risk
@@ -347,6 +353,7 @@ connecting directly to the public Tor network, but ultimately the best
 protection here is a social approach: the more Tor users there are near
 you and the more <a href="<page about/torusers>">diverse</a> their interests,
 the less dangerous it will be that you are one of them.
+
 </li>
 
 <li> Do not use <a
