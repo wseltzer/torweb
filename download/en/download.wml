@@ -290,13 +290,14 @@ you are used to.</p>
 
 <p>
 
-Tor only protects Internet applications that are configured to send their
-traffic through Tor &mdash; it doesn't magically anonymize all of your traffic
-just because you install it. We strongly recommend you use the <a href="<page
-projects/torbrowser>">Tor Browser Bundle</a>. It is pre-configured to protect
-your privacy and anonymity on the web as long as you're browsing with Tor
+Tor does not protect all of your computer's Internet traffic when you
+run it. Tor only protects your applications that are properly configured to
+send their Internet traffic through Tor. To avoid problems with Tor
+configuration, we strongly recommend you use the
+<a href="<page projects/torbrowser>">Tor Browser Bundle</a>. It is pre-configured to protect
+your privacy and anonymity on the web as long as you're browsing with the Tor
 Browser itself. Almost any other web browser configuration is likely to be
-unsafe.
+unsafe to use with Tor.
 
 </p>
 
@@ -306,17 +307,14 @@ unsafe.
 
 <p>
 
-The Tor Browser will block browser plugins such as Java, Flash, ActiveX,
-RealPlayer, Quicktime, Adobe's PDF plugin, and others: they can be manipulated
-into revealing your IP address. Similarly, we do not recommend installing
-additional addons or plugins into the Tor Browser, as these may bypass Tor or
-otherwise impede your anonymity. This means Youtube is disabled by default.
-Youtube provides an experimental
-<a href="https://www.youtube.com/html5">non-Flash HTML5 mode</a> that works for
-many videos, but you you must visit that link opt-in manually. Youtube's
-support for the HTML5 feature is buggy and incomplete, so we are also working
-to provide a safe way to temporarily enable Flash in future Tor Browser
-versions.
+The Tor Browser will block browser plugins such as Flash, RealPlayer,
+Quicktime, and others: they can be manipulated into revealing your IP address.
+Similarly, we do not recommend installing additional addons or plugins into
+the Tor Browser, as these may bypass Tor or otherwise harm your anonymity and
+privacy. The lack of plugins means that Youtube videos are blocked by default,
+but Youtube does provide an experimental opt-in feature
+<a href="https://www.youtube.com/html5">(enable it here)</a> that works for some
+videos.
 
 </p>
 
@@ -325,18 +323,20 @@ versions.
 <li><b>Use HTTPS versions of websites</b>
 
 <p>
-Tor anonymizes the origin of your traffic, and it encrypts everything between
-you and the Tor network and everything inside the Tor network, but 
-<a href="<wikifaq>#SoImtotallyanonymousifIuseTor">it can't encrypt your traffic
-between the Tor network and its final destination.</a> To help ensure
-privacy for the last leg, the Tor Browser Bundle includes 
-<a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> to force
-the use of HTTPS with a number of major websites, but you should still
-watch the browser URL bar to ensure that websites you provide sensitive information
-to display a 
+
+Tor will encrypt your traffic
+<a href="https://www.torproject.org/about/overview.html.en#thesolution">to and
+within the Tor network</a>, but the encryption of your traffic to the final
+destination website depends upon on that website. To help ensure private
+encryption to websites, the Tor Browser Bundle includes <a
+href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> to force the
+use of HTTPS encryption with major websites that support it. However, you
+should still watch the browser URL bar to ensure that websites you provide
+sensitive information to display a
 <a href="https://support.mozilla.com/en-US/kb/Site%20Identity%20Button">blue or
-green validation</a>, include <b>https://</b> in the URL bar, 
-and display the proper name for the current website.
+green URL bar button</a>, include <b>https://</b> in the URL, and display the
+proper expected name for the website.
+
 </p>
 
 </li>
@@ -345,20 +345,19 @@ and display the proper name for the current website.
 
 <p>
 
-The Tor Browser will warn you before automatically opening documents
-that are handled by external applications. <b>DO NOT IGNORE THIS WARNING</b>.
-You should be very careful when downloading documents via Tor (especially DOC
-and PDF files) as these documents can contain Internet resources that will be
-downloaded outside of Tor by the application that opens them. These documents
-can be modified by malicious exit nodes, or by a website who is trying to trick
-you into revealing your non-Tor IP address. If you must work with DOC and/or
-PDF files, we strongly recommend using a disconnected computer, a 
-<a href="https://www.virtualbox.org/">VirtualBox</a> free 
-<a href="http://virtualboxes.org/">image</a> with networking disabled, or 
-<a href="http://tails.boum.org/">Tails</a>. Under no circumstances is it safe to
-use <a
-href="https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea">BitTorrent
-and Tor</a> together.
+The Tor Browser will warn you before automatically opening documents that are
+handled by external applications. <b>DO NOT IGNORE THIS WARNING</b>.  You
+should be very careful when downloading documents via Tor (especially DOC and
+PDF files) as these documents can contain Internet resources that will be
+downloaded outside of Tor by the application that opens them. This will reveal
+your non-Tor IP address. If you must work with DOC and/or PDF files, we
+strongly recommend either using a disconnected computer,
+downloading the free <a href="https://www.virtualbox.org/">VirtualBox</a> and
+using it with a <a href="http://virtualboxes.org/">virtual machine image</a>
+with networking disabled, or using <a href="http://tails.boum.org/">Tails</a>.
+Under no circumstances is it safe to use
+<a href="https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea">BitTorrent
+and Tor</a> together, however.
 
 </p>
 
@@ -367,14 +366,18 @@ and Tor</a> together.
 <li><b>Use bridges and/or find company</b>
 
 <p>
-Tor tries to prevent attackers from learning what destinations you connect
-to. It doesn't prevent somebody watching your traffic from learning that
-you're using Tor. You can mitigate (but not fully resolve) the risk
-by using a <a href="<page docs/bridges>">Tor bridge relay</a> rather than
-connecting directly to the public Tor network, but ultimately the best
-protection here is a social approach: the more Tor users there are near
-you and the more <a href="<page about/torusers>">diverse</a> their interests,
-the less dangerous it will be that you are one of them.
+
+Tor tries to prevent attackers from learning what destination websites you
+connect to. However, by default, it does not prevent somebody watching your Internet
+traffic from learning that you're using Tor. If this matters to you, you can
+reduce this risk by configuring Tor to use a <a href="<page docs/bridges>">Tor
+bridge relay</a> rather than connecting directly to the public Tor network.
+Ultimately the best protection is a social approach: the more Tor
+users there are near you and the more 
+<a href="<page about/torusers>">diverse</a> their interests, the less 
+dangerous it will be that you are one of them. Convince other people to use
+Tor, too!
+
 </p>
 
 </li>
