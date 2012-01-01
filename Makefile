@@ -11,8 +11,8 @@
 # 5. ./publish
 
 export TORGIT=set this to your tor.git path
-export STABLETAG=tor-0.2.2.34
-export DEVTAG=tor-0.2.3.7-alpha
+export STABLETAG=tor-0.2.2.35
+export DEVTAG=tor-0.2.3.10-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download getinvolved donate torbutton
