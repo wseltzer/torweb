@@ -698,7 +698,7 @@ my %m = (
       },
         mirror044 => {
             adminContact => "",
-            orgName => "",
+            orgName => "torproject.nl",
             isoCC => "NL",
             subRegion => "",
             region => "NL",
