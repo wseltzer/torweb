@@ -785,6 +785,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+      },
+        mirror048 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "AT",
+            subRegion => "",
+            region => "AT",
+            ipv4 => "True",
+            ipv6 => "True",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.dont-know-me.at/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.dont-know-me.at/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
