@@ -806,7 +806,7 @@ my %m = (
         },
         mirror049 => {
             adminContact => "IceBear",
-            orgName => "",
+            orgName => "myRL.net",
             isoCC => "IS",
             subRegion => "",
             region => "IS",
