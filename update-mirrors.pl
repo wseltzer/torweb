@@ -803,6 +803,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+        mirror049 => {
+            adminContact => "IceBear",
+            orgName => "",
+            isoCC => "IS",
+            subRegion => "",
+            region => "IS",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.myrl.net/",
+            httpsWebsiteMirror => "https://tor.myrl.net/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.myrl.net/dist/",
+            httpsDistMirror => "https://tor.myrl.net/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
