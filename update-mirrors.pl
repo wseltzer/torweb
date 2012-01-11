@@ -821,6 +821,24 @@ my %m = (
             httpsDistMirror => "https://tor.myrl.net/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+        mirror050 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "DE",
+            subRegion => "",
+            region => "DE",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.borgmann.tv/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.borgmann.tv/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
