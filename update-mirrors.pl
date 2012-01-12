@@ -824,7 +824,7 @@ my %m = (
         },
         mirror050 => {
             adminContact => "",
-            orgName => "",
+            orgName => "borgmann.tv",
             isoCC => "DE",
             subRegion => "",
             region => "DE",
