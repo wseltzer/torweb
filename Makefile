@@ -2,7 +2,7 @@
 #
 # 1. Clone the Tor git repository and make TORGIT point to it:
 #
-# 	git clone git://git.torproject.org/tor/ tor
+# 	git clone git://git.torproject.org/tor/ tor.git
 #
 #    Note that you will need to point to the actual .git directory.
 # 2. Edit include/versions.wmi or others if you like
@@ -10,9 +10,9 @@
 # 4. make
 # 5. ./publish
 
-export TORGIT=/Users/erinn/src/tor.git/.git
-export STABLETAG=tor-0.2.2.24-alpha
-export DEVTAG=tor-0.2.2.24-alpha
+export TORGIT=set this to your tor.git path
+export STABLETAG=tor-0.2.2.35
+export DEVTAG=tor-0.2.3.10-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download getinvolved donate torbutton

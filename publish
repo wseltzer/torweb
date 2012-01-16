@@ -1,8 +1,13 @@
 #!/bin/sh
 set -e # stop if we encounter an error
 
+# pull the latest changes
 svn update
+
+# clean up the working directory
 make clean
+
+# actually build the site
 make -j3
 
 # don't copy over stuff with permissions that make it useless
