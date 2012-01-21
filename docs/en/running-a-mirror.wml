@@ -80,7 +80,29 @@
     &lt;/VirtualHost&gt;
     </pre>
     </tt>
-    <br/> <br/>
+    <br/>
+    For mirror operators that use nginx, we created a sample virtual host
+    configuration file to use:
+    <tt>
+    <pre>
+    server {
+    	listen 0.1.2.3:80;
+  	server_name your.example.com;
+
+  	root /var/www/mirrors/torproject.org;
+	index index.html.en;
+    }
+    </pre>
+    </tt>
+    <br/>
+    If you use nginx, please ensure the text/html line in
+    <tt>/etc/ngnix/mime.types</tt> matches:
+    <tt>
+    <pre>
+    text/html                             en html htm shtml;
+    </pre>
+    </tt>
+    <br/><br>
     Please ensure that you keep your mirror updated (we suggest automating this
     task with something like '<tt>cron</tt>'). Our website, source code and
     binary releases change often. An update frequency of six hours is recommended.  Tor users everywhere will thank you.
