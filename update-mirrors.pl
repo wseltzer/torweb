@@ -875,6 +875,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "rsync://ftp.spline.de/tor/dist",
             hiddenServiceMirror => "",
+        },
+        mirror053 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "AT",
+            subRegion => "",
+            region => "AT",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://torproject.ph3x.at/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://torproject.ph3x.at/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
