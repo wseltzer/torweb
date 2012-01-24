@@ -1,0 +1,154 @@
+## translation metadata
+# Revision: $Revision$
+# Translation-Priority: 4-optional
+
+#include "head.wmi" TITLE="obfsproxy: Installation instructions" CHARSET="UTF-8"
+
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page projects/projects>">Projects &raquo; </a>
+    <a href="<page projects/obfsproxy>">obfsproxy</a>
+  </div>
+  <div id="maincol">
+
+    <!-- PUT CONTENT AFTER THIS TAG -->
+
+    <h1 id="instructions">Instructions</h1>
+
+    <h3>Step One: Install necessary dependencies</h3>
+    <br>
+
+    <p>
+    You will need a C compiler (<em>gcc</em>), the <em>Autotools</em>
+    build system, the <em>git</em> revision control system,
+    <em>libevent-2</em> and the development headers of
+    <em>OpenSSL</em>.
+     </p>
+
+    <p>
+    In a Linux system using the APT package manager you could do: <br>
+    <tt># apt-get install autotools gcc git libevent-2.0-5 libevent-openssl-2.0-5 libssl-dev</tt>
+    </p>
+
+    <h3>Step Two: Install obfsproxy</h3>
+    <br>
+
+    <p>
+    Clone obfsproxy from its git repository:<br>
+    <tt>$ git clone git://git.torproject.org/obfsproxy.git</tt> <br>
+
+    The above command should create and populate a directory named
+    'obfsproxy' in your current directory.  </p>
+
+    <p>
+    Compile obfsproxy: <br>
+    <tt>$ cd obfsproxy</tt> <br>
+    <tt>$ ./autogen.sh && ./configure && make</tt> <br>
+    </p>
+
+    <p>
+    And then <strong>as root</strong> install obfsproxy in your system: <br>
+    <tt># make install</tt>
+    </p>
+
+    <h3>Step Three: Install tor</h3>
+    <br>
+
+    <p>
+    To follow this guide, you will need the current git master.
+
+    </p>
+
+    <p>
+    <img align="left"
+    style="margin-top:5px;margin-left:-10px;margin-right:5px"
+    src="$(IMGROOT)/warning.png"> <strong>If you want to set up a Tor
+    bridge with obfsproxy, click <a class="anchor"
+    href="#bridge_instructions">here</a> for bridge instructions,
+    otherwise continue to <a class="anchor"
+    href="#client_instructions">step four.</a></strong>
+    </p>
+
+    <h3 id="client_instructions">Step Four (client): Configure tor</h3>
+    <br>
+
+    <p>
+    Set up your tor configuration file:<br><br>
+    <img src="$(IMGROOT)/obfs-torrc_client.png" alt="client torrc"></a>
+    </p>
+
+    <h3>Step Five (client): Launch tor</h3>
+    <br>
+
+    <p>
+    Launch tor using the configuration file you made in the previous
+    step. You can do this by using your favorite init script, or by
+    pointing the tor binary to the torrc:
+    </p>
+
+    <img src="$(IMGROOT)/obfs-spawn_tor_client.png" alt="spawn tor" height="101" width="882">
+
+    <p> <br>
+    <img src="$(IMGROOT)/sidenav-arrow.png">
+    <strong>Congratulations!</strong> Your traffic should now be
+    obfuscated by obfsproxy. You are done! You can now start using Tor.
+    </p>
+
+    <br> <br> <br> <br>
+
+    <hr>
+
+    <br> <br> <br> <br>
+
+    <h3 id="bridge_instructions">Step Four (bridge): Configure tor</h3>
+    <br>
+
+    <p>
+    Set up your tor configuration file:<br><br>
+    <img src="$(IMGROOT)/obfs-torrc_bridge.png" alt="bridge torrc"></a>
+    </p>
+
+    <h3>Step Five (bridge): Launch tor</h3>
+    <br>
+
+    <p>
+    Launch tor using the configuration file you made in the previous
+    step. You can do this by using your favorite init script, or by
+    pointing the tor binary to the torrc:
+    <p>
+
+    <p>
+    <img src="$(IMGROOT)/obfs-spawn_tor_bridge.png" alt="spawn tor" height="101" width="882"></a>
+    </p>
+
+    <h3>Step Six (bridge): Find the TCP ports opened by obfsproxy</h3>
+    <br>
+
+    <p>
+    Look in your log file for a line similar to this one: <br>
+    <img src="$(IMGROOT)/obfs-log_checking.png" alt="bridge torrc" width="437" height="14"></a>
+    <br>
+    The last number, in this case <em>34545</em>, is the TCP port
+    number that your clients should point their obfsproxy to.
+    </p>
+
+    <p>
+    <img src="$(IMGROOT)/sidenav-arrow.png">
+    <strong>Congratulations!</strong> Tell your clients to point their
+    obfsproxy to your IP and to port <em>34545</em>.
+    </p>
+
+    <br>
+
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>
+
