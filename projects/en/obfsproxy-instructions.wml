@@ -14,9 +14,9 @@
 
     <!-- PUT CONTENT AFTER THIS TAG -->
 
-    <h1 id="instructions">Instructions</h1>
+    <h1 id="instructions">Obfsproxy Instructions</h1>
 
-    <h3>Step One: Install necessary dependencies</h3>
+    <h3>Step 1: Install dependencies, obfsproxy, and Tor</h3>
     <br>
 
     <p>
@@ -31,12 +31,9 @@
     <tt># apt-get install autotools gcc git libevent-2.0-5 libevent-openssl-2.0-5 libssl-dev</tt>
     </p>
 
-    <h3>Step Two: Install obfsproxy</h3>
-    <br>
-
     <p>
     Clone obfsproxy from its git repository:<br>
-    <tt>$ git clone git://git.torproject.org/obfsproxy.git</tt> <br>
+    <tt>$ git clone https://git.torproject.org/obfsproxy.git</tt> <br>
 
     The above command should create and populate a directory named
     'obfsproxy' in your current directory.  </p>
@@ -52,39 +49,24 @@
     <tt># make install</tt>
     </p>
 
-    <h3>Step Three: Install tor</h3>
+    <p>
+    You will need Tor 0.2.3.11-alpha or later.
+    </p>
+
+    <hr>
+
+    <h3 id="client_instructions">Step 2a: If you're the client...</h3>
     <br>
 
     <p>
-    To follow this guide, you will need the current git master.
-
-    </p>
-
-    <p>
-    <img align="left"
-    style="margin-top:5px;margin-left:-10px;margin-right:5px"
-    src="$(IMGROOT)/warning.png"> <strong>If you want to set up a Tor
-    bridge with obfsproxy, click <a class="anchor"
-    href="#bridge_instructions">here</a> for bridge instructions,
-    otherwise continue to <a class="anchor"
-    href="#client_instructions">step four.</a></strong>
-    </p>
-
-    <h3 id="client_instructions">Step Four (client): Configure tor</h3>
-    <br>
-
-    <p>
-    Set up your tor configuration file:<br><br>
+    Set up your Tor configuration file:<br><br>
     <img src="$(IMGROOT)/obfs-torrc_client.png" alt="client torrc"></a>
     </p>
 
-    <h3>Step Five (client): Launch tor</h3>
-    <br>
-
     <p>
-    Launch tor using the configuration file you made in the previous
-    step. You can do this by using your favorite init script, or by
-    pointing the tor binary to the torrc:
+    Launch Tor using this configuration file. You can do this by using
+    your favorite init script, or by pointing the Tor binary to the
+    torrc file:
     </p>
 
     <img src="$(IMGROOT)/obfs-spawn_tor_client.png" alt="spawn tor" height="101" width="882">
@@ -101,32 +83,27 @@
 
     <br> <br> <br> <br>
 
-    <h3 id="bridge_instructions">Step Four (bridge): Configure tor</h3>
+    <h3 id="bridge_instructions">Step 2b: If you're the bridge...</h3>
     <br>
 
     <p>
-    Set up your tor configuration file:<br><br>
+    Set up your Tor configuration file:<br><br>
     <img src="$(IMGROOT)/obfs-torrc_bridge.png" alt="bridge torrc"></a>
     </p>
 
-    <h3>Step Five (bridge): Launch tor</h3>
-    <br>
-
     <p>
-    Launch tor using the configuration file you made in the previous
-    step. You can do this by using your favorite init script, or by
-    pointing the tor binary to the torrc:
+    Launch Tor using this configuration file. You can do this by using
+    your favorite init script, or by pointing the Tor binary to the
+    torrc file:
     <p>
 
     <p>
     <img src="$(IMGROOT)/obfs-spawn_tor_bridge.png" alt="spawn tor" height="101" width="882"></a>
     </p>
 
-    <h3>Step Six (bridge): Find the TCP ports opened by obfsproxy</h3>
-    <br>
-
     <p>
-    Look in your log file for a line similar to this one: <br>
+    Next, Find the TCP port opened by obfsproxy. Look in your log file
+    for a line similar to this one: <br>
     <img src="$(IMGROOT)/obfs-log_checking.png" alt="bridge torrc" width="437" height="14"></a>
     <br>
     The last number, in this case <em>34545</em>, is the TCP port
@@ -136,7 +113,7 @@
     <p>
     <img src="$(IMGROOT)/sidenav-arrow.png">
     <strong>Congratulations!</strong> Tell your clients to point their
-    obfsproxy to your IP and to port <em>34545</em>.
+    obfsproxy to your IP address and to port <em>34545</em>.
     </p>
 
     <br>
