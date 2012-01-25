@@ -10,7 +10,7 @@
 # 4. make
 # 5. ./publish
 
-export TORGIT=/Users/killerchicken/coding/git/tor-git/tor/.git
+export TORGIT=set this to your tor.git path
 export STABLETAG=tor-0.2.2.35
 export DEVTAG=tor-0.2.3.10-alpha
 
