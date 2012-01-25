@@ -387,25 +387,6 @@ my %m = (
             updateDate => "Unknown",
         },
 
-        mirror023 => {
-            adminContact => "SiNA",
-            orgName => "Ninjas",
-            isoCC => "IR",
-            subRegion => "",
-            region => "IR",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "Yes",
-            httpWebsiteMirror => "http://onion.anonymo.us.org/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://onion.anonymo.us.org/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
-
         mirror024 => {
             adminContact => "",
             orgName => "homosu",
