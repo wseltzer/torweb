@@ -59,19 +59,19 @@
     <br>
 
     <p>
-    Set up your Tor configuration file:<br><br>
-    User tor<br>
-    PIDFile /usr/local/var/run/tor/tor.pid<br>
-    SocksPort 1999 # what port to open for local application connections<br>
-    Log notice file /usr/local/var/log/tor/tor.log<br>
-    DataDirectory /usr/local/var/lib/tor/data<br>
-    UseBridges 1<br>
-    Bridge obfs2 192.0.2.34:34545<br>
-    ClientTransportPlugin obfs2 exec /usr/local/bin/obfsproxy --managed
+    Add the appropriate lines to your tor configuration file:
     </p>
 
-    <p>Replace <em>192.0.2.34</em> with the bridge supporting obfsproxy you
-    wish to use and <em>34545</em> with the port number the bridge uses.
+    <p>
+    <tt> UseBridges 1 </tt> <br>
+    <tt> Bridge obfs2 192.0.2.34:34545 </tt> <br>
+    <tt> ClientTransportPlugin obfs2 exec /usr/local/bin/obfsproxy --managed </tt>
+    </p>
+
+    <p>
+    Don't forget to replace <em>192.0.2.34</em> with the IP address of
+    the bridge you wish to use, and <em>34545</em> with the port
+    obfpsroxy is listening on.
     </p>
 
     <p>
@@ -98,14 +98,12 @@
     <br>
 
     <p>
-    Set up your Tor configuration file:<br><br>
-    User tor<br>
-    PIDFile /usr/local/var/run/tor/tor.pid<br>
-    ORPort 4367<br>
-    Log notice file /usr/local/var/log/tor/tor.log<br>
-    DataDirectory /usr/local/var/lib/tor/data<br>
-    BridgeRelay 1<br>
-    ServerTransportPlugin obfs2 exec /usr/local/bin/obfsproxy --managed
+    Add the appropriate lines to your tor configuration file:
+    </p>
+
+    <p>
+    <tt> BridgeRelay 1 </tt> <br>
+    <tt> ServerTransportPlugin obfs2 exec /usr/local/bin/obfsproxy --managed </tt>
     </p>
 
     <p>
@@ -119,7 +117,7 @@
     </p>
 
     <p>
-    Next, Find the TCP port opened by obfsproxy. Look in your log file
+    Next, find the TCP port opened by obfsproxy. Look in your log file
     for a line similar to this one: <br>
     <img src="$(IMGROOT)/obfs-log_checking.png" alt="bridge torrc" width="437" height="14"></a>
     <br>
