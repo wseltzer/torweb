@@ -1550,7 +1550,8 @@ the same geographic location.
     <b>Encryption</b>: first, all connections in Tor use TLS link encryption,
     so observers can't look inside to see which circuit a given cell is
     intended for. Further, the Tor client establishes an ephemeral encryption
-    key with each relay in the circuit, so only the exit relay can read
+    key with each relay in the circuit; these extra layers of encryption
+    mean that only the exit relay can read
     the cells. Both sides discard the circuit key when the circuit ends,
     so logging traffic and then breaking into the relay to discover the key
     won't work.
@@ -1559,11 +1560,14 @@ the same geographic location.
     <p>
     <b>Authentication</b>:
     Every Tor relay has a public decryption key called the "onion key".
+    Each relay rotates its onion key once a week.
     When the Tor client establishes circuits, at each step it <a
     href="<svnprojects>design-paper/tor-design.html#subsec:circuits">demands
     that the Tor relay prove knowledge of its onion key</a>. That way
     the first node in the path can't just spoof the rest of the path.
-    Each relay rotates its onion key once a week.
+    Because the Tor client chooses the path, it can make sure to get
+    Tor's "distributed trust" property: no single relay in the path can
+    know about both the client and what the client is doing.
     </p>
 
     <p>
@@ -1576,7 +1580,7 @@ the same geographic location.
     of all the known relays, and in that list are a set of certificates from
     each relay (self-signed by their identity key) specifying their keys,
     locations, exit policies, and so on. So unless the adversary can control
-    a majority of the directory authorities (as of 2011 there were 8
+    a majority of the directory authorities (as of 2012 there are 8
     directory authorities), he can't trick the Tor client into using
     other Tor relays.
     </p>
