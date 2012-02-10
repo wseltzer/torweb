@@ -29,8 +29,14 @@
      </p>
 
     <p>
-    In a Linux system using the APT package manager you could do: <br>
-    <tt># apt-get install autotools-dev gcc git libevent-2.0-5 libevent-dev libevent-openssl-2.0-5 libssl-dev</tt>
+    On Debian testing or Ubuntu oneiric, you could do: <br>
+    <tt># apt-get install autoconf autotools-dev gcc git pkg-config libtool libevent-2.0-5 libevent-dev libevent-openssl-2.0-5 libssl-dev</tt>
+    </p>
+
+    <p>If you're on a more stable Linux, you can either <a
+    href="https://trac.torproject.org/projects/tor/ticket/5009#comment:9">try
+    our experimental backport debs</a> or <a href="">build libevent2 from
+    source</a>.
     </p>
 
     <p>
@@ -47,8 +53,15 @@
     </p>
 
     <p>
-    And then <strong>as root</strong> install obfsproxy in your system: <br>
+    Optionally, <strong>as root</strong> install obfsproxy in your
+    system: <br>
     <tt># make install</tt>
+    </p>
+
+    <p>
+    If you prefer not to install obfsproxy as root, you can instead
+    just modify the Transport lines in your torrc file (explained below)
+    to point to your obfsproxy binary.
     </p>
 
     <p>
