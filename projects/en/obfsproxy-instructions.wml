@@ -61,18 +61,20 @@
     <br>
 
     <p>
-    Add the appropriate lines to your <a href="<page docs/faq>#torrc">tor
-    configuration file</a>:
+    First, you need to learn the address of a bridge that supports
+    obfsproxy. If you don't know any, try asking a friend to set one
+    up for you. Then the appropriate lines to your <a href="<page
+    docs/faq>#torrc">tor configuration file</a>:
     </p>
 
     <p>
     <tt> UseBridges 1 </tt> <br>
-    <tt> Bridge obfs2 192.0.2.34:34545 </tt> <br>
+    <tt> Bridge obfs2 128.31.0.34:1051 </tt> <br>
     <tt> ClientTransportPlugin obfs2 exec /usr/local/bin/obfsproxy --managed </tt>
     </p>
 
     <p>
-    Don't forget to replace <em>192.0.2.34:34545</em> with the IP address
+    Don't forget to replace <em>128.31.0.34:1051</em> with the IP address
     and port that the bridge's obfsproxy is listening on.
     </p>
 
