@@ -10,12 +10,12 @@
 # 4. make
 # 5. ./publish
 
-export TORGIT=set this to your tor.git path
 export STABLETAG=tor-0.2.2.35
 export DEVTAG=tor-0.2.3.12-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download getinvolved donate torbutton
+include $(WMLBASE)/Makefile.local
 
 include $(WMLBASE)/Makefile.common
 all: $(SUBDIRS)
