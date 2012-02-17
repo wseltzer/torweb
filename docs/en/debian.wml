@@ -67,7 +67,7 @@ Here's a quick mapping:
 Then add this line to your
 <tt>/etc/apt/sources.list</tt>
 file:<br />
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 </pre>
 where you put the codename of your distribution (i.e. lenny, sid,
@@ -78,13 +78,13 @@ in place of &lt;DISTRIBUTION&gt;.
 <p>
 Then add the gpg key used to sign the packages by running the following
 commands at your command prompt:
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 gpg --keyserver keys.gnupg.net --recv 886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 </pre>
 Now refresh your sources, running the following command (as root) at your
 command prompt:
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 apt-get update
 </pre>
 If there are no errors you're good to continue.
@@ -93,14 +93,14 @@ If there are no errors you're good to continue.
 <p>
 We provide a Debian package to help you keep our signing key current.  It is
 recommended you use it.  Install it using
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 apt-get install deb.torproject.org-keyring
 </pre>
 </p>
 
 <p>
 To finally install Tor just run:
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 apt-get install tor
 </pre>
 </p>
@@ -131,7 +131,7 @@ development branch of Tor on Debian or Ubuntu</a></h2>
 download/download>#packagediff">development branch</a> of Tor instead
 (more features and more bugs), you need to add a different set of lines
 to your <tt>/etc/apt/sources.list</tt> file:<br />
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 deb     http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
 </pre>
@@ -142,7 +142,7 @@ sid, maverick, ...) in place of
 
 <p>
 Then run the following commands at your command prompt:
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 gpg --keyserver keys.gnupg.net --recv 886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 apt-get update
@@ -165,7 +165,7 @@ instructions.
 <p>
 If you want to build your own debs from source you must first add an
 appropriate <tt>deb-src</tt> line to <tt>sources.list</tt>.
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 # For the stable version.
 deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
 
@@ -175,12 +175,12 @@ deb-src http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&g
 </pre>
 You also need to install the necessary packages to build your own debs and the
 packages needed to build Tor:
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 apt-get install build-essential fakeroot devscripts
 apt-get build-dep tor
 </pre>
 Then you can build Tor in ~/debian-packages:
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 mkdir ~/debian-packages; cd ~/debian-packages
 apt-get source tor
 cd tor-*
@@ -188,7 +188,7 @@ debuild -rfakeroot -uc -us
 cd ..
 </pre>
 Now you can install the new package:
-<pre>
+<pre style="margin: 1.5em 0 1.5em 2em">
 sudo dpkg -i tor_*.deb
 </pre>
 </p>
