@@ -35,7 +35,7 @@ echo "Forcing mirror update"
 ssh www-master.torproject.org '
 	(
 	 find /srv/www-master.torproject.org/htdocs ! -perm -444 -print0 | xargs -0 --no-run-if-empty chmod -v a+r ||
-	 ( echo 2>&1 "There are unreadable files in /srv/www-master.torproject.org/htdocs, not triggering mirror run."; exit 1)
+	 ( echo >&2 "There are unreadable files in /srv/www-master.torproject.org/htdocs, not triggering mirror run."; exit 1)
 	) &&
 	echo "Triggering mirror run" &&
 	/home/mirroradm/bin/trigger-mirrors'
