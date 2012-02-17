@@ -82,11 +82,26 @@ commands at your command prompt:
 gpg --keyserver keys.gnupg.net --recv 886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 </pre>
-Now refresh your sources and install Tor by running the following
-commands (as root) at your command prompt:
+Now refresh your sources, running the following command (as root) at your
+command prompt:
 <pre>
 apt-get update
-apt-get install tor tor-geoipdb
+</pre>
+If there are no errors you're good to continue.
+</p>
+
+<p>
+We provide a Debian package to help you keep our signing key current.  It is
+recommended you use it.  Install it using
+<pre>
+apt-get install deb.torproject.org-keyring
+</pre>
+</p>
+
+<p>
+To finally install Tor just run:
+<pre>
+apt-get install tor
 </pre>
 </p>
 
