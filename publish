@@ -1,41 +1,17 @@
 #!/bin/sh
 set -e # stop if we encounter an error
 
-# pull the latest changes
-if [ -e .svn ] ; then
-	svn update
-elif [ -e .git ] ; then
-	git svn rebase
-else
-	echo 2>&1 "Cannot figure out which version control thing you're using.  Skipping update"
-fi
+make clean # clean cruft
 
-# clean up the working directory
-make clean
+svn update # get changes
 
-# actually build the site
-make -j3
+make -j3 # abuse the cores
 
 # don't copy over stuff with permissions that make it useless
+#chmod a+r * -R
 chmod -R a+r *
-rsync \
-	--exclude .DS_Store \
-	--exclude .svn \
-	--exclude .git \
-	--exclude '.*.sw[po]' \
-	--exclude .deps \
-	--exclude svn \
-	--exclude dist \
-	--exclude releases \
-	--exclude torbutton-current.xpi \
-	--exclude project \
-	-Prvz --delete . www-master.torproject.org:/srv/www-master.torproject.org/htdocs
+rsync --exclude .svn --exclude .deps --exclude svn --exclude dist --exclude releases --exclude torbutton-current.xpi --exclude project -Prvz --delete . vescum:/srv/www-master.torproject.org/htdocs
 
 echo "Forcing mirror update"
-ssh www-master.torproject.org '
-	(
-	 find /srv/www-master.torproject.org/htdocs ! -perm -444 -print0 | xargs -0 --no-run-if-empty chmod -v a+r ||
-	 ( echo >&2 "There are unreadable files in /srv/www-master.torproject.org/htdocs, not triggering mirror run."; exit 1)
-	) &&
-	echo "Triggering mirror run" &&
-	/home/mirroradm/bin/trigger-mirrors'
+ssh vescum '/home/mirroradm/bin/trigger-mirrors'
+ssh vescum chmod g+w -R /srv/www-master.torproject.org/htdocs
