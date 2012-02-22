@@ -841,7 +841,7 @@ my %m = (
         },
         mirror054 => {
             adminContact => "",
-            orgName => "",
+            orgName => "hessmo",
             isoCC => "US",
             subRegion => "",
             region => "US",
@@ -852,7 +852,7 @@ my %m = (
             httpsWebsiteMirror => "",
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
-            httpDistMirror => "http://mirror.hessmo.com/tor/",
+            httpDistMirror => "http://mirror.hessmo.com/tor/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
