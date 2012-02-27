@@ -543,6 +543,11 @@ meetings around the world.</li>
     Karsten Loesing.
     </p>
     
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#metricsSearch">Searchable Tor descriptor and Metrics data archive</a></i> (Python/Django?)
+    </p>
+    
     <a id="project-torstatus"></a>
     <h3><a href="https://trac.torproject.org/projects/tor/wiki/projects/TorStatus">TorStatus</a> (<a
     href="https://gitweb.torproject.org/torstatus.git">code</a>)</h3>
@@ -967,6 +972,25 @@ meetings around the world.</li>
     </p>
     </li>
     -->
+    
+    <a id="metricsSearch"></a>
+    <li>
+    <b>Searchable Tor descriptor and Metrics data archive</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Karsten</i>
+    <p>The <a href="https://metrics.torproject.org/data.html">Metrics data archive</a> of Tor relay descriptors and other Tor-related network data has grown to over 100G in size, bz2-compressed.  We have developed two search interfaces: the <a href="https://metrics.torproject.org/relay-search.html">relay search</a> finds relays by nickname, fingerprint, or IP address in a given month; <a href="https://metrics.torproject.org/exonerator-beta.html">ExoneraTor</a> finds whether a given IP address was a relay on a given day.</p>
+    
+    <p>We'd like to have a more general search application for Tor descriptors and metrics data.  There are more <a href="https://metrics.torproject.org/formats.html">descriptor types</a> that we'd like to include in the search.  The search application should handle most of them and understand some semantics like what's a timestamp, what's an IP address, and what's a link to another descriptor.  Users should then be able to search for arbitrary strings or limit their search to given time periods or IP address ranges.  Descriptors that reference other descriptors should contain links, and descriptors should be able to say from where they are linked.  The goal is to make the archive easily browsable.</p>
+    
+    <p>The search application shall be separate from the metrics website and shouldn't rely on the metrics website codebase.  The search application will contain hourly updated descriptor data from the metrics website via rsync.  Programming language and database system are not specified yet, though there's a slight preference for Python/Django and Postgres for maintenance reasons.  If there are good reasons to pick something else, e.g, some NoSQL variant or some search application framework, that's fine, too.  Further requirements are that lookups should be really fast and that changes to the search application can be implemented in reasonable time.</p>
+    
+    <p>Applications for this project should come with a design of the proposed search application, ideally with a proof-of-concept based on a subset of the available data to show that it will be able to handle the 100G+ of data.</p>
     
     <a id="unitTesting"></a>
     <li>
