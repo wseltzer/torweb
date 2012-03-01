@@ -469,6 +469,13 @@ meetings around the world.</li>
     block Tor.
     </p>
     
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#obfsproxy-new-transports">New and innovative pluggable transports</a></i><br />
+    <i><a href="#obfsproxy-scanning-measures">Defensive bridge active scanning measures</a></i><br />
+    <i><a href="#obfsproxy-fuzzer">Fuzzer for the Tor protocol</a></i>
+    </p>
+    
     <a id="project-thandy"></a>
     <h3>Thandy (<a
     href="https://gitweb.torproject.org/thandy.git">code</a>)</h3>
@@ -761,6 +768,54 @@ meetings around the world.</li>
     Browser&quot; based on Firefox or Webkit browser. See <a
     href="http://code.google.com/p/torora/wiki/Android">Torora</a> for progress
     on this so far.</p>
+    </li>
+    
+    <a id="obfsproxy-new-transports"></a>
+    <li>
+    <b>New and innovative pluggable transports</b>
+    <br>
+    Priority: <i>High</i>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>asn</i>
+    <p>Not-very-smart transports like ROT13 and base64 are nice but not super
+    interesting. Other ideas like bittorrent transports might be relevant,
+    but you will have to provide security proofs on why they are harder to
+    detect and block than other less-sophisticated transports.</p>
+    
+    <p>The whole point of this project, though, is to come up with new
+    transports that we haven't already thought of. Be creative.</p>
+    
+    <p>Bonus points if your idea is interesting and still implementable
+    through the summer period.</p>
+    
+    <p>More bonus points if it's implemented on top of obfsproxy, or if your
+    implementation has a pluggable transport interface on top of it (as
+    specified <a href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/180-pluggable-transport.txt">here</a>).</p>
+    </li>
+    
+    <a id="obfsproxy-scanning-measures"></a>
+    <li>
+    <b>Defensive bridge active scanning measures</b>
+    <br>
+    Priority: <i>High</i>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>asn</i>
+    <p>Involves providing good answers to <a
+    href="https://lists.torproject.org/pipermail/tor-dev/2011-November/003073.html">this
+    thread</a> as well as concrete implementation plans for it.</p>
+    
+    <p>This also involves implementing proposals <a
+    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/189-authorize-cell.txt">189</a>
+    and <a
+    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/190-shared-secret-bridge-authorization.txt">190</a>.</p>
     </li>
     
     <a id="orbot-userInterface"></a>
@@ -1339,6 +1394,37 @@ meetings around the world.</li>
     experience. Previous experience with Qt and CMake is helpful, but not
     required.
     </p>
+    </li>
+    
+    <a id="obfsproxy-fuzzer"></a>
+    <li>
+    <b>Fuzzer for the Tor protocol</b>
+    <br>
+    Priority: <i>Low to Medium</i>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>asn</i>
+    <p>Involves researching good and smart ways to fuzz stateful network
+    protocols, and also implementing the fuzzer.</p>
+    
+    <p>We are mostly looking for a fuzzer that fuzzes the Tor protocol
+    itself, and not the Tor directory protocol.</p>
+    
+    <p>Bonus points if it's extremely modular. Relevant research:</p>
+    
+    <ul>
+      <li>PROTOS - Security Testing of Protocol Implementations</li>
+      <li>INTERSTATE: A Stateful Protocol Fuzzer for SIP</li>
+      <li>Detecting Communication Protocol Security Flaws by Formal Fuzz
+      Testing and Machine Learning</li>
+      <li>SNOOZE: Toward a Stateful NetwOrk prOtocol fuzZE</li>
+      <li>Michal Zalewski's &quot;bugger&quot;</li>
+      <li>Also look at the concepts of &quot;model checking&quot; and
+      &quot;symbolic execution&quot; to get inspired.</li>
+    </ul>
     </li>
     
     <!--
