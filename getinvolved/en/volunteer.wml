@@ -298,7 +298,9 @@ meetings around the world.</li>
     <p>
     <b>Project Ideas:</b><br />
     <i><a href="#resistCensorship">Improving Tor's ability to resist
-    censorship</a></i>
+    censorship</a></i><br />
+    <i><a href="#user-space-transport">Integrating Tor with user-space
+    transport protocol libraries</a></i>
     </p>
     
     <a id="project-jtor"></a>
@@ -754,7 +756,7 @@ meetings around the world.</li>
     <br>
     Skill Level: <i>High</i>
     <br>
-    Likely Mentors: <i>asn</i>
+    Likely Mentors: <i>asn, Steven</i>
     <p>Not-very-smart transports like ROT13 and base64 are nice but not super
     interesting. Other ideas like bittorrent transports might be relevant,
     but you will have to provide security proofs on why they are harder to
@@ -876,6 +878,35 @@ meetings around the world.</li>
     Tablet.</p>
     </li>
     -->
+    
+    <a id="user-space-transport"></a>
+    <li>
+    <b>Integrating Tor with user-space transport protocol libraries</b>
+    <br>
+    Priority: <i>Medium to High</i>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Steven</i>
+    <p>Tor currently sends data over TCP links between nodes. <a
+    href="http://static.usenix.org/events/sec09/tech/full_papers/reardon.pdf">Prior
+    research</a> has indicated that this may not be optimal, and instead the
+    role that TCP plays (congestion control and reliability) should be moved
+    into Tor itself. This would allow a number of desirable changes, such as
+    preventing errors on one circuit delaying another, and giving Tor control
+    and visibility of congestion control.</p>
+    <p>There are <a
+    href="http://www.cl.cam.ac.uk/~sjm217/papers/tor11datagramcomparison.pdf">many
+    ways to do this</a>, each with their own tradeoffs and difficulty of
+    implementation. This project will be to select one (or more) option and
+    implement it in Tor. The primary goal will be to test this modified version
+    of Tor in simulation, but if it turns out to work well, it could be
+    deployed in the live Tor network.</p>
+    <p>Excellent C programming skills are needed, and knowledge of Tor
+    internals are highly desirable.</p>
+    </li>
     
     <a id="resistCensorship"></a>
     <li>
