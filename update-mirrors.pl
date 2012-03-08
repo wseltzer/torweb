@@ -874,6 +874,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+        mirror056 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "EU",
+            subRegion => "",
+            region => "EU",
+            ipv4 => "True",
+            ipv6 => "True",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://torproject.jcsh.it/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://torproject.jcsh.it/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
