@@ -874,6 +874,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+        mirror057 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "PT",
+            subRegion => "",
+            region => "PT",
+            ipv4 => "True",
+            ipv6 => "True",
+            loadBalanced => "No",
+            httpWebsiteMirror => "",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "https://5coluna.com/downloads/tor/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
