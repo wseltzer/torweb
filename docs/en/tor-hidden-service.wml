@@ -20,15 +20,34 @@
     </p>
     
     <p>If you have Tor installed, you can see hidden services
-    in action by visiting <a href="http://duskgytldkxiuqc6.onion/">our
-    example hidden service</a>.
+    in action by visiting one of our official hidden services:
+    <ul>
+    <li><a href="http://idnxcnkne4qt76tg.onion/">The Tor Project Website</a></li>
+    <li><a href="http://j6im4v42ur6dpic3.onion/">The Tor Package Archive</a></li>
+    <li><a href="http://p3igkncehackjtib.onion/">The Tor Media Archive</a></li>
+    </ul>
+
+    Others run reliable hidden services, such as <a
+    href="http://3g2upl4pq6kufc4m.onion/">The Duck Duck
+    Go</a> search engine and someone hosting a <a
+    href="http://duskgytldkxiuqc6.onion/">sample site</a>.
     </p>
-    
-    <p>This howto describes the steps for setting up your own hidden service
+    <p>
+    It will typically take 10-60 seconds to load (or to decide that the
+    service is currently unreachable). If it fails immediately and your
+    browser pops up an alert saying that "www.duskgytldkxiuqc6.onion could
+    not be found, please check the name and try again" then you haven't
+    configured Tor correctly; see <a href="<page docs/faq>#DoesntWork">the
+    it-doesn't-work FAQ entry</a> for some help.
+    </p>
+
+    <p>
+    This howto describes the steps for setting up your own hidden service
     website. For the technical details of how the hidden service protocol
-    works, see our <a href="<page docs/hidden-services>">hidden service protocol</a> page.
+    works, see our <a href="<page docs/hidden-services>">hidden service
+    protocol</a> page.
     </p>
-    
+
     <hr>
     <a id="zero"></a>
     <h2><a class="anchor" href="#zero">Step Zero: Get Tor working</a></h2>
@@ -48,66 +67,33 @@
     X howto</a>, and Linux/BSD/Unix users should follow the <a
     href="<page docs/tor-doc-unix>">Unix howto</a>.
     </p>
-    
-    <p>Once you've got Tor installed and configured,
-    you can see hidden services in action by following this link to <a
-    href="http://duskgytldkxiuqc6.onion/">our example hidden service</a>
-    or the <a
-    href="http://3g2upl4pq6kufc4m.onion/">DuckDuckGo search engine hidden service</a>.
-    It will typically take 10-60 seconds to load (or to decide that it
-    is currently unreachable). If it fails immediately and your browser
-    pops up an alert saying that "www.duskgytldkxiuqc6.onion could not
-    be found, please check the name and try again" then you haven't
-    configured Tor correctly; see <a
-    href="<page docs/faq>#DoesntWork">the
-    it-doesn't-work FAQ entry</a> for some help.
-    </p>
-    
+
     <hr>
     <a id="one"></a>
     <h2><a class="anchor" href="#one">Step One: Install a web server locally</a></h2>
     <br>
     
-    <p>First, you need to set up a web server locally. Setting up a web
-    server can be tricky,
-    so we're just going to go over a few basics here. If you get stuck
-    or want to do more, find a friend who can help you. We recommend you
-    install a new separate web server for your hidden service, since even
-    if you already have one installed, you may be using it (or want to use
-    it later) for an actual website.
+    <p>
+    First, you need to set up a web server locally. Setting up a web
+    server can be tricky, so we're just going to go over a few basics
+    here. If you get stuck or want to do more, find a friend who can
+    help you. We recommend you install a new separate web server for
+    your hidden service, since even if you already have one installed,
+    you may be using it (or want to use it later) for an actual website.
     </p>
-    
-    <p>If you're on Unix or OS X and you're comfortable with
-    the command-line, by far the best way to go is to install <a
-    href="http://www.acme.com/software/thttpd/">thttpd</a>. Just grab the
-    latest tarball, untar it (it will create its own directory), and run
-    <kbd>./configure &amp;&amp; make</kbd>. Then <kbd>mkdir hidserv; cd
-    hidserv</kbd>, and run
-    <kbd>../thttpd -p 5222 -h localhost</kbd>. It will give you back your prompt,
-    and now you're running a webserver on port 5222. You can put files to
-    serve in the hidserv directory.
+
+    <p>
+    Once you've got your web server set up, make
+    sure it works: open your browser and go to <a
+    href="http://localhost:5222/">http://localhost:5222/</a>, where
+    5222 is the port that you picked above. Then try putting a file in
+    the main html directory, and make sure it shows up when you access
+    the site.  The reason we bind the web server only to localhost is to
+    make sure it isn't publically accessible. If people could get to it
+    directly, they could confirm that your computer is the one offering
+    the hidden service.
     </p>
-    
-    <p>If you're on Windows, you might pick <a
-    href="http://savant.sourceforge.net/">Savant</a> or <a
-    href="http://httpd.apache.org/">Apache</a>, and be sure to configure it
-    to bind only to localhost. You should also figure out what port you're
-    listening on, because you'll use it below.
-    </p>
-    
-    <p>(The reason we bind the web server only to localhost is to make
-    sure it isn't publically accessible. If people could get to it directly,
-    they could confirm that your computer is the one offering the hidden
-    service.)
-    </p>
-    
-    <p>Once you've got your web server set up, make sure it works: open your
-    browser and go to <a
-    href="http://localhost:5222/">http://localhost:5222/</a>, where 5222 is
-    the port that you picked above. Then try putting a file in the main html
-    directory, and make sure it shows up when you access the site.
-    </p>
-    
+
     <hr>
     <a id="two"></a>
     <h2><a class="anchor" href="#two">Step Two: Configure your hidden service</a></h2>

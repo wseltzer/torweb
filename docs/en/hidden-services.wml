@@ -69,17 +69,16 @@
     # use?
     
     <p>
-    Step three: A client that wants to contact a hidden service needs to
-    learn about its
-    onion address first. After that, the client can initiate connection
-    establishment by downloading the descriptor from the distributed hash
-    table. If
-    there is a descriptor for XYZ.onion (the hidden service could also be
-    offline or have left long ago, or there could be a typo in the onion
-    address), the client now knows the set of introduction points and the
-    right public key to use. Around this time, the client also creates
-    a circuit to another randomly picked relay and asks it to act as
-    <em>rendezvous point</em> by telling it a one-time secret.
+    Step three: A client that wants to contact a hidden service needs
+    to learn about its onion address first. After that, the client can
+    initiate connection establishment by downloading the descriptor from
+    the distributed hash table. If there is a descriptor for XYZ.onion
+    (the hidden service could also be offline or have left long ago,
+    or there could be a typo in the onion address), the client now
+    knows the set of introduction points and the right public key to
+    use. Around this time, the client also creates a circuit to another
+    randomly picked relay and asks it to act as <em>rendezvous point</em>
+    by telling it a one-time secret.
     </p>
     
     <img alt="Tor hidden service step three" src="$(IMGROOT)/THS-3.png">
@@ -87,24 +86,23 @@
     # "IP1-3" and "PK"
     
     <p>
-    Step four: When the descriptor is present and the rendezvous point is
-    ready, the client assembles an <em>introduce</em>
-    message (encrypted to the hidden service's public key) including the
-    address of the rendezvous point and the one-time secret. The client sends
-    this message to one of the introduction points, requesting it be delivered
-    to the hidden service. Again, communication takes place via a Tor circuit:
-    nobody can relate sending the introduce message to the client's IP
-    address, so the client remains anonymous.
+    Step four: When the descriptor is present and the rendezvous
+    point is ready, the client assembles an <em>introduce</em> message
+    (encrypted to the hidden service's public key) including the address
+    of the rendezvous point and the one-time secret. The client sends
+    this message to one of the introduction points, requesting it be
+    delivered to the hidden service. Again, communication takes place
+    via a Tor circuit: nobody can relate sending the introduce message
+    to the client's IP address, so the client remains anonymous.
     </p>
     
     <img alt="Tor hidden service step four" src="$(IMGROOT)/THS-4.png">
     
     <p>
     Step five: The hidden service decrypts the client's introduce message
-    and finds the
-    address of the rendezvous point and the one-time secret in it. The service
-    creates a circuit to the rendezvous point and sends the one-time secret to
-    it in a rendezvous message.
+    and finds the address of the rendezvous point and the one-time secret
+    in it. The service creates a circuit to the rendezvous point and
+    sends the one-time secret to it in a rendezvous message.
     </p>
     
     <p>
