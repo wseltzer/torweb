@@ -74,16 +74,22 @@
     </p>
 
     <p>
+    You need to configure your web server so it doesn't give away any
+    information about you, your computer, or your location. Be sure to
+    bind the web server only to localhost (if people could get to it
+    directly, they could confirm that your computer is the one offering
+    the hidden service). Be sure that its error messages don't list
+    your hostname or other hints. Consider putting the web server in a
+    sandbox or VM to limit the damage from code vulnerabilities.
+    </p>
+
+    <p>
     Once your web server is set up, make
     sure it works: open your browser and go to <a
     href="http://localhost:8080/">http://localhost:8080/</a>, where
     8080 is the webserver port you chose during setup (you can choose any
     port, 8080 is just an example). Then try putting a file in the main
     html directory, and make sure it shows up when you access the site.
-    The reason we bind the web server only to localhost is to make sure
-    it isn't publically accessible. If people could get to it directly,
-    they could confirm that your computer is the one offering the
-    hidden service.
     </p>
 
     <hr>
@@ -191,16 +197,6 @@
 
     <p>If you plan to keep your service available for a long time, you might
     want to make a backup copy of the <var>private_key</var> file somewhere.
-    </p>
-
-    <p>We avoided recommending Apache above, a) because many people might
-    already be running it for a public web server on their computer, and b)
-    because it's big
-    and has lots of places where it might reveal your IP address or other
-    identifying information, for example in 404 pages. For people who need
-    more functionality, though, Apache may be the right answer. Can
-    somebody make us a checklist of ways to lock down your Apache when you're
-    using it as a hidden service? Savant probably has these problems too.
     </p>
 
     <p>If you want to forward multiple virtual ports for a single hidden
