@@ -75,6 +75,7 @@ $(document).ready(function () {
       } else if(url == 'linux'){
 	$('.easy.linux').css('display', 'block');
       } else {
+	  $('.easy').css('display', 'none');
 	  $(function(){OScheck();});
       }
     });
