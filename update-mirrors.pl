@@ -890,6 +890,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+        mirror060 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "DE",
+            subRegion => "",
+            region => "DE",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://torproject.cryptowars.info/",
+            httpsWebsiteMirror => "https://torproject.cryptowars.info/",
+            rsyncWebsiteMirror => "rsync://torproject.cryptowars.info/",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://torproject.cryptowars.info/dist/",
+            httpsDistMirror => "https://torproject.cryptowars.info/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
         }
 );
 
