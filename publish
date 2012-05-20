@@ -29,10 +29,10 @@ rsync \
 	--exclude releases \
 	--exclude torbutton-current.xpi \
 	--exclude project \
-	-Prvz --delete . vescum:/srv/www-master.torproject.org/htdocs
+	-Prvz --delete . www-master.torproject.org:/srv/www-master.torproject.org/htdocs
 
 echo "Forcing mirror update"
-ssh vescum '
+ssh www-master.torproject.org '
 	(
 	 find /srv/www-master.torproject.org/htdocs ! -perm -444 -print0 | xargs -0 --no-run-if-empty chmod -v a+r ||
 	 ( echo >&2 "There are unreadable files in /srv/www-master.torproject.org/htdocs, not triggering mirror run."; exit 1)
