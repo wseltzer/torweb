@@ -851,7 +851,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://torproject.pt/",
-            httpsDistMirror => "https://torproject.pt/dist/",
+            httpsDistMirror => "http://torproject.pt/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
         },
