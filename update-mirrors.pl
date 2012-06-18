@@ -908,7 +908,25 @@ my %m = (
             httpsDistMirror => "https://torproject.cryptowars.info/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
-        }
+        },
+        mirror061 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://mirror.grwebhost.com/torproject.org/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://mirror.grwebhost.com/torproject.org/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
+    }
 );
 
 my $count = values %m;
