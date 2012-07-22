@@ -980,7 +980,25 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
-    }
+    },
+        mirror067 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.mirrors.samwhited.com/",
+            httpsWebsiteMirror => "https://tor.mirrors.samwhited.com/",
+            rsyncWebsiteMirror => "rsync://tor.mirrors.samwhited.com",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.mirrors.samwhited.com/dist/",
+            httpsDistMirror => "https://tor.mirrors.samwhited.com/dist/",
+            rsyncDistMirror => "rsync://tor.mirrors.samwhited.com/dist",
+            hiddenServiceMirror => "",
+     }
 );
 
 my $count = values %m;
