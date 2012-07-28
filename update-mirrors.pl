@@ -998,6 +998,24 @@ my %m = (
             httpsDistMirror => "https://tor.mirrors.samwhited.com/dist/",
             rsyncDistMirror => "rsync://tor.mirrors.samwhited.com/dist",
             hiddenServiceMirror => "",
+     },
+        mirror068 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.hardkor.info/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.hardkor.info/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
      }
 );
 
