@@ -10,7 +10,7 @@
 # 4. make
 # 5. ./publish
 
-export STABLETAG=tor-0.2.2.37
+export STABLETAG=tor-0.2.2.38
 export DEVTAG=tor-0.2.3.20-rc
 
 WMLBASE=.
