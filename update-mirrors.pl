@@ -1001,7 +1001,7 @@ my %m = (
      },
         mirror071 => {
             adminContact => "",
-            orgName => "",
+            orgName => "Quintex",
             isoCC => "US",
             subRegion => "",
             region => "US",
