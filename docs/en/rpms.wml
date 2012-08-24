@@ -24,14 +24,20 @@
     You'll need to set up our package repository before you can fetch
     Tor.  Assuming yum, in /etc/yum.repos.d/, create a file called
     torproject.repo.  Edit this file with the following information:
-<pre>[torproject]
-name=Tor and Vidalia
+<pre>[tor-experimental]
+name=Tor experimental repo
+enabled=1
+baseurl=http://deb.torproject.org/torproject.org/rpm/el/6/$basearch/
+gpgcheck=1
+gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org.asc
+
+[tor-experimental-source]
+name=Tor experimental source repo
 enabled=1
 autorefresh=0
-baseurl=http://deb.torproject.org/torproject.org/rpm/DISTRIBUTION/
-type=rpm-md
+baseurl=http://deb.torproject.org/torproject.org/rpm/el/6/SRPMS
 gpgcheck=1
-gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org</pre>
+gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org.asc</pre>
     
     If you wish to track the stable releases of Tor, you should substitute
     DISTRIBUTION with one of the following: centos4, centos5, fc13,
