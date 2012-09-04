@@ -1052,6 +1052,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },
+        mirror074 => {
+            adminContact => "",
+            orgName => "FoDT",
+            isoCC => "AT",
+            subRegion => "",
+            region => "AT",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.fodt.co.at/",
+            httpsWebsiteMirror => "https://tor.fodt.co.at/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.fodt.co.at/dist/",
+            httpsDistMirror => "https://tor.fodt.co.at/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
     }
 );
 
