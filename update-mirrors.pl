@@ -1073,10 +1073,10 @@ my %m = (
     },
         mirror075 => {
             adminContact => "",
-            orgName => "",
-            isoCC => "MY",
+            orgName => "me0w.cc",
+            isoCC => "RO",
             subRegion => "",
-            region => "MY",
+            region => "RO",
             ipv4 => "True",
             ipv6 => "False",
             loadBalanced => "No",
