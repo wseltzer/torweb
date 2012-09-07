@@ -26,6 +26,8 @@
     torproject.repo.  Edit this file with the following information:
     </p>
 
+    <h3>Fedora 16/17 and EL6 packages</h3>
+
     <p>For Fedora 16, Fedora 17, RHEL 6 (and clones), use following repo file - 
     substitute DISTRIBUTION with one of the following: fc/16, fc/17 or el/6
     according to your distribution.
@@ -52,8 +54,10 @@ gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org.a
     </p>
 <pre>3B9E EEB9 7B1E 827B CF0A  0D96 8AF5 653C 5AC0 01F1</pre>
 
+    <h3>EL5 packages</h3>
+
     <p>Packages for RHEL 5 (and clones) are signed with different key due to
-    old rpm limitations, use this repo file:
+    old rpm limitations, put this repo file in /etc/yum.repos.d/ directory:
     </p>
     
 <pre>[tor-experimental]
@@ -76,10 +80,18 @@ gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org.E
     </p>
 <pre>9D27 0E2A 351C B4CB 6D95  78AF F8E7 95F8 B4D4 03EA</pre>
 
+    <h3>Package installation and running</h3>
+
     <p>
-    Then install Tor by running:
+    Once you have the repo file, install Tor using (yum will ask about the
+    key's fingerprint the first time):
     </p>
 <pre>yum install tor</pre>
+    
+    <p>
+    Start Tor using:
+    </p>
+<pre>service tor start</pre>
     
     <p>
     Now Tor is installed and running. Move on to <a href="<page
