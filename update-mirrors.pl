@@ -82,7 +82,7 @@ sub FetchDate {
 # Add new mirrors to the bottom!
 my %m = (
 
-        
+
         mirror000 => {
             adminContact => "coralcdn.org",
             orgName => "CoralCDN",
@@ -1106,6 +1106,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+        },
+        mirror077 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "UK",
+            subRegion => "",
+            region => "UK",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.mage.me.uk/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.mage.me.uk/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
     }
 );
 
@@ -1115,8 +1133,8 @@ print "Fetching the last updated date for each mirror.\n";
 
 my $tortime;
 $tortime = FetchDate("https://www.torproject.org/");
-# Adjust offical Tor time by out-of-date offset: number of days * seconds per day 
-$tortime -= 1 * 172800; 
+# Adjust offical Tor time by out-of-date offset: number of days * seconds per day
+$tortime -= 1 * 172800;
 print "The official time for Tor is $tortime. \n";
 
 foreach my $server ( keys %m ) {
