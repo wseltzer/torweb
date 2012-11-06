@@ -1,0 +1,149 @@
+## translation metadata
+# Revision: $Revision$
+# Translation-Priority: 4-optional
+
+#include "head.wmi" TITLE="obfsproxy: Installation instructions" CHARSET="UTF-8"
+
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page projects/projects>">Projects &raquo; </a>
+    <a href="<page projects/obfsproxy>">obfsproxy</a>
+  </div>
+  <div id="maincol">
+
+    <!-- PUT CONTENT AFTER THIS TAG -->
+
+    <h1 id="instructions">Obfsproxy Bridge Instructions on Debian/Ubuntu</h1>
+
+    <img src="$(IMGROOT)/obfsproxy_diagram.png" alt="obfsproxy diagram"></a>
+
+    <p>
+    This guide will help you setup an obfuscated bridge on a Debian/Ubuntu system.
+    </p>
+
+    <h3>Step 0: Add Tor repositories to APT</h3>
+    <br>
+
+    <p>
+    You need
+    to <a href="https://www.torproject.org/docs/debian#development">install
+    the experimental official Tor Project APT repositories</a>,
+    because a fresh version of Tor (0.2.4.x) is required (Older
+    versions of Tor don't report their bridge addresses to BridgeDB).
+    </p>
+
+    <h3>Step 1: Install Tor and obfsproxy</h3>
+    <br>
+
+    <p>
+    Now install tor and obfsproxy:
+    </p>
+
+    <pre style="margin: 1.5em 0 1.5em 2em">
+\# apt-get update
+\# apt-get install obfsproxy tor
+    </pre>
+
+    <p>
+      Note that obfsproxy requires
+    libevent2 and your distribution (e.g. Debian stable) might not
+    have it in its repos.  You can
+    <a href="https://trac.torproject.org/projects/tor/ticket/5009#comment:9">try
+    our experimental backport libevent2 debs</a>,
+    or <a href="https://trac.torproject.org/projects/tor/ticket/5009#comment:17">build
+    libevent2 from source</a>.
+    </p>
+
+    <h3>Step 2: Set up Tor</h3>
+    <br>
+
+    <p>
+    You will need an appropriate
+    Tor <a href="<page docs/faq>#torrc">configuration file</a>
+    (usually at <i>/etc/tor/torrc</i>):
+    </p>
+
+    <pre style="margin: 1.5em 0 1.5em 2em">
+SocksPort 0
+ORPort auto
+BridgeRelay 1
+Exitpolicy reject *:*
+
+\## CHANGEME_1 -> provide a nickname for your bridge, can be anything you like.
+Nickname CHANGEME_1
+\## CHANGEME_2 -> If you want others to be able to contact you uncomment this line and put your GPG fingerprint for example.
+\#ContactInfo CHANGEME_2
+
+ServerTransportPlugin obfs2 exec /usr/bin/obfsproxy --managed
+    </pre>
+
+    <p>
+    Don't forget to edit the <i>CHANGEME</i> fields!
+    </p>
+
+    <h3>Step 3: Launch Tor and verify that it works</h3>
+    <br>
+
+    <p>
+    Restart Tor for the the new configuration file to be in effect:
+    </p>
+
+    <pre style="margin: 1.5em 0 1.5em 2em">
+service tor restart
+    </pre>
+
+    <p>
+    Now check <i>/var/log/tor/log</i> and you should see something
+    like this:
+    </p>
+
+    <pre style="margin: 1.5em 0 1.5em 2em">
+Nov 05 16:40:45.000 [notice] We now have enough directory information to build circuits.
+Nov 05 16:40:45.000 [notice] Bootstrapped 80%: Connecting to the Tor network.
+Nov 05 16:40:46.000 [notice] Bootstrapped 85%: Finishing handshake with first hop.
+Nov 05 16:40:46.000 [notice] Bootstrapped 90%: Establishing a Tor circuit.
+Nov 05 16:40:48.000 [notice] Tor has successfully opened a circuit. Looks like client functionality is working.
+Nov 05 16:40:48.000 [notice] Bootstrapped 100%: Done.
+    </pre>
+
+    <p>
+    If Tor is earlier in the bootstrapping phase, wait till it gets to
+    100%.
+    </p>
+
+    <p>
+    Now you need to find the address on which obfsproxy is
+    listening. To do this, check your Tor logs for a line similar to
+    this one:
+
+    <pre style="margin: 1.5em 0 1.5em 2em">
+Oct 05 20:00:41.000 [notice] Registered server transport 'obfs2' at '0.0.0.0:26821
+    </pre>
+
+    <p>
+    The last number, in this case <i>26821</i>, is the TCP port number
+    that your clients should point their obfsproxy to. So for example,
+    if your public IP is 1.2.3.4, your clients should put <i>Bridge
+    obfs2 1.2.3.4:26821</i> in their configuration file.
+    </pre>
+    </p>
+
+    <p>
+    <img width="7%" height="7%" style="float: left;" src="$(IMGROOT)/icon-Obfsproxy.jpg">
+    <b>Don't forget!</b> If you are behind a NAT, you should <b>port
+    forward</b> the port that obfsproxy is listening on. In the
+    example above you would have to forward port <i>26821</i>.
+    </p>
+
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>
+
