@@ -13,6 +13,15 @@
     <a id="BridgeIntroduction"></a>
     <h2><a class="anchor" href="#BridgeIntroduction">Tor: Bridges</a></h2>
     <hr>
+
+    <p>
+    <img width="7%" height="7%" style="float: left;" src="$(IMGROOT)/icon-Obfsproxy.jpg">
+    <b>Tip:</b>
+    Having trouble connecting to Tor even when using bridges? You will
+    need to use <b>pluggable transports</b> and <b>obfuscated
+    bridges</b>. <a class="anchor" href="#PluggableTransports">Click
+    here for more information</a>.
+    </p>
     
     <p>
     Bridge relays (or "bridges" for short) are Tor relays that aren't listed in
@@ -70,10 +79,29 @@
     href="#FindingMore">other ways to find bridges</a> too.
     </p>
     
-    <a id="Understanding"></a>
-    <h2><a class="anchor" href="#Understanding">Understanding bridges</a></h2>
+    <a id="PluggableTransports"></a>
+    <h2><a class="anchor" href="#PluggableTransports">Obfuscated Bridges and Pluggable Transports</a></h2>
     <hr>
     
+    <p> Lately, censors have found ways to block Tor even when clients
+    are using bridges. They usually do this by installing boxes in
+    ISPs that peek at network traffic and detect Tor; when Tor is
+    detected they block the traffic flow.
+    </p>
+
+    <p>To circumvent such sophisicated censorship Tor introduced
+    <i>obfuscated bridges</i>. These bridges use special plugins
+    called <i>pluggable transports</i> which obfuscate the traffic
+    flow of Tor, making its detection harder.
+
+    To connect to obfuscated bridges you need to use the <a
+    href=https://www.torproject.org/projects/obfsproxy.html.en#download>Obfproxy
+    Tor Browser Bundle</a>. The bundle includes some pre-configured
+    obfsproxy bridges and you can get more off <a
+    href=https://bridges.torproject.org/?transport=obfs2>BridgeDB</a>
+
+    <a id="Understanding"></a>
+    <h2><a class="anchor" href="#Understanding">Understanding bridges</a></h2><hr>
     <p>
     As an example, you'll get a bridge entry that looks like the
     following:
@@ -90,8 +118,23 @@
     The second element is the port: <tt>'443'</tt><br>
     The third element, the fingerprint, is optional:
     <tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br>
+
+    <p>
+    <img width="7%" height="7%" style="vertical-align:middle" src="$(IMGROOT)/icon-Obfsproxy.jpg">
+         <span><b>Pluggable transports tip:</b></span>
     </p>
-    
+    <p>
+    If your bridge line looks like this:
+    <pre><samp>
+    bridge obfs2 141.201.27.48:420 4352e58420e68f5e40bf7c74faddccd9d1349413
+    </samp>
+    </pre>
+
+    The second element is the name of the pluggable transport
+    technology used by the bridge. For example, in the case above, the
+    bridge is using the <i>obfs2</i> pluggable transport.
+    </p>
+
     <a id="UsingBridges"></a>
     <h2><a class="anchor" href="#UsingBridges">Using bridges with Tor and
     Vidalia</a></h2>
@@ -115,6 +158,21 @@
     to reach the Tor network, but if you only have one bridge and it goes
     down, you will be cut off from the Tor network.
     </p>
+
+    <p>
+    <img width="7%" height="7%" style="vertical-align:middle" src="$(IMGROOT)/icon-Obfsproxy.jpg">
+         <span><b>Pluggable transports tip:</b></span>
+    </p>
+    <p>
+
+    If you have managed to get hold of some obfuscated bridge
+    addresses, you should add them in Vidalia in the same fashion that
+    you add normal bridges. Just paste the bridge line into the "Add a
+    bridge" window:
+
+    <br><br>
+    <img src="$(IMGROOT)/vidalia_add_obfsbridge.png" alt="Add obfuscated bridge in Vidalia">
+    <br><br>
     
     <a id="FindingMore"></a>
     <h2><a class="anchor" href="#FindingMore">Finding more bridges for Tor</a></h2>
