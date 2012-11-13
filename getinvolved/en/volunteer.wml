@@ -358,15 +358,13 @@ meetings around the world.</li>
     extents, but the chief architects are Nick Mathewson and Roger Dingledine.
     </p>
     
-    <!--
     <p>
     <b>Project Ideas:</b><br />
-    <i><a href="#resistCensorship">Improving Tor's ability to resist
-    censorship</a></i><br />
-    <i><a href="#user-space-transport">Integrating Tor with user-space
-    transport protocol libraries</a></i>
+    <i><a href="#limitCapabilities">Run With Limited Capabilities</a></i><br />
+    <i><a href="#torCleanup">Tor Codebase Cleanup</a></i><br />
+    <i><a href="#httpsImersonation">HTTPS Server Impersonation</a></i><br />
+    <i><a href="#chutneyExpansion">Make Chutney Do More, More Reliably</a></i>
     </p>
-    -->
     
     <a id="project-jtor"></a>
     <h3><a href="https://github.com/brl/JTor/wiki">JTor</a> (<a
@@ -974,6 +972,126 @@ meetings around the world.</li>
     href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/190-shared-secret-bridge-authorization.txt">190</a>.</p>
     </li>
     -->
+    
+    <a id="limitCapabilities"></a>
+    <li>
+    <b>Run With Limited Capabilities</b>
+    <br>
+    Priority: <i>Medium to High</i>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+    Many modern operating systems give a running program the ability to drop
+    capabilities that it no longer needs, and other ways for a program to run
+    pieces of itself in a sandbox with diminished privileges.
+    </p>
+    
+    <p>
+    We'd like to do this with Tor, to improve its resistance to attacks.  The
+    easiest areas to address would be on systems like <a
+    href="https://lwn.net/Articles/475361/">recent Linux kernels</a> that make
+    it easy to drop or restrict the set of syscalls that a program can invoke.
+    That's a great project, but probably not big enough for an internship just
+    on its own.  For that, we'd want to make progress on at least multiple
+    platforms, or look into refactoring Tor into pieces that need more
+    privileges and pieces that don't with an eye towards sandboxing them
+    differently.
+    </p>
+    
+    <p>
+    See tickets <a href="https://trac.torproject.org/7005">#7005</a> and <a
+    href="https://trac.torproject.org/5219">#5219</a>, and their descendants,
+    for more information.
+    </p>
+    </li>
+    
+    <a id="torCleanup"></a>
+    <li>
+    <b>Tor Codebase Cleanup</b>
+    <br>
+    Priority: <i>Medium to High</i>
+    <br>
+    Effort Level: <i>Low to High, depending on subproject chosen</i>
+    <br>
+    Skill Level: <i>Medium to High</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+    The Tor code is almost 10 years old in places, and we haven't always had
+    enough time or wisdom to write things as well as we could have.  Our unit
+    test coverage is shamefully low, and the dependency graph of our modules is
+    shamefully convoluted . We could use refactoring and unit tests!  Please
+    look through the Tor source code and look for ugly or tricky code or
+    dependencies -- the uglier and trickier the better -- and think about how
+    you could make the code look better, read better, and (subject to testing)
+    work better.
+    </p>
+    
+    <p>
+    If this is for a fun side-project, it would be great for you to work on
+    anything that can be made better and more tested.  For an internship-level
+    position, we'd hope that you could find a number of particularly tricky or
+    knotty piece of the code to clean up, and aim for resolving the ugliest
+    problems, not necessarily the easiest.
+    </p>
+    
+    <p>
+    For a big project here, it would be great to pick one of the major
+    "submodules" of Tor -- path selection, node discovery, directory authority
+    operations, directory service -- and refactor its interface completely, to
+    minify and codify its points of contact with the rest of Tor.
+    </p>
+    </li>
+    
+    <a id="httpsImersonation"></a>
+    <li>
+    <b>HTTPS Server Impersonation</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>Medium to High</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+    We have an open proposal for a way to make Tor bridges avoid censorship by
+    impersonating an HTTPS server.  Specifically, we need to hack some popular
+    SSL "reverse proxy" (your choice) so that it relays regular web connections
+    to an HTTP server, but certain connections to a local Tor process.  <a
+    href="https://gitweb.torproject.org/torspec.git/blob_plain/HEAD:/proposals/203-https-frontend.txt">Proposal
+    203</a> has a general design sketch.
+    </p>
+    </li>
+    
+    <a id="chutneyExpansion"></a>
+    <li>
+    <b>Make Chutney Do More, More Reliably</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Medium to High, depending on scope of project</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+    We have a little Python tool called <a
+    href="https://gitweb.torproject.org/nickm/chutney.git">Chutney</a> for
+    making small local test networks.  It's small, not widely used, and not as
+    automated as it could be.
+    </p>
+    
+    <p>
+    It would be great to see chutney extended and a set of supporting tests
+    built to the point where we could use Chutney to exercise various Tor
+    features as an automated integration test.
+    </p>
+    </li>
     
     <a id="stemUsability"></a>
     <li>
