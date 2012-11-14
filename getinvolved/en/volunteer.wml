@@ -787,11 +787,422 @@ meetings around the world.</li>
     
     <ol>
     
+    <!--
+    <a id="auditTBB"></a>
+    <li>
+    <b>Audit Tor Browser Bundles for data leaks</b>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Jacob</i>
+    <p>The Tor Browser Bundle incorporates Tor, Firefox, Polipo, and the Vidalia
+    user interface (and optionally the <a href="http://pidgin.im/">Pidgin</a>
+    Instant Messaging client). Components are pre-configured to operate in a
+    secure way, and it has very few dependencies on the installed operating
+    system. It has therefore become one of the most easy to use, and popular,
+    ways to use Tor on Windows.</p>
+    <p>This project is to identify all of the traces left behind by
+    using a Tor Browser Bundle on Windows, Mac OS X, or Linux.  Developing
+    ways to stop, counter, or remove these traces is a final step.</p>
+    <p>Students should be familiar with operating system analysis,
+    application development on one or preferably all of Windows, Linux,
+    and Mac OS X, and be comfortable with C/C++ and shell scripting.</p>
+    <p>Since the core of this project is researching and auditing TBB this is
+    not likely to be a good GSoC project.</p>
+    </li>
+    -->
+    
+    <!--
+    <a id="orbot-userInterface"></a>
+    <li>
+    <b>Build a better user interface for Orbot</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Jake</i>
+    <p>Improved home screen to show confirmation of connection (via a TorCheck
+    API call), better statistics about data transferred (up/down), number of
+    circuits connected, quality of connection and so on. The &quot;Tether
+    Wifi&quot; Android application is a good model to follow in how it shows a
+    realtime count of bytes transferred as well as notifications when wifi
+    clients connect. In addition, better handling of Tor system and error
+    messages would also be very helpful, include use of standard Android
+    operating systems notifications. The addition of a wizard or tutorial
+    walkthrough for novice users to explain to them exactly what is and what is
+    not anonymized or protected would greatly improve the likelihood they will
+    use Orbot correctly. All of this should work on the range of screens and
+    device types now offered for Android, from 2&quot; phone to 10&quot;
+    Tablet.</p>
+    </li>
+    -->
+    
+    <!--
+    <a id="armClientMode"></a>
+    <li>
+    <b>Client Mode Use Cases for Arm</b>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Damian (atagar)</i>
+    <p><a href="<page projects/arm>">Arm</a> is a Tor command line status
+    monitor on *nix environments (Linux, Mac, and BSD). It functions much like
+    top does, giving a CLI overlay of Tor's bandwidth usage, connections,
+    configuration, log, etc. Thus far its design has been geared for Tor relay
+    operators. However, this doesn't need to be the case. This project would be
+    to expand and simplify arm to make it useful for Tor's client users
+    too.</p>
+    
+    <p>This would include UI design, experimenting, and a lot of python
+    hacking. Here's some ideas for client functionality arm could provide:</p>
+    
+    <ul>
+      <li>A panel for client connections, showing each hop of the user's
+      circuits with the ISP, country, and jurisdiction where those relays
+      reside. Other interesting information would be the circuit's latency, how
+      long its been around, and its possible exit ports. Some of this will be
+      pretty tricky and require some experimentation to figure out what
+      information can be fetched safely (for instance, scraping rdns and whois
+      lookups could give hints about a relay's ISP, but we'd need to do it on
+      all Tor relays to avoid leaking our connections to the resolver).</li>
+      
+      <li>Options to let the user request new circuits (the &quot;New
+      Identity&quot; feature in Vidalia), select the exit country, etc.</li>
+      
+      <li>A panel showing Internet application and if their connections are
+      being routed through Tor or not (giving a warning if there's leaks).</li>
+      
+      <li>The status of the bridges we're configured to use (ie, are they up?).
+      This would include adding control port functionality to Tor for <a
+      href="https://trac.torproject.org/projects/tor/ticket/2068">ticket
+      2068</a>.</li>
+      
+      <li>A one click option to set Tor to be a client, relay, or bridge. The
+      goal would be to make it trivial for users to voluntarily contribute to
+      the Tor network.</li>
+      
+      <li>Menus as an alternative to hotkeys to make the interface more
+      intuitive and usable for beginners (<a
+      href="http://gnosis.cx/publish/programming/charming_python_6.html">example</a>).</li>
+      
+      <li>Look at Vidalia and TorK for ideas and solicit input from the Tor community.</li>
+    </ul>
+    
+    <p>
+    More information is available in the following sections of arm's dev notes: <a href="https://trac.torproject.org/projects/tor/wiki/doc/arm#ConnectionListingExpansion">Connection Listing Expansion</a>, <a href="https://trac.torproject.org/projects/tor/wiki/doc/arm#CircuitDetails">Circuit Details</a>, and <a href="https://trac.torproject.org/projects/tor/wiki/doc/arm#ClientModeUseCases">Client Mode Use Cases</a>
+    </p>
+    </li>
+    -->
+    
+    <a id="compassRefactoring"></a>
+    <li>
+    <b>Compass Refactoring</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>gsathya, karsten</i>
+    <p>
+    Compass was first designed to be a cli app and then hacked into a web app.
+    The codebase needs to be refactored such that the main processing code is
+    separated from the display functions(probably into separate files) and made
+    modular so that adding more features (<a
+    href="https://trac.torproject.org/6612">#6612</a>) is easy. For example, the
+    main processing logic could be in compass.py, whereas print_groups() and other
+    display related functions could be part of a separate cli.py; web.py would also
+    have to modified to make use of this new modular code. Bonus points for adding
+    features to compass(<a href="https://trac.torproject.org/6619">#6619</a>, <a
+    href="https://trac.torproject.org/6612">#6612</a>, <a
+    href="https://trac.torproject.org/6728">#6728</a>).
+    </p>
+    </li>
+    
+    <!--
+    <a id="orbot-optimisation"></a>
+    <li>
+    <b>Core Tor mobile optimisation</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Jake</i>
+    <p>
+    The existing port of Tor to Android is basically a straight
+    cross-compile to Linux ARM. There has been no work done in looking at
+    possible optimizations of Tor within a mobile hardware environment or on
+    mobile networks. In addition, a number of additional Android OS APIs are
+    available (such as wireless network status) that could be taken
+    advantage of.
+    </p>
+    
+    <p>
+    It should be noted, that even without optimisation, Tor is handling the
+    mobile network environment very well, automatically detecting change in
+    IP addresses, opening circuits, etc, as the device switches from no
+    coverage to 2G, 3G or Wifi constantly as it changes position. However,
+    this observation of &quot;very well&quot;, is just based on user
+    experience, and not any detailed study of what exactly is happening, and
+    what threats might exist because of this constantly changing network state.
+    </p>
+    
+    <p>
+    Finally, the build process needs to be moved to the Android NDK from the
+    custom GCC toolchain we are now using, and compatibility with Android
+    2.3 and 3.x Honeycomb OS need to be verified.
+    </p>
+    
+    <p>
+    For more information see the <a
+    href="https://svn.torproject.org/svn/projects/android/trunk/Orbot/BUILD">Orbot
+    build documentation</a>.
+    </p>
+    </li>
+    -->
+    
+    <!--
+    <a id="obfsproxy-scanning-measures"></a>
+    <li>
+    <b>Defensive bridge active scanning measures</b>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>asn</i>
+    <p>Involves providing good answers to <a
+    href="https://lists.torproject.org/pipermail/tor-dev/2011-November/003073.html">this
+    thread</a> as well as concrete implementation plans for it.</p>
+    
+    <p>This also involves implementing proposals <a
+    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/189-authorize-cell.txt">189</a>
+    and <a
+    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/190-shared-secret-bridge-authorization.txt">190</a>.</p>
+    </li>
+    -->
+    
+    <!--
+    <a id="firewallProbeTool"></a>
+    <li>
+    <b>Develop a fully automatic firewall-probing system</b>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Robert Ransom, Jacob</i>
+    <p>We would like to have a fully automatic firewall-probing system for
+    blocking systems with no long-term state (i.e. firewalls that can
+    examine each connection, but do not change their behaviour for future
+    connections based on the traffic they have seen).</p>
+    <p>Ideally, volunteers would only need to set up one or more test servers,
+    and run the probe client program on a publicly accessible computer
+    behind the firewall.</p>
+    <p>The test tool should:</p>
+    <ul>
+    <li>generate packet captures on both ends (and send them out to the
+        extent possible),</li>
+    <li>cycle through all the SSL configurations we might want to test
+        through a censorship device, and</li>
+    <li>also test some other protocols to see whether they are allowed
+        through the firewall (IMAP and other mail protocols, BitTorrent,
+        DTLS, etc.).</li>
+    </ul>
+    </li>
+    -->
+    
+    <!--
+    <a id="obfsproxy-fuzzer"></a>
+    <li>
+    <b>Fuzzer for the Tor protocol</b>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>asn</i>
+    <p>Involves researching good and smart ways to fuzz stateful network
+    protocols, and also implementing the fuzzer.</p>
+    
+    <p>We are mostly looking for a fuzzer that fuzzes the Tor protocol
+    itself, and not the Tor directory protocol.</p>
+    
+    <p>Bonus points if it's extremely modular. Relevant research:</p>
+    
+    <ul>
+      <li>PROTOS - Security Testing of Protocol Implementations</li>
+      <li>INTERSTATE: A Stateful Protocol Fuzzer for SIP</li>
+      <li>Detecting Communication Protocol Security Flaws by Formal Fuzz
+      Testing and Machine Learning</li>
+      <li>SNOOZE: Toward a Stateful NetwOrk prOtocol fuzZE</li>
+      <li>Michal Zalewski's &quot;bugger&quot;</li>
+      <li>Also look at the concepts of &quot;model checking&quot; and
+      &quot;symbolic execution&quot; to get inspired.</li>
+    </ul>
+    </li>
+    -->
+    
+    <a id="httpsImersonation"></a>
+    <li>
+    <b>HTTPS Server Impersonation</b>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>Medium to High</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+    We have an open proposal for a way to make Tor bridges avoid censorship by
+    impersonating an HTTPS server.  Specifically, we need to hack some popular
+    SSL "reverse proxy" (your choice) so that it relays regular web connections
+    to an HTTP server, but certain connections to a local Tor process.  <a
+    href="https://gitweb.torproject.org/torspec.git/blob_plain/HEAD:/proposals/203-https-frontend.txt">Proposal
+    203</a> has a general design sketch.
+    </p>
+    </li>
+    
+    <!--
+    <a id="geoIPUpgrade"></a>
+    <li>
+    <b>Improve our GeoIP file format</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium to High</i>
+    <br>
+    Likely Mentors: <i>Robert Ransom</i>
+    <p>Currently, Tor bridges and relays read an entire IP-&gt;country database
+    into memory from a text file during startup.  We would like to
+    distribute this database and store it on disk in a much more compact
+    form, and perform IP-&gt;country lookups on it in its on-disk format if
+    possible.</p>
+    <p>We have <a href='https://trac.torproject.org/projects/tor/ticket/2506'>a
+    sketch of a design</a> for a moderately optimized format for IPv4 GeoIP
+    data; this project will involve both implementing the IPv4 format and
+    designing and implementing a format for IPv6 GeoIP data.</p>
+    <p>Since the core of this project is researching IPv6 GeoIP data and
+    designing the IPv6 format, this is not likely to be a good GSoC
+    project.</p>
+    </li>
+    -->
+    
+    <!--
+    <a id="unitTesting"></a>
+    <li>
+    <b>Improve our unit testing process</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nick, Erinn</i>
+    <p>Tor needs to be tested far more thoroughly. This is a
+    multi-part effort. To start with, our unit test coverage should
+    rise substantially, especially in the areas outside the utility
+    functions. This will require significant refactoring of some parts
+    of Tor, in order to dissociate as much logic as possible from
+    globals.</p>
+    <p>Additionally, we need to automate our performance testing. We've got
+    buildbot to automate our regular integration and compile testing already
+    (though we need somebody to set it up on Windows),
+    but we need to get our network simulation tests (as built in <a
+    href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>)
+    updated for more recent versions of Tor, and designed to launch a test
+    network either on a single machine, or across several, so we can test
+    changes in performance on machines in different roles automatically.</p>
+    </li>
+    -->
+    
+    <!--
+    <a id="vidaliaNetworkMap"></a>
+    <li>
+    <b>Improved and More Usable Network Map in Vidalia</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Tomás</i>
+    <p>
+    One of Vidalia's existing features is a network map that shows the user
+    the approximate geographic location of relays in the Tor network and
+    plots the paths the user's traffic takes as it is tunneled through the
+    Tor network. The map is currently not very interactive and has rather
+    poor graphics. Instead, we implemented KDE's Marble widget such
+    that it gives us a better quality map and enables improved interactivity,
+    such as allowing the user to click on individual relays or circuits to
+    display additional information. We want to add the ability
+    for users to click on a particular relay or a country containing one or
+    more Tor exit relays and say, "I want my connections to exit
+    from here."
+    </p>
+    
+    <p>
+    This project will first involve getting familiar with Vidalia
+    and the Marble widget's API. One will then integrate the widget
+    into Vidalia and customize Marble to be better suited for our application,
+    such as making circuits clickable, storing cached map data in Vidalia's
+    own data directory, and customizing some of the widget's dialogs.
+    </p>
+    
+    <p>
+    A person undertaking this project should have good C++ development
+    experience. Previous experience with Qt and CMake is helpful, but not
+    required.
+    </p>
+    </li>
+    -->
+    
+    <!--
+    <a id="resistCensorship"></a>
+    <li>
+    <b>Improving Tor's ability to resist censorship</b>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Jake, Thomas</i>
+    <p>The Tor 0.2.1.x series makes <a
+    href="<svnprojects>design-paper/blocking.html">significant
+    improvements</a> in resisting national and organizational censorship.
+    But Tor still needs better mechanisms for some parts of its
+    anti-censorship design.</p>
+    <p>One huge category of work is adding features to our <a
+    href="https://gitweb.torproject.org/bridgedb.git?a=tree">BridgeDB</a>
+    service (Python). Tor aims to give out <a href="<page docs/bridges>">bridge
+    relay addresses</a> to users that can't reach the Tor network
+    directly, but there's an arms race between algorithms for distributing
+    addresses and algorithms for gathering and blocking them. See <a
+    href="<blog>bridge-distribution-strategies">our
+    blog post on the topic</a> as an overview, and then look at <a
+    href="https://lists.torproject.org/pipermail/tor-dev/2009-December/000666.html">Roger's
+    or-dev post</a> from December 2009 for more recent thoughts &mdash; lots of
+    design work remains.</p>
+    <p>If you want to get more into the guts of Tor itself (C), a more minor problem
+    we should address is that current Tors can only listen on a single
+    address/port combination at a time. There's
+    <a href="<specblob>proposals/118-multiple-orports.txt">a
+    proposal to address this limitation</a> and allow clients to connect
+    to any given Tor on multiple addresses and ports, but it needs more
+    work.</p>
+    <p>This project could involve a lot of research and design. One of the big
+    challenges will be identifying and crafting approaches that can still
+    resist an adversary even after the adversary knows the design, and
+    then trading off censorship resistance with usability and
+    robustness.</p>
+    </li>
+    -->
+    
     <a id="improveTorbirdy"></a>
     <li>
     <b>Improving TorBirdy</b>
-    <br>
-    Priority: <i>High</i>
     <br>
     Effort Level: <i>High</i>
     <br>
@@ -843,86 +1254,85 @@ meetings around the world.</li>
     </li>
     
     <!--
-    <a id="auditTBB"></a>
+    <a id="user-space-transport"></a>
     <li>
-    <b>Audit Tor Browser Bundles for data leaks</b>
-    <br>
-    Priority: <i>High</i>
+    <b>Integrating Tor with user-space transport protocol libraries</b>
     <br>
     Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Steven</i>
+    <p>Tor currently sends data over TCP links between nodes. <a
+    href="http://static.usenix.org/events/sec09/tech/full_papers/reardon.pdf">Prior
+    research</a> has indicated that this may not be optimal, and instead the
+    role that TCP plays (congestion control and reliability) should be moved
+    into Tor itself. This would allow a number of desirable changes, such as
+    preventing errors on one circuit delaying another, and giving Tor control
+    and visibility of congestion control.</p>
+    <p>There are <a
+    href="http://www.cl.cam.ac.uk/~sjm217/papers/tor11datagramcomparison.pdf">many
+    ways to do this</a>, each with their own tradeoffs and difficulty of
+    implementation. This project will be to select one (or more) option and
+    implement it in Tor. The primary goal will be to test this modified version
+    of Tor in simulation, but if it turns out to work well, it could be
+    deployed in the live Tor network.</p>
+    <p>Excellent C programming skills are needed, and knowledge of Tor
+    internals are highly desirable.</p>
+    </li>
+    -->
+    
+    <a id="chutneyExpansion"></a>
+    <li>
+    <b>Make Chutney Do More, More Reliably</b>
+    <br>
+    Effort Level: <i>Medium to High, depending on scope of project</i>
     <br>
     Skill Level: <i>Medium</i>
     <br>
-    Likely Mentors: <i>Jacob</i>
-    <p>The Tor Browser Bundle incorporates Tor, Firefox, Polipo, and the Vidalia
-    user interface (and optionally the <a href="http://pidgin.im/">Pidgin</a>
-    Instant Messaging client). Components are pre-configured to operate in a
-    secure way, and it has very few dependencies on the installed operating
-    system. It has therefore become one of the most easy to use, and popular,
-    ways to use Tor on Windows.</p>
-    <p>This project is to identify all of the traces left behind by
-    using a Tor Browser Bundle on Windows, Mac OS X, or Linux.  Developing
-    ways to stop, counter, or remove these traces is a final step.</p>
-    <p>Students should be familiar with operating system analysis,
-    application development on one or preferably all of Windows, Linux,
-    and Mac OS X, and be comfortable with C/C++ and shell scripting.</p>
-    <p>Since the core of this project is researching and auditing TBB this is
-    not likely to be a good GSoC project.</p>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+    We have a little Python tool called <a
+    href="https://gitweb.torproject.org/nickm/chutney.git">Chutney</a> for
+    making small local test networks.  It's small, not widely used, and not as
+    automated as it could be.
+    </p>
+    
+    <p>
+    It would be great to see chutney extended and a set of supporting tests
+    built to the point where we could use Chutney to exercise various Tor
+    features as an automated integration test.
+    </p>
     </li>
-    -->
     
     <!--
-    <a id="firewallProbeTool"></a>
+    <a id="torsocksForOSX"></a>
     <li>
-    <b>Develop a fully automatic firewall-probing system</b>
+    <b>Make torsocks/dsocks work on OS X</b>
     <br>
-    Priority: <i>High</i>
+    Effort Level: <i>Medium</i>
     <br>
-    Effort Level: <i>Medium to High</i>
+    Skill Level: <i>Medium</i>
     <br>
-    Skill Level: <i>High</i>
-    <br>
-    Likely Mentors: <i>Robert Ransom, Jacob</i>
-    <p>We would like to have a fully automatic firewall-probing system for
-    blocking systems with no long-term state (i.e. firewalls that can
-    examine each connection, but do not change their behaviour for future
-    connections based on the traffic they have seen).</p>
-    <p>Ideally, volunteers would only need to set up one or more test servers,
-    and run the probe client program on a publicly accessible computer
-    behind the firewall.</p>
-    <p>The test tool should:</p>
-    <ul>
-    <li>generate packet captures on both ends (and send them out to the
-        extent possible),</li>
-    <li>cycle through all the SSL configurations we might want to test
-        through a censorship device, and</li>
-    <li>also test some other protocols to see whether they are allowed
-        through the firewall (IMAP and other mail protocols, BitTorrent,
-        DTLS, etc.).</li>
-    </ul>
-    </li>
-    -->
-    
-    <!--
-    <a id="orbot-torbutton"></a>
-    <li>
-    <b>TorButton for Mobile Firefox 4 or Custom Browser on Android</b>
-    <br>
-    Priority: <i>High</i>
-    <br>
-    Effort Level: <i>High</i>
-    <br>
-    Skill Level: <i>High</i>
-    <br>
-    Likely Mentors: <i>Jake</i>
-    <p>Initial work has been done on implementing a proxy-setting add-on for
-    Firefox on Android (see <a
-    href="https://github.com/guardianproject/ProxyMob">ProxyMob</a>), but a
-    full port of TorButton needs to be done (dependent upon Firefox 4 port of
-    TorButton). The other approach is to implement a custom &quot;Tor
-    Browser&quot; based on Firefox or Webkit browser. See <a
-    href="http://code.google.com/p/torora/wiki/Android">Torora</a> for progress
-    on this so far.</p>
+    Likely Mentors: <i>Robert Hogan</i>
+    <p>
+    <a href="https://code.google.com/p/torsocks/">Torsocks</a> and <a
+    href="https://code.google.com/p/dsocks/">dsocks</a> are wrappers that will
+    run applications, intercept their outgoing network connections, and push
+    those connections through Tor. The goal is to handle applications that
+    don't support proxies (or don't supporting them well). To get it right,
+    they need to intercept many system calls. The syscalls you need to
+    intercept on Linux differ dramatically from those on BSD. So Torsocks
+    works fine on Linux, dsocks works ok on BSD (though it may be less
+    maintained and thus might miss more syscalls), and nothing works well
+    on both. First, we should patch dsocks to use Tor's <i>mapaddress</i>
+    commands from the controller interface, so we don't waste a whole
+    round-trip inside Tor doing the resolve before connecting. Second,
+    we should make our <i>torify</i> script detect which of torsocks or
+    dsocks is installed, and call them appropriately. This probably means
+    unifying their interfaces, and might involve sharing code between them
+    or discarding one entirely.
+    </p>
     </li>
     -->
     
@@ -930,8 +1340,6 @@ meetings around the world.</li>
     <a id="obfsproxy-new-transports"></a>
     <li>
     <b>New and innovative pluggable transports</b>
-    <br>
-    Priority: <i>High</i>
     <br>
     Effort Level: <i>High</i>
     <br>
@@ -956,33 +1364,76 @@ meetings around the world.</li>
     -->
     
     <!--
-    <a id="obfsproxy-scanning-measures"></a>
+    <a id="orbot-orlibAndOutreach"></a>
     <li>
-    <b>Defensive bridge active scanning measures</b>
+    <b>Orbot integration library and community outreach</b>
     <br>
-    Priority: <i>High</i>
+    Effort Level: <i>Low</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nathan (n8fr8)</i>
+    <p>
+    We need additional work on <a
+    href="https://github.com/guardianproject/orlib">ORLib</a>, our library for
+    use with third-party application to easily enable them to support
+    &quot;Torification&quot; on non-rooted devices (i.e. w/o transparent
+    proxying). This library includes a SOCKS client, a wrapper for the Apache
+    HTTPClient library, a utility class for detecting the state of Orbot
+    connectivity, and other relevant/useful things an Android app might need to
+    anonymize itself. This work would includes direct development of the
+    library, documentation, and sample code. Outreach or effort to implement
+    the library within other open-source apps is also needed.
+    </p>
+    </li>
+    -->
+    
+    <!--
+    <a id="tailsHiddenServicePetnames"></a>
+    <li>
+    <b>Petname system for Tor hidden services</b>
     <br>
     Effort Level: <i>High</i>
     <br>
     Skill Level: <i>High</i>
     <br>
-    Likely Mentors: <i>asn</i>
-    <p>Involves providing good answers to <a
-    href="https://lists.torproject.org/pipermail/tor-dev/2011-November/003073.html">this
-    thread</a> as well as concrete implementation plans for it.</p>
-    
-    <p>This also involves implementing proposals <a
-    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/189-authorize-cell.txt">189</a>
-    and <a
-    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/190-shared-secret-bridge-authorization.txt">190</a>.</p>
+    Likely Mentors: <i>ague</i>
+    <p>Tor provides hidden services. These services are only reachable through
+    Tor itself, and provide greater anonymity both for the providers of the
+    service and for its users.</p>
+    <p>One current downside of Tor hidden services is that they are addressed
+    using 80-bit base32-encoded addresses such as "v2cbb2l4lsnpio4q.onion".
+    These addresses are hard to remember; this makes them hard to use
+    within amnesic environment like Tails.</p>
+    <p>The project is to implement a petname system for Tor hidden services:
+    a way for users or providers of Tor hidden services to add a simple
+    'nickname' to a central database. Users could then query this central
+    database to retrieve a full hidden service address by giving
+    a nickname.</p>
+    <p>Adding petnames to the database could be done using a web interface or
+    automated fetch like those described in the <a
+    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/ideas/xxx-onion-nyms.txt">&quot;.onion
+    nym system&quot; proposal</a>.</p>
+    <p>Querying the database could be done using a web interface, a REST API and
+    a DNS interface.</p>
+    <p>In order not to grow indefinitely, the software should make regular tests to
+    see if hidden services are still reachable and, depending on the last time
+    a nickname was accessed, cleanup the database as necessary.</p>
+    <p>The software should allow a distributed, fault-tolerant setup.
+    All nodes should have a synchronized copy of the database, should be
+    ready to answer queries and should coordinate the tests for hidden
+    service availability.</p>
+    <p>The resulting codebase must be easy to deploy: it should not be hard to
+    setup new databases.</p>
+    <p>It is expected that the volunteer will be using Behaviour Driven
+    Development methods. Either in Ruby using Cucumber and RSpec, or in
+    Python using similar tools.</p>
     </li>
     -->
     
     <a id="limitCapabilities"></a>
     <li>
     <b>Run With Limited Capabilities</b>
-    <br>
-    Priority: <i>Medium to High</i>
     <br>
     Effort Level: <i>Medium to High</i>
     <br>
@@ -1014,195 +1465,93 @@ meetings around the world.</li>
     </p>
     </li>
     
-    <a id="docUpdate"></a>
+    <a id="metricsSearch"></a>
     <li>
-    <b>Website and video documentation update</b>
-    <br>
-    Priority: <i>High</i>
+    <b>Searchable Tor descriptor and Metrics data archive</b>
     <br>
     Effort Level: <i>Medium</i>
     <br>
     Skill Level: <i>Medium</i>
     <br>
-    Likely Mentors: <i>Runa, Karen</i>
-    <p>
-    Identify outdated and/or weak pages on torproject.org and re-write the
-    documentation to appeal to a less technical, more goal-oriented
-    audience. Create a number of 3-5 minute videos with graphically
-    portray the written documentation. See
-    <a href="https://trac.torproject.org/projects/tor/query?component=Website&status=new">the
-    website tickets</a> for more information and a starting point.
-    </p>
+    Likely Mentors: <i>Karsten</i>
+    <p>The <a href="https://metrics.torproject.org/data.html">Metrics data
+    archive</a> of Tor relay descriptors and other Tor-related network data has
+    grown to over 100G in size, bz2-compressed.  We have developed two search
+    interfaces: the <a
+    href="https://metrics.torproject.org/relay-search.html">relay search</a>
+    finds relays by nickname, fingerprint, or IP address in a given month; <a
+    href="https://metrics.torproject.org/exonerator.html">ExoneraTor</a> finds
+    whether a given IP address was a relay on a given day.</p>
+    
+    <p>We'd like to have a more general search application for Tor descriptors
+    and metrics data.  There are more <a
+    href="https://metrics.torproject.org/formats.html">descriptor types</a>
+    that we'd like to include in the search.  The search application should
+    handle most of them and understand some semantics like what's a timestamp,
+    what's an IP address, and what's a link to another descriptor.  Users
+    should then be able to search for arbitrary strings or limit their search
+    to given time periods or IP address ranges.  Descriptors that reference
+    other descriptors should contain links, and descriptors should be able to
+    say from where they are linked.  The goal is to make the archive easily
+    browsable.</p>
+    
+    <p>The search application shall be separate from the metrics website and
+    shouldn't rely on the metrics website codebase.  The search application
+    will contain hourly updated descriptor data from the metrics website via
+    rsync.  Programming language and database system are not specified yet,
+    though there's a slight preference for Python/Django and Postgres for
+    maintenance reasons.  If there are good reasons to pick something else,
+    e.g, some NoSQL variant or some search application framework, that's fine,
+    too.  Further requirements are that lookups should be really fast and that
+    changes to the search application can be implemented in reasonable
+    time.</p>
+    
+    <p>Applications for this project should come with a design of the proposed
+    search application, ideally with a proof-of-concept based on a subset of
+    the available data to show that it will be able to handle the 100G+ of
+    data.</p>
     </li>
     
-    <a id="torCleanup"></a>
+    <!--
+    <a id="simulateSlowConnections"></a>
     <li>
-    <b>Tor Codebase Cleanup</b>
-    <br>
-    Priority: <i>Medium to High</i>
-    <br>
-    Effort Level: <i>Low to High, depending on subproject chosen</i>
-    <br>
-    Skill Level: <i>Medium to High</i>
-    <br>
-    Likely Mentors: <i>Nick (nickm)</i>
-    <p>
-    The Tor code is almost 10 years old in places, and we haven't always had
-    enough time or wisdom to write things as well as we could have.  Our unit
-    test coverage is shamefully low, and the dependency graph of our modules is
-    shamefully convoluted . We could use refactoring and unit tests!  Please
-    look through the Tor source code and look for ugly or tricky code or
-    dependencies -- the uglier and trickier the better -- and think about how
-    you could make the code look better, read better, and (subject to testing)
-    work better.
-    </p>
-    
-    <p>
-    If this is for a fun side-project, it would be great for you to work on
-    anything that can be made better and more tested.  For an internship-level
-    position, we'd hope that you could find a number of particularly tricky or
-    knotty piece of the code to clean up, and aim for resolving the ugliest
-    problems, not necessarily the easiest.
-    </p>
-    
-    <p>
-    For a big project here, it would be great to pick one of the major
-    "submodules" of Tor -- path selection, node discovery, directory authority
-    operations, directory service -- and refactor its interface completely, to
-    minify and codify its points of contact with the rest of Tor.
-    </p>
-    </li>
-    
-    <a id="httpsImersonation"></a>
-    <li>
-    <b>HTTPS Server Impersonation</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium to High</i>
-    <br>
-    Skill Level: <i>Medium to High</i>
-    <br>
-    Likely Mentors: <i>Nick (nickm)</i>
-    <p>
-    We have an open proposal for a way to make Tor bridges avoid censorship by
-    impersonating an HTTPS server.  Specifically, we need to hack some popular
-    SSL "reverse proxy" (your choice) so that it relays regular web connections
-    to an HTTP server, but certain connections to a local Tor process.  <a
-    href="https://gitweb.torproject.org/torspec.git/blob_plain/HEAD:/proposals/203-https-frontend.txt">Proposal
-    203</a> has a general design sketch.
-    </p>
-    </li>
-    
-    <a id="chutneyExpansion"></a>
-    <li>
-    <b>Make Chutney Do More, More Reliably</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium to High, depending on scope of project</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Nick (nickm)</i>
-    <p>
-    We have a little Python tool called <a
-    href="https://gitweb.torproject.org/nickm/chutney.git">Chutney</a> for
-    making small local test networks.  It's small, not widely used, and not as
-    automated as it could be.
-    </p>
-    
-    <p>
-    It would be great to see chutney extended and a set of supporting tests
-    built to the point where we could use Chutney to exercise various Tor
-    features as an automated integration test.
-    </p>
-    </li>
-    
-    <a id="stemUsability"></a>
-    <li>
-    <b>Stem Usability Improvements</b>
-    <br>
-    Priority: <i>Medium</i>
+    <b>Simulator for slow Internet connections</b>
     <br>
     Effort Level: <i>Medium</i>
     <br>
     Skill Level: <i>Medium</i>
     <br>
-    Likely Mentors: <i>Damian (atagar)</i>
+    Likely Mentors: <i>Nick</i>
     <p>
-    <a href="https://stem.readthedocs.org/en/latest/index.html">Stem</a> is a
-    python controller library for tor. Like it's predecessor, <a
-    href="#project-torctl">TorCtl</a>, it uses tor's <a
-    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/control-spec.txt">control
-    protocol</a> to help developers program against the tor process, enabling
-    them to build things similar to <a href="#project-vidalia">Vidalia</a> and
-    <a href="#project-arm">arm</a>.
+    Many users of Tor have poor-quality Internet connections, giving low
+    bandwidth, high latency, and high packet loss/re-ordering. User
+    experience is that Tor reacts badly to these conditions, but it is
+    difficult to improve the situation without being able to repeat the
+    problems in the lab.
     </p>
     
     <p>
-    While TorCtl provided a fine first draft for this sort of functionality,
-    it has not proved to be extensible nor maintainable. Stem is a rewrite of
-    TorCtl with a heavy focus on testing, documentation, and providing a
-    developer friendly API.
+    This project would be to build a simulation environment which
+    replicates the poor connectivity so that the effect on Tor performance
+    can be measured. Other components would be a testing utility to
+    establish what are the properties of connections available, and to
+    measure the effect of performance-improving modifications to Tor.
     </p>
     
     <p>
-    Stem is very nearly feature complete but presently has no users. We
-    want to change that prior to making our first release for a couple
-    reasons...
-    </p>
-    
-    <ul>
-      <li>Make sure that we have a reasonably good API, and improve the rough
-      edges that hurt its usability.</li>
-      <li>Provide examples for how stem can be used.</li>
-    </ul>
-    
-    <p>
-    This project involves several tasks...
-    </p>
-    
-    <ol>
-      <li>Move stem's site to Tor's website (<a href="https://trac.torproject.org/projects/tor/ticket/7324">ticket</a>)</li>
-      <li>Set up Piwik for our site (<a href="https://trac.torproject.org/projects/tor/ticket/7424">ticket</a>)</li>
-      <li>Come up with a better, more developer friendly "Module Overview" for our documentation (<a href="https://stem.readthedocs.org/en/latest/api/control.html">example page</a>). For instance, it would be nice to provide interlinking between the overview and the classes/methods that it lists. This will probably involve asking for help from the <a href="http://sphinx-doc.org/">Sphinx user list</a>.</li>
-      <li>Finally get your hands dirty using stem. We want to expand stem's <a href="https://stem.readthedocs.org/en/latest/tutorial.html">tutorial page</a> with more examples. To do this you'll want to both brainstorm some of your own and contact the <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-dev/">tor-dev@ email list</a> to solicit ideas. This last step is pretty open ended, so go nuts with whatever you think will improve stem's usability!</li>
-    </ol>
-    </li>
-    
-    <a id="compassRefactoring"></a>
-    <li>
-    <b>Compass Refactoring</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>gsathya, karsten</i>
-    <p>
-    Compass was first designed to be a cli app and then hacked into a web app.
-    The codebase needs to be refactored such that the main processing code is
-    separated from the display functions(probably into separate files) and made
-    modular so that adding more features (<a
-    href="https://trac.torproject.org/6612">#6612</a>) is easy. For example, the
-    main processing logic could be in compass.py, whereas print_groups() and other
-    display related functions could be part of a separate cli.py; web.py would also
-    have to modified to make use of this new modular code. Bonus points for adding
-    features to compass(<a href="https://trac.torproject.org/6619">#6619</a>, <a
-    href="https://trac.torproject.org/6612">#6612</a>, <a
-    href="https://trac.torproject.org/6728">#6728</a>).
+    The tools used would be up to the student, but dummynet (for FreeBSD)
+    and nistnet (for Linux) are two potential components on which this
+    project could be built. Students should be experienced with network
+    programming/debugging and TCP/IP, and preferably familiar with C and a
+    scripting language.
     </p>
     </li>
+    -->
     
     <!--
     <a id="stemPathsupport"></a>
     <li>
     <b>Stem PathSupport Capabilities</b>
-    <br>
-    Priority: <i>High</i>
     <br>
     Effort Level: <i>High</i>
     <br>
@@ -1261,159 +1610,60 @@ meetings around the world.</li>
     </li>
     -->
     
-    <!--
-    <a id="orbot-userInterface"></a>
+    <a id="stemUsability"></a>
     <li>
-    <b>Build a better user interface for Orbot</b>
-    <br>
-    Priority: <i>High</i>
+    <b>Stem Usability Improvements</b>
     <br>
     Effort Level: <i>Medium</i>
     <br>
     Skill Level: <i>Medium</i>
     <br>
-    Likely Mentors: <i>Jake</i>
-    <p>Improved home screen to show confirmation of connection (via a TorCheck
-    API call), better statistics about data transferred (up/down), number of
-    circuits connected, quality of connection and so on. The &quot;Tether
-    Wifi&quot; Android application is a good model to follow in how it shows a
-    realtime count of bytes transferred as well as notifications when wifi
-    clients connect. In addition, better handling of Tor system and error
-    messages would also be very helpful, include use of standard Android
-    operating systems notifications. The addition of a wizard or tutorial
-    walkthrough for novice users to explain to them exactly what is and what is
-    not anonymized or protected would greatly improve the likelihood they will
-    use Orbot correctly. All of this should work on the range of screens and
-    device types now offered for Android, from 2&quot; phone to 10&quot;
-    Tablet.</p>
-    </li>
-    -->
+    Likely Mentors: <i>Damian (atagar)</i>
+    <p>
+    <a href="https://stem.readthedocs.org/en/latest/index.html">Stem</a> is a
+    python controller library for tor. Like it's predecessor, <a
+    href="#project-torctl">TorCtl</a>, it uses tor's <a
+    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/control-spec.txt">control
+    protocol</a> to help developers program against the tor process, enabling
+    them to build things similar to <a href="#project-vidalia">Vidalia</a> and
+    <a href="#project-arm">arm</a>.
+    </p>
     
-    <!--
-    <a id="user-space-transport"></a>
-    <li>
-    <b>Integrating Tor with user-space transport protocol libraries</b>
-    <br>
-    Priority: <i>Medium to High</i>
-    <br>
-    Effort Level: <i>High</i>
-    <br>
-    Skill Level: <i>High</i>
-    <br>
-    Likely Mentors: <i>Steven</i>
-    <p>Tor currently sends data over TCP links between nodes. <a
-    href="http://static.usenix.org/events/sec09/tech/full_papers/reardon.pdf">Prior
-    research</a> has indicated that this may not be optimal, and instead the
-    role that TCP plays (congestion control and reliability) should be moved
-    into Tor itself. This would allow a number of desirable changes, such as
-    preventing errors on one circuit delaying another, and giving Tor control
-    and visibility of congestion control.</p>
-    <p>There are <a
-    href="http://www.cl.cam.ac.uk/~sjm217/papers/tor11datagramcomparison.pdf">many
-    ways to do this</a>, each with their own tradeoffs and difficulty of
-    implementation. This project will be to select one (or more) option and
-    implement it in Tor. The primary goal will be to test this modified version
-    of Tor in simulation, but if it turns out to work well, it could be
-    deployed in the live Tor network.</p>
-    <p>Excellent C programming skills are needed, and knowledge of Tor
-    internals are highly desirable.</p>
-    </li>
-    -->
+    <p>
+    While TorCtl provided a fine first draft for this sort of functionality,
+    it has not proved to be extensible nor maintainable. Stem is a rewrite of
+    TorCtl with a heavy focus on testing, documentation, and providing a
+    developer friendly API.
+    </p>
     
-    <!--
-    <a id="resistCensorship"></a>
-    <li>
-    <b>Improving Tor's ability to resist censorship</b>
-    <br>
-    Priority: <i>Medium to High</i>
-    <br>
-    Effort Level: <i>Medium to High</i>
-    <br>
-    Skill Level: <i>High</i>
-    <br>
-    Likely Mentors: <i>Jake, Thomas</i>
-    <p>The Tor 0.2.1.x series makes <a
-    href="<svnprojects>design-paper/blocking.html">significant
-    improvements</a> in resisting national and organizational censorship.
-    But Tor still needs better mechanisms for some parts of its
-    anti-censorship design.</p>
-    <p>One huge category of work is adding features to our <a
-    href="https://gitweb.torproject.org/bridgedb.git?a=tree">BridgeDB</a>
-    service (Python). Tor aims to give out <a href="<page docs/bridges>">bridge
-    relay addresses</a> to users that can't reach the Tor network
-    directly, but there's an arms race between algorithms for distributing
-    addresses and algorithms for gathering and blocking them. See <a
-    href="<blog>bridge-distribution-strategies">our
-    blog post on the topic</a> as an overview, and then look at <a
-    href="https://lists.torproject.org/pipermail/tor-dev/2009-December/000666.html">Roger's
-    or-dev post</a> from December 2009 for more recent thoughts &mdash; lots of
-    design work remains.</p>
-    <p>If you want to get more into the guts of Tor itself (C), a more minor problem
-    we should address is that current Tors can only listen on a single
-    address/port combination at a time. There's
-    <a href="<specblob>proposals/118-multiple-orports.txt">a
-    proposal to address this limitation</a> and allow clients to connect
-    to any given Tor on multiple addresses and ports, but it needs more
-    work.</p>
-    <p>This project could involve a lot of research and design. One of the big
-    challenges will be identifying and crafting approaches that can still
-    resist an adversary even after the adversary knows the design, and
-    then trading off censorship resistance with usability and
-    robustness.</p>
-    </li>
-    -->
+    <p>
+    Stem is very nearly feature complete but presently has no users. We
+    want to change that prior to making our first release for a couple
+    reasons...
+    </p>
     
-    <!--
-    <a id="tailsHiddenServicePetnames"></a>
-    <li>
-    <b>Petname system for Tor hidden services</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>High</i>
-    <br>
-    Skill Level: <i>High</i>
-    <br>
-    Likely Mentors: <i>ague</i>
-    <p>Tor provides hidden services. These services are only reachable through
-    Tor itself, and provide greater anonymity both for the providers of the
-    service and for its users.</p>
-    <p>One current downside of Tor hidden services is that they are addressed
-    using 80-bit base32-encoded addresses such as "v2cbb2l4lsnpio4q.onion".
-    These addresses are hard to remember; this makes them hard to use
-    within amnesic environment like Tails.</p>
-    <p>The project is to implement a petname system for Tor hidden services:
-    a way for users or providers of Tor hidden services to add a simple
-    'nickname' to a central database. Users could then query this central
-    database to retrieve a full hidden service address by giving
-    a nickname.</p>
-    <p>Adding petnames to the database could be done using a web interface or
-    automated fetch like those described in the <a
-    href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/ideas/xxx-onion-nyms.txt">&quot;.onion
-    nym system&quot; proposal</a>.</p>
-    <p>Querying the database could be done using a web interface, a REST API and
-    a DNS interface.</p>
-    <p>In order not to grow indefinitely, the software should make regular tests to
-    see if hidden services are still reachable and, depending on the last time
-    a nickname was accessed, cleanup the database as necessary.</p>
-    <p>The software should allow a distributed, fault-tolerant setup.
-    All nodes should have a synchronized copy of the database, should be
-    ready to answer queries and should coordinate the tests for hidden
-    service availability.</p>
-    <p>The resulting codebase must be easy to deploy: it should not be hard to
-    setup new databases.</p>
-    <p>It is expected that the volunteer will be using Behaviour Driven
-    Development methods. Either in Ruby using Cucumber and RSpec, or in
-    Python using similar tools.</p>
+    <ul>
+      <li>Make sure that we have a reasonably good API, and improve the rough
+      edges that hurt its usability.</li>
+      <li>Provide examples for how stem can be used.</li>
+    </ul>
+    
+    <p>
+    This project involves several tasks...
+    </p>
+    
+    <ol>
+      <li>Move stem's site to Tor's website (<a href="https://trac.torproject.org/projects/tor/ticket/7324">ticket</a>)</li>
+      <li>Set up Piwik for our site (<a href="https://trac.torproject.org/projects/tor/ticket/7424">ticket</a>)</li>
+      <li>Come up with a better, more developer friendly "Module Overview" for our documentation (<a href="https://stem.readthedocs.org/en/latest/api/control.html">example page</a>). For instance, it would be nice to provide interlinking between the overview and the classes/methods that it lists. This will probably involve asking for help from the <a href="http://sphinx-doc.org/">Sphinx user list</a>.</li>
+      <li>Finally get your hands dirty using stem. We want to expand stem's <a href="https://stem.readthedocs.org/en/latest/tutorial.html">tutorial page</a> with more examples. To do this you'll want to both brainstorm some of your own and contact the <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-dev/">tor-dev@ email list</a> to solicit ideas. This last step is pretty open ended, so go nuts with whatever you think will improve stem's usability!</li>
+    </ol>
     </li>
-    -->
     
     <!--
     <a id="tailsServer"></a>
     <li>
     <b>Tails server: Self-hosted services behind Tails-powered Tor hidden services</b>
-    <br>
-    Priority: <i>Medium</i>
     <br>
     Effort Level: <i>High</i>
     <br>
@@ -1497,274 +1747,46 @@ meetings around the world.</li>
     </li>
     -->
     
-    <!--
-    <a id="geoIPUpgrade"></a>
+    <a id="torCleanup"></a>
     <li>
-    <b>Improve our GeoIP file format</b>
+    <b>Tor Codebase Cleanup</b>
     <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
+    Effort Level: <i>Low to High, depending on subproject chosen</i>
     <br>
     Skill Level: <i>Medium to High</i>
     <br>
-    Likely Mentors: <i>Robert Ransom</i>
-    <p>Currently, Tor bridges and relays read an entire IP-&gt;country database
-    into memory from a text file during startup.  We would like to
-    distribute this database and store it on disk in a much more compact
-    form, and perform IP-&gt;country lookups on it in its on-disk format if
-    possible.</p>
-    <p>We have <a href='https://trac.torproject.org/projects/tor/ticket/2506'>a
-    sketch of a design</a> for a moderately optimized format for IPv4 GeoIP
-    data; this project will involve both implementing the IPv4 format and
-    designing and implementing a format for IPv6 GeoIP data.</p>
-    <p>Since the core of this project is researching IPv6 GeoIP data and
-    designing the IPv6 format, this is not likely to be a good GSoC
-    project.</p>
-    </li>
-    -->
-    
-    <!--
-    <a id="armClientMode"></a>
-    <li>
-    <b>Client Mode Use Cases for Arm</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>High</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Damian (atagar)</i>
-    <p><a href="<page projects/arm>">Arm</a> is a Tor command line status
-    monitor on *nix environments (Linux, Mac, and BSD). It functions much like
-    top does, giving a CLI overlay of Tor's bandwidth usage, connections,
-    configuration, log, etc. Thus far its design has been geared for Tor relay
-    operators. However, this doesn't need to be the case. This project would be
-    to expand and simplify arm to make it useful for Tor's client users
-    too.</p>
-    
-    <p>This would include UI design, experimenting, and a lot of python
-    hacking. Here's some ideas for client functionality arm could provide:</p>
-    
-    <ul>
-      <li>A panel for client connections, showing each hop of the user's
-      circuits with the ISP, country, and jurisdiction where those relays
-      reside. Other interesting information would be the circuit's latency, how
-      long its been around, and its possible exit ports. Some of this will be
-      pretty tricky and require some experimentation to figure out what
-      information can be fetched safely (for instance, scraping rdns and whois
-      lookups could give hints about a relay's ISP, but we'd need to do it on
-      all Tor relays to avoid leaking our connections to the resolver).</li>
-      
-      <li>Options to let the user request new circuits (the &quot;New
-      Identity&quot; feature in Vidalia), select the exit country, etc.</li>
-      
-      <li>A panel showing Internet application and if their connections are
-      being routed through Tor or not (giving a warning if there's leaks).</li>
-      
-      <li>The status of the bridges we're configured to use (ie, are they up?).
-      This would include adding control port functionality to Tor for <a
-      href="https://trac.torproject.org/projects/tor/ticket/2068">ticket
-      2068</a>.</li>
-      
-      <li>A one click option to set Tor to be a client, relay, or bridge. The
-      goal would be to make it trivial for users to voluntarily contribute to
-      the Tor network.</li>
-      
-      <li>Menus as an alternative to hotkeys to make the interface more
-      intuitive and usable for beginners (<a
-      href="http://gnosis.cx/publish/programming/charming_python_6.html">example</a>).</li>
-      
-      <li>Look at Vidalia and TorK for ideas and solicit input from the Tor community.</li>
-    </ul>
-    
+    Likely Mentors: <i>Nick (nickm)</i>
     <p>
-    More information is available in the following sections of arm's dev notes: <a href="https://trac.torproject.org/projects/tor/wiki/doc/arm#ConnectionListingExpansion">Connection Listing Expansion</a>, <a href="https://trac.torproject.org/projects/tor/wiki/doc/arm#CircuitDetails">Circuit Details</a>, and <a href="https://trac.torproject.org/projects/tor/wiki/doc/arm#ClientModeUseCases">Client Mode Use Cases</a>
-    </p>
-    </li>
-    -->
-    
-    <!--
-    <a id="vidalia-hidden-service-panel"></a>
-    <li>
-    <b>Torrc plugin and improved hidden service configuration panel</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Tomás</i>
-    <p>Vidalia's configuration handling has changed in the alpha branch. Now
-    every Tor option is saved in the torrc file. With that change, the
-    Hidden Service configuration panel was removed due to its specificity
-    and its multiple bugs.</p>
-    
-    <p>The idea would be to provide the new Torrc class' functionality to the
-    Plugin Engine and with that, create a better Hidden Service
-    configuration panel as a plugin.</p>
-    
-    <p>A person undertaking this project should have good UI design, layout
-    skills and some C++ development experience. Previous experience with Qt
-    and Qt's Designer will be very helpful, but are not required. Javascript
-    knowledge is a plus, but it shouldn't be a problem if the person
-    complies with the previous requirements.</p>
-    </li>
-    -->
-    
-    <a id="metricsSearch"></a>
-    <li>
-    <b>Searchable Tor descriptor and Metrics data archive</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Karsten</i>
-    <p>The <a href="https://metrics.torproject.org/data.html">Metrics data archive</a> of Tor relay descriptors and other Tor-related network data has grown to over 100G in size, bz2-compressed.  We have developed two search interfaces: the <a href="https://metrics.torproject.org/relay-search.html">relay search</a> finds relays by nickname, fingerprint, or IP address in a given month; <a href="https://metrics.torproject.org/exonerator.html">ExoneraTor</a> finds whether a given IP address was a relay on a given day.</p>
-    
-    <p>We'd like to have a more general search application for Tor descriptors and metrics data.  There are more <a href="https://metrics.torproject.org/formats.html">descriptor types</a> that we'd like to include in the search.  The search application should handle most of them and understand some semantics like what's a timestamp, what's an IP address, and what's a link to another descriptor.  Users should then be able to search for arbitrary strings or limit their search to given time periods or IP address ranges.  Descriptors that reference other descriptors should contain links, and descriptors should be able to say from where they are linked.  The goal is to make the archive easily browsable.</p>
-    
-    <p>The search application shall be separate from the metrics website and shouldn't rely on the metrics website codebase.  The search application will contain hourly updated descriptor data from the metrics website via rsync.  Programming language and database system are not specified yet, though there's a slight preference for Python/Django and Postgres for maintenance reasons.  If there are good reasons to pick something else, e.g, some NoSQL variant or some search application framework, that's fine, too.  Further requirements are that lookups should be really fast and that changes to the search application can be implemented in reasonable time.</p>
-    
-    <p>Applications for this project should come with a design of the proposed search application, ideally with a proof-of-concept based on a subset of the available data to show that it will be able to handle the 100G+ of data.</p>
-    
-    <!--
-    <a id="unitTesting"></a>
-    <li>
-    <b>Improve our unit testing process</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Nick, Erinn</i>
-    <p>Tor needs to be tested far more thoroughly. This is a
-    multi-part effort. To start with, our unit test coverage should
-    rise substantially, especially in the areas outside the utility
-    functions. This will require significant refactoring of some parts
-    of Tor, in order to dissociate as much logic as possible from
-    globals.</p>
-    <p>Additionally, we need to automate our performance testing. We've got
-    buildbot to automate our regular integration and compile testing already
-    (though we need somebody to set it up on Windows),
-    but we need to get our network simulation tests (as built in <a
-    href="https://svn.torproject.org/svn/torflow/trunk/README">TorFlow</a>)
-    updated for more recent versions of Tor, and designed to launch a test
-    network either on a single machine, or across several, so we can test
-    changes in performance on machines in different roles automatically.</p>
-    </li>
-    -->
-    
-    <!--
-    <a id="simulateSlowConnections"></a>
-    <li>
-    <b>Simulator for slow Internet connections</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Nick</i>
-    <p>
-    Many users of Tor have poor-quality Internet connections, giving low
-    bandwidth, high latency, and high packet loss/re-ordering. User
-    experience is that Tor reacts badly to these conditions, but it is
-    difficult to improve the situation without being able to repeat the
-    problems in the lab.
+    The Tor code is almost 10 years old in places, and we haven't always had
+    enough time or wisdom to write things as well as we could have.  Our unit
+    test coverage is shamefully low, and the dependency graph of our modules is
+    shamefully convoluted . We could use refactoring and unit tests!  Please
+    look through the Tor source code and look for ugly or tricky code or
+    dependencies -- the uglier and trickier the better -- and think about how
+    you could make the code look better, read better, and (subject to testing)
+    work better.
     </p>
     
     <p>
-    This project would be to build a simulation environment which
-    replicates the poor connectivity so that the effect on Tor performance
-    can be measured. Other components would be a testing utility to
-    establish what are the properties of connections available, and to
-    measure the effect of performance-improving modifications to Tor.
+    If this is for a fun side-project, it would be great for you to work on
+    anything that can be made better and more tested.  For an internship-level
+    position, we'd hope that you could find a number of particularly tricky or
+    knotty piece of the code to clean up, and aim for resolving the ugliest
+    problems, not necessarily the easiest.
     </p>
     
     <p>
-    The tools used would be up to the student, but dummynet (for FreeBSD)
-    and nistnet (for Linux) are two potential components on which this
-    project could be built. Students should be experienced with network
-    programming/debugging and TCP/IP, and preferably familiar with C and a
-    scripting language.
+    For a big project here, it would be great to pick one of the major
+    "submodules" of Tor -- path selection, node discovery, directory authority
+    operations, directory service -- and refactor its interface completely, to
+    minify and codify its points of contact with the rest of Tor.
     </p>
     </li>
-    -->
-    
-    <!--
-    <a id="usabilityTesting"></a>
-    <li>
-    <b>Usability testing of Tor</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Low to Medium</i>
-    <br>
-    Likely Mentors: <i>Andrew</i>
-    <p>
-    Especially the browser bundle, ideally amongst our target demographic.
-    That would help a lot in knowing what needs to be done in terms of bug
-    fixes or new features. We get this informally at the moment, but a more
-    structured process would be better.
-    </p>
-    
-    <p>
-    Please note that since this isn't a coding project, it isn't suitable for
-    Google Summer of Code.
-    </p>
-    </li>
-    -->
-    
-    <!--
-    <a id="torsocksForOSX"></a>
-    <li>
-    <b>Make torsocks/dsocks work on OS X</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Robert Hogan</i>
-    <p>
-    <a href="https://code.google.com/p/torsocks/">Torsocks</a> and <a
-    href="https://code.google.com/p/dsocks/">dsocks</a> are wrappers that will
-    run applications, intercept their outgoing network connections, and push
-    those connections through Tor. The goal is to handle applications that
-    don't support proxies (or don't supporting them well). To get it right,
-    they need to intercept many system calls. The syscalls you need to
-    intercept on Linux differ dramatically from those on BSD. So Torsocks
-    works fine on Linux, dsocks works ok on BSD (though it may be less
-    maintained and thus might miss more syscalls), and nothing works well
-    on both. First, we should patch dsocks to use Tor's <i>mapaddress</i>
-    commands from the controller interface, so we don't waste a whole
-    round-trip inside Tor doing the resolve before connecting. Second,
-    we should make our <i>torify</i> script detect which of torsocks or
-    dsocks is installed, and call them appropriately. This probably means
-    unifying their interfaces, and might involve sharing code between them
-    or discarding one entirely.
-    </p>
-    </li>
-    -->
     
     <!--
     <a id="vidaliaStatusEventInterface"></a>
     <li>
     <b>Tor Controller Status Event Interface for Vidalia</b>
-    <br>
-    Priority: <i>Medium</i>
     <br>
     Effort Level: <i>Medium</i>
     <br>
@@ -1803,217 +1825,95 @@ meetings around the world.</li>
     -->
     
     <!--
-    <a id="orbot-optimisation"></a>
+    <a id="orbot-torbutton"></a>
     <li>
-    <b>Core Tor mobile optimisation</b>
+    <b>TorButton for Mobile Firefox 4 or Custom Browser on Android</b>
     <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Medium</i>
+    Effort Level: <i>High</i>
     <br>
     Skill Level: <i>High</i>
     <br>
     Likely Mentors: <i>Jake</i>
-    <p>
-    The existing port of Tor to Android is basically a straight
-    cross-compile to Linux ARM. There has been no work done in looking at
-    possible optimizations of Tor within a mobile hardware environment or on
-    mobile networks. In addition, a number of additional Android OS APIs are
-    available (such as wireless network status) that could be taken
-    advantage of.
-    </p>
-    
-    <p>
-    It should be noted, that even without optimisation, Tor is handling the
-    mobile network environment very well, automatically detecting change in
-    IP addresses, opening circuits, etc, as the device switches from no
-    coverage to 2G, 3G or Wifi constantly as it changes position. However,
-    this observation of &quot;very well&quot;, is just based on user
-    experience, and not any detailed study of what exactly is happening, and
-    what threats might exist because of this constantly changing network state.
-    </p>
-    
-    <p>
-    Finally, the build process needs to be moved to the Android NDK from the
-    custom GCC toolchain we are now using, and compatibility with Android
-    2.3 and 3.x Honeycomb OS need to be verified.
-    </p>
-    
-    <p>
-    For more information see the <a
-    href="https://svn.torproject.org/svn/projects/android/trunk/Orbot/BUILD">Orbot
-    build documentation</a>.
-    </p>
+    <p>Initial work has been done on implementing a proxy-setting add-on for
+    Firefox on Android (see <a
+    href="https://github.com/guardianproject/ProxyMob">ProxyMob</a>), but a
+    full port of TorButton needs to be done (dependent upon Firefox 4 port of
+    TorButton). The other approach is to implement a custom &quot;Tor
+    Browser&quot; based on Firefox or Webkit browser. See <a
+    href="http://code.google.com/p/torora/wiki/Android">Torora</a> for progress
+    on this so far.</p>
     </li>
     -->
     
     <!--
-    <a id="orbot-orlibAndOutreach"></a>
+    <a id="vidalia-hidden-service-panel"></a>
     <li>
-    <b>Orbot integration library and community outreach</b>
-    <br>
-    Priority: <i>Medium</i>
-    <br>
-    Effort Level: <i>Low</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Nathan (n8fr8)</i>
-    <p>
-    We need additional work on <a
-    href="https://github.com/guardianproject/orlib">ORLib</a>, our library for
-    use with third-party application to easily enable them to support
-    &quot;Torification&quot; on non-rooted devices (i.e. w/o transparent
-    proxying). This library includes a SOCKS client, a wrapper for the Apache
-    HTTPClient library, a utility class for detecting the state of Orbot
-    connectivity, and other relevant/useful things an Android app might need to
-    anonymize itself. This work would includes direct development of the
-    library, documentation, and sample code. Outreach or effort to implement
-    the library within other open-source apps is also needed.
-    </p>
-    </li>
-    -->
-    
-    <!--
-    <a id="vidaliaNetworkMap"></a>
-    <li>
-    <b>An Improved and More Usable Network Map in Vidalia</b>
-    <br>
-    Priority: <i>Low to Medium</i>
+    <b>Torrc plugin and improved hidden service configuration panel</b>
     <br>
     Effort Level: <i>Medium</i>
     <br>
     Skill Level: <i>Medium</i>
     <br>
     Likely Mentors: <i>Tomás</i>
-    <p>
-    One of Vidalia's existing features is a network map that shows the user
-    the approximate geographic location of relays in the Tor network and
-    plots the paths the user's traffic takes as it is tunneled through the
-    Tor network. The map is currently not very interactive and has rather
-    poor graphics. Instead, we implemented KDE's Marble widget such
-    that it gives us a better quality map and enables improved interactivity,
-    such as allowing the user to click on individual relays or circuits to
-    display additional information. We want to add the ability
-    for users to click on a particular relay or a country containing one or
-    more Tor exit relays and say, "I want my connections to exit
-    from here."
-    </p>
+    <p>Vidalia's configuration handling has changed in the alpha branch. Now
+    every Tor option is saved in the torrc file. With that change, the
+    Hidden Service configuration panel was removed due to its specificity
+    and its multiple bugs.</p>
     
-    <p>
-    This project will first involve getting familiar with Vidalia
-    and the Marble widget's API. One will then integrate the widget
-    into Vidalia and customize Marble to be better suited for our application,
-    such as making circuits clickable, storing cached map data in Vidalia's
-    own data directory, and customizing some of the widget's dialogs.
-    </p>
+    <p>The idea would be to provide the new Torrc class' functionality to the
+    Plugin Engine and with that, create a better Hidden Service
+    configuration panel as a plugin.</p>
     
-    <p>
-    A person undertaking this project should have good C++ development
-    experience. Previous experience with Qt and CMake is helpful, but not
-    required.
-    </p>
+    <p>A person undertaking this project should have good UI design, layout
+    skills and some C++ development experience. Previous experience with Qt
+    and Qt's Designer will be very helpful, but are not required. Javascript
+    knowledge is a plus, but it shouldn't be a problem if the person
+    complies with the previous requirements.</p>
     </li>
     -->
     
     <!--
-    <a id="obfsproxy-fuzzer"></a>
+    <a id="usabilityTesting"></a>
     <li>
-    <b>Fuzzer for the Tor protocol</b>
+    <b>Usability testing of Tor</b>
     <br>
-    Priority: <i>Low to Medium</i>
+    Effort Level: <i>Medium</i>
     <br>
-    Effort Level: <i>Medium to High</i>
+    Skill Level: <i>Low to Medium</i>
     <br>
-    Skill Level: <i>High</i>
-    <br>
-    Likely Mentors: <i>asn</i>
-    <p>Involves researching good and smart ways to fuzz stateful network
-    protocols, and also implementing the fuzzer.</p>
-    
-    <p>We are mostly looking for a fuzzer that fuzzes the Tor protocol
-    itself, and not the Tor directory protocol.</p>
-    
-    <p>Bonus points if it's extremely modular. Relevant research:</p>
-    
-    <ul>
-      <li>PROTOS - Security Testing of Protocol Implementations</li>
-      <li>INTERSTATE: A Stateful Protocol Fuzzer for SIP</li>
-      <li>Detecting Communication Protocol Security Flaws by Formal Fuzz
-      Testing and Machine Learning</li>
-      <li>SNOOZE: Toward a Stateful NetwOrk prOtocol fuzZE</li>
-      <li>Michal Zalewski's &quot;bugger&quot;</li>
-      <li>Also look at the concepts of &quot;model checking&quot; and
-      &quot;symbolic execution&quot; to get inspired.</li>
-    </ul>
-    </li>
-    -->
-    
-    <!--
-    <a id="armGui"></a>
-    <li>
-    <b>GUI for Arm</b>
-    <br>
-    Priority: <i>Low</i>
-    <br>
-    Effort Level: <i>High</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>Damian (atagar)</i>
+    Likely Mentors: <i>Andrew</i>
     <p>
-    Arm has several unique features, some of the most interesting being its
-    connection listing (correlating netstat results against the Tor consensus)
-    and configuration editor (a quick method for editing Tor's config, with
-    information pulled from the control port and man page). However, since arm
-    is a command line controller it's of limited appeal to certain sets of
-    users. This project would be to build a GTK or Qt frontend for the
-    controller, providing similar features set but with a windowed interface.
+    Especially the browser bundle, ideally amongst our target demographic.
+    That would help a lot in knowing what needs to be done in terms of bug
+    fixes or new features. We get this informally at the moment, but a more
+    structured process would be better.
     </p>
     
     <p>
-    The vast majority of arm's more interesting functionality lies in its
-    backend <a href="https://gitweb.torproject.org/arm.git/tree/HEAD:/src/util">utilities</a>, so
-    there should be little to no work decoupling the CLI from its backend.
-    Instead, this project would mostly be UI hacking and experimentation,
-    trying different interfaces to find something that's elegant and simple,
-    but matches the information found in the current terminal application.
+    Please note that since this isn't a coding project, it isn't suitable for
+    Google Summer of Code.
     </p>
     </li>
     -->
     
-    <!--
-    <a id="APAF"></a>
+    <a id="docUpdate"></a>
     <li>
-    <b>APAF: Anonymous Python Application Framework</b>
-    <br>
-    Priority: <i>Medium</i>
+    <b>Website and video documentation update</b>
     <br>
     Effort Level: <i>Medium</i>
     <br>
     Skill Level: <i>Medium</i>
     <br>
-    Likely Mentors: <i>Arturo (hellais)</i>
+    Likely Mentors: <i>Runa, Karen</i>
     <p>
-    The goal of APAF is to create a build framework for creating a binary
-    package for multiple platforms (.app/dmg, .exe, .deb, etc.) that includes
-    the python interpreter (cpython), the Tor binary and all the UI necessary
-    to make users be able to easily run the bundled Tor Hidden Service.
-    </p>
-    
-    <p>
-    For GSoC the student is expected to create the build system capable of
-    building a simple web application that serves static files. It should also
-    include a web UI for a wizard setup, checking the status of the HS and
-    configuring it.
-    </p>
-    
-    <p>
-    For more details on this: check out <a
-    href="https://pad.riseup.net/p/1zA8FI4nrYlq">https://pad.riseup.net/p/1zA8FI4nrYlq</a>
+    Identify outdated and/or weak pages on torproject.org and re-write the
+    documentation to appeal to a less technical, more goal-oriented
+    audience. Create a number of 3-5 minute videos with graphically
+    portray the written documentation. See
+    <a href="https://trac.torproject.org/projects/tor/query?component=Website&status=new">the
+    website tickets</a> for more information and a starting point.
     </p>
     </li>
-    -->
     
     <li>
     <b>Bring up new ideas!</b>
