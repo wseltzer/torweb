@@ -675,6 +675,11 @@ meetings around the world.</li>
     aggregates the Tor relays based on various attributes.
     </p>
     
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#compassRefactoring">Compass Refactoring</a></i>
+    </p>
+    
     <a id="project-weather"></a>
     <h3><a href="https://trac.torproject.org/projects/tor/wiki/org/roadmaps/Weather">Weather</a> (<a
     href="https://gitweb.torproject.org/weather.git">code</a>, <a
@@ -1143,6 +1148,32 @@ meetings around the world.</li>
       <li>Come up with a better, more developer friendly "Module Overview" for our documentation (<a href="https://stem.readthedocs.org/en/latest/api/control.html">example page</a>). For instance, it would be nice to provide interlinking between the overview and the classes/methods that it lists. This will probably involve asking for help from the <a href="http://sphinx-doc.org/">Sphinx user list</a>.</li>
       <li>Finally get your hands dirty using stem. We want to expand stem's <a href="https://stem.readthedocs.org/en/latest/tutorial.html">tutorial page</a> with more examples. To do this you'll want to both brainstorm some of your own and contact the <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-dev/">tor-dev@ email list</a> to solicit ideas. This last step is pretty open ended, so go nuts with whatever you think will improve stem's usability!</li>
     </ol>
+    </li>
+    
+    <a id="compassRefactoring"></a>
+    <li>
+    <b>Compass Refactoring</b>
+    <br>
+    Priority: <i>Medium</i>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>gsathya, karsten</i>
+    <p>
+    Compass was first designed to be a cli app and then hacked into a web app.
+    The codebase needs to be refactored such that the main processing code is
+    separated from the display functions(probably into separate files) and made
+    modular so that adding more features (<a
+    href="https://trac.torproject.org/6612">#6612</a>) is easy. For example, the
+    main processing logic could be in compass.py, whereas print_groups() and other
+    display related functions could be part of a separate cli.py; web.py would also
+    have to modified to make use of this new modular code. Bonus points for adding
+    features to compass(<a href="https://trac.torproject.org/6619">#6619</a>, <a
+    href="https://trac.torproject.org/6612">#6612</a>, <a
+    href="https://trac.torproject.org/6728">#6728</a>).
+    </p>
     </li>
     
     <!--
