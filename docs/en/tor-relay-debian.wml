@@ -1,0 +1,177 @@
+## translation metadata
+# Revision: $Revision$
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor Project: Relay Configuration Instructions on Debian/Ubuntu" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/tor-doc-relay>">Configure Tor Relay</a>
+  </div>
+  <div id="maincol">
+
+    <h1>Configuring a Tor relay on Debian/Ubuntu</h1>
+
+    <hr>
+
+    <p>
+    The Tor network relies on volunteers to donate bandwidth. The more
+    people who run relays, the faster the Tor network will be. If you have
+    at least 50 kilobytes/s each way, please help out Tor by configuring your
+    Tor to be a relay too.
+    </p>
+
+    <hr>
+    <a id="zero"></a>
+    <a id="install"></a>
+    <h2><a class="anchor" href="#install">Step One: Download and Install Tor</a></h2>
+    <br>
+
+    <p>If you're on Debian, you can just "apt-get install tor".</p>
+
+    <p><b>Do not use the packages in Ubuntu's universe.</b> If you're
+    on Ubuntu or if you want to track newer Tor packages, follow the
+    <a href="<page docs/debian>#ubuntu">Tor on Ubuntu or Debian</a>
+    instructions to use our repository.
+    </p>
+
+    <hr>
+    <a id="setup"></a>
+    <h2><a class="anchor" href="#setup">Step Two: Set it up as a relay</a></h2>
+
+    <p>
+    1. Make sure your clock, date, and timezone are set correctly. Install
+    the ntp or openntpd (or similar) package to keep it that way.
+    </p>
+
+    <p>
+    2. Edit the bottom part of <a href="<page
+    docs/faq>#torrc">/etc/tor/torrc</a>. Define an ORPort. Note
+    that public relays default to being <a href="<page
+    docs/faq>#ExitPolicies">exit relays</a> &mdash; either change your
+    ExitPolicy line or read our <a
+href="https://trac.torproject.org/projects/tor/wiki/doc/TorExitGuidelines">guidelines
+    for exit relay operators</a>. Be sure to set your ContactInfo line
+    so we can contact you if you need to upgrade or something goes wrong.
+    </p>
+
+    <p>
+    3. If you are using a firewall, open a hole in your firewall
+    so incoming connections can reach the ports you configured
+    (ORPort, plus DirPort if you enabled it). If you have a
+    hardware firewall (Linksys box, cablemodem, etc) you might like <a
+    href="http://portforward.com/">portforward.com</a>. Also, make sure you
+    allow all <em>outgoing</em> connections too, so your relay can reach the
+    other Tor relays.
+    </p>
+
+    <p>
+    4. Restart your relay: "service tor reload" (as root).
+    </p>
+
+    <hr>
+    <a id="check"></a>
+    <h2><a class="anchor" href="#check">Step Three: Make sure it is working</a></h2>
+    <br>
+
+    <p>Once your relay connects to the network, it will
+    try to determine whether the ports you configured are reachable from
+    the outside. This step is usually fast, but it may take a few minutes.
+    Look for a <a href="<page docs/faq>#Logs">log entry</a> in your
+    /var/log/tor/log like
+    <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
+    If you don't see this message, it means that your relay is not reachable
+    from the outside &mdash; you should re-check your firewalls, check that it's
+    testing the IP and port you think it should be testing, etc.
+    </p>
+
+    <p>When it decides that it's reachable, it will upload a "server
+    descriptor" to the directories, to let clients know
+    what address, ports, keys, etc your relay is using. You can <a
+    href="https://metrics.torproject.org/relay-search.html">search the
+    relay database"</a> to see whether it's there. Note that you'll need
+    to wait a few hours to give enough time to propagate.</p>
+
+    <hr>
+    <a id="after"></a>
+    <h2><a class="anchor" href="#after">Step Four: Once it is working</a></h2>
+    <br>
+
+    <p>
+    5. Read
+    <a href="<wiki>doc/OperationalSecurity">about operational security</a>
+    to get ideas how you can increase the security of your computer.
+    </p>
+
+    <p>
+    6. Decide about rate limiting. Cable modem, DSL, and other users
+    who have asymmetric bandwidth (e.g. more down than up) should
+    rate limit to their slower bandwidth, to avoid congestion. See the <a
+    href="<wikifaq>#LimitBandwidth">rate
+    limiting FAQ entry</a> for details.
+    </p>
+
+    <p>
+    7. If your computer isn't running a webserver, please consider
+    changing your ORPort to 443 and/or your DirPort to 80. Many Tor users
+    are stuck behind firewalls that only let them browse the web, and
+    this change will let them reach your Tor relay. If you are already
+    using ports 80 and 443, other useful ports are 22, 110, and 143.
+    </p>
+
+    <p>
+    8. Consider backing up your Tor relay's private key
+    ("/var/lib/tor/keys/secret_id_key"). You'll need this identity key to
+    <a href="<wikifaq>#UpgradeRelay">move or restore your Tor relay</a>.
+    </p>
+
+    <p>
+    9. If you control the name servers for your domain, consider setting your
+    reverse DNS hostname to 'anonymous-relay', 'proxy' or 'tor-proxy', so when
+    other people see the address in their web logs, they will more quickly
+    understand what's going on. Adding the <a
+    href="<gitblob>contrib/tor-exit-notice.html">Tor
+    exit notice</a> on a vhost for this name can go a long way to deterring abuse
+    complaints to you and your ISP if you are running an exit node.
+    </p>
+
+    <p>
+    10. Subscribe to the <a
+    href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-announce">tor-announce</a>
+    mailing list. It is very low volume, and it will keep you informed
+    of new stable releases. You might also consider subscribing to <a
+    href="<page docs/documentation>#MailingLists">the higher-volume Tor lists</a>
+    too (especially tor-relays).
+    </p>
+
+    <p>
+    11. <a href="https://weather.torproject.org/">Tor Weather</a> provides
+    an email notification service to any users who want to monitor the
+    status of a Tor node. Upon subscribing, you can specify what types of
+    alerts you would like to receive. The main purpose of Tor Weather is
+    to notify node operators via email if their node is down for longer
+    than a specified period, but other notification types are available.
+    </p>
+
+    <p>
+    12. If you want to run more than one relay that's great, but please set <a
+    href="<page docs/faq>#MultipleRelays">the
+    MyFamily option</a> in all your relays' configuration files.
+    </p>
+
+    <hr>
+
+    <p>If you have suggestions for improving this document, please <a
+    href="<page about/contact>">send them to us</a>. Thanks!</p>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>
+
