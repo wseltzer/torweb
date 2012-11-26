@@ -1106,6 +1106,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },
+        mirror078 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "CH",
+            subRegion => "",
+            region => "CH",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://torproject.pillo-srv.ch/",
+            httpsWebsiteMirror => "https://torproject.pillo-srv.ch/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://torproject.pillo-srv.ch/dist/",
+            httpsDistMirror => "https://torproject.pillo-srv.ch/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
     }
 );
 
