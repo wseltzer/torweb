@@ -1178,6 +1178,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },
+        mirror083 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "DE",
+            subRegion => "",
+            region => "DE",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://mirror.vieth-server.de/torproject.org",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://mirror.vieth-server.de/torproject.org/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
     }
 );
 
