@@ -1196,6 +1196,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },.
+        mirror084 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "DE",
+            subRegion => "",
+            region => "DE",
+            ipv4 => "True",
+            ipv6 => "True",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.heikorichter.name/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "rsync://ftp.heikorichter.name/tor",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.heikorichter.name//dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "rsync://ftp.heikorichter.name/tordist",
+            hiddenServiceMirror => "",
     }
 );
 
