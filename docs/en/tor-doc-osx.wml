@@ -10,69 +10,51 @@
     <a href="<page docs/tor-doc-osx>">Mac OS X Client</a>
   </div> 
   <div id="maincol">
-    <h1>Running the Tor client on Mac OS X</h1>
+    <h1>Running Tor on Mac OS X</h1>
     <br>
     
-    <h2>Note that these are the installation instructions for running
-    a Tor client. The easiest way to do this is to simply download the
+    <h2>These are advanced installation instructions for running
+    Tor in a command line. The recommended way to use Tor is to simply download the
     <a href="<page projects/torbrowser>">Tor Browser Bundle</a> and you
     are done.
     </h2>
     
+    <p>Even though the Tor Browser Bundle comes with a regular Tor, and you could use the graphical interface to configure Tor as a relay and bridge easily, it will only run as long as you keep the Tor Browser open. The following instructions will set up Tor without graphical interface or a browser. Many people prefer this over TBB when they host hidden services or relay traffic for other Tor users. 
     <hr>
     <a id="installing"></a>
-    <h2><a class="anchor" href="#installing">Step One: Download and Install Tor</a></h2>
+    <h2><a class="anchor" href="#installing">Step One: Install Homebrew</a></h2>
     <br>
     
     <p>
-    The install for Macintosh OS X bundles <a href="<page index>">Tor</a>,
-    <a href="<page projects/vidalia>">Vidalia</a> (a graphical interface
-    for Tor), <a href="<page torbutton/index>">Torbutton</a>, into one
-    package, with the three applications pre-configured to work together.
-    Download either the <a href="<page download/download>#mac">stable</a>
-    or the <a href="<page download/download>#mac">experimental</a>
-    version of the OS X bundle, or look for more options on the <a
-    href="<page download/download>">download page</a>.
+    The advanced Tor without any graphical user interface can be installed using <a href="http://mxcl.github.com/homebrew">the Homebrew package manager</a>. It is most suitable if you want to use Tor as a SOCKS proxy for applications other than web browsing, or run a Tor relay/bridge to help other Tor users. If you use the command-line Tor, you might be interested in <a href="<page projects/arm">ARM</a>, a command-line Tor monitor and alternative to the Vidalia GUI.. 
     </p>
     
-    <p>Once you've downloaded the dmg, double-click and let it mount.
-    Browse to the now open Vidalia Bundle in Finder.  It's easy to
-    install the bundle; simply drag and drop the Vidalia onion icon to the
-    Applications folder.  Optionally, double click the "install torbutton"
-    script and let it install torbutton into Firefox.</p>
-    
-    <p>When you are finished installing, you can start Vidalia by
-    selecting its icon from your Applications folder. A dark onion with a
-    red X in your dock means Tor is not currently running. You can start
-    Tor by selecting Start from the "Tor" menu at the top of your screen.
-    </p>
-    
-    <p>When Tor is running, Vidalia's dock icon will look like the following:
-    </p>
-    
-    <p><img alt="vidalia running tor"
-    src="$(IMGROOT)/screenshot-osx-vidalia.png" /></p>
+    <p>If you don't have Homebrew installed, open a terminal window and run:</p>
+ 
+    <pre>ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"</pre>
     
     <hr>
-    <a id="using"></a>
-    <h2><a class="anchor" href="#using">Step Two: Configure your applications to use Tor</a></h2>
+    <h2>Step Two: Install Tor</a></h2>
     <br>
     
-    <p>After installing, you need to configure your applications to use
-    them. The first step is to set up web browsing.</p>
+    <p>In a terminal window, run:</p>
+
+    <pre>brew install tor</pre>
+ 
+    <p>You will find the Tor configuration file at <tt>/usr/local/etc/tor/torrc</tt>.</p>
+ 
+    <hr>
+    <a id="verify"></a>
+    <h2><a class="anchor" href="#verify">Step Three: Verify your download</a></h2>
+  
+    <p>As with any application, you should make sure it came unmodified from the orginal source. Unfortunately, Homebrew does not come with integrated verification for downloads, and anyone could submit a modified Tor! Currently, we don't have good instructions on how to verify the Tor download on Mac OSX. If you think you do, please <a href="<page about/contact>">let us know</a>!</p>
+
+    <hr>
+    <a id="using"></a> 
+    <h2><a class="anchor" href="#using">Step Four: Configure your application to use Tor</a></h2>
     
-    <p>You should use Tor with Firefox and Torbutton, for best safety.
-    Torbutton was installed for you.  Click on the red "Tor Disabled"
-    toggle button to turn Tor on, and you're all set: </p>
-    
-    <p><img alt="Torbutton plugin for Firefox"
-    src="$(IMGROOT)/screenshot-torbutton.png" /></p>
-    
-    <p> If you plan to run Firefox on a different computer than Tor,
-    see the <a href="<wikifaq>#SocksListenAddress">FAQ entry for running
-    Tor on a different computer</a>.  </p>
-    
-    <p>To use SOCKS directly (for instant messaging, Jabber, IRC, etc),
+    <p>
+    If you want to use Tor for anonymous web browsing, please use the <a href="<page projects/torbrowser>">Tor Browser Bundle</a>. It comes with readily configured Tor and a browser patched for better anonymity. To use SOCKS directly (for instant messaging, Jabber, IRC, etc),
     you can point your application directly at Tor (localhost
     port 9050), but see <a href="<wikifaq>#SOCKSAndDNS">this FAQ
     entry</a> for why this may be dangerous. For applications
@@ -81,20 +63,6 @@
     
     <p>For information on how to Torify other applications, check out the
     <a href="<wiki>doc/TorifyHOWTO">Torify HOWTO</a>.
-    </p>
-    
-    <hr>
-    <a id="verify"></a>
-    <h2><a class="anchor" href="#verify">Step Three: Make sure it's working</a></h2>
-    <br>
-    
-    <p>
-    Next, you should try using your browser with Tor and make
-    sure that your IP address is being anonymized. Click on <a
-    href="https://check.torproject.org/">the Tor detector</a> and see
-    whether it thinks you're using Tor or not.  (If that site is down,
-    see <a href="<wikifaq>#IsMyConnectionPrivate">this FAQ entry</a>
-    for more suggestions on how to test your Tor.)
     </p>
     
     <p>If you have a personal firewall that limits your computer's
@@ -116,7 +84,7 @@
     <hr>
     <a id="server"></a>
     <a id="relay"></a>
-    <h2><a class="anchor" href="#relay">Step Four: Configure it as a relay</a></h2>
+    <h2><a class="anchor" href="#relay">Configure Tor as a relay</a></h2>
     <br>
     
     <p>The Tor network relies on volunteers to donate bandwidth. The more
@@ -138,13 +106,9 @@
     
     <hr>
     <a id="uninstall"></a>
-    <h2><a class="anchor" href="#uninstall">How To Uninstall Tor and Polipo</a></h2>
+    <h2><a class="anchor" href="#uninstall">How To Uninstall Tor</a></h2>
     <br>
-    
-    <p>There are two ways to uninstall the bundle from your computer,
-    using Finder or a command line or Terminal-based uninstaller.
-    If you want to remove Tor on OSX, here's how:</p>
-    
+
     <p>Change your application proxy settings back to their original
     values.  If you just want to stop using Tor, you can end at this
     point.</p>
@@ -154,22 +118,13 @@
     
     <ol>
     <li>Open Finder and click on Applications.</li>
-    <li>Drag /Applications/Vidalia to the Trash.</li>
+    <li>Drag /Applications/TorBrowser to the Trash.</li>
     <li>Remove /Library/Torbutton from your system.</li>
     <li>In your User or home directory, go to Library, remove the Vidalia
     directory</li>
     </ol>
     
-    <p>Tor and Vidalia are now completely removed from your system.</p>
-    
-    <p>If you're familiar with the command line or Terminal, you can
-    manually type the following:</p>
-    <ul>
-    <li>rm -r /Applications/Vidalia.app</li>
-    <li>rm -r /Library/Torbutton</li>
-    <li>rm -r ~/Library/Vidalia</li>
-    <li>rm -r ~/.tor</li>
-    </ul>
+    <p>Tor Browser is now completely removed from your system.</p>
     
     <hr>
     
