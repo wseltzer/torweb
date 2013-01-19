@@ -14,16 +14,13 @@
     <br>
 
     <h2>
-    Note that these are the installation instructions for running a Tor
-    client. The easiest way to do this is to simply download the <a
+    Note that these are advanced installation instructions for running Tor. If you want to use Tor just for anonymous web browsing, simply download the <a
     href="<page projects/torbrowser>">Tor Browser Bundle</a> and you
     are done.
     </h2>
     
     <p>
-    <b>Note that these are the installation instructions for running a Tor
-    client on Microsoft Windows (XP, Vista, 7, and Server Editions).
-    If you want to relay traffic for others to help the network grow (please
+    <b>If you want to relay traffic for others to help the network grow (please
     do), read the <a href="<page docs/tor-doc-relay>">Configuring a relay</a>
     guide.</b>
     </p>
@@ -43,16 +40,15 @@
     <br>
     
     <p>
-    The Vidalia Bundle for Windows contains <a href="<page
-    index>">Tor</a>, <a href="<page projects/vidalia>">Vidalia</a>
-    (a GUI for Tor), and <a href="<page torbutton/index>">Torbutton</a>
-    (a plugin for Mozilla Firefox) packaged into one bundle, with the
-    three applications pre-configured to work together.  Download either
-    the <a href="../<package-win32-bundle-stable>">stable</a> or the <a
-    href="../<package-win32-bundle-alpha>">experimental</a> version of
-    the Vidalia Bundle, or look for more options on the <a href="<page
-    download/download>">download page</a>.</p>
-    
+    The Vidalia Bundles for Windows contain <a href="<page
+    index>">Tor</a> and <a href="<page projects/vidalia>">Vidalia</a>
+    (a graphical user interface for Tor).
+    They come in different flavors, preconfigured for a convenient setup: The Relay bundle is set to forward traffic for other Tor users, the Bridge bundle turns your computer into a <a href="<page docs/bridges>">bridge</a>. Apart from that preconfiguration, all Vidalia bundles are the same and can easily be reconfigured.
+    </p>
+
+    <p>
+    For anonymous web browsing, please use <a href="<page projects/torbrowser>">Tor Browser</a> and not one of the Vidalia bundles. If you want to use Tor as a client for other applications, download one of the Vidalia bundles and turn it into a client (Settings -&gt; Sharing -&gt; Run as a client only).</p>
+ 
     <img alt="tor installer splash page" src="$(IMGROOT)/screenshot-win32-installer-splash.png">
     
     <p>If you have previously installed Tor and Vidalia you can deselect
@@ -66,38 +62,17 @@
     you selected will automatically be started for you.
     </p>
     
-    <p>Tor comes configured as a client by default. It uses a built-in
-    default configuration file, and most people won't need to change any of
-    the settings. Tor is now installed.
-    </p>
-    
     <hr>
     <a id="using"></a>
     <h2><a class="anchor" href="#using">Step Two: Configure your applications to use Tor</a></h2>
     <br>
     
-    <p>After installing Tor, you need to configure your applications to
-    use them. The first step is to set up web browsing.</p>
-    
-    <p>You should use Tor with Firefox and Torbutton, for best safety. The
-    bundle installs the <a href="<page torbutton/index>">Torbutton
-    plugin</a> for you. Restart your Firefox, and you're all set:
-    </p>
-    
-    <img alt="Torbutton plugin for Firefox" src="$(IMGROOT)/screenshot-torbutton.png"/>
-    
-    <br>
-    
     <p>
-    If you plan to run Firefox on a different computer than Tor, see the <a
-    href="<wikifaq>#SocksListenAddress">FAQ
-    entry for running Tor on a different computer</a>.
-    </p>
-    
-    <p>To use SOCKS directly (for instant messaging, Jabber, IRC,
-    etc), you can point your application directly at Tor (localhost
+    If you want to use Tor for anonymous web browsing, please use the <a href="<page projects/torbrowser>">Tor Browser Bundle</a>. It comes with readily configured Tor and a browser patched for better anonymity. To use SOCKS directly (for instant messaging, Jabber, IRC, etc),
+    you can point your application at Tor (localhost
     port 9050), but see <a href="<wikifaq>#SOCKSAndDNS">this FAQ
-    entry</a> for why this may be dangerous. For applications that
+    entry</a> for why this may be dangerous. 
+    For applications with HTTP proxy support, but no support for Tor's SOCKS proxy, try <a href="http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/">polipo</a>. For applications that
     support neither SOCKS nor HTTP, take a look at SocksCap or <a
     href="http://www.freecap.ru/eng/">FreeCap</a>.  (FreeCap is free
     software; SocksCap is proprietary.)</p>
@@ -121,15 +96,6 @@
     </p>
     
     <img alt="Vidalia Tray Icon" src="$(IMGROOT)/screenshot-win32-vidalia.png"/>
-    
-    <p>
-    Next, you should try using your browser with Tor and make
-    sure that your IP address is being anonymized. Click on <a
-    href="https://check.torproject.org/">the Tor detector</a> and see
-    whether it thinks you're using Tor or not.  (If that site is down, see <a
-    href="<wikifaq>#IsMyConnectionPrivate">this
-    FAQ entry</a> for more suggestions on how to test your Tor.)
-    </p>
     
     <p>If you have a personal firewall that limits your computer's ability
     to connect to itself, be sure to allow connections from your local
