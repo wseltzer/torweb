@@ -55,53 +55,17 @@
     <h2><a class="anchor" href="#using">Step Two: Configure your applications to use Tor</a></h2>
     <br>
     
-    <p>After installing Tor, you need to configure your applications to
-    use them. The first step is to set up web browsing.</p>
-    
-    <p>You should use Tor with Firefox and Torbutton, for best safety.
-    Simply install the <a
-    href="<page torbutton/index>">Torbutton
-    plugin</a>, restart your Firefox, and you're all set:
-    </p>
-    
-    <img alt="Torbutton plugin for Firefox"
-    src="$(IMGROOT)/screenshot-torbutton.png"
-   >
-    
-    <br>
-    
     <p>
-    If you plan to run Firefox on a different computer than Tor, see the <a
-    href="<wikifaq>#SocksListenAddress">
-    FAQ
-    entry for running Tor on a different computer</a>.
-    </p>
-    
-    <p>To Torify other applications that support SOCKS proxies, just
-    point them at Tor's SOCKS port (127.0.0.1 port 9050). See <a
-    href="<wikifaq>#SOCKSAndDNS">this FAQ entry</a> for why this may be
-    dangerous. For applications that support neither SOCKS nor HTTP, take
-    a look at <a href="https://code.google.com/p/torsocks/">torsocks</a>
-    or <a href="<wiki>doc/TorifyHOWTO#socat">socat</a>.
+    If you want to use Tor for anonymous web browsing, please use the <a href="<page projects/torbrowser>">Tor Browser Bundle</a>. It comes with readily configured Tor and a browser patched for better anonymity. To use SOCKS directly (for instant messaging, Jabber, IRC, etc),
+    you can point your application directly at Tor (localhost
+    port 9050), but see <a href="<wikifaq>#SOCKSAndDNS">this FAQ
+    entry</a> for why this may be dangerous. For applications
+    that support neither SOCKS nor HTTP, take a look at <a href="https://code.google.com/p/torsocks/">torsocks</a>
+    or <a href="http://www.dest-unreach.org/socat/">socat</a>.
     </p>
     
     <p>For information on how to Torify other applications, check out the
     <a href="<wiki>doc/TorifyHOWTO">Torify HOWTO</a>.
-    </p>
-    
-    <hr>
-    <a id="verify"></a>
-    <h2><a class="anchor" href="#verify">Step Three: Make sure it's working</a></h2>
-    <br>
-    
-    <p>
-    Next, you should try using your browser with Tor and make
-    sure that your IP address is being anonymized. Click on <a
-    href="https://check.torproject.org/">the Tor detector</a>
-    and see whether it thinks you're using Tor or not.
-    (If that site is down, see <a
-    href="<wikifaq>#IsMyConnectionPrivate">this FAQ entry</a> for more
-    suggestions on how to test your Tor.)
     </p>
     
     <p>If you have a personal firewall that limits your computer's ability
@@ -110,7 +74,7 @@
     Tor (local port 9050). If your firewall blocks outgoing connections,
     punch a hole so it can connect to at least TCP ports 80 and 443, and
     then see <a href="<wikifaq>#FirewalledClient">this FAQ entry</a>.
-    If your SELinux config is not allowing tor or privoxy to run
+    If your SELinux config is not allowing tor to run
     correctly, create a file named booleans.local in the directory
     /etc/selinux/targeted.  Edit this file in your favorite text editor
     and insert "allow_ypbind=1".  Restart your machine for this change
@@ -124,7 +88,7 @@
     <hr>
     <a id="server"></a>
     <a id="relay"></a>
-    <h2><a class="anchor" href="#relay">Step Four: Configure it as a relay</a></h2>
+    <h2><a class="anchor" href="#relay">Step Three: Configure it as a relay</a></h2>
     <br>
     
     <p>The Tor network relies on volunteers to donate bandwidth. The more
