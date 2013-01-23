@@ -1232,6 +1232,24 @@ my %m = (
             httpsDistMirror => "https://creep.im/tor/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },
+        mirror086 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://199.175.55.215/",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://199.175.55.215/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
     }
 );
 
