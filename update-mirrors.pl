@@ -1217,7 +1217,7 @@ my %m = (
     },
         mirror085 => {
             adminContact => "",
-            orgName => "",
+            orgName => "Soviet Anonymous",
             isoCC => "RU",
             subRegion => "",
             region => "RU",
@@ -1228,8 +1228,8 @@ my %m = (
             httpsWebsiteMirror => "https://creep.im/tor",
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
-            httpDistMirror => "https://creep.im/tor/dist/",
-            httpsDistMirror => "",
+            httpDistMirror => "",
+            httpsDistMirror => "https://creep.im/tor/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
     }
