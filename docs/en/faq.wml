@@ -1467,22 +1467,14 @@ versions.
     up your anonymity in ways we don't understand.
     </p>
     <p>
-    The <tt>EntryNodes</tt> and <tt>ExitNodes</tt> config options are
-    treated as a request, meaning if the nodes are down or seem slow,
-    Tor will still avoid them. You can make the option mandatory by
-    setting <tt>StrictExitNodes 1</tt> or <tt>StrictEntryNodes 1</tt>
-    &mdash; but if you do, your Tor connections will stop working
-    if all of the nodes you have specified become unreachable.
-    See the <a href="<page docs/documentation>#NeatLinks">Tor status
-pages</a>
-    for some nodes you might pick.
+    Note also that not every circuit is used to deliver traffic outside of the Tor network. It is normal to see non-exit circuits (such as those used to connect to hidden services, those that do directory fetches, those used for relay reachability self-tests, and so on) that end at a non-exit node. To keep a node from being used entirely, see <tt>ExcludeNodes</tt> and <tt>StrictNodes</tt> in the <a href="<page docs/tor-manual>">manual</a>.
     </p>
     <p>
     Instead of <tt>$fingerprint</tt> you can also specify a <a
 
 href="https://secure.wikimedia.org/wikipedia/en/wiki/ISO_3166-1_alpha-2"
 >2
-    letter ISO3166 country code</a> in curly braces (for example {de}),
+    letter ISO3166 country code</a> in curly braces (for example <tt>{de}</tt>),
     or an ip address pattern (for example 255.254.0.0/8), or a node
     nickname. Make sure there are no spaces between the commas and the
     list items.
