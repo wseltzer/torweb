@@ -8,47 +8,47 @@
     <a href="<page index>">Home &raquo; </a>
     <a href="<page docs/documentation>">Documentation &raquo; </a>
     <a href="<page docs/running-a-mirror>">Running a Mirror</a>
-  </div> 
-  <div id="maincol"> 
+  </div>
+  <div id="maincol">
     <h1>Tor: Running a Mirror</h1>
     <hr>
-    
+
     <p>Thank you for wanting to mirror the Tor website.  All of
     our mirrors are publicly listed on <a href="<page getinvolved/mirrors>">our mirrors
     page</a>.  We've included some sample commands and configuration below
     to make the initial setup and ongoing maintenance a minimal effort.
     The Tor website and distribution directory currently require 8.0 GB of
     disk space.</p>
-    
+
     <p>
     If you would like to run a mirror, it's as easy as this command to download
     everything a mirror should share with the world:
     <br> <br>
     <tt>
-    rsync -av --delete rsync://rsync.torproject.org/tor tor-mirror/
+    rsync -av --delete rsync://rsync.torproject.org/website-mirror tor-mirror/
     </tt>
-    
+
     <p>
     In order to assure we have reliable and up to date mirrors,
     please ensure your mirror does at least the following:<br/><br/>
-    
+
     Updates <b>no less</b> than every six hours, but no more frequent than every
     hour.<br/><br/>
-    
+
     Allows "Directory Index / Indexes" (Index viewing) of the /dist
     directory.<br/><br/>
-    
+
     Allows "Multiviews" or equivalent for language localization.<br/><br/>
-    
+
     Have a valid contact email for administrative communications should your
     server have issues.<br/><br/>
-    
+
     It is highly recommended for all mirror operators to subscribe to <A
     href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-mirrors">tor-mirrors mailing
     list</A> where all mirror listing modification requests should go (ADD,
     CHANGE, DELETE, any other requests/notifications).  Also, any technical
     assistance in setting up your mirror may be found here as well.<br/><br/>
-    
+
     </p>
     <br><br>
     <p>
@@ -56,7 +56,7 @@
     <tt>
     <pre>
     # m h  dom mon dow   command
-    0 */6 * * * rsync -aq --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
+    0 */6 * * * rsync -aq --delete rsync://rsync.torproject.org/website-mirror/ /var/www/mirrors/torproject.org
     </pre>
     </tt>
     </p>
@@ -68,15 +68,15 @@
     &lt;VirtualHost 0.1.2.3:80&gt;
             ServerAdmin youremail@example.com<br/>
             ServerName  0.1.2.3<br/>
-    
+
             DocumentRoot /var/www/mirrors/torproject.org<br/>
-    
+
             &lt;Directory /var/www/mirrors/torproject.org/&gt;<br/>
                 Options MultiViews Indexes<br/>
                 DirectoryIndex index<br/>
                 AllowOverride None<br/>
             &lt;/Directory&gt;<br/>
-    
+
     &lt;/VirtualHost&gt;
     </pre>
     </tt>
@@ -107,12 +107,12 @@
     task with something like '<tt>cron</tt>'). Our website, source code and
     binary releases change often. An update frequency of six hours is recommended.  Tor users everywhere will thank you.
     </p>
-    <br/>	
+    <br/>
     <p>
     If you are running a mirror, please subscribe to the <A
     href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-mirrors">tor-mirrors
     mailing list</A>, and introduce yourself there.
-    We will add you to the mirror list.  
+    We will add you to the mirror list.
     Help for mirror support and configuration issues may also be found on the list.
     </p>
   </div>
@@ -124,4 +124,4 @@
   <!-- END SIDECOL -->
 </div>
 <!-- END CONTENT -->
-#include <foot.wmi>  
+#include <foot.wmi>
