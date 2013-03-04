@@ -1142,6 +1142,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },
+        mirror087 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "DE",
+            subRegion => "",
+            region => "DE",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://tor.linuxlounge.net/",
+            httpsWebsiteMirror => "https://tor.linuxlounge.net/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://tor.linuxlounge.net/dist/",
+            httpsDistMirror => "https://tor.linuxlounge.net/dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
     }
 );
 
