@@ -1160,6 +1160,24 @@ my %m = (
             httpsDistMirror => "https://tor.linuxlounge.net/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },
+        mirror088 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "ftp://mirrors.go-part.com/tor/dist/",
+            httpDistMirror => "http://mirrors.go-part.com/tor/dist/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "rsync://mirrors.go-part.com/tor/dist/",
+            hiddenServiceMirror => "",
     }
 );
 
