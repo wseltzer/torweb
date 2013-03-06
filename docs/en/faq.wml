@@ -1629,32 +1629,34 @@ relay or bridge relay?</a></h3>
     <p><a href="<page docs/bridges>">Bridge relays</a> (or "bridges" for
 short)
     are <a href="<page docs/tor-doc-relay>">Tor relays</a> that aren't
-listed
-    in the main Tor directory. That means
-    that even an ISP or government trying to filter connections to the
-Tor
-    network probably won't be able to block all the bridges.
+    listed in the public Tor directory.
+    That means that ISPs or governments trying to block access to the 
+    Tor network can't simply block all bridges.
     </p>
 
     <p>Being a normal relay vs being a bridge relay is almost the same
     configuration: it's just a matter of whether your relay is listed
-    publically or not.
+    publicly or not.
     </p>
 
-    <p>Right now, China is the main place in the world that filters
-    connections to the Tor network. So bridges are useful a) for users
-in
-    China, b) as a backup measure in case the Tor network gets blocked
-in
-    more places, and c) for people who want an extra layer of security
+    <p>
+    So bridges are useful a) for Tor users in oppressive regimes, 
+    and b) for people who want an extra layer of security
     because they're worried somebody will recognize that it's a public
     Tor relay IP address they're contacting.
     </p>
 
+    <p>
+    Several countries, including China and Iran, have found ways to
+    detect and block connections to Tor bridges. 
+    <a href="<page projects/obfsproxy>">Obfsproxy</a> bridges address
+    this by adding another layer of obfuscation. 
+    </p>
+
     <p>So should you run a normal relay or bridge relay? If you have
 lots
-    of bandwidth, you should definitely run a normal relay &mdash; the
-    average bridge doesn't see much load these days. If you're willing
+    of bandwidth, you should definitely run a normal relay.
+    If you're willing
     to <a href="#ExitPolicies">be an exit</a>, you should definitely
     run a normal relay, since we need more exits. If you can't be an
     exit and only have a little bit of bandwidth, be a bridge. Thanks
