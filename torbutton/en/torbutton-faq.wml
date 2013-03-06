@@ -18,11 +18,8 @@
     <h3>Questions</h3>
     <br>
     <ul>
-    <li><a href="<page torbutton/torbutton-faq>#nojavascript">When I toggle Tor, my sites that use javascript stop working. Why?</a></li>
-    <li><a href="<page torbutton/torbutton-faq>#noreloads">I can't click on links or hit reload after I toggle Tor! Why?</a></li>
     <li><a href="<page torbutton/torbutton-faq>#noflash">I can't view videos on YouTube and other flash-based sites. Why?</a></li>
     <li><a href="<page torbutton/torbutton-faq>#oldtorbutton">Torbutton sure seems to do a lot of things, some of which I find annoying. Can't I just use the old version?</a></li>
-    <li><a href="<page torbutton/torbutton-faq>#weirdstate">My browser is in some weird state where nothing works right!</a></li>
     <li><a href="<page torbutton/torbutton-faq>#noautocomplete">When I use Tor, Firefox is no longer filling in logins/search boxes for me. Why?</a></li>
     <li><a href="<page torbutton/torbutton-faq>#thunderbird">What about Thunderbird support? I see a page, but it is the wrong version?</a></li>
     <li><a href="<page torbutton/torbutton-faq>#extensionconflicts">Which Firefox extensions should I avoid using?</a></li>
@@ -30,41 +27,6 @@
     <li><a href="<page torbutton/torbutton-faq>#securityissues">Are there any other issues I should be concerned about?</a></li>
     </ul>
     <br>
-    
-    <a id="nojavascript"></a>
-    <strong><a class="anchor" href="#nojavascript">When I toggle Tor, my sites that use javascript stop working. Why?</a></strong>
-    
-    <p>
-    Javascript can do things like wait until you have disabled Tor before trying
-    to contact its source site, thus revealing your IP address. As such, Torbutton
-    must disable Javascript, Meta-Refresh tags, and certain CSS behavior when Tor
-    state changes from the state that was used to load a given page. These features
-    are re-enabled when Torbutton goes back into the state that was used to load
-    the page, but in some cases (particularly with Javascript and CSS) it is
-    sometimes not possible to fully recover from the resulting errors, and the
-    page is broken. Unfortunately, the only thing you can do (and still remain
-    safe from having your IP address leak) is to reload the page when you toggle
-    Tor, or just ensure you do all your work in a page before switching tor state.
-    </p>
-    
-    <a id="noreloads"></a>
-    <strong><a class="anchor" href="#noreloads">I can't click on links or hit reload after I toggle Tor! Why?</a></strong>
-    
-    <p>
-    Due to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=409737">Firefox
-    Bug 409737</a>, pages can still open popups and perform Javascript redirects
-    and history access after Tor has been toggled. These popups and redirects can
-    be blocked, but unfortunately they are indistinguishable from normal user
-    interactions with the page (such as clicking on links, opening them in new
-    tabs/windows, or using the history buttons), and so those are blocked as a
-    side effect. Once that Firefox bug is fixed, this degree of isolation will
-    become optional (for people who do not want to accidentally click on links and
-    give away information via referrers). A workaround is to right click on the
-    link, and open it in a new tab or window. The tab or window won't load
-    automatically, but you can hit enter in the URL bar, and it will begin
-    loading. Hitting enter in the URL bar will also reload the page without
-    clicking the reload button.
-    </p>
     
     <a id="noflash"></a>
     <strong><a class="anchor" href="#noflash">I can't view videos on YouTube and
@@ -88,8 +50,8 @@
     If you are not concerned about being tracked by these sites (and sites that
     try to unmask you by pretending to be them), and are unconcerned about your
     local censors potentially noticing you visit them, you can enable plugins by
-    going into the Torbutton Preferences-&gt;Security Settings-&gt;Dynamic Content
-    tab and unchecking "Disable plugins during Tor usage" box. If you do this
+    going into the Torbutton Preferences-&gt;Security Settings
+    tab and unchecking "Disable browser plugins (such as Flash)" box. If you do this
     without The Amnesic Incognito Live System or appropriate firewall
     rules, we strongly suggest you at least use <a
     href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a> to <a
@@ -102,10 +64,6 @@
     href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better Privacy</a>
     in this case to help you clear your Flash cookies.
     </p>
-
-    <p><em>The Tor Browser Bundle does not work with Flash or other plugins
-    by design.  If you wish to run these plugins over Tor, you need to
-    install Tor and configure your own instance of Firefox.</em></p>
     
     <a id="oldtorbutton"></a>
     <strong><a class="anchor" href="#oldtorbutton">Torbutton sure seems to do a lot of things, some of which I find
@@ -132,18 +90,6 @@
     
     </p>
     
-    <a id="weirdstate"></a>
-    <strong><a class="anchor" href="#weirdstate">My browser is in some weird state where nothing works right!</a></strong>
-    
-    <p>
-    Try to disable Tor by clicking on the button, and then open a new window. If
-    that doesn't fix the issue, go to the preferences page and hit 'Restore
-    Defaults'. This should reset the extension and Firefox to a known good
-    configuration.  If you can manage to reproduce whatever issue gets your
-    Firefox wedged, please file details at <a
-    href="https://trac.torproject.org/projects/tor/report/14">the bug tracker</a>.
-    </p>
-    
     <a id="noautocomplete"></a>
     <strong><a class="anchor" href="#noautocomplete">When I use Tor, Firefox is no longer filling in logins/search boxes
     for me. Why?</a></strong>
@@ -162,19 +108,8 @@
     version?</a></strong>
     
     <p>
-    Torbutton used to support basic proxy switching on Thunderbird back in the 1.0
-    days, but that support has been removed because it has not been analyzed for
-    security. My developer tools page on addons.mozilla.org clearly lists Firefox
-    support only, so I don't know why they didn't delete that Thunderbird listing.
-    I am not a Thunderbird user and unfortunately, I don't have time to analyze
-    the security issues involved with toggling proxy settings in that app. It
-    likely suffers from similar (but not identical) state and proxy leak issues
-    with html mail, embedded images, javascript, plugins and automatic network
-    access. My recommendation is to create a completely separate Thunderbird
-    profile for your Tor accounts and use that instead of trying to toggle proxy
-    settings. But if you really like to roll fast and loose with your IP, you
-    could try another proxy switcher like ProxyButton, SwitchProxy or FoxyProxy
-    (if any of those happen to support thunderbird).
+    The Tor plugin for Thunderbird is called <a href="https://trac.torproject.org/projects/tor/wiki/torbirdy">
+    TorBirdy</a>.
     </p>
     
     <a id="extensionconflicts"></a>
@@ -273,7 +208,7 @@
     
     Cookie Culler is a handy extension to give quick access to the cookie manager
     in Firefox. It also provides the ability to protect certain cookies from
-    deletion, but unfortunately, this behavior does not integrate well with Torbutton. Kory Kirk is working on addressing this for this Google Summer of Code project for 2009.
+    deletion, but unfortunately, this behavior does not integrate well with Torbutton.
     
      </p>
      </li>
