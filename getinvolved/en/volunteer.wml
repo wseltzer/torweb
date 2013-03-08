@@ -660,7 +660,7 @@ meetings around the world.</li>
 
     <p>
     <b>Project Ideas:</b><br />
-    <i><a href="#stemUsability">Stem Usability Improvements</a></i>
+    <i><a href="#stemUsability">Stem Usability and Porting</a></i>
     </p>
 
     <a id="project-txtorcon"></a>
@@ -1714,7 +1714,7 @@ meetings around the world.</li>
 
     <a id="stemUsability"></a>
     <li>
-    <b>Stem Usability Improvements</b>
+    <b>Stem Usability and Porting</b>
     <br>
     Effort Level: <i>Medium</i>
     <br>
@@ -1728,7 +1728,7 @@ meetings around the world.</li>
     href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/control-spec.txt">control
     protocol</a> to help developers program against the tor process, enabling
     them to build things similar to <a href="#project-vidalia">Vidalia</a> and
-    <a href="#project-arm">arm</a>.
+    <a href="http://www.atagar.com/arm/">arm</a>.
     </p>
 
     <p>
@@ -1739,28 +1739,22 @@ meetings around the world.</li>
     </p>
 
     <p>
-    Stem is very nearly feature complete but presently has no users. We
-    want to change that prior to making our first release for a couple
-    reasons...
-    </p>
-
-    <ul>
-      <li>Make sure that we have a reasonably good API, and improve the rough
-      edges that hurt its usability.</li>
-      <li>Provide examples for how stem can be used.</li>
-    </ul>
-
-    <p>
-    This project involves several tasks...
+    Stem has largely met these goals but there's still plenty of low hanging
+    fruit in terms of usability improvements. Also, we have clients still using
+    TorCtl that need to be ported over. This project includes several subtasks,
+    see the tickets for additional context...
     </p>
 
     <ol>
-      <li>Move stem's site to Tor's website (<a href="https://trac.torproject.org/projects/tor/ticket/7324">ticket</a>)</li>
-      <li>Set up Piwik for our site (<a href="https://trac.torproject.org/projects/tor/ticket/7424">ticket</a>)</li>
-      <li>Come up with a better, more developer friendly "Module Overview" for our documentation (<a href="https://stem.torproject.org/api/control.html">example page</a>). For instance, it would be nice to provide interlinking between the overview and the classes/methods that it lists. This will probably involve asking for help from the <a href="http://sphinx-doc.org/">Sphinx user list</a>.</li>
-      <li>Finally get your hands dirty using stem. We want to expand stem's <a href="https://stem.torproject.org/tutorial.html">tutorial page</a> with more examples. To do this you'll want to both brainstorm some of your own and contact the <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-dev/">tor-dev@ email list</a> to solicit ideas. This last step is pretty open ended, so go nuts with whatever you think will improve stem's usability!</li>
+      <li>Come up with a better, more developer friendly "Module Overview" for our documentation (<a href="https://stem.torproject.org/api/control.html">example page</a>). For instance, it would be nice to provide interlinking between the overview and the classes/methods that it lists. This will probably involve asking for help from the <a href="http://sphinx-doc.org/">Sphinx user list</a>. (<a href="https://trac.torproject.org/7632">ticket</a>)</li>
+      <li>Navigation of <a href="https://stem.torproject.org">stem's site</a> is clunky, in large part due to the linear page flow supported by sphinx. One possible fix for this would be css-only menus, ideally as a sphinx plugin so we could contribute it back upstream.(<a href="https://trac.torproject.org/8431">ticket</a>)</li>
+      <li>After getting some exposure to stem it would be time to give using it a try. Tor has a couple clients (<a href="https://trac.torproject.org/8263">TorBEL</a> and <a href="https://trac.torproject.org/8264">Tor Weather</a>) that are ready to be moved to stem. Hopefully porting these will also provide us with some lessons on how we can further improve stem's API.</li>
+      <li><b>... other ideas?</b> The above are just some ideas I've come up with to improve usability and likely not enough to fill the summer. Feel free to suggest some of your own! For instance, one option would be to expand <a href="https://stem.torproject.org/tutorial.html">stem's tutorials</a> with more examples, maybe <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-dev/">contacting tor-dev@</a> to brainstorm ideas. This last bit is pretty open so I look forward to seeing what you come up with!</li>
     </ol>
-    </li>
+
+    <p>
+    <b>As part of your application for this project please write a script that does something interesting with stem.</b> Bonus points if this is something that we can <a href="https://stem.torproject.org/tutorial.html">make a tutorial</a> around!
+    </p>
 
     <!--
     <a id="tailsServer"></a>
