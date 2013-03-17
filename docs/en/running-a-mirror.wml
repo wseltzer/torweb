@@ -65,9 +65,9 @@
     configuration file to use:
     <tt>
     <pre>
-    &lt;VirtualHost 0.1.2.3:80&gt;
+    &lt;VirtualHost 10.10.10.10:80&gt;
             ServerAdmin youremail@example.com<br/>
-            ServerName  0.1.2.3<br/>
+            ServerName  ServerNameHere<br/>
 
             DocumentRoot /var/www/mirrors/torproject.org<br/>
 
@@ -86,11 +86,15 @@
     <tt>
     <pre>
     server {
-    	listen 0.1.2.3:80;
+    	listen 10.10.10.10:80;
   	server_name your.example.com;
 
   	root /var/www/mirrors/torproject.org;
 	index index.html.en;
+
+	location ^~ /dist/ {
+	  autoindex on;
+      }
     }
     </pre>
     </tt>
