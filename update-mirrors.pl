@@ -1178,6 +1178,24 @@ my %m = (
             httpsDistMirror => "",
             rsyncDistMirror => "rsync://mirrors.go-part.com/tor/dist/",
             hiddenServiceMirror => "",
+    },
+        mirror089 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "US",
+            subRegion => "",
+            region => "US",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "",
+            httpsWebsiteMirror => "",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://www.netgull.com/torproject/",
+            httpsDistMirror => "",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
     }
 );
 
