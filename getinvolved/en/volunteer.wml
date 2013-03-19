@@ -603,6 +603,7 @@ meetings around the world.</li>
     <p>
     <b>Project Ideas:</b><br />
     <i><a href="#txtorcon-stemIntegration">Txtorcon/Stem Integration</a></i><br />
+    <i><a href="#metrics-pyDoctor">PyDoctor</a></i><br />
     <i><a href="#stemUsability">Stem Usability and Porting</a></i><br />
     <i><a href="#stemTestingForTor">Stem Tests for Tor</a></i>
     </p>
@@ -655,6 +656,7 @@ meetings around the world.</li>
 
     <p>
     <b>Project Ideas:</b><br />
+    <i><a href="#metrics-pyDoctor">PyDoctor</a></i><br />
     <i><a href="#metricsSearch">Searchable Tor descriptor and Metrics data archive</a></i> (Python/Django?)
     </p>
 
@@ -840,6 +842,33 @@ meetings around the world.</li>
     </p>
 
     <ol>
+
+    <a id="metrics-pyDoctor"></a>
+    <li>
+    <b>PyDoctor</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>karsten, Damian (atagar)</i>
+    <p><a href="https://gitweb.torproject.org/doctor.git">DocTor</a>, also
+    known as the consensus-health checker, is a service that periodically
+    checks the Tor network for consensus conflicts and other hiccups.  In order
+    to do so it downloads the Tor consensus and votes from the Tor directory
+    authorities and checks them for consensus problems.  DocTor writes its
+    findings to local files which can then be sent to a <a
+    href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-consensus-health">mailing
+    list</a> or IRC bot (nsa in #tor-bots on OFTC), or which can be served by
+    an <a href="https://metrics.torproject.org/consensus-health.html">HTTP
+    server</a>.</p>
+
+    <p>This project would be about rewriting DocTor in Python and using Stem
+    for the descriptor parsing.  This would require extending Stem to download
+    consensuses and votes (and later server descriptors for Damian's
+    consensus checker), and it would require rewriting the DocTor code in
+    Python.</p>
+    </li>
 
     <a id="txtorcon-stemIntegration"></a>
     <li>
