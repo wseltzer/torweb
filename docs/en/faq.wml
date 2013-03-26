@@ -62,7 +62,7 @@ includes Tor?</a></li>
     <li><a href="#TBBPolipo">I need an HTTP proxy. Where did Polipo
     go?</a></li>
     <li><a href="#TBBOtherExtensions">Can I install other Firefox
-    extensions?</a></li>
+    extensions? Which extensions should I avoid using?</a></li>
     <li><a href="#TBBJavaScriptEnabled">Why is NoScript configured to
 allow JavaScript by default in the Tor Browser Bundle?  Isn't that
 unsafe?</a></li>
@@ -942,9 +942,42 @@ YouTube
 and other Flash-based sites?</a></h3>
 
 <p>
-<a
-href="https://www.torproject.org/torbutton/torbutton-faq.html.
-en#noflash">Answer</a>
+YouTube and similar sites require third party browser plugins such as Flash.
+Plugins operate independently from Firefox and can perform
+activity on your computer that ruins your anonymity. This includes
+but is not limited to: <a href="http://decloak.net">completely disregarding
+proxy settings</a>, querying your <a
+href="http://forums.sun.com/thread.jspa?threadID=5162138&amp;messageID=9618376">local
+IP address</a>, and <a
+href="http://epic.org/privacy/cookies/flash.html">storing their own
+cookies</a>. It is possible to use a LiveCD solution such as
+or <a href="https://tails.boum.org/">The Amnesic Incognito Live System</a> that creates a
+secure, transparent proxy to protect you from proxy bypass, however issues
+with local IP address discovery and Flash cookies still remain.  </p>
+
+<p>
+<a href="https://www.youtube.com/html5">YouTube offers experimental HTML5 video 
+support</a> for many of their videos. You can use their Advanced Search to 
+find HTML5 videos.
+</p>
+
+<p>
+If you are not concerned about being tracked by these sites (and sites that
+try to unmask you by pretending to be them), and are unconcerned about your
+local censors potentially noticing you visit them, you can enable plugins by
+going into the Torbutton Preferences -&gt; Security Settings
+tab and unchecking "Disable browser plugins (such as Flash)" box. If you do this
+without The Amnesic Incognito Live System or appropriate firewall
+rules, we strongly suggest you at least use <a
+href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a> to <a
+href="http://noscript.net/features#contentblocking">block plugins</a>. You do
+not need to use the NoScript per-domain permissions if you check the <b>Apply
+these restrictions to trusted sites too</b> option under the NoScript Plugins
+preference tab. In fact, with this setting you can even have NoScript allow
+Javascript globally, but still block all plugins until you click on their
+placeholders in a page. We also recommend <a
+href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better Privacy</a>
+in this case to help you clear your Flash cookies.
 </p>
 
 <hr>
@@ -1009,6 +1042,23 @@ privacy-invasive
 extensions (for example, pretty much anything with the word Toolbar in
 its name).
 </p>
+
+<p>
+Generally, extensions that require registration, and/or provide 
+additional information about websites you are visiting, should be 
+suspect.
+</p>
+
+<p>
+Extensions you might like include
+ <a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a> (referer spoofing),
+ <a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a>,
+ <a href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better Privacy</a>,
+ <a href="https://addons.mozilla.org/firefox/addon/1865">AdBlock Plus</a> (EasyPrivacy+EasyList),
+ <a href="https://addons.mozilla.org/firefox/addon/82">Cookie Culler</a>,
+ <a href="https://addons.mozilla.org/en-US/firefox/addon/9727/">Request Policy</a> and
+ <a href="https://addons.mozilla.org/en-US/firefox/addon/certificate-patrol/">Certificate Patrol</a>.
+</p> 
 
 <hr>
 
