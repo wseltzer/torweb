@@ -603,6 +603,11 @@ meetings around the world.</li>
     block Tor. This has both a C and python implementation.
     </p>
 
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#betterPluggableTransports">Build Better Pluggable Transports</a></i>
+    </p>
+
     <a id="project-flash-proxy"></a>
     <h3><a href="https://crypto.stanford.edu/flashproxy/">Flash Proxy</a> (<a
     href="https://gitweb.torproject.org/flashproxy.git">code</a>, <a
@@ -1267,6 +1272,61 @@ meetings around the world.</li>
     For more information see the <a
     href="http://www.cs.kau.se/philwint/censorbib/#Invernizzi2012">Message In A
     Bottle: Sailing Past Censorship</a> research paper.
+    </p>
+    </li>
+
+    <a id="betterPluggableTransports"></a>
+    <li>
+    <b>Build Better Pluggable Transports</b>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Steven (sjmurdoch)</i>
+    <p>
+    For Tor users in censored countries, we currently offer <a
+    href="https://www.torproject.org/projects/obfsproxy.html.en">obfsproxy</a>
+    bridges, which disguise Tor traffic by making it look random. This works
+    for many users, but it has disadvantages: firstly it does not disguise
+    packet size and secondly it looks like no real protocol. These weaknesses
+    may result in obfsproxy being blocked.
+    </p>
+
+    <p>
+    The goal for this project will be to implement new pluggable transports,
+    which resolve these weaknesses and so can be deployed if/when obfsproxy is
+    blocked. Ideas for doing so include:
+      <ul>
+        <li>Impersonate a voice-over-IP protocol</li>
+        <li>Impersonate HTTP sufficiently well that traffic will go through a HTTP-only proxy</li>
+        <li>Implement <a href="http://cacr.uwaterloo.ca/techreports/2011/cacr2011-21.pdf">scanning resistance</a></a>
+      </ul>
+    </p>
+
+    <a id="profileUDPTransport"></a>
+    <li>
+    <b>Profile UDP transport protocols</b>
+    <br>
+    Effort Level: <i>Medium to High</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Steven (sjmurdoch)</i>
+    <p>
+    There are <a
+    href="https://research.torproject.org/techreports/datagram-comparison-2011-11-07.pdf">lots
+    of options</a> as to how Tor could send its data over UDP rather than TCP,
+    and some will likely perform significantly better than others. This project
+    will evaluate these options, so as to decide which should be used in future
+    versions of Tor. A first step will be to benchmark the various transport
+    protocols being considered, in terms of performance and also code quality,
+    including userspace TCP, <a
+    href="https://github.com/bittorrent/libutp">&mu;TP</a>, <a
+    href="http://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol">SCTP</a>
+    and <a href="http://curvecp.org/">CurveCP</a>. Initially these transport
+    protocols will be examined in isolation, but if the project progresses well
+    one or more could be integrated in Tor.
     </p>
     </li>
 
