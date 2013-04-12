@@ -18,143 +18,147 @@
 
     <img src="$(IMGROOT)/obfsproxy_diagram.png" alt="client torrc"></a>
 
-    <p>
-    <img width="7%" height="7%" style="float: left;" src="$(IMGROOT)/icon-Obfsproxy.jpg">
-    <b> Hey! </b>
-    Are you looking for the guide on how to set up an obfuscated
-    bridge on a Debian system?
-    <a href="../projects/obfsproxy-debian-instructions.html.en">Check
-    this out</a>.
-    </p>
-    <br><br>
+      <p>
+        This is a guide for installing the Python version of obfsproxy. If
+        you still have the C version, we recommend you to upgrade to the
+        Python version!
+      </p>
 
-    <h3>Step 1: Install dependencies, obfsproxy, and Tor</h3>
+    <h3>Step 0: Install dependencies</h3>
     <br>
 
     <p>
-    You will need a C compiler (<em>gcc</em>), the <em>autoconf</em>
-    and <em>autotools</em> build system, the <em>git</em> revision
-    control system, <em>pkg-config</em> and <em>libtool</em>,
-    <em>libevent-2</em> and its headers, and the development headers of
-    <em>OpenSSL</em>.
-     </p>
+      To setup obfsproxy you will need <code>git</code>, <code>Python</code>
+      (>= 2.7), <code>Twisted</code> and some common Python modules
+      (<code>setuptools</code>, <code>argparse</code> and <code>PyCrypto</code>)
+      . If you use Debian testing (or unstable), or a version of
+      Ubuntu newer than Oneiric, this is easy:
+    <p>
+
+    <tt># apt-get install git python2.7 python-setuptools python-crypto python-twisted python-argparse</tt>
 
     <p>
-    On Debian testing or Ubuntu oneiric, you could do: <br>
-    <tt># apt-get install autoconf autotools-dev gcc git pkg-config libtool libevent-2.0-5 libevent-dev libevent-openssl-2.0-5 libssl-dev</tt>
+      You will also need a recent version of Tor (>= 0.2.4.1). We recommend you use
+      <a href="<page docs/debian>#development">Tor's experimental repositories for Debian/Ubuntu</a>
+      or
+      <a href="https://gitweb.torproject.org/tor.git">install Tor from git</a>.
     </p>
 
-    <p>
-    If you're on a more stable Linux, you can either <a
-    href="https://trac.torproject.org/projects/tor/ticket/5009#comment:9">try
-    our experimental backport libevent2 debs</a> or <a
-    href="https://trac.torproject.org/projects/tor/ticket/5009#comment:17">build
-    libevent2 from source</a>.
-    </p>
-
-    <p>
-    Clone obfsproxy from its git repository:<br>
-    <tt>$ git clone https://git.torproject.org/obfsproxy.git</tt> <br>
-
-    The above command should create and populate a directory named
-    'obfsproxy' in your current directory.
-    </p>
-
-    <p>
-    Compile obfsproxy: <br>
-    <tt>$ cd obfsproxy</tt> <br>
-    <tt>$ ./autogen.sh && ./configure && make</tt> <br>
-    </p>
-
-    <p>
-    Optionally, <strong>as root</strong> install obfsproxy in your
-    system: <br>
-    <tt># make install</tt>
-    </p>
-
-    <p>
-    If you prefer not to install obfsproxy as root, you can instead
-    just modify the Transport lines in your torrc file (explained below)
-    to point to your obfsproxy binary.
-    </p>
-
-    <p>
-    You will need Tor 0.2.3.11-alpha or later.
-    </p>
-
-    <hr>
-
-    <h3 id="client_instructions">Step 2a: If you're the client...</h3>
+    <h3>Step 1: Install pyptlib</h3>
     <br>
 
     <p>
-    First, you need to learn the address of a bridge that supports
-    obfsproxy. If you don't know any, try asking a friend to set one
-    up for you. Then the appropriate lines to your <a href="<page
-    docs/faq>#torrc">tor configuration file</a>:
+      You will also need pyptlib, a small library developed by the Tor
+      Project for writing pluggable transports.
     </p>
+
+    <tt>$ git clone https://git.torproject.org/pluggable-transports/pyptlib.git</tt><br>
+    <tt>$ cd pyptlib && python setup.py install</tt><br><br>
 
     <p>
-    <tt>UseBridges 1</tt> <br>
-    <tt>Bridge obfs2 128.31.0.34:1051</tt> <br>
-    <tt>ClientTransportPlugin obfs2 exec /usr/local/bin/obfsproxy --managed</tt>
+      You might need to run the <em>python setup.py install</em>
+      command as root. If you don't want to run it as root, you can
+      use <em>python setup.py install --user</em> which will install pyptlib
+      just for the current user.
     </p>
 
-    <p>
-    Don't forget to replace <em>128.31.0.34:1051</em> with the IP address
-    and port that the bridge's obfsproxy is listening on.
-    </p>
-
-    <p> <br>
-    <img src="$(IMGROOT)/sidenav-arrow.png">
-    <strong>Congratulations!</strong> Your traffic should now be
-    obfuscated by obfsproxy. You are done! You can now start using Tor.
-    </p>
-
-    <br> <br> <br> <br>
-
-    <hr>
-
-    <br> <br> <br> <br>
-
-    <h3 id="bridge_instructions">Step 2b: If you're the bridge...</h3>
+    <h3>Step 2: Install and test obfsproxy</h3>
     <br>
 
     <p>
-    Configure your Tor to <a href="<page docs/bridges>#RunningABridge">be
-    a bridge</a> (e.g. by setting "ORPort 9001" and "BridgeRelay 1"). Then
-    add this new line to your <a href="<page docs/faq>#torrc">tor
-    configuration file</a>:
+      Now it's time to fetch obfsproxy and test that it works:
     </p>
 
+    <tt>$ git clone https://git.torproject.org/pluggable-transports/obfsproxy.git</tt><br>
+    <tt>$ cd obfsproxy</tt><br>
+    <tt>$ python obfsproxy/test/tester.py</tt><br><br>
+
     <p>
-    <tt>ServerTransportPlugin obfs2 exec /usr/local/bin/obfsproxy --managed</tt>
+      If you got a message reporting that all tests finished successfully,
+      then obfsproxy works for you. Time to run the setup.py script so that
+      obfsproxy gets installed in your system:
     </p>
 
-    <p>
-    Launch Tor using this configuration file. You can do this by using
-    your favorite init script, or by pointing the Tor binary to the
-    torrc file:
-    <p>
+    <tt># python setup.py install</tt><br><br>
 
     <p>
-    <img src="$(IMGROOT)/obfs-spawn_tor_bridge.png" alt="spawn tor" height="117" width="879"></a>
+    You will probably want to run the setup.py script as root so that obfsproxy gets installed in /usr/local/bin.
     </p>
 
-    <p>
-    Next, find the TCP port opened by obfsproxy. Look in your log file
-    for a line similar to this one: <br>
-    <img src="$(IMGROOT)/obfs-log_checking.png" alt="bridge torrc" width="437" height="14"></a>
+    <h3>Step 3: Setup tor</h3>
     <br>
-    The last number, in this case <em>34545</em>, is the TCP port
-    number that your clients should point their obfsproxy to.
-    </p>
 
-    <p>
-    <img src="$(IMGROOT)/sidenav-arrow.png">
-    <strong>Congratulations!</strong> Tell your clients to point their
-    obfsproxy to your IP address and to port <em>34545</em>.
-    </p>
+      <p>
+        Edit your /etc/tor/torrc to add:
+      </p>
+
+      <p>
+        <tt>SocksPort 0</tt><br>
+        <tt>ORPort 443 # or some other port if you already run a webserver/skype</tt><br>
+        <tt>BridgeRelay 1</tt><br>
+        <tt>Exitpolicy reject *:*</tt><br><br>
+
+        <tt>## CHANGEME_1 -> provide a nickname for your bridge, can be anything you like</tt><br>
+        <tt>#Nickname CHANGEME_1</tt><br>
+        <tt>## CHANGEME_2 -> provide some email address so we can contact you if there's a problem</tt><br>
+        <tt>#ContactInfo CHANGEME_2</tt><br><br>
+
+        <tt>ServerTransportPlugin obfs2,obfs3 exec /usr/local/bin/obfsproxy managed</tt><br>
+      </p>
+
+      <p>
+        Don't forget to uncomment and edit the CHANGEME fields. Also,
+        if you didn't install obfsproxy as root, you might have to
+        change its path.
+      </p>
+
+      <h3>Step 4: Launch Tor and verify that it bootstraps</h3>
+      <br>
+
+      <p>
+        Restart Tor to use the new configuration file. (Preface with sudo if
+        needed.)
+      </p>
+
+      <tt># service tor restart</tt><br><br>
+
+      <p>
+        Now check /var/log/tor/log and you should see something like this:
+      </p>
+
+      <tt>Nov 05 16:40:45.000 [notice] We now have enough directory information to build circuits.</tt><br>
+      <tt>Nov 05 16:40:45.000 [notice] Bootstrapped 80%: Connecting to the Tor network.</tt><br>
+      <tt>Nov 05 16:40:46.000 [notice] Bootstrapped 85%: Finishing handshake with first hop.</tt><br>
+      <tt>Nov 05 16:40:46.000 [notice] Bootstrapped 90%: Establishing a Tor circuit.</tt><br>
+      <tt>Nov 05 16:40:48.000 [notice] Tor has successfully opened a circuit. Looks like client functionality is working.</tt><br>
+      <tt>Nov 05 16:40:48.000 [notice] Bootstrapped 100%: Done.</tt><br><br>
+
+      <p>
+        If Tor is earlier in the bootstrapping phase, wait until it gets to 100%.
+      </p>
+
+      <h2>Step 5: Set up port forwarding if needed</h2>
+      <br>
+
+      <p>
+        If you're behind a NAT/firewall, you'll need to make your bridge
+        reachable from the outside world — both on the ORPort and the
+        obfsproxy port. The ORPort is whatever you defined in step two
+        above. To find your obfsproxy port, check your Tor logs for two
+        lines similar to these:
+      </p>
+
+      <tt>Oct 05 20:00:41.000 [notice] Registered server transport 'obfs2' at '0.0.0.0:26821</tt><br>
+      <tt>Oct 05 20:00:42.000 [notice] Registered server transport 'obfs3' at '0.0.0.0:40172</tt><br><br>
+
+      <p>
+        The last number in each line, in this case 26821 and 40172, are the
+        TCP port numbers that you need to forward through your
+        firewall. (This port is randomly chosen the first time Tor starts,
+        but Tor will cache and reuse the same number in future runs.) If you
+        want to change the number, use Tor 0.2.4.7-alpha or later, and set
+        "ServerTransportListenAddr obfs2 0.0.0.0:26821" in your torrc.
+      </p>
 
     <br>
 
