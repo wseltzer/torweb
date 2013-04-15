@@ -24,18 +24,20 @@
         Python version!
       </p>
 
-    <h3>Step 0: Install dependencies</h3>
+    <h3>Step 0: Install Python</h3>
     <br>
 
     <p>
-      To setup obfsproxy you will need <code>git</code>, <code>Python</code>
-      (>= 2.7), <code>Twisted</code> and some common Python modules
-      (<code>setuptools</code>, <code>argparse</code> and <code>PyCrypto</code>)
-      . If you use Debian testing (or unstable), or a version of
-      Ubuntu newer than Oneiric, this is easy:
+      To setup obfsproxy you will need <code>Python</code> (>= 2.7),
+      and <code>pip</code>. If you use Debian testing (or unstable),
+      or a version of Ubuntu newer than Oneiric, this is easy:
     <p>
 
-    <tt># apt-get install git python2.7 python-setuptools python-crypto python-twisted python-argparse</tt>
+    <tt># apt-get install python2.7 python-pip</tt>
+
+
+    <h3>Step 1: Install Tor</h3>
+    <br>
 
     <p>
       You will also need a recent version of Tor (>= 0.2.4.1). We recommend you use
@@ -44,53 +46,32 @@
       <a href="https://gitweb.torproject.org/tor.git">install Tor from git</a>.
     </p>
 
-    <h3>Step 1: Install pyptlib</h3>
+    <p>
+    You need Tor 0.2.4.x because it knows how to automatically report
+    your obfsproxy address to BridgeDB.
+    </p>
+
+    <h3>Step 2: Install obfsproxy</h3>
     <br>
 
     <p>
-      You will also need pyptlib, a small library developed by the Tor
-      Project for writing pluggable transports.
+      If you have <code>pip</code>, installing <code>obfsproxy</code>
+      and its dependencies should be a matter of a single command:
     </p>
 
-    <tt>$ git clone https://git.torproject.org/pluggable-transports/pyptlib.git</tt><br>
-    <tt>$ cd pyptlib && python setup.py install</tt><br><br>
+    <tt># pip install obfsproxy</tt><br><br>
 
     <p>
-      You might need to run the <em>python setup.py install</em>
-      command as root. If you don't want to run it as root, you can
-      use <em>python setup.py install --user</em> which will install pyptlib
-      just for the current user.
-    </p>
-
-    <h3>Step 2: Install and test obfsproxy</h3>
-    <br>
-
-    <p>
-      Now it's time to fetch obfsproxy and test that it works:
-    </p>
-
-    <tt>$ git clone https://git.torproject.org/pluggable-transports/obfsproxy.git</tt><br>
-    <tt>$ cd obfsproxy</tt><br>
-    <tt>$ python obfsproxy/test/tester.py</tt><br><br>
-
-    <p>
-      If you got a message reporting that all tests finished successfully,
-      then obfsproxy works for you. Time to run the setup.py script so that
-      obfsproxy gets installed in your system:
-    </p>
-
-    <tt># python setup.py install</tt><br><br>
-
-    <p>
-    You will probably want to run the setup.py script as root so that obfsproxy gets installed in /usr/local/bin.
+    You will probably want to run the <em>pip install</em> command as
+    root so that obfsproxy gets installed to /usr/local/bin.
     </p>
 
     <h3>Step 3: Setup tor</h3>
     <br>
 
-      <p>
-        Edit your /etc/tor/torrc to add:
-      </p>
+    <p>
+      Now setup Tor.  Edit your /etc/tor/torrc to add:
+    </p>
 
       <p>
         <tt>SocksPort 0</tt><br>
