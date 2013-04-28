@@ -1214,6 +1214,24 @@ my %m = (
             httpsDistMirror => "https://torproject.guilhem.org/dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },
+        mirror091 => {
+            adminContact => "",
+            orgName => "",
+            isoCC => "MX",
+            subRegion => "",
+            region => "MX",
+            ipv4 => "True",
+            ipv6 => "False",
+            loadBalanced => "No",
+            httpWebsiteMirror => "http://fbnaia.homelinux.net/torproject/",
+            httpsWebsiteMirror => "https://fbnaia.homelinux.net/torproject/",
+            rsyncWebsiteMirror => "",
+            ftpWebsiteMirror => "",
+            httpDistMirror => "http://fbnaia.homelinux.net/torproject/dist/",
+            httpsDistMirror => "https://fbnaia.homelinux.net/torproject//dist/",
+            rsyncDistMirror => "",
+            hiddenServiceMirror => "",
     }
 );
 
