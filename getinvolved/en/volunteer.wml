@@ -1343,6 +1343,125 @@ meetings around the world.</li>
     </p>
     </li>
 
+    <a id="reportingBuggyRulesets"></a>
+    <li>
+    <b>Automated Reporting of Buggy Rulesets</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Peter Eckersley (pde), Seth Schoen</i>
+    <p>
+When users manually disable an HTTPS Everywhere ruleset via the toolbar menu,
+that's a strong hint that that ruleset might be buggy.  If we could obtain
+statistics about which rulesets are manually disabled by the users of which
+HTTPS E versions, we could get a statistical picture of which rulesets need
+the most urgent debugging and/or disablement.  This would enormously improve
+the quality of the HTTPS Everywhere user experience.
+    </p>
+
+    <p>
+HTTPS Everywhere already includes a pipeline for anonymised user submissions
+(via Tor where available) that is used for the Decentralized SSL Observatory.
+We should do a popup that asks the users to submit anonymous reports of
+disabled rules, when they manually disable one for the first time.
+    </p>
+
+    <p>
+Perhaps this feature could optionally let users submit the URL of the page
+they were looking at when the bug occurred, although we would need to take
+care in handling those, and perhaps implement some countermeasures against
+sending passwords or auth tokens when URLs contain those.
+    </p>
+    </li>
+
+    <a id="httpsEverywhereForFirefoxModile"></a>
+    <li>
+    <b>Port HTTPS Everywhere to Firefox Mobile</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Peter Eckersley (pde), Seth Schoen</i>
+    <p>
+In the past a Firefox Mobile port of HTTPS Everywhere was made impractically
+complicated by the Electrolysis threading architecture used in that variant of
+Firefox (<a href="https://trac.torproject.org/projects/tor/ticket/2471">ticket</a>).  However with
+the implementation of the simple NSIHTTPChannel.redirectTo() API in Firefox
+20+ (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=765934">ticket</a>) we are probably very
+close to having a trivial port of HTTPS Everywhere to Firefox on Android.
+    </p>
+
+    <p>
+This would make a great GSOC project for someone who'd like to learn some
+introductory skills with hacking on the internals of real web browsers!
+    </p>
+    </li>
+
+    <a id="httpsEverywhereMixedContentHandling"></a>
+    <li>
+    <b>HTTPS Everywhere mixed content detection and handling</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Peter Eckersley (pde), Seth Schoen</i>
+    <p>
+Since version 20, Chrome has automatically blocked the loading of insecure
+HTTP scripts and CSS in HTTPS pages.  Firefox version 23 will do the same.
+This is good security practice, but it causes havoc with many sites where
+HTTPS Everywhere can secure some, but not all, of the site's content.
+    </p>
+
+    <p>
+Before Firefox 23 launches, we will need a more coherent plan for detecting
+sites where we are causing these mixed content situations, and either
+disabling or working around the limitation.  Failure to do so will mean that
+HTTPS Everywhere user experience worsens dramatically when Firefox 23 is
+released.  Success will mean a dramatic improvement in user experience with
+HTTPS Everywhere for Chrome.
+    </p>
+
+    <b>Critical-path tickets:</b>
+
+    <ul>
+      <li><a href="https://trac.torproject.org/projects/tor/ticket/6975">6975</a></li>
+      <li><a href="https://trac.torproject.org/projects/tor/ticket/8664">8664</a></li>
+      <li><a href="https://trac.torproject.org/projects/tor/ticket/8776">8776</a></li>
+    </ul>
+
+    <b>Related tickets:</b>
+
+    <ul>
+      <li><a href="https://trac.torproject.org/projects/tor/ticket/3777">3777</a></li>
+      <li><a href="https://trac.torproject.org/projects/tor/ticket/6977">6977</a></li>
+    </ul>
+    </li>
+
+    <a id="httpsEverywhereRulesetTesting"></a>
+    <li>
+    <b>Incorporate Ruleset Testing into the HTTPS Everywhere release process</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Peter Eckersley (pde), Seth Schoen</i>
+    <p>
+Ondrej Mikle has implemented a codebase for testing HTTPS Everywhere rulesets
+by crawling pages that are affected by the ruleset (<a href="https://github.com/hiviah/https-everywhere-checker">repository</a>).
+    </p>
+
+    <p>
+This codebase still has some rough edges that need to be smoothed over, but
+once those are done it should be incorporated into the HTTPS Everywhere build
+process, in order to improve the quality of our releases.
+    </p>
+    </li>
+
     <li>
     <b>Bring up new ideas!</b>
     <br>
