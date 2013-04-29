@@ -1168,7 +1168,7 @@ meetings around the world.</li>
 
     <ol>
       <li>Determine what kind of tests we need. <b>This should be done during the application phase</b> by <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-dev/">contacting tor-dev@</a>. Hopefully this will give us an idea of what would be the most useful kind of tests of this nature for Tor development.</li>
-      <li>To be useful our integration tests need to continually run against the present tip of Tor's codebase. To do this we'll want to (1) fetch and compile the latest version of Tor, (2) run our integration tests against it, (3) compose the results as an html formatted email, and send it to a list. (<a href="https://trac.torproject.org/8261">ticket</a>)</li>
+      <li>Our <a href="https://jenkins.torproject.org/job/stem-tor-ci/">automated testing environment</a> presently sends the test output when they fail. We should think about having our tests optionally provide html formatted results (maybe this is something a testing framework can already provide?).</li>
       <li>Implement the new suite of integration tests for Tor. This will likely include expanding Tor to support better testability. One useful candidate, for instance, would be a controller method to fetch our own descriptor. This would let us easily test various configurations to see if they provide valid descriptor content.</li>
     </ol>
 
