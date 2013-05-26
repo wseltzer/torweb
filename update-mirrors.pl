@@ -99,8 +99,7 @@ my %m = (
             httpDistMirror => "http://www.torproject.org.nyud.net/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
+            hiddenServiceMirror => ""
         },
 
         mirror001 => {
@@ -119,8 +118,7 @@ my %m = (
             httpDistMirror => "http://www.oignon.net/dist/",
             httpsDistMirror => "https://www.oignon.net/dist/",
             rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
+            hiddenServiceMirror => ""
         },
 
        mirror003 => {
@@ -138,8 +136,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.blingblingsquad.net/dist/",
             httpsDistMirror => "https://tor.blingblingsquad.net/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
+            rsyncDistMirror => ""
         },
 
 	    mirror006 => {
@@ -158,8 +155,7 @@ my %m = (
             httpDistMirror => "http://www.torproject.us/dist/",
             httpsDistMirror => "https://www.torproject.us/dist/",
             rsyncDistMirror => "rsync://rsync.torproject.us/tor/dist",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
+            hiddenServiceMirror => ""
         },
 
        mirror007 => {
@@ -175,8 +171,7 @@ my %m = (
             ftpWebsiteMirror => "",
             rsyncWebsiteMirror => "",
             httpDistMirror => "http://tor.idnr.ws/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
+            rsyncDistMirror => ""
         },
 
        mirror008 => {
@@ -192,8 +187,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.amorphis.eu/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
+            rsyncDistMirror => ""
         },
        mirror010 => {
             adminContact => "webmaster AT ccc DOT de",
@@ -208,8 +202,7 @@ my %m = (
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.ccc.de/dist/",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
+            rsyncDistMirror => ""
         },
 
        mirror013 => {
@@ -227,8 +220,7 @@ my %m = (
             ftpWebsiteMirror => "",
             httpDistMirror => "http://theonionrouter.com/dist/",
             httpsDistMirror => "",
-            rsyncDistMirror => "",
-            updateDate => "Unknown",
+            rsyncDistMirror => ""
         },
     mirror014 => {
         adminContact => "tormaster AT xpdm DOT us",
@@ -246,10 +238,9 @@ my %m = (
         httpDistMirror => "http://torproj.xpdm.us/dist/",
         httpsDistMirror => "https://torproj.xpdm.us/dist/",
         rsyncDistMirror => "",
-        hiddenServiceMirror => "http://h3prhz46uktgm4tt.onion/",
-        updateDate => "Unknown",
+        hiddenServiceMirror => "http://h3prhz46uktgm4tt.onion/"
         },
-        mirror016 => {
+     mirror016 => {
             adminContact => "security AT hostoffice DOT hu",
             orgName => "Unknown",
             isoCC => "HU",
@@ -265,11 +256,9 @@ my %m = (
             httpDistMirror => "http://mirror.tor.hu/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
+            hiddenServiceMirror => ""
         },
-
-	    mirror018 => {
+   mirror018 => {
             adminContact => "",
             orgName => "chaos darmstadt",
             isoCC => "DE",
@@ -285,8 +274,7 @@ my %m = (
             httpDistMirror => "http://mirrors.chaos-darmstadt.de/tor-mirror/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
+            hiddenServiceMirror => ""
         },
 
 	mirror019 => {
@@ -305,8 +293,7 @@ my %m = (
             httpDistMirror => "http://tor.askapache.com/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
+            hiddenServiceMirror => ""
         },
 
 	mirror020 => {
@@ -325,8 +312,7 @@ my %m = (
             httpDistMirror => "http://tor.beme-it.de/dist/",
             httpsDistMirror => "https://tor.beme-it.de/dist/",
             rsyncDistMirror => "rsync://tor.beme-it.de/tor/dist",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
+            hiddenServiceMirror => ""
         },
 
         mirror021 => {
@@ -345,8 +331,7 @@ my %m = (
             httpDistMirror => "http://www.torproject.org.in/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-            updateDate => "Unknown",
+            hiddenServiceMirror => ""
         },
 
         mirror024 => {
@@ -365,7 +350,7 @@ my %m = (
             httpDistMirror => "http://tor.homosu.net/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
-            hiddenServiceMirror => "",
+            hiddenServiceMirror => ""
         },
 
         mirror025 => {
@@ -384,7 +369,7 @@ my %m = (
             httpDistMirror => "http://cyberside.net.ee/tor/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
-            hiddenServiceMirror => "",
+            hiddenServiceMirror => ""
         },
 
         mirror028 => {
@@ -527,42 +512,6 @@ my %m = (
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.vesta.nu/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-      },
-        mirror040 => {
-            adminContact => "",
-            orgName => "",
-            isoCC => "DE",
-            subRegion => "",
-            region => "DE",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.freie-re.de/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.freie-re.de/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-      },
-        mirror041 => {
-            adminContact => "",
-            orgName => "Host4site",
-            isoCC => "IL",
-            subRegion => "",
-            region => "IL",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://mirror.host4site.co.il/torproject.org/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://mirror.host4site.co.il/torproject.org/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
@@ -729,42 +678,6 @@ my %m = (
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
         },
-        mirror056 => {
-            adminContact => "",
-            orgName => "",
-            isoCC => "IT",
-            subRegion => "",
-            region => "IT",
-            ipv4 => "True",
-            ipv6 => "True",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://torproject.jcsh.it/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://torproject.jcsh.it/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
-        mirror057 => {
-            adminContact => "",
-            orgName => "5ª Coluna",
-            isoCC => "PT",
-            subRegion => "",
-            region => "PT",
-            ipv4 => "True",
-            ipv6 => "True",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://torproject.pt/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://torproject.pt/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
         mirror058 => {
             adminContact => "",
             orgName => "",
@@ -779,24 +692,6 @@ my %m = (
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.loritsu.com/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-        },
-        mirror059 => {
-            adminContact => "",
-            orgName => "",
-            isoCC => "US",
-            subRegion => "",
-            region => "US",
-            ipv4 => "True",
-            ipv6 => "True",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tor.onthegetgo.com/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tor.onthegetgo.com/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
@@ -905,24 +800,6 @@ my %m = (
             rsyncWebsiteMirror => "",
             ftpWebsiteMirror => "",
             httpDistMirror => "http://tor.mirror.chekanov.net/dist/",
-            httpsDistMirror => "",
-            rsyncDistMirror => "",
-            hiddenServiceMirror => "",
-     },
-        mirror071 => {
-            adminContact => "",
-            orgName => "Quintex",
-            isoCC => "US",
-            subRegion => "",
-            region => "US",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://tormirror.quintex.com/",
-            httpsWebsiteMirror => "",
-            rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://tormirror.quintex.com/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
@@ -1173,7 +1050,7 @@ my %m = (
             httpWebsiteMirror => "",
             httpsWebsiteMirror => "",
             rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "ftp://mirrors.go-part.com/tor/dist/",
+            ftpWebsiteMirror => "",
             httpDistMirror => "http://mirrors.go-part.com/tor/dist/",
             httpsDistMirror => "",
             rsyncDistMirror => "rsync://mirrors.go-part.com/tor/dist/",
