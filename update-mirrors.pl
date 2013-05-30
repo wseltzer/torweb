@@ -41,7 +41,7 @@ sub sanitize {
 sub FetchDate {
     my $url = shift; # Base url for mirror
     my $trace = "project/trace/www-master.torproject.org"; # this file should always exist
-    $url = "$url$trace";
+    $url = "$url*/*$trace";
 
     print "Fetching possible date from: $url\n";
 
@@ -1168,7 +1168,7 @@ foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys 
      if ( "$m{$server}{'updateDate'}" ne "Unknown") {
 	  if ( $m{$server}{'updateDate'} > $tortime ) {
 	    $time = "Up to date";
-	  } else { $time = "Out of date"; }
+	  } else { $time = "DO NOT USE. Out of date."; }
      } else { $time = "Unknown"; }
 print OUT <<"END";
      \n<tr>\n
@@ -1184,7 +1184,7 @@ END
                         rsyncWebsiteMirror => "rsync",
                         httpDistMirror => "http",
                         httpsDistMirror => "https",
-                        rsyncDistMirrors => "rsync", );
+                        rsyncDistMirror => "rsync", );
 
      foreach my $precious ( sort keys %prettyNames )
      {
