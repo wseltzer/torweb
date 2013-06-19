@@ -1109,6 +1109,42 @@ my %m = (
             httpsDistMirror => "https://fbnaia.homelinux.net/torproject//dist/",
             rsyncDistMirror => "",
             hiddenServiceMirror => "",
+    },
+	mirror092 => {
+	    adminContact => "hackthissite.org",
+	    orgName => "HackThisSite.org",
+	    isoCC => "US",
+	    subRegion => "",
+	    region => "US",
+	    ipv4 => "True",
+	    ipv6 => "True",
+	    loadBalanced => "No",
+	    httpWebsiteMirror => "http://tor.hackthissite.org/",
+	    httpsWebsiteMirror => "https://tor.hackthissite.org/",
+	    rsyncWebsiteMirror => "",
+	    ftpWebsiteMirror => "",
+	    httpDistMirror => "http://mirror.hackthissite.org/tor",
+	    httpsDistMirror => "https://mirror.hackthissite.org/tor",
+	    rsyncDistMirror => "",
+	    hiddenServiceMirror => ""
+    },
+	mirror093 => {
+	adminContact => "http://sebastian.pfeifer.or.at/",
+	orgName => "TechAsk.IT",
+	isoCC => "AT",
+	subRegion => "Favoriten",
+	region => "Wien",
+	ipv4 => "True",
+	ipv6 => "True",
+	loadBalanced => "No",
+	httpWebsiteMirror => "http://www.unicorncloud.org/public/torproject.org/",
+	httpsWebsiteMirror => "https://www.unicorncloud.org/public/torproject.org/",
+	rsyncWebsiteMirror => "",
+	ftpWebsiteMirror => "",
+	httpDistMirror => "http://www.unicorncloud.org/public/torproject.org/dist",
+	httpsDistMirror => "https://www.unicorncloud.org/public/torproject.org/dist",
+	rsyncDistMirror => "",
+	hiddenServiceMirror => ""
     }
 );
 
