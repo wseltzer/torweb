@@ -1163,6 +1163,24 @@ my %m = (
 	httpsDistMirror => "",
 	rsyncDistMirror => "",
 	hiddenServiceMirror => ""
+    },
+      mirror095 => {
+	adminContact => "mirror-admin@linsrv.net",
+	orgName => "linsrv",
+	isoCC => "FR",
+	subRegion => "France",
+	region => "Europe",
+	ipv4 => "True",
+	ipv6 => "False",
+	loadBalanced => "No",
+	httpWebsiteMirror => "http://mirrors.linsrv.net/torproject/",
+	httpsWebsiteMirror => "",
+	rsyncWebsiteMirror => "mirrors.linsrv.net::pub/torproject",
+	ftpWebsiteMirror => "ftp://ftp.linsrv.net/pub/torproject/",
+	httpDistMirror => "http://mirrors.linsrv.net/torproject/dist/",
+	httpsDistMirror => "",
+	rsyncDistMirror => "mirrors.linsrv.net::pub/torproject/dist",
+	hiddenServiceMirror => ""
     }
 );
 
