@@ -1165,7 +1165,7 @@ my %m = (
 	hiddenServiceMirror => ""
     },
       mirror095 => {
-	adminContact => "mirror-admin@linsrv.net",
+	adminContact => "mirror-admin\@linsrv.net",
 	orgName => "linsrv",
 	isoCC => "FR",
 	subRegion => "France",
