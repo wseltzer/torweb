@@ -1181,6 +1181,24 @@ my %m = (
 	httpsDistMirror => "",
 	rsyncDistMirror => "mirrors.linsrv.net::pub/torproject/dist",
 	hiddenServiceMirror => ""
+    },
+      mirror096 => {
+	adminContact => "webmaster AT bbln DOT nl",
+	orgName => "BBLN.nl",
+	isoCC => "NL",
+	subRegion => "The Netherlands",
+	region => "Europe",
+	ipv4 => "True",
+	ipv6 => "True",
+	loadBalanced => "No",
+	httpWebsiteMirror => "http://mirror.bbln.nl/tor/",
+	httpsWebsiteMirror => "",
+	rsyncWebsiteMirror => "",
+	ftpWebsiteMirror => "",
+	httpDistMirror => "http://mirror.bbln.nl/tor/dist/",
+	httpsDistMirror => "",
+	rsyncDistMirror => "",
+	hiddenServiceMirror => ""
     }
 );
 
