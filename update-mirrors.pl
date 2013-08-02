@@ -1050,10 +1050,10 @@ my %m = (
             httpWebsiteMirror => "",
             httpsWebsiteMirror => "",
             rsyncWebsiteMirror => "",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://mirrors.go-part.com/tor/dist/",
+            ftpWebsiteMirror => "ftp://mirrors.go-parts.com/tor/",
+            httpDistMirror => "http://mirrors.go-parts.com/tor/dist/",
             httpsDistMirror => "",
-            rsyncDistMirror => "rsync://mirrors.go-part.com/tor/dist/",
+            rsyncDistMirror => "rsync://mirrors.go-parts.com/mirrors/tor/",
             hiddenServiceMirror => "",
     },
         mirror089 => {
