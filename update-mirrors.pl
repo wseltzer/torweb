@@ -1199,6 +1199,24 @@ my %m = (
 	httpsDistMirror => "",
 	rsyncDistMirror => "",
 	hiddenServiceMirror => ""
+    },
+      mirror097 => {
+	adminContact => "marz.michael at gmail.com",
+	orgName => "",
+	isoCC => "DE",
+	subRegion => "",
+	region => "",
+	ipv4 => "True",
+	ipv6 => "False",
+	loadBalanced => "No",
+	httpWebsiteMirror => "http://tor.taskserver.de/",
+	httpsWebsiteMirror => "",
+	rsyncWebsiteMirror => "",
+	ftpWebsiteMirror => "",
+	httpDistMirror => "",
+	httpsDistMirror => "",
+	rsyncDistMirror => "",
+	hiddenServiceMirror => ""
     }
 );
 
