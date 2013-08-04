@@ -1217,6 +1217,24 @@ my %m = (
 	httpsDistMirror => "",
 	rsyncDistMirror => "",
 	hiddenServiceMirror => ""
+    },
+      mirror098 => {
+	adminContact => "",
+	orgName => "",
+	isoCC => "FR",
+	subRegion => "",
+	region => "",
+	ipv4 => "True",
+	ipv6 => "False",
+	loadBalanced => "No",
+	httpWebsiteMirror => "http://37.187.0.127/tormirror/",
+	httpsWebsiteMirror => "",
+	rsyncWebsiteMirror => "",
+	ftpWebsiteMirror => "",
+	httpDistMirror => "http://37.187.0.127/tormirror/dist/",
+	httpsDistMirror => "",
+	rsyncDistMirror => "",
+	hiddenServiceMirror => ""
     }
 );
 
