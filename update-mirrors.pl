@@ -1235,7 +1235,26 @@ my %m = (
 	httpsDistMirror => "",
 	rsyncDistMirror => "",
 	hiddenServiceMirror => ""
+    },
+      mirror099 => {
+	adminContact => "paul at coffswifi.net",
+	orgName => "CoffsWiFi",
+	isoCC => "AU",
+	subRegion => "Australia and New Zealand",
+	region => "APNIC",
+	ipv4 => "True",
+	ipv6 => "False",
+	loadBalanced => "No",
+	httpWebsiteMirror => "http://torproject.coffswifi.net",
+	httpsWebsiteMirror => "",
+	rsyncWebsiteMirror => "",
+	ftpWebsiteMirror => "",
+	httpDistMirror => "http://torproject.coffswifi.net/dist",
+	httpsDistMirror => "",
+	rsyncDistMirror => "",
+	hiddenServiceMirror => ""
     }
+
 );
 
 my $count = values %m;
