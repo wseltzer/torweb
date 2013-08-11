@@ -66,8 +66,6 @@ includes Tor?</a></li>
     <li><a href="#TBBJavaScriptEnabled">Why is NoScript configured to
 allow JavaScript by default in the Tor Browser Bundle?  Isn't that
 unsafe?</a></li>
-    <li><a href="#TBBCanIBlockJS">I'm an expert!  (No, really!)  Can I
-configure NoScript to block JavaScript by default?</a></li>
     <li><a href="#TBBOtherBrowser">I want to use Chrome/IE/Opera/etc
     with Tor.</a></li>
     <li><a href="#TBBCloseBrowser">I want to leave Tor Browser Bundle
@@ -1038,6 +1036,7 @@ Extensions you might like include
 <hr>
 
 <a id="TBBJavaScriptEnabled"></a>
+<a id="TBBCanIBlockJS"></a>
 <h3><a class="anchor" href="#TBBJavaScriptEnabled">Why is NoScript
 configured to allow JavaScript by default in the Tor Browser Bundle?
 Isn't that unsafe?</a></h3>
@@ -1051,26 +1050,35 @@ how to allow a website to use JavaScript (or that enabling
 JavaScript might make a website work).
 </p>
 
-<hr>
-
-<a id="TBBCanIBlockJS"></a>
-<h3><a class="anchor" href="#CanIBlockJS">I'm an expert!  (No, really!)
-Can I configure NoScript to block JavaScript by default?</a></h3>
-
 <p>
-You can configure your copies of Tor Browser Bundle however you want
-to.  However, we recommend that even users who know how to use
-NoScript leave JavaScript enabled if possible, because a website or
-exit node can easily distinguish users who disable JavaScript from
-users who use Tor Browser bundle with its default settings (thus
-users who disable JavaScript are less anonymous).
+There's a tradeoff here. On the one hand, we should leave
+JavaScript enabled by default so websites work the way
+users expect. On the other hand, we should disable JavaScript
+by default to better protect against browser vulnerabilities (<a
+href="https://blog.torproject.org/blog/tor-security-advisory-old-tor-browser-bundles-vulnerable">not
+just a theoretical concern!</a>). But there's a third issue: websites
+can easily determine whether you have allowed JavaScript for them,
+and if you disable JavaScript by default but then allow a few websites
+to run scripts (the way most people use NoScript), then your choice of
+whitelisted websites acts as a sort of cookie that makes you recognizable
+(and distinguishable), thus harming your anonymity.
 </p>
 
 <p>
-Disabling JavaScript by default, then allowing a few websites to run
-scripts, is especially bad for your anonymity: the set of websites
-which you allow to run scripts is very likely to <em>uniquely</em>
-identify your browser.
+Ultimately, we want the default Tor bundles to use
+a combination of firewalls (like the iptables rules
+in <a href="https://tails.boum.org/">Tails</a>) and <a
+href="https://trac.torproject.org/projects/tor/ticket/7680">sandboxes</a>
+to make JavaScript not so scary. In
+the shorter term, TBB 3.0 will hopefully <a
+href="https://trac.torproject.org/projects/tor/ticket/9387">allow users
+to choose their JavaScript settings more easily</a> &mdash; but the
+partitioning concern will remain.
+</p>
+
+<p>
+Until we get there, feel free to leave JavaScript on or off depending
+on your security, anonymity, and usability priorities.
 </p>
 
 <hr>
