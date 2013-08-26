@@ -1,0 +1,204 @@
+## translation metadata
+# Revision: $Revision: 23065 $
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor: Mac OS X Install Instructions" CHARSET="UTF-8"
+
+<div class="center">
+
+<div class="main-column">
+
+<h1>Running the <a href="<page index>">Tor</a> client on Mac OS X</h1>
+<br />
+
+<p>
+<b>Note that these are the installation instructions for running a Tor client on
+  Mac OS X. If you want to relay traffic for others to help the network
+  grow (please do), read the <a
+  href="<page docs/tor-doc-relay>">Configuring a relay</a> guide.</b>
+</p>
+
+<hr />
+<a id="installing"></a>
+<h2><a class="anchor" href="#installing">Step One: Download and Install Tor</a></h2>
+<br />
+
+<p>
+The install for Macintosh OS X bundles
+<a href="<page index>">Tor</a>,
+<a href="<page vidalia/index>">Vidalia</a> (a graphical interface for Tor),
+<a href="<page torbutton/index>">Torbutton</a>,
+and <a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (a web proxy)
+into one package, with the four applications pre-configured to work
+together.
+Download either the <a href="../<package-osx-bundle-stable>">stable</a>
+or the <a href="../<package-osx-bundle-alpha>">experimental</a> version
+of the OS X bundle for Intel, or look for more options on the <a href="<page
+download>">download page</a>.
+</p>
+
+<p>Once you've downloaded the dmg, double-click and let it mount.
+Browse to the now open Vidalia Bundle in Finder.  It's easy to install the bundle; simply drag and drop the Vidalia
+onion icon to the Applications folder.  Optionally, double click the
+"install torbutton" script and let it install torbutton into Firefox.
+You can also get Torbutton from Mozilla Add-ons by searching for
+"torbutton".</p>
+
+<p>When you are finished installing, you can start Vidalia by selecting its icon
+from your Applications folder. A dark onion with a red X in your dock means
+Tor is not currently running. You can start Tor by selecting Start from the
+"Tor" menu at the top of your screen.
+</p>
+
+<p>When Tor is running, Vidalia's dock icon will look like the following:
+</p>
+
+<p><img alt="vidalia running tor"
+src="../img/screenshot-osx-vidalia.png"
+border="1"/></p>
+
+<p>Polipo is installed as part of the Tor bundle package
+installer. Once it is installed, it will start automatically when your
+computer is restarted.
+You do not need to configure Polipo to use Tor &mdash; a custom Polipo 
+configuration for Tor has been installed as part of the installer package.
+</p>
+
+<hr />
+<a id="using"></a>
+<h2><a class="anchor" href="#using">Step Two: Configure your applications to use Tor</a></h2>
+<br />
+
+<p>After installing, you need to configure your
+applications to use them. The first step is to set up web browsing.</p>
+
+<p>You should use Tor with Firefox and Torbutton, for best safety.
+Torbutton was installed for you.  Click on the red "Tor Disabled" toggle button to
+turn Tor on, and you're all set: </p>
+
+<p><img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png"
+border="1"/></p>
+
+<p>
+If you plan to run Firefox on a different computer than Tor, see the <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">FAQ
+entry for running Tor on a different computer</a>.
+</p>
+
+<p>To Torify other applications that support HTTP proxies, just
+point them at Polipo (that is, localhost port 8118). To use SOCKS
+directly (for instant messaging, Jabber, IRC, etc), you can point
+your application directly at Tor (localhost port 9050), but see <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">this
+FAQ entry</a> for why this may be dangerous. For applications
+that support neither SOCKS nor HTTP, take a look at <a
+href="http://www.taiyo.co.jp/~gotoh/ssh/connect.html">connect</a> or
+<a href="http://www.dest-unreach.org/socat/">socat</a>.</p>
+
+<p>For information on how to Torify other applications, check out the
+<a href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+HOWTO</a>.
+</p>
+
+<hr />
+<a id="verify"></a>
+<h2><a class="anchor" href="#verify">Step Three: Make sure it's working</a></h2>
+<br />
+
+<p>
+Next, you should try using your browser with Tor and make
+sure that your IP address is being anonymized. Click on
+<a href="https://check.torproject.org/">the
+Tor detector</a>
+and see whether it thinks you're using Tor or not.
+(If that site is down, see <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">this
+FAQ entry</a> for more suggestions on how to test your Tor.)
+</p>
+
+<p>If you have a personal firewall that limits your computer's
+ability to connect to itself, be sure to allow connections from
+your local applications to local port 8118 and port 9050. If
+your firewall blocks outgoing connections, punch a hole so
+it can connect to at least TCP ports 80 and 443, and then see <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">this
+FAQ entry</a>.
+</p>
+
+<p>If it's still not working, look at <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">this
+FAQ entry</a> for hints.</p>
+
+<p>
+Once it's working, learn more about
+<a href="<page download>#Warning">what Tor does and does not offer</a>.
+</p>
+
+<hr />
+<a id="server"></a>
+<a id="relay"></a>
+<h2><a class="anchor" href="#relay">Step Four: Configure it as a relay</a></h2>
+<br />
+
+<p>The Tor network relies on volunteers to donate bandwidth. The more
+people who run relays, the faster the Tor network will be. If you have
+at least 20 kilobytes/s each way, please help out Tor by configuring your
+Tor to be a relay too. We have many features that make Tor relays easy
+and convenient, including rate limiting for bandwidth, exit policies so
+you can limit your exposure to abuse complaints, and support for dynamic
+IP addresses.</p>
+
+<p>Having relays in many different places on the Internet is what
+makes Tor users secure. <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">You
+may also get stronger anonymity yourself</a>,
+since remote sites can't know whether connections originated at your
+computer or were relayed from others.</p>
+
+<p>Read more at our <a href="<page docs/tor-doc-relay>">Configuring a relay</a>
+guide.</p>
+
+<hr />
+<a id="uninstall"></a>
+<h2><a class="anchor" href="#uninstall">How To Uninstall Tor and Polipo</a></h2>
+<br />
+
+<p>There are two ways to uninstall the bundle from your computer, using
+Finder or a command line or Terminal-based uninstaller.  If you want to remove Tor on OSX, here's how:</p>
+
+<p>Change your application proxy settings back to their original values.
+   If you just want to stop using Tor, you can end at this point.</p>
+
+<p>If you want to completely remove Tor, and your account has Admin
+Privileges, then proceed as follows:</p>
+
+<ol>
+<li>Open Finder and click on Applications.</li>
+<li>Drag /Applications/Vidalia to the Trash.</li>
+<li>Remove /Library/Torbutton from your system.</li>
+<li>In your home directory, go to Library, remove the Vidalia
+directory</li>
+</ol>
+
+<p>Tor, Vidalia, and Polipo are now completely removed from your system.</p>
+
+<p>If you're familiar with the command line or Terminal, you can
+manually remove the following:</p>
+<ul>
+<li>/Applications/Vidalia.app/</li>
+<li>/Library/Torbutton/</li>
+<li>~/Library/Vidalia</li>
+<li>~/.tor</li>
+</ul>
+
+<hr />
+
+<p>If you have suggestions for improving this document, please <a
+href="<page contact>">send them to us</a>. Thanks!</p>
+
+  </div><!-- #main -->
+</div>
+
+#include <foot.wmi>
+

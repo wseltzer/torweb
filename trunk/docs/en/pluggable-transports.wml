@@ -1,0 +1,155 @@
+## translation metadata
+# Revision: $Revision: 26321 $
+# Translation-Priority: 3-low
+
+#include "head.wmi" TITLE="Tor Project: Pluggable Transports" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/pluggable-transports>">Pluggable Transports</a>
+  </div>
+  <div id="maincol">
+    <h2>Tor: Pluggable Transports</h2>
+    <hr>
+
+    <p>
+    An increasing number of censoring countries are using Deep Packet
+    Inspection (DPI) to classify Internet traffic flows by protocol.
+    While Tor uses <a href="<page docs/bridges>">bridge relays</a> to
+    get around a censor that blocks by IP address, the censor can use
+    DPI to recognize and filter Tor traffic flows even when they connect
+    to unexpected IP addresses.
+    </p>
+
+    <p>
+    Pluggable transports transform the Tor traffic flow between the client
+    and the bridge. This way, censors who monitor traffic between the
+    client and the bridge will see innocent-looking transformed traffic
+    instead of the actual Tor traffic.
+    External programs can talk to Tor clients and Tor bridges using the <a
+href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/180-pluggable-transport.txt">pluggable
+transport API</a>, to make it easier to build interoperable programs.
+    </p>
+
+    <hr>
+
+    <ul>
+
+    <li><a href="../projects/obfsproxy.html.en"><b>Obfsproxy</b></a> is a Python framework for implementing new
+    pluggable transports. It uses Twisted for its networking needs, and
+    <a href="https://gitweb.torproject.org/pluggable-transports/pyptlib.git/blob/HEAD:/README.rst">pyptlib</a>
+    for some pluggable transport-related features. It supports the
+    <a href="https://gitweb.torproject.org/pluggable-transports/obfsproxy.git/blob/HEAD:/doc/obfs2/obfs2-protocol-spec.txt">obfs2</a>
+    and
+    <a href="https://gitweb.torproject.org/pluggable-transports/obfsproxy.git/blob/HEAD:/doc/obfs3/obfs3-protocol-spec.txt">obfs3</a>
+    pluggable transports. Maintained by George Kadianakis. <br>
+
+    Status: <a href="../projects/obfsproxy.html.en#download">Deployed</a>
+    </li>
+
+    <li><b>Flashproxy</b> turns ordinary web browsers into bridges using
+    websockets, and has a little python stub to hook Tor clients to the
+    websocket connection. See its
+    <a href="http://crypto.stanford.edu/flashproxy/">web page</a>,
+    <a href="https://gitweb.torproject.org/flashproxy.git">git repository</a>,
+    and
+    <a href="http://crypto.stanford.edu/flashproxy/flashproxy.pdf">design paper</a>.
+    Maintained by David Fifield.
+    # <iframe src="//crypto.stanford.edu/flashproxy/embed.html" width="80" height="15" frameborder="0" scrolling="no"></iframe>
+    <br>
+    Status: <a href="https://crypto.stanford.edu/flashproxy/#how-to">Deployed</a>
+    </li>
+
+    <li><b>ScrambleSuit</b> is a pluggable transport that protects
+    against follow-up probing attacks and is also capable of changing
+    its network fingerprint (packet length distribution,
+    inter-arrival times, etc.). It's part of the Obfsproxy framework. See its
+    <a href="http://www.cs.kau.se/philwint/scramblesuit/">official page</a>.
+    Maintained by Philipp Winter. <br>
+    Status: <em>Undeployed</em>
+    </li>
+
+    <li><b>StegoTorus</b> is an Obfsproxy fork that extends it to a)
+    split Tor streams across multiple connections to avoid packet size
+    signatures, and b) embed the traffic flows in traces that look like
+    html, javascript, or pdf. See its
+    <a href="https://gitweb.torproject.org/stegotorus.git">git repository</a>.
+    Maintained by Zack Weinberg. <br>
+    Status: <em>Undeployed</em>
+    </li>
+
+    <li><b>SkypeMorph</b> transforms Tor traffic flows so they look like
+    Skype Video. See its
+    <a href="http://crysp.uwaterloo.ca/software/SkypeMorph-0.5.1.tar.gz">source code</a>
+    and
+    <a href="http://cacr.uwaterloo.ca/techreports/2012/cacr2012-08.pdf">design paper</a>.
+    Maintained by Ian Goldberg. <br>
+    Status: <em>Undeployed</em>
+    </li>
+
+    <li><b>Dust</b> aims to provide a packet-based (rather than
+    connection-based) DPI-resistant protocol. See its
+    <a href="https://github.com/blanu/Dust">git repository</a>.
+    Maintained by Brandon Wiley. <br>
+    Status: <em>Undeployed</em>
+    </li>
+
+    <li><b>Format-Transforming Encryption</b> (FTE) transforms Tor traffic
+    to arbitrary formats using their language descriptions. See
+    the <a href="https://eprint.iacr.org/2012/494">research
+    paper</a> and <a href="https://kpdyer.com/fte/">web page</a>. <br>
+    Status: <em>Undeployed</em>
+    </li>
+
+    </ul>
+    <hr>
+
+    <p>
+    Our goal is to have a wide variety of pluggable transport designs.
+    Many are at the research phase now, so it's a perfect time to play
+    with them or suggest new designs. Please let us know if you find or
+    start other projects that could be useful for making Tor's traffic
+    flows more DPI-resistant!
+    </p>
+
+    <hr>
+    <a id="download"></a>
+    <h2><a class="anchor" href="#download">Download the Pluggable Transports Tor Browser Bundle</a></h2>
+
+<!--
+    <p><b>Download links disabled for now until we can auto-build up-to-date
+    versions. Sorry!</b></p>
+-->
+
+    <p>
+    <a href="/dist/torbrowser/tor-pluggable-transports-browser-<version-torobfsbundlealpha>_en-US.exe">Windows Pluggable Transports Tor Browser Bundle</a>
+(<a href="/dist/torbrowser/tor-pluggable-transports-browser-<version-torobfsbundlealpha>_en-US.exe.asc">signature</a>).
+    </p>
+
+    <p>
+    <a href="/dist/torbrowser/osx/TorBrowser-Pluggable-Transports-<version-torobfsbundleosx32alpha>-osx-i386-en-US.zip">OSX (10.6+) Pluggable Transports Tor Browser Bundle</a>
+    (<a href="/dist/torbrowser/osx/TorBrowser-Pluggable-Transports-<version-torobfsbundleosx32alpha>-osx-i386-en-US.zip.asc">signature</a>).
+    </p>
+
+    <p>
+    <a href="/dist/torbrowser/linux/tor-pluggable-transports-browser-gnu-linux-i686-<version-torobfsbundlelinux32alpha>-dev-en-US.tar.gz">Linux 32-bit Pluggable Transports Tor Browser Bundle</a>
+    (<a href="/dist/torbrowser/linux/tor-pluggable-transports-browser-gnu-linux-i686-<version-torobfsbundlelinux32alpha>-dev-en-US.tar.gz.asc">signature</a>).
+    </p>
+
+    <p>
+    <a href="/dist/torbrowser/linux/tor-pluggable-transports-browser-gnu-linux-x86_64-<version-torobfsbundlelinux64alpha>-dev-en-US.tar.gz">Linux 64-bit Pluggable Transports Tor Browser Bundle</a>
+    (<a href="/dist/torbrowser/linux/tor-pluggable-transports-browser-gnu-linux-x86_64-<version-torobfsbundlelinux64alpha>-dev-en-US.tar.gz.asc">signature</a>).
+    </p>
+
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>
+

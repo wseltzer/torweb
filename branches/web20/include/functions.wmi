@@ -1,0 +1,92 @@
+#!/usr/bin/wml
+
+<:
+
+sub getMetadata($) {
+	my ($file) = @_;
+
+	die ("File $file is not a regular file") unless (-f $file);
+
+	open(F, "$file") or die ("Cannot open $file: $!\n");
+	my $found_metadata = 0;
+	while (<F>) {
+		chomp;
+		s/\r$//;
+		if ($_ eq '## translation metadata') {
+			$found_metadata = 1;
+			last;
+		};
+	};
+	die ("Did not find translation metadata in $file") unless $found_metadata;
+	my %data;
+	while (<F>) {
+		chomp;
+		s/\r$//;
+		if (/^#\s*(\S*):\s*(.*?)\s*$/) {
+			$data{$1} = $2;
+		} else {
+			last;
+		};
+	};
+	return \%data;
+};
+
+sub translation_get_masterrevision_file($$) {
+	my ($dir, $page) = @_;
+	my $master = getMetadata("$dir/en/$page");
+
+	die ("Cannot find 'Revision' header in master's translation metadata of en/$page") unless exists $master->{'Revision'};
+
+	my ($rev) = $master->{'Revision'} =~ m/([0-9.]+)/;
+	if ($rev eq '') { $rev = '(Revision not a valid number)'; };
+
+	return $rev;
+};
+sub translation_get_masterrevision() {
+	translation_get_masterrevision_file('.', $WML_SRC_FILENAME);
+};
+
+sub translation_get_basedonrevision_langfile($$$) {
+	my ($dir, $lang, $page) = @_;
+	my $translation = getMetadata("$lang/$dir/$page");
+
+	if (exists $translation->{'Based-On-Revision'}) {
+		return $translation->{'Based-On-Revision'};
+	} else {
+		 return '(unknown)';
+	}
+};
+sub translation_get_basedonrevision() {
+	translation_get_basedonrevision_langfile(".", "$(LANG)", $WML_SRC_FILENAME);
+};
+
+
+sub translation_current() {
+	return (translation_get_masterrevision() eq translation_get_basedonrevision());
+};
+
+sub file_is_obsolete($$$) {
+	my ($dir, $lang, $page) = @_;
+	my $translation = getMetadata("$lang/$dir/$page");
+	return (exists $translation->{'Status'} && ($translation->{'Status'} eq 'obsolete'))
+};
+
+sub list_translations() {
+  my @links = ();
+  my $page = $WML_SRC_FILENAME;
+  $page =~ s/\.wml//;
+  for my $dir (@LANGUAGES) {
+    if (-e "$dir/$WML_SRC_FILENAME") {
+      if ($dir ne '$(LANG)') {
+        push @links, sprintf('<a href="%s.html.%s">%s</a>', $page, $dir, $LANGUAGES{$dir});
+      };
+    };
+  };
+  return join(', ', @links);
+};
+
+sub has_translations() {
+  return list_translations() ne '';
+};
+
+:>

@@ -1,0 +1,49 @@
+// حقوق الطبع والنشر (c) مشروع تور, شركة.
+// انظر الترخيص للحصول على معلومات الترخيص
+// هذا ملف اسييدوك يستخدم لانشاء مرجع manpage/html.
+// تعلم الأسييدوك في http://www.methods.co.nz/asciidoc/userguide.html
+تور-ريسولف(1)
+======
+بيتر بالفريدر
+
+الاسم
+----
+تور-ريسولف - يقوم بحل اسم المستضيف الى عنوان IP عن طريق تور
+
+الخلاصة
+--------
+**تور-ريسولف** [-4|-5] [-v] [-x] __hostname__ [__sockshost__[:__socksport__]]
+
+الوصف
+-----------
+**تور-ريسولف** برنامج نصي بسيط للاتصال بوكيل SOCKS الذي يعرف عن
+أمر SOCKS RESOLVE, يسلّمه اسم المستضيف, ويقوم بإسترجاع عنوان IP.
+
+By default, **tor-resolve** uses the Tor server running on 127.0.0.1 on
+SOCKS port 9050.  If this isn't what you want, you should specify an
+explicit __sockshost__ and/or __socksport__ on the command line.
+
+الخيارات
+-------
+**-v**::
+    تظهر المخرجات المطوّلة.
+
+**-x**::
+    إجراء عمليات بحث عكسية: الحصول على سجل PTR لعنوان (IPv4).
+
+**-5**::
+    إستخدام بروتوكول SOCKS5. (افتراضيا)
+
+**-4**::
+    استخدام بروتوكول SOCKS4a بدلا من بروتوكول SOCKS5 الافتراضي. لا يدعم
+    نظام أسماء النطاق (DNS) العكسي.
+
+أنظر ايضا
+--------
+**تور**(1), **توريفاي**(1). +
+
+أنظر doc/socks-extensions.txt في حزمة تور للحصول على تفاصيل البروتوكول.
+
+المؤلفون
+-------
+Roger Dingledine <arma@mit.edu>, Nick Mathewson <nickm@alum.mit.edu>.

@@ -1,0 +1,207 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 23387 $
+# Translation-Priority: 1-high
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h2><a class="anchor" href="#BridgeIntroduction">Tor: Brücken</a></h2>
+<hr />
+
+<p>
+Brücken-Server (Bridge-Relays oder Bridges) sind Tor Knoten, die nicht im
+Verzeichnis von Tor aufgelistet sind. Da es auch keine sonstige komplette,
+öffentliche Liste gibt, besteht keine Möglichkeit, alle Brücken zu
+sperren. Falls Sie annehmen müssen, dass Ihr Zugang zum Tor-Netzwerk
+blockiert ist, können Sie versuchen, Brücken-Server zu verwenden. 
+</p>
+
+<p>
+Die Hinzunahme von Bridges ist ein Schritt, um resistenter gegen die
+Sperrung des Tor-Netzwerks zu werden. Auch wenn Ihr ISP den Zugang zum
+Internet filtert, kann es sein, dass Sie Bridges für die Benutzung von Tor
+nicht benötigen. Viele Filterprogramme schauen nach unverschlüsselten
+Verbindungsaufnahmen zu den Verzeichnisservern, um festzustellen, ob Sie Tor
+verwenden. Die Version ab 0.2.0.23-rc benutzt jedoch standardmäßig
+verschlüsselte Anfragen. Damit erkennen die meisten Filterprogramme die
+Verbindungsanfragen nicht mehr. Daher sollten Sie Tor zuerst ohne Bridges
+versuchen.
+</p>
+
+<p>
+Note that it's also possible that Tor is non-functional for other
+reasons. The latest version of <a href="<page torbrowser/index>">The Tor
+Browser Bundle</a> on Windows tries to give you better hints about why Tor
+is having problems connecting. You should also read <a
+href="<wiki>TorFAQ#IinstalledTorandPolipobutitsnotworking.">the FAQ about
+problems with running Tor properly</a> when you have issues.  If you feel
+that the issue is clearly blocking, or you'd simply like to try because
+you're unsure or feeling adventurous, please read on. Ensure that you're
+using the <a href="<page download>#Dev">latest 0.2.1.x or 0.2.2.x bundle for
+your platform</a>.
+</p>
+
+<p>
+Um einen Brücker-Server zu verwenden, müssen Sie zuerst einen solchen
+kennen. Zusätzlich müssen Sie Tor die Adresse des gewünschten
+Brücken-Servers übergeben. Sie können das am besten mit Vidalia, dem
+Tor-Controller tun. Falls Ihre Internetverbindung die Benutzung von einem
+Proxy zwingend voraussetzt, müssen Sie zuerst Vidalia entsprechend
+einrichten. Falls Ihnen kein Proxy bekannt ist, brauchen Sie wahrscheinlich
+auch keinen. Versuchen Sie es einfach und wenn Sie Probleme haben, sprechen
+Sie uns an.
+</p>
+
+<p>Freedom4Internet has produced a video on how to get and use Tor bridges.
+You can view it at <a href="http://www.youtube.com/thetorproject">Youtube:
+Freedom4Internet</a> or download it <a
+href="http://media.torproject.org/video/2009-using-a-bridge-relay-to-access-tor.ogv">directly</a>.
+Know of a better video, or one translated into your language? Let us know!</p>
+
+<p>
+Zur Zeit können Sie Adressen von Brücken-Servern unter <a
+href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+mit Ihrem Webbrowser abrufen. Wenn diese Seite für Sie nicht erreichbar ist,
+und Sie keine andere Möglichkeit haben an diese Seite zu kommen, dann gibt
+es <a href="#FindingMore">weitere Wege um Brücken-Server zu finden.</a> 
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">Brücken verstehen</a></h2>
+<hr />
+
+<p>
+Sie erhalten beispielsweise einen Eintrag, der wie folgt aussieht: 
+</p>
+<pre><samp>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
+</pre>
+
+<p>
+Die einzelnen Komponenten eines solchen Eintrages zu verstehen ist nicht
+unbedingt notwendig, aber vielleicht nützlich. Sie können diesen Teil
+überspringen wenn Sie möchten.<br /> Das erste Element ist die IP Adresse:
+<tt>'141.201.27.48'</tt><br /> Das zweite Element ist der Port:
+<tt>'443'</tt><br /> Das dritte Element, der elektronische Fingerabdruck,
+ist optional: <tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</t><br />
+</p>
+
+<a id="UsingBridges"></a>
+<h2><a class="anchor" href="#UsingBridges">Bridges mit Tor und Vidalia
+benutzen</a></h2>
+<hr />
+
+<p>
+Um die Adresse der Bridge aus dem obigen Beispiel zu verwenden, gehen Sie
+auf die Netzwerk-Einstellungen in Vidalia und klicken Sie auf "Mein ISP
+blockiert Verbindungen zum Tor Netzwerk".  Fügen Sie jede Brigde Adresse
+einzeln auf der Netzwerkseite von Vidalia hinzu, indem Sie die Adresse in
+das "Eine Brücke hinzufügen" Fenster kopieren und dann auf den "+" Knopf
+drücken. Das Bild unten zeigt, wie man eine Brücke hinzufügt:
+</p>
+
+<br /><br /> <img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalias
+Netzwerkeinstellungsseite" /> <br /><br />
+
+<p>
+Es ist sinnvoll, so viele Brücken wie möglich hinzuzufügen, da zusätzliche
+Brücken die Zuverlässigkeit erhöhen. Eine Brücke sollte bereits genügen, um
+das Tor Netzwerk zu erreichen. Falls jedoch ausgerechnet diese Brücke
+ausfällt, werden Sie vom Tor Netzwerk abgeschnitten.
+</p>
+
+<a id="FindingMore"></a>
+<h2><a class="anchor" href="#FindingMore">Mehr Brücken für Tor finden</a></h2>
+<hr />
+
+<p>
+Eine weitere Möglichkeit, öffentliche Addressen von Brücken zu finden
+besteht darin, ein E-Mail an bridges@torproject.org zu senden mit dem
+Textinhalt "get bridges". Wie müssen diese Anfrage zwingend von einem gmail
+Konto aus durchführen. Andererseits würden wir es einem Angreifer zu einfach
+machen, viele E-Mails zu versenden und so alle Addressen von Brücken zu
+sammeln.  Fast sofort werden Sie eine Antwort erhalten, welche folgenden
+Text beinhaltet:
+</p>
+<pre>
+Here are your bridge relays:
+
+ bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+ bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+ bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+</pre>
+<p>
+Sobald Sie das E-Mail mit den Informationen zu Brücken erhalten haben,
+können Sie mit den <a href="#UsingBridges">oben</a> beschriebenen
+Konfigurationsschritten in Vidalia weiterfahren.
+</p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Einen Brücken-Server betreiben</a></h2>
+<hr />
+
+<p>
+Wenn Sie helfen möchten, aber keinen <a href="<page
+docs/tor-doc-relay>">normalen Tor Knoten</a> betreiben können, dann sollten
+Sie einen Brücken-Server betreiben. Sie können diesen auf folgende Arten
+konfigurieren:
+<ul>
+<li> manually <a
+href="<wiki>TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">edit your torrc
+file</a> to be just these four lines:<br />
+<pre><code>
+SocksPort 0
+ORPort 443
+BridgeRelay 1
+Exitpolicy reject *:*
+</code></pre></li>
+<li><a href="<page docs/tor-doc-relay>">oder über Vidalia</a>:<br /> <img
+src="$(IMGROOT)/vidalia-bridges-setup.png" alt="Vidalia's Sharing
+Einstellungen Seite" /></li>
+</ul>
+</p>
+
+<p>If you get "Could not bind to 0.0.0.0:443: Permission denied" errors on
+startup, you'll need to pick a higher ORPort (e.g. 8080) or do <a
+href="<wiki>TorFAQ#Myfirewallonlyallowsafewoutgoingports.">some complex port
+forwarding</a>.
+</p>
+
+<p>
+Wenn Ihr Server als Bridge eingerichtet ist, wird er <b>nicht</b> im
+öffentlichen Netzwerk erscheinen. 
+</p>
+
+<p>
+Ihre Bridge wird sich automatisch beim Brücken-Verzeichnis anmelden, von wo
+Leute sich die Adresse z.B. per E-Mail oder HTTPS abholen können. Sie können
+auch anderen Nutzern die Daten Ihrer Bridge direkt angeben. Wenn Sie Vidalia
+benutzen, können Sie die entsprechenden Angaben einfach aus dem Fenster
+rauskopieren.Wenn Sie unter Linux oder BSD arbeiten, können Sie die Adresse
+manuell zusammensetzen. Sehen Sie sich dazu <a href="#Understanding">das
+oben beschriebene Format</a>an. (Den Fingerabdruck finden Sie in den
+Logdateien oder in <tt>/var/lib/tor/fingerprint</tt> abhängig von Ihrer
+Plattform).
+</p>
+
+<p>
+Falls Sie mehr über das technische Design von Brücken erfahren möchten, dann
+lesen Sie die <a href="<gitblob>doc/spec/bridges-spec.txt">Tor Brücken
+Spezifikation</a>. Falls Sie am Betreiben einer nicht veröffentlichten
+Brücke oder einer anderen nicht standardisierten Brücke interessiert sind,
+dann lesen Sie ebenfalls die Spezifikation.
+</p>
+
+  </div>
+
+
+
+#include <foot.wmi>

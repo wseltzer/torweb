@@ -1,0 +1,51 @@
+// Copyright (c) The Tor Project, Inc.
+// Si veda LICENSE per informazioni sulla licenza
+// Il seguente file è di tipo asciidoc usato per generare pagine man e riferimenti html.
+// Impara ad usare asciidoc al sito http://www.methods.co.nz/asciidoc/userguide.html
+torify(1)
+=========
+Peter Palfrader Jacob Appelbaum
+
+NOME
+----
+torify - wrapper per torsocks o tsocks e tor
+
+SOMMARIO
+--------
+**torify**__applicazione__ [__argomenti dell'__ __applicazione]
+
+DESCRIZIONE
+-----------
+**torify** è un semplice wrapper che tenta di trovare il miglior wrapper Tor sottostante
+disponibile in un sistema. Questo richiama i torsock o tsock grazie a un spcifica
+configuarazione di file tor. +
+
+Torsocks è un wrapper con maggiori funzionalità che blocca esplicitamente
+UDP, risolve nomi di host in modo sicuro e ridirige le connessioni TCP.
+
+Lo stesso wrapper tsocks è una via di mezzo tra la libreria socks e
+l'applicazione che si desidera reindirizzare. +
+
+Si prega di notare che poiché entrambi i metodi usano LD_PRELOAD, torify non
+può essere applicato ai binari SUID.
+
+AVVISO
+-------
+Bisogna sapere che il modo di come tsocks funziona in questo momento
+reindirizza solo le connessioni TCP. È importante sapere che questo non
+include ricerche di nome di host che potrebbero essere trovate attraverso il
+proprio sistema di risoluzione sui propri servernomi di risoluzione. Lo
+strumento **tors-reosolve**(1) può essere un'utile soluzione altrernativa in
+alcuni casi. Le FAQ Tor al sito
+https://trac.torproject.org/projects/tor/wiki/doc/TorFAQ possono fornire
+ulteriori informazioni su questo argomento. +
+
+Quando utilizzato con torsocks, torify potrebbe non divulgare le richieste
+DNS o i dati UDP. +
+
+Entrambi divulgheranno i dati ICMP.
+
+SI VEDA ANCHE
+--------
+**tor**(1), **tor-resolve**(1),**torsocks**(1), **tsocks**(1),
+**tsocks.conf**(5).

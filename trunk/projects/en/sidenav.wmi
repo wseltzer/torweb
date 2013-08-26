@@ -1,0 +1,70 @@
+#!/usr/bin/wml
+
+## translation metadata
+# Revision: $Revision: 26140 $
+# Translation-Priority: 2-medium
+
+# this structure defines the side nav bar for the /projects pages
+# and is the input for include/side.wmi
+
+# fields:
+#
+# name - the $WML_SRC_BASENAME of the file. It should uniquely identify the
+# page because at build-time it is used to determine what view of the
+# navigation menu to generate
+#
+# url - the path to the wml page, as used the the <page> tag. This tag ensures
+# that links will point to the current language if supported, and alternately
+# the english version 
+#
+# txt - the link text to be displayed. Different translations will
+# need to supply alternate txt 
+ 
+<:
+  my $sidenav;
+  $sidenav = [
+      {'url'  => 'projects/projects',
+       'txt'  => 'Software &amp; Services',
+       'subelements' => [
+          {'url'  => 'torbutton/index',
+           'txt'  => 'TorButton',
+          },
+          {'url' => 'projects/torbrowser',
+           'txt' => 'Tor Browser Bundle',
+          },
+          {'url' => 'projects/vidalia',
+           'txt' => 'Vidalia',
+          },
+          {'url'  => 'projects/arm',
+           'txt'  => 'Arm',
+          },
+          {'url'  => 'https://guardianproject.info/apps/orbot/',
+           'txt'  => 'Orbot',
+          },
+          {'url'  => 'https://tails.boum.org/',
+           'txt'  => 'Tails',
+          },
+          {'url'  => 'https://trac.torproject.org/projects/tor/wiki/torbirdy',
+           'txt'  => 'TorBirdy',
+          },
+          {'url'  => 'projects/onionoo',
+           'txt'  => 'Onionoo',
+          },
+          {'url'  => 'https://metrics.torproject.org/',
+           'txt'  => 'Metrics Portal',
+          },
+          {'url'  => 'https://cloud.torproject.org/',
+           'txt'  => 'Tor Cloud',
+          },
+          {'url'  => 'projects/obfsproxy',
+           'txt'  => 'Obfsproxy',
+          },
+          {'url' => 'https://shadow.cs.umn.edu/',
+           'txt' => 'Shadow',
+          },
+          {'url' => 'http://wiki.tor2web.org/',
+           'txt' => 'Tor2Web',
+          }
+          ]
+        }];
+:>

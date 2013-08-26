@@ -1,0 +1,51 @@
+// Все права защищены (c) The Tor Project, Inc.
+// Для получения подробной информации о лицензировании, см. ЛИЦЕНЗИЯ
+// Это файл asciidoc, используемый для генерации ссылки на manpage/html.
+// Узнать больше о asciidoc можно здесь: http://www.methods.co.nz/asciidoc/userguide.html
+tor-resolve(1)
+==============
+Петер Пальфрадер (Peter Palfrader)
+
+НАЗВАНИЕ
+----
+tor-resolve - преобразуйте доменное имя в IP-адрес, используя tor
+
+КРАТКИЙ ОБЗОР
+--------
+**tor-resolve** [-4|-5] [-v] [-x] __hostname__ [__sockshost__[:__socksport__]]
+
+ОПИСАНИЕ
+-----------
+**tor-resolve** - это простой сценарий (скрипт) для подключения к SOCKS прокси, который использует 
+команду SOCKS RESOLVE, передает доменное имя и возвращает IP-адрес.
+
+By default, **tor-resolve** uses the Tor server running on 127.0.0.1 on
+SOCKS port 9050.  If this isn't what you want, you should specify an
+explicit __sockshost__ and/or __socksport__ on the command line.
+
+ОПЦИИ
+-------
+**-v**::
+    Отобразить подробный вывод данных.
+
+**-x**::
+    Выполнить реверсивный запрос: получить запись PTR для адреса IPv4.
+
+**-5**::
+    Использовать протокол SOCKS5. (По-умолчанию)
+
+**-4**::
+    Использовать протокол SOCKS4a вместа протокола по-умолчанию SOCKS5. Не поддерживает
+    реверсивный DNS.
+
+СМ. ТАКЖЕ
+--------
+**tor**(1), **torify**(1). +
+
+См. doc/socks-extensions.txt в установочном пакете Tor для получения более
+детальной информации о протоколе.
+
+АВТОРЫ
+-------
+Роджер Дингдайн (Roger Dingledine <arma@mit.edu>), Ник Мэтьюсон (Nick
+Mathewson <nickm@alum.mit.edu>).

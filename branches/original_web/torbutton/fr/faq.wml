@@ -1,0 +1,382 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 23025 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Torbutton FAQ" CHARSET="UTF-8"
+<div class="main-column">
+
+
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h2>FAQ Torbutton</h2>
+<hr />
+
+<h3>Questions</h3>
+<br />
+<ul>
+<li><a href="<page torbutton/faq>#nojavascript">Lorsque j'active Tor, les sites
+qui utilisent javascript ne fonctionnent plus. Pourquoi ?</a></li>
+<li><a href="<page torbutton/faq>#noreloads">Je ne peux pas cliquer sur les
+liens ni recharger la page une fois que j'ai activé Tor ! Pourquoi ?</a></li>
+<li><a href="<page torbutton/faq>#noflash">Je ne peux pas voir les vidéos sur
+Youtube et les autres sites basés sur Flash. Pourquoi ?</a></li>
+<li><a href="<page torbutton/faq>#oldtorbutton">Torbutton permet de faire
+beaucoup de choses mais je trouve que certaines sont génantes à
+utiliser. Puis-je utiliser l'ancienne version ?</a></li>
+<li><a href="<page torbutton/faq>#weirdstate">Mon navigateur web est dans un
+état instable et plus rien ne fonctionne correctement !</a></li>
+<li><a href="<page torbutton/faq>#noautocomplete">Lorsque j'utilise Tor, Firefox
+ne remplit plus automatiquement les champs de mot de passe et de boîte de
+recherche. Pourquoi ?</a></li>
+<li><a href="<page torbutton/faq>#thunderbird">Qu'en-est-il du support de
+Thunderbird ? Je vois une page mais s'agit-il de la bonne version ?</a></li>
+<li><a href="<page torbutton/faq>#extensionconflicts">Quelles extensions de
+Firefox devrais-je éviter d'utiliser ?</a></li>
+<li><a href="<page torbutton/faq>#recommendedextensions">Quelles sont les
+extensions Firefox recommandées ?</a></li>
+<li><a href="<page torbutton/faq>#securityissues">Existe-t-il d'autres problèmes
+que je dois connaître ?</a></li>
+</ul>
+<br /> <a id="nojavascript"></a> <strong><a class="anchor"
+href="#nojavascript">Lorsque j'active Tor, les sites qui utilisent
+javascript ne fonctionnent plus. Pourquoi ?</a></strong>
+
+<p>
+Javascript peut par exemple attendre que vous ayez désactivé Tor avant de
+contacter son site source, révélant ainsi votre adresse IP. C'est pourquoi
+Torbutton doit désactiver Javascript, les tags Meta-Refresh et certaines
+fonctionnalités de CSS lorsque Tor est actif. Ces fonctionnalités sont
+réactivées lorsque Torbutton est arrêté. Dans certains cas (particulièrement
+avec Javascript et CSS), il est impossible de gérer les erreurs résultant de
+ces blocages et la page est alors impossible à afficher. Malheureusement, la
+seule chose que vous puissiez faire (tout en masquant votre adresse IP) est
+de recharger la page que vous consultiez avant d'activer Tor ou vous assurez
+que vous avez terminé votre travail avant de changer l'état de Tor.
+</p>
+
+<a id="noreloads"></a> <strong><a class="anchor" href="#noreloads">Je ne
+peux pas cliquer sur les liens ni recharger la page une fois que j'ai activé
+Tor ! Pourquoi ?</a></strong>
+
+<p>
+En raison d'un <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=409737">bug (409737) de
+Firefox</a>, des pages peuvent encore ouvrir des popups et lancer des
+redirections et des accès à l'historique par Javascript après que Tor ait
+été activé. Ces popups et redirections peuvent être bloqués mais ils ne sont
+malheureusement pas différenciés des interactions normales avec la page
+(tels que les clics sur les liens, l'ouverture dans de nouveaux
+onglets/fenêtres ou l'utilisation des boutons d'historique. Du coup, ils
+sont neutralisés quand même. Une fois que le bug de Firefox sera résolu, ce
+degré d'isolation deviendra optionnel (réservé aux personnes désirant éviter
+de cliquer accidentellement sur des liens et de laisser remonter des
+informations via les referrers). Un contournement est de faire un clic-droit
+sur le lien et de l'ouvrir dans un nouvel onglet ou une nouvelle
+fenêtre. L'onglet ou la fenêtre ne va pas s'ouvrir automatiquement mais vous
+pourrez valider l'entrée de la barre URL ce qui déclenchera le chargement
+. Valider l'entrée de la barre URL rechargera également la page sans avoir à
+cliquer sur le bouton de rechargement.
+</p>
+
+<a id="noflash"></a> <strong><a class="anchor" href="#noflash">Je ne peux
+pas voir les vidéos sur Youtube et les autres sites basés sur
+Flash. Pourquoi ?</a></strong>
+
+<p>
+
+Youtube et les sites semblables nécessitent l'utilisation de plugin comme
+Flash.  Les plugins fonctionnent indépendamment de Firefox et sont
+susceptibles d'effectuer des actions sensibles pour la préservation de votre
+anonymat. Par exemple, ils peuvent <a href="http://decloak.net">passer outre
+la configuration du proxy</a>, trouver <a
+href="http://forums.sun.com/thread.jspa?threadID=5162138&amp;messageID=9618376">votre
+adresse IP locale</a> et <a
+href="http://epic.org/privacy/cookies/flash.html">stocker leurs propres
+cookies</a>. Il est possible d'utiliser un LiveCD comme <a
+href="https://amnesia.boum.org/">le système Live (Amnesic) Incognito</a> qui
+met en place un proxy transparent vous mettant à l'abri de tout débordement
+de proxy. A noter toutefois, que les problèmes de découverte d'adresse IP
+locale et des cookies Flash ne sont pas réglés par cette méthode.  </p>
+
+<p>
+
+Si vous ne vous sentez pas concerné par le fait que ces sites vous pistent
+(et par les sites qui tentent de vous démasquer en se faisant passer pour
+d'autres) ni par le fait que ces censeurs locaux prennent connaissance de
+vos visites, vous pouvez activer ces plugins en allant dans les préférences
+de Torbutton-&gt;Paramètres de Sécurité-&gt;onglet Contenu Dynamique et
+décocher la case "Désactiver les plugins pendant l'utilisation de Tor". Si
+vous faîtes cela sans TorVM, Incognito ou des règles de pare-feux adaptées,
+nous vous encourageons à utiliser au minimum <a
+href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a> pour
+<a href="http://noscript.net/features#contentblocking">bloquer les
+plugins</a>. Vous n'avez pas besoin d'utiliser les permissions par domaine
+de NoScript si vous vérifiez l'option <b>Appliquer également ces
+restrictions aux sites de confiance</b> dans l'onglet des préférences de
+Plugin de NoScript. En fait, avec cette configuration, vous pouvez même
+permettre à NoScript d'activer Javascript de manière globale tout en
+bloquant tous les plugins jusqu'à ce que vous les activiez directement sur
+la page. Nous vous recommandons également dans ce cas <a
+href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better
+Privacy</a> pour vous aider à supprimer les cookies Flash.
+
+</p>
+
+<a id="oldtorbutton"></a> <strong><a class="anchor"
+href="#oldtorbutton">Torbutton permet de faire beaucoup de choses mais je
+trouve que certaines sont génantes à utiliser. Puis-je utiliser l'ancienne
+version ?</a></strong>
+
+<p>
+
+<b>Non.</b> L'utilisation d'une version ancienne ou d'un autre changeur de
+proxy (incluant FoxyProxy -- voir ci-dessous) sans Torbutton est vivement
+découragée. L'utilisation d'un changeur de proxy non reconnu est très
+mauvais pour la sécurité et vous fera perdre votre temps.  <b>N'utilisez pas
+Tor</b> et vous disposerez du même niveau de sécurité.  Pour plus
+d'informations sur les types d'attaques auxquelles vous êtes exposé avec une
+solution maison, merci de consulter <a
+href="design/index.html#adversary">The Torbutton Adversary Model</a> et en
+particulier la sous-section traitant des <a
+href="design/index.html#attacks">Attaques potentielles</a>. S'il existe des
+fonctionnalités spécifiques de Torbutton que vous n'aimez pas, merci
+d'ajouter un bug sur <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">le
+bug tracker</a>. Si vous pensez disposer de suffisamment de protection pour
+ces cas spécifiques, sachez que la plupart des options de sécurités de
+Torbutton peuvent être désactivées par les préférences.
+
+</p>
+
+<a id="weirdstate"></a> <strong><a class="anchor" href="#weirdstate">Mon
+navigateur web est dans un état instable et plus rien ne fonctionne
+correctement !</a></strong>
+
+<p>
+Essayez de désactiver Tor en cliquant sur le bouton et d'ouvrir une nouvelle
+fenêtre. Si ça ne corrige pas le problème, allez dans la page des
+préférences et cliquer sur 'Restaurer la configuration par défaut'. Cela
+devrait reconfigurer l'extension et Firefox dans une configuration
+fonctionnelle.  Si vous pouvez reproduire ces problèmes qui perturbent le
+fonctionnement de Firefox, merci de nous envoyer les détails dans <a
+href="https://bugs.torproject.org/flyspray/index.php?tasks=all&amp;project=5">le
+bug tracker</a>.
+</p>
+
+<a id="noautocomplete"></a> <strong><a class="anchor"
+href="#noautocomplete">Lorsque j'utilise Tor, Firefox ne remplit plus
+automatiquement les champs de mot de passe et de boîte de
+recherche. Pourquoi ?</a></strong>
+
+<p>
+Ce problème est lié à l'option "<b>Bloquer les écritures d'historique
+pendant l'utilisation de Tor</b>". Si vous avez activé cette option au cours
+de la configuration, toutes les fonctionnalités de pré-remplissage de
+formulaires (lecture et écriture) seront désactivées. Si cela vous ennuie,
+vous pouvez désactiver cette option. Pour éviter les attaques de divulgation
+d'historique lors des utilisations sans Tor, il est recommandé de désactiver
+la lecture de l'historique non Tor si vous permettez l'écriture d'historique
+pendant l'utilisation de Tor.
+</p>
+
+<a id="thunderbird"></a> <strong><a class="anchor"
+href="#thunderbird">Qu'en-est-il du support de Thunderbird ? Je vois une
+page mais s'agit-il de la bonne version ?</a></strong>
+
+<p>
+Aux débuts de Thunderbird (version 1.0), Torbutton lui fournissait un
+support basique de changement de proxy. Néanmoins, ce support a été supprimé
+car il n'a pas fait l'objet d'une analyse de sécurité. Ma page d'outils de
+développement sur addons.mozilla.org n'évoque explicitement que le support
+de Firefox et j'ignore pourquoi ils n'ont pas supprimé la référence à
+Thunderbird.  Je n'utilise pas Thunderbird et ne dispose malheureusement pas
+du temps pour analyser les failles de sécurité qu'implique le changement de
+proxy dans cette application. Cette application doit souffrir du même genre
+(mais pas des mêmes problèmes) de fuite de proxy par les emails en HTML, les
+images incorporées, javascript, les extensions et l'accès automatique au
+réseau. Ma recommandation est de créer un profil Thunderbird spécifique pour
+Tor et de l'utiliser directement au lieu d'essayer d'activer ou non la
+configuration de proxy. Mais si vous désirez réellement aller plus vite et
+ne pas prendre garde à votre IP, vous pouvez utiliser un autre basculeur de
+proxy tel que ProxyButton, SwitchProxy ou FoxyProxy (si un de ceux-ci
+supporte Thunderbird).
+</p>
+
+<a id="extensionconflicts"></a> <strong><a class="anchor"
+href="#extensionconflicts">Quelles extensions de Firefox devrais-je éviter
+d'utiliser ?</a></strong>
+
+<p>
+Cette liste est limitée. Il existe des milliers d'extension Firefox: faire
+une liste exhaustive de celles qui se révèlent mauvaises pour l'anonymat est
+pratiquement impossible. Toutefois, voici quelques exemples qui devraient
+vous donner une idée de quelques comportements dangereux.
+</p>
+
+<ol>
+ <li>StumbleUpon, et al
+ <p>
+ Ces extensions envoient aux serveurs stumbleupon de nombreuses informations
+sur les sites web que vous visitez. Elles sont corrélées avec un identifiant
+unique ce qui est terrible du point de vue anonymat.  Plus généralement, les
+extensions qui ont besoin que vous vous enregistriez ou les extensions qui
+fournissent de l'information sur les sites web que vous visitez sont
+suspectes.
+ </p></li>
+ <li>FoxyProxy
+<p>
+Bien que FoxyProxy soit une bonne idée en théorie, il est en pratique
+impossible de le configurer de manière sécurisée pour l'utilisation de Tor
+sans Torbutton. Comme tous les projets originaux de plugins de proxy, les
+risques les plus importants sont <a
+href="http://www.metasploit.com/research/projects/decloak/">les fuites dans
+le plugin</a> et <a href="http://ha.ckers.org/weird/CSS-history.cgi">la
+divulgation d'historique</a> suivis par la capture de proxy dans les noeuds
+de sorties et le suivi par les serveurs de pub (voir le <a
+href="design/index.html#adversary">Torbutton Adversary Model</a> pour plus
+d'informations). Toutefois, lorsque Torbutton est installé en tandem et
+toujours activé, il est possible de configurer FoxyProxy de manière
+sécurisée (bien que ce ne soit pas aisé). Étant donné que le mode 'motifs'
+de FoxyProxy s'applique uniquement à des urls bien précises et non à tout
+l'onglet, configurer FoxyProxy pour contacter des sites spécifiques par Tor
+permettra quand même aux serveurs de pub (qui ne seront pas dans vos
+filtres) de découvrir votre véritable adresse IP. Pire, lorsque les sites
+utilisent des outils de statistiques déconnectés comme Google Analytics,
+votre adresse IP sera également dans leurs logs. Des noeuds de sorties
+malicieux peuvent également coopérer avec des sites pour injecter des images
+dans les pages qui contourneront vos filtres. Configurer FoxyProxy pour
+envoyer uniquement certaines URLs sans passer par Tor est bien plus
+sécurisant de ce point de vue mais soyez attentifs aux filtres que vous
+mettez en place. Par exemple, configurer tout le traffic *google* à passer
+en dehors de Tor vous fera atterrir dans tous les logs de l'ensemble des
+sites qui utilisent Google Analytics ! Consultez <a
+href="http://foxyproxy.mozdev.org/faq.html#privacy-01">cette question</a>
+sur la FAQ de FoxyProxy pour plus d'information.
+ </p></li>
+</ol>
+
+<a id="recommendedextensions"></a> <strong><a class="anchor"
+href="#recommendedextensions">Quelles sont les extensions Firefox
+recommandées ?</a></strong>
+<ol>
+ <li><a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a>
+	<p>
+Comme mentionné au dessus, cette extension contrôle plus finement
+l'usurpation du referer que ne le fait Torbutton. Elle devrait casser moins
+de sites que l'option d'usurpation du referer de Torbutton.</p></li>
+
+ <li><a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a>
+<p>
+Si vous utilisez Tor en quasi-permanence et que vous le désactivez rarement,
+vous voudrez sans doute installer cette application qui minimise la capacité
+de certains sites à stocker les identifiants ayant une longue durée de vie
+dans votre cache. Cette extension applique la même politique d'origine au
+cache de manière à ce que les éléments récupérés depuis le cache uniquement
+s'ils proviennent du même domaine que le document en cours de visualisation.
+</p></li>
+
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better
+Privacy</a>
+ <p>
+
+Better Privacy est une excellent extension qui vous protège des cookies des
+applications Flash qui sont souvent persistants et non effaçables par
+Firefox. Flash et les autres plugins sont désactivés par défaut par
+Torbutton mais si vous désirez améliorer la protection de votre vie privée,
+vous pouvez utiliser cette extension pour inspecter et supprimer
+automatiquement les cookies Flash créés lorsque vous n'utilisez pas Tor.
+
+ </p>
+ </li>
+ <li><a href="https://addons.mozilla.org/firefox/addon/1865">AdBlock Plus</a>
+ <p>
+
+AdBlock Plus est une excellente extension qui supprime les publicité sur le
+web (qui sont génantes, invasives pour tout ce qui touche à la vie privée et
+qui peuvent également <a
+href="http://www.wired.com/techbiz/media/news/2007/11/doubleclick">distribuer
+des malwares</a>). Elle fournit un système <a
+href="http://adblockplus.org/en/subscriptions">d'abonnements</a> vers des
+listes continuellement mises à jour pour parer les efforts des réseaux de
+publicité à passer à travers ces filtres. Je recommande l'abonnement à la
+combinaison EasyPrivacy+EasyList dans la section Divers de la page
+d'abonnement.
+
+ </p>
+</li> 
+<li><a href="https://addons.mozilla.org/firefox/addon/82">Cookie Culler</a>
+ <p>
+
+Cookie Culler est une extension utile qui vous donne un accès rapide au
+gestionnaire de cookies de Firefox. Il permet également de protéger certains
+cookies de la suppression mais cette fonctionnalité ne fonctionne pas bien
+avec Torbutton. Kory Kirk travaille à résoudre ce problème pendant le Google
+Summer of Code 2009.
+
+ </p>
+ </li>
+
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/722">NoScript</a>
+ <p>
+ Torbutton atténue pour le moment toutes les failles de sécurité connues sous
+Javascript.  Toutefois, si vous vous sentez concerné par les "exploits"
+Javascript contre votre navigateur ou contre les sites web sur lesquels vous
+vous identifiez, vous pouvez utiliser NoScript. Il permet d'activer
+Javascript uniquement pour certains sites web et propose des mécanismes qui
+forcent l'utilisation d'urls HTTPS pour les sites qui ont <a
+href="http://fscked.org/category/tags/insecurecookies">des cookies non
+sécurisés</a>.<br> Il est toutefois difficile de le configurer pour que la
+plupart des sites fonctionnent correctement. En particulier, vous devez vous
+assurer que vous n'avez pas retiré le site addons.mozilla.org de la liste
+blanche Javascript car les extensions sont téléchargées par http et
+vérifiées par Javascript à partir de la page https.
+
+ </p></li>
+ <li><a href="https://addons.mozilla.org/en-US/firefox/addon/9727/">Request
+Policy</a>
+ <p>
+
+Request Policy est proche de NoScript: il impose que vous configuriez quels
+sites sont autorisés à charger du contenu depuis d'autres domaines. Il est
+assez complexe à configurer pour les nouveaux utilisateurs mais il protège
+très bien des publicités, du contenu injecté et des requêtes cross-site
+forgery.
+
+ </p>
+ </li>
+
+</ol>
+
+<a id="securityissues"></a> <strong><a class="anchor"
+href="#securityissues">Existe-t-il d'autres problèmes que je dois connaître
+?</a></strong>
+
+<p>
+
+Il existe peu de failles de sécurité connues qui concernent Torbutton
+(toutes sont dues à <a href="design/index.html#FirefoxBugs">des bugs de
+sécurité de Firefox non résolus</a>).  Néanmoins, la majorité d'entre elles
+sont des problèmes d'empreinte, complètement opposées aux fuites d'anonymat.
+
+</p>
+
+<p>
+De plus, les lecteurs RSS tels que Firefox Livemarks effectuent parfois des
+rafraîchissements périodiques. A cause du <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=436250">Bug Firefox
+436250</a>, il n'y a aucun moyen de désactiver ces mises à jour Livemark
+lorsque Tor est actif. Cela peut représenter un vrai problème si vous avez
+beaucoup d'urls Livemark qui fournissent de l'information sur votre
+identité.
+</p>
+
+  </div>
+
+
+
+#include <foot.wmi>

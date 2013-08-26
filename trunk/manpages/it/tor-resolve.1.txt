@@ -1,0 +1,50 @@
+// Copyright (c) The Tor Project, Inc.
+// Si veda LICENSE per informazioni relative alla licenza
+// Questo è un file di tipo asciidoc utilizzato per generare pagine man o riferimenti html.
+// Impara a usare asciidoc al sito http://www.methods.co.nz/asciidoc/userguide.html
+tor-resolve(1)
+==============
+Peter Palfrader
+
+NOME
+----
+tor-resolve - risolve un nome di host in un indirizzo IP attraverso tor
+
+SOMMARIO
+--------
+**tor-resolve** [-4|-5] [-v] [-x]_nomehost_[_sokshost_[:_socksport_]]
+
+DESCRIZIONE
+-----------
+**tor-resolve** è un semplice script per connettersi al proxy SOCKS che conosce
+il comando SOCKS RESOLVE, consegna un nome host e restituisce un indirizzo IP.
+
+By default, **tor-resolve** uses the Tor server running on 127.0.0.1 on
+SOCKS port 9050.  If this isn't what you want, you should specify an
+explicit __sockshost__ and/or __socksport__ on the command line.
+
+OPZIONI
+-------
+**-v**::
+Output dettagliato display.
+
+**-x**::
+Esegui una ricerca inversa: riceve il record PTR per un indirizzo IPv4.
+
+**-5**::
+Usa il protocollo SOCKS5. (Predefinito)
+
+**-4*::
+Usa il protocollo SOCKS4a invece del protocollo predefinito SOCKS5.Non
+supporta operazioni DNS inverse.
+
+SI VEDA ANCHE
+--------
+**tor**(1), **torify**(1). +
+
+Si veda doc/socks-extensions.txt nel pacchetto Tor per i dettagli
+protocollo.
+
+AUTORI
+-------
+Roger Dingledine <arma@mit.edu>, Nick Mathewson <nickm@alum.mit.edu>.

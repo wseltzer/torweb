@@ -1,0 +1,55 @@
+#!/usr/bin/wml
+
+## translation metadata
+# Based-On-Revision: 18750
+# Translation-Priority: 1-high
+# Last-Translator: bogdandr_at_op . pl
+
+#use "functions.wmi"
+
+<hr />
+</div>
+  <div class="bottom" id="bottom">
+     <p>"Tor" i "Onion Logo" (logo cebuli) są <a href="<page
+	trademark-faq>">zarejestrowanymi znakami handlowymi</a> The Tor Project, Inc.<br />
+	Zawartość tej strony jest pod licencją
+	<a href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution
+	3.0 United States License</a>, chyba że napisano inaczej.
+	</p>
+
+# Uncomment this in your translation:  (and translate it)
+#####################################
+   <: unless (translation_current()) { :>
+     <p>
+      Uwaga: To tłumaczenie może być nieaktualne. Oryginał po angielsku
+      ma numer wersji
+      <:= translation_get_masterrevision() :> podczas gdy to tłumaczenie
+      jest oparte na wersji
+      <:= translation_get_basedonrevision() :>.
+     </p>
+   <: } :>
+
+   <: if (has_translations()) {  :>
+     <p>
+       Ta strona jest także dostępna w następujących językach:
+       <: print list_translations() :>.<br />
+       Jak ustawić <a href="http://www.debian.org/intro/cn.pl.html#howtoset">domyślny język dokumentu</a>.
+     </p>
+   <: }; :>
+# Uncomment this in your translation: (and translate it)
+#####################################
+ <p>
+ Deweloperzy Tora nie sprawdzili tłumaczenia tej strony pod względem dokładności
+  i poprawności. Tłumaczenie może być przestarzałe lub niepoprawne. Oficjalna strona Tora jest
+  po angielsku, pod adresem <a href="https://www.torproject.org/">https://www.torproject.org/</a>.
+ </p>
+     <p>
+     <i><a href="<page contact>" class="smalllink">Webmaster</a></i> -
+# please also translate "last modified" and "last compiled"
+      Ostatnio zmodyfikowane: <:{ my @stat = stat('$(LANG)/'.$WML_SRC_FILENAME); print scalar localtime($stat[9]); }:>
+      -
+      Ostatnio wygenerowane: <: print scalar localtime(); :>
+     </p>
+  </div>
+</body>
+</html>

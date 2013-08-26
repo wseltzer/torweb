@@ -1,0 +1,153 @@
+## translation metadata
+# Revision: $Revision: 23366 $
+# Translation-Priority: 3-low
+
+#include "head.wmi" TITLE="Torbutton - Quickly toggle Firefox's use of the Tor network" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<link rel="search" type="application/opensearchdescription+xml" title="Google Canada" href="search/google-ca.xml"/>
+<link rel="search" type="application/opensearchdescription+xml" title="Google UK" href="search/google-uk.xml" />
+<link rel="search" type="application/opensearchdescription+xml" title="Google USA" href="search/google-us.xml"/>
+<script type="text/javascript">
+
+function addSearchProvider(prov) {
+
+try {
+window.external.AddSearchProvider(prov);
+}
+
+catch (e) {
+alert("Search plugins require Firefox 2");
+return;
+}
+}
+
+function addEngine(name,ext,cat,pid)
+{
+  if ((typeof window.sidebar == "object") && (typeof window.sidebar.addSearchEngine == "function")) {
+    window.sidebar.addSearchEngine(
+      "http://mycroft.mozdev.org/install.php/" + pid + "/" + name + ".src",
+      "http://mycroft.mozdev.org/install.php/" + pid + "/" + name + "."+ ext, name, cat );
+  } else {
+    alert("You will need a browser which supports Sherlock to install this plugin.");
+  }
+}
+
+function addOpenSearch(name,ext,cat,pid,meth)
+{
+  if ((typeof window.external == "object") && ((typeof window.external.AddSearchProvider == "unknown") || (typeof window.external.AddSearchProvider == "function"))) {
+    if ((typeof window.external.AddSearchProvider == "unknown") && meth == "p") {
+      alert("This plugin uses POST which is not currently supported by Internet Explorer's implementation of OpenSearch.");
+    } else {
+      window.external.AddSearchProvider(
+        "http://mycroft.mozdev.org/installos.php/" + pid + "/" + name + ".xml");
+    }
+  } else {
+    alert("You will need a browser which supports OpenSearch to install this plugin.");
+  }
+}
+
+function addOpenSearch2(name,ext,cat,pid,meth)
+{
+  if ((typeof window.external == "object") && ((typeof window.external.AddSearchProvider == "unknown") || (typeof window.external.AddSearchProvider == "function"))) {
+    if ((typeof window.external.AddSearchProvider == "unknown") && meth == "p") {
+      alert("This plugin uses POST which is not currently supported by Internet Explorer's implementation of OpenSearch.");
+    } else {
+      window.external.AddSearchProvider(
+        "http://torbutton.torproject.org/dev/search/" + name + ".xml");
+    }
+  } else {
+    alert("You will need a browser which supports OpenSearch to install this plugin.");
+  }
+}
+
+function install (aEvent)
+{
+  var params = {
+    "Torbutton": { URL: aEvent.target.href,
+             Hash: aEvent.target.getAttribute("hash"),
+             toString: function () { return this.URL; }
+    }
+  };
+  InstallTrigger.install(params);
+
+  return false;
+}
+
+
+</script>
+
+<h2>Torbutton</h2>
+<hr />
+
+<strong>Current stable version:</strong><version-torbutton><br/>
+<strong>Current alpha version:</strong><version-torbutton-alpha><br/>
+<br/>
+<strong>Authors:</strong> Mike Perry &amp; Scott Squires<br/>
+<br/>
+<strong>Install Stable:</strong> Click to 
+<a href="http://www.torproject.org/torbutton/torbutton-current.xpi"
+  hash="<version-hash-torbutton>"
+  onclick="return install(event);">install from this website</a> or 
+<a href="https://addons.mozilla.org/en-US/firefox/downloads/latest/2275/addon-2275-latest.xpi?src=addondetail">install from Mozilla's Add-On site</a><br/>
+<strong>Install Alpha:</strong> Click to 
+<a href="http://www.torproject.org/torbutton/torbutton-current-alpha.xpi"
+  hash="<version-hash-torbutton-alpha>"
+  onclick="return install(event);">install from this website</a>
+<br/>
+<strong>Past Releases:</strong> <a href="releases/">Local</a><br/>
+<strong>Developer Documentation:</strong> <a href="design/">Torbutton Design Document</a> and <a href="design/MozillaBrownBag.pdf">Slides (Not actively updated)</a><br/>
+<strong>Extras:</strong> 
+
+Google search plugins for
+
+<a href="/jsreq.html" title="Ref: 14938 (googleCA)"
+ onClick="addOpenSearch('GoogleCanada','ico','General','14937','g');return false">Google CA</a>, and 
+
+<a href="/jsreq.html" title="Ref: 14938 (googleCA)"
+ onClick="addOpenSearch('googleuk_web','png','General','14445','g');return false">Google UK</a>.
+<br/>
+<strong>Source:</strong> You can <a
+href="https://gitweb.torproject.org/torbutton.git">browse the
+repository</a> or simply unzip the xpi.
+<br/>
+<strong>Bug Reports:</strong> <a href="https://trac.torproject.org/projects/tor/report/14">Torproject trac</a><br/>
+<strong>Documents:</strong> <b>[</b> <a href="<page torbutton/faq>">FAQ</a> <b>|</b>
+<a href="https://gitweb.torproject.org/torbutton.git/blob_plain/HEAD:/src/CHANGELOG">changelog</a> <b>|</b>
+<a href="https://gitweb.torproject.org/torbutton.git/blob_plain/HEAD:/src/LICENSE">license</a> <b>|</b>
+<a href="https://gitweb.torproject.org/torbutton.git/blob_plain/HEAD:/src/CREDITS">credits</a> <b>]</b><br/>
+
+<br/>
+
+<p>
+Torbutton is a 1-click way for Firefox users to enable or disable
+the browser's use of <a href="<page index>">Tor</a>.
+It adds a panel to the statusbar that says "Tor Enabled" (in green) or
+"Tor Disabled" (in red).  The user may click on the panel to toggle
+the status.  If the user (or some other extension) changes the proxy
+settings, the change is automatically reflected in the statusbar.
+</p>
+
+<p>
+To keep you safe, Torbutton disables many types of active content. You
+can learn more from the <a href="<page torbutton/faq>">Torbutton FAQ</a>,
+or read more details in the <a href="<page torbutton/options>">Torbutton
+options</a> list.
+</p>
+
+<p>
+Some users may prefer a toolbar button instead of a statusbar panel.
+Torbutton lets you add a toolbar button by right-clicking
+on the desired toolbar, selecting "Customize...", and then dragging the
+Torbutton icon onto the toolbar.  There is an option in the preferences
+to hide the statusbar panel (Tools-&gt;Extensions, select Torbutton,
+and click on Preferences).
+</p>
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+

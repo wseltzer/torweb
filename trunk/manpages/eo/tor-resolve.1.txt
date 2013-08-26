@@ -1,0 +1,49 @@
+// Aŭtorrajto de la Tor Projekto, Koporacio. (Copyright (c) The Tor Project, Inc.)
+// Vidu LICENSE por permesa informo.
+// Ĉi tio etas asciidoc dosiero uzata generi la manpage/html referenco.
+// Lernu asciidoc ĉe http://www.methods.co.nz/asciidoc/userguide.html
+tor-resolve(1)
+==============
+Peter Palfrader
+
+NOMO
+----
+tor-resolve - trovi gastignomon al IP addreso pri tor
+
+RESUMO
+--------
+**tor-resolve** [-4|-5] [-v] [-x] __hostname__ [__sockshost__[:__socksport__]]
+
+PRISKRIBO
+-----------
+**tor-resolve** estas simpla skripto por konekti al SOCKS prokurilo ke komprenas
+la SOCKS RESOLVE komandon, donu ĝin gastignomon kaj ĝi redonas IP adreson.
+
+By default, **tor-resolve** uses the Tor server running on 127.0.0.1 on
+SOCKS port 9050.  If this isn't what you want, you should specify an
+explicit __sockshost__ and/or __socksport__ on the command line.
+
+OPCIOJ
+-------
+**-v**::
+Montri malkoncizan eligon.
+
+**-x**::
+Fari inversan trovon: akiri la PTR-an rikordon por IPv4 adreso.
+
+**-5**::
+Uzi la SOCKS5 protokolon. (Defaŭlto)
+
+**-4**::
+Uzi la SOCKS4a protokokon alie ol la defaŭltan SOCKS5 protokokon.
+Ne subtenas inversa DNS.
+
+VIDU ANKAŬ
+--------
+**tor**(1), **torify**(1). +
+
+Vidu doc/socks-extensions.txt en la Tor pako por detaloj.
+
+AŬTOROJ
+-------
+Roger Dingledine <arma@mit.edu>, Nick Mathewson <nickm@alum.mit.edu>.

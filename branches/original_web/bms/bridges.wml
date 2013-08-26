@@ -1,0 +1,213 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 23375 $
+# Translation-Priority: 1-high
+#include "head.wmi" TITLE="Tor: Bridges" CHARSET="UTF-8"
+<div class="main-column">
+
+<a id="BridgeIntroduction"></a>
+<h2><a class="anchor" href="#BridgeIntroduction">Tor: Bridges</a></h2>
+<hr />
+
+<p>
+အမ်ားႏွင့္သက္ဆိုင္ေသာ စာရင္းမ်ားသည္ ျပည့္စံုသည္ဟူ၍ မရွိပါ။ အကယ္၍ သင္၏ ISP
+သည္ ၎တို႔သိႏိုင္ေသာ Tor relays မ်ားကို စစ္ထုတ္ႏိုင္ခဲ့လွ်င္ေတာင္ bridges
+အကုန္လံုးကိုေတာ့ ပိတ္ဆို႔ ႏိုင္လိမ့္မည္ မဟုတ္ေပ။ အကယ္၍ သင္၏ Tor ကြန္ယက္သို႔
+ဆက္သြယ္မႈကို သကၤာမကင္းျဖစ္၍ ပိတ္ဆို႔ခံရလွ်င္ သင္သည္ Tor ၏ အဂၤါရပ္တစ္ခု
+ျဖစ္တဲ့ bridge ကို အသံုးျပဳလိမ့္မည္။ 
+</p>
+
+<p>
+Tor သို႔ bridges မ်ားေပါင္းထည့္ျခင္းသည္ ပိတ္ဆို႔ျခင္းမ်ားကို ခုခံေရး
+ျပိဳင္ပြဲ၏ ေရွ႕ေျပးအဆင့္ျဖစ္သည္။ လံုးဝဥႆံု ျဖစ္ႏိုင္ေခ်ရွိသည္မွာ အကယ္၍ သင္၏
+ISP က အင္တာနက္ကို စီစစ္ထားသည္ဆိုလွ်င္  Tor ကို အသံုးျပဳရန္ bridge လိုအပ္မည္
+မဟုတ္ေပ။ စီစစ္ေရး ပရိုဂရမ္အမ်ားစုသည္ Tor ကို သင္အသံုးျပဳေနသည္ဟု
+အသိမွတ္ျပဳရန္ ပံုစံမဖ်က္ထားေသာ Tor လမ္းညႊန္ ေတာင္းဆိုမႈမ်ားကို
+ရွာေဖြတတ္ၾကသည္။ သို႔ေသာ္ Tor ဗားရွင္း 0.2.2.23-rc ႏွင့္ ေနာက္ပိုင္းမ်ားသည္
+ပံုစံဖ်က္ထားေသာ လမ္းညႊန္ စံုစမ္းမႈမ်ားကို မူရင္းအျဖစ္ ထားရွိၾကသည္။
+ဤေျပာင္းလဲမႈသည္ စီစစ္ေရးပရိုဂရမ္မ်ားအေနျဖင့္ Tor ဆက္သြယ္မႈမ်ားကို
+သိရွိႏိုင္ရန္ ယခုအခါ မျဖစ္ႏိုင္ေတာ့ေပ။ ထို႔ေၾကာင့္ သင့္အေနႏွင့္ bridges
+မပါေသာ Tor ကို အရင္ စမ္းသံုးၾကည့္သင့္သည္။ ၎သည္ အလုပ္ျဖစ္လိမ့္မည္။
+</p>
+
+<p>
+Note that it's also possible that Tor is non-functional for other
+reasons. The latest version of <a href="<page torbrowser/index>">The Tor
+Browser Bundle</a> on Windows tries to give you better hints about why Tor
+is having problems connecting. You should also read <a
+href="<wiki>TorFAQ#IinstalledTorandPolipobutitsnotworking.">the FAQ about
+problems with running Tor properly</a> when you have issues.  If you feel
+that the issue is clearly blocking, or you'd simply like to try because
+you're unsure or feeling adventurous, please read on. Ensure that you're
+using the <a href="<page download>#Dev">latest 0.2.1.x or 0.2.2.x bundle for
+your platform</a>.
+</p>
+
+<p>
+bridge ကို အသံုးျပဳရန္ သင့္အေနႏွင့္ တစ္ခုကို ေနရာခ်ထားရန္ လိုအပ္လိမ့္မည္။
+ထို႔ျပင္ Tor ႏွင့္အတူ မည္သည့္  bridge လိပ္စာကို အသံုးျပဳရန္ ရည္ရြယ္သည္
+ျဖစ္ေစ ျပင္ဆင္မႈျပဳလုပ္ရန္ လိုအပ္မည္ ျဖစ္သည္။ Tor controller ျဖစ္တဲ့ Vidalia
+ႏွင့္ သင္လုပ္ေဆာင္ ရလိမ့္မည္။ အကယ္၍ အင္တာနက္ ဆက္သြယ္မႈတြင္ proxy အသံုးျပဳရန္
+လိုအပ္လာပါက သင့္အေနႏွင့္ Vidalia ကို ဦးစြာ ျပင္ဆင္ရန္ အေသအခ်ာ လိုအပ္သည္။
+အကယ္၍ အင္တာနက္ဆက္သြယ္မႈတြင္ proxy ထည့္သြင္းအသံုးျပဳရန္ မလိုအပ္ဟု
+ယူဆလွ်င္ေတာ့ ျပင္ဆင္မႈျပဳလုပ္ရန္ မလိုအပ္ေပ။ တစ္ခုခုျဖင့္ ၾကိဳးစားၾကည့္ပါ
+အကယ္၍ မရွင္းလင္းသည့္ ကိစၥရပ္မ်ားအတြက္ အကူညီလိုအပ္လာပါက ကၽြန္ေတာ္တို႔ကို
+ေမးျမန္းႏိုင္ပါတယ္။
+</p>
+
+<p>Freedom4Internet has produced a video on how to get and use Tor bridges.
+You can view it at <a href="http://www.youtube.com/thetorproject">Youtube:
+Freedom4Internet</a> or download it <a
+href="http://media.torproject.org/video/2009-using-a-bridge-relay-to-access-tor.ogv">directly</a>.
+Know of a better video, or one translated into your language? Let us know!</p>
+
+<p>
+သင္၏ web browser ျဖင့္ <a
+href="https://bridges.torproject.org/">https://bridges.torproject.org/</a>
+ကို ေခတၱခဏ သြားလည္လိုက္တာနဲ႔ bridge ကိုရယူႏုိင္ပါတယ္။ အကယ္၍ စာမ်က္ႏွာေတြဟာ
+ပိတ္ဆို႔ခံထားရမယ္၊ အျခား proxies ေတြလဲ မရွိဘူး၊ ဒါမွမဟုတ္ အဲ့ဒိစာမ်က္ႏွာကို
+ေရာက္ဖို႔ နည္းလမ္းေတြ မ်ားျပား ေနမယ္ဆိုရင္ <a href="#FindingMore">bridges
+မ်ားကို ရွာေဖြရန္ အျခားေသာ နည္းလမ္းမ်ား</a> လည္း ရွိပါေသးတယ္။
+</p>
+
+<a id="Understanding"></a>
+<h2><a class="anchor" href="#Understanding">bridges မ်ားကို နားလည္ျခင္း</a></h2>
+<hr />
+
+<p>
+ဥပမာအျဖစ္ ေအာက္ေဖာ္ျပပါ ပံုစံအတိုင္း bridge ကို ရရွိမွာျဖစ္ပါတယ္။ : 
+</p>
+<pre><samp>
+bridge 141.201.27.48:443 4352e58420e68f5e40bf7c74faddccd9d1349413
+</samp>
+</pre>
+
+<p>
+Bridge လိုင္းတစ္ခု၏ အစိတ္အပိုင္းမ်ားကို နားလည္ျခင္းသည္ မျဖစ္မေန
+လိုအပ္ခ်က္ေတာ့ မဟုတ္ေပ။ သို႔ေသာ္ ၎သည္ အသံုးဝင္ေၾကာင္း သက္ေသျပလိမ့္မည္။ အကယ္၍
+ဤအပိုင္းကို ေက်ာ္သြားခ်င္လွ်င္လည္း ရပါသည္။<br /> ပထမဦးဆံုး
+အေျခခံသေဘာတရားသည္ IP လိပ္စာမ်ား ျဖစ္သည္။ : <tt>'141.201.27.48'</tt><br />
+ဒုတိယ အေျခခံသေဘာတရားသည္ port ျဖစ္သည္။ : <tt>'443'</tt><br /> တတိယ
+အေျခခံသေဘာတရား ျဖစ္ေသာ fingerprint သည္ မျဖစ္မေန လိုအပ္သည္။ :
+<tt>'4352e58420e68f5e40bf7c74faddccd9d1349413'</tt><br />
+</p>
+
+<a id="UsingBridges"></a>
+<h2><a class="anchor" href="#UsingBridges">bridges ကို Tor ႏွင့္ Vidalia
+မ်ားႏွင့္ အတူ အသံုးျပဳျခင္း</a></h2>
+<hr />
+
+<p>
+အထက္ပါ bridge လိပ္စာ နမူနာကို အသံုးျပဳရန္ Vidalia ၏ Network settings
+စာမ်က္ႏွာကို သြားပါ။ ျပီးလွ်င္ "Tor ကြန္ယက္သို႔ ဆက္သြယ္မႈမ်ားကို ကၽြႏု္ပ္၏
+ISP မွ ပိတ္ဆို႔ထားသည္။" ကိုႏွိပ္ပါ။ "Add a Bridge" window ထဲသို႔
+ကူးထည့္ျခင္းအားျဖင့္ Vidalia Network settings စာမ်က္ႏွာမွာ တစ္ၾကိမ္တြင္
+bridge လိပ္စာတစ္ခုစီ ထည့္ပါ။ ထို႔ေနာက္  "+" သေကၤတကို ႏွိပ္ပါ။ bridge
+ေပါင္းထည့္ျခင္းကို ေအာက္တြင္ သရုပ္ျပထားပါသည္။ 
+</p>
+
+<br /><br /> <img src="$(IMGROOT)/vidalia-bridges.png" alt="Vidalia's
+Network settings page" /> <br /><br />
+
+<p>
+အပိုေဆာင္း bridges မ်ားသည္ ယံုၾကည္အားထားဖြယ္ရာ တိုးပြားလာလိမ့္မည္ဟု
+သိလာတဲ့အခါ သင္သိသေလာက္ bridge လိပ္စာမ်ားမ်ား ထည့္ခ်င္လာလိမ့္မည္။ bridge
+တစ္ခုတည္းႏွင့္ Tor ကြန္ယက္ကို ေရာက္ရွိႏိုင္ပါသည္။ သို႔ေသာ္ အကယ္၍ သင့္တြင္
+bridge တစ္ခုထဲရွိသည္ ဆိုလွ်င္ က်သြားတဲ့အခါ Tor ကြန္ယက္နဲ႔ အဆက္သြယ္ ျပတ္ေတာက္
+သြားလိမ့္မည္။
+</p>
+
+<a id="FindingMore"></a>
+<h2><a class="anchor" href="#FindingMore">Tor အတြက္ bridges မ်ားကို
+ရွာေဖြျခင္း</a></h2>
+<hr />
+
+<p>
+အျခားေသာ နည္းလမ္း အျဖစ္ အမ်ားဆိုင္ရာ bridge လိပ္စာမ်ားကို ရွာေဖြရန္မွာ
+ေမးလ္၏ ကိုယ္ထည္ႏွင့္ အေၾကာင္းအရာတြင္ "get bridges" ဟုေရးသားကာ
+bridges@torproject.org သို႔ေပးပို႔ျခင္း ျဖစ္သည္။ ဤေတာင္းဆိုမႈကို gmail
+အေကာင့္မွ ေပးပို႔ရန္ လိုအပ္ပါသည္။ သို႔ေသာ္လည္း &mdash; တစ္နည္းအားျဖင့္
+အီးေမးလ္လိပ္စာ အမ်ားအျပားႏွင့္ တိုက္ခိုက္လိုသူအတြက္ လြယ္လင့္တကူ ျဖစ္ေအာင္
+ကၽြန္ေတာ္တို႔က ျပဳလုပ္ေပးေနသလို ျဖစ္ေနျပီး bridges ေတြ အေၾကာင္းကို
+ေလ့လာသြားႏိုင္ပါတယ္။ ခ်က္ခ်င္းဆိုသလို အေၾကာင္းျပန္ခ်က္ကို သင္လက္ခံရရွိမွာ
+ျဖစ္ျပီး ၎တြင္ ပါဝင္သည္မွာ : 
+</p>
+<pre>
+bridge relays မ်ားမွာ:
+
+ bridge 60.16.182.53:9001 c9111bd74a710c0d25dda6b35e181f1aa7911133
+ bridge 87.237.118.139:444 c18dde4804e8fcb48464341ca1375eb130453a39
+ bridge 60.63.97.221:443 ab5c849ed5896d53052e43966ee9aba2ff92fb82
+
+</pre>
+<p>
+bridge ၏ သတင္းအခ်က္လက္မ်ားႏွင့္ အီးေမးလ္ကို သင္လက္ခံရရွိတာနဲ႔ ဆက္လက္ျပီး <a
+href="#UsingBridges">အထက္တြင္</a>ေဖာ္ျပထားသကဲ့သို႔Vidalia ျပင္ဆင္မႈ
+အဆင့္ဆင့္ ေဖာ္ျပခ်က္မ်ားအတိုင္း သင္ေရွ႕ဆက္လုပ္ေဆာင္ ႏိုင္ပါသည္။
+</p>
+
+<a id="RunningABridge"></a>
+<h2><a class="anchor" href="#RunningABridge">Tor Bridge တစ္ခုကို
+အလုပ္လုပ္ေစျခင္း</a></h2>
+<hr />
+
+<p>
+အကယ္၍ ပံုမွန္ Tor relay ကို မ run ႏုိင္ခဲ့လွ်င္ bridge relay တစ္ခုကို run
+သင့္သည္။ ဤ နည္းလမ္းႏွစ္သြယ္ျဖင့္ ျပင္ဆင္မႈ ျပဳလုပ္ႏိုင္သည္။ : 
+<ul>
+<li> manually <a
+href="<wiki>TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">edit your torrc
+file</a> to be just these four lines:<br />
+<pre><code>
+SocksPort 0
+ORPort 443
+BridgeRelay 1
+Exitpolicy reject *:*
+</code></pre></li>
+<li><a href="<page docs/tor-doc-relay>">သို႔မဟုတ္ Vidalia အသံုးျပဳျခင္း</a>:<br
+/> <img src="$(IMGROOT)/vidalia-bridges-setup.png" alt="Vidalia's Sharing
+settings page" /></li>
+</ul>
+</p>
+
+<p>If you get "Could not bind to 0.0.0.0:443: Permission denied" errors on
+startup, you'll need to pick a higher ORPort (e.g. 8080) or do <a
+href="<wiki>TorFAQ#Myfirewallonlyallowsafewoutgoingports.">some complex port
+forwarding</a>.
+</p>
+
+<p>
+bridge အျဖစ္ ျပင္ဆင္မႈျပဳလုပ္တဲ့အခါ သင့္ဆာဗာဟာ အမ်ားဆိုင္ရာ Tor ကြန္ယက္တြင္
+<b>မေပၚပါ။</b>
+</p>
+
+<p>
+bridge relay သည္ လိပ္စာမ်ားကို bridge သို႔ အလိုအေလ်ာက္ ထုတ္ေပးမည္ ျဖစ္ျပီး
+အထက္မွာကဲ့သို႔ https သို႔မဟုတ္ အီးေမးလ္မွ တဆင့္ ေပးပို႔ေပးမည္ ျဖစ္သည္။ သင့္၏
+bridge အေၾကာင္း အသံုးျပဳသူမ်ားကိုလည္း တိုက္ရိုုက္ေျပာျပႏိုင္ပါသည္။ : အကယ္၍
+Vidalia အသံုးျပဳေနသည္ဆိုလွ်င္ setting window ကေန bridge လိပ္စာကို
+ေကာ္ပီကူးထည့္ႏိုင္ပါသည္။ အကယ္၍ သင္ဟာ Linux သို႔မဟုတ္ BSD ေပၚမွာဆိုရင္ bridge
+လိပ္စာကို <a href="#Understanding">အထက္ပါ ပံုစံ</a> ကိုအသံုးျပဳ၍ manual
+တည္ေဆာက္ႏိုင္ပါတယ္။ (ပလက္ေဖာင္းေပၚမူတည္၍ သင္၏ Tor log files သို႔မဟုတ္
+<tt>/var/lib/tor/fingerprint</tt> ထဲတြင္ fingerprint ကို ရွာေဖြႏိုင္ပါသည္။)
+</p>
+
+<p>
+အကယ္၍ နည္းပညာရႈေထာင့္မွ ကၽြႏ္ုပ္တို႔၏ bridge ဒီဇိုင္းအေၾကာင္းကို
+ပိုမိုေလ့လာလိုပါက ေက်းဇူးျပဳ၍ <a
+href="<gitblob>doc/spec/bridges-spec.txt">Tor bridges အေၾကာင္း
+အေသးစိတ္ေဖာ္ျပခ်က္မ်ား</a> ကို ဖတ္ပါ။ အကယ္၍ အတည္မျပဳရေသးေသာ bridge
+အသံုးျပဳမႈ သို႔မဟုတ္ စံမဟုတ္ေသာ အသံုးျပဳမႈမ်ား အတြက္ စိတ္ဝင္စားတယ္ဆိုလွ်င္
+ေက်းဇူးျပဳ၍ အေသးစိတ္ဖတ္ရႈပါ။
+</p>
+
+  </div>
+
+
+
+#include <foot.wmi>

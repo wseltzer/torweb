@@ -1,0 +1,51 @@
+// Derechos de autor (c) The Tor Project, Inc.
+// Ver LICENSE para la información de licencia
+// Esto es un documento asscii empleado para generar las referencias de las páginas del muanual/html.
+// Aprender asciidoc en http://www.methods.co.nz/asciidoc/userguide.html
+torify(1)
+==============
+Peter Palfrader Jacob Appelbaum
+
+NOMBRE
+----
+torify - envoltorio para torsocks o tsocks y tor 
+
+SINOPSIS
+--------
+**torify** __application__ [__application's__ __arguments__]
+
+DESCRIPCION
+-----------
+**torify** es un envoltorio sencillo que intenta encontrar el envoltorio Tor mejores subyacentes
+disponibles en un sistema. Hace un llamamiento torsocks o tsocks con un archivo de
+configuración específica tor. +
+
+torsocks es una capa mejorada que explictly rechaza UDP, con seguridad
+resuelve consultas de DNS y adecuadamente socksifies las conexiones TCP. +
+
+tsocks sí es un contenedor entre la biblioteca tsocks y la aplicación que
+desea ejecutar socksified. +
+
+Tenga en cuenta que ya que tanto el uso del método LD_PRELOAD, torify no se
+puede aplicar a los binarios suid.
+
+ADVERTENCIA
+-------
+También deben ser conscientes de que la forma tsocks actualmente sólo
+funciona conexiones TCP son socksified. Tenga en cuenta que esta voluntad no
+en la mayoría de circunstancias incluyen las búsquedas de nombre de host que
+aún se enrutan a través de su programa de resolución normal del sistema al
+teléfono de servidores de nombres habituales resolver. ** El tor-resolver **
+(1) herramienta puede ser útil como una solución en algunos casos. El Tor
+FAQ en la página https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ
+pueda disponer de información adicional sobre este tema. +
+
+Cuando se utiliza con torsocks, las solicitudes DNS torify no presente fugas
+o datos UDP. +
+
+Ambos se fuga de datos ICMP.
+
+VER TAMBIÉN
+--------
+**tor**(1), **tor-resolve**(1), **torsocks**(1), **tsocks**(1),
+**tsocks.conf**(5).

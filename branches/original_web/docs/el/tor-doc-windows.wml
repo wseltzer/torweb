@@ -1,0 +1,193 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 23387 $
+# Translation-Priority: 1-high
+#include "head.wmi" TITLE="Tor: MS Windows Install Instructions" CHARSET="UTF-8"
+<div class="center">
+
+<div class="main-column">
+
+<h1>Εκτέλεση του <a href="<page index>">Tor</a> στα Microsoft Windows</h1>
+<br />
+
+<p>
+<b>Οι οδηγίες αυτές είναι για την εγκατάσταση του Tor ώστε να τρέχουν σε
+Microsoft Windows (2000, XP, Vista, 7 και Server Edition).  Αν θέλετε να
+αναμεταδίδετε κυκλοφορία προς τρίτους ώστε να βοηθήσετε στην ανάπτυξη του
+δικτύου (παρακαλούμε να το κάνετε), διαβάστε τον οδηγό <a href="<page
+docs/tor-doc-relay>">Ρύθμιση ενός ενδιάμεσου</a>.</b>
+</p>
+
+<p>Freedom4Internet has produced a video on how to install Tor.  You can view
+it at <a
+href="http://media.torproject.org/video/2009-install-and-use-tor.ogv">How to
+install Tor on Windows</a>.  Know of a better video, or one translated into
+your language? Let us know!</p>
+
+<div class="center">
+<p><video id="v1" src="http://media.torproject.org/video/2009-install-and-use-tor.ogv" autobuffer="true" controls="controls"></video></p>
+</div>
+
+<hr /> <a id="installing"></a>
+<h2><a class="anchor" href="#installing">Βήμα Πρώτο: Κατεβάστε και εγκαταστήστε
+το Tor</a></h2>
+<br />
+
+<p>
+Το πακέτο Microsoft Windows περιέχει <a href="<page index>">Tor</a>, <a
+href="<page vidalia/index>">Vidalia</a> (a GUI for Tor), <a
+href="https://addons.mozilla.org/firefox/2275/">Torbutton</a> (ένα πρόσθετο
+για το Mozilla Firefox), and <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a> (ένας
+πληρεξούσιος ιστού) σε πακέτο, όπου οι τέσσερεις εφαρμογές είναι
+προ-ρυθμισμένες να λειτουργούν μαζί. Κατεβάστε είτε την <a
+href="../<package-win32-bundle-stable>">σταθερή</a> ή την <a
+href="../<package-win32-bundle-alpha>">πειραματική</a> έκδοση του πακέτου
+Windows ή βρείτε περισσότερες επιλογές στην <a href="<page download>">σελίδα
+λήψεων</a>.
+</p>
+
+<img alt="tor installer splash page"
+src="../img/screenshot-win32-installer-splash.png" />
+
+<p>Αν έχετε εγκαταστήσει τα Tor, Vidalia ή Polipo προηγούμενα, μπορείτε να
+αποεπιλέξετε όποιο συστατικό δεν θέλετε να εγκατασταθεί, μέσα από τον
+διάλογο που φαίνεται παρακάτω.
+</p>
+
+<img alt="select components to install"
+src="../img/screenshot-win32-installer-components.png" />
+
+<p>Αφού ολοκληρωθεί η εγκατάσταση, τα συστατικά που επιλέξατε θα ξεκινήσουν
+αυτόματα.
+</p>
+
+<p>Το Tor λειτουργεί αρχικά ως πρόγραμμα-client. Χρησιμοποιεί ένα ενσωματωμένο
+αρχικό αρχείο ρυθμίσεων και οι περισσότεροι χρήστες δεν χρειάζεται να κάνουν
+αλλαγές. Το Tor έχει τώρα εγκτασταθεί.
+</p>
+
+<hr /> <a id="using"></a>
+<h2><a class="anchor" href="#using">Βήμα Δεύτερο: Ρυθμίστε τις εφαρμογές σας
+ώστε να χρησιμοποιούν το Tor</a></h2>
+<br />
+
+<p>Μετά την εγκατάσταση των Tor και Polipo πρέπει να ρυθμίσετε τις εφαρμογές
+σας ώστε να τα χρησιμοποιούν. Το πρώτο βήμα είναι η ρύθμιση της περιήγησης
+στον ιστό.</p>
+
+<p>Για μεγαλύτερη ασφάλεια χρησιμοποιείτε το Tor με Firefox και Torbutton.  Το
+πακέτο θα εγκαταστήσει για εσάς το <a
+href="https://addons.mozilla.org/firefox/2275/">πρόσθετο
+Torbutton</a>. Επανεκκινήστε τον Firefox και είστε έτοιμοι:
+</p>
+
+<img alt="Torbutton plugin for Firefox"
+src="../img/screenshot-torbutton.png" border="1"/> <br />
+
+<p>
+Αν σκοπεύετε να εκτελείτε τον Firefox σε υπολογιστή διαφορετικό από εκείνον
+του Tor, δείτε <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SocksListenAddress">το
+τμήμα του FAQ για την εκτέλεση του Tor σε άλλον υπολογιστή</a>.
+</p>
+
+<p>Για να χρησιμοποιήσουν οι άλλες εφαρμογές που υποστηρίζουν πληρεξούσιους
+HTTP το Tor, απλώς ρυθμίστε τις να  επικοινωνούν με το Polipo (δηλαδή,
+ορίζοντας ως διεύθυνσή του localhost θύρα 8118). Για να χρησιμοποιείται
+άμεσα το SOCKS (για άμεσα μηνύματα, Jaber, IRC, κ.λ.π.) ρυθμίστε το
+πρόγραμμά σας να επικοινωνεί κατευθείαν με το Tor (localhost θύρα 9050) και
+διαβάστε <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#SOCKSAndDNS">αυτό
+το θέμα στο FAQ</a>  για ποιό λόγο κάτι τέτοιο ίσως είναι επικίνδυνο. Για
+εφαρμογές που δεν υποστηρίζουν ούτε SOCKS ούτε HTTP, διαβάστε το SocksCap ή
+το <a href="http://www.freecap.ru/eng/">FreeCap</a>. (Το FreeCap είναι
+ελεύθερο λογισμικό, το SocksCap είναι ιδιωταγές).</p>
+
+<p>Για πληροφορίες χρήσης άλλων εφαρμογών με το Tor δείτε το <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorifyHOWTO">Torify
+HOWTO</a>.
+</p>
+
+<hr /> <a id="verify"></a>
+<h2><a class="anchor" href="#verify">Βήμα Τρίτο: Βεβαιωθείτε ότι δουλεύει</a></h2>
+<br />
+
+<p>
+Βεβαιωθείτε ότι το Vidalia εκτελείται.  Το Vidalia χρησιμοποιεί ένα μικρό
+πράσινο κρεμύδι για να δείξει ότι το Tor εκτελείται, ή ένα μαύρο κρεμύδι με
+ένα κόκκινο "Χ" όταν το Tor δεν εκτελείται. Μπορείτε να εκκινήσετε ή να
+σταματήσετε το Tor κάνοντας δεξιό κλικ στο εικονίδιο του Vidalia στην
+περιοχή ειδοποιήσεων και επιλέγονας "Έναρξη" ή "Διακοπή" από το μενού, όπως
+φαίνεται πιο κάτω:
+</p>
+
+<img alt="Vidalia Tray Icon" src="../img/screenshot-win32-vidalia.png"/>
+
+<p>
+Έπειτα χρησιμοποιείστε τον περιηγητή σας με το Tor και βεβαιωθείτε ότι η
+διεύθυνσή σας ΙΡ είναι ανώνυμη. Κάνετε κλικ στον <a
+href="https://check.torproject.org/">ανιχνευτή Tor</a> και δείτε αν είστε
+συνδεδεμένος στο δίκτυο Tor. (Αν αυτός ο ιστότοπος είναι εκτός λειτουργίας,
+δείτε a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate">αυτό
+το θέμα του FAQ</a> για περισσότερες πληροφορίες πώς να ελέγξετε την σύνδεσή
+σας με το Tor).
+</p>
+
+<p>Αν έχετε κάποιο τείχος προστασίας που περιορίζει τη δυνατότητα σύνδεσης στο
+δίκτυο, βεβαιωθείτε ότι έχετε επιτρέψει τις συνδέσεις από τις τοπικές
+εφαρμογές σας προς τις τοπικές θύρες 8118 και 9050. Αν το τείχος προστασίας
+σας φράσσει τις εξερχόμενες συνδέσεις σας ρυθμίστε το ώστε να μπορεί να
+συνδεθεί τουλάχιστον στις θύρες TCP 80 και 443 και μετά διαβάστε <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#FirewalledClient">αυτότ
+ο θέμα στο FAQ</a>.
+</p>
+
+<p>Αν εξακολουθεί να μην δουλεύει, διαβάστε αυτό το <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#ItDoesntWork">
+θέμα του FAQ</a> για συμβουλές.</p>
+
+<p>
+Μόλις συνδεθείτε με επιτυχία στο δίκτυο Tor, διαβάστε περισσότερα <a
+href="<page download>#Warning">τι κάνει και τι όχι το Tor</a>.
+</p>
+
+<hr /> <a id="server"></a> <a id="relay"></a>
+<h2><a class="anchor" href="#relay">Βήμα Τέταρτο: Ρυθμίστε το ως ενδιάμεσο</a></h2>
+<br />
+
+<p>Για να προσφέρει εύρος ζώνης, το δίκτυο Tor βασίζεται στους εθελοντές. Όσο
+περισσότερο άνθρωποι γίνονται ενδιάμεσοι αναμεταδότες, τόσο πιο γρήγορο θα
+είναι το δίκτυο Tor.  Αν έχετε τουλάχιστον 20 kilobytes/sec προς κάθε
+κατεύθυνση, βοηθείστε το Tor ρυθμίζοντάς το ως ενδιάμεσο.  Υπάρχουν πολλά
+στοιχεία που καθιστούν τους ενδιάμεσους Tor εύκολους και βολικούς, όπως
+περιορισμός της κλίμακας εύρους ζώνης, πολιτικές εξόδου ώστε να μην
+εκτίθεστε σε διαμαρτυρίες και υποστήριξη για δυναμικές ΙΡ διευθύνσεις.</p>
+
+<p>Όταν υπάρχουν ενδιάμεσοι σε διάφορα σημεία το Διαδικτύου, το Tor γίνεται
+ασφαλέστερο.  <a
+href="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#RelayAnonymity">Κι
+εσει οι ίδιοι απολαμβάνεται μεγαλύτερη ανωνυμία</a>, αφού οι απομακρυσμένοι
+ιστότοποι δεν γνωρίζουν αν οι συνδέσεις σας έγιναν από τον υπολογιστή σας ή
+αναμεταδόθηκαν από άλλους.</p>
+
+<p>Διαβάστε περισσότερα στο οδηγό μας <a href="<page
+docs/tor-doc-relay>">Ρυθμίζοντας έναν ενδιάμεσο αναμεταδότη</a>.</p>
+
+<hr />
+
+<p>Αν έχετε προτάσεις για βελτίωση αυτού του εγγράφου, παρακαλώ <a href="<page
+contact>">υποβάλετέ τις εδώ</a>. Ευχαριστούμε!</p>
+
+  </div>
+<!-- #main -->
+</div>
+
+
+#include <foot.wmi>

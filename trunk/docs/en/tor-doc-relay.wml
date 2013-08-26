@@ -1,0 +1,208 @@
+## translation metadata
+# Revision: $Revision: 26080 $
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor Project: Relay Configuration Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/tor-doc-relay>">Configure Tor Relay</a>
+  </div>
+  <div id="maincol">
+
+    <h1>Configuring a Tor relay</h1>
+
+    <hr>
+
+    <p>
+    The Tor network relies on volunteers to donate bandwidth. The more
+    people who run relays, the faster the Tor network will be. If you have
+    at least 50 kilobytes/s each way, please help out Tor by configuring your
+    Tor to be a relay too.
+    </p>
+
+    <p>You can run a Tor relay on pretty much any operating system. Tor relays
+    work best on Linux, OS X Tiger or later, FreeBSD 5.x+, NetBSD 5.x+, and
+    Windows Server 2003 or later.
+    </p>
+
+    <p>If you're comfortable editing text files, skip this page and
+    go to our dedicated <a href="<page docs/tor-relay-debian>">Relay
+    Configuration Instructions on Debian/Ubuntu</a> page. That page is
+    the best one for relay operators on BSD, Unix, etc as well.</p>
+
+    <hr>
+    <a id="zero"></a>
+    <a id="install"></a>
+    <h2><a class="anchor" href="#install">Step One: Download and Install Tor</a></h2>
+    <br>
+
+    <p>Before you start, you need to make sure that Tor is up and running.
+    </p>
+
+    <p>Visit our <a href="<page download/download>">download page</a> and
+    install the "Installation Bundle" for your OS.
+    </p>
+
+    <p>If it's convenient, you might also want to use it as a client for a
+    while to make sure it's actually working.</p>
+
+    <hr>
+    <a id="setup"></a>
+    <h2><a class="anchor" href="#setup">Step Two: Set it up as a relay</a></h2>
+    <br>
+    <ol>
+
+    <li>Verify that your clock and timezone are set
+    correctly. If possible, synchronize your clock with public <a
+    href="http://en.wikipedia.org/wiki/Network_Time_Protocol">time
+    servers</a>.
+    </li>
+
+    <li><strong>Configuring Tor with the Vidalia Graphical Interface</strong>:
+    <ol>
+
+    <li>
+    	<dt>Right click on the Vidalia icon in your task bar.  Choose <tt>Control Panel</tt>.</dt>
+    	<dd><img alt="vidalia right click menu" src="$(IMGROOT)/screenshot-win32-vidalia.png" /></dd>
+    </li>
+
+    <li>Click <tt>Setup Relaying</tt>.</li>
+
+    <li>
+    	<dt>Choose <tt>Relay Traffic for the Tor network</tt> if you
+want to be a public relay (recommended), or choose <tt>Help
+censored users reach the Tor network</tt> if you want to be a <a
+href="<page docs/faq>#RelayOrBridge">bridge</a> for users in countries
+that censor their Internet.</dt>
+    <dd><img alt="vidalia basic settings" src="$(IMGROOT)/screenshot-win32-configure-relay-1.png" /></dd>
+    </li>
+
+    <li>Enter a nickname for your relay, and enter contact information in
+    case we need to contact you about problems.</li>
+
+    <li>Leave <tt>Attempt to automatically configure port forwarding</tt> clicked.
+    Push the <tt>Test</tt> button to see if it works.  If it does work, great.
+    If not, see number 3 below.</li>
+
+    <li><dt>Choose the <tt>Bandwidth Limits</tt> tab.  Select how much bandwidth you want to provide for Tor users like yourself.</dt>
+    <dd><img alt="vidalia bandwidth limits" src="$(IMGROOT)/screenshot-win32-configure-relay-2.png" /></dd>
+    </li>
+
+    <li><dt>Choose the <tt>Exit Policies</tt> tab.  If you want to allow others
+    to use your relay for these services, don't change anything.  Un-check
+    the services you don't want to allow people to <a href="<page
+    docs/faq>#ExitPolicies">reach from your relay</a>.  If you want to
+    be a non-exit relay, un-check all services.</dt>
+    <dd><img alt="vidalia exit policies" src="$(IMGROOT)/screenshot-win32-configure-relay-3.png" /></dd>
+    </li>
+
+    <li>Click the <tt>Ok</tt> button.  See Step Three below for confirmation
+    that the relay is working correctly.</li>
+    </ol>
+
+    <li>If you are using a firewall, open a hole in your firewall
+    so incoming connections can reach the ports you configured
+    (ORPort, plus DirPort if you enabled it). If you have a
+    hardware firewall (Linksys box, cablemodem, etc) you might like <a
+    href="http://portforward.com/">portforward.com</a>. Also, make sure you
+    allow all <em>outgoing</em> connections too, so your relay can reach the
+    other Tor relays.
+    </li>
+
+    <li>Restart your relay. If it <a
+    href="<page docs/faq>#Logs">logs
+    any warnings</a>, address them.
+    </li>
+
+    <li>Subscribe to the <a
+    href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-announce">tor-announce</a>
+    mailing list. It is very low volume, and it will keep you informed
+    of new stable releases. You might also consider subscribing to <a
+    href="<page docs/documentation>#MailingLists">the higher-volume Tor lists</a>
+    too.</li>
+    <li><a href="https://weather.torproject.org/">Tor Weather</a> provides
+    an email notification service to any users who want to monitor the
+    status of a Tor node. Upon subscribing, you can specify what types of
+    alerts you would like to receive. The main purpose of Tor Weather is
+    to notify node operators via email if their node is down for longer
+    than a specified period, but other notification types are available.
+    </li>
+
+    </li></ol>
+
+    <hr>
+    <a id="check"></a>
+    <h2><a class="anchor" href="#check">Step Three: Make sure it is working</a></h2>
+    <br>
+
+    <p>As soon as your relay manages to connect to the network, it will
+    try to determine whether the ports you configured are reachable from
+    the outside. This step is usually fast, but may take up to 20
+    minutes. Look for a <a href="<page docs/faq>#Logs">log entry</a> like
+    <tt>Self-testing indicates your ORPort is reachable from the outside. Excellent.</tt>
+    If you don't see this message, it means that your relay is not reachable
+    from the outside &mdash; you should re-check your firewalls, check that it's
+    testing the IP and port you think it should be testing, etc.
+    </p>
+
+    <p>When it decides that it's reachable, it will upload a "server
+    descriptor" to the directories, to let clients know
+    what address, ports, keys, etc your relay is using. You can <a
+    href="http://194.109.206.212/tor/status-vote/current/consensus">load one of
+    the network statuses manually</a> and
+    look through it to find the nickname you configured, to make sure it's
+    there. You may need to wait up to one hour to give enough time for it to
+    make a fresh directory.</p>
+
+    <hr>
+    <a id="after"></a>
+    <h2><a class="anchor" href="#after">Step Four: Once it is working</a></h2>
+    <br>
+
+    <p>Read
+    <a href="<wiki>doc/OperationalSecurity">about operational security</a>
+    to get ideas how you can increase the security of your relay.
+    </p>
+
+    <p>
+    If you control the name servers for your domain, consider setting your
+    reverse DNS hostname to 'anonymous-relay', 'proxy' or 'tor-proxy', so when
+    other people see the address in their web logs, they will more quickly
+    understand what's going on. Adding the <a
+    href="<gitblob>contrib/tor-exit-notice.html">Tor
+    exit notice</a> on a vhost for this name can go a long way to deterring abuse
+    complaints to you and your ISP if you are running an exit node.
+    </p>
+
+    <p>
+    When you change your Tor configuration, remember to verify that your
+    relay still works correctly after the change.
+    If you have problems or questions, see
+    the <a href="<page docs/documentation>#Support">Support</a> section or
+    <a href="<page about/contact>">contact us</a>. Thanks
+    for helping to make the Tor network grow!
+    </p>
+
+    <p>
+    As a relay operator, you should subscribe to the 
+    <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-relays">
+    tor-relays mailing list</a>.
+    </p>
+
+    <hr>
+
+    <p>If you have suggestions for improving this document, please <a
+    href="<page about/contact>">send them to us</a>. Thanks!</p>
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>
+

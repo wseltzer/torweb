@@ -1,0 +1,66 @@
+#! /usr/bin/wml
+<: use strict; :>
+<: use warnings; :>
+#use "perl-globals.wmi"
+#use "links.wmi"
+#use "versions.wmi"
+#use "navigation.wmi"
+
+#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+#<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
+<head>
+  <title>$(TITLE)</title>
+  <meta name="Author" content="The Tor Project, Inc." />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <ifneq "$(STYLESHEET)" "" "<link rel="stylesheet" type="text/css" href="$(DOCROOT)/$(STYLESHEET)" />">
+  <ifeq "$(STYLESHEET)" "" "<link rel="stylesheet" type="text/css" href="$(DOCROOT)/stylesheet-ltr.css" />">
+  <link rel="shortcut icon" type="image/x-icon" href="$(DOCROOT)/favicon.ico" />
+  <ifneq "$(REDIRECT)" "" "<meta http-equiv="refresh" content="0;url=$(DOCROOT)/$(REDIRECT)" />">
+  <ifneq "$(REDIRECT_GLOBAL)" "" "<meta http-equiv="refresh" content="0;url=$(REDIRECT_GLOBAL)" />">
+  <ifeq "$(ANNOUNCE_RSS)" "yes" "<link rel="alternate" title="Tor Project OR-announce" href="http://rss.gmane.org/gmane.network.onion-routing.announce" type="application/rss+xml" />">
+</head>
+
+<body>
+
+<div class="center">
+<table class="banner" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="banner-left"><a href="https://www.torproject.org/"><img src="$(DOCROOT)/images/top-left.png" alt="Click to go to home page" width="193" height="79"></a></td>
+        <td class="banner-middle">
+	<:{
+	    my %navigation;
+	    my @keys;
+	    while (@navigation) {
+	      my $key = shift @navigation;
+	      my $val = shift @navigation;
+	      push @keys, $key;
+	      $navigation{$key} = $val;
+	    }
+
+	    for my $key (@keys) {
+	      my $page = $WML_SRC_FILENAME;
+	      $page =~ s/\.wml//;
+	      if ($page ne $key) {
+	        if (-e "$(DOCROOT)/$(LANG)/$key.wml") {
+	          printf '<a href="%s">%s</a>'."\n",
+	                 stripDotSlashs("$(DOCROOT)/$key.html.$(LANG)"), $navigation{$key};
+	        } elsif ($key =~ /^http/) {
+	          printf '<a href="%s">%s</a>'."\n", $key, $navigation{$key};
+	        } else {
+	          printf '<a href="%s">%s</a>'."\n",
+	                 stripDotSlashs("$(DOCROOT)/$key.html"), $navigation{$key};
+	        }
+	      } else {
+	       printf '<a class="current">%s</a>'."\n", $navigation{$key};
+	      }
+	    }
+	}:>
+        </td>
+    </tr>
+</table>
+
+<ifneq "$(REDIRECT)" "" "Redirecting to <a href="$(DOCROOT)/$(REDIRECT)">$(DOCROOT)/$(REDIRECT)</a>.">
+<ifneq "$(REDIRECT_GLOBAL)" "" "Redirecting to <a href="$(REDIRECT_GLOBAL)">$(REDIRECT_GLOBAL)</a>.">
+

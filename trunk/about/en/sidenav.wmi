@@ -1,0 +1,65 @@
+## translation metadata
+# Revision: $Revision: 26244 $
+# Translation-Priority: 2-medium
+
+# this structure defines the side nav bar for the /about pages
+# and is the input for include/side.wmi
+
+# fields:
+#
+# url - the path to the wml page, as used the the <page> tag. This tag ensures
+# that links will point to the current language if supported, and alternately
+# the english version 
+#
+# txt - the link text to be displayed. Different translations will
+# need to supply alternate txt
+
+<:
+  my $sidenav;
+  $sidenav = [
+      {'url'  => 'about/overview',
+       'txt'  => 'Tor Overview',
+      },
+      {'url'  => 'about/torusers',
+       'txt'  => 'Users of Tor',
+      },
+
+      {'url'  => 'about/corepeople',
+       'txt'  => 'Tor People',
+       'subelements' => [
+          {'url'  => 'about/board',
+           'txt'  => 'Board of Directors',
+          }, 
+          {'url'  => 'about/translators',
+           'txt'  => 'Translators',
+          }, 
+          {'url'  => 'about/volunteers',
+           'txt'  => 'Volunteers',
+          },  
+          {'url'  => 'about/contributors',
+           'txt'  => 'Past Contributors',
+          }]
+      },
+
+      {'url'  => 'about/jobs',
+       'txt'  => 'Jobs',
+       'subelements' => [
+          {'url'  => 'about/jobs-lead-automation',
+           'txt'  => 'Lead Automation Engineer',
+          }]
+      },
+
+      {'url'  => 'about/sponsors',
+       'txt'  => 'Sponsors',
+      },
+      {'url'  => 'about/financials',
+       'txt'  => 'Financial Reports',
+      },
+      {'url'  => 'projects/projects',
+       'txt'  => 'Projects',
+      }, 
+      {'url'  => 'docs/documentation',
+       'txt'  => 'Documentation',
+      },  
+  ];
+:>

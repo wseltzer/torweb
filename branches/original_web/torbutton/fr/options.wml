@@ -1,0 +1,312 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 22973 $
+# Translation-Priority: 3-low
+#include "head.wmi" TITLE="Torbutton Options" CHARSET="UTF-8"
+<div class="main-column">
+
+
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h2>Options de Torbutton</h2>
+<hr />
+
+<p>Torbutton 1.2.0 apporte de nouvelles fonctionnalités de sécurité pour
+protéger votre anonymat de la majorité des attaques dont nous avons entendu
+parler. La configuration par défaut devrait suffire pour la majorité des
+personnes mais si vous êtes du genre curieux ou si vous préférez utiliser
+certaines options dans des extensions plus souples, voici la liste
+complète. (dans un monde idéal, ces descriptions devraient figurer dans les
+aides de l'extension en elle-même mais les bugs <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=45375">45375</a> et <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=218223">218223</a> nous
+en empêchent).</p>
+
+<ul>
+ <li>Désactiver les modules externes pendant l'utilisation de Tor (crucial)<p> 
+
+  C'est une option clef pour la sécurité de Tor. Les plugins effectuent
+eux-mêmes des accès au réseau indépendamment du navigateur et beaucoup de
+plugins n'obéissent que partiellement à leurs propres paramètres de proxy.
+</p></li>
+  <li>Isoler le contenu dynamique selon l'état de Tor (crucial)<p> 
+
+  Une autre option cruciale. Ce paramètre permet au plugin de désactiver
+Javascript dans les onglets qui sont ouverts et chargés lorsque Tor n'a pas
+le même état que maintenant. Ceci permet d'éviter les injections différées
+d'URL contenant des identifiants uniques ainsi que le rafraîchissement des
+meta-tags qui pourraient révéler votre adresse IP lorsque vous fermez
+Tor. Cela permet également d'éviter les injections à partir d'onglets
+chargés lorsque Tor est dans un état différent. Cela permet de bloquer le
+contenu dynamique Javascript tel que les popups CSS de révéler votre adresse
+IP lorsque vous désactivez Tor.
+</p></li>
+  <li>Détournement du Javascript dangereux (crucial)<p> 
+
+Ce paramètre active le détournement de code Javascript. Du javascript est
+injecté dans les pages pour détourner l'objet Date afin de masquer votre
+fuseau horaire, pour détourner l'objet navigator pour masquer l'OS et les
+propriétés du user-agent non gérées par les paramètres standards de Firefox.
+</p></li>
+  <li>Redimensionner la fenêtre en multiples de 50px lors de l'activation
+(recommandé)<p> 
+
+Pour réduire la quantité d'états disponibles pour pister individuellement
+les utilisateurs, cette préférence redimensionne la fenêtre en multiple de
+50 pixels sur les deux dimensions lorsque Tor est activé et que les pages
+sont en cours de chargement.
+</p></li>
+  <li>Désactiver les mises à jour pendant l'utilisation de Tor (recommandé)<p> 
+
+Sous Firefox 2, de nombreux auteurs d'extensions ne réalisaient pas les
+mises à jours des extensions à partir de sites Web SSL. Il est alors
+possible pour des noeuds Tor malicieux de détourner ces extensions et de les
+remplacer par des versions malicieuses. Depuis la version 3 de Firefox qui
+impose les mises à jour chiffrées et authentifiées, ce paramètre est devenu
+moins important qu'auparavant (même s'il arrive parfois que les mises à jour
+permettent des fuites d'informations sur les extensions que vous avez
+installées).
+</p></li>
+  <li>Désactiver les suggestions de recherche pendant l'utilisation de Tor
+(optionnel)<p> 
+
+Ce paramètre optionnel permet ou non les suggestions de recherche de Google
+pendant l'utilisation de Tor. Étant donné qu'aucun cookie n'est transmis
+lors des suggestions de recherche, cette fonctionnalité est peu risquée.
+</p></li>
+  <li>Bloquer les Marques-Pages Dynamiques lorsque Tor est actif (recommandé)<p> 
+
+Ce paramètre permet à Torbutton de désactiver les mises à jour des <a
+href="http://www.mozilla.com/firefox/livebookmarks.html">Marques-Pages
+dynamiques</a>. Etant donné que la plupart des personnes utilisent les
+Marques-Pages dynamiques comme analyseur RSS de leur blog, des blogs de
+leurs amis, de la page Wikipédia qu'ils éditent et autre, ces mises à jour
+ne devraient pas avoir lieu pendant l'utilisation de Tor. Cette option ne
+prend effet qu'à partir de la version 3.5 de Firefox.
+
+</p></li>
+  <li>Bloquer l'accès au réseau Tor/Non-Tor depuis des urls file:// (recommandé)<p> 
+
+Ces paramètres empêche les documents html en local de transmettre des
+fichiers locaux à des sites webs non autorisés <a
+href="http://www.gnucitizen.org/blog/content-disposition-hacking/">sous
+Firefox 2</a>. Etant donné que les noeuds de sortie peuvent injecter des
+en-têtes forçant le navigateur à enregistrer des pages locales dérivées (et
+également injecter des scripts dans les fichiers html dérivés enregistrés
+sur disque via Tor), c'est une bonne idée d'activer ce paramètre.
+</p></li>
+  <li>Fermer toutes les fenêtres et les onglets Tor/Non-Tor lors du changement
+d'état (optionnel)<p> 
+
+Ces deux paramètres vous permettent d'être sûr qu'une fois que Tor a changé
+d'état, les pages sont réellement fermées et ne peuvent plus aller sur le
+réseau. Pour le moment, il n'y a aucun moyen connu pour que les pages
+puissent réaliser des actions après leur fermeture mais ces options
+demeurent en tant que mesure de prévention au cas où une faille serait
+découverte. Ils peuvent aussi servir en tant que "bouton d'urgence" bien
+pratique pour terminer en toute hâte la navigation avec Tor.
+</p></li>
+  <li>Isoler l'accès à l'historique de navigation selon l'état de Tor (crucial)<p> 
+
+Ce paramètre empêche à la fois Javascript et les clics utilisateurs
+accidentels de charger des pages d'une session historisée récupérées lorsque
+Tor était dans un état différent. Etant donné que cela peut être utilisé
+pour mettre en correlation votre activité Tor et Non-Tor et déterminer ainsi
+quelle est votre adresse IP, ce paramètre est crucial.
+</p></li>
+  <li>Bloquer la lecture de l'historique lorsque Tor est utilisé (crucial)<p> 
+
+  Basé sur un code source de <a href="http://www.collinjackson.com/">Collin
+Jackson</a>, ce paramètre activé lorsque Tor est également actif permet au
+moteur de rendu de savoir si certains liens ont été visités.  Ce mécanisme
+empêche toute attaque de révélation d'historique basée sur le document, y
+compris les attaques CSS.
+</p></li>
+  <li>Bloquer la lecture de l'historique lorsque Tor n'est pas utilisé
+(recommandé)<p> 
+
+  Ce paramètre fait la même chose que le précédent mais uniquement lorsque
+vous n'utilisez pas Tor.
+</p></li>
+  <li>Bloquer les écritures d'historiques pendant l'utilisation de Tor
+(recommandé)<p> 
+
+  Ce paramètre empêche le moteur de rendu d'enregistrer les URLs visitées et
+désactive l'historique du gestionnaire de téléchargements. A noter que si
+vous avez autorisé l'écriture de l'historique Tor, il est recommandé de
+désactiver la lecture de l'historique non-Tor car des sites web malicieux
+visités sans Tor peuvent interroger votre historique pour récupérer les
+sites .onions et d'autres informations (telles que les requêtes Google)
+enregistrés pendant l'utilisation de Tor.
+</p></li>
+  <li>Bloquer l'écriture de l'historique en dehors de l'utilisation de Tor
+(optionnel)<p> 
+
+Ce paramètre désactive également l'enregistrement des informations
+d'historique lorsque Tor n'est pas utilisé.
+</p></li>
+<li>Effacer l'historique lorsque Tor change d'état (optionnel)<p> 
+
+  Il s'agit d'un paramètre qu'on peut utiliser au lieu (ou en plus ) de
+bloquer à la fois la lecture et l'écriture de l'historique.
+</p></li>
+  <li>Bloquer l'enregistrement des mots de passe et des données de formulaire
+lorsque Tor est/n'est pas utilisé<p> 
+
+  Ces options gèrent les écritures de mots de passe et les requêtes sur les
+formulaires suivant l'état de Tor.
+</p></li>
+  <li>Bloquer le cache disque et effacer tous les caches au changement d'état de
+Tor<p> 
+
+  Etant donné que le cache du navigateur peut tirer parti du stockage
+d'identifiants uniques, le cache ne doit pas être transmissible entre les
+sessions de Tor. Cette option laisse le cache mémoire actif lors de
+l'utilisation de Tor à des fins de performance mais bloque les accès disques
+pour le cache.
+</p></li>
+  <li>Bloquer les caches disque et mémoire lors de l'utilisation de Tor<p> 
+
+  Ce paramètre bloquer entièrement le cache lors de l'utilisation de Tor mais
+en permet l'utilisation sans Tor.
+</p></li>
+  <li>Effacer les Cookies lors de l'activation de Tor<p> 
+
+  Effacer complètement l'intégralité des cookies lors de l'activation de Tor.
+</p></li>
+  <li>Conserver les cookies non-Tor dans un ensemble protégé<p> 
+
+  Cette option stocke les cookies permanents Non-Tor dans un fichier de
+conteneur spécifique au cas où vous voudriez enregistrer certains
+cookies. Elle est basée sur un code source de <a
+href="http://www.collinjackson.com/">Collin Jackson</a>. Elle est
+incompatible avec d'autres extensions de gestion des cookies non-Tor. Vos
+cookies Tor seront effacés lors du changement d'état bien entendu.
+</p></li>
+  <li>Enregistrer les cookies Tor et Non-Tor dans des conteneurs protégés
+(dangereux)<p> 
+
+  Cette option stocke vos cookies permanents Tor et Non-Tor dans des fichiers
+de conteneurs séparés. A noter qu'il s'agit d'une mauvaise idée de conserver
+des cookies Tor sur le temps car ils peuvent être récupérés par des noeuds
+de sorties qui injecteraient des formulaires dérivés dans les pages en clair
+que vous transmettez.
+</p></li>
+  <li>Gérer mes propres cookies (dangereux)<p> 
+
+  Cette option vous permet de gérer vos propres cookies avec une autre
+extension telle que <a
+href="https://addons.mozilla.org/firefox/addon/82">CookieCuller</a>. A noter
+que c'est très dangereux car des noeuds malicieux peuvent dériver des
+éléments document qui sont issus des sites pour lesquels vous avez stocké
+des cookies (et ainsi faire des choses telles que récupérer votre boîte aux
+lettres Gmail même si vous n'étiez pas en train d'utiliser gmail ou de
+visiter une page google !).
+</p></li>
+  <li>Ne pas écrire de cookies Tor ou non-Tor sur le disque<p> 
+
+  Ce paramètre empêche Firefox d'écrire des cookies sur le disque lorsque Tor
+se trouve dans l'état indiqué. Si les conteneurs de cookies sont activés,
+ces conteneurs existeront uniquement en mémoire et seront effacés lors de la
+fermeture de Firefox.
+</p></li>
+  <li>Désactiver le stockage DOM lors de l'utilisation de Tor (crucial)<p> 
+
+  Firefox a récemment introduit la possibilité de conserver des états et des
+identifiants dans des tables persistantes. Cette technique est appelée <a
+href="https://developer.mozilla.org/Fr/DOM/Storage">stockage DOM</a>.  A
+l'évidence cela peut compromettre votre anonymat si le contenu stocké peut
+être transmis indépendamment de l'état de Tor.
+</p></li>
+  <li>Effacer les sessions d'authentification HTTP (recommandé)<p> 
+
+  Les informations d'authentification HTTP peuvent être récupérées par des
+noeuds de sortie et utilisées à la fois pour confirmer que vous avez visiter
+un site qui utilise l'authentification HTTP et également pour se faire
+passer pour vous sur ce site. 
+</p></li>
+  <li>Effacer les cookies lors de la fermeture de Firefox<p> 
+
+  Ces paramètres installent un gestionnaire de fermeture pour effacer les
+cookies Tor et/ou Non-Tor lors de la fermeture du navigateur. Il est
+indépendant de vos paramètres d'effacement des données personnelles et
+supprime uniquement les conteneurs de cookies concernés.
+</p></li>
+  <li>Empêche la sauvegarde de session d'enregistrer les onglets chargés par Tor
+(recommandé)<p> 
+
+  Cette option améliore l'enregistrement de session pour l'empêcher d'écrire
+les onglets chargés dans Tor sur disque. Malheureusement, cela désactive
+aussi le fait de pouvoir ré-ouvrir les onglets qui viennent d'être
+fermés. Ce paramètre est recommandé car après un plantage de session, votre
+navigateur ne pourra savoir dans quel état est Tor et pourrait alors charger
+un tas d'onglet en dehors de Tor. L'option qui suit est une manière
+alternative de ce protéger contre ça.
+</p></li>
+  <li>Lors d'un démarrage normal, mettre l'état à : Tor, Non-Tor, Fermeture<p> 
+
+  Ce paramètre vous permet de choisir l'état par défaut de Tor lorsque le
+navigateur démarre en mode normal: Tor, Non-Tor ou tout autre état de
+fermeture du navigateur.
+</p></li>
+  <li>Lors de la récupération suite à un crash, restaurer via: Tor, Non-Tor<p> 
+
+  Lorsque Firefox plante, l'état de Tor lors du redémarrage est en général
+complètement aléatoire et, suivant votre choix pour l'option ci-dessus, peut
+charger un tas d'onglets dans le mauvais état. Ce paramètre vous permet de
+choisir l'état dans lequel la session qui a planté doit être restaurée.
+</p></li>
+  <li>Empêche la sauvegarde de session d'enregistrer les onglets chargés par
+Tor/Non-Tor<p> 
+
+  Ces deux paramètres vous permettent de contrôler ce que l'enregistrement de
+session Firefox écrit sur le disque. Etant donné que l'état d'enregistrement
+de session est utilisé pour charger automatiquement les sites web après un
+crash ou une mise à jour, il est conseillé d'interdire l'écriture sur disque
+des onglets ouverts dans Tor car ils risquent d'être ouverts lorsque Tor
+n'est pas actif après un crash (ou l'inverse selon l'état de restauration
+après crash bien entendu).
+</p></li>
+  <li>Modifier le user-agent lorsque Tor est utilisé (crucial)<p> 
+
+  On masque le user-agent dans l'idée de rendre tous les utilisateurs de Tor
+indissociables selon ce critère. Le user-agent d'un Firefox 2.0.0.4 sous
+Windows a été choisi pour imiter cette chaîne de caractères et les
+propriétés de navigateur qui en découlent. Cette version sera la même pour
+toutes les versions de TorButton tant que des incompatiblités n'auront pas
+été démontrées. L'uniformité de ce paramètre est en fait capital pour
+l'anonymat. A noter que pour que cette option soit complètement
+opérationnelle, l'utilisateur doit également permettre le détournement de
+Javascript dangereux afin de s'assurer que les propriétés du navigateur
+soient également modifiées.  En effet, le navigateur ne modifie pas toujours
+ces propriétés lorsqu'on utilise son mécanisme interne de gestion du
+user-agent.
+</p></li>
+  <li>Usurper la langue du navigateur<p> 
+
+Cette option impose à Firefox d'envoyer des en-têtes http comme si elles
+étaient émises depuis un navigateur en anglais. Utile pour les utilisateurs
+internationaux.
+</p></li>
+  <li>Ne pas envoyer de referrer lorsque Tor est utilisé<p> 
+
+Cette option désactive l'en-tête referrer empêchant ainsi les sites de
+déterminer à partir de quel site vous avez été dirigé vers eux. Cela peut
+rendre certains sites inacessibles, <a href="http://www.digg.com">Digg</a>
+semble particulièrement touché par ce phénomène.  Une version plus souple et
+moins intrusive de cette option devrait être disponible. Dans le même temps,
+<a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a>
+fournit cette fonctionnalité grâce à une option par défaut de <b>Forge</b>.
+</p></li>
+</ul>
+
+    </div>
+
+
+
+#include <foot.wmi>

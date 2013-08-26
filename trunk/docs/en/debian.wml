@@ -1,0 +1,216 @@
+## translation metadata
+# Revision: $Revision: 26209 $
+# Translation-Priority: 3-low
+
+#include "head.wmi" TITLE="Tor Project: Debian/Ubuntu Instructions" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/debian>">Debian/Ubuntu Instructions</a>
+  </div>
+  <div id="maincol"> 
+<a id="debian"></a>
+<h2><a class="anchor" href="#debian">Option one: Tor on Debian squeeze,
+Debian sid, or Debian testing</a></h2>
+<br />
+
+<p>
+If you're using Debian, just run<br />
+<tt>apt-get install tor</tt>
+as root.
+</p>
+
+<p>
+Note that this might not always give you the latest stable Tor version, but
+you will receive important security fixes. To make sure that you're running
+the latest stable version of Tor, see option two below.
+</p>
+
+<p>
+Now Tor is installed and running. Move on to <a href="<page
+docs/tor-doc-unix>#using">step two</a> of the "Tor on Linux/Unix"
+instructions.
+</p>
+
+<hr />
+
+<a id="ubuntu"></a>
+<a id="packages"></a>
+<h2><a class="anchor" href="#ubuntu">Option two: Tor on Ubuntu or
+Debian</a></h2>
+<br />
+
+<p>
+<b>Do not use the packages in Ubuntu's universe.</b> In the past they have
+not reliably been updated. That means you could be missing stability
+and security fixes.
+</p>
+
+<p>
+You'll need to set up our package repository before you can fetch
+Tor. First, you need to figure out the name of your distribution. A
+quick command to run is <tt>lsb_release -c</tt> or <tt>cat /etc/debian_version</tt>.
+Here's a quick mapping:
+<ul>
+<li> Debian unstable (sid) is "sid"</li>
+<li> Debian 7.0 (wheezy) is "wheezy"</li>
+<li> Debian 6.0 (squeeze) is "squeeze"</li>
+<li> Ubuntu 13.04 is "raring"</li>
+<li> Ubuntu 12.10 is "quantal"</li>
+<li> Ubuntu 12.04 is "precise"</li>
+<li> Ubuntu 11.10 is "oneiric"</li>
+<li> Ubuntu 11.04 is "natty"</li>
+<li> Ubuntu 10.04 or Trisquel 4.0 is "lucid"</li>
+</ul>
+
+Then add this line to your
+<tt>/etc/apt/sources.list</tt>
+file:<br />
+<pre style="margin: 1.5em 0 1.5em 2em">
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+</pre>
+where you put the codename of your distribution (i.e. lenny, sid,
+maverick or whatever it is)
+in place of &lt;DISTRIBUTION&gt;.
+</p>
+
+<p>
+Then add the gpg key used to sign the packages by running the following
+commands at your command prompt:
+<pre style="margin: 1.5em 0 1.5em 2em">
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+</pre>
+Now refresh your sources, running the following command (as root) at your
+command prompt:
+<pre style="margin: 1.5em 0 1.5em 2em">
+apt-get update
+</pre>
+If there are no errors you're good to continue.
+</p>
+
+<p>
+We provide a Debian package to help you keep our signing key current.  It is
+recommended you use it.  Install it using
+<pre style="margin: 1.5em 0 1.5em 2em">
+apt-get install deb.torproject.org-keyring
+</pre>
+</p>
+
+<p>
+To finally install Tor just run:
+<pre style="margin: 1.5em 0 1.5em 2em">
+apt-get install tor
+</pre>
+</p>
+
+<p>
+Now Tor is installed and running. Move on to <a href="<page
+docs/tor-doc-unix>#using">step two</a> of the "Tor on Linux/Unix"
+instructions.
+</p>
+
+<p style="font-size: small">
+The DNS name <code>deb.torproject.org</code> is actually a set of independent
+servers in a DNS round robin configuration.  If you for some reason cannot
+access it you might try to use the name of one of its part instead.  Try
+<code>deb-master.torproject.org</code>,
+<code>mirror.netcologne.de</code> or
+<code>tor.mirror.youam.de</code>.
+</p>
+
+<hr />
+
+<a id="development"></a>
+<h2><a class="anchor" href="#development">Option three: Using the
+development branch of Tor on Debian or Ubuntu</a></h2>
+<br />
+
+<p>If you want to use the <a href="<page
+download/download>#packagediff">development branch</a> of Tor instead
+(more features and more bugs), you need to add a different set of lines
+to your <tt>/etc/apt/sources.list</tt> file:<br />
+<pre style="margin: 1.5em 0 1.5em 2em">
+deb     http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb     http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
+</pre>
+where you again substitute the name of your distro (lenny,
+sid, maverick, ...) in place of
+&lt;DISTRIBUTION&gt;.
+</p>
+
+<p>
+Then run the following commands at your command prompt:
+<pre style="margin: 1.5em 0 1.5em 2em">
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+apt-get update
+apt-get install tor deb.torproject.org-keyring
+</pre>
+</p>
+
+<p>
+Now Tor is installed and running. Move on to <a href="<page
+docs/tor-doc-unix>#using">step two</a> of the "Tor on Linux/Unix"
+instructions.
+</p>
+
+<hr />
+
+<a id="source"></a>
+<h2><a class="anchor" href="#source">Building from source</a></h2>
+<br />
+
+<p>
+If you want to build your own debs from source you must first add an
+appropriate <tt>deb-src</tt> line to <tt>sources.list</tt>.
+<pre style="margin: 1.5em 0 1.5em 2em">
+# For the stable version.
+deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+
+# For the unstable version.
+deb-src http://deb.torproject.org/torproject.org &lt;DISTRIBUTION&gt; main
+deb-src http://deb.torproject.org/torproject.org experimental-&lt;DISTRIBUTION&gt; main
+</pre>
+You also need to install the necessary packages to build your own debs and the
+packages needed to build Tor:
+<pre style="margin: 1.5em 0 1.5em 2em">
+apt-get install build-essential fakeroot devscripts
+apt-get build-dep tor
+</pre>
+Then you can build Tor in ~/debian-packages:
+<pre style="margin: 1.5em 0 1.5em 2em">
+mkdir ~/debian-packages; cd ~/debian-packages
+apt-get source tor
+cd tor-*
+debuild -rfakeroot -uc -us
+cd ..
+</pre>
+Now you can install the new package:
+<pre style="margin: 1.5em 0 1.5em 2em">
+sudo dpkg -i tor_*.deb
+</pre>
+</p>
+
+<p>
+Now Tor is installed and running. Move on to <a href="<page
+docs/tor-doc-unix>#using">step two</a> of the "Tor on Linux/Unix"
+instructions.
+</p>
+
+<hr />
+
+<p>If you have suggestions for improving this document, please <a
+href="<page about/contact>">send them to us</a>. Thanks!</p>
+
+<!-- END MAIN COL -->
+  </div>
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>  

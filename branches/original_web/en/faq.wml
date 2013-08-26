@@ -1,0 +1,1375 @@
+## translation metadata
+# Revision: $Revision: 23367 $
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor FAQ" CHARSET="UTF-8"
+
+<div class="main-column">
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+
+<h2>Tor FAQ</h2>
+<hr />
+
+<p>General questions:</p>
+<ul>
+<li><a href="#WhatIsTor">What is Tor?</a></li>
+<li><a href="#Torisdifferent">How is Tor different from other proxies?</a></li>
+<li><a href="#CompatibleApplications">What programs can I use with
+Tor?</a></li>
+<li><a href="#WhyCalledTor">Why is it called Tor?</a></li>
+<li><a href="#Backdoor">Is there a backdoor in Tor?</a></li>
+<li><a href="#DistributingTor">Can I distribute Tor on my magazine's
+CD?</a></li>
+<li><a href="#SupportMail">How can I get an answer to my
+Tor support mail?</a></li>
+<li><a href="#WhySlow">Why is Tor so slow?</a></li>
+<li><a href="#Funding">What would The Tor Project do with more
+funding?</a></li>
+</ul>
+
+<p>Compilation and Installation:</p>
+<ul>
+<li><a href="#HowUninstallTor">How do I uninstall Tor?</a></li>
+<li><a href="#PGPSigs">What are these "sig" files on the download
+page?</a></li>
+<li><a href="#CompileTorWindows">How do I compile Tor under Windows?</a></li>
+<li><a href="#VirusFalsePositives">Why does my Tor executable appear to
+have a virus or spyware?</a></li>
+<li><a href="#LiveCD">Is there a LiveCD or other bundle that includes Tor?</a></li>
+</ul>
+
+<p>Running Tor:</p>
+
+<p>Running a Tor client:</p>
+<ul>
+<li><a href="#DoesntWork">I installed Tor and Polipo but it's not
+working.</a></li>
+<li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at
+start.</a></li>
+<li><a href="#ChooseEntryExit">Can I control which nodes (or country)
+are used for entry/exit?</a></li>
+<li><a href="#GoogleCaptcha">Google makes me solve a Captcha or tells
+me I have spyware installed.</a></li>
+<li><a href="#GmailWarning">Gmail warns me that my account may have
+been compromised.</a></li>
+</ul>
+
+<p>Running a Tor relay:</p>
+<ul>
+<li><a href="#RelayFlexible">How stable does my relay need to be?</a></li>
+<li><a href="#ExitPolicies">I'd run a relay, but I don't want to deal
+with abuse issues.</a></li>
+<li><a href="#RelayOrBridge">Should I be a normal relay or bridge
+relay?</a></li>
+<li><a href="#RelayMemory">Why is my Tor relay using so much memory?</a></li>
+<li><a href="#WhyNotNamed">Why is my Tor relay not named?</a></li>
+</ul>
+
+<p>Running a Tor hidden service:</p>
+
+<p>Anonymity and Security:</p>
+<ul>
+<li><a href="#KeyManagement">Tell me about all the keys Tor uses.</a></li>
+</ul>
+
+<p>Alternate designs that we don't do (yet):</p>
+<ul>
+<li><a href="#EverybodyARelay">You should make every Tor user be a
+relay.</a></li>
+</ul>
+
+<p>Abuse</p>
+<ul>
+<li><a href="#Criminals">Doesn't Tor enable criminals to do bad things?</a></li>
+<li><a href="#RespondISP">How do I respond to my ISP about my exit
+relay?</a></li>
+</ul>
+
+<p>For other questions not yet on this version of the FAQ, see the <a
+href="<wiki>TorFAQ">wiki
+FAQ</a> for now.</p>
+
+<hr />
+
+<a id="General"></a>
+
+<a id="WhatIsTor"></a>
+<h3><a class="anchor" href="#WhatIsTor">What is Tor?</a></h3>
+
+<p>
+The name "Tor" can refer to several different components.
+</p>
+
+<p>
+The Tor software is a program you can run on your computer that helps keep
+you safe on the Internet. Tor protects you by bouncing your communications
+around a distributed network of relays run by volunteers all around
+the world: it prevents somebody watching your Internet connection from
+learning what sites you visit, and it prevents the sites you visit
+from learning your physical location. This set of volunteer relays is
+called the Tor network. You can read more about how Tor works on the <a
+href="<page overview>">overview page</a>.
+</p>
+
+<p>
+The Tor Project is a non-profit (charity) organization that maintains
+and develops the Tor software.
+</p>
+
+<hr />
+
+<a id="Torisdifferent"></a>
+<h3><a class="anchor" href="#Torisdifferent">How is Tor different from other proxies?</a></h3>
+<p>
+A typical proxy provider sets up a server somewhere on the Internet and allows you to use it to relay your traffic.  This creates a simple, easy to maintain architecture.  The users all enter and leave through the same server.  The provider may charge for use of the proxy, or fund their costs through advertisements on the server.  In the simplest configuration, you don't have to install anything.  You just have to point your browser at their proxy server.  Simple proxy providers are fine solutions if you do not want protections for your privacy and anonymity online and you trust the provider from doing bad things.  Some simple proxy providers use SSL to secure your connection to them.  This may protect you against local eavesdroppers, such as those at a cafe with free wifi Internet.
+</p>
+<p>
+Simple proxy providers also create a single point of failure.  The provider knows who you are and where you browse on the Internet.  They can see your traffic as it passes through their server.  In some cases, they can see your encrypted traffic as they relay it to your banking site or to ecommerce stores.  You have to trust the provider isn't doing any number of things, such as watching your traffic, injecting their own advertisements into your traffic stream, and isn't recording your personal details.
+</p>
+<p>
+Tor passes your traffic through at least 3 different servers before sending it on to the destination.  Tor does not modify, or even know, what you are sending into it.  It merely relays your traffic, completely encrypted through the Tor network and has it pop out somewhere else in the world, completely intact.  The Tor client is required because we assume you trust your local computer.  The Tor client manages the encryption and the path chosen through the network.  The relays located all over the world merely pass encrypted packets between themselves.</p>
+<p>
+<dl>
+<dt>Doesn't the first server see who I am?</dt><dd>Possibly. A bad first of three servers can see encrypted Tor traffic coming from your computer.  It still doesn't know who you are and what you are doing over Tor.  It merely sees "This IP address is using Tor".  Tor is not illegal anywhere in the world, so using Tor by itself is fine.  You are still protected from this node figuring out who you are and where you are going on the Internet.</dd>
+<dt>Can't the third server see my traffic?</dt><dd>Possibly.  A bad third of three servers can see the traffic you sent into Tor.  It won't know who sent this traffic.  If you're using encryption, such as visiting a bank or e-commerce website, or encrypted mail connections, etc, it will only know the destination.  It won't be able to see the data inside the traffic stream.  You are still protected from this node figuring out who you are and if using encryption, what data you're sending to the destination.</dd>
+</dl>
+</p>
+
+<hr />
+
+<a id="CompatibleApplications"></a>
+<h3><a class="anchor" href="#CompatibleApplications">What programs can
+I use with Tor?</a></h3>
+
+<p>
+There are two pieces to "Torifying" a program: connection-level anonymity
+and application-level anonymity. Connection-level anonymity focuses on
+making sure the application's Internet connections get sent through Tor.
+This step is normally done by configuring
+the program to use your Tor client as a "socks" proxy, but there are
+other ways to do it too. For application-level anonymity, you need to
+make sure that the information the application sends out doesn't hurt
+your privacy. (Even if the connections are being routed through Tor, you
+still don't want to include sensitive information like your name.) This
+second step needs to be done on a program-by-program basis, which is
+why we don't yet recommend very many programs for safe use with Tor.
+</p>
+
+<p>
+Most of our work so far has focused on the Firefox web browser. The
+bundles on the <a href="<page download>">download page</a> automatically
+install the <a href="<page torbutton/index>">Torbutton Firefox
+extension</a> if you have Firefox installed. As of version 1.2.0,
+Torbutton now takes care of a lot of the connection-level and
+application-level worries.
+</p>
+
+<p>
+There are plenty of other programs you can use with Tor,
+but we haven't researched the application-level anonymity
+issues on them well enough to be able to recommend a safe
+configuration. Our wiki has a list of instructions for <a
+href="<wiki>TorifyHOWTO">Torifying
+specific applications</a>. There's also a <a
+href="<wiki>SupportPrograms">list
+of applications that help you direct your traffic through Tor</a>.
+Please add to these lists and help us keep them accurate!
+</p>
+
+<hr />
+
+<a id="WhyCalledTor"></a>
+<h3><a class="anchor" href="#WhyCalledTor">Why is it called Tor?</a></h3>
+
+<p>
+Because Tor is the onion routing network. When we were starting the
+new next-generation design and implementation of onion routing in
+2001-2002, we would tell people we were working on onion routing,
+and they would say "Neat. Which one?" Even if onion routing has
+become a standard household term, Tor was born out of the actual <a
+href="http://www.onion-router.net/">onion routing project</a> run by
+the Naval Research Lab.
+</p>
+
+<p>
+(It's also got a fine translation from German and Turkish.)
+</p>
+
+<p>
+Note: even though it originally came from an acronym, Tor is not spelled
+"TOR". Only the first letter is capitalized. In fact, we can usually
+spot people who haven't read any of our website (and have instead learned
+everything they know about Tor from news articles) by the fact that they
+spell it wrong.
+</p>
+
+<hr />
+
+<a id="Backdoor"></a>
+<h3><a class="anchor" href="#Backdoor">Is there a backdoor in Tor?</a></h3>
+
+<p>
+There is absolutely no backdoor in Tor. Nobody has asked us to put one
+in, and we know some smart lawyers who say that it's unlikely that anybody
+will try to make us add one in our jurisdiction (U.S.). If they do
+ask us, we will fight them, and (the lawyers say) probably win.
+</p>
+
+<p>
+We think that putting a backdoor in Tor would be tremendously
+irresponsible to our users, and a bad precedent for security software
+in general. If we ever put a deliberate backdoor in our security
+software, it would ruin our professional reputations. Nobody would
+trust our software ever again &mdash; for excellent reason!
+</p>
+
+<p>
+But that said, there are still plenty of subtle attacks
+people might try. Somebody might impersonate us, or break into our
+computers, or something like that. Tor is open source, and you should
+always check the source (or at least the diffs since the last release)
+for suspicious things. If we (or the distributors) don't give you
+source, that's a sure sign something funny might be going on. You
+should also check the <a href="<page verifying-signatures>">PGP
+signatures</a> on the releases, to make sure nobody messed with the
+distribution sites.
+</p>
+
+<p>
+Also, there might be accidental bugs in Tor that could affect your
+anonymity. We periodically find and fix anonymity-related bugs, so make
+sure you keep your Tor versions up-to-date.
+</p>
+
+<hr />
+
+<a id="DistributingTor"></a>
+<h3><a class="anchor" href="#DistributingTor">Can I distribute Tor on
+my magazine's CD?</a></h3>
+
+<p>
+Yes.
+</p>
+
+<p>
+The Tor software is <a href="https://www.fsf.org/">free software</a>. This
+means we give you the rights to redistribute the Tor software, either
+modified or unmodified, either for a fee or gratis. You don't have to
+ask us for specific permission.
+</p>
+
+<p>
+However, if you want to redistribute the Tor software you must follow our
+<a href="<gitblob>LICENSE">LICENSE</a>.
+Essentially this means that you need to include our LICENSE file along
+with whatever part of the Tor software you're distributing.
+</p>
+
+<p>
+Most people who ask us this question don't want to distribute just the
+Tor software, though. They want to distribute the Tor bundles, which
+typically include <a href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo</a>
+and <a href="<page vidalia/index>">Vidalia</a>.
+You will need to follow the licenses for those programs
+as well. Both of them are distributed under the <a
+href="https://www.fsf.org/licensing/licenses/gpl.html">GNU General
+Public License</a>. The simplest way to obey their licenses is to
+include the source code for these programs everywhere you include
+the bundles themselves. Look for "source" packages on the <a
+href="<page vidalia/index>">Vidalia page</a> and the <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/">Polipo
+download page</a>.
+</p>
+
+<p>
+Also, you should make sure not to confuse your readers about what Tor is,
+who makes it, and what properties it provides (and doesn't provide). See
+our <a href="<page trademark-faq>">trademark FAQ</a> for details.
+</p>
+
+<p>
+Lastly, you should realize that we release new versions of the
+Tor software frequently, and sometimes we make backward incompatible
+changes. So if you distribute a particular version of the Tor software, it
+may not be supported &mdash; or even work &mdash; six months later. This
+is a fact of life for all security software under heavy development.
+</p>
+
+<hr />
+
+<a id="SupportMail"></a>
+<h3><a class="anchor" href="#SupportMail">How can I get an answer to my
+Tor support mail?</a></h3>
+
+<p>
+Many people send the Tor developers mail privately, or send mail to
+our internal <a href="<page contact>">lists</a>, with questions about their
+specific setup &mdash; they can't get their firewall working right,
+they can't configure Polipo correctly, or so on. Sometimes our
+volunteers can answer these mails, but typically they need to spend
+most of their time on development tasks that will benefit more people.
+This is especially true if your question is already covered in the <a
+href="<page documentation>">documentation</a> or on this FAQ.
+</p>
+
+<p>
+So if we don't answer your mail, first check the <a href="<page
+documentation>">documentation</a> page, along with this FAQ,
+to make sure your question isn't already answered.  Then read <a
+href="http://www.catb.org/~esr/faqs/smart-questions.html">"How to ask
+questions the smart way"</a>. If this doesn't help you, note that we
+have <a href="<page documentation>#Support">an IRC channel</a> where you
+can ask your questions (but if they are still open-ended, ill-formed,
+or not about Tor, you likely won't get much help there either). Lastly,
+people on the <a href="<page documentation>#MailingLists">or-talk
+mailing list</a> may be able to provide some hints for you, if
+others have experienced your problems too. Be sure to look over <a
+href="http://archives.seul.org/or/talk/">the archives</a> first.
+</p>
+
+<p>
+Another strategy is to <a href="<page docs/tor-doc-relay>">run a Tor
+relay for a while</a>, and/or <a href="<page donate>">donate money</a>
+<a href="<page volunteer>">or time</a> to the effort. We're more likely
+to pay attention to people who have demonstrated interest and commitment
+to giving back to the Tor community.
+</p>
+
+<p>
+If you find your answer, please stick around on the IRC channel or the
+mailing list and answer questions from others.
+</p>
+
+<hr />
+
+<a id="WhySlow"></a>
+<h3><a class="anchor" href="#WhySlow">Why is Tor so slow?</a></h3>
+
+<p>
+There are many reasons why the Tor network is currently slow.
+</p>
+
+<p>
+Before we answer, though, you should realize that Tor is never going to
+be blazing fast. Your traffic is bouncing through volunteers' computers
+in various parts of the world, and some bottlenecks and network latency
+will always be present. You shouldn't expect to see university-style
+bandwidth through Tor.
+</p>
+
+<p>
+But that doesn't mean that it can't be improved. The current Tor network
+is quite small compared to the number of people trying to use it, and
+many of these users don't understand or care that Tor can't currently
+handle file-sharing traffic load.
+</p>
+
+<p>
+For the much more in-depth answer, see <a
+href="<blog>why-tor-is-slow">Roger's blog
+post on the topic</a>, which includes both a detailed PDF and a video
+to go with it.
+</p>
+
+<p>
+What can you do to help?
+</p>
+
+<ul>
+
+<li>
+<a href="<page docs/tor-doc-relay>">Configure your Tor to relay traffic
+for others</a>. Help make the Tor network large enough that we can handle
+all the users who want privacy and security on the Internet.
+</li>
+
+<li>
+<a href="<page gui/index>">Help us make Tor more usable</a>. We
+especially need people to help make it easier to configure your Tor
+as a relay. Also, we need help with clear simple documentation to
+walk people through setting it up.
+</li>
+
+<li>
+There are some bottlenecks in the current Tor network. Help us design
+experiments to track down and demonstrate where the problems are, and
+then we can focus better on fixing them.
+</li>
+
+<li>
+There are some steps that individuals
+can take to improve their Tor performance. <a
+href="<wiki>FireFoxTorPerf">You
+can configure your Firefox to handle Tor better</a>, <a
+href="http://www.pps.jussieu.fr/~jch/software/polipo/tor.html">you can use
+Polipo with Tor</a>, or you can try <a href="<page download>">upgrading
+to the latest version of Tor</a>.  If this works well, please help by
+documenting what you did, and letting us know about it.
+</li>
+
+<li>
+Tor needs some architectural changes too. One important change is to
+start providing <a href="#EverybodyARelay">better service to people who
+relay traffic</a>. We're working on this, and we'll finish faster if we
+get to spend more time on it.
+</li>
+
+<li>
+Help do other things so we can do the hard stuff. Please take a moment
+to figure out what your skills and interests are, and then <a href="<page
+volunteer>">look at our volunteer page</a>.
+</li>
+
+<li>
+Help find sponsors for Tor. Do you work at a company or government agency
+that uses Tor or has a use for Internet privacy, e.g. to browse the
+competition's websites discreetly, or to connect back to the home servers
+when on the road without revealing affiliations? If your organization has
+an interest in keeping the Tor network working, please contact them about
+supporting Tor. Without sponsors, Tor is going to become even slower.
+</li>
+
+<li>
+If you can't help out with any of the above, you can still help out
+individually by <a href="<page donate>">donating a bit of money to the
+cause</a>. It adds up!
+</li>
+
+</ul>
+
+<hr />
+
+<a id="Funding"></a>
+<h3><a class="anchor" href="#Funding">What would The Tor Project do with
+more funding?</a></h3>
+
+<p>
+We have about 1800 relays right now, pushing over 150 MB/s average
+traffic. We have several hundred thousand active users. But the Tor
+network is not yet self-sustaining.
+</p>
+
+<p>
+There are six main development/maintenance pushes that need attention:
+</p>
+
+<ul>
+
+<li>
+Scalability: We need to keep scaling and decentralizing the Tor
+architecture so it can handle thousands of relays and millions of
+users. The upcoming stable release is a major improvement, but there's
+lots more to be done next in terms of keeping Tor fast and stable.
+</li>
+
+<li>
+User support: With this many users, a lot of people are asking questions
+all the time, offering to help out with things, and so on. We need good
+clean docs, and we need to spend some effort coordinating volunteers.
+</li>
+
+<li>
+Relay support: the Tor network is run by volunteers, but they still need
+attention with prompt bug fixes, explanations when things go wrong,
+reminders to upgrade, and so on. The network itself is a commons, and
+somebody needs to spend some energy making sure the relay operators stay
+happy. We also need to work on <a href="#RelayOS">stability</a> on some
+platforms &mdash; e.g., Tor relays have problems on Win XP currently.
+</li>
+
+<li>
+Usability: Beyond documentation, we also need to work on usability of the
+software itself. This includes installers, clean GUIs, easy configuration
+to interface with other applications, and generally automating all of
+the difficult and confusing steps inside Tor. We've got a start on this
+with the <a href="<page gui/index>">GUI Contest</a>, but much more work
+remains &mdash; usability for privacy software has never been easy.
+</li>
+
+<li>
+Incentives: We need to work on ways to encourage people to configure
+their Tors as relays and exit nodes rather than just clients.
+<a href="#EverybodyARelay">We need to make it easy to become a relay,
+and we need to give people incentives to do it.</a>
+</li>
+
+<li>
+Research: The anonymous communications field is full
+of surprises and gotchas. In our copious free time, we
+also help run top anonymity and privacy conferences like <a
+href="http://petsymposium.org/">PETS</a>. We've identified a set of
+critical <a href="<page volunteer>#Research">Tor research questions</a>
+that will help us figure out how to make Tor secure against the variety of
+attacks out there. Of course, there are more research questions waiting
+behind these.
+</li>
+
+</ul>
+
+<p>
+We're continuing to move forward on all of these, but at this rate
+<a href="#WhySlow">the Tor network is growing faster than the developers
+can keep up</a>.
+Now would be an excellent time to add a few more developers to the effort
+so we can continue to grow the network.
+</p>
+
+<p>
+We are also excited about tackling related problems, such as
+censorship-resistance.
+</p>
+
+<p>
+We are proud to have <a href="<page sponsors>">sponsorship and support</a>
+from the Omidyar Network, the International Broadcasting Bureau, Bell
+Security Solutions, the Electronic Frontier Foundation, several government
+agencies and research groups, and hundreds of private contributors.
+</p>
+
+<p>
+However, this support is not enough to keep Tor abreast of changes in the
+Internet privacy landscape. Please <a href="<page donate>">donate</a>
+to the project, or <a href="<page contact>">contact</a> our executive
+director for information on making grants or major donations.
+</p>
+
+<hr />
+
+<a id="HowUninstallTor"></a>
+<h3><a class="anchor" href="#HowUninstallTor">How do I uninstall Tor?</a></h3>
+
+<p>
+This depends entirely on how you installed it and which operating system you
+have. If you installed a package, then hopefully your package has a way to
+uninstall itself. The Windows packages include uninstallers. The proper way to
+completely remove Tor, Vidalia, Torbutton for Firefox, and Polipo on any
+version of Windows is as follows:
+</p>
+
+<ol>
+<li>In your taskbar, right click on Vidalia (the green onion or the black head)
+and choose exit.</li>
+<li>Right click on the taskbar to bring up TaskManager. Look for tor.exe in the
+Process List. If it's running, right click and choose End Process.</li>
+<li>Click the Start button, go to Programs, go to Vidalia, choose Uninstall.
+This will remove the Vidalia bundle, which includes Tor and Polipo.</li>
+<li>Start Firefox. Go to the Tools menu, choose Add-ons. Select Torbutton.
+Click the Uninstall button.</li>
+</ol>
+
+<p>
+If you do not follow these steps (for example by trying to uninstall
+Vidalia, Tor, and Polipo while they are still running), you will need to
+reboot and manually remove the directory "Program Files\Vidalia Bundle".
+</p>
+
+<p>
+For Mac OS X, follow the <a
+href="<page docs/tor-doc-osx>#uninstall">uninstall directions</a>.
+</p>
+
+<p>
+If you installed by source, I'm afraid there is no easy uninstall method. But
+on the bright side, by default it only installs into /usr/local/ and it should
+be pretty easy to notice things there.
+</p>
+
+<hr />
+
+<a id="PGPSigs"></a>
+<h3><a class="anchor" href="#PGPSigs">What are these "sig" files on the
+download page?</a></h3>
+
+<p>
+These are PGP signatures, so you can verify that the file you've downloaded is
+exactly the one that we intended you to get.
+</p>
+
+<p>
+Please read the <a
+href="<page verifying-signatures>">verifying signatures</a> page for details.
+</p>
+
+<hr />
+
+<a id="CompileTorWindows"></a>
+<h3><a class="anchor" href="#CompileTorWindows">How do I compile Tor under
+Windows?</a></h3>
+
+<p>
+Try following the steps at <a href="<gitblob>doc/tor-win32-mingw-creation.txt">
+tor-win32-mingw-creation.txt</a>.
+</p>
+
+<p>
+(Note that you don't need to compile Tor yourself in order to use
+it. Most people just use the packages available on the <a href="<page
+download>">download page</a>.)
+</p>
+
+<hr />
+
+<a id="VirusFalsePositives"></a>
+<h3><a class="anchor" href="#VirusFalsePositives">Why does my Tor
+executable appear to have a virus or spyware?</a></h3>
+
+<p>
+Sometimes, overzealous Windows virus and spyware detectors trigger on some
+parts of the Tor Windows binary. Our best guess is that these are false
+positives &mdash; after all, the anti-virus and anti-spyware business is just a
+guessing game anyway. You should contact your vendor and explain that you have
+a program that seems to be triggering false positives. Or pick a better vendor.
+</p>
+
+<p>
+In the meantime, we encourage you to not just take our word for
+it. Our job is to provide the source; if you're concerned, please do <a
+href="#CompileTorWindows">recompile it yourself</a>.
+</p>
+
+<hr />
+
+<a id="LiveCD"></a>
+<h3><a class="anchor" href="#LiveCD">Is there a LiveCD or other bundle that
+includes Tor?</a></h3>
+
+<p>
+There isn't any official LiveCD at this point. We're still trying to find good
+solutions and trying to understand the security and anonymity implications of
+the various options. In the mean time, feel free to check out the list below
+and use your best judgement:
+</p>
+
+<p>
+LiveCDs:
+</p>
+
+<ol>
+<li><a href="https://amnesia.boum.org/">The (Amnesic) Incognito Live
+System</a> is a Live System aimed at preserving your privacy and
+anonymity:
+<ul>
+<li> All outgoing connections to the Internet are forced to go through
+the Tor network.</li>
+<li> No trace is left on local storage devices unless explicitely asked.</li>
+<li> It includes Firefox, Tor, Torbutton, Vidalia graphical Tor
+controller, Pidgin Instant Messaging client, and lots of other
+software.</li>
+<li> It's based upon Debian gnu/linux and comes with the GNOME desktop
+environment.</li>
+</ul>
+<li><a href="http://tork.sourceforge.net/wiki/index.php/LiveCD">TorK LiveCD</a>
+is Knoppix-based with an emphasis on user-friendliness. You can work
+anonymously or non-anonymously while TorK tries to keep you informed of the
+consequences of your activity. The TorK LiveCD is experimental, so the aim is
+to provide regular releases through 2007 and beyond.</li>
+<li><a href="http://mandalka.name/privatix/">Privatix LiveCD/USB</a> is a
+debian based live-system including tor, firefox and torbutton which can save
+bookmarks and other settings or data on an encrypted usb-key</li>
+</li>
+</ol>
+
+<p>
+Windows bundles:
+</p>
+
+<ol>
+<li><a href="<page torbrowser/index>">Tor Browser Bundle</a>
+for Windows comes with a pre-configured web browser and is self contained
+so you can run it from a USB stick.</li>
+<li><a href="http://janusvm.com/">JanusVM</a> is a Linux kernel and software
+running in VMWare that sits between your Windows computer and the Internet,
+making sure that your Internet traffic is scrubbed and anonymized.</li>
+</ol>
+
+<p>
+Not currently maintained as far as we know:
+</p>
+
+<ol>
+<li>Polippix / Privatlivets Fred is a Danish Knoppix-based LiveCD with Tor
+and utilities to encrypt IP-telephony. <a href="http://polippix.org/">Info and
+download</a>.</li>
+<li>ELE is a Linux LiveCD which is focused on privacy related
+software. It includes Tor and you can download it at
+<a
+href="http://www.northernsecurity.net/download/ele/">http://www.northernsecurity.net/download/ele/</a>.</li>
+<li>Anonym.OS is a LiveCD similar to the above but is based on OpenBSD rather
+than Linux for maximum security. It was designed to be anonymous and secure
+from the ground up, and thus has some features and limitations not found in
+other LiveCDs (Tor related or otherwise). You can obtain more information and
+download Anonym.OS from <a href="http://theory.kaos.to/projects.html">Kaos.Theory</a>.</li>
+<li>Phantomix is a LiveCD for anonymous surfing and chatting based on the most
+recent KNOPPIX release. It comes preconfigured with Privoxy, Tor and Polipo. You can
+get it from the <a href="http://phantomix.ytternhagen.de/">Phantomix
+Website</a>.</li>
+</ol>
+
+<p>
+Please contact us if you know any others.
+</p>
+
+<hr />
+
+<a id="DoesntWork"></a>
+<h3><a class="anchor" href="#DoesntWork">I installed Tor and Polipo but
+it's not working.</a></h3>
+
+<p>
+Once you've installed the Tor bundle, there are two questions to ask:
+first, is your Tor able to establish a circuit? Second, is your
+Firefox correctly configured to send its traffic through Tor?
+</p>
+
+<p>If Tor can establish a circuit, the onion icon in
+Vidalia will turn green. You can also check in the Vidalia
+Control Panel to make sure it says "Connected to the Tor
+network!" under Status. For those not using Vidalia, check your <a
+href="<wiki>TorFAQ#HowdoIsetuploggingorseeTorslogs">Tor logs</a> for
+a line saying that Tor "has successfully opened a circuit. Looks like
+client functionality is working."
+</p>
+
+<p>
+If Tor can't establish a circuit, here are some hints:
+</p>
+
+<ol>
+<li>Are you sure Tor is running? If you're using Vidalia, you may have
+to click on the onion and select "Start" to launch Tor.</li>
+<li>Check your system clock. If it's more than a few hours off, Tor will
+refuse to build circuits. For XP users, synchronize your clock under
+the clock -&gt; Internet time tab. In addition, correct the day and date
+under the 'Date &amp; Time' Tab.</li>
+<li>Is your Internet connection <a
+href="<wiki>TorFAQ#Myfirewallonlyallowsafewoutgoingports.">firewalled</a>,
+or do you normally need to use a <a
+href="<wiki>TorFAQ#MyInternetconnectionrequiresanHTTPorSOCKSproxy.">proxy</a>?
+</li>
+<li>Are you running programs like Norton Internet Security or SELinux that
+block certain connections, even though you don't realize they do? They
+could be preventing Tor from making network connections.</li>
+<li>Are you in China, or behind a restrictive corporate network firewall
+that blocks the public Tor relays? If so, you should learn about <a
+href="<page bridges>">Tor bridges</a>.</li>
+<li>Check your <a href="<wiki>TorFAQ#HowdoIsetuploggingorseeTorslogs">Tor
+logs</a>. Do they give you any hints about what's going wrong?</li>
+</ol>
+
+<p>
+Step two is to confirm that Firefox is correctly configured to send its
+traffic through Tor. Try the <a href="https://check.torproject.org/">Tor
+Check</a> site and see whether it thinks you are using Tor. See <a
+href="<wiki>TorFAQ#HowcanItellifTorisworkingandthatmyconnectionsreallyareanonymizedArethereexternalserversthatwilltestmyconnection">the
+Tor Check FAQ entry</a> for details.
+<p>
+
+<p>
+If it thinks you're not using Tor, here are some hints:
+</p>
+
+<ol>
+<li>Did you install the Torbutton extension for Firefox? The installation
+bundles include it, but sometimes people forget to install it. Make sure
+it says "Tor enabled" at the bottom right of your Firefox window. (For
+expert users, make sure your http proxy is set to localhost port
+8118.)</li>
+<li>Do you have incompatible Firefox extensions like FoxyProxy
+installed? If so, uninstall them. (Note that using FoxyProxy is NOT
+a sufficient substitute for Torbutton. There are many known attacks
+against a browser setup that does not include Torbutton. Read more
+in the <a href="<page torbutton/faq>">Torbutton FAQ</a> and the <a
+href="https://www.torproject.org/torbutton/design/">Torbutton design</a>
+specification.)</li>
+<li>If your browser says "The proxy server is refusing connections.",
+check that Polipo (the http proxy that passes traffic between Firefox
+and Tor) is running. On Windows, look in the task manager and check for
+a polipo.exe. On OS X, open the utilities folder in your applications
+folder, and open Terminal.app. Then run "ps aux|grep polipo".</li>
+<li>If you're upgrading from OS X, some of the earlier OS X installers
+were broken in really unfortunate ways. You may find that <a href="<page
+docs/tor-doc-osx>#uninstall">uninstalling everything</a> and then
+installing a fresh bundle helps. Alas, the current uninstall instructions
+may not apply anymore to your old bundle. Sorry.</li>
+<li>If you're on Linux, make sure Privoxy isn't running, since it will
+conflict with the port that our Polipo configuration file picks.</li>
+<li>If you installed Polipo yourself (not from a bundle), did you edit the
+config file as described? Did you restart Polipo after this change?</li>
+<li>For Red Hat Linux and related systems, do you have SELinux enabled? If
+so, it might be preventing Polipo from talking to Tor. We also run across
+BSD users periodically who have local firewall rules that prevent some
+connections to localhost.</li>
+</ol>
+
+<hr />
+
+<a id="VidaliaPassword"></a>
+<h3><a class="anchor" href="#VidaliaPassword">Tor/Vidalia prompts for
+a password at start.</a></h3>
+
+<p>
+Vidalia interacts with the Tor software via Tor's "control port". The
+control port lets Vidalia receive status updates from Tor, request a new
+identity, configure Tor's settings, etc. Each time Vidalia starts Tor,
+Vidalia sets a random password for Tor's control port to prevent other
+applications from also connecting to the control port and potentially
+compromising your anonymity.
+</p>
+
+<p>
+Usually this process of generating and setting a random control password
+happens in the background. There are three common situations, though,
+where Vidalia may prompt you for a password:
+</p>
+
+<ol>
+<li>You're already running Vidalia and Tor. For example, this situation
+can happen if you installed the Vidalia bundle and now you're trying to
+run the Tor Browser Bundle. In that case, you'll need to close the old
+Vidalia and Tor before you can run this one.
+</li>
+<li>Vidalia crashed, but left Tor running with the last known random
+password. After you restart Vidalia, it generates a new random password,
+but Vidalia can't talk to Tor, because the random passwords are different.
+<br />
+If the dialog that prompts you for a control password has a Reset button,
+you can click the button and Vidalia will restart Tor with a new random
+control password.
+<br />
+If you do not see a Reset button, or if Vidalia is unable to restart
+Tor for you, you can still fix the problem manually. Simply go into your
+process or task manager, and terminate the Tor process. Then use Vidalia
+to restart Tor and all will work again.
+</li>
+<li>You had previously set Tor to run as a Windows NT service. When Tor
+is set to
+run as a service, it starts up when the system boots. If you configured
+Tor to start as a service through Vidalia, a random password was set
+and saved in Tor. When you reboot, Tor starts up and uses the random
+password it saved. You login and start up Vidalia. Vidalia attempts to
+talk to the already running Tor. Vidalia generates a random password,
+but it is different than the saved password in the Tor service.
+<br />
+You need to reconfigure Tor to not be a service. See the FAQ entry on
+<a href="<wiki>TorFAQ#HowdoIrunmyTorrelayasanNTservice">running Tor as a Windows NT service</a>
+for more information on how to remove the Tor service.
+</li>
+</ol>
+
+<hr />
+
+<a id="ChooseEntryExit"></a>
+<h3><a class="anchor" href="#ChooseEntryExit">Can I control which nodes (or country) are used for entry/exit?</a></h3>
+
+<p>
+Yes. You can set preferred entry and exit nodes as well as 
+inform Tor which nodes you do not want to use. 
+The following options can be added to your config file "torrc" 
+or specified on the command line:
+</p>
+<dl>
+  <dt><tt>EntryNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>A list of preferred nodes to use for the first hop in the circuit, if possible.
+    </dd>
+  <dt><tt>ExitNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>A list of preferred nodes to use for the last hop in the circuit, if possible. 
+    </dd>
+  <dt><tt>ExcludeNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>A list of nodes to never use when building a circuit. 
+    </dd>
+  <dt><tt>ExcludeExitNodes $fingerprint,$fingerprint,...</tt></dt>
+    <dd>A list of nodes to never use when picking an exit. 
+        Nodes listed in <tt>ExcludeNodes</tt> are automatically in this list. 
+    </dd>
+</dl>
+<p>
+<em>We recommend you do not use these</em> 
+&mdash; they are intended for testing and may disappear in future versions. 
+You get the best security that Tor can provide when you leave the route selection to Tor; 
+overriding the entry / exit nodes can mess up your anonymity in ways we don't understand.
+</p>
+<p>
+The <tt>EntryNodes</tt> and <tt>ExitNodes</tt> config options are treated as a request, 
+meaning if the nodes are down or seem slow, Tor will still avoid them. 
+You can make the option mandatory by setting 
+<tt>StrictExitNodes 1</tt> or <tt>StrictEntryNodes 1</tt> 
+&mdash; but if you do, your Tor connections will stop working 
+if all of the nodes you have specified become unreachable. 
+See the <a href="<page documentation>#NeatLinks">Tor status pages</a>
+for some nodes you might pick.
+</p>
+<p>
+Instead of <tt>$fingerprint</tt> you can also specify 
+a 2 letter ISO3166 country code in curly braces 
+(for example {de}), 
+or an ip address pattern (for example 255.254.0.0/8), 
+or a node nickname. 
+Make sure there are no spaces between the commas and the list items. 
+</p>
+<p>
+If you want to access a service directly through Tor's SOCKS interface 
+(eg. using ssh via connect.c), another option is to 
+set up an internal mapping in your configuration file using <tt>MapAddress</tt>. 
+See the manual page for details.
+</p>
+
+<hr />
+
+<a id="GoogleCaptcha"></a>
+<h3><a class="anchor" href="#GoogleCaptcha">Google makes me solve a
+Captcha or tells me I have spyware installed.</a></h3>
+
+<p>
+This is a known and intermittent problem; it does not mean that Google
+considers Tor to be spyware.
+</p>
+
+<p>
+When you use Tor, you are sending queries through exit relays that are also
+shared by thousands of other users. Tor users typically see this message
+when many Tor users are querying Google in a short period of time. Google
+interprets the high volume of traffic from a single IP address (the exit
+relay you happened to pick) as somebody trying to "crawl" their website,
+so it slows down traffic from that IP address for a short time.
+</p>
+
+<p>
+An alternate explanation is that Google tries to detect certain
+kinds of spyware or viruses that send distinctive queries to Google
+Search. It notes the IP addresses from which those queries are received
+(not realizing that they are Tor exit relays), and tries to warn any
+connections coming from those IP addresses that recent queries indicate
+an infection.
+</p>
+
+<p>
+To our knowledge, Google is not doing anything intentionally specifically
+to deter or block Tor use. The error message about an infected machine
+should clear up again after a short time.
+</p>
+
+<p>
+Torbutton 1.2.5 (released in mid 2010) detects Google captchas and can
+automatically redirect you to a more Tor-friendly search engine such as
+Ixquick or Bing.
+</p>
+
+<hr />
+
+<a id="GmailWarning"></a>
+<h3><a class="anchor" href="#GmailWarning">Gmail warns me that my account
+may have been compromised.</a></h3>
+
+<p>
+Sometimes, after you've used Gmail over Tor recently, you'll get a pop-up
+notice from Google that says your account may have been compromised. The
+window lists a series of IP addresses and locations throughout the world.
+</p>
+
+<p>
+In general this is a false alarm: Google saw a bunch of logins from
+different places, thought that was unusual for you, and wanted to let
+you know. If you use Tor to access a Google service, then it will appear
+like you're coming from lots of different places. Nothing to worry about
+in particular.
+</p>
+
+<p>
+But that doesn't mean you can entirely ignore the warning. It's
+<i>probably</i> a false positive, but it might not be. It is possible
+that somebody could at some point steal your Google cookie, which would
+allow them to log in to the Google service as you. They might steal it
+by breaking into your computer, or by watching your network traffic at
+Starbucks or sniffing your wireless at home (when you're not using Tor),
+or by watching traffic going over the Tor network. In theory none of
+this should be possible because Gmail and similar services should only
+send the cookie over an SSL link. In practice, alas, it's <a
+href="http://fscked.org/blog/fully-automated-active-https-cookie-hijacking">way
+more complex than that</a>.
+</p>
+
+<p>
+And if somebody <i>did</i> steal your google cookie, they might end
+up logging in from unusual places (though of course they also might
+not). So the summary is that since you're using Tor, this security
+measure that Google uses isn't so useful for you, because it's full of
+false positives. You'll have to use other approaches, like seeing if
+anything looks weird on the account, or looking at the timestamps for
+recent logins and wondering if you actually logged in at those times.
+</p>
+
+<hr />
+
+<a id="RelayFlexible"></a>
+<h3><a class="anchor" href="#RelayFlexible">How stable does my relay
+need to be?</a></h3>
+
+<p>
+We aim to make setting up a Tor relay easy and convenient:
+</p>
+
+<ul>
+<li>Tor has built-in support for <a
+href="<wiki>TorFAQ#LimitBandwidth">
+rate limiting</a>. Further, if you have a fast
+link but want to limit the number of bytes per
+day (or week or month) that you donate, check out the <a
+href="<wiki>TorFAQ#Hibernation">hibernation
+feature</a>.
+</li>
+<li>Each Tor relay has an <a href="#ExitPolicies">exit policy</a> that
+specifies what sort of outbound connections are allowed or refused from
+that relay. If you are uncomfortable allowing people to exit from your
+relay, you can set it up to only allow connections to other Tor relays.
+</li>
+<li>It's fine if the relay goes offline sometimes. The directories
+notice this quickly and stop advertising the relay. Just try to make
+sure it's not too often, since connections using the relay when it
+disconnects will break.
+</li>
+<li>We can handle relays with dynamic IPs just fine &mdash; simply
+leave the Address config option blank, and Tor will try to guess.
+</li>
+<li>If your relay is behind a NAT and it doesn't know its public
+IP (e.g. it has an IP of 192.168.x.y), you'll need to set up port
+forwarding. Forwarding TCP connections is system dependent but 
+<a href="<wiki>TorFAQ#ServerForFirewalledClients">this FAQ entry</a>
+offers some examples on how to do this.
+</li>
+<li>Your relay will passively estimate and advertise its recent
+bandwidth capacity, so high-bandwidth relays will attract more users than
+low-bandwidth ones. Therefore having low-bandwidth relays is useful too.
+</li>
+</ul>
+
+<hr />
+
+<a id="RunARelayBut"></a>
+<a id="ExitPolicies"></a>
+<h3><a class="anchor" href="#ExitPolicies">I'd run a relay, but I don't
+want to deal with abuse issues.</a></h3>
+
+<p>
+Great. That's exactly why we implemented exit policies.
+</p>
+
+<p>
+Each Tor relay has an exit policy that specifies what sort of
+outbound connections are allowed or refused from that relay. The exit
+policies are propagated to Tor clients via the directory, so clients
+will automatically avoid picking exit relays that would refuse to
+exit to their intended destination. This way each relay can decide
+the services, hosts, and networks he wants to allow connections to,
+based on abuse potential and his own situation. Read the FAQ entry on 
+<a href="<page faq-abuse>#TypicalAbuses">issues you might encounter</a> 
+if you use the default exit policy, and then read Mike Perry's 
+<a href="<blog>tips-running-exit-node-minimal-harassment">tips
+for running an exit node with minimal harassment</a>.
+</p>
+
+<p>
+The default exit policy allows access to many popular services (e.g. web browsing), but 
+<a href="<wiki>TorFAQ#DefaultPorts">restricts</a>
+some due to abuse potential (e.g. mail) and some since
+the Tor network can't handle the load (e.g. default
+file-sharing ports). You can change your exit policy
+using Vidalia's "Sharing" tab, or by manually editing your 
+<a href="<wiki>TorFAQ#torrc">torrc</a>
+file. If you want to avoid most if not all abuse potential, set it to
+"reject *:*" (or un-check all the boxes in Vidalia). This setting means
+that your relay will be used for relaying traffic inside the Tor network,
+but not for connections to external websites or other services.
+</p>
+
+<p>
+If you do allow any exit connections, make sure name resolution works
+(that is, your computer can resolve Internet addresses correctly).
+If there are any resources that your computer can't reach (for example,
+you are behind a restrictive firewall or content filter), please
+explicitly reject them in your exit policy &mdash; otherwise Tor users
+will be impacted too.
+</p>
+
+<hr />
+
+<a id="RelayOrBridge"></a>
+<h3><a class="anchor" href="#RelayOrBridge">Should I be a normal relay
+or bridge relay?</a></h3>
+
+<p><a href="<page bridges>">Bridge relays</a> (or "bridges" for short)
+are <a href="<page docs/tor-doc-relay>">Tor relays</a> that aren't listed
+in the main Tor directory. That means
+that even an ISP or government trying to filter connections to the Tor
+network probably won't be able to block all the bridges.
+</p>
+
+<p>Being a normal relay vs being a bridge relay is almost the same
+configuration: it's just a matter of whether your relay is listed
+publically or not.
+</p>
+
+<p>Right now, there are a small number of places in the world that filter
+connections to the Tor network. So getting a lot of bridges running
+right now is mostly a backup measure, a) in case the Tor network does
+get blocked somewhere, and b) for people who want an extra layer of
+security because they're worried somebody will recognize that it's a
+public Tor relay IP address they're contacting.
+</p>
+
+<p>So should you run a normal relay or bridge relay? If you have
+lots of bandwidth, you should definitely run a normal relay &mdash;
+bridge relays see very little use these days. If you're willing to 
+<a href="#ExitPolicies">be an exit</a>, you should definitely run a normal
+relay, since we need more exits. If you can't be an exit and only have
+a little bit of bandwidth, then flip a coin. Thanks for volunteering!
+</p>
+
+<hr />
+
+<a id="RelayMemory"></a>
+<h3><a class="anchor" href="#RelayMemory">Why is my Tor relay using so
+much memory?</a></h3>
+
+<p>If your Tor relay is using more memory than you'd like, here are some
+tips for reducing its footprint:
+</p>
+
+<ol>
+<li>If you're on Linux, you may be encountering memory fragmentation
+bugs in glibc's malloc implementation. That is, when Tor releases memory
+back to the system, the pieces of memory are fragmented so they're hard
+to reuse. The Tor tarball ships with OpenBSD's malloc implementation,
+which doesn't have as many fragmentation bugs (but the tradeoff is higher
+CPU load). You can tell Tor to use this malloc implementation instead:
+<tt>./configure --enable-openbsd-malloc</tt></li>
+
+<li>If you're running a fast relay, meaning you have many TLS connections
+open, you are probably losing a lot of memory to OpenSSL's internal
+buffers (38KB+ per socket). We've patched OpenSSL to <a
+href="http://archives.seul.org/or/dev/Jun-2008/msg00001.html">release
+unused buffer memory more aggressively</a>. If you update to OpenSSL
+1.0.0-beta5, Tor's build process will automatically recognize and use
+this feature.</li>
+
+<li>If you're running on Solaris, OpenBSD, NetBSD, or
+old FreeBSD, Tor is probably forking separate processes
+rather than using threads. Consider switching to a <a
+href="<wiki>TorFAQ#RelayOS">better
+operating system</a>.</li>
+
+<li>If you still can't handle the memory load, consider reducing the
+amount of bandwidth your relay advertises. Advertising less bandwidth
+means you will attract fewer users, so your relay shouldn't grow
+as large. See the <tt>MaxAdvertisedBandwidth</tt> option in the man
+page.</li>
+
+</ol>
+
+<p>
+All of this said, fast Tor relays do use a lot of ram. It is not unusual
+for a fast exit relay to use 500-1000 MB of memory.
+</p>
+
+<hr />
+
+<a id="WhyNotNamed"></a>
+<h3><a class="anchor" href="#WhyNotNamed">Why is my Tor relay not named?</a></h3>
+
+<p>
+We currently use these metrics to determine if your relay should be named:<br />
+</p>
+<ul>
+<li>The name is not currently mapped to a different key. Existing mappings
+are removed after 6 months of inactivity from a relay.</li>
+<li>The relay must have been around for at least two weeks.</li>
+<li>No other router may have wanted the same name in the past month.</li>
+</ul>
+
+<hr />
+
+<a id="KeyManagement"></a>
+<h3><a class="anchor" href="#KeyManagement">Tell me about all the keys
+Tor uses.</a></h3>
+
+<p>
+Tor uses a variety of different keys, with three goals in mind: 1)
+encryption to ensure privacy of data within the Tor network, 2)
+authentication so clients know they're
+talking to the relays they meant to talk to, and 3) signatures to make
+sure all clients know the same set of relays.
+</p>
+
+<p>
+<b>Encryption</b>: first, all connections in Tor use TLS link encryption,
+so observers can't look inside to see which circuit a given cell is
+intended for. Further, the Tor client establishes an ephemeral encryption
+key with each relay in the circuit, so only the exit relay can read
+the cells. Both sides discard the circuit key when the circuit ends,
+so logging traffic and then breaking into the relay to discover the key
+won't work.
+</p>
+
+<p>
+<b>Authentication</b>:
+Every Tor relay has a public decryption key called the "onion key".
+When the Tor client establishes circuits, at each step it <a
+href="<svnprojects>design-paper/tor-design.html#subsec:circuits">demands
+that the Tor relay prove knowledge of its onion key</a>. That way
+the first node in the path can't just spoof the rest of the path.
+Each relay rotates its onion key once a week.
+</p>
+
+<p>
+<b>Coordination</b>:
+How do clients know what the relays are, and how do they know that they
+have the right keys for them? Each relay has a long-term public signing
+key called the "identity key". Each directory authority additionally has a
+"directory signing key". The directory authorities <a
+href="<gitblob>doc/spec/dir-spec.txt">provide a signed list</a>
+of all the known relays, and in that list are a set of certificates from
+each relay (self-signed by their identity key) specifying their keys,
+locations, exit policies, and so on. So unless the adversary can control
+a threshold of the directory authorities, he can't trick the Tor client
+into using other Tor relays.
+</p>
+
+<p>
+How do clients know what the directory authorities are? The Tor software
+comes with a built-in list of location and public key for each directory
+authority. So the only way to trick users into using a fake Tor network
+is to give them a specially modified version of the software.
+</p>
+
+<p>
+How do users know they've got the right software? When we distribute
+the source code or a package, we digitally sign it with <a
+href="http://www.gnupg.org/">GNU Privacy Guard</a>. See the <a
+href="<page verifying-signatures>">instructions
+on how to check Tor's signatures</a>.
+</p>
+
+<p>
+In order to be certain that it's really signed by us, you need to have
+met us in person and gotten a copy of our GPG key fingerprint, or you
+need to know somebody who has. If you're concerned about an attack on
+this level, we recommend you get involved with the security community
+and start meeting people.
+</p>
+
+<hr />
+
+<a id="EverybodyARelay"></a>
+<h3><a class="anchor" href="#EverybodyARelay">You should make every Tor
+user be a relay.</a></h3>
+
+<p>
+Requiring every Tor user to be a relay would help with scaling the
+network to handle all our users, and <a href="<wiki>TorFAQ#RelayAnonymity">running a Tor
+relay may help your anonymity</a>. However, many Tor users cannot be good
+relays &mdash; for example, some Tor clients operate from behind restrictive
+firewalls, connect via modem, or otherwise aren't in a position where they
+can relay traffic. Providing service to these clients is a critical
+part of providing effective anonymity for everyone, since many Tor users
+are subject to these or similar constraints and including these clients
+increases the size of the anonymity set.
+</p>
+
+<p>
+That said, we do want to encourage Tor users to run relays, so what we
+really want to do is simplify the process of setting up and maintaining
+a relay. We've made a lot of progress with easy configuration in the past
+few years: Vidalia has an easy relay configuration interface, and supports
+uPnP too. Tor is good at automatically detecting whether it's reachable and
+how much bandwidth it can offer.
+</p>
+
+<p>
+There are five steps we need to address before we can do this though:
+</p>
+
+<p>
+First, we need to make Tor stable as a relay on all common
+operating systems. The main remaining platform is Windows,
+and we plan to finally address that in 2009. See Section 4.1 of <a
+href="https://www.torproject.org/press/2008-12-19-roadmap-press-release">our
+development roadmap</a>.
+</p>
+
+<p>
+Second, we still need to get better at automatically estimating
+the right amount of bandwidth to allow. See item #7 on the
+<a href="<page volunteer>#Research">research section of the
+volunteer page</a>: "Tor doesn't work very well when relays
+have asymmetric bandwidth (e.g. cable or DSL)". It might be that <a
+href="<wiki>TorFAQ#TransportIPnotTCP">switching
+to UDP transport</a> is the simplest answer here &mdash; which alas is
+not a very simple answer at all.
+</p>
+
+<p>
+Third, we need to work on scalability, both of the network (how to
+stop requiring that all Tor relays be able to connect to all Tor
+relays) and of the directory (how to stop requiring that all Tor
+users know about all Tor relays). Changes like this can have large
+impact on potential and actual anonymity. See Section 5 of the <a
+href="<svnprojects>design-paper/challenges.pdf">Challenges</a> paper
+for details. Again, UDP transport would help here.
+</p>
+
+<p>
+Fourth, we need to better understand the risks from
+letting the attacker send traffic through your relay while
+you're also initiating your own anonymized traffic. <a
+href="http://freehaven.net/anonbib/#back01">Three</a> <a
+href="http://freehaven.net/anonbib/#clog-the-queue">different</a>
+<a href="http://freehaven.net/anonbib/#torta05">research</a> papers
+describe ways to identify the relays in a circuit by running traffic
+through candidate relays and looking for dips in the traffic while the
+circuit is active. These clogging attacks are not that scary in the Tor
+context so long as relays are never clients too. But if we're trying to
+encourage more clients to turn on relay functionality too (whether as
+<a href="<page bridges>">bridge relays</a> or as normal relays), then
+we need to understand this threat better and learn how to mitigate it.
+</p>
+
+<p>
+Fifth, we might need some sort of incentive scheme to encourage people
+to relay traffic for others, and/or to become exit nodes. Here are our
+<a href="<blog>two-incentive-designs-tor">current
+thoughts on Tor incentives</a>.
+</p>
+
+<p>
+Please help on all of these!
+</p>
+
+<hr />
+
+<a id="Criminals"></a>
+<h3><a class="anchor" href="#Criminals">Doesn't Tor enable criminals to do bad
+things?</a></h3>
+
+<p>
+For the answer to this question and others, please see our <a
+href="<page faq-abuse>">Tor Abuse FAQ</a>.
+</p>
+
+<hr />
+
+<a id="RespondISP"></a>
+<h3><a class="anchor" href="#RespondISP">How do I respond to my ISP about my
+exit relay?</a></h3>
+
+<p>
+A collection of templates for successfully responding to ISPs is <a
+href="<wiki>TorAbuseTemplates">collected
+here</a>.
+</p>
+
+<hr />
+
+  </div><!-- #main -->
+
+#include <foot.wmi>
+

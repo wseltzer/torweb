@@ -1,0 +1,55 @@
+## translation metadata
+# Revision: $Revision: 24336 $
+# Translation-Priority: 1-high
+
+#include "head.wmi" TITLE="Tor Project: Configuring Tor to use a Proxy" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/proxychain>">Configuring Tor to use a Proxy</a>
+  </div>
+  <div id="maincol"> 
+    <a id="proxychain"></a>
+    <h2><a class="anchor" href="#proxychain">Tor: Configuring Tor to use a Proxy</a></h2>
+    <hr>
+    
+    <p>
+      The current version of Tor and the Vidalia Graphical Tor Controller
+      support the ability to use any HTTPS or SOCKS proxy to get
+      access to the Tor Network.  This means even if Tor is blocked by
+      your local network, open proxies can be safely used to connect to
+      the Tor Network and on to the uncensored Internet.  A caveat is that
+      the open proxy host will see you are using Tor, but it will not be able
+      to read your traffic as it is still wrapped in layers of encryption.
+    </p>
+    
+    <p>
+      These steps assume you have a functional Tor/Vidalia configuration,
+      and you have found a list of HTTPS, SOCKS4, or SOCKS5 proxies. (To
+      clarify, an HTTPS proxy is an HTTP proxy that also supports
+      CONNECT requests.)
+      <ol>
+      <li>Open the Vidalia Control Panel, click on Settings.</li>
+      <li>Click Network.  Select "I use a proxy to access the Internet".</li>
+      <li>On the Address line, enter the open proxy address.  This can be a hostname or IP Address.</li>
+      <li>Enter the port for the proxy.</li>
+      <li>Generally, you do not need a Username and Password.  If you do, enter the information in the proper fields.</li>
+      <li>Choose the Type of proxy you are using, whether HTTP/HTTPS, SOCKS4, or SOCKS5.</li>
+      <li>Push the Ok button.  Vidalia and Tor are now configured to use a proxy to access the rest of the Tor Network.</li>
+      </ol>
+    </p>
+    <br><br>
+    <img src="$(IMGROOT)/vidalia-proxy.png" alt="Vidalia's Network Proxy settings page">
+    <br><br>
+    
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>  

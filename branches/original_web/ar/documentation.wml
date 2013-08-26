@@ -1,0 +1,267 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 23277 $
+# Translation-Priority: 2-medium
+#include "head.wmi" TITLE="Tor: Documentation" CHARSET="UTF-8"
+<div class="main-column">
+
+<a id="RunningTor"></a>
+<h2><a class="anchor" href="#RunningTor">تشغيل تور</a></h2>
+<ul>
+<li><a href="<page docs/tor-doc-windows>">تثبيت تور على Win32</a></li>
+<li><a href="<page docs/tor-doc-osx>">تثبيت تور على Mac OS X</a></li>
+<li><a href="<page docs/tor-doc-unix>">تثبيت تور على لينكس/BSD/يونكس</a></li>
+<li><a href="<page torbutton/index>">تثبيت زر تور لتور</a></li>
+<li><a href="<page docs/tor-doc-relay>">ضبط تحويلة تور</a></li>
+<li><a href="<page docs/tor-hidden-service>">ضبط خدمة مخفية لتور</a></li>
+</ul>
+
+<a id="Support"></a> <a id="UpToSpeed"></a>
+<h2><a class="anchor" href="#UpToSpeed">ماضي وحاضر ومستقبل تسريع تور</a></h2>
+
+<ol>
+<li>
+في البداية اقرأ <a href="<page overview>">صفحة النظرة العامة</a> لتحصل على
+الفكرة الأساسية وراء طريقة عمل تور وأهدافه ومستخدميه.
+</li>
+
+<li>
+<a href="<page download>">ثبّت حزمة تور</a> وجرّبه. تأكد أنك ثبّت فيرفكس
+أولا، وتأكد من أنك قرأت <a href="<page download>#Warning">قائمة
+التحذيرات</a> المتعلقة بالطرق التي يمكن أن تفسد من خلالها سريتك.
+</li>
+
+<li>
+<a href="<wiki>TorFAQ">أسئلتنا المتكررة</a> تشمل كل المواضيع، ومن ذلك أسئلة
+عن ضبط العميل أو التحويلة ومخاوف من هجمات على السرية والأسباب التي دفعتنا
+إلى عدم بناء تور بطريقة أخرى وغيرها. توجد  <a href="<page faq-abuse>">أسئلة
+متكررة منفصلة عن إساءة الاستخدام</a> للإجابة على الأسئلة الشائعة من مشغلي
+التحويلات وعنهم. <a href="<page eff/tor-legal-faq>">أسئلة تور المتكررة
+القانونية</a> كتبها محامو مؤسسة الجبهة الإلكترونية (EFF)، وهي تهدف إلى تقديم
+نظرة عام عن بعض القضايا القانونية التي نشأت حول مشروع تور في الولايات
+المتحدة.
+</li>
+
+<li>يسرد <a href="<page tor-manual>">الدليل</a> كل المدخلات التي يمكن وضعها في
+<a href="<wiki>TorFAQ#Imsupposedtoeditmytorrc.Whatdoesthatmean">ملف
+torrc</a>. نوفر أيضًا <a href="<page tor-manual-dev>">دليلا للنسخة التطويرية
+من تور</a>.</li>
+
+<li>If you have questions, we have an IRC channel (for users, relay operators,
+and developers)  at <a href="irc://irc.oftc.net/tor">#tor on
+irc.oftc.net</a>. If you have a bug, especially a crash bug, read <a
+href="<wiki>TorFAQ#MyTorkeepscrashing.">how to report a Tor bug</a> first
+and then tell us as much information about it as you can in <a
+href="https://bugs.torproject.org/">our bugtracker</a>.  (If your bug is
+with Polipo, your browser, or some other application, please don't put it in
+our bugtracker.) The <a href="#MailingLists">or-talk mailing list</a> can
+also be useful.
+</li>
+
+<li>
+We try to keep <a href="<blog>">our blog</a> updated every week with the
+latest news.
+</li>
+
+<li>
+Download and watch Roger's overview talk from What The Hack (<a
+href="http://media.torproject.org/video/wth-anonymous-communication-58.mp4">video</a>,
+<a href="http://freehaven.net/~arma/wth1.pdf">slides</a>, <a
+href="http://wiki.whatthehack.org/index.php/Anonymous_communication_for_the_United_States_Department_of_Defense...and_you">abstract</a>).
+This talk was given in July 2005, back when we were funded by EFF and back
+when the network was quite small, but it still provides good background on
+how Tor works and what it's for.
+</li>
+
+<li>
+تصفح <a href="#DesignDoc">وثائق التصميم</a>. لاحظ أننا نتبع أسلوب معايير RFC
+لنشرح كيف يعمل تور بالضبط.
+</li>
+
+<li>
+There's a skeletal <a
+href="/press/presskit/2008-12-19-roadmap-full.pdf">list of items we'd like
+to tackle in the future</a>. Alas, many of those items need to be fleshed
+out more before they'll make sense to people who aren't Tor developers, but
+you can still get a general sense of what issues need to be resolved next.
+</li>
+
+<li>
+Download and watch Nick's "Technical changes since 2004" talk from Defcon in
+July 2007 (<a
+href="http://freehaven.net/~arma/Defcon15-Mathewson-Technical_Changes_since_you_Last_Heard_about_Tor.mp4">video</a>,
+<a
+href="http://freehaven.net/~nickm/slides/Defcon07/TorChanges.pdf">slides</a>),
+Roger's "blocking-resistance and circumvention" talk from 23C3 in December
+2006 (<a
+href="http://media.torproject.org/video/23C3-1444-en-tor_and_china.m4v">video</a>,
+<a href="http://freehaven.net/~arma/slides-23c3.pdf">slides</a>, <a
+href="http://events.ccc.de/congress/2006/Fahrplan/events/1444.en.html">abstract</a>,
+<a
+href="https://svn.torproject.org/svn/projects/design-paper/blocking.html">design
+paper</a>), and Roger's "Current events in 2007" talk from 24C3 in December
+2007 (<a
+href="http://media.torproject.org/video/24c3-2325-en-current_events_in_tor_development.mp4">video</a>,
+<a
+href="https://svn.torproject.org/svn/projects/presentations/slides-24c3.pdf">slides</a>,
+<a
+href="http://events.ccc.de/congress/2007/Fahrplan/events/2325.en.html">abstract</a>).
+We also have the What The Hack tutorial on hidden services (<a
+href="http://media.torproject.org/video/wth_tor_hidden_services.mp4">video</a>,
+<a href="http://freehaven.net/~arma/wth3.pdf">slides</a>).
+</li>
+
+<li>
+See Mike's "Securing the Tor network" talk from Defcon in July 2007 (<a
+href="http://media.torproject.org/video/Defcon15-Mike_Perry-Securing_the_Tor_Network.mp4">video</a>,
+<a href="http://freehaven.net/~arma/SecuringTheTorNetwork.pdf">slides</a>).
+It describes common ways to attack networks like Tor and how we try to
+defend against them, and it introduces the <a
+href="https://gitweb.torproject.org/torflow.git/blob_plain/HEAD:/README">Torflow</a>
+script collection.
+</li>
+
+<li>
+اعرف المزيد عن <a href="<gitblob>doc/spec/proposals/001-process.txt">العمل
+على مقترح تغيير تصميم تور</a>، وراجع <a
+href="<gittree>doc/spec/proposals">المقترحات الحالية</a>.
+</li>
+
+<li>
+Our <a href="<wiki>wiki/projects">project list</a> starts with a timeline
+for external promises &mdash; things <a href="<page sponsors>">our
+sponsors</a> have paid to see done. It also lists many other tasks and
+topics we'd like to tackle next.
+</li>
+
+<li>
+Through funding from the National Science Foundation, we maintain analysis,
+statistics, and provide the raw data of the Tor network from 2004 to today
+at <a href="https://metrics.torproject.org/">The Tor Metrics</a> site.
+</li>
+
+<li>
+ستلاحظ عندما تبدأ أن الأمور تتغير بسرعة مذهلة. <a href="#MailingLists">قائمة
+or-dev</a> هي التي تجري فيها النقاشات المعقدة وقناة #tor على IRC هي التي
+تجري فيها النقاشات الأقل تعقيدًا.
+</li>
+
+</ol>
+
+<a id="MailingLists"></a>
+<h2><a class="anchor" href="#MailingLists">معلومات القائمة البريدية</a></h2>
+<ul>
+<li><a href="http://archives.seul.org/or/announce/">قائمة or-announce
+البريدية</a> قائمة قليلة الرسائل لإعلانات الإصدارات الجديدة والتحديثات
+الأمنية الهامة. يجدر بالجميع أن يتواجد على تلك القائمة. توجد أيضًا <a
+href="http://rss.gmane.org/gmane.network.onion-routing.announce">تغذية
+RSS</a> لor-announce في <a href="http://gmane.org">gmane.org</a>.</li>
+<li><a href="http://archives.seul.org/or/talk/">قائمة or-talk</a> هي التي تجري
+فيها كثير من النقاشات وهي التي نرسل إليها إشعارات الإصدارات المبكرة
+والإصدارات المرشحة.</li>
+<li><a href="http://archives.seul.org/tor/relays/">قائمة tor-relays</a> هي التي
+تجري في النقاشات التي تتناول تشغيل وضبط والتعامل مع تحويلك لتور. إذا كنت
+تشغل تحويلة أو تفكر في القيام بذلك فإن هذه القائمة مناسبة لك.</li>
+<li>قائمة <a href="http://archives.seul.org/or/dev/">or-dev</a> يرسل عبرها
+المطورون فقط ورسائلها قليلة جدًا.</li>
+<li>قائمة  <a href="http://archives.seul.org/tor/mirrors/">بمشغيلي مرايا</a>
+الموقع الجدد، وقائمة مساندة <a href="<page mirrors>">لمرايا الموقع
+الحالية</a>.</li>
+<li>قائمة <a href="http://archives.seul.org/or/cvs/">بإيداعات svn و git</a> قد
+تكون تلك القائمة مفيدة للمطورين.</li>
+<li>قائمة تلقائية<a href="http://archives.seul.org/tor/bugs/">لتقارير العلل من
+trac</a> قد تكون تلك القائمة مفيدة للمستخدمين والمطورين.</li>
+</ul>
+
+<a id="DesignDoc"></a>
+<h2><a class="anchor" href="#DesignDoc">مستندات التصميم</a></h2>
+<ul>
+<li>يوضح <b>مستند التصميم</b> (المنشور في Usenix Security 2004) مبررات تصميم تور
+والتحليلات الأمنية: تتوفر نسخة <a
+href="https://svn.torproject.org/svn/projects/design-paper/tor-design.pdf">PDF</a>
+و <a
+href="https://svn.torproject.org/svn/projects/design-paper/tor-design.html">HTML</a>
+منه.</li>
+<li>يعرض ردنا على <b>challenges in low-latency anonymity</b> (لا يزال مسودة) بعض
+التجارب والتوجيهات الحديثة: <a
+href="https://svn.torproject.org/svn/projects/design-paper/challenges.pdf">مسودة
+PDF</a>></li>
+<li>بحثنا في WEIS 2006 (الذي عنوانه <b>Anonymity Loves Company: Usability and
+the Network Effect</b>) يوضح أهمية الاستخدامية في أمن أنظمة السرية: <a
+href="http://freehaven.net/anonbib/cache/usability:weis2006.pdf">PDF</a>.</li>
+<li>تصميمنا الأولي لحد إمكانية الجدر النارية الكبيرة حجب للوصول إلى شبكة تور
+موجود في <b>design of a blocking-resistant anonymity system</b>: <a
+href="https://svn.torproject.org/svn/projects/design-paper/blocking.pdf">مسودة
+PDF</a> و <a
+href="https://svn.torproject.org/svn/projects/design-paper/blocking.html">مسودة
+HTML</a>. أتريد <a href="<page volunteer>#Coding">المساعدة في تشييده</a>؟</li>
+<li>يسعى <b>المعيار</b> إلى تقديم معلومات كافية للمطورين لبناء نسخة متوافق مع
+تور:
+<ul>
+<li><a href="<gitblob>doc/spec/tor-spec.txt">معيار تور الرئيسي</a></li>
+<li><a href="<gitblob>doc/spec/dir-spec.txt">معيار خادوم الدليل للنسخة 3 من
+تور</a> (ومعايير الأدلة الأقدم <a
+href="<gitblob>doc/spec/dir-spec-v1.txt">للنسخة الأولى</a> و<a
+href="<gitblob>doc/spec/dir-spec-v2.txt">النسخة الثانية</a>)</li>
+<li><a href="<gitblob>doc/spec/control-spec.txt">معيار بروتوكول التحكم بتور</a></li>
+<li><a href="<gitblob>doc/spec/rend-spec.txt">معيار التقاء تور</a></li>
+<li><a href="<gitblob>doc/spec/path-spec.txt">معيار اختيار المسار في تور</a></li>
+<li><a href="<gitblob>doc/spec/address-spec.txt">أسماء الاستضافة الخاصة في
+تور</a></li>
+<li><a href="<gitblob>doc/spec/socks-extensions.txt">دعم تور لSOCKS
+وللامتدادات</a></li>
+<li><a href="<gitblob>doc/spec/version-spec.txt">كيف يتم ترقيم إصدارات تور</a></li>
+<li><a href="<gittree>doc/spec/proposals">مسودات قيد العمل لمعايير جديدة
+ولتغييرات مقترحة</a></li>
+</ul></li>
+
+</ul>
+
+<a id="NeatLinks"></a>
+<h2><a class="anchor" href="#NeatLinks">وصلات مفيدة</a></h2>
+<ul>
+<li><a href="https://trac.torproject.org/projects/tor">ويكي تور</a> تقدم مساهمات
+مفيدة كثيرة من مستخدمي تور. زُرها!</li>
+<li><a href="<wiki>SupportPrograms">قائمة بالبرامج المساندة التي يمكن استخدامها
+مع تور</a>.</li>
+<li><a href="https://check.torproject.org/">كاشف تور</a> أو <a
+href="http://torcheck.xenobite.eu/">كاشف تور الآخر</a> يحاول اكتشاف استخدامك
+لتور.</li>
+<li>راجع إحدى صفحات حالة تور، مثل <a href="http://torstatus.blutmagie.de/">صفحة
+blutmagie</a> أو <a href="http://trunk.torstatus.kgprog.com/index.php">صفحة
+kgprog</a> أو صفحة Xenobite <a href="https://torstat.xenobite.eu/">لحالة عقد
+تور</a>. تذكر أن تلك القوائم قد لا تكون بنفس دقة عميلك لتور لأن عمليك يجلب
+معلومات الدليل بنفسه ويحللها محليًا.</li>
+<li>اقرأ <a
+href="http://freehaven.net/anonbib/topic.html#Anonymous_20communication">هذه
+الأبحاث</a> (ولا سيما الموجودة في صناديق) لتتعرف بسرعة على أنظمة الاتصالات
+السرية.</li>
+</ul>
+
+<a id="Developers"></a>
+<h2><a class="anchor" href="#Developers">للمطورين</a></h2>
+  تصبح <b>مستودع مصدر تور</b>:
+  <ul>
+    <li><a href="<gitrepo>">تصبح شجرة  مستودع المصدر مباشرة</a></li>
+    <li>الوصول عبر Git و SVN:
+      <ul>
+        <li><kbd>git clone git://git.torproject.org/git/tor</kbd></li>
+        <li>فرع التطوير هو <kbd>master</kbd>.  فروع الصيانة النشطة هي
+<kbd>maint-0.2.0</kbd> و <kbd>maint-0.2.1</kbd>.</li>
+        <li><kbd>svn checkout https://svn.torproject.org/svn/website/trunk website</kbd></li>
+      </ul>
+    </li>
+    <li><a
+href="https://gitweb.torproject.org//githax.git?a=blob;f=doc/Howto.txt;hb=HEAD">التعليمات
+الأساسية عن استخدام Git للمساهمة لبرمجيات تور.</a></li>
+  </ul>
+
+  </div>
+
+
+#include <foot.wmi>

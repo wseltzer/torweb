@@ -1,0 +1,46 @@
+#!wml
+<:
+	# Change both.  The array is ordered (for pages like translation status, order of flags, etc).
+
+	my @LANGUAGES = qw{ar bms cy da de en es et fa fi fr hu id it ja ko nl no pl pt pt-br ru se tr vn zh-cn};
+	my %LANGUAGES = (
+		'ar' => "&#1593;&#1585;&#1576;&#1610;&#1577;&nbsp;(Arabiya)",
+		'bms' => "Burmese",
+		'cy' => "Welsh",
+		'da' => "Danish",
+		'de' => "Deutsch",
+		'en' => "English",
+		'es' => "espa&ntilde;ol",
+		'et' => "Estonian",
+		'fa' => "&#1601;&#1575;&#1585;&#1587;&#1740; (F&#257;rs&#299;)",
+		'fi' => "suomi",
+		'fr' => "fran&ccedil;ais",
+		'hu' => "Hungarian",
+		'id' => "Bahasa Indonesia",
+		'it' => "Italiano",
+		'ja' => "&#26085;&#26412;&#35486;&nbsp;(Nihongo)",
+		'ko' => "&#54620;&#44397;&#50612;&nbsp;(Hangul)",
+		'nl' => "Nederlands",
+		'no' => "norsk",
+		'pl' => "polski",
+		'pt' => "Portugu&ecirc;s",
+		'pt-br' => "Portuguese (Brazil)",
+		'ru' => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;&nbsp;(Russkij)",
+		'se' => "svenska",
+		'tr' => "T&uuml;rk&ccedil;e",
+		'vn' => "Vietnamese",
+		'zh-cn' => "&#20013;&#25991;(&#31616;) (Simplified Chinese)",
+
+		);
+	our $WML_SRC_FILENAME;
+	our $WML_SRC_BASENAME;
+	our $WML_SRC_DIRNAME;
+
+	# sanity check.
+	for my $lang (@LANGUAGES) {
+		die "Language $lang defined in \@LANGUAGES but not in \%LANGUAGES in perl-globals"
+			unless exists $LANGUAGES{$lang};
+	};
+	die "\@LANGUAGES and \%LANGUAGES have a different number of elements in perl-globals"
+		unless (scalar @LANGUAGES == scalar keys %LANGUAGES);
+:>

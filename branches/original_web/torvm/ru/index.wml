@@ -1,0 +1,189 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 21511 $
+# Translation-Priority: 4-optional
+#include "head.wmi" TITLE="Tor VM" CHARSET="UTF-8"
+<div class="main-column">
+
+
+
+<!-- PUT CONTENT AFTER THIS TAG -->
+<h1>Tor VM</h1>
+
+
+<!-- BEGIN SIDEBAR -->
+<div class="sidebar-left">
+<h3>Использование Tor VM</h3>
+<ul>
+<li><a href="#Download">Скачать</a></li>
+<li><a href="#Install">Инсталлировать</a></li>
+<li><a href="#Run">Запустить VM</a></li>
+<li><a href="#RecommendedUse">Использовать Torbutton</a></li>
+<li><a href="#Shutdown">Выключить</a></li>
+</ul>
+</div>
+
+
+<!-- END SIDEBAR -->
+<h2>Что это?</h2>
+<p>Tor VM - это транспарентный прокси Tor для  Windows с технологией
+виртуалищации <a href="http://www.qemu.org/">Qemu</a> для более устойчивых
+клиентов и ретрансляторов.
+</p>
+<p>Можно представить Tor VM в виде виртуальной сетевой карты Tor, которая
+открыто направляет весь трафик с вашей машины через сеть Tor без
+прокси-свойств приложения или другой конфигурации. 
+</p>
+<p><a
+href="https://svn.torproject.org/svn/torvm/trunk/doc/design.html">Документ о
+создании Tor VM</a> содержит дополнительные детали об этой  работе.</p>
+
+<hr /> <a id="Download"></a>
+<h2><a class="anchor" href="#Download">Шаг первый: скачайте программное
+обеспечение Tor VM</a></h2>
+
+<ul>
+<li><a href="dist/TorVM-0.0.2-Bundle.exe">Инсталлятор связки Tor VM</a> (<a
+href="dist/TorVM-0.0.2-Bundle.exe.asc" style="font-size: 90%;">sig</a>)</li>
+
+<li><a href="dist/TorVM-0.0.2-NetInstaller.exe">Инсталлятор сети Tor VM</a> (<a
+href="dist/TorVM-0.0.2-NetInstaller.exe.asc" style="font-size:
+90%;">sig</a>)</li>
+</ul>
+
+<hr /> <a id="Install"></a>
+<h2><a class="anchor" href="#Install">Шаг второй: установите Tor VM на ваш
+компьютер</a></h2>
+
+<p>Дважды щелкните мышкой на Bundle или Инсталляторе сети EXE, чтобы начать
+установку на ваш компьтер.</p>
+
+<p><img src="img/bundle02.png" alt="Click to Run Bundle Installer" /></p>
+
+<p>Установщик сети содержит программное обеспечение для безопасного обновления
+Tor, которое по запросу используется для безопасной загрузки последних
+пакетов приложений.</p>
+
+<p><img src="img/netinst02.png" alt="Network Installer downloads bundle
+software on demand" /></p>
+
+
+<hr /> <a id="Run"></a>
+<h2><a class="anchor" href="#Run">Шаг третий: запуск Tor VM</a></h2>
+
+<p>После завершения установки Tor VM, контроллер начнет свою работу на заднем
+плане. Программа установки завершена и может быть закрыта.</p>
+
+<p><img src="img/run01.png" alt="Tor VM controller will start at end of
+install" /></p>
+
+<p>После подготовки устройств сети виртуальная машина Qemu, двигающая ядро Tor
+VM kernel, запущена с контроллером Vidalia. Загрузка сети Tor может занять
+несколько минут. Пожалуйста, будьте терпеливы.</p>
+
+<p><img src="img/run02.png" alt="Bootstrap not complete until circuit created"
+/></p>
+
+<hr /> <a id="RecommendedUse"></a>
+<h2><a class="anchor" href="#RecommendedUse">Шаг четвертый: Использование
+Firefox и Torbutton</a></h2>
+
+<p>Когда Tor успешно построил цикл, появляется меню Сменить
+пользователя. Firefox и другие приложения Tor должны работать с
+конфиденциального пользовательского акаунта "Tor".</p>
+
+<p><img src="img/tor-user-switch.png" alt="Switch to Tor restricted user
+account" /></p>
+
+<p>Чтобы начать работу в Tor, запустите Firefox и кликните на статусной иконке
+Torbutton в нижнем правом углу.</p>
+
+<p><img src="img/torbutton04.png" alt="Click on Torbutton status icon to toggle
+ON" /></p>
+
+<p>Проверить то, что вы используете Tor можно через <a
+href="https://check.torproject.org/">https://check.torproject.org/</a></p>
+
+<p><img src="img/torbutton05.png" alt="Verify Tor use at check.torproject.org"
+/></p>
+
+
+<hr /> <a id="ExperimentalUse"></a> 
+<h2><a class="anchor" href="#ExperimentalUse">Экспериментально: использование
+флеш</a></h2>
+
+<p><strong>ВАЖНО: нерекомендованное использование Tor.</strong></p>
+
+<p>Кликните правой кнопкой мышки на иконке Torbutton в правом нижнем углу,
+появится меню. Выберете "Свойства..."</p>
+
+<p><img src="img/tbprefs.png" alt="Select Torbutton Preferences menu option" /></p>
+
+<p>Переключите свойства безопасности "Отключить плагины".</p>
+
+<p><img src="img/tbcontent.png" alt="Toggle disable plugins dynamic content
+security setting" /></p>
+
+<p>При  просмотре содержания, связи браузера с плагином флеш плеера не будут
+открыто проходить через прокси сети Tor..</p>
+
+<p><img src="img/flash02.png" alt="Flash player and other software now using
+Tor" /></p>
+
+<hr /> <a id="Shutdown"></a>
+<h2><a class="anchor" href="#Shutdown">Шаг пятый: отключение Tor VM</a></h2>
+
+<p>Нажмите Windows + L для перехода назад к пользователю Администратор.</p>
+
+<p><img src="img/win-el.png" alt="Windows Key + L to switch user" /></p>
+
+<p><img src="img/admin-user-switchback.png" alt="Switch back to admin user
+account" /></p>
+
+<p>Для выключения VM и восстановления свойств сети, выберите функцию Vidalia
+"Выход". Конфиденциальный пользователь Tor будет автоматически отключен от
+сети.</p>
+
+<p><img src="img/exit-vidalia.png" alt="Select Vidalia Exit option to close VM"
+/></p>
+
+<p>Не закрывайте окно контроллера Tor VM пока восстанавливаются свойства сети.</p>
+
+<p><img src="img/vm-shutdown.png" alt="Do not close the Tor VM window while
+restoring network settings" /></p>
+
+
+<hr /> <a id="Remove"></a>
+<h2><a class="anchor" href="#Remove">Удаление программного обеспечения Tor
+Bundle</a></h2>
+
+<p>Скрипт для удаления всей связки программного обеспечения Tor находится на
+рабочем столе вашего компьютера. Запустите эту утилиту для удаления всего
+программного обеспечения и файлов Tor.</p>
+
+<p><img src="img/uninstall.png" alt="The Uninstall_Tor script will remove all
+Tor packages and files" /></p>
+
+
+<hr /> <a id="Debug"></a>
+<h2><a class="anchor" href="#Debug">Устранение проблем и сообщения о багах</a></h2>
+
+<p>Категория Tor VM в системе, отслеживающей баги Tor, используется для
+управления дефектами и свойствами. Смотрите <a
+href="http://bugs.noreply.org/flyspray/index.php?tasks=all&amp;project=4"
+>трекер багов Tor</a> для получения информации об известных проблемах и
+надвигающихся изменениях.</p>
+
+<p>Временные решения проблем программного обеспечения Tor VM задокументированы
+в <a href="https://svn.torproject.org/svn/torvm/trunk/TODO">Tor VM TODO</a>.</p>
+
+</div>
+
+
+
+#include <foot.wmi>

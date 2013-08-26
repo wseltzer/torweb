@@ -1,0 +1,89 @@
+
+
+
+
+
+
+## translation metadata
+# Revision: $Revision: 22973 $
+# Translation-Priority: 4-optional
+#include "head.wmi" TITLE="Tor: Running a Mirror" CHARSET="UTF-8"
+<div class="main-column">
+
+<h2>Tor: Prowadzenie Mirrora</h2>
+<hr />
+
+<p>Dziękujemy, że chcesz mirrorować stronę Tora. Wszystkie nasze
+serwery-mirrory są publicznie wypisane na <a href="<page mirrors>">naszej
+stronie mirrorów</a>. Poniżej zamieszczamy kilka przykładowych komend i
+konfiguracji, by wstępne uruchamianie i utrzymywanie odbywały się jak
+najmniejszym wysiłkiem. Strona Tora i katalog dystrybucyjny w chwili obecnej
+wymagają 5,0 GB miejsca na dysku.</p>
+
+<p>
+Jeśli chcesz prowadzić serwer lustrzany, wystarczy ta komenda, by pobrać
+wszystko, czym serwer lustrzany powinien dzielić się ze światem: <br /> <br
+/> <tt> rsync -av --delete rsync://rsync.torproject.org/tor tor-mirror/
+</tt>
+
+<p>
+W celu zapewnienia, że mamy wiarygodne i aktualne mirrory, prosimy upewnić
+się, że Twój mirror wykonuje co najmniej następujące rzeczy:<br /><br />
+Aktualizuje się <b>nie rzadziej</b> niż co sześć godzin, ale nie częściej,
+niż co godzinę.<br /><br /> Pozwala "Directory Index / Indexes"
+(wyświetlanie indeksów) katalogu /dist.<br /><br /> Pozwala na "Multiviews"
+lub coś równoważnego, w celu lokalizacji języków.<br /><br /> Ma prawidłowy
+adres email w celach komunikacji administracyjnej, gdyby Twój serwer miał
+kłopoty.<br /><br /> Jest wysoce zalecane, by wszyscy operatorzy mirrorów
+zapisali się na <A
+href="http://archives.seul.org/tor/mirrors/">listę mailingową tor-mirrors</A> gdzie powinny iść wszystkie prośby modyfikacji (ADD, CHANGE, DELETE,
+jakiekolwiek inne prośby/zawiadomienia). Ponadto, można tu znaleźć wsparcie
+w jakichkolwiek sprawach technicznych przy uruchamianiu mirrora.<br /><br />
+
+</p>
+<br /><br />
+<p>
+Przykładowe zadanie crona do aktualizacji całego mirrora raz na 6 godzin
+może wyglądać następująco:
+<pre>
+# m h  dom mon dow   command
+
+0 */6 * * * rsync -aq --delete rsync://rsync.torproject.org/tor/ /var/www/mirrors/torproject.org
+</pre>
+</tt>
+</p>
+<br/> Dla tych operatorów mirrorów, którzy używają Apache, stworzyliśmy
+przykładowy plik konfiguracji wirtualnego hosta: <tt>
+<pre>
+&lt;VirtualHost 0.1.2.3:80&gt;
+        ServerAdmin youremail@example.com<br/>
+        ServerName  0.1.2.3<br/>
+
+        DocumentRoot /var/www/mirrors/torproject.org<br/>
+
+        &lt;Directory /var/www/mirrors/torproject.org/&gt;<br/>
+            Options MultiViews Indexes<br/>
+            DirectoryIndex index<br/>
+            AllowOverride None<br/>
+        &lt;/Directory&gt;<br/>
+
+&lt;/VirtualHost&gt;
+</pre>
+</tt> <br/> <br/> Prosimy upewniaj się, że Twój mirror jest aktualny
+(sugerujemy zautomatyzowanie tego zadania za pomocą czegoś podobnego do
+'<tt>cron</tt>'). Nasza strona, kod źródłowy i wydania binarne często się
+zmieniają. Zalecana częstotliwość aktualizacji to raz na sześć
+godzin. Użytkownicy Tora na całym świecie będą Ci wdzięczni.
+</p>
+<br/>	
+<p>
+Jeśli prowadzisz mirror, proszę zapisz się na
+<A href="http://archives.seul.org/tor/mirrors/">listę mailingową tor-mirrors</A>i przedstaw się tam. Dodamy Cię do listy mirrorów. Na liście można też
+znaleźć pomoc w sprawach wsparcia dla mirrorów i spraw związanych z
+konfiguracją.
+</p>
+
+  </div>
+
+
+#include <foot.wmi>
