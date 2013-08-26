@@ -27,8 +27,12 @@ proxies?</a></li>
     <li><a href="#SupportMail">How can I get support?</a></li>
     <li><a href="#Forum">Is there a Tor forum?</a></li>
     <li><a href="#WhySlow">Why is Tor so slow?</a></li>
+    <li><a href="#FileSharing">How can I share files anonymously through Tor?</a></li>
+    <li><a href="#OutboundPorts">Do I have to open all these outbound ports on my firewall?</a></li>
     <li><a href="#Funding">What would The Tor Project do with more
     funding?</a></li>
+    <li><a href="#IsItWorking">How can I tell if Tor is working, and that my connections really are anonymized?</a></li>
+    <li><a href="#FTP">How do I use my browser for ftp with Tor?</a></li>
     <li><a href="#Metrics">How many people use Tor? How many relays or
     exit nodes are there?</a></li>
     <li><a href="#SSLcertfingerprint">What are your SSL certificate
@@ -74,6 +78,7 @@ unsafe?</a></li>
     <li><a href="#GoogleCAPTCHA">Google makes me solve a CAPTCHA or
 tells
     me I have spyware installed.</a></li>
+    <li><a href="#ForeignLanguages">Why does Google show up in foreign languages?</li></a>
     <li><a href="#GmailWarning">Gmail warns me that my account may have
     been compromised.</a></li>
     </ul>
@@ -84,6 +89,7 @@ tells
     that mean?</a></li>
     <li><a href="#Logs">How do I set up logging, or see Tor's
     logs?</a></li>
+    <li><a href="#LogLevel">What log level should I use?</a></li>
     <li><a href="#DoesntWork">Tor is running, but it's not working
     correctly.</a></li>
     <li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at
@@ -93,6 +99,10 @@ country)
     are used for entry/exit?</a></li>
     <li><a href="#FirewallPorts">My firewall only allows a few outgoing
     ports.</a></li>
+    <li><a href="#ExitPorts">Is there a list of default exit ports?</a></li>
+    <li><a href="#SocksAndDNS">How do I check if my application that uses SOCKS is leaking DNS requests?</a></li>
+    <li><a href="#DifferentComputer">I want to run my Tor client on a different computer than my applications.</a></li>
+    <li><a href="#ServerClient">Can I install Tor on a central server, and have my clients connect to it?</a></li>
     </ul>
 
     <p>Running a Tor relay:</p>
@@ -120,6 +130,9 @@ memory?</a></li>
     <li><a href="#KeyManagement">Tell me about all the keys Tor
 uses.</a></li>
     <li><a href="#EntryGuards">What are Entry Guards?</a></li>
+    <li><a href="#ChangePaths">How often does Tor change its paths?</a></li>
+    <li><a href="#CellSize">Tor uses hundreds of bytes for every IRC line. I can't afford that!</a></li>
+    <li><a href="#OutboundConnections">Why does netstat show these outbound connections?</a></li>
     </ul>
 
     <p>Alternate designs that we don't do (yet):</p>
@@ -131,6 +144,12 @@ packets,
     not just TCP packets.</a></li>
     <li><a href="#HideExits">You should hide the list of Tor relays,
     so people can't block the exits.</a></li>
+    <li><a href="#ChoosePathLength">You should let people choose their path length.</a></li>
+    <li><a href="#SplitEachConnection">You should split each connection over many paths.</a></li>
+    <li><a href="#UnallocatedNetBlocks">Your default exit policy should block unallocated net blocks too.</a></li>
+    <li><a href="#BlockWebsites">Exit policies should be able to block websites, not just IP addresses.</a></li>
+    <li><a href="#BlockContent">You should change Tor to prevent users from posting certain content.</a></li>
+    <li><a href="#IPv6">Tor should support IPv6.</a></li>
     </ul>
 
     <p>Abuse:</p>
@@ -273,45 +292,15 @@ encryption, what data you're sending to the destination.</dd>
 can I use with Tor?</a></h3>
 
     <p>
-    There are two pieces to "Torifying" a program: connection-level
-anonymity
-    and application-level anonymity. Connection-level anonymity focuses
-on
-    making sure the application's Internet connections get sent through
-Tor.
-    This step is normally done by configuring
-    the program to use your Tor client as a "socks" proxy, but there are
-    other ways to do it too. For application-level anonymity, you need
-to
-    make sure that the information the application sends out doesn't
-hurt
-    your privacy. (Even if the connections are being routed through Tor,
-you
-    still don't want to include sensitive information like your name.)
-This
-    second step needs to be done on a program-by-program basis, which is
-    why we don't yet recommend very many programs for safe use with Tor.
+    If you want to use Tor with a web browser, we provide the Tor Browser Bundle, which includes everything you need to browse the web safely using Tor. If you want to use another web browser with Tor, see <a href="#TBBOtherBrowser">Other web browsers</a>. 
     </p>
-
-    <p>
-    Most of our work so far has focused on the Firefox web browser. The
-    bundles on the <a href="<page download/download>">download page</a>
-automatically
-    install the <a href="<page torbutton/index>">Torbutton Firefox
-    extension</a> if you have Firefox installed. As of version 1.2.0,
-    Torbutton now takes care of a lot of the connection-level and
-    application-level worries.
-    </p>
-
     <p>
     There are plenty of other programs you can use with Tor,
     but we haven't researched the application-level anonymity
-    issues on them well enough to be able to recommend a safe
+    issues on all of them well enough to be able to recommend a safe
     configuration. Our wiki has a list of instructions for <a
     href="<wiki>doc/TorifyHOWTO">Torifying
-    specific applications</a>. There's also a <a
-    href="<wiki>doc/SupportPrograms">list
-    of applications that help you direct your traffic through Tor</a>.
+    specific applications</a>.
     Please add to these lists and help us keep them accurate!
     </p>
 
@@ -608,6 +597,15 @@ money to the
 
     <hr>
 
+    <a id="FileSharing"></a>
+    <h3><a class="anchor" href="#FileSharing">How can I share files anonymously through Tor?"</a></h3>
+
+    <p>
+    File sharing (peer-to-peer/P2P) is widely unwanted in the Tor network and exit nodes are configured to block file sharing traffic by default. Tor is not really designed for it and file sharing through Tor excessively wastes everyone's bandwidth (slows down browsing). Also, Bittorrent over Tor <a href="https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea">is not anonymous</a>!
+    </p>
+
+    <hr>
+
     <a id="Funding"></a>
     <h3><a class="anchor" href="#Funding">What would The Tor Project do
 with more funding?</a></h3>
@@ -737,11 +735,55 @@ executive
 
     <hr>
 
+     <a id="OutboundPorts"></a>
+    <h3><a class="anchor" href="#OutboundPorts">Do I have to open all these outbound ports on my firewall?</a></h3>
+
+    <p>
+    Tor may attempt to connect to any port that is advertised in the directory as an ORPort (for making Tor connections) or a DirPort (for fetching updates to the directory). There are a variety of these ports, but many of them are running on 80, 443, 9001, and 9030.
+    </p>
+    <p>
+So as a client, you could probably get away with opening only those four ports. Since Tor does all its connections in the background, it will retry ones that fail, and hopefully you'll never have to know that it failed, as long as it finds a working one often enough. However, to get the most diversity in your entry nodes -- and thus the most security -- as well as the most robustness in your connectivity, you'll want to let it connect to all of them.
+    </p>
+    <p>
+If you really need to connect to only a small set of ports, see the FAQ entry on firewalled ports.
+    </p>
+    <p>
+Note that if you're running as a Tor relay, you must allow outgoing connections to every other relay, and to anywhere your exit policy advertises that you allow. The cleanest way to do that is to simply allow all outgoing connections at your firewall. If you don't, clients will try to use these connections and things won't work. 
+    </p>
+    
+    <hr>
+    
+    <a id="IsItWorking"></a>
+    <h3><a class="anchor" href="#IsItWorking">How can I tell if Tor is working, and that my connections really are anonymized?</a></h3>
+
+    <p>
+    There are sites you can visit that will tell you if you appear to be coming through the Tor network. Try the <a href="https://check.torproject.org">Tor Check</a> site and see whether it thinks you are using Tor or not.
+    </p>
+    <p>
+If that site is down, you can still test, but it will involve more effort: <a>http://ipid.shat.net</a> and <a>http://www.showmyip.com/</a> will tell you what your IP address appears to be, but you'll need to know your current IP address so you can compare and decide whether you're using Tor correctly.
+    </p>
+    <p>
+To learn your IP address on OS X, Linux, BSD, etc, run "ifconfig". On Windows, go to the Start menu, click Run and enter "cmd". At the command prompt, enter "ipconfig /a".
+    </p>
+    <p>
+If you are behind a NAT or firewall, though, your IP address will be within the range of 10.XXX.XXX.XXX, 192.168.XXX.XXX, or 172.16.XXX.XXX - 172.31.XXX.XXX, which is not your public IP address. In this case, you should check your IP address with one of the sites above without using Tor, and then check again using Tor to see whether your IP address has changed. 
+    </p>
+    
+    <hr>
+    
+    <a id="FTP"></a>
+    <h3><a class="anchor" href="#FTP">How do I use my browser for ftp with Tor?
+    </a></h3>
+
+    <p>Use the Tor Browser Bundle. If you want a separate application for an ftp client, we've heard good things about  FileZilla for Windows. You can configure it to point to Tor as a "socks4a" proxy on "localhost" port "9050". </p>
+    <hr>
+    
     <a id="Metrics"></a>
     <h3><a class="anchor" href="#Metrics">How many people use Tor? How
 many relays or exit nodes are there?</a></h3>
 
-    <p>All this and more about measuring Tor can be found at the <a
+    <p>
+    All this and more about measuring Tor can be found at the <a
     href="https://metrics.torproject.org/">Tor Metrics Portal</a>.</p>
     <hr>
 
@@ -1164,6 +1206,26 @@ DuckDuckGo, ixquick, or Bing.
 
 <hr />
 
+<a id="ForeignLanguages"></a>
+<h3><a class="anchor" href="#ForeignLanguages">
+Why does Google show up in foreign languages?</a></h3>
+
+<p>
+ Google uses "geolocation" to determine where in the world you are, so it can give you a personalized experience. This includes using the language it thinks you prefer, and it also includes giving you different results on your queries.
+</p>
+<p>
+If you really want to see Google in English you can click the link that provides that. But we consider this a feature with Tor, not a bug --- the Internet is not flat, and it in fact does look different depending on where you are. This feature reminds people of this fact. The easy way to avoid this "feature" is to use <a>http://google.com/ncr</a>.
+</p>
+<p>
+Note that Google search URLs take name/value pairs as arguments and one of those names is "hl". If you set "hl" to "en" then Google will return search results in English regardless of what Google server you have been sent to. On a query this looks like: http://google.com/search?q=...&amp;hl=en&amp;..g
+</p>
+<p>
+In Firefox you can search for the google.src file and add the line &lt;input name="hl" value="en"&gt;g to it. Then restart Firefox and it will automatically add the "hl=en" name/value pair to all queries made from the search bar so you will get English results regardless of which Google server you have been sent to. Note that this file is actually 'hidden' as part of the application container on Macs. To get to this file on a Mac you have to right click on the Firefox application icon and select "Show Package Contents" then navigate to Contents/MacOS/searchplugins.
+</p>
+<p>
+Another method is to simply use your  country code for accessing Google. This can be google.be, google.de, google.us and so on. You can also set your language by first selecting it in the Language Tools section, search for something simple. Then extract the language from the URL. In this example, we'll choose Hebrew:  <a>http://www.google.com/search?lr=lang_g'''iw</a>. Next, use that string in the url:  <a>http://google.com/intl/iw/</a>. This can obviously be set as your homepage or bookmarked if necessary. 
+</pb>
+
 <a id="GmailWarning"></a>
 <h3><a class="anchor" href="#GmailWarning">Gmail warns me that my
 account
@@ -1344,6 +1406,34 @@ and filename for your Tor log.
 </p>
 
 <hr>
+
+
+<a id="LogLevel"></a>
+<h3><a class="anchor" href="#LogLevel">What log level should I use?</a></h3>
+
+<p>
+There are five log levels (also called "log severities") you might see in Tor's logs:
+</p>
+
+<ul>
+    <li>"err": something bad just happened, and we can't recover. Tor will exit.</li>
+    <li>"warn": something bad happened, but we're still running. The bad thing might be a bug in the code, some other Tor process doing something unexpected, etc. The operator should examine the message and try to correct the problem.</li>
+    <li>"notice": something the operator will want to know about.</li>
+    <li>"info": something happened (maybe bad, maybe ok), but there's nothing you need to (or can) do about it.</li>
+    <li>"debug": for everything louder than info. It is quite loud indeed.</li> 
+</ul>
+
+<p>
+Alas, some of the warn messages are hard for ordinary users to correct -- the developers are slowly making progress at making Tor automatically react correctly for each situation.
+</p>
+
+<p>
+We recommend running at the default, which is "notice". You will hear about important things, and you won't hear about unimportant things.
+</p>
+
+<p>
+Tor relays in particular should avoid logging at info or debug in normal operation, since they might end up recording sensitive information in their logs. 
+</p>
 
 <a id="DoesntWork"></a>
 <h3><a class="anchor" href="#DoesntWork">I installed Tor but it's not
@@ -1545,6 +1635,36 @@ use the ReachableAddresses config options, e.g.:
 
 <hr>
 
+    <a id="ExitPorts"></a>
+    <h3><a class="anchor" href="#ExitPorts">Is there a list of default exit ports?</a></h3>
+    <p>
+The default open ports are listed below but keep in mind that, any port or ports can be opened by the relay operator by configuring it in torrc or modifying the source code. But the default according to src/or/policies.c from the source code release tor-0.2.4.16-rc is: 
+    </p>
+    <pre>
+  reject 0.0.0.0/8
+  reject 169.254.0.0/16
+  reject 127.0.0.0/8
+  reject 192.168.0.0/16
+  reject 10.0.0.0/8
+  reject 172.16.0.0/12
+  reject *:25
+  reject *:119
+  reject *:135-139
+  reject *:445
+  reject *:563
+  reject *:1214
+  reject *:4661-4666
+  reject *:6346-6429
+  reject *:6699
+  reject *:6881-6999
+  accept *:*
+    </pre>
+    <p>
+    A relay will block access to its own IP address, as well local network IP addresses. A relay always blocks itself by default. This prevents Tor users from accidentally accessing any of the exit operator's local services. 
+    </p>
+
+    <hr>
+
     <a id="RelayFlexible"></a>
     <h3><a class="anchor" href="#RelayFlexible">How stable does my relay
 need to be?</a></h3>
@@ -1597,7 +1717,7 @@ too.
 
     <hr>
 
-    <a id="RunARelayBut"></a>
+       <a id="RunARelayBut"></a>
     <a id="ExitPolicies"></a>
     <h3><a class="anchor" href="#ExitPolicies">I'd run a relay, but I
 don't want to deal with abuse issues.</a></h3>
@@ -1651,6 +1771,45 @@ example,
     explicitly reject them in your exit policy &mdash; otherwise Tor
 users
     will be impacted too.
+    </p>
+
+    <hr>
+
+    <a id="DifferentComputer"></a>
+    <h3><a class="anchor" href="#DifferentComputer">I want to run my Tor client on a different computer than my applications.</a></h3>
+    <p>
+    By default, your Tor client only listens for applications that connect from localhost. Connections from other computers are refused. If you want to torify applications on different computers than the Tor client, you should edit your torrc to define SocksListenAddress 0.0.0.0 g and then restart (or hup) Tor. If you want to get more advanced, you can configure your Tor client on a firewall to bind to your internal IP but not your external IP.  
+    </p>
+
+    <hr>
+
+    <a id="ServerClient"></a>
+    <h3><a class="anchor" href="#ServerClient">Can I install Tor on a central server, and have my clients connect to it?</a></h3>
+    <p>
+     Yes. Tor can be configured as a client or a relay on another machine, and allow other machines to be able to connect to it for anonymity. This is most useful in an environment where many computers want a gateway of anonymity to the rest of the world. However, be forwarned that with this configuration, anyone within your private network (existing between you and the Tor client/relay) can see what traffic you are sending in clear text. The anonymity doesn't start until you get to the Tor relay. Because of this, if you are the controller of your domain and you know everything's locked down, you will be OK, but this configuration may not be suitable for large private networks where security is key all around.
+    </p>
+    <p>
+Configuration is simple, editing your torrc file's SocksListenAddress according to the following examples:
+    </p>
+    <pre>
+  SocksListenAddress 127.0.0.1 #This provides local interface access only, needs SocksPort to be greater than 0
+  SocksListenAddress 192.168.x.x:9100 #This provides access to Tor on a specified interface
+  SocksListenAddress 0.0.0.0:9100 #Accept from all interfaces
+    </pre>
+    <p>
+You can state multiple listen addresses, in the case that you are part of several networks or subnets.
+    </p>
+    <pre>
+  SocksListenAddress 192.168.x.x:9100 #eth0
+  SocksListenAddress 10.x.x.x:9100 #eth1
+    </pre>
+    <p>
+After this, your clients on their respective networks/subnets would specify a socks proxy with the address and port you specified SocksListenAddress to be. 
+    </p>
+    <p>
+Please note that the SocksPort configuration option gives the port ONLY for localhost (127.0.0.1). When setting up your SocksListenAddress(es), you need to give the port with the address, as shown above.
+    <p>
+If you are interested in forcing all outgoing data through the central Tor client/relay, instead of the server only being an optional proxy, you may find the program iptables (for *nix) useful. 
     </p>
 
     <hr>
@@ -1771,13 +1930,11 @@ html">release
 use
     this feature.</li>
 
-    <li>If you're running on Solaris, Tor is probably
-    forking separate processes for each CPUWorker rather
-    than using threads. Try explicitly configuring Tor with
-    <tt>--enable-threads</tt>, but be ready for the lockups some
-    people reported back in 2005. Also consider running your relay on <a
-    href="https://trac.torproject.org/projects/tor/wiki/doc/TorFAQ#WhydoesntmyWindowsorotherOSTorrelayrunwell">an
-    operating system where Tor works better</a>.</li>
+    <li>If you're running on Solaris, OpenBSD, NetBSD, or
+    old FreeBSD, Tor is probably forking separate processes
+    rather than using threads. Consider switching to a <a
+    href="<wikifaq>#WhydoesntmyWindowsorotherOSTorrelayrunwell">better
+    operating system</a>.</li>
 
     <li>If you still can't handle the memory load, consider reducing the
     amount of bandwidth your relay advertises. Advertising less
@@ -2014,6 +2171,37 @@ we move to a "directory guard" design as well.
 
     <hr>
 
+    <a id="ChangePaths"></a>
+    <h3><a class="anchor" href="#ChangePaths">How often does Tor change its paths?</a></h3>
+    <p>
+     Tor will reuse the same circuit for new TCP streams for 10 minutes, as long as the circuit is working fine. (If the circuit fails, Tor will switch to a new circuit immediately.)
+    </p>
+    <p>
+But note that a single TCP stream (e.g. a long IRC connection) will stay on the same circuit forever -- we don't rotate individual streams from one circuit to the next. Otherwise an adversary with a partial view of the network would be given many chances over time to link you to your destination, rather than just one chance.
+    </p>
+
+    <a id="OutboundConnections"></a>
+    <h3><a class="anchor" href="#OutboundConnections">Why does netstat show these outbound connections?</a></h3>
+    <p>
+    Because that's how Tor works. It holds open a handful of connections so there will be one available when you need one. 
+    </p>
+
+    <hr>
+
+    <a id="CellSize"></a>
+    <h3><a class="anchor" href="#CellSize">Tor uses hundreds of bytes for every IRC line. I can't afford that!</a></h3>
+    <p>
+     Tor sends data in chunks of 512 bytes (called "cells"), to make it harder for intermediaries to guess exactly how many bytes you're communicating at each step. This is unlikely to change in the near future -- if this increased bandwidth use is prohibitive for you, I'm afraid Tor is not useful for you right now.
+    </p>
+    <p>
+The actual content of these fixed size cells is <a href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/tor-spec.txt">documented in the main Tor spec</a>, section 3.
+    </p>
+    <p>
+We have been considering one day adding two classes of cells -- maybe a 64 byte cell and a 1024 byte cell. This would allow less overhead for interactive streams while still allowing good throughput for bulk streams. But since we want to do a lot of work on quality-of-service and better queuing approaches first, you shouldn't expect this change anytime soon (if ever). However if you are keen, there are a couple of <a href="https://www.torproject.org/getinvolved/volunteer.html.en#Research">research ideas</a> that may involve changing the cell size. 
+    </p>
+
+    <hr>
+
     <a id="EverybodyARelay"></a>
     <h3><a class="anchor" href="#EverybodyARelay">You should make every
 Tor user be a relay.</a></h3>
@@ -2058,9 +2246,7 @@ though:
     <p>
     First, we need to make Tor stable as a relay on all common
     operating systems. The main remaining platform is Windows,
-    and we're mostly there. See Section 4.1 of <a
-
-href="https://www.torproject.org/press/2008-12-19-roadmap-press-release"
+    and we're mostly there. See Section 4.1 of <a href="https://www.torproject.org/press/2008-12-19-roadmap-press-release"
 >our
     development roadmap</a>.
     </p>
@@ -2228,6 +2414,100 @@ time they might otherwise have spent blocking Tor, they may instead
 spend rethinking their overall approach to privacy and anonymity.
 </li>
 </ol>
+
+    <hr>
+
+<a id="ChoosePathLength"></a>
+<h3><a class="anchor" href="#ChoosePathLength">You should let people choose their path length.</a></h3>
+<p>
+ Right now the path length is hard-coded at 3 plus the number of nodes in your path that are sensitive. That is, in normal cases it's 3, but for example if you're accessing a hidden service or a ".exit" address it could be 4.
+</p>
+<p>
+ We don't want to encourage people to use paths longer than this -- it increases load on the network without (as far as we can tell) providing any more security. Remember that <a href="https://svn.torproject.org/svn/tor/trunk/doc/design-paper/tor-design.html#subsec:threat-model">the best way to attack Tor is to attack the endpoints and ignore the middle of the path</a>.
+</p>
+<p>
+ And we don't want to encourage people to use paths of length 1 either. Currently there is no reason to suspect that investigating a single relay will yield user-destination pairs, but if many people are using only a single hop, we make it more likely that attackers will seize or break into relays in hopes of tracing users.
+</p>
+<p>
+ Now, there is a good argument for making the number of hops in a path unpredictable. For example, somebody who happens to control the last two hops in your path still doesn't know who you are, but they know for sure which entry node you used. Choosing path length from, say, a geometric distribution will turn this into a statistical attack, which seems to be an improvement. On the other hand, a longer path length is bad for usability. We're not sure of the right trade-offs here. Please write a research paper that tells us what to do. 
+</p>
+
+    <hr>
+
+<a id="SplitEachConnection"></a>
+    <h3><a class="anchor" href="#SplitEachConnection">You should split each connection over many paths.</a></h3>
+
+    <p>
+ We don't currently think this is a good idea. You see, the attacks we're worried about are at the endpoints: the adversary watches Alice (or the first hop in the path) and Bob (or the last hop in the path) and learns that they are communicating.
+    </p>
+    <p>
+If we make the assumption that timing attacks work well on even a few packets end-to-end, then having *more* possible ways for the adversary to observe the connection seems to hurt anonymity, not help it.
+    </p>
+    <p>
+Now, it's possible that we could make ourselves more resistant to end-to-end attacks with a little bit of padding and by making each circuit send and receive a fixed number of cells. This approach is more well-understood in the context of high-latency systems. See e.g. <a href="http://freehaven.net/anonbib/#pet05-serjantov">Message Splitting Against the Partial Adversary by Andrei Serjantov and Steven J. Murdoch</a>.
+    </p>
+    <p>
+But since we don't currently understand what network and padding parameters, if any, could provide increased end-to-end security, our current strategy is to minimize the number of places that the adversary could possibly see.
+    </p>
+
+    <hr>
+
+    <a id="UnallocatedNetBlocks"></a>
+    <h3><a class="anchor" href="#UnallocatedNetBlocks">Your default exit policy should block unallocated net blocks too.</a></h3>
+
+    <p>
+ No, it shouldn't. The default exit policy blocks certain private net blocks, like 10.0.0.0/8, because they might actively be in use by Tor relays and we don't want to cause any surprises by bridging to internal networks. Some overzealous firewall configs suggest that you also block all the parts of the Internet that IANA has not currently allocated. First, this turns into a problem for them when those addresses *are* allocated. Second, why should we default-reject something that might one day be useful?
+    </p>
+    <p>
+Tor's default exit policy is chosen to be flexible and useful in the future: we allow everything except the specific addresses and ports that we anticipate will lead to problems. 
+    </p>
+
+    <hr>
+
+    <a id="BlockWebsites"></a>
+    <h3><a class="anchor" href="#BlockWebsites">Exit policies should be able to block websites, not just IP addresses.</a></h3>
+
+    <p>
+ It would be nice to let relay operators say things like "reject www.slashdot.org" in their exit policies, rather than requiring them to learn all the IP address space that could be covered by the site (and then also blocking other sites at those IP addresses).
+    </p>
+    <p>
+There are two problems, though. First, users could still get around these blocks. For example, they could request the IP address rather than the hostname when they exit from the Tor network. This means operators would still need to learn all the IP addresses for the destinations in question.
+    </p>
+    <p>
+The second problem is that it would allow remote attackers to censor arbitrary sites. For example, if a Tor operator blocks www1.slashdot.org, and then some attacker poisons the Tor relay's DNS or otherwise changes that hostname to resolve to the IP address for a major news site, then suddenly that Tor relay is blocking the news site. 
+    </p>
+
+    <hr>
+
+    <a id="BlockContent"></a>
+    <h3><a class="anchor" href="#BlockContent">You should change Tor to prevent users from posting certain content.</a></h3>
+
+    <p> Tor only transports data, it does not inspect the contents of the connections which are sent over it. In general it's a very hard problem for a computer to determine what is objectionable content with good true positive/false positive rates and we are not interested in addressing this problem.
+    </p>
+    <p>
+Further, and more importantly, which definition of "certain content" could we use? Every choice would lead to a quagmire of conflicting personal morals. The only solution is to have no opinion. 
+    </p>
+
+    <hr>
+
+    <a id="IPv6"></a>
+    <h3><a class="anchor" href="#IPv6">Tor should support IPv6.</a></h3>
+
+    <p>
+     That's a great idea! There are two aspects for IPv6 support that Tor needs. First, Tor needs to support exit to hosts that only have IPv6 addresses. Second, Tor needs to support Tor relays that only have IPv6 addresses.
+    </p>
+    <p>
+The first is far easier: the protocol changes are relatively simple and isolated. It would be like another kind of exit policy.
+    </p>
+    <p>
+The second is a little harder: right now, we assume that (mostly) every Tor relay can connect to every other. This has problems of its own, and adding IPv6-address-only relays adds problems too: it means that only relays with IPv6 abilities can connect to IPv6-address-only relays. This makes it possible for the attacker to make some inferences about client paths that it would not be able to make otherwise.
+    </p>
+    <p>
+There is an  IPv6 exit proposal to address the first step for anonymous access to IPv6 resources on the Internet.
+    </p>
+    <p>
+Full IPv6 support is definitely on our "someday" list; it will come along faster if somebody who wants it does some of the work.
+    </p>
 
     <hr>
 
