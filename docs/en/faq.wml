@@ -60,6 +60,7 @@ includes Tor?</a></li>
 
     <li><a href="#TBBFlash">Why can't I view videos on YouTube and other
     Flash-based sites?</a></li>
+    <li><a href="#Ubuntu">I'm using Ubuntu and I can't start Tor Browser</a></li>
     <li><a href="#TBBSocksPort">I want to
     run another application through the Tor launched by Tor Browser
     Bundle.</a></li>
@@ -103,10 +104,12 @@ country)
     <li><a href="#SocksAndDNS">How do I check if my application that uses SOCKS is leaking DNS requests?</a></li>
     <li><a href="#DifferentComputer">I want to run my Tor client on a different computer than my applications.</a></li>
     <li><a href="#ServerClient">Can I install Tor on a central server, and have my clients connect to it?</a></li>
+    <li><a href="#JoinTheNetwork">So I can just configure a nickname and ORPort and join the network?</a></li>
     </ul>
 
     <p>Running a Tor relay:</p>
     <ul>
+    
     <li><a href="#RelayFlexible">How stable does my relay need to
 be?</a></li>
     <li><a href="#ExitPolicies">I'd run a relay, but I don't want to
@@ -114,11 +117,15 @@ deal
     with abuse issues.</a></li>
     <li><a href="#RelayOrBridge">Should I be a normal relay or bridge
     relay?</a></li>
+    <li><a href="#UpgradeOrMove">I want to upgrade/move my relay. How do I keep the same key?</a></li>
     <li><a href="#MultipleRelays">I want to run more than one
 relay.</a></li>
-    <li><a href="#RelayMemory">Why is my Tor relay using so much
-memory?</a></li>
-    <li><a href="#WhyNotNamed">Why is my Tor relay not named?</a></li>
+    <li><a href="#NTService">How do I run my Tor relay as an NT service?</a></li>
+    <li><a href="#VirtualServer">Can I run a Tor relay from my virtual server account?</a></li>
+    <li><a href="#WrongIP">My relay is picking the wrong IP address.</a></li>
+    <li><a href="#BehindANAT">I'm behind a NAT/Firewall</a></li>
+    <li><a href="#RelayMemory">Why is my Tor relay using so much memory?</a></li>
+    <li><a href="#BetterAnonymity">Do I get better anonymity if I run a relay?</a></li>
     <li><a href="#RelayDonations">Can I donate for a relay rather than
     run my own?</a></li>
     </ul>
@@ -133,6 +140,9 @@ uses.</a></li>
     <li><a href="#ChangePaths">How often does Tor change its paths?</a></li>
     <li><a href="#CellSize">Tor uses hundreds of bytes for every IRC line. I can't afford that!</a></li>
     <li><a href="#OutboundConnections">Why does netstat show these outbound connections?</a></li>
+    <li><a href="#PowerfulBlockers">What about powerful blocking mechanisms</a></li>
+    <li><a href="#RemotePhysicalDeviceFingerprinting">Does Tor resist "remote physical device fingerprinting"?</a></li>
+    <li><a href="#AttacksOnOnionRouting">What attcks remain against onion routing?</a></li>
     </ul>
 
     <p>Alternate designs that we don't do (yet):</p>
@@ -997,6 +1007,20 @@ find HTML5 videos.
 
 <hr>
 
+<a id="Ubuntu"></a>
+<h3><a class="anchor" href="#Ubuntu">
+I'm using Ubuntu and I can't start Tor Browser</a></h3>
+<p>
+Ubuntu prevents its users from executing shell scripts by click-clicking them, even when the file permissions are set correctly. For now you need to start the Tor Browser from the command line by running </p>
+<pre>
+./start-tor-browser
+</pre>
+<p>
+from inside the Tor Browser directory.
+</p>
+
+<hr>
+
 <a id="TBBSocksPort"></a>
 <h3><a class="anchor" href="#TBBSocksPort">
 I want to run another application through the Tor launched by Tor
@@ -1051,28 +1075,10 @@ configuration</a> of Tor and Privoxy.
 Firefox extensions?</a></h3>
 
 <p>
-Yes. Just install them like normal. But be sure to avoid extensions like
-Foxyproxy that screw up your proxy settings. Also, avoid
-privacy-invasive
-extensions (for example, pretty much anything with the word Toolbar in
-its name).
+The Tor Browser is free software, so there is nothing preventing you from modifying it any way you like. However, we do not recommend installing any additional Firefox add-ons with the Tor Browser Bundle. Add-ons can break your anonymity in a number of ways, including browser fingerprinting and bypassing proxy settings.
 </p>
-
 <p>
-Generally, extensions that require registration, and/or provide
-additional information about websites you are visiting, should be
-suspect.
-</p>
-
-<p>
-Extensions you might like include
- <a href="https://addons.mozilla.org/firefox/addon/953">RefControl</a> (referer spoofing),
- <a href="https://addons.mozilla.org/firefox/addon/1474">SafeCache</a>,
- <a href="https://addons.mozilla.org/en-US/firefox/addon/6623">Better Privacy</a>,
- <a href="https://addons.mozilla.org/firefox/addon/1865">AdBlock Plus</a> (EasyPrivacy+EasyList),
- <a href="https://addons.mozilla.org/firefox/addon/82">Cookie Culler</a>,
- <a href="https://addons.mozilla.org/en-US/firefox/addon/9727/">Request Policy</a> and
- <a href="https://addons.mozilla.org/en-US/firefox/addon/certificate-patrol/">Certificate Patrol</a>.
+Some people have suggested we include ad-blocking software or anti-tracking software with the Tor Browser Bundle. Right now, we do not think that's such a good idea. The Tor Browser Bundle aims to provide sufficient privacy that additional add-ons to stop ads and trackers are not necessary. Using add-ons like these may cause some sites to break, which <a href="https://www.torproject.org/projects/torbrowser/design/#philosophy">we don't want to do</a>. Additionally, maintaining a list of "bad" sites that should be black-listed provides another opportunity to uniquely fingerprint users. 
 </p>
 
 <hr>
@@ -1218,9 +1224,6 @@ If you really want to see Google in English you can click the link that provides
 </p>
 <p>
 Note that Google search URLs take name/value pairs as arguments and one of those names is "hl". If you set "hl" to "en" then Google will return search results in English regardless of what Google server you have been sent to. On a query this looks like: http://google.com/search?q=...&amp;hl=en&amp;..g
-</p>
-<p>
-In Firefox you can search for the google.src file and add the line &lt;input name="hl" value="en"&gt;g to it. Then restart Firefox and it will automatically add the "hl=en" name/value pair to all queries made from the search bar so you will get English results regardless of which Google server you have been sent to. Note that this file is actually 'hidden' as part of the application container on Macs. To get to this file on a Mac you have to right click on the Firefox application icon and select "Show Package Contents" then navigate to Contents/MacOS/searchplugins.
 </p>
 <p>
 Another method is to simply use your  country code for accessing Google. This can be google.be, google.de, google.us and so on. You can also set your language by first selecting it in the Language Tools section, search for something simple. Then extract the language from the URL. In this example, we'll choose Hebrew:  <a>http://www.google.com/search?lr=lang_g'''iw</a>. Next, use that string in the url:  <a>http://google.com/intl/iw/</a>. This can obviously be set as your homepage or bookmarked if necessary. 
@@ -1536,7 +1539,7 @@ talk to the already running Tor. Vidalia generates a random password,
 but it is different than the saved password in the Tor service.
 <br />
 You need to reconfigure Tor to not be a service. See the FAQ entry on
-<a href="<wikifaq>#HowdoIrunmyTorrelayasanNTservice">running Tor as a
+<a href="#NTservice">running Tor as a
 Windows NT service</a>
 for more information on how to remove the Tor service.
 </li>
@@ -1814,6 +1817,41 @@ If you are interested in forcing all outgoing data through the central Tor clien
 
     <hr>
 
+    <a id="JoinTheNetwork"></a>
+    <h3><a class="anchor" href="#JoinTheNetwork">So I can just configure a nickname and ORPort and join the network?</a></h3>
+
+    <p>
+     Yes. You can join the network and be a useful relay just by configuring your Tor to be a relay and making sure it's reachable from the outside.
+    </p>
+    <p>
+30 Seconds to a Tor Relay:
+    </p>
+    <ul><li>
+    Configure a Nickname: 
+    </li></ul>
+    <pre>
+Nickname ididnteditheconfig
+    </pre>
+    <p>
+    Configure !ORPort: 
+    </p>
+    <pre>
+ORPort 9001
+    </pre>
+    <p>
+    Configure Contact Info: 
+    </p>
+
+    <pre>
+ContactInfo human@…
+    <pre>
+    <p>
+    Start Tor. Watch the log file for a log entry that states: 
+    </p>
+    <pre>
+[notice] router_orport_found_reachable(): Self-testing indicates your !ORPort is reachable from the outside. Excellent. Publishing server descriptor.
+    </pre>
+
     <a id="RelayOrBridge"></a>
     <h3><a class="anchor" href="#RelayOrBridge">Should I be a normal
 relay or bridge relay?</a></h3>
@@ -1857,6 +1895,187 @@ lots
 
     <hr>
 
+<a id="UpgradeOrMove"></a>
+<h3><a class="anchor" href="#UpgradeOrMove">I want to upgrade/move my relay. How do I keep the same key?</a></h3>
+
+<p>
+ When upgrading your Tor relay, or running it on a different computer, the important part is to keep the same nickname (defined in your torrc file) and the same identity key (stored in "keys/secret_BetterAnonymityid_key" in your DataDirectory).
+</p>
+<p>
+This means that if you're upgrading your Tor relay and you keep the same torrc and the same DataDirectory, then the upgrade should just work and your relay will keep using the same key. If you need to pick a new DataDirectory, be sure to copy your old keys/secret_id_key over. 
+</p>
+
+    <hr>
+
+<a id="NTService"></a>
+<h3><a class="anchor" href="#NTService">How do I run my Tor relay as an NT service?</a></h3>
+
+<p>
+ You can run Tor as a service on all versions of Windows except Windows 95/98/ME. This way you can run a Tor relay without needing to always have Vidalia running.
+</p>
+<p>
+If you've already configured your Tor to be a relay, please note that when you enable Tor as a service, it will use a different DatagDirectory, and thus will generate a different key. If you want to keep using the old key, see the Upgrading your Tor relay FAQ entry for how to restore the old identity key.
+</p>
+<p>
+To install Tor as a service, you can simply run:
+</p>
+<pre>
+tor --service install
+</pre>
+<p>
+A service called Tor Win32 Service will be installed and started. This service will also automatically start every time Windows boots, unless you change the Start-up type. An easy way to check the status of Tor, start or stop the service, and change the start-up type is by running services.msc and finding the Tor service in the list of currently installed services.
+</p>
+<p>
+Optionally, you can specify additional options for the Tor service using the -options argument. For example, if you want Tor to use C:\tor\torrc, instead of the default torrc, and open a control port on port 9151, you would run:
+</p>
+<pre>
+tor --service install -options -f C:\tor\torrc ControlPort 9151
+</pre>
+<p>
+You can also start or stop the Tor service from the command line by typing:
+</p>
+<pre>
+ tor --service start
+</pre>
+<p>
+or
+</p>
+<pre>
+ tor --service stop
+</pre>
+<p>
+To remove the Tor service, you can run the following command:
+</p>
+<pre>
+tor --service remove
+</pre>
+<p>
+If you are running Tor as a service and you want to uninstall Tor entirely, be sure to run the service removal command (shown above) first before running the uninstaller from "Add/Remove Programs". The uninstaller is currently not capable of removing the active service.
+</p>
+
+<hr>
+
+<a id="VirtualServer"></a>
+<h3><a class="anchor" href="#VirtualServer">Can I run a Tor relay from my virtual server account?</a></h3>
+
+<p>
+Some ISPs are selling "vserver" accounts that provide what they call a virtual server -- you can't actually interact with the hardware, and they can artificially limit certain resources such as the number of file descriptors you can open at once. Competent vserver admins are able to configure your server to not hit these limits. For example, in SWSoft's Virtuozzo, investigate /proc/user_beancounters. Look for "failcnt" in tcpsndbuf, tcprecvbuf, numothersock, and othersockbuf. Ask for these to be increased accordingly. Some users have seen settings work well as follows: 
+<p>
+<table border>
+<tr>
+<td>
+<i>resource</i>
+</td>
+<td>
+<i>held</i>
+</td>
+<td>
+<i>maxheld</i>
+</td>
+<td>
+<i>barrier</i>
+</td>
+<td>
+<i>limit</i>
+</td>
+<td>
+<i>failcnt</i>
+</td>
+</tr>
+<tr>
+<td>
+tcpsndbuf
+</td>
+<td>
+46620
+</td>
+<td>
+48840
+</td>
+<td>
+3440640
+</td>
+<td>
+5406720
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+tcprcvbuf
+</td>
+<td>
+0
+</td>
+<td>
+2220
+</td>
+<td>
+3440640
+</td>
+<td>
+5406720
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+othersockbuf
+</td>
+<td>
+243516
+</td>
+<td>
+260072
+</td>
+<td>
+2252160
+</td>
+<td>
+4194304
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+numothersock
+</td>
+<td>
+151
+</td>
+<td>
+153
+</td>
+<td>
+720
+</td>
+<td>
+720
+</td>
+<td>
+0
+</td>
+</tr>
+</table>
+<p>
+ Xen, Virtual Box and VMware virtual servers have no such limits normally.
+</p>
+<p>
+If the vserver admin will not increase system limits another option is to reduce the memory allocated to the send and receive buffers on TCP connections Tor uses. An experimental feature to constrain socket buffers has recently been added. If your version of Tor supports it, set "ConstrainedSockets 1" in your configuration. See the tor man page for additional details about this option.
+</p>
+<p>
+Unfortunately, since Tor currently requires you to be able to connect to all the other Tor relays, we need you to be able to use at least 1024 file descriptors. This means we can't make use of Tor relays that are crippled in this way.
+</p>
+<p>
+We hope to fix this in the future, once we know how to build a Tor network with restricted topologies -- that is, where each node connects to only a few other nodes. But this is still a long way off.
+</p>
+
 <a id="MultipleRelays"></a>
 <h3><a class="anchor" href="#MultipleRelays">I want to run more than one
 relay.</a></h3>
@@ -1893,6 +2112,40 @@ control of the computers or of their network, even if they're not all in
 the same geographic location.
 </p>
 
+    <hr>
+
+    <a id="WrongIP"></a>
+    <h3><a class="anchor" href="#WrongIP">My relay is picking the wrong IP address.</a></h3>
+    <p>
+ Tor guesses its IP address by asking the computer for its hostname, and then resolving that hostname. Often people have old entries in their /etc/hosts file that point to old IP addresses.
+    </p>
+    <p>
+If that doesn't fix it, you should use the "Address" config option to specify the IP you want it to pick. If your computer is behind a NAT and it only has an internal IP address, see the following FAQ entry on <a href="https://www.torproject.org/docs/faq.html.en#RelayFlexible">dynamic IP addresses</a>.
+    </p>
+    <p>
+Also, if you have many addresses, you might also want to set "OutboundBindAddress" so external connections come from the IP you intend to present to the world. 
+    </p>
+
+    <hr>
+
+    <a id="BehindANAT"></a>
+    <h3><a class="anchor" href="#BehindANAT">I'm behind a NAT/Firewall.</a></h3>
+
+    <p>
+See <a>​http://portforward.com/</a> for directions on how to port forward with your NAT/router device.
+</p>
+<p>
+If your relay is running on a internal net you need to setup port forwarding. Forwarding TCP connections is system dependent but the firewalled-clients FAQ entry offers some examples on how to do this.
+</p>
+<p>
+Also, here's an example of how you would do this on GNU/Linux if you're using iptables:
+</p>
+<pre>
+/sbin/iptables -A INPUT -i eth0 -p tcp --destination-port 9001 -j ACCEPT
+</pre>
+<p>
+You may have to change "eth0" if you have a different external interface (the one connected to the Internet). Chances are you have only one (except the loopback) so it shouldn't be too hard to figure out. 
+    </p>
     <hr>
 
     <a id="RelayMemory"></a>
@@ -1953,22 +2206,24 @@ unusual
 
     <hr>
 
-    <a id="WhyNotNamed"></a>
-    <h3><a class="anchor" href="#WhyNotNamed">Why is my Tor relay not
-named?</a></h3>
+    <a id="BetterAnonymity"></a>
+    <h3><a class="anchor" href="#BetterAnonymity">Do I get better anonymity if I run a relay?</a></h3>
 
     <p>
-    We currently use these metrics to determine if your relay should be
-named:<br>
+Yes, you do get better anonymity against some attacks.
     </p>
-    <ul>
-    <li>The name is not currently mapped to a different key. Existing
-mappings
-    are removed after 6 months of inactivity from a relay.</li>
-    <li>The relay must have been around for at least two weeks.</li>
-    <li>No other router may have wanted the same name in the past
-month.</li>
-    </ul>
+    <p>
+The simplest example is an attacker who owns a small number of Tor relays. He will see a connection from you, but he won't be able to know whether the connection originated at your computer or was relayed from somebody else.
+    </p>
+    <p>
+There are some cases where it doesn't seem to help: if an attacker can watch all of your incoming and outgoing traffic, then it's easy for him to learn which connections were relayed and which started at you. (In this case he still doesn't know your destinations unless he is watching them too, but you're no better off than if you were an ordinary client.)
+    </p>
+    <p>
+There are also some downsides to running a Tor relay. First, while we only have a few hundred relays, the fact that you're running one might signal to an attacker that you place a high value on your anonymity. Second, there are some more esoteric attacks that are not as well-understood or well-tested that involve making use of the knowledge that you're running a relay -- for example, an attacker may be able to "observe" whether you're sending traffic even if he can't actually watch your network, by relaying traffic through your Tor relay and noticing changes in traffic timing.
+    </p>
+    <p>
+It is an open research question whether the benefits outweigh the risks. A lot of that depends on the attacks you are most worried about. For most users, we think it's a smart move. 
+    </p>
 
     <hr>
 
@@ -2184,6 +2439,47 @@ But note that a single TCP stream (e.g. a long IRC connection) will stay on the 
     <h3><a class="anchor" href="#OutboundConnections">Why does netstat show these outbound connections?</a></h3>
     <p>
     Because that's how Tor works. It holds open a handful of connections so there will be one available when you need one. 
+    </p>
+
+    <hr>
+
+    <a id="PowerfulBlockers"></a>
+    <h3><a class="anchor" href="#PowerfulBlockers">What about powerful blocking mechanisms?</a></h3>
+    <p>
+ An adversary with a great deal of manpower and money, and severe real-world penalties to discourage people from trying to evade detection, is a difficult test for an anonymity and anti-censorship system.
+    </p>
+    <p>
+The original Tor design was easy to block if the attacker controls Alice's connection to the Tor network --- by blocking the directory authorities, by blocking all the relay IP addresses in the directory, or by filtering based on the fingerprint of the Tor TLS handshake. After seeing these attacks and others first-hand, more effort was put into researching new circumvention techniques. Pluggable transports are protocols designed to allow users behind government firewalls to access the Tor network.
+    </p>
+    <p>
+We've made quite a bit of progress on this problem lately. You can read more details on the <a href="https://www.torproject.org/docs/pluggable-transports.html.en">pluggable transports page</a>. You may also be interested in <a href="https://www.youtube.com/watch?v=GwMr8Xl7JMQ">Roger and Jake's ​talk at 28C3</a>, or <a href="https://www.youtube.com/watch?v=JZg1nqs793M">​Runa's talk at 44con</a>.
+    </p>
+
+    <hr>
+ 
+    <a id="RemotePhysicalDeviceFingerprinting"></a>
+    <h3><a class="anchor" href="#RemotePhysicalDeviceFingerprinting">Does Tor resist "remote physical device fingerprinting"?</a></h3>
+    <p>
+ Yes, we resist all of these attacks as far as we know.
+    </p>
+    <p>
+These attacks come from examining characteristics of the IP headers or TCP headers and looking for information leaks based on individual hardware signatures. One example is the ​<a href="http://www.caida.org/outreach/papers/2005/fingerprinting/">Oakland 2005 paper</a> that lets you learn if two packet streams originated from the same hardware, but only if you can see the original TCP timestamps.
+</p>
+<p>
+Tor transports TCP streams, not IP packets, so we end up automatically scrubbing a lot of the potential information leaks. Because Tor relays use their own (new) IP and TCP headers at each hop, this information isn't relayed from hop to hop. Of course, this also means that we're limited in the protocols we can transport (only correctly-formed TCP, not all IP like ZKS's Freedom network could) -- but maybe that's a good thing at this stage. </p>
+
+    <hr>
+
+<a id="AttacksOnOnionRouting"></a>
+    <h3><a class="anchor" href="#AttacksOnOnionRouting">What attacks remain against onion routing?</a></h3>
+    <p>
+As mentioned above, it is possible for an observer who can view both you and either the destination website or your Tor exit node to correlate timings of your traffic as it enters the Tor network and also as it exits. Tor does not defend against such a threat model.
+    </p>
+    <p>
+In a more limited sense, note that if a censor or law enforcement agency has the ability to obtain specific observation of parts of the network, it is possible for them to verify a suspicion that you talk regularly to your friend by observing traffic at both ends and correlating the timing of only that traffic. Again, this is only useful to verify that parties already suspected of communicating with one another are doing so. In most countries, the suspicion required to obtain a warrant already carries more weight than timing correlation would provide.
+    </p>
+    <p>
+Furthermore, since Tor reuses circuits for multiple TCP connections, it is possible to ​associate non anonymous and anonymous traffic at a given exit node, so be careful about what applications you run concurrently over Tor. Perhaps even run separate Tor clients for these applications. 
     </p>
 
     <hr>
