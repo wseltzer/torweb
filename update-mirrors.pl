@@ -139,25 +139,6 @@ my %m = (
             rsyncDistMirror => ""
         },
 
-	    mirror006 => {
-            adminContact => "BarkerJr AT barkerjr DOT net",
-            orgName => "BarkerJr",
-            isoCC => "US",
-            subRegion => "",
-            region => "US",
-            ipv4 => "True",
-            ipv6 => "False",
-            loadBalanced => "No",
-            httpWebsiteMirror => "http://www.torproject.us/",
-            httpsWebsiteMirror => "https://www.torproject.us/",
-            rsyncWebsiteMirror => "rsync://rsync.torproject.us/tor",
-            ftpWebsiteMirror => "",
-            httpDistMirror => "http://www.torproject.us/dist/",
-            httpsDistMirror => "https://www.torproject.us/dist/",
-            rsyncDistMirror => "rsync://rsync.torproject.us/tor/dist",
-            hiddenServiceMirror => ""
-        },
-
        mirror007 => {
             adminContact => "info AT zentrum-der-gesundheit DOT de",
             orgName => "Zentrum der Gesundheit",
@@ -1213,7 +1194,7 @@ my %m = (
 	httpsWebsiteMirror => "",
 	rsyncWebsiteMirror => "",
 	ftpWebsiteMirror => "",
-	httpDistMirror => "",
+	httpDistMirror => "http://tor.taskserver.de/dist/",
 	httpsDistMirror => "",
 	rsyncDistMirror => "",
 	hiddenServiceMirror => ""
