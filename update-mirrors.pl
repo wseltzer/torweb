@@ -1252,6 +1252,24 @@ my %m = (
       httpsDistMirror => "",
       rsyncDistMirror => "",
       hiddenServiceMirror => ""
+    },
+    mirror101 => {
+      adminContact => "info /AT\ enn /DOT\ lu",
+      orgName => "Frenn vun der Enn A.S.B.L.",
+      isoCC => "IS",
+      subRegion => "Iceland",
+      region => "Europe",
+      ipv4 => "True",
+      ipv6 => "False",
+      loadBalanced => "No",
+      httpWebsiteMirror => "http://torproject.lu/",
+      httpsWebsiteMirror => "",
+      rsyncWebsiteMirror => "",
+      ftpWebsiteMirror => "",
+      httpDistMirror => "http://torproject.lu/dist/",
+      httpsDistMirror => "",
+      rsyncDistMirror => "",
+      hiddenServiceMirror => "http://btn6gqzqevlhoryd.onion"
     }
 
 );
