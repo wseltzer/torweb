@@ -1245,11 +1245,11 @@ my %m = (
 	ipv6 => "False",
 	loadBalanced => "No",
 	httpWebsiteMirror => "http://tor-mirror.de/",
-	httpsWebsiteMirror => "",
+	httpsWebsiteMirror => "https://tor-mirror.de/",
 	rsyncWebsiteMirror => "",
 	ftpWebsiteMirror => "",
 	httpDistMirror => "http://tor-mirror.de/dist/",
-	httpsDistMirror => "",
+	httpsDistMirror => "https://tor-mirror.de/dist/",
 	rsyncDistMirror => "",
 	hiddenServiceMirror => ""
     },
