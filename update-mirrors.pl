@@ -1270,6 +1270,24 @@ my %m = (
       httpsDistMirror => "",
       rsyncDistMirror => "",
       hiddenServiceMirror => "http://btn6gqzqevlhoryd.onion"
+    },
+    mirror102 => {
+      adminContact => "neutrino8 AT gmail DOT com",
+      orgName => "teambelgium",
+      isoCC => "BE",
+      subRegion => "Belgium",
+      region => "Europe",
+      ipv4 => "True",
+      ipv6 => "False"
+      loadBalanced => "No",
+      httpWebsiteMirror => "http://tor.teambelgium.net:8082/",
+      httpsWebsiteMirror => "",
+      rsyncWebsiteMirror => "",
+      ftpWebsiteMirror => "ftp://tor.teambelgium.net:2121/torproject/",
+      httpDistMirror => "http://tor.teambelgium.net:8082/dist/",
+      httpsDistMirror => "",
+      rsyncDistMirror => "",
+      hiddenServiceMirror => ""
     }
 
 );
