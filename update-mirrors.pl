@@ -1271,7 +1271,7 @@ my %m = (
       rsyncDistMirror => "",
       hiddenServiceMirror => ""
     },
-    mirrorNNN => {
+    mirror103 => {
       adminContact => "mirror ntzk de",
       orgName => "Netzkonstrukt Berlin",
       isoCC => "DE",
@@ -1289,7 +1289,7 @@ my %m = (
       rsyncDistMirror => "",
       hiddenServiceMirror => ""
     },
-    mirrorNNN => {
+    mirror104 => {
       adminContact => "webmaster AT bbln DOT nl",
       orgName => "BBLN",
       isoCC => "NL",
@@ -1306,8 +1306,43 @@ my %m = (
       httpsDistMirror => "",
       rsyncDistMirror => "",
       hiddenServiceMirror => ""
+    },
+    mirror105 => {
+      adminContact => "wollomatic at posteo.eu",
+      orgName => "",
+      isoCC => "DE",
+      subRegion => "Germany",
+      region => "Europe",
+      ipv4 => "True",
+      ipv6 => "True",
+      loadBalanced => "No",
+      httpWebsiteMirror => "http://tormirror.almnet.de/",
+      httpsWebsiteMirror => "https://tormirror.almnet.de/",
+      rsyncWebsiteMirror => "",
+      ftpWebsiteMirror => "",
+      httpDistMirror => "http://tormirror.almnet.de/dist/",
+      httpsDistMirror => "https://tormirror.almnet.de/dist/",
+      rsyncDistMirror => "",
+      hiddenServiceMirror => ""
+    },
+    mirror106 => { 
+      adminContact => "haskell at gmx.es", 
+      orgName => "", 
+      isoCC => "ES",
+      subRegion => "Spain",
+      region => "Europe",
+      ipv4 => "True",
+      ipv6 => "False",
+      loadBalanced => "No",
+      httpWebsiteMirror => "http://tor.zilog.es/",
+      httpsWebsiteMirror => "",
+      rsyncWebsiteMirror => "",
+      ftpWebsiteMirror => "",
+      httpDistMirror => "http://tor.zilog.es/dist/",
+      httpsDistMirror => "",
+      rsyncDistMirror => "",
+      hiddenServiceMirror => ""
     }
-
 );
 
 my $count = values %m;
