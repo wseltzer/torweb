@@ -59,6 +59,9 @@
     of which developer signs which package, see our <a href="<page
     docs/signing-keys>">signing keys</a> page.</p>
 
+    <img alt="Download the bundle and the signature" src="../../images/download-tbb-sig.jpg" width="746" height="397">
+    
+    <br />
     <h3>Windows</h3>
     <hr>
 
@@ -68,24 +71,19 @@
 
     <p>Once it's installed, use GnuPG to import the key that signed your
     package. Since GnuPG for Windows is a command-line tool, you will need
-    to use <i>cmd.exe</i>. Unless you edit your PATH environment variable,
-    you will need to tell Windows the full path to the GnuPG program. If
-    you installed GnuPG with the default values, the path should be
-    something like this: <i>C:\Program Files\Gnu\GnuPg\gpg.exe</i>.</p>
+    to use <i>cmd.exe</i>.<br></br>
 
-    <p><strong>Note for Windows 8 Users:</strong> Your GnuPG binary is probably
-    located at <i>C:\Program Files (x86)\Gnu\GnuPg\gpg2.exe</i>. You should replace
-    all of the commands below with this path instead.</p>
-
+    <img alt="cmd.exe" src="../../images/cmd.jpg" width="405" height="512">    
+    
     <p>Erinn Clark signs the Tor Browser Bundles. Import her key
-    (0x416F061063FEE659) by starting <i>cmd.exe</i> and typing:</p>
+    (0x63FEE659) by starting <i>cmd.exe</i> and typing:</p>
 
-    <pre>"C:\Program Files\Gnu\GnuPg\gpg.exe" --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x416F061063FEE659</pre>
+    <pre>gpg --keyserver hkp://keys.gnupg.net --recv-keys 0x63FEE659</pre>
 
-    <p>After importing the key, you can verify that the fingerprint
+    <p><strong>Note that Windows 8 users may need to type gpg2 rather than gpg.</strong> <br />After importing the key, you can verify that the fingerprint
     is correct:</p>
 
-    <pre>"C:\Program Files\Gnu\GnuPg\gpg.exe" --fingerprint 0x416F061063FEE659</pre>
+    <pre>gpg --fingerprint 0x63FEE659</pre>
 
     <p>You should see:</p>
     <pre>
@@ -100,8 +98,9 @@
     <p>To verify the signature of the package you downloaded, you will need
     to download the ".asc" file as well. Assuming you downloaded the
     package and its signature to your Desktop, run:</p>
-
-    <pre>"C:\Program Files\Gnu\GnuPg\gpg.exe" --verify C:\Users\Alice\Desktop\tor-browser-<version-torbrowserbundle>_en-US.exe.asc C:\Users\Alice\Desktop\tor-browser-<version-torbrowserbundle>_en-US.exe</pre>
+    
+    <pre>cd Desktop</pre>
+    <pre>gpg --verify tor-browser-&lt VERSION NUMBER &gt_en-US.exe.asc tor-browser-&lt VERSION NUMBER &gt_en-US.exe</pre>
 
     <p>The output should say "Good signature": </p>
 
@@ -122,7 +121,8 @@
     to the developer. The best method is to meet the developer in person and
     exchange key fingerprints.
     </p>
-
+    <img alt="Verify the signature" src="../../images/verify-bundle.png" width="769" height="454">
+    <br />
     <h3>Mac OS X</h3>
     <hr>
 
