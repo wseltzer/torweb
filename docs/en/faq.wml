@@ -608,10 +608,10 @@ money to the
     <hr>
 
     <a id="FileSharing"></a>
-    <h3><a class="anchor" href="#FileSharing">How can I share files anonymously through Tor?"</a></h3>
+    <h3><a class="anchor" href="#FileSharing">How can I share files anonymously through Tor?</a></h3>
 
     <p>
-    File sharing (peer-to-peer/P2P) is widely unwanted in the Tor network and exit nodes are configured to block file sharing traffic by default. Tor is not really designed for it and file sharing through Tor excessively wastes everyone's bandwidth (slows down browsing). Also, Bittorrent over Tor <a href="https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea">is not anonymous</a>!
+    File sharing (peer-to-peer/P2P) is widely unwanted in the Tor network, and exit nodes are configured to block file sharing traffic by default. Tor is not really designed for it, and file sharing through Tor slows down everyone's browsing. Also, Bittorrent over Tor <a href="https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea">is not anonymous</a>!
     </p>
 
     <hr>
@@ -758,7 +758,7 @@ So as a client, you could probably get away with opening only those four ports. 
 If you really need to connect to only a small set of ports, see the FAQ entry on firewalled ports.
     </p>
     <p>
-Note that if you're running as a Tor relay, you must allow outgoing connections to every other relay, and to anywhere your exit policy advertises that you allow. The cleanest way to do that is to simply allow all outgoing connections at your firewall. If you don't, clients will try to use these connections and things won't work. 
+Note that if you're running Tor as a relay, you must allow outgoing connections to every other relay and to anywhere your exit policy advertises that you allow. The cleanest way to do that is simply to allow all outgoing connections at your firewall. If you don't, clients will try to use these connections and things won't work. 
     </p>
     
     <hr>
@@ -770,7 +770,7 @@ Note that if you're running as a Tor relay, you must allow outgoing connections 
     There are sites you can visit that will tell you if you appear to be coming through the Tor network. Try the <a href="https://check.torproject.org">Tor Check</a> site and see whether it thinks you are using Tor or not.
     </p>
     <p>
-If that site is down, you can still test, but it will involve more effort: <a>http://ipid.shat.net</a> and <a>http://www.showmyip.com/</a> will tell you what your IP address appears to be, but you'll need to know your current IP address so you can compare and decide whether you're using Tor correctly.
+If that site is down, you can still test, but it will involve more effort. Sites like <a href="http://ipid.shat.net">http://ipid.shat.net</a> and <a href="http://www.showmyip.com/">http://www.showmyip.com/</a> will tell you what your IP address appears to be, but you'll need to know your current IP address so you can compare and decide whether you're using Tor correctly.
     </p>
     <p>
 To learn your IP address on OS X, Linux, BSD, etc, run "ifconfig". On Windows, go to the Start menu, click Run and enter "cmd". At the command prompt, enter "ipconfig /a".
@@ -831,33 +831,7 @@ Browser" and it is removed from your system.
 entirely on how you installed it and which operating system you
     have. If you installed a package, then hopefully your package has a
 way to
-    uninstall itself. The Windows packages include uninstallers. The
-proper way to
-    completely remove Tor, Vidalia, and Torbutton for Firefox on any
-version of Windows is as follows:
-    </p>
-
-    <ol>
-    <li>In your taskbar, right click on Vidalia (the green onion or the
-black head)
-    and choose exit.</li>
-    <li>Right click on the taskbar to bring up TaskManager. Look for
-tor.exe in the
-    Process List. If it's running, right click and choose End
-Process.</li>
-    <li>Click the Start button, go to Programs, go to Vidalia, choose
-Uninstall.
-    This will remove the Vidalia bundle, which includes Tor.</li>
-    <li>Start Firefox. Go to the Tools menu, choose Add-ons. Select
-Torbutton.
-    Click the Uninstall button.</li>
-    </ol>
-
-    <p>
-    If you do not follow these steps (for example by trying to uninstall
-    Vidalia and Tor while they are still running), you will need to
-    reboot and manually remove the directory "Program Files\Vidalia
-Bundle".
+    uninstall itself. The Windows packages include uninstallers. 
     </p>
 
     <p>
@@ -1220,15 +1194,15 @@ Why does Google show up in foreign languages?</a></h3>
  Google uses "geolocation" to determine where in the world you are, so it can give you a personalized experience. This includes using the language it thinks you prefer, and it also includes giving you different results on your queries.
 </p>
 <p>
-If you really want to see Google in English you can click the link that provides that. But we consider this a feature with Tor, not a bug --- the Internet is not flat, and it in fact does look different depending on where you are. This feature reminds people of this fact. The easy way to avoid this "feature" is to use <a>http://google.com/ncr</a>.
+If you really want to see Google in English you can click the link that provides that. But we consider this a feature with Tor, not a bug --- the Internet is not flat, and it in fact does look different depending on where you are. This feature reminds people of this fact. The easy way to avoid this "feature" is to use <a href="http://google.com/ncr">http://google.com/ncr</a>.
 </p>
 <p>
-Note that Google search URLs take name/value pairs as arguments and one of those names is "hl". If you set "hl" to "en" then Google will return search results in English regardless of what Google server you have been sent to. On a query this looks like: http://google.com/search?q=...&amp;hl=en&amp;..g
-</p>
+Note that Google search URLs take name/value pairs as arguments and one of those names is "hl". If you set "hl" to "en" then Google will return search results in English regardless of what Google server you have been sent to. On a query this looks like: </p><pre>https://encrypted.google.com/search?q=online%20anonymity&hl=en
+</pre>
 <p>
-Another method is to simply use your  country code for accessing Google. This can be google.be, google.de, google.us and so on. You can also set your language by first selecting it in the Language Tools section, search for something simple. Then extract the language from the URL. In this example, we'll choose Hebrew:  <a>http://www.google.com/search?lr=lang_g'''iw</a>. Next, use that string in the url:  <a>http://google.com/intl/iw/</a>. This can obviously be set as your homepage or bookmarked if necessary. 
-</pb>
-
+Another method is to simply use your country code for accessing Google. This can be google.be, google.de, google.us and so on. 
+</p>
+<hr />
 <a id="GmailWarning"></a>
 <h3><a class="anchor" href="#GmailWarning">Gmail warns me that my
 account
@@ -1794,10 +1768,17 @@ users
 Configuration is simple, editing your torrc file's SocksListenAddress according to the following examples:
     </p>
     <pre>
-  SocksListenAddress 127.0.0.1 #This provides local interface access only, needs SocksPort to be greater than 0
-  SocksListenAddress 192.168.x.x:9100 #This provides access to Tor on a specified interface
-  SocksListenAddress 0.0.0.0:9100 #Accept from all interfaces
-    </pre>
+
+  #This provides local interface access only, 
+  #needs SocksPort to be greater than 0
+  SocksListenAddress 127.0.0.1 
+
+  #This provides access to Tor on a specified interface
+  SocksListenAddress 192.168.x.x:9100 
+
+  #Accept from all interfaces
+  SocksListenAddress 0.0.0.0:9100
+   </pre>
     <p>
 You can state multiple listen addresses, in the case that you are part of several networks or subnets.
     </p>
@@ -1832,7 +1813,7 @@ If you are interested in forcing all outgoing data through the central Tor clien
 Nickname ididnteditheconfig
     </pre>
     <ul><li>
-    Configure !ORPort: 
+    Configure ORPort: 
     </li></ul>
     <pre>
 ORPort 9001
@@ -1845,11 +1826,10 @@ ORPort 9001
 ContactInfo human@…
     </pre>
     <ul><li>
-    Start Tor. Watch the log file for a log entry that states: 
+    Start Tor. Watch the log file for a log entry that states: "Self-testing indicates your ORPort is reachable from the outside. Excellent. Publishing server descriptor."
     </li></ul>
-    <pre>
-[notice] router_orport_found_reachable(): Self-testing indicates your !ORPort is reachable from the outside. Excellent. Publishing server descriptor.
-    </pre>
+
+    <hr />
 
     <a id="RelayOrBridge"></a>
     <h3><a class="anchor" href="#RelayOrBridge">Should I be a normal
@@ -1960,7 +1940,7 @@ If you are running Tor as a service and you want to uninstall Tor entirely, be s
 <p>
 Some ISPs are selling "vserver" accounts that provide what they call a virtual server -- you can't actually interact with the hardware, and they can artificially limit certain resources such as the number of file descriptors you can open at once. Competent vserver admins are able to configure your server to not hit these limits. For example, in SWSoft's Virtuozzo, investigate /proc/user_beancounters. Look for "failcnt" in tcpsndbuf, tcprecvbuf, numothersock, and othersockbuf. Ask for these to be increased accordingly. Some users have seen settings work well as follows: 
 <p>
-<table border>
+<table border="1">
 <tr>
 <td>
 <i>resource</i>
@@ -2074,6 +2054,8 @@ Unfortunately, since Tor currently requires you to be able to connect to all the
 <p>
 We hope to fix this in the future, once we know how to build a Tor network with restricted topologies -- that is, where each node connects to only a few other nodes. But this is still a long way off.
 </p>
+
+<hr>
 
 <a id="MultipleRelays"></a>
 <h3><a class="anchor" href="#MultipleRelays">I want to run more than one
