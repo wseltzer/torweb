@@ -1,23 +1,16 @@
 #!/usr/bin/perl -w
 use warnings;
 use strict;
+use Data::Dumper;
 use LWP::Simple;
+use HTML::LinkExtor;
 use LWP;
 use Date::Parse;
 use Date::Format;
+use Digest::SHA qw(sha256_hex);
 
-#
-# A quick hack by Jacob Appelbaum <jacob@appelbaum.net>
-# LWP suggestions by Leigh Honeywell
 # This is Free Software (GPLv3)
 # http://www.gnu.org/licenses/gpl-3.0.txt
-#
-# CHANGELOG
-# 20091003 Code changes to elimiate the need for a trailing slash in addresses for script runtime
-# 20091004 Code changes to increase out of date tolerance to 48 hours
-# 20091028 Code changes to increase timout to 30 seconds (attempting to # resolve "unknown" status')
-# 20091028 Code changes to change user agent of script
-# 20100807 Remove dead mirrors.
 
 print "Creating LWP agent ($LWP::VERSION)...\n";
 my $lua = LWP::UserAgent->new(
@@ -37,45 +30,71 @@ sub sanitize {
 
     return $cleanedData;
 }
+sub ExtractLinks {
+    my $content = shift; 
+    my $url     = shift;
+    my @links;
 
-sub FetchDate {
-    my $url = shift; # Base url for mirror
-    my $trace = "project/trace/www-master.torproject.org"; # this file should always exist
-    $url = "$url/$trace";
+    my $parser = HTML::LinkExtor->new(undef, $url);
+    $parser->parse($content);
+    foreach my $linkarray($parser->links)
+    {
+         my ($elt_type, $attr_name, $attr_value) = @$linkarray;
+         if ($elt_type eq 'a' && $attr_name eq 'href' && $attr_value =~ /\/$/ && $attr_value =~ /^$url/)
+         {
+         	push @links, Fetch($attr_value, \&ExtractLinks);
+         }
+	 elsif ($attr_value =~ /\.(xpi|dmg|exe|tar\.gz)$/)
+	 #elsif ($attr_value =~ /\.(asc)$/)
+         {
+         	push @links, $attr_value;
+         }
+    }
+    return @links;
+}
 
-    print "Fetching possible date from: $url\n";
+sub ExtractDate {
+    my $content = shift;  
+    $content    = sanitize($content);
+    my $date    = str2time($content);
+
+    print "Extracting possible date from: $content\n";
+    if ($date) {
+        print "We've fetched a date $date.\n";
+        return $date;
+    } else {
+        print "We haven't fetched a date.\n";
+	return undef;
+    }
+}
+
+sub ExtractSig {
+    my $content = shift;
+    return sha256_hex($content); 
+}
+
+sub Fetch {
+    my ($url, $sub) = @_; # Base url for mirror
+    print "Fetch $url\n";
 
     my $request = new HTTP::Request GET => "$url";
     my $result = $lua->request($request);
     my $code = $result->code();
-    print "Result code $code\n";
+    print "\tResult code $code\n";
 
     if ($result->is_success && $code eq "200"){
-       my $taint = $result->content;
-       my $content = sanitize($taint);
+       my $content = $result->content;
        if ($content) {
-
-            my $date = str2time($content);
-
-            if ($date) {
-                print "We've fetched a date $date.\n";
-                return $date;
-            } else {
-                print "We've haven't fetched a date.\n";
-                return "Unknown";
-            }
-
+	    return $sub->($content, $url);
         } else {
-            print "Unable to fetch date, empty content returned.\n";
-            return "Unknown";
+            print "Unable to fetch $url, empty content returned.\n";
         }
 
     } else {
        print "Our request failed, we had no result.\n";
-       return "Unknown";
     }
 
-    return "Unknown";
+    return undef;
 }
 
 # This is the list of all known Tor mirrors
@@ -1349,33 +1368,73 @@ my $count = values %m;
 print "We have a total of $count mirrors\n";
 print "Fetching the last updated date for each mirror.\n";
 
-my $tortime;
-$tortime = FetchDate("https://www.torproject.org/");
+my $tortime = Fetch("https://www.torproject.org/project/trace/www-master.torproject.org", \&ExtractDate);
+my @torfiles = Fetch("https://www.torproject.org/dist/", \&ExtractLinks); 
+my %randomtorfiles;
+
+for (1 .. 1)
+{
+	my $r = int(rand(scalar(@torfiles)));
+	my $suffix = $torfiles[$r];
+	$suffix =~ s/^https:\/\/www.torproject.org//;
+	$randomtorfiles{$suffix} = Fetch($torfiles[$r], \&ExtractSig);
+}
+
+print "Using these files for sig matching:\n";
+print join("\n", keys %randomtorfiles);
+
 # Adjust offical Tor time by out-of-date offset: number of days * seconds per day
 $tortime -= 1 * 172800;
 print "The official time for Tor is $tortime. \n";
+my %todelete;
 
 foreach my $server ( keys %m ) {
 
-    print "Attempting to fetch from $m{$server}{'orgName'}\n";
+    print "Attempting to fetch from $server: $m{$server}{'orgName'}\n";
 
-    if ($m{$server}{'httpWebsiteMirror'}) {
-        print "Attempt to fetch via HTTP.\n";
-        $m{$server}{"updateDate"} = FetchDate("$m{$server}{'httpWebsiteMirror'}");
-    } elsif ($m{$server}{'httpsWebsiteMirror'}) {
-        print "Attempt to fetch via HTTPS.\n";
-        $m{$server}{"updateDate"} = FetchDate("$m{$server}{'httpsWebsiteMirror'}");
-    } elsif ($m{$server}{'ftpWebsiteMirror'}) {
-        print "Attempt to fetch via FTP.\n";
-        $m{$server}{"updateDate"} = FetchDate("$m{$server}{'ftpWebsiteMirror'}");
-    } else {
-        print "We were unable to fetch or store anything. We still have the following: $m{$server}{'updateDate'}\n";
+    foreach my $serverType('httpWebsiteMirror', 'httpsWebsiteMirror', 'ftpWebsiteMirror')
+    {
+        if ($m{$server}{$serverType}) {
+            print "Attempt to fetch via $serverType.\n";
+            $m{$server}{"updateDate"} = Fetch("$m{$server}{$serverType}/project/trace/www-master.torproject.org", \&ExtractDate);
+            if ($m{$server}{updateDate}) {
+                foreach my $randomtorfile(keys %randomtorfiles) {
+                	my $sig = Fetch("$m{$server}{$serverType}/$randomtorfile", \&ExtractSig);
+            		if (!$sig) {
+			    $todelete{$server} = "Unreadable $randomtorfile";
+		        } elsif ($sig ne $randomtorfiles{$randomtorfile}) {
+			    $todelete{$server} = "Sig mismatch on $randomtorfile";
+            		} else {
+        	    	    print "Sig $sig matches for $randomtorfile on $m{$server}{$serverType}\n";
+			}
+            	        last;
+		}
+            } else {
+		delete $m{$server}{updateDate};
+		$todelete{$server} = "Unreadable date";
+            }
+	    last;
+        } 
     }
-
-    print "We fetched and stored the following: $m{$server}{'updateDate'}\n";
-
+    if (exists $m{$server}{updateDate}) {
+        print "We fetched and stored the following: $m{$server}{'updateDate'}\n";
+    } else {
+	$todelete{$server} = "Unreadable date";
+    } 
  }
 
+foreach my $outdated(keys %todelete)
+{
+    print "Deleted $outdated due to $todelete{$outdated}\n";
+    print Dumper($m{$outdated});
+    delete  $m{$outdated};
+}
+
+foreach my $k(keys %m)
+{
+    print "$k\n";
+    print "$m{$k}{updateDate}\n";
+}
 
 print "We sorted the following mirrors by their date of last update: \n";
 foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys %m ) {
@@ -1394,7 +1453,7 @@ my $html;
 open(OUT, "> $outFile") or die "Can't open $outFile: $!";
 
 # Here's where we open a file and print some wml include goodness
-# This is storted from last known recent update to unknown update times
+# This is sorted from last known recent update to unknown update times
 foreach my $server ( sort { $m{$b}{'updateDate'} <=> $m{$a}{'updateDate'}} keys %m ) {
 
      my $time;
