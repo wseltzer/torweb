@@ -59,26 +59,31 @@ sub ExtractDate {
     my $date    = str2time($content);
 
     if ($date) {
-    	print "ExtractDate($content) = $date\n";
+    	print "\tExtractDate($content) = $date\n";
         return $date;
     } else {
-    	print "ExtractDate($content) = ?\n";
+    	print "\tExtractDate($content) = ?\n";
 	return undef;
     }
 }
 
 sub ExtractSig {
-    my $content = shift;
-    return sha256_hex($content); 
+    my $content = shift; 
+    my $url     = shift;
+    my $sig = sha256_hex($content);
+    print "\tExtractSig($url) = $sig\n";
+    return $sig;
 }
 
 sub Fetch {
     my ($url, $sub) = @_; # Base url for mirror
+    $|++; # unbuffer stdout to show progress
 
+    print "\nGET $url: ";
     my $request = new HTTP::Request GET => "$url";
     my $result = $lua->request($request);
     my $code = $result->code();
-    print "\nGET $url: $code\n";
+    print "$code\n";
 
     if ($result->is_success && $code eq "200"){
        my $content = $result->content;
@@ -146,8 +151,9 @@ for (1 .. 1)
 
 print "Using these files for sig matching:\n";
 print join("\n", keys %randomtorfiles);
+print "\n";
 
-# Adjust official Tor time by out-of-date offset: number of days * seconds per day
+# Adjust offical Tor time by out-of-date offset: number of days * seconds per day
 $tortime -= 1 * 172800;
 print "The official time for Tor is $tortime. \n";
 
@@ -163,12 +169,10 @@ for(my $server = 0; $server < scalar(@m); $server++) {
                 foreach my $randomtorfile(keys %randomtorfiles) {
                     my $sig = Fetch("$m[$server]->{$serverType}/$randomtorfile", \&ExtractSig);
             	    if (!$sig) {
-		        print STDERR "Unreadable $randomtorfile on $m[$server]->{$serverType}";
 			$m[$server]->{sigMatched} = 0;
             	    	last;
 		    } elsif ($sig ne $randomtorfiles{$randomtorfile}) {
 			$m[$server]->{sigMatched} = 0;
-		        print STDERR "Sig mismatch of $randomtorfile on $m[$server]->{$serverType}";
             	    	last;
             	    }
 		}
@@ -181,15 +185,13 @@ for(my $server = 0; $server < scalar(@m); $server++) {
 sub PrintServer {
      my $server = shift;
      my $time;
-     if ( $server->{'updateDate'} ) {
-	  if ( $server->{'updateDate'} > $tortime ) {
-	    $time = "Up to date";
-	  } else { $time = "DO NOT USE. Out of date."; }
-     } else { $time = "Unknown"; }
+     if ( $server->{updateDate} && $server->{sigMatched} ) { $time = "Up to date"; } 
+     elsif (!$server->{updateDate}) 			   { $time = "Unknown"; }
+     else 			    			   { $time = "Failed signature check"; }
 print OUT <<"END";
      \n<tr>\n
-         <td>$server->{'isoCC'}</td>\n
-         <td>$server->{'orgName'}</td>\n
+         <td>$server->{isoCC}</td>\n
+         <td>$server->{orgName}</td>\n
          <td>$time</td>\n
 END
 
@@ -204,7 +206,7 @@ END
 
      foreach my $precious ( sort keys %prettyNames )
      {
-        if ($server->{"$precious"}) {
+        if ($server->{$precious}) {
             print OUT "    <td><a href=\"" . $server->{$precious} . "\">" .
                       "$prettyNames{$precious}</a></td>\n";
         } else { print OUT "    <td> - </td>\n"; }
@@ -219,12 +221,16 @@ open(OUT, "> $outFile") or die "Can't open $outFile: $!";
 
 # Here's where we open a file and print some wml include goodness
 # This is sorted from last known recent update to unknown update times
-foreach my $server ( sort { $b->{'updateDate'} <=> $a->{'updateDate'}} grep {$_->{updateDate} && $_->{sigMatched}} @m ) {
+foreach my $server ( sort { $b->{updateDate} <=> $a->{updateDate} } grep {$_->{updateDate} && $_->{updateDate} > $tortime && $_->{sigMatched}} @m ) {
     PrintServer($server);
 }
-foreach my $server ( grep {!$_->{updateDate} || !$_->{sigMatched}} @m ) {
+foreach my $server ( grep {!$_->{updateDate}}  @m ) {
     PrintServer($server);
 }
+foreach my $server ( grep {!$_->{sigMatched} && $_->{updateDate} && $_->{updateDate} > $tortime} @m ) {
+    PrintServer($server);
+}
+# That leaves those servers whose updateDate < torTime. Check the csv for those.
 
 DumpMirrors(@m);
 
