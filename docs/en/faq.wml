@@ -102,6 +102,7 @@ tells
     <li><a href="#LogLevel">What log level should I use?</a></li>
     <li><a href="#DoesntWork">Tor is running, but it's not working
     correctly.</a></li>
+    <li><a href="#TorCrash">My Tor keeps crashing.</a></li>
     <li><a href="#VidaliaPassword">Tor/Vidalia prompts for a password at
     start.</a></li>
     <li><a href="#ChooseEntryExit">Can I control which nodes (or
@@ -156,6 +157,11 @@ relay.</a></li>
 
     <p>Anonymity and Security:</p>
     <ul>
+    <li><a href="#WhatProtectionsDoesTorProvide">What protections does Tor 
+    provide?</a></li>
+    <li><a href="#CanExitNodesEavesdrop">Can exit nodes eavesdrop on 
+    communications? Isn't that bad? </a></li>
+    <li><a href="#ExitEnclaving">What is Exit Enclaving?</a></li>
     <li><a href="#KeyManagement">Tell me about all the keys Tor
 uses.</a></li>
     <li><a href="#EntryGuards">What are Entry Guards?</a></li>
@@ -1611,6 +1617,91 @@ about what's going wrong?</li>
 
 <hr />
 
+<a id="TorCrash"></a>
+<h3><a class="anchor" href="#TorCrash">My Tor keeps crashing.</a></h3>
+<p>
+ We want to hear from you! There are supposed to be zero crash bugs in Tor. 
+ This FAQ entry describes the best way for you to be helpful to us. But even 
+ if you can't work out all the details, we still want to hear about it, so 
+ we can help you track it down. 
+</p>
+<p>
+First, make sure you're using the latest version of Tor (either the latest 
+stable or the latest development version). 
+</p>
+<p>
+Second, make sure your version of libevent is new enough. We recommend at 
+least libevent 1.3a. 
+</p>
+<p>
+Third, see if there's already an entry for your bug in the <a 
+href="https://bugs.torproject.org/">Tor bugtracker</a>. If so, 
+check if there are any new details that you can add. 
+</p>
+<p>
+Fourth, is the crash repeatable? Can you cause the crash? Can 
+you isolate some of the circumstances or config options that 
+make it happen? How quickly or often does the bug show up? 
+Can you check if it happens with other versions of Tor, for 
+example the latest stable release? 
+</p>
+<p>
+Fifth, what sort of crash do you get? 
+</p>
+<ul>
+<li>
+Does your Tor log include an "assert failure"? If so, please 
+tell us that line, since it helps us figure out what's going on. 
+Tell us the previous couple of log messages as well, especially 
+if they seem important. 
+</li>
+<li>
+If it says "Segmentation fault - core dumped" then you need to 
+do a bit more to track it down. Look for a file like "core" or 
+"tor.core" or "core.12345" in your current directory, or in your 
+Data Directory. If it's there, run "gdb tor core" and then "bt", 
+and include the output. If you can't find a core, run "ulimit -c 
+unlimited", restart Tor, and try to make it crash again. (This core 
+thing will only work on Unix -- alas, tracking down bugs on Windows 
+is harder. If you're on Windows, can you get somebody to duplicate 
+your bug on Unix?)
+</li>
+<li>
+If Tor simply vanishes mysteriously, it probably is a segmentation 
+fault but you're running Tor in the background (as a daemon) so you 
+won't notice. Go look at the end of your log file, and look for a 
+core file as above. If you don't find any good hints, you should 
+consider running Tor in the foreground (from a shell) so you can 
+see how it dies. Warning: if you switch to running Tor in the foreground, 
+you might start using a different torrc file, with a different default 
+Data Directory; see the <a href="#UpgradeOrMove">relay-upgrade FAQ entry</a> 
+for details. 
+</li>
+<li>
+If it's still vanishing mysteriously, perhaps something else is killing it? 
+Do you have resource limits (ulimits) configured that kill off processes 
+sometimes? (This is especially common on OpenBSD.) On Linux, try running 
+"dmesg" to see if the out-of-memory killer removed your process. (Tor will 
+exit cleanly if it notices that it's run out of memory, but in some cases 
+it might not have time to notice.) In very rare circumstances, hardware 
+problems could also be the culprit. 
+</li>
+</ul>
+<p>
+Sixth, if the above ideas don't point out the bug, consider increasing your 
+log level to "loglevel debug". You can look at the log-configuration FAQ 
+entry for instructions on what to put in your torrc file. If it usually 
+takes a long time for the crash to show up, you will want to reserve a whole 
+lot of disk space for the debug log. Alternatively, you could just send 
+debug-level logs to the screen (it's called "stdout" in the torrc), and then 
+when it crashes you'll see the last couple of log lines it had printed. 
+(Note that running with verbose logging like this will slow Tor down 
+considerably, and note also that it's generally not a good idea security-wise 
+to keep logs like this sitting around.) 
+</p>
+
+<hr />
+
 <a id="VidaliaPassword"></a>
 <h3><a class="anchor" href="#VidaliaPassword">Tor/Vidalia prompts for a
 password at start.</a></h3>
@@ -2610,8 +2701,176 @@ diversity,
     hidden service?</a></h3>
     
     <p>
-    See the ​<a href="https://www.torproject.org/docs/tor-hidden-service.html.en">
+    See the <a href="https://www.torproject.org/docs/tor-hidden-service.html.en">
     official hidden service configuration instructions</a>.
+    </p>
+
+    <hr>
+    
+    <a id="WhatProtectionsDoesTorProvide"></a>
+    <h3><a class="anchor" href="#WhatProtectionsDoesTorProvide">What 
+    protections does Tor provide?</a></h3>
+    
+    <p>
+     Internet communication is based on a store-and-forward model that 
+     can be understood in analogy to postal mail: Data is transmitted in 
+     blocks called IP datagrams or packets. Every packet includes a source 
+     IP address (of the sender) and a destination IP address (of the 
+     receiver), just as ordinary letters contain postal addresses of sender 
+     and receiver. The way from sender to receiver involves multiple hops of 
+     routers, where each router inspects the destination IP address and 
+     forwards the packet closer to its destination. Thus, every router 
+     between sender and receiver learns that the sender is communicating 
+     with the receiver. In particular, your local ISP is in the position to 
+     build a complete profile of your Internet usage. In addition, every 
+     server in the Internet that can see any of the packets can profile your 
+     behaviour. 
+    </p>
+    
+    <p>
+    The aim of Tor is to improve your privacy by sending your traffic through 
+    a series of proxies. Your communication is encrypted in multiple layers 
+    and routed via multiple hops through the Tor network to the final 
+    receiver. More details on this process can be found in the <a 
+    href="https://www.torproject.org/about/overview">Tor overview</a>. 
+    Note that all your local ISP can observe now is that you are 
+    communicating with Tor nodes. Similarly, servers in the Internet just 
+    see that they are being contacted by Tor nodes.
+    </p>
+    
+    <p>
+    Generally speaking, Tor aims to solve three privacy problems: 
+    </p>
+    
+    <p>
+    First, Tor prevents websites and other services from learning 
+    your location, which they can use to build databases about your 
+    habits and interests. With Tor, your Internet connections don't 
+    give you away by default -- now you can have the ability to choose, 
+    for each connection, how much information to reveal. 
+    </p>
+    
+    <p>
+    Second, Tor prevents people watching your traffic locally (such as 
+    your ISP) from learning what information you're fetching and where 
+    you're fetching it from. It also stops them from deciding what you're 
+    allowed to learn and publish -- if you can get to any part of the Tor 
+    network, you can reach any site on the Internet.     
+    </p>
+
+    <p>
+    Third, Tor routes your connection through more than one Tor relay 
+    so no single relay can learn what you're up to. Because these relays 
+    are run by different individuals or organizations, distributing trust 
+    provides more security than the old <a href="#Torisdifferent">one hop proxy
+    </a> approach. 
+    </p>
+    
+    <p>
+    Note, however, that there are situations where Tor fails to solve these 
+    privacy problems entirely: see the entry below on <a 
+    href="#AttacksOnOnionRouting">remaining attacks</a>.    
+    </p>
+    
+    <hr>
+    
+    <a id="CanExitNodesEavesdrop"></a>
+    <h3><a class="anchor" href="#CanExitNodesEavesdrop">Can exit nodes eavesdrop 
+    on communications? Isn't that bad?</a></h3>
+    
+    <p>
+    Yes, the guy running the exit node can read the bytes that come in and 
+    out there. Tor anonymizes the origin of your traffic, and it makes sure 
+    to encrypt everything inside the Tor network, but it does not magically 
+    encrypt all traffic throughout the Internet. 
+    </p>
+    
+    <p>
+    This is why you should always use end-to-end encryption such as SSL for 
+    sensitive Internet connections. (The corollary to this answer is that if 
+    you are worried about somebody intercepting your traffic and you're 
+    *not* using end-to-end encryption at the application layer, then something 
+    has already gone wrong and you shouldn't be thinking that Tor is the problem.) 
+    </p>
+    
+    <p>
+    Tor does provide a partial solution in a very specific situation, though. 
+    When you make a connection to a destination that also runs a Tor relay, 
+    Tor will automatically extend your circuit so you exit from that circuit. 
+    So for example if Indymedia ran a Tor relay on the same IP address as 
+    their website, people using Tor to get to the Indymedia website would 
+    automatically exit from their Tor relay, thus getting *better* encryption 
+    and authentication properties than just browsing there the normal way. 
+    </p>
+
+    <p>
+    We'd like to make it still work even if the service is nearby the Tor 
+    relay but not on the same IP address. But there are a variety of 
+    technical problems we need to overcome first (the main one being "how 
+    does the Tor client learn which relays are associated with which 
+    websites in a decentralized yet non-gamable way?"). 
+    </p>
+            
+    <hr>
+    
+    <a id="ExitEnclaving"></a>
+    <h3><a class="anchor" href="#ExitEnclaving">What is Exit Enclaving?</a></h3>
+
+    <p>
+    When a machine that runs a Tor relay also runs a public service, such as 
+    a webserver, you can configure Tor to offer Exit Enclaving to that 
+    service. Running an Exit Enclave for all of your services you wish to 
+    be accessible via Tor provides your users the assurance that they will 
+    exit through your server, rather than exiting from a randomly selected 
+    exit node that could be watched. Normally, a tor circuit would end at 
+    an exit node and then that node would make a connection to your service. 
+    Anyone watching that exit node could see the connection to your service, 
+    and be able to snoop on the contents if it were an unencrypted 
+    connection. If you run an Exit Enclave for your service, then the exit 
+    from the Tor network happens on the machine that runs your service, 
+    rather than on an untrusted random node. This works when Tor clients 
+    wishing to connect to this public service extend their their circuit 
+    to exit from the Tor relay running on that same host. For example, if 
+    the server at 1.2.3.4 runs a web server on port 80 and also acts as a 
+    Tor relay configured for Exit Enclaving, then Tor clients wishing to 
+    connect to the webserver will extend their circuit a fourth hop to exit 
+    to port 80 on the Tor relay running on 1.2.3.4. 
+    </p>
+    <p>
+    Exit Enclaving is disabled by default to prevent attackers from 
+    exploiting trust relationships with locally bound services. For 
+    example, often 127.0.0.1 will run services that are not designed to 
+    be shared with the entire world. Sometimes these services will also 
+    be bound to the public IP address, but will only allow connections if 
+    the source address is something trusted, such as 127.0.0.1. 
+    </p>
+    <p>
+    As a result of possible trust issues, relay operators must configure 
+    their exit policy to allow connections to themselves, but they should 
+    do so only when they are certain that this is a feature that they would 
+    like. Once certain, turning off the ExitPolicyRejectPrivate option will 
+    enable Exit Enclaving. An example configuration would be as follows: 
+    </p>
+    <pre>
+    ExitPolicy accept 1.2.3.4:80
+    ExitPolicy reject 127.0.0.1/8
+    ExitPolicyRejectPrivate 0
+    </pre>
+    <p>
+    This option should be used with care as it may expose internal network 
+    blocks that are not meant to be accessible from the outside world or 
+    the Tor network. Please tailor your ExitPolicy to reflect all netblocks 
+    that you want to prohibit access. 
+    </p>
+    <p>
+    This option should be used with care as it may expose internal network 
+    blocks that are not meant to be accessible from the outside world or 
+    the Tor network. Please tailor your ExitPolicy to reflect all netblocks 
+    that you want to prohibit access. 
+    </p>
+    <p>
+    While useful, this behavior may go away in the future because it is 
+    imperfect. A great idea but not such a great implementation. 
     </p>
 
     <hr>
