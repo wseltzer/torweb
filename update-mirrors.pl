@@ -121,7 +121,7 @@ sub LoadMirrors {
 
 sub DumpMirrors {
     my @m = @_;
-    open(CSV, ">", "tor-mirrors.csv") or die "Cannot open tor-mirrors.csv: $!";
+    open(CSV, ">", "include/tor-mirrors.csv") or die "Cannot open tor-mirrors.csv: $!";
     print CSV join(", ", @columns) . "\n";
     foreach my $server(@m) {
 	$server->{updateDate} = gmtime($server->{updateDate}) if ($server->{updateDate});
@@ -153,7 +153,7 @@ print "Using these files for sig matching:\n";
 print join("\n", keys %randomtorfiles);
 print "\n";
 
-# Adjust offical Tor time by out-of-date offset: number of days * seconds per day
+# Adjust official Tor time by out-of-date offset: number of days * seconds per day
 $tortime -= 1 * 172800;
 print "The official time for Tor is $tortime. \n";
 
@@ -184,15 +184,11 @@ for(my $server = 0; $server < scalar(@m); $server++) {
 
 sub PrintServer {
      my $server = shift;
-     my $time;
-     if ( $server->{updateDate} && $server->{sigMatched} ) { $time = "Up to date"; } 
-     elsif (!$server->{updateDate}) 			   { $time = "Unknown"; }
-     else 			    			   { $time = "Failed signature check"; }
 print OUT <<"END";
      \n<tr>\n
          <td>$server->{isoCC}</td>\n
          <td>$server->{orgName}</td>\n
-         <td>$time</td>\n
+         <td>Up to date</td>\n
 END
 
      my %prettyNames = (
@@ -224,13 +220,6 @@ open(OUT, "> $outFile") or die "Can't open $outFile: $!";
 foreach my $server ( sort { $b->{updateDate} <=> $a->{updateDate} } grep {$_->{updateDate} && $_->{updateDate} > $tortime && $_->{sigMatched}} @m ) {
     PrintServer($server);
 }
-foreach my $server ( grep {!$_->{updateDate}}  @m ) {
-    PrintServer($server);
-}
-foreach my $server ( grep {!$_->{sigMatched} && $_->{updateDate} && $_->{updateDate} > $tortime} @m ) {
-    PrintServer($server);
-}
-# That leaves those servers whose updateDate < torTime. Check the csv for those.
 
 DumpMirrors(@m);
 
