@@ -77,10 +77,7 @@ allow JavaScript by default in the Tor Browser Bundle?  Isn't that
 unsafe?</a></li>
     <li><a href="#TBBOtherBrowser">I want to use Chrome/IE/Opera/etc
     with Tor.</a></li>
-    <li><a href="#TorbuttonOtherBrowser">Will Torbutton be available 
-    for other browsers?</a></li>
-    <li><a href="#NoDataScrubbing">Does Tor remove personal information 
-    from the data my application sends?</a></li>
+    <li><a href="#TorbuttonOtherBrowser">Will ​Torbutton be available for other browsers?</a></li>
     <li><a href="#TBBCloseBrowser">I want to leave Tor Browser Bundle
     running but close the browser.</a></li>
 
@@ -203,6 +200,10 @@ packets,
     websites, not just IP addresses.</a></li>
     <li><a href="#BlockContent">You should change Tor to prevent users from 
     posting certain content.</a></li>
+    <li><a href="#SendPadding">You should send padding so it's more secure.
+    </a></li>
+    <li><a href="#Steganography">You should use steganography to hide Tor 
+    traffic.</a></li>
     <li><a href="#IPv6">Tor should support IPv6.</a></li>
     </ul>
 
@@ -1235,33 +1236,14 @@ horizon.
 <hr>
 
 <a id="TorbuttonOtherBrowser"></a>
-<h3><a class="anchor" href="#TorbuttonOtherBrowser">
-Will Torbutton be available for other browsers?</a></h3>
+<h3><a class="anchor" href="TorbuttonOtherBrowser">
+Will ​Torbutton be available for other browsers?</a></h3>
 
 <p>
- We don't support IE, Opera or Safari and never plan to. There are too many 
- ways that your privacy can go wrong with those browsers, and because of 
- their closed design it is really hard for us to do anything to change these 
- privacy problems.
+ We don't support IE, Opera or Safari and never plan to. There are too many ways that your privacy can go wrong with those browsers, and because of their closed design it is really hard for us to do anything to change these privacy problems.
 </p>
 <p>
-We are working with the Chrome people to modify Chrome's internals so that 
-we can eventually support it. But for now, Firefox is the only safe choice. 
-</p>
-
-<hr>
-
-<a id="NoDataScrubbing"></a>
-<h3><a class="anchor" href="#NoDataScrubbing">
-Does Tor remove personal information from the data my application sends?
-</a></h3>
-<p>
-No, it doesn't. You need to use a separate program that understands your 
-application and protocol and knows how to clean or "scrub" the data it 
-sends. Privoxy is an example of this for web browsing. But note that even 
-Privoxy won't protect you completely: you may still fall victim to viruses, 
-Java Script attacks, etc; and Privoxy can't do anything about text that you 
-type into forms. Be careful and be smart. 
+We are working with the Chrome people to modify Chrome's internals so that we can eventually support it. But for now, Firefox is the only safe choice. 
 </p>
 
 <hr>
@@ -3568,33 +3550,100 @@ only solution is to have no opinion.
 
     <hr>
 
+    <a id="SendPadding"></a>
+    <h3><a class="anchor" href="#SendPadding">You should send padding so it's 
+    more secure.</a></h3>
+    
+    <p>
+    Like all anonymous communication networks that are fast enough for web 
+    browsing, Tor is vulnerable to statistical "traffic confirmation" 
+    attacks, where the adversary watches traffic at both ends of a circuit 
+    and confirms his guess that they're communicating. It would be really 
+    nice if we could use cover traffic to confuse this attack. But there 
+    are three problems here:
+    </p>
+    
+    <ul>
+    <li>
+    Cover traffic is really expensive. And *every* user needs to be doing 
+    it. This adds up to a lot of extra bandwidth cost for our volunteer 
+    operators, and they're already pushed to the limit.
+    </li>
+    <li>
+    You'd need to always be sending traffic, meaning you'd need to always 
+    be online. Otherwise, you'd need to be sending end-to-end cover 
+    traffic -- not just to the first hop, but all the way to your final 
+    destination -- to prevent the adversary from correlating presence of 
+    traffic at the destination to times when you're online. What does it 
+    mean to send cover traffic to -- and from -- a web server? That is not 
+    supported in most protocols. 
+    </li>
+    <li>
+    Even if you *could* send full end-to-end padding between all users and 
+    all destinations all the time, you're *still* vulnerable to active 
+    attacks that block the padding for a short time at one end and look for 
+    patterns later in the path. 
+    </li>
+    </ul>
+    
+    <p>
+    In short, for a system like Tor that aims to be fast, we don't see any 
+    use for padding, and it would definitely be a serious usability problem. 
+    We hope that one day somebody will prove us wrong, but we are not 
+    optimistic. 
+    </p>
+    
+    <hr>
+
+    <a id="Steganography"></a>
+    <h3><a class="anchor" href="#Steganography">You should use steganography to hide Tor 
+    traffic.</a></h3>
+    
+    <p>
+    Many people suggest that we should use steganography to make it hard 
+    to notice Tor connections on the Internet. There are a few problems 
+    with this idea though: 
+    </p>
+    
+    <p>
+    First, in the current network topology, the Tor relays list <a 
+    href="#HideExits">is public</a> and can be accessed by attackers. 
+    An attacker who wants to detect or block anonymous users could 
+    always just notice <b>any connection</b> to or from a Tor relay's 
+    IP address. 
+    </p>
+    
+    <hr>
+
     <a id="IPv6"></a>
     <h3><a class="anchor" href="#IPv6">Tor should support IPv6.</a></h3>
 
     <p>
-     That's a great idea! There are two aspects for IPv6 support that Tor needs. 
-     First, Tor needs to support exit to hosts that only have IPv6 addresses. 
-     Second, Tor needs to support Tor relays that only have IPv6 addresses.
+    That's a great idea! There are two aspects for IPv6 support that Tor needs. 
+    First, Tor needs to support exit to hosts that only have IPv6 addresses. 
+    Second, Tor needs to support Tor relays that only have IPv6 addresses.
     </p>
     <p>
-The first is far easier: the protocol changes are relatively simple and isolated. 
-It would be like another kind of exit policy.
+    The first is far easier: the protocol changes are relatively simple and 
+    isolated. It would be like another kind of exit policy.
     </p>
     <p>
-The second is a little harder: right now, we assume that (mostly) every 
-Tor relay can connect to every other. This has problems of its own, and 
-adding IPv6-address-only relays adds problems too: it means that only 
-relays with IPv6 abilities can connect to IPv6-address-only relays. This 
-makes it possible for the attacker to make some inferences about client 
-paths that it would not be able to make otherwise.
+    The second is a little harder: right now, we assume that (mostly) every 
+    Tor relay can connect to every other. This has problems of its own, and 
+    adding IPv6-address-only relays adds problems too: it means that only 
+    relays with IPv6 abilities can connect to IPv6-address-only relays. This 
+    makes it possible for the attacker to make some inferences about client 
+    paths that it would not be able to make otherwise.
     </p>
     <p>
-There is an  IPv6 exit proposal to address the first step for anonymous 
-access to IPv6 resources on the Internet.
+    There is an <a 
+    href="https://gitweb.torproject.org/tor.git/blob/HEAD:/doc/spec/proposals/117-ipv6-exits.txt">
+    IPv6 exit proposal</a> to address the first step for anonymous access to 
+    IPv6 resources on the Internet.
     </p>
     <p>
-Full IPv6 support is definitely on our "someday" list; it will come along 
-faster if somebody who wants it does some of the work.
+    Full IPv6 support is definitely on our "someday" list; it will come along 
+    faster if somebody who wants it does some of the work.
     </p>
 
     <hr>
