@@ -77,7 +77,7 @@ allow JavaScript by default in the Tor Browser Bundle?  Isn't that
 unsafe?</a></li>
     <li><a href="#TBBOtherBrowser">I want to use Chrome/IE/Opera/etc
     with Tor.</a></li>
-    <li><a href="#TorbuttonOtherBrowser">Will ​Torbutton be available for other browsers?</a></li>
+    <li><a href="#TorbuttonOtherBrowser">Will Torbutton be available for other browsers?</a></li>
     <li><a href="#TBBCloseBrowser">I want to leave Tor Browser Bundle
     running but close the browser.</a></li>
 
@@ -213,6 +213,8 @@ packets,
 things?</a></li>
     <li><a href="#RespondISP">How do I respond to my ISP about my exit
     relay?</a></li>
+    <li><a href="#HelpPoliceOrLawyers">I have questions about
+   a Tor IP address for a legal case.</a></li>
     </ul>
 
     <p>For other questions not yet on this version of the FAQ, see the
@@ -539,10 +541,8 @@ or the
     <a id="Forum"></a>
     <h3><a class="anchor" href="#Forum">Is there a Tor forum?</a></h3>
 
-    <p>Not yet, but we're working on it. Most forum software is
-    a disaster to maintain and keep secure, and at the same time
-    too many of the Tor developers are spread too thin to be able
-    to contribute enough to a forum.
+    <p>We have <a href="https://tor.stackexchange.com/">a StackExchange 
+    page</a> that is currently in public beta.
     </p>
 
     <hr>
@@ -3138,8 +3138,8 @@ government firewalls to access the Tor network.
 We've made quite a bit of progress on this problem lately. You can read more 
 details on the <a href="https://www.torproject.org/docs/pluggable-transports.html.en">
 pluggable transports page</a>. You may also be interested in 
-<a href="https://www.youtube.com/watch?v=GwMr8Xl7JMQ">Roger and Jake's ​talk at 
-28C3</a>, or <a href="https://www.youtube.com/watch?v=JZg1nqs793M">​Runa's 
+<a href="https://www.youtube.com/watch?v=GwMr8Xl7JMQ">Roger and Jake's talk at 
+28C3</a>, or <a href="https://www.youtube.com/watch?v=JZg1nqs793M">Runa's 
 talk at 44con</a>.
     </p>
 
@@ -3155,7 +3155,7 @@ talk at 44con</a>.
 These attacks come from examining characteristics of the IP headers or TCP 
 headers and looking for information leaks based on individual hardware 
 signatures. One example is the 
-​<a href="http://www.caida.org/outreach/papers/2005/fingerprinting/">
+<a href="http://www.caida.org/outreach/papers/2005/fingerprinting/">
 Oakland 2005 paper</a> that lets you learn if two packet streams originated 
 from the same hardware, but only if you can see the original TCP timestamps.
 </p>
@@ -3169,6 +3169,35 @@ ZKS's Freedom network could) -- but maybe that's a good thing at this stage.
 </p>
 
     <hr>
+
+    <a id="Proxychains"></a>
+    <h3><a class="anchor" href="#Proxychains">Aren't 10 proxies 
+    (proxychains) better than Tor with only 3 hops?</a></h3>
+    
+    <p>
+    Proxychains is a program that sends your traffic through a series of 
+    open web proxies that you supply before sending it on to your final 
+    destination. <a href="#KeyManagement">Unlike Tor</a>, proxychains 
+    does not encrypt the connections between each proxy. An open proxy 
+    that wanted to monitor your connection can see all the other proxy 
+    servers you wanted to use between itself and your final destination, 
+    as well as the IP address that proxy hop receives traffic from. 
+    </p>
+    <p>
+    Because the <a 
+    href="https://gitweb.torproject.org/torspec.git?a=blob_plain;hb=HEAD;f=tor-spec.txt">
+    Tor protocol</a> requires encrypted relay-to-relay connections, not 
+    even a misbehaving relay can see the entire path of any Tor user. 
+    </p>
+    <p>
+    While Tor relays are run by volunteers and checked periodically for 
+    suspicious behavior, many open proxies that can be found with a search 
+    engine are worm-compromised machines, misconfigured private proxies 
+    not intended for public use, or honeypots set up to exploit users. 
+    </p>
+    
+    <hr>
+    
 
 <a id="AttacksOnOnionRouting"></a>
     <h3><a class="anchor" href="#AttacksOnOnionRouting">What attacks remain 
@@ -3671,6 +3700,27 @@ about my exit relay?</a></h3>
 
     <hr>
 
+   <a id="HelpPoliceOrLawyers"></a>
+   <h3><a class="anchor" href="#HelpPoliceOrLawyers">I have questions about
+   a Tor IP address for a legal case.</a></h3>
+   
+   <p>
+   Please read the <a 
+   href="https://www.torproject.org/eff/tor-legal-faq">​legal FAQ written 
+   by EFF lawyers</a>. There's a growing <a 
+   href="https://blog.torproject.org/blog/start-tor-legal-support-directory">legal 
+   directory</a> of people who may be able to help you.
+   </p>
+   
+   <p>
+   If you need to check if a certain IP address was acting as a Tor exit 
+   node at a certain date and time, you can use the <a 
+   href="https://exonerator.torproject.org/">ExoneraTor tool</a> to query the
+   historic Tor relay lists and get an answer.
+   </p>
+   
+   <hr>
+   
   </div>
   <!-- END MAINCOL -->
   <div id = "sidecol">
