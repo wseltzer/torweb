@@ -177,6 +177,9 @@ uses.</a></li>
     </a></li>
     <li><a href="#RemotePhysicalDeviceFingerprinting">Does Tor resist 
     "remote physical device fingerprinting"?</a></li>
+    <li><a href="#VPN">What's safer, Tor or a VPN?</a></li>
+    <li><a href="#Proxychains">Aren't 10 proxies (proxychains) better than 
+    Tor with only 3 hops?</a></li>
     <li><a href="#AttacksOnOnionRouting">What attacks remain against onion 
     routing?</a></li>
     </ul>
@@ -3170,6 +3173,47 @@ ZKS's Freedom network could) -- but maybe that's a good thing at this stage.
 
     <hr>
 
+    <a id="VPN"></a>
+    <h3><a class="anchor" href="#VPN">What's safer, Tor or a VPN?</a></h3>
+    
+    <p>
+    Some people use Virtual Private Networks (VPNs) as a privacy solution. 
+    VPNs encrypt the traffic between the user and the VPN provider, 
+    and they can act as a proxy between a user and an online destination. 
+    However, VPNs have a single point of failure: the VPN provider. 
+    A technically proficient attacker or a number of employees could 
+    retrieve the full identity information associated with a VPN user. 
+    It is also possible to use coercion or other means to convince a 
+    VPN provider to reveal their users' identities. Identities can be 
+    discovered by following a money trail (using Bitcoin does not solve 
+    this problem because Bitcoin is not anonymous), or by persuading the 
+    VPN provider to hand over logs. Even 
+    if a VPN provider says they don't keep logs, users have to take their 
+    word for it---and trust that the VPN provider won't buckle to outside 
+    pressures that might want them to start keeping logs. 
+    </p>
+
+    <p>
+    When you use a VPN, websites can still build up a persistent profile of 
+    your usage over time. Even though sites you visit won't automatically 
+    get your originating IP address, they still know how to profile you 
+    based on your browsing history. 
+    </p>
+
+    <p>
+    When you use Tor the IP address you connect to changes at most every 10 
+    minutes, and often more frequently than that. This makes it extremely 
+    dificult for websites to create any sort of persistent profile of Tor 
+    users (assuming you did not <a 
+    href="https://torproject.org/download/download.html.en#warning">identify 
+    yourself in other ways</a>). No one Tor relay can know enough 
+    information to compromise any Tor user because of Tor's <a 
+    href="https://www.torproject.org/about/overview.html.en#thesolution">encrypted 
+    three-hop circuit</a> design.
+    </p>
+    
+    <hr>
+
     <a id="Proxychains"></a>
     <h3><a class="anchor" href="#Proxychains">Aren't 10 proxies 
     (proxychains) better than Tor with only 3 hops?</a></h3>
@@ -3178,10 +3222,10 @@ ZKS's Freedom network could) -- but maybe that's a good thing at this stage.
     Proxychains is a program that sends your traffic through a series of 
     open web proxies that you supply before sending it on to your final 
     destination. <a href="#KeyManagement">Unlike Tor</a>, proxychains 
-    does not encrypt the connections between each proxy. An open proxy 
-    that wanted to monitor your connection can see all the other proxy 
+    does not encrypt the connections between each proxy server. An open proxy 
+    that wanted to monitor your connection could see all the other proxy 
     servers you wanted to use between itself and your final destination, 
-    as well as the IP address that proxy hop receives traffic from. 
+    as well as the IP address that proxy hop received traffic from. 
     </p>
     <p>
     Because the <a 
@@ -3192,7 +3236,7 @@ ZKS's Freedom network could) -- but maybe that's a good thing at this stage.
     <p>
     While Tor relays are run by volunteers and checked periodically for 
     suspicious behavior, many open proxies that can be found with a search 
-    engine are worm-compromised machines, misconfigured private proxies 
+    engine are compromised machines, misconfigured private proxies 
     not intended for public use, or honeypots set up to exploit users. 
     </p>
     
