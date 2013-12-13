@@ -158,6 +158,20 @@ relay.</a></li>
     <li><a href="#ProvideAHiddenService">How do I provide a hidden service</a></li>
     </ul>
 
+    <p>Development</p>
+    <ul>
+    <li><a href="#WhoIsResponsible">Who is responsible for Tor?</a></li>
+    <li><a href="#VersionNumbers">What do these weird version numbers 
+    mean?</a></li>
+    <li><a href="#PrivateTorNetwork">How do I set up my own private
+    Tor network?</a></li>
+    <li><a href="#UseTorWithJava">How can I make my Java program use the 
+    Tor network?</a></li>
+    <li><a href="#WhatIsLibevent">What is Libevent?</a></li>
+    <li><a href="#MyNewFeature">What do I need to do to get a new feature 
+    into Tor?</a></li>
+    </ul>
+
     <p>Anonymity and Security:</p>
     <ul>
     <li><a href="#WhatProtectionsDoesTorProvide">What protections does Tor 
@@ -544,7 +558,7 @@ or the
     <a id="Forum"></a>
     <h3><a class="anchor" href="#Forum">Is there a Tor forum?</a></h3>
 
-    <p>We have <a href="https://tor.stackexchange.com/">a StackExchange 
+    <p>We have a <a href="https://tor.stackexchange.com/">StackExchange 
     page</a> that is currently in public beta.
     </p>
 
@@ -2742,24 +2756,213 @@ diversity,
 
     <hr>
     
+    <a id="WhoIsResponsible"></a>
+    <h3><a class="anchor" href="#WhoIsResponsible">Who is responsible 
+    for Tor?</a></h3>
+
+    <p>
+    <a href="http://www.freehaven.net/~arma/cv.html">Roger Dingledine</a> and 
+    <a href="http://www.wangafu.net/~nickm/">Nick Mathewson</a> are the main 
+    developers of Tor. You can read more at 
+    <a href="https://www.torproject.org/about/corepeople">Tor's People 
+    page</a>. 
+    </p>
+
+    <hr>
+
+    <a id="VersionNumbers"></a>
+    <h3><a class="anchor" href="#VersionNumbers">What do these weird 
+    version numbers mean?</a></h3>
+
+    <p>
+    Versions of Tor before 0.1.0 used a strange and hard-to-explain version scheme. Let's forget about those.
+    </p>
+    <p>
+    Starting with 0.1.0, versions all look like this: 
+    MAJOR.MINOR.MICRO(.PATCHLEVEL)(-TAG). The stuff in parenthesis is 
+    optional. MAJOR, MINOR, MICRO, and PATCHLEVEL are all numbers. Only one 
+    release is ever made with any given set of these version numbers. The 
+    TAG lets you know how stable we think the release is: "alpha" is pretty 
+    unstable; "rc" is a release candidate; and no tag at all means that we 
+    have a final release. If the tag ends with "-cvs", you're looking at 
+    a development snapshot that came after a given release. 
+    </p>
+    <p>
+    So for example, we might start a development branch with (say) 
+    0.1.1.1-alpha. The patchlevel increments consistently as the status 
+    tag changes, for example, as in: 0.1.1.2-alpha, 0.1.1.3-alpha, 
+    0.1.1.4-rc, 0.1.1.5-rc, etc. Eventually, we would release 0.1.1.6. 
+    The next stable release would be 0.1.1.7.
+    </p>
+    <p>
+    Why do we do it like this? Because every release has a unique 
+    version number, it is easy for tools like package manager to tell 
+    which release is newer than another. The tag makes it easy for users 
+    to tell how stable the release is likely to be. 
+    </p>
+
+    <hr>
+
+    <a id="PrivateTorNetwork"></a>
+    <h3><a class="anchor" href="#PrivateTorNetwork">How do I set up my 
+    own private Tor network?</a></h3>
+    
+    <p>
+    If you want to experiment locally with your own network, or you're 
+    cut off from the Internet and want to be able to mess with Tor still, 
+    then you may want to set up your own separate Tor network. 
+    </p>
+    <p>
+    To set up your own Tor network, you need to run your own authoritative 
+    directory servers, and your clients and relays must be configured so 
+    they know about your directory servers rather than the default public 
+    ones. 
+    </p>
+    <p>
+    Apart from the somewhat tedious method of manually configuring a couple 
+    of directory authorities, relays and clients there are two separate 
+    tools that could help. One is Chutney, the other is Shadow. 
+    </p>
+    <p>
+    <a href="https://gitweb.torproject.org/chutney.git">Chutney</a> is a 
+    tool for configuring, controlling and running tests on a 
+    testing Tor network. It requires that you have Tor and Python (2.5 or 
+    later) installed on your system. You can use Chutney to create a testing
+    network by generating Tor configuration files (torrc) and necssary keys 
+    (for the directory authorities). Then you can let Chutney start your Tor
+    authorities, relays and clients and wait for the network to bootstrap.
+    Finally, you can have Chutney run tests on your network to see which 
+    things work and which do not. Chutney is typically used for running a 
+    testing network with about 10 instances of Tor. Every instance of Tor 
+    binds to one or two ports on localhost (127.0.0.1) and all Tor 
+    communication is done over the loopback interface. The <a 
+    href="https://gitweb.torproject.org/chutney.git/blob/HEAD:/README">Chutney 
+    README</a> is a good starting point for getting it up and running. 
+    </p>
+    <p>
+    <a href="https://github.com/shadow/shadow">Shadow</a> is a network 
+    simulator that can run Tor through its Scallion plug-in. Although 
+    it's typically used for running load and performance tests on 
+    substantially larger Tor test networks than what's feasible with 
+    Chutney, it also makes for an excellent debugging tool since you can 
+    run completely deterministic experiments. A large Shadow network is on 
+    the size of thousands of instances of Tor, and you can run experiments 
+    out of the box using one of Shadow's several included scallion experiment 
+    configurations. Shadow can be run on any linux machine without root, 
+    and can also run on EC2 using a pre-configured image. Also, Shadow 
+    controls the time of the simulation with the effect that 
+    time-consuming tests can be done more efficiently than in an 
+    ordinary testing network. The <a 
+    href="https://github.com/shadow/shadow/wiki">Shadow wiki</a> and 
+    <a href="http://shadow.github.io/">Shadow website</a> are 
+    good places to get started. 
+    </p>
+
+    <hr>
+
+    <a id="UseTorInJava"></a>
+    <h3><a class="anchor" href="UseTorInJava">How can I make my Java 
+    program use the Tor Network?</a></h3>
+
+    <p>
+    The newest versions of Java now have SOCKS4/5 support built in. 
+    Unfortunately, the SOCKS interface is not very well documented and 
+    may still leak your DNS lookups. The safest way to use Tor is to 
+    interface the SOCKS protocol directly or go through an application-level 
+    proxy that speaks SOCKS4a. For an example and libraries that implement 
+    the SOCKS4a connection, go to Joe Foley's TorLib in the <a 
+    href="http://web.mit.edu/foley/www/TinFoil/">TinFoil Project</a>. 
+    </p>
+
+    <p>
+    A fully Java implementation of the Tor client is now available as <a 
+    href="http://www.subgraph.com/orchid.html">Orchid</a>. We still consider 
+    Orchid to be experimental, so use with care. 
+    </p>
+
+    <hr>
+
+
+    <a id="WhatIsLibevent"></a>
+    <h3><a class="anchor" href="#WhatIsLibevent">What is Libevent?</a></h3>
+    
+    <p>
+    When you want to deal with a bunch of net connections at once, you 
+    have a few options: 
+    </p>
+    <p>
+    One is multithreading: you have a separate micro-program inside the 
+    main program for each net connection that reads and writes to the 
+    connection as needed.This, performance-wise, sucks. 
+    </p>
+    <p>
+    Another is asynchronous network programming: you have a single main 
+    program that finds out when various net connections are ready to 
+    read/write, and acts accordingly.
+    </p>
+    <p>
+    The problem is that the oldest ways to find out when net connections 
+    are ready to read/write, suck. And the newest ways are finally fast, 
+    but are not available on all platforms. 
+    </p>
+    <p>
+    This is where Libevent comes in and wraps all these ways to find 
+    out whether net connections are ready to read/write, so that Tor 
+    (and other programs) can use the fastest one that your platform 
+    supports, but can still work on older platforms (these methods are 
+    all different depending on the platorm) So Libevent presents a 
+    consistent and fast interface to select, poll, kqueue, epoll, 
+    /dev/poll, and windows select. 
+    </p>
+    <p>
+    However, On the the Win32 platform (by Microsoft) the only good 
+    way to do fast IO on windows with hundreds of sockets is using 
+    overlapped IO, which is grossly unlike every other BSD sockets 
+    interface. 
+    </p>
+    <p>Libevent has <a href="http://www.monkey.org/~provos/libevent/">its 
+    own website</a>.
+    </p>
+    <hr>
+
+    <a id="MyNewFeature"></a>
+    <h3><a class="anchor" href="#MyNewFeature">What do I need to do to get 
+    a new feature into Tor?</a></h3>
+    
+    <p>
+    For a new feature to go into Tor, it needs to be designed (explain what 
+    you think Tor should do), argued to be secure (explain why it's better 
+    or at least as good as what Tor does now), specified (explained at the 
+    byte level at approximately the level of detail in tor-spec.txt), and 
+    implemented (done in software). 
+    </p>
+
+    <p>
+    You probably shouldn't count on other people doing all of these steps 
+    for you: people who are skilled enough to do this stuff generally 
+    have their own favorite feature requests.
+    </p>
+
+    <hr>
+
     <a id="WhatProtectionsDoesTorProvide"></a>
     <h3><a class="anchor" href="#WhatProtectionsDoesTorProvide">What 
     protections does Tor provide?</a></h3>
     
     <p>
-     Internet communication is based on a store-and-forward model that 
-     can be understood in analogy to postal mail: Data is transmitted in 
-     blocks called IP datagrams or packets. Every packet includes a source 
-     IP address (of the sender) and a destination IP address (of the 
-     receiver), just as ordinary letters contain postal addresses of sender 
-     and receiver. The way from sender to receiver involves multiple hops of 
-     routers, where each router inspects the destination IP address and 
-     forwards the packet closer to its destination. Thus, every router 
-     between sender and receiver learns that the sender is communicating 
-     with the receiver. In particular, your local ISP is in the position to 
-     build a complete profile of your Internet usage. In addition, every 
-     server in the Internet that can see any of the packets can profile your 
-     behaviour. 
+    Internet communication is based on a store-and-forward model that 
+    can be understood in analogy to postal mail: Data is transmitted in 
+    blocks called IP datagrams or packets. Every packet includes a source 
+    IP address (of the sender) and a destination IP address (of the 
+    receiver), just as ordinary letters contain postal addresses of sender 
+    and receiver. The way from sender to receiver involves multiple hops of 
+    routers, where each router inspects the destination IP address and 
+    forwards the packet closer to its destination. Thus, every router 
+    between sender and receiver learns that the sender is communicating 
+    with the receiver. In particular, your local ISP is in the position to 
+    build a complete profile of your Internet usage. In addition, every 
+    server in the Internet that can see any of the packets can profile your 
+    behaviour. 
     </p>
     
     <p>
