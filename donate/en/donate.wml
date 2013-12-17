@@ -228,12 +228,74 @@ href="https://www.dwolla.com/hub/thetorproject">Continue to Dwolla
    <div class="hundred toptwenty">
     <div class="dbox donate">
     <h3>Bitcoins</h3>
-    <p>Instead of donating bitcoins to Tor, please consider a donation to
+    <p>Please consider a donation to
     <a href="https://www.torservers.net/donate.html">Torservers.net</a>,
     <a href="http://noisetor.net/#bitcoin">NoiseTor</a>,
     or <a href="https://tails.boum.org/contribute/how/donate/#bitcoin">Tails</a>
     which will turn your bitcoin donation into a faster, larger Tor
     Network for all.</p>
+  <p>If you are committed to donating bitcoins to Tor, please use our BitPay account:
+  <form id="makeDonation" action="https://bitpay.com/checkout" method="post" onsubmit="return bp.validateMobileCheckoutForm($('#makeDonation'));">
+        <input name="action" type="hidden" value="checkout">
+        <fieldset class="phone-form well form-horizontal" style="margin-top: 5px;">
+          <ul>
+            <li id="orderID" class="control-group">
+              <label class="control-label" style="width: 40px">Email:</label>
+              <div class="controls" style="margin-left: 60px">
+                <input name="orderID" type="email" class="input input-xlarge" placeholder="Email address (optional)" maxlength=50 autocapitalize=off autocorrect=off><br>
+              </div>
+            </li>
+            <li id="price" class="control-group">
+              <label class="control-label" style="width: 40px">Amount:</label>
+              <div class="controls" style="margin-left: 60px">
+                <input name="price" type="number" class="noscroll" value="5.00" placeholder="Amount" maxlength="10" min="0.01" step="0.01" style="width: 39%"  />
+                <select name="currency" value="" style="width: 49%" >
+                  <option value="USD" selected="selected">USD</option>
+                  <option value="BTC">BTC</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
+                  <option value="AUD">AUD</option>
+                  <option value="BGN">BGN</option>
+                  <option value="BRL">BRL</option>
+                  <option value="CAD">CAD</option>
+                  <option value="CHF">CHF</option>
+                  <option value="CNY">CNY</option>
+                  <option value="CZK">CZK</option>
+                  <option value="DKK">DKK</option>
+                  <option value="HKD">HKD</option>
+                  <option value="HRK">HRK</option>
+                  <option value="HUF">HUF</option>
+                  <option value="IDR">IDR</option>
+                  <option value="ILS">ILS</option>
+                  <option value="INR">INR</option>
+                  <option value="JPY">JPY</option>
+                  <option value="KRW">KRW</option>
+                  <option value="LTL">LTL</option>
+                  <option value="LVL">LVL</option>
+                  <option value="MXN">MXN</option>
+                  <option value="MYR">MYR</option>
+                  <option value="NOK">NOK</option>
+                  <option value="NZD">NZD</option>
+                  <option value="PHP">PHP</option>
+                  <option value="PLN">PLN</option>
+                  <option value="RON">RON</option>
+                  <option value="RUB">RUB</option>
+                  <option value="SEK">SEK</option>
+                  <option value="SGD">SGD</option>
+                  <option value="THB">THB</option>
+                  <option value="TRY">TRY</option>
+                  <option value="ZAR">ZAR</option>
+                </select/>
+              </div>
+            </li>
+          </ul>
+          <br>
+          <input type="hidden" name="data" value="iH+sCoKQo5J52hkEzWcMi8+PRt78/89lcSU9GnapWfWL6thyubtDCahTUqa2JTlj6RQrQySkZAoFvK05yifMwfx5V87JJuoaDlHUsZR9ppzkklmzHpKJ4TG5M0zNVcKfNBfyopdfTFbzpOXM2FDppqmU7njsRUF1EZPa0K7SIxpv4lNKSPn1PyjVKVxjnpFE0AZ1Qa75VwZnS+rBNNfwxPsgSz+Oa2Twe226FmJJrLtPuBteFfHAIWh6QS5JnpOn4ScMFph0zjixutmunMAjKw==">
+          <div style="margin: auto; width: 100%; text-align: center">
+            <input name="submit" src="$(IMGROOT)/bitpay-donate-md.png" type="image" style="width: auto" alt="BitPay" border="0">
+          </div>
+        </fieldset>
+      </form>
     </div>
    </div>
 <!-- END BITCOIN -->
