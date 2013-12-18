@@ -88,6 +88,8 @@ tells
     languages?</li></a>
     <li><a href="#GmailWarning">Gmail warns me that my account may have
     been compromised.</a></li>
+    <li><a href="#NeedToUseAProxy">My internet connection requires an HTTP 
+    or SOCKS Proxy</a></li>
     </ul>
 
     <p>Advanced Tor usage:</p>
@@ -107,7 +109,7 @@ country)
     are used for entry/exit?</a></li>
     <li><a href="#FirewallPorts">My firewall only allows a few outgoing
     ports.</a></li>
-    <li><a href="#ExitPorts">Is there a list of default exit ports?</a></li>
+    <li><a href="#DefaultExitPorts">Is there a list of default exit ports?</a></li>
     <li><a href="#SocksAndDNS">How do I check if my application that uses 
     SOCKS is leaking DNS requests?</a></li>
     <li><a href="#DifferentComputer">I want to run my Tor client on a 
@@ -837,7 +839,7 @@ executive
     </p>
     <p>
     If you really need to connect to only a small set of ports, see the FAQ 
-    entry on firewalled ports.
+    entry on <a href="#FirewallPorts">firewalled ports</a>.
     </p>
     <p>
     Note that if you're running Tor as a relay, you must allow outgoing 
@@ -1399,6 +1401,36 @@ recent logins and wondering if you actually logged in at those times.
 
 <hr>
 
+<a id="NeedToUseAProxy"></a>
+<h3><a class="anchor" href="#NeedToUseAProxy">My internet connection requires an HTTP 
+    or SOCKS Proxy</a></h3>
+
+<p>
+You can set Proxy IP address, port, and authentication information in 
+Tor Browser's Network Settings. If you're using Tor another way, check 
+out the HTTPProxy and HTTPSProxy config options in the <a 
+href="https://www.torproject.org/docs/tor-manual.html.en">man page</a>, 
+and modify your torrc file accordingly. You will need an HTTP proxy for 
+doing GET requests to fetch the Tor directory, and you will need an 
+HTTPS proxy for doing CONNECT requests to get to Tor relays. (It's fine 
+if they're the same proxy.) Tor also recognizes the torrc options 
+Socks4Proxy and Socks5Proxy. 
+</p>
+<p>
+Also check out HTTPProxyAuthenticator and HTTPSProxyAuthenticator if your 
+proxy requires auth. We only support basic auth currently, but if you need 
+NTLM authentication, you find <a 
+href="http://archives.seul.org/or/talk/Jun-2005/msg00223.html">this post 
+in the archives</a> useful. 
+</p>
+<p>
+If your proxies only allow you to connect to certain ports, look at the 
+entry on <a href="#FirewallPorts">Firewalled clients</a> for how 
+to restrict what ports your Tor will try to access. 
+</p>
+
+<hr>
+
 <a id="torrc"></a>
 <h3><a class="anchor" href="#torrc">I'm supposed to "edit my torrc".
 What does that mean?</a></h3>
@@ -1607,7 +1639,7 @@ day and date under the 'Date &amp; Time' Tab. Also make sure your time
 zone is correct.</li>
 <li>Is your Internet connection <a href="#FirewallPorts">firewalled
 by port</a>, or do you normally need to use a <a
-href="<wikifaq>#MyInternetconnectionrequiresanHTTPorSOCKSproxy.">proxy</a>?
+href="<#NeedToUseAProxy">proxy</a>?
 </li>
 <li>Are you running programs like Norton Internet Security or SELinux
 that
@@ -1862,8 +1894,8 @@ use the ReachableAddresses config options, e.g.:
 
 <hr>
 
-    <a id="ExitPorts"></a>
-    <h3><a class="anchor" href="#ExitPorts">Is there a list of default exit 
+    <a id="DefaultExitPorts"></a>
+    <h3><a class="anchor" href="#DefaultExitPorts">Is there a list of default exit 
     ports?</a></h3>
     <p>
 The default open ports are listed below but keep in mind that, any port or 
@@ -2017,7 +2049,7 @@ relays.
     <li>If your relay is behind a NAT and it doesn't know its public
     IP (e.g. it has an IP of 192.168.x.y), you'll need to set up port
     forwarding. Forwarding TCP connections is system dependent but
-    <a href="<wikifaq>#ImbehindaNATFirewall">this FAQ entry</a>
+    <a href="#BehindANAT">this FAQ entry</a>
     offers some examples on how to do this.
     </li>
     <li>Your relay will passively estimate and advertise its recent
@@ -2058,7 +2090,7 @@ encounter</a>
     <p>
     The default exit policy allows access to many popular services
     (e.g. web browsing), but <a
-href="<wikifaq>#Istherealistofdefaultexitports">restricts</a>
+href="#DefaultExitPorts">restricts</a>
     some due to abuse potential (e.g. mail) and some since
     the Tor network can't handle the load (e.g. default
     file-sharing ports). You can change your exit policy
@@ -2589,12 +2621,14 @@ html">release
 use
     this feature.</li>
 
+<!-- Nickm says he's not sure this is still accurate
+
     <li>If you're running on Solaris, OpenBSD, NetBSD, or
     old FreeBSD, Tor is probably forking separate processes
     rather than using threads. Consider switching to a <a
     href="<wikifaq>#WhydoesntmyWindowsorotherOSTorrelayrunwell">better
     operating system</a>.</li>
-
+-->
     <li>If you still can't handle the memory load, consider reducing the
     amount of bandwidth your relay advertises. Advertising less
 bandwidth
@@ -3481,7 +3515,7 @@ Tor user be a relay.</a></h3>
     <p>
     Requiring every Tor user to be a relay would help with scaling the
     network to handle all our users, and <a
-    href="<wikifaq>#DoIgetbetteranonymityifIrunarelay">running a Tor
+    href="#BetterAnonymity">running a Tor
     relay may help your anonymity</a>. However, many Tor users cannot be
 good
     relays &mdash; for example, some Tor clients operate from behind
@@ -3607,7 +3641,7 @@ problems are:
 <li>IP packets reveal OS characteristics. We would still need to do
 IP-level packet normalization, to stop things like TCP fingerprinting
 attacks. Given the diversity and complexity of TCP stacks, along with <a
-href="<wikifaq>#DoesTorresistremotephysicaldevicefingerprinting">device
+href="#RemotePhysicalDeviceFingerprinting">device
 fingerprinting attacks</a>, it looks like our best bet is shipping our
 own user-space TCP stack.
 </li>
