@@ -60,11 +60,11 @@
     var caller = $( this );
     var pkg = caller.attr('id');
     var lang = caller.val();
-    var wintbb = '../dist/torbrowser/tor-browser-<version-torbrowserbundle>_'+lang+'.exe';
-    var osxtbb = '../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx32>-osx-i386-'+lang+'.zip';
-    var osxtbb64 = '../dist/torbrowser/osx/TorBrowser-<version-torbrowserbundleosx64>-osx-x86_64-'+lang+'.zip';
-    var lintbb32 = '../dist/torbrowser/linux/tor-browser-gnu-linux-i686-<version-torbrowserbundlelinux32>-dev-'+lang+'.tar.gz';
-    var lintbb64 = '../dist/torbrowser/linux/tor-browser-gnu-linux-x86_64-<version-torbrowserbundlelinux64>-dev-'+lang+'.tar.gz';
+    var wintbb = '../dist/torbrowser/<version-torbrowserbundledir>/torbrowser-install-<version-torbrowserbundle>_'+lang+'.exe';
+    var osxtbb = '../dist/torbrowser/<version-torbrowserbundledir>/TorBrowserBundle-<version-torbrowserbundleosx32>-osx32_'+lang+'.zip';
+    var osxtbb64 = '../dist/torbrowser/<version-torbrowserbundledir>/TorBrowserBundle-<version-torbrowserbundleosx32>-osx64_'+lang+'.zip';
+    var lintbb32 = '../dist/torbrowser/<version-torbrowserbundledir>/tor-browser-linux32-<version-torbrowserbundlelinux32>_'+lang+'.tar.gz';
+    var lintbb64 = '../dist/torbrowser/<version-torbrowserbundledir>/tor-browser-linux64-<version-torbrowserbundlelinux64>_'+lang+'.tar.gz';
     if(pkg == 'win-tbb'){
       $('.'+pkg).replaceWith('<a class="button win-tbb" href="'+wintbb+'"><span class="strong">Download</span><span class="normal"><button-win-tbb32></span></a>');
       $('.'+pkg+'-sig').replaceWith('<a class="win-tbb-sig" href="'+wintbb+'.asc">sig</a>');
