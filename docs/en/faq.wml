@@ -90,6 +90,11 @@ tells
     been compromised.</a></li>
     <li><a href="#NeedToUseAProxy">My internet connection requires an HTTP 
     or SOCKS Proxy</a></li>
+    <li><a href="#CantSetProxy">What should I do if I can't set a proxy 
+    with my application?</a></li>
+    <li><a href="#WarningsAboutSOCKSandDNSInformationLeaks">I keep seeing 
+    these warnings about SOCKS and DNS information leaks. Should I 
+    worry?</a></li>
     </ul>
 
     <p>Advanced Tor usage:</p>
@@ -180,6 +185,8 @@ relay.</a></li>
     provide?</a></li>
     <li><a href="#CanExitNodesEavesdrop">Can exit nodes eavesdrop on 
     communications? Isn't that bad? </a></li>
+    <li><a href="#AmITotallyAnonymous">So I'm totally anonymous if I use 
+    Tor?</a></li>
     <li><a href="#ExitEnclaving">What is Exit Enclaving?</a></li>
     <li><a href="#KeyManagement">Tell me about all the keys Tor
 uses.</a></li>
@@ -1402,8 +1409,8 @@ recent logins and wondering if you actually logged in at those times.
 <hr>
 
 <a id="NeedToUseAProxy"></a>
-<h3><a class="anchor" href="#NeedToUseAProxy">My internet connection requires an HTTP 
-    or SOCKS Proxy</a></h3>
+<h3><a class="anchor" href="#NeedToUseAProxy">My internet connection 
+requires an HTTP or SOCKS Proxy</a></h3>
 
 <p>
 You can set Proxy IP address, port, and authentication information in 
@@ -1417,9 +1424,9 @@ if they're the same proxy.) Tor also recognizes the torrc options
 Socks4Proxy and Socks5Proxy. 
 </p>
 <p>
-Also check out HTTPProxyAuthenticator and HTTPSProxyAuthenticator if your 
-proxy requires auth. We only support basic auth currently, but if you need 
-NTLM authentication, you find <a 
+Also read up on the HTTPProxyAuthenticator and HTTPSProxyAuthenticator 
+options if your proxy requires auth. We only support basic auth currently, 
+but if you need NTLM authentication, you may find <a 
 href="http://archives.seul.org/or/talk/Jun-2005/msg00223.html">this post 
 in the archives</a> useful. 
 </p>
@@ -1427,6 +1434,70 @@ in the archives</a> useful.
 If your proxies only allow you to connect to certain ports, look at the 
 entry on <a href="#FirewallPorts">Firewalled clients</a> for how 
 to restrict what ports your Tor will try to access. 
+</p>
+
+<hr>
+
+<a id="CantSetProxy"></a>
+<h3><a class="anchor" href="#CantSetProxy">What should I do if I can't 
+set a proxy with my application?</a></h3>
+
+<p>
+On Unix, we recommend you give <a 
+href="https://github.com/dgoulet/torsocks/">torsocks</a> a try. 
+Alternative proxifying tools like <a 
+href="http://www.dest-unreach.org/socat/">socat</a> and <a 
+href="http://proxychains.sourceforge.net/">proxychains</a> are also 
+available.</p>
+<p> 
+The Windows way to force applications through Tor is less clear. <a 
+href="http://freecap.ru/eng/">Some</a> <a 
+href="http://www.freehaven.net/~aphex/torcap/">tools</a> have been <a 
+href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
+</a>, but we'd also like to see further testing done here. 
+</p>
+
+<hr>
+
+<a id="WarningsAboutSOCKSandDNSInformationLeaks"></a>
+<h3><a class="anchor" href="#WarningsAboutSOCKSandDNSInformationLeaks">I 
+keep seeing these warnings about SOCKS and DNS information leaks. 
+Should I worry?</a></h3>
+<p>
+The warning is: 
+</p>
+<p>
+Your application (using socks5 on port %d) is giving Tor only an IP address. Applications that do DNS resolves themselves may leak information. Consider using Socks4A (e.g. via Polipo or socat) instead. 
+</p>
+<p>
+If you are running Tor to get anonymity, and you are worried about an attacker who is even slightly clever, then yes, you should worry. Here's why. 
+</p>
+<p>
+<b>The Problem.</b> When your applications connect to servers on the Internet, they need to resolve hostnames that you can read (like www.torproject.org) into IP addresses that the Internet can use (like 209.237.230.66). To do this, your application sends a request to a DNS server, telling it the hostname it wants to resolve. The DNS server replies by telling your application the IP address. 
+</p>
+<p>
+Clearly, this is a bad idea if you plan to connect to the remote host anonymously: when your application sends the request to the DNS server, the DNS server (and anybody else who might be watching) can see what hostname you are asking for. Even if your application then uses Tor to connect to the IP anonymously, it will be pretty obvious that the user making the anonymous connection is probably the same person who made the DNS request. 
+</p>
+<p>
+<b>Where SOCKS comes in.</b> Your application uses the SOCKS protocol to connect to your local Tor client. There are 3 versions of SOCKS you are likely to run into: SOCKS 4 (which only uses IP addresses), SOCKS 5 (which usually uses IP addresses in practice), and SOCKS 4a (which uses hostnames). 
+</p>
+<p>
+When your application uses SOCKS 4 or SOCKS 5 to give Tor an IP address, Tor guesses that it 'probably' got the IP address non-anonymously from a DNS server. That's why it gives you a warning message: you probably aren't as anonymous as you think. 
+</p>
+<p>
+<b>So what can I do?</b> We describe a few solutions below. 
+</p>
+<ul>
+<li>If your application speaks SOCKS 4a, use it. </li>
+<li>If you only need one or two hosts, or you are good at programming, you may be able to get a socks-based port-forwarder like socat to work for you; see <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO">the Torify HOWTO</a> for examples. </li>
+<li>Tor ships with a program called tor-resolve that can use the Tor network to look up hostnames remotely; if you resolve hostnames to IPs with tor-resolve, then pass the IPs to your applications, you'll be fine. (Tor will still give the warning, but now you know what it means.) </li>
+<!-- I'm not sure if this project is still maintained or not
+
+<li>You can use TorDNS as a local DNS server to rectify the DNS leakage. See the Torify HOWTO for info on how to run particular applications anonymously. </li>
+!-->
+</ul>
+<p>
+ If you think that you applied one of the solutions properly but still experience DNS leaks please verify there is no third-party application using DNS independently of Tor. Please see <a href="#AmITotallyAnonymous">the FAQ entry on whether you're really absolutely anonymous using Tor</a> for some examples. 
 </p>
 
 <hr>
@@ -3085,8 +3156,71 @@ diversity,
             
     <hr>
     
+    <a id="AmITotallyAnonymous"></a>
+    <h3><a class="anchor" href="#AmITotallyAnonymous">So I'm totally anonymous 
+    if I use Tor?</a></h3>
+
+    <p>
+    <b>No.</b>
+    </p>
+    <p>
+    First, Tor protects the network communications. It separates where you 
+    are from where you are going on the Internet. What content and data you 
+    transmit over Tor is controlled by you. If you login to Google or 
+    Facebook via Tor, the local ISP or network provider doesn't know you 
+    are visiting Google or Facebook. Google and Facebook don't know where 
+    you are in the world. However, since you have logged into their sites, 
+    they know who you are. If you don't want to share information, you are 
+    in control. 
+    </p>
+
+    <p>
+    Second, active content, such as Java, Javascript, Adobe Flash, Adobe 
+    Shockwave, QuickTime, RealAudio, ActiveX controls, and VBScript, are 
+    binary applications. These binary applications run as your user account 
+    with your permissions in your operating system. This means these 
+    applications can access anything that your user account can access. Some 
+    of these technologies, such as Java and Adobe Flash for instance, run in 
+    what is known as a virtual machine. This virtual machine may have the 
+    ability to ignore your configured proxy settings, and therefore bypass 
+    Tor and share information directly to other sites on the Internet. The 
+    virtual machine may be able to store data, such as cookies, completely 
+    separate from your browser or operating system data stores. Therefore, 
+    these technologies must be disabled in your browser to use Tor safely.
+    </p>
+    <p>
+    That's where the <a 
+    href="https://torproject.org/projects/torbrowser.html.en">Tor Browser 
+    Bundle</a> comes in. We produce a web browser that is preconfigured to 
+    help you control the risks to your privacy and anonymity while browsing 
+    the Internet. Not only are the above technologies disabled to prevent 
+    identity leaks, the Tor Browser also includes browser extensions like 
+    NoScript and Torbutton, as well as patches to the Firefox source
+    code. The full design of the Tor Browser can be read <a 
+    href="https://www.torproject.org/projects/torbrowser/design/">here</a>. 
+    In designing a safe, secure solution for browsing the web with Tor, 
+    we've discovered that configuring any other browser for use with Tor <a 
+    href="#TBBOtherBrowser">is not safe</a>.
+    </p>
+
+    <p>
+    Alternatively, you may find a Live CD or USB operating system more to 
+    your liking. The Tails team has created an <a 
+    href="https://tails.boum.org/">entire bootable operating system</a> 
+    configured for anonymity and privacy on the Internet. 
+    </p>
+
+    <p>
+    Tor is a work in progress. There is still <a 
+    href="https://www.torproject.org/getinvolved/volunteer">plenty of work 
+    left to do</a> for a strong, secure, and complete solution. 
+    </p>
+
+    <hr>
+
     <a id="ExitEnclaving"></a>
-    <h3><a class="anchor" href="#ExitEnclaving">What is Exit Enclaving?</a></h3>
+    <h3><a class="anchor" href="#ExitEnclaving">What is Exit Enclaving?</a>
+    </h3>
 
     <p>
     When a machine that runs a Tor relay also runs a public service, such as 
