@@ -132,12 +132,22 @@ country)
     </a></li>
     <li><a href="#WhyIsntMyRelayBeingUsedMore">Why isn't my relay being 
     used more?</a></li>
+    <li><a href="#IDontHaveAStaticIP">I don't have a static IP.</a></li>
+    <li><a href="#ModemKeepsCrashing">My cable/dsl modem keeps crashing. 
+    What's going on?</a></li>
+    <li><a href="#PortscannedMore">Why do I get portscanned more often 
+    when I run a Tor relay?</a></li>
+    <li><a href="#MoreThanOneCPU">I have more than one CPU. Does this 
+    help?</a></li>
     <li><a href="#HighCapacityConnection">How can I get Tor to fully 
     make use of my high capacity connection?</a></li>
     <li><a href="#RelayFlexible">How stable does my relay need to
 be?</a></li>
-    <li><a href="#ExitPolicies">I'd run a relay, but I don't want to
-deal
+    <li><a href="#BandwidthShaping">What bandwidth shaping options are 
+    available to Tor relays?</a></li>
+    <li><a href="#LimitTotalBandwidth">How can I limit the total amount 
+    of bandwidth used by my Tor relay?</a></li>
+    <li><a href="#ExitPolicies">I'd run a relay, but I don't want to deal
     with abuse issues.</a></li>
     <li><a href="#RelayOrBridge">Should I be a normal relay or bridge
     relay?</a></li>
@@ -1526,8 +1536,8 @@ it.)
 </p>
 
 <p>
-For other configuration options you can use, look at the <a href="<page
-docs/tor-manual>">Tor manual page</a>. Look at <a 
+For other configuration options you can use, see the <a href="<page
+docs/tor-manual>">Tor manual page</a>. Have a look at <a 
 href="https://gitweb.torproject.org/tor.git/blob/HEAD:/src/config/torrc.sample.in">
 the sample torrc file</a> for hints on common configurations. Remember, all 
 lines beginning with # in torrc are treated as comments and have no effect 
@@ -2031,6 +2041,82 @@ from the source code release tor-0.2.4.16-rc is:
     
     <hr>
 
+    <a id="IDontHaveAStaticIP"></a>
+    <h3><a class="anchor" href="#IDontHaveAStaticIP">I don't have a static 
+    IP.</a></h3>
+
+    <p>
+    Tor can handle relays with dynamic IP addresses just fine. Just leave 
+    the "Address" line in your torrc blank, and Tor will guess. 
+    </p>
+
+    <hr>
+
+    <a id="ModemKeepsCrashing"></a>
+    <h3><a class="anchor" href="#ModemKeepsCrashing">My cable/DSL modem 
+    keeps crashing. What's going on?</h3></a>
+
+    <p>
+    Tor relays hold many connections open at once. This is more intensive 
+    use than your cable modem (or other home router) would ever get normally. 
+    So if there are any bugs or instabilities, they might show up now. 
+    </p>
+    <p>
+    If your router keeps crashing, you've got two options. First, you should 
+    try to upgrade its firmware. If you need tips on how to do this, ask 
+    Google or your cable/router provider, or try the Tor IRC channel. 
+    </p>
+
+    <p>
+    Usually the firmware upgrade will fix it. If it doesn't, you will 
+    probably want to get a new (better) router. 
+    </p>
+
+    <hr>
+
+    <a id="PortscannedMore"></a>
+    <h3><a class="anchor" href="#PortscannedMore">Why do I get portscanned 
+    more often when I run a Tor relay?</a></h3>
+
+    <p>
+    If you allow exit connections, some services that people connect to 
+    from your relay will connect back to collect more information about you. 
+    For example, some IRC servers connect back to your identd port to record 
+    which user made the connection. (This doesn't really work for them, 
+    because Tor doesn't know this information, but they try anyway.) Also, 
+    users exiting from you might attract the attention of other users on the 
+    IRC server, website, etc. who want to know more about the host they're 
+    relaying through. 
+    </p>
+    <p>
+    Another reason is that groups who scan for open proxies on the Internet 
+    have learned that sometimes Tor relays expose their socks port to the 
+    world. We recommend that you bind your socksport to local networks only. 
+    </p>
+    <p>
+    In any case, you need to keep up to date with your security. See this <a 
+    href="https://trac.torproject.org/projects/tor/wiki/doc/OperationalSecurity">article 
+    on operational security for Tor relays</a> for more suggestions. 
+    </p>
+
+    <hr>
+
+    <a id="MoreThanOneCPU"></a>
+    <h3><a class="anchor" href="#MoreThanOneCPU">I have more than one CPU. 
+    Does this help?</a></h3>
+
+    <p>
+    Yes. You can set your NumCpus config option in torrc to the number of 
+    CPUs you have, and Tor will spawn this many cpuworkers to deal with 
+    public key operations in parallel. 
+    </p>
+
+    <p>
+    This option has no effect for clients. 
+    </p>
+
+    <hr>
+
     <a id="HighCapacityConnection"></a>    
     <h3><a class="anchor" href="#HighCapacityConnection">How can I get Tor to fully 
     make use of my high capacity connection?</a></h3>
@@ -2092,6 +2178,114 @@ too.
     </li>
     </ul>
 
+    <hr>
+    
+    <a id="BandwidthShaping"></a>
+    <h3><a class="anchor" href="#BandwidthShaping">What bandwidth shaping 
+    options are available to Tor relays?</a></h3>
+
+    <p>
+    There are two options you can add to your torrc file: 
+    </p>
+    <ul>
+    <li>
+    BandwidthRate is the maximum long-term bandwidth allowed (bytes per 
+    second). For example, you might want to choose "BandwidthRate 2 MB" 
+    for 2 megabytes per second (a fast connection), or "BandwidthRate 50 
+    KB" for 50 kilobytes per second (a medium-speed cable connection). 
+    The minimum BandwidthRate is 20 kilobytes per second. 
+    </li>
+    <li>
+    BandwidthBurst is a pool of bytes used to fulfill requests during 
+    short periods of traffic above BandwidthRate but still keeps the 
+    average over a long period to BandwidthRate. A low Rate but a high 
+    Burst enforces a long-term average while still allowing more traffic 
+    during peak times if the average hasn't been reached lately. For example, 
+    if you choose "BandwidthBurst 50 KB" and also use that for your 
+    BandwidthRate, then you will never use more than 50 kilobytes per second; 
+    but if you choose a higher BandwidthBurst (like 1 MB), it will allow 
+    more bytes through until the pool is empty.
+    </li>
+    </ul>
+    <p>
+    If you have an asymmetric connection (upload less than download) such 
+    as a cable modem, you should set BandwidthRate to less than your smaller 
+    bandwidth (Usually that's the upload bandwidth). (Otherwise, you could 
+    drop many packets during periods of maximum bandwidth usage -- you may 
+    need to experiment with which values make your connection comfortable.) 
+    Then set BandwidthBurst to the same as BandwidthRate. 
+    </p>
+    <p>
+    Linux-based Tor nodes have another option at their disposal: they can 
+    prioritize Tor traffic below other traffic on their machine, so that 
+    their own personal traffic is not impacted by Tor load. A ​<a 
+    href="https://gitweb.torproject.org/tor.git/blob/HEAD:/contrib/linux-tor-prio.sh">script
+    to do this</a> can be found in the Tor source distribution's contrib 
+    directory. 
+    </p>
+    <p>
+    Additionally, there are hibernation options where you can tell Tor to 
+    only serve a certain amount of bandwidth per time period (such as 100 
+    GB per month). These are covered in the <a 
+    href="#LimitTotalBandwidth">hibernation entry</a> below. 
+    </p>
+    <p>
+    Note that BandwidthRate and BandwidthBurst are in <b>Bytes,</b>not Bits. 
+    </p>
+
+    <hr>
+
+    <a id="LimitTotalBandwidth"></a>
+    <h3><a class="anchor" href="#LimitTotalBandwidth">How can I limit the 
+    total amount of bandwidth used by my Tor relay?</a></h3>
+    <p>
+    The accounting options in the torrc file allow you to specify the maximum 
+    amount of bytes your relay uses for a time period. 
+    </p>
+    <pre>
+    AccountingStart day week month [day] HH:MM
+    </pre>
+    <p>
+    This specifies when the accounting should reset. For instance, to setup 
+    a total amount of bytes served for a week (that resets every Wednesday 
+    at 10:00am), you would use: 
+    </p>
+    <pre>
+    AccountingStart week 3 10:00
+    AccountingMax N bytes KB MB GB TB
+    </pre>
+    <p>
+    This specifies the maximum amount of data your relay will send during an 
+    accounting period, and the maximum amount of data your relay will receive 
+    during an account period. When the accounting period resets (from 
+    AccountingStart), then the counters for AccountingMax are reset to 0.
+    </p>
+    <p>
+    Example. Let's say you want to allow 1 GB of traffic every day in each 
+    direction and the accounting should reset at noon each day: 
+    </p>
+    <pre>
+    AccountingStart day 12:00
+    AccountingMax 1 GB
+    </pre>
+    <p>
+    Note that your relay won't wake up exactly at the beginning of each 
+    accounting period. It will keep track of how quickly it used its 
+    quota in the last period, and choose a random point in the new interval 
+    to wake up. This way we avoid having hundreds of relays working at the 
+    beginning of each month but none still up by the end. 
+    </p>
+    <p>
+    If you have only a small amount of bandwidth to donate compared to your 
+    connection speed, we recommend you use daily accounting, so you don't 
+    end up using your entire monthly quota in the first day. Just divide 
+    your monthly amount by 30. You might also consider rate limiting to 
+    spread your usefulness over more of the day: if you want to offer X GB 
+    in each direction, you could set your BandwidthRate to 20*X. For example, 
+    if you have 10 GB to offer each way, you might set your BandwidthRate to 
+    200 KB: this way your relay will always be useful for at least half of 
+    each day. 
+    </p>
     <hr>
 
     <a id="ExitPolicies"></a>
