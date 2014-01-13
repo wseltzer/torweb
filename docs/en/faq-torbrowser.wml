@@ -1,0 +1,317 @@
+## translation metadata
+# Revision: $Revision: 25929 $
+# Translation-Priority: 2-medium
+
+#include "head.wmi" TITLE="Tor Project: Tor Browser FAQ" CHARSET="UTF-8"
+<div id="content" class="clearfix">
+  <div id="breadcrumbs">
+    <a href="<page index>">Home &raquo; </a>
+    <a href="<page docs/documentation>">Documentation &raquo; </a>
+    <a href="<page docs/faq-torbrowser>">Tor Browser FAQ</a>
+  </div>
+  <div id="maincol">
+    <!-- PUT CONTENT AFTER THIS TAG  -->
+    <h1>Tor Browser FAQ</h1>
+    <hr>
+    <h3>Questions</h3>
+    <ul>
+    <li><a href="#WhereDidVidaliaGo">Where did the world map (Vidalia) 
+    go?</a></li>
+    <li><a href="#DisableJS">How do I disable JavaScript?</a></li>
+    <li><a href="#VerifyDownload">How do I verify the download 
+    (sha256sums.txt)?</a></li>
+    <li><a href="#NewIdentityClosingTabs">Why does "New Identity" close 
+    all my open tabs?</a></li>
+    <li><a href="#ConfigureRelayOrBridge">How do I configure Tor as a relay 
+    or bridge?</a></li>
+    <li><a href="#Timestamps">Why are the file timestamps from 2000?</a></li>
+    <li><a href="#SourceCode">Where is the source code for the bundle? How do 
+    I verify a build?</a></li>
+    </ul>
+    <hr>
+
+    <a id="WhereDidVidaliaGo"></a>
+    <h3><a class="anchor" href="#WhereDidVidaliaGo">Where did the world map 
+    (Vidalia) go?</a></h3>
+
+    <p>Vidalia has been replaced with Tor Launcher, which is a Firefox 
+    extension that provides similar functionality. Unfortunately, circuit 
+    status reporting is still missing, but we are <a 
+    href="https://trac.torproject.org/projects/tor/ticket/8641">working 
+    on providing it</a>. </p>
+
+    <p>In the meantime, we are providing standalone Vidalia packages for 
+    people who still want the map. Windows and Linux versions are <a 
+    href="​https://people.torproject.org/~erinn/vidalia-standalone-bundles/">
+    available here</a>. 
+
+    <p>To use these packages, extract them, then run the startup script. 
+    On Windows, this is "Start Vidalia.exe". On Linux, it is start-vidalia. 
+    They can be placed in a different directory from TBB (and likely should 
+    be). </p>
+
+    <p>This Vidalia package will only run properly if Tor Browser has already 
+    been launched. You cannot start it before launching Tor Browser. </p>
+
+    <p>MacOS is still under development, but in the mean time you can modify 
+    your TBB 2.x to be a standalone Vidalia (and then use it after starting 
+    TBB 3.x) by opening your TBB 2.x vidalia.conf file in an editor and 
+    replacing its contents with just these lines:</p>
+
+    <pre>
+    [General]
+    LanguageCode=en
+
+    [Tor]
+    ControlPort=9151
+    TorExecutable=.
+    Torrc=.
+    DataDirectory=.
+    AuthenticationMethod=cookie
+    </pre> 
+
+    <hr>
+
+    <a id="DisableJS"></a>
+    <h3><a class="anchor" href="#DisableJS">How do I disable JavaScript?</a>
+    </h3>
+
+    <p>Alas, Mozilla decided to get rid of the config checkbox for JavaScript 
+    from earlier Firefox versions. And since TBB 3.5 is based on Firefox 24 
+    (FF17 is unmaintained), that means TBB 3.5 doesn't have the config 
+    checkbox anymore either, which is unfortunate.</p>
+
+    <p>The simplest way to disable JavaScript in TBB 3.5 is to click on the 
+    Noscript "S" (between the green onion and the address bar), and select 
+    "Forbid scripts globally". Note that vanilla NoScript actually whitelists 
+    several domains even when you try to disable scripts globally, whereas 
+    Tor Browser's NoScript configuration disables all of them. </p>
+
+    <p>The more klunky way to disable JavaScript is to go to about:config, 
+    find javascript.enabled, and set it to false.</p>
+
+    <p>There is also a very simple addon available at addons.mozilla.org
+    called QuickJS, which provides a toolbar toggle for the javascript.enabled
+    about:config control. There are no configuration options for the addon, 
+    it just switches the javascript.enabled entry between true and false and 
+    provides a button for it. </p>
+
+    <p>If you want to be extra safe, use both the about:config setting and 
+    NoScript. </p>
+
+    <p>As for whether you should disable it or leave it enabled, that's <a 
+    href="https://www.torproject.org/docs/faq#TBBJavaScriptEnabled">a 
+    tradeoff we leave to you</a>.</p>
+
+    <hr>
+
+    <a id="VerifyDownload"></a>
+    <h3><a class="anchor" href="#VerifyDownload">How do I verify the download
+    (sha256sums.txt)?</a></h3>
+
+    <p>You can still verify your Tor Browser download by downloading the 
+    signature file (.asc) along with your package and <a 
+    href="https://www.torproject.org/docs/verifying-signatures.html.en">
+    checking the GPG signature</a> as before. We now have an additional 
+    verification method that allows you to verify the build as well as 
+    the download.</p>
+
+    <ul>
+      <li>Download the Tor Browser package, the sha256sums.txt file, and the
+      sha256sums signature files. They can all be found in the same directory 
+      under <a href="https://www.torproject.org/dist/torbrowser/">
+      https://www.torproject.org/dist/torbrowser/</a>, for example in 3.5 
+      for TBB 3.5.</li>
+      <li>Retrieve the signers' GPG keys. This can be done from the command 
+      line by entering something like 
+      <pre>gpg --keyserver keys.mozilla.org --recv-keys 0x29846B3C683686CC</pre>
+      (This will bring you developer Mike Perry's public key. Other 
+      developers' key IDs can be found on
+      <a href="https://www.torproject.org/docs/signing-keys.html.en">this 
+      page</a>.)</li>
+      <li>Verify the sha256sums.txt file by executing this command:
+      <pre>gpg --verify &lt;NAME OF THE SIGNATURE FILE&gt;.asc sha256sums.txt</pre></li>
+      <li>You should see a message like "Good signature from &lt;DEVELOPER 
+      NAME&gt;". If you don't, there is a problem. Try these steps again.</li>
+      <li>Now you can take the sha256sum of the Tor Browser package. On 
+      Windows you can use the <a href="http://md5deep.sourceforge.net/">
+      hashdeep utility</a> and run
+      <pre>C:\location\where\you\saved\hashdeep -c sha256sum &lt;TOR BROWSER FILE NAME&gt;.exe</pre>
+      On Mac or Linux you can run <pre>sha256sum &lt;TOR BROWSER FILE NAME&gt;.zip</pre> or <pre>sha256sum &lt;TOR BROWSER FILE NAME&gt;.tar.gz</pre> without having to download a utility.</li>
+      <li>You will see a string of letters and numbers.</li>
+      <li>Open sha256sums.txt in a text editor.</li>
+      <li>Locate the name of the Tor Browser file you downloaded.</li>
+      <li>Compare the string of letters and numbers to the left of your
+      filename with the string of letters and numbers that appeared 
+      on your command line. If they match, you've successfully verified the 
+      build.</li> 
+    </ul>
+
+    <p><a href="https://github.com/isislovecruft/scripts/blob/master/verify-gitian-builder-signatures">
+    Scripts</a> to <a 
+    href="http://tor.stackexchange.com/questions/648/how-to-verify-tor-browser-bundle-tbb-3-x">automate
+    </a> these steps have been written, but to use them you will need to 
+    modify them yourself with the latest Tor Browser Bundle filename.</p>
+
+    <hr>
+
+    <a id="PluggableTransports"></a>
+    <h3><a class="anchor" href="#PluggableTransports">How do I use pluggable transports?</a></h3>
+
+    <p>
+    For now, the Pluggable Transports-capable TBB is still a separate 
+    unofficial package. Download them <a 
+    href="https://people.torproject.org/~dcf/pt-bundle/3.5-pt20131217/">
+    here</a>. We hope to have combined packages available in a beta soon.
+    </p>
+
+    <p>
+    The separate Pluggable Transports-capable TBB is different from the 
+    Pluggable Transports bundles that have been released in the past. 
+    They include the programs necessary to use obfsproxy and flash proxy, 
+    but the pluggable transports are not enabled by default. You must 
+    enable them manually by adding Bridge lines to the torrc file. 
+    (Please see ticket <a 
+    href="https://trac.torproject.org/projects/tor/ticket/10418">#10418</a> 
+    for how we hope to make it easier to do in the future.)
+    </p>
+
+    <p>
+    To enable <b>obfsproxy</b>, edit the file called Data/Tor/torrc inside the 
+    bundle and add the lines: 
+    </p>
+
+    <pre>
+Bridge obfs3 83.212.101.2:42782 2ADFE7AA8D272C520D1FBFBF4E413F3A1B26313D
+Bridge obfs3 83.212.101.2:443 2ADFE7AA8D272C520D1FBFBF4E413F3A1B26313D
+Bridge obfs3 169.229.59.74:31493 AF9F66B7B04F8FF6F32D455F05135250A16543C9
+Bridge obfs3 169.229.59.75:46328 AF9F66B7B04F8FF6F32D455F05135250A16543C9
+Bridge obfs3 209.141.36.236:45496
+Bridge obfs3 208.79.90.242:35658
+Bridge obfs3 109.105.109.163:38980 9D7259A696F7DAB073043B28114112A46D36CFFD
+Bridge obfs3 109.105.109.163:47779 844B1F53FFD548C998F8D3B01B7E19FA07C3396E
+Bridge obfs2 83.212.100.216:47870 1F01A7BB60F49FC96E0850A6BAD6D076DFEFAF80
+Bridge obfs2 83.212.96.182:46602 6F058CBEF888EB20D1DEB9886909F1E812245D41
+Bridge obfs2 70.182.182.109:54542 94C9E691688FAFDEC701A0788BD15BE8AD34ED35
+Bridge obfs2 128.31.0.34:1051 CA7434F14A898C7D3427B8295A7F83446BC7F496
+Bridge obfs2 83.212.101.2:45235 2ADFE7AA8D272C520D1FBFBF4E413F3A1B26313D
+    </pre>
+    <p>
+    To enable <b>flash proxy</b>, edit the file called Data/Tor/torrc inside the 
+    bundle and add the lines: 
+    </p>
+    <pre>
+LearnCircuitBuildTimeout 0
+CircuitBuildTimeout 60
+Bridge flashproxy 0.0.1.0:1
+    </pre>
+
+    <hr>
+
+    <a id="NewIdentityClosingTabs"></a>
+    <h3><a class="anchor" href="#NewIdentityClosingTabs">Why does "New 
+    Identity" close all my open tabs?</a></h3>
+
+    <p>
+    That's actually a feature, since it's discarding your application-level 
+    browser data too. But it sure is a surprising feature, for people who 
+    are used to Vidalia's "new identity" behavior.
+    </p>
+
+    <p>
+    We're working on ways to make the behavior less surprising, e.g. a popup 
+    warning or auto restoring tabs. See ticket <a 
+    href="https://trac.torproject.org/projects/tor/ticket/9906">#9906</a> and 
+    ticket <a href="https://trac.torproject.org/projects/tor/ticket/10400">
+    #10400</a> to follow progress there.
+    </p>
+
+    <p>
+    In the mean time, you can get Vidalia's old "newnym" functionality by 
+    attaching a Vidalia to your TBB3.x. See the instructions above.
+    </p>
+
+    <hr>
+
+    <a id="ConfigureRelayOrBridge"></a>
+    <h3><a class="anchor" href="#ConfigureRelayOrBridge">How do I configure Tor as a relay or bridge?</a></h3>
+
+    <p>
+    You've got three options. 
+    </p>
+
+    <p>
+    First (best option), if you're on Linux, you can install the system 
+    Tor package (e.g. apt-get install tor) and then set it up to be a relay 
+    (<a href="https://www.torproject.org/docs/tor-relay-debian">instructions</a>). 
+    You can then use TBB independent of that.
+    </p>
+
+    <p>
+    Second (simpler option), if you're on Windows, you can fetch the separate 
+    "Vidalia relay bundle" or "Vidalia bridge bundle" from the download page 
+    and then use that (again you can use TBB independent of it). 
+    </p>
+
+    <p>
+    Third (complex option), you can either hook your Vidalia up to TBB (as 
+    described in the FAQ above) or edit your torrc file (in Data/Tor/torrc) 
+    directly to add the following lines: 
+    </p>
+    <pre>
+    ORPort 443
+    Exitpolicy reject *:*
+    BridgeRelay 1  # only add this line if you want to be a bridge
+    </pre>
+    <p>
+    If you've installed <a 
+    href="https://www.torproject.org/projects/obfsproxy-debian-instructions.html.en#instructions">Obfsproxy</a>, 
+    you'll need to add one more line:
+    </p>
+    <pre>
+    ServerTransportPlugin obfs3 exec /usr/bin/obfsproxy managed
+    </pre>
+    <p>
+    This third option is pretty klunky right now; see e.g. <a 
+    href="https://trac.torproject.org/projects/tor/ticket/10449">this bug</a>; 
+    but we're hoping it will become an easy option in the future. 
+    </p>
+
+    <hr>
+
+    <a id="Timestamps"></a>
+    <h3><a class="anchor" href="#Timestamps">Why are the file timestamps 
+    from 2000?</a></h3>
+
+    <p>One of the huge new features in TBB 3.x is the "deterministic build" 
+    process, which allows many people to build the Tor Browser Bundle and 
+    verify that they all make exactly the same package. See Mike's <a 
+    href="https://blog.torproject.org/blog/deterministic-builds-part-one-cyberwar-and-global-compromise">first 
+    blog</a> post for the motivation, and his <a 
+    href="https://blog.torproject.org/blog/deterministic-builds-part-two-technical-details">second
+    blog post</a> for the technical details of how we do it. 
+    </p>
+
+    <p>Part of creating identical builds is having everybody use the same 
+    timestamp. Mike picked the beginning of 2000 for that time. The reason 
+    you might see 7pm in 1999 is because of time zones. </p>
+
+    <hr>
+
+    <a id="SourceCode"></a>
+    <h3><a class="anchor" href="#SourceCode">Where is the source code for the bundle? How do I verify a build?</a></h3>
+
+    <p>
+    Start with <a href="https://gitweb.torproject.org/builders/tor-browser-bundle.git">https://gitweb.torproject.org/builders/tor-browser-bundle.git</a> and <a href="https://gitweb.torproject.org/builders/tor-browser-bundle.git/blob/HEAD:/gitian/README.build">https://gitweb.torproject.org/builders/tor-browser-bundle.git/blob/HEAD:/gitian/README.build</a>.
+    </p>
+
+  </div>
+  <!-- END MAINCOL -->
+  <div id = "sidecol">
+#include "side.wmi"
+#include "info.wmi"
+  </div>
+  <!-- END SIDECOL -->
+</div>
+<!-- END CONTENT -->
+#include <foot.wmi>
