@@ -92,9 +92,6 @@ tells
     or SOCKS Proxy</a></li>
     <li><a href="#CantSetProxy">What should I do if I can't set a proxy 
     with my application?</a></li>
-    <li><a href="#WarningsAboutSOCKSandDNSInformationLeaks">I keep seeing 
-    these warnings about SOCKS and DNS information leaks. Should I 
-    worry?</a></li>
     <li><a href="#WhereDidVidaliaGo">Where did the world map (Vidalia) 
     go?</a></li>
     <li><a href="#DisableJS">How do I disable JavaScript?</a></li>
@@ -127,6 +124,9 @@ country)
     <li><a href="#FirewallPorts">My firewall only allows a few outgoing
     ports.</a></li>
     <li><a href="#DefaultExitPorts">Is there a list of default exit ports?</a></li>
+    <li><a href="#WarningsAboutSOCKSandDNSInformationLeaks">I keep seeing 
+    these warnings about SOCKS and DNS information leaks. Should I 
+    worry?</a></li>
     <li><a href="#SocksAndDNS">How do I check if my application that uses 
     SOCKS is leaking DNS requests?</a></li>
     <li><a href="#DifferentComputer">I want to run my Tor client on a 
@@ -222,7 +222,7 @@ uses.</a></li>
     </a></li>
     <li><a href="#RemotePhysicalDeviceFingerprinting">Does Tor resist 
     "remote physical device fingerprinting"?</a></li>
-    <li><a href="#VPN">What's safer, Tor or a VPN?</a></li>
+    <li><a href="#VPN">Is Tor like a VPN?</a></li>
     <li><a href="#Proxychains">Aren't 10 proxies (proxychains) better than 
     Tor with only 3 hops?</a></li>
     <li><a href="#AttacksOnOnionRouting">What attacks remain against onion 
@@ -1482,49 +1482,6 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
 
 <hr>
 
-<a id="WarningsAboutSOCKSandDNSInformationLeaks"></a>
-<h3><a class="anchor" href="#WarningsAboutSOCKSandDNSInformationLeaks">I 
-keep seeing these warnings about SOCKS and DNS information leaks. 
-Should I worry?</a></h3>
-<p>
-The warning is: 
-</p>
-<p>
-Your application (using socks5 on port %d) is giving Tor only an IP address. Applications that do DNS resolves themselves may leak information. Consider using Socks4A (e.g. via Polipo or socat) instead. 
-</p>
-<p>
-If you are running Tor to get anonymity, and you are worried about an attacker who is even slightly clever, then yes, you should worry. Here's why. 
-</p>
-<p>
-<b>The Problem.</b> When your applications connect to servers on the Internet, they need to resolve hostnames that you can read (like www.torproject.org) into IP addresses that the Internet can use (like 209.237.230.66). To do this, your application sends a request to a DNS server, telling it the hostname it wants to resolve. The DNS server replies by telling your application the IP address. 
-</p>
-<p>
-Clearly, this is a bad idea if you plan to connect to the remote host anonymously: when your application sends the request to the DNS server, the DNS server (and anybody else who might be watching) can see what hostname you are asking for. Even if your application then uses Tor to connect to the IP anonymously, it will be pretty obvious that the user making the anonymous connection is probably the same person who made the DNS request. 
-</p>
-<p>
-<b>Where SOCKS comes in.</b> Your application uses the SOCKS protocol to connect to your local Tor client. There are 3 versions of SOCKS you are likely to run into: SOCKS 4 (which only uses IP addresses), SOCKS 5 (which usually uses IP addresses in practice), and SOCKS 4a (which uses hostnames). 
-</p>
-<p>
-When your application uses SOCKS 4 or SOCKS 5 to give Tor an IP address, Tor guesses that it 'probably' got the IP address non-anonymously from a DNS server. That's why it gives you a warning message: you probably aren't as anonymous as you think. 
-</p>
-<p>
-<b>So what can I do?</b> We describe a few solutions below. 
-</p>
-<ul>
-<li>If your application speaks SOCKS 4a, use it. </li>
-<li>If you only need one or two hosts, or you are good at programming, you may be able to get a socks-based port-forwarder like socat to work for you; see <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO">the Torify HOWTO</a> for examples. </li>
-<li>Tor ships with a program called tor-resolve that can use the Tor network to look up hostnames remotely; if you resolve hostnames to IPs with tor-resolve, then pass the IPs to your applications, you'll be fine. (Tor will still give the warning, but now you know what it means.) </li>
-<!-- I'm not sure if this project is still maintained or not
-
-<li>You can use TorDNS as a local DNS server to rectify the DNS leakage. See the Torify HOWTO for info on how to run particular applications anonymously. </li>
-!-->
-</ul>
-<p>
- If you think that you applied one of the solutions properly but still experience DNS leaks please verify there is no third-party application using DNS independently of Tor. Please see <a href="#AmITotallyAnonymous">the FAQ entry on whether you're really absolutely anonymous using Tor</a> for some examples. 
-</p>
-
-    <hr>
-
     <a id="WhereDidVidaliaGo"></a>
     <h3><a class="anchor" href="#WhereDidVidaliaGo">Where did the world map 
     (Vidalia) go?</a></h3>
@@ -2263,6 +2220,80 @@ from the source code release tor-0.2.4.16-rc is:
 
     <hr>
 
+    <a id="WarningsAboutSOCKSandDNSInformationLeaks"></a>
+    <h3><a class="anchor" href="#WarningsAboutSOCKSandDNSInformationLeaks">I 
+    keep seeing these warnings about SOCKS and DNS information leaks. 
+    Should I worry?</a></h3>
+    <p>
+    The warning is: 
+    </p>
+    <p>
+    Your application (using socks5 on port %d) is giving Tor only an IP 
+    address. Applications that do DNS resolves themselves may leak 
+    information. Consider using Socks4A (e.g. via Polipo or socat) instead. 
+    </p>
+    <p>
+    If you are running Tor to get anonymity, and you are worried about an 
+    attacker who is even slightly clever, then yes, you should worry. Here's why. 
+    </p>
+    <p>
+    <b>The Problem.</b> When your applications connect to servers on the 
+    Internet, they need to resolve hostnames that you can read (like 
+    www.torproject.org) into IP addresses that the Internet can use (like 
+    209.237.230.66). To do this, your application sends a request to a DNS 
+    server, telling it the hostname it wants to resolve. The DNS server 
+    replies by telling your application the IP address. 
+    </p>
+    <p>
+    Clearly, this is a bad idea if you plan to connect to the remote host 
+    anonymously: when your application sends the request to the DNS server, 
+    the DNS server (and anybody else who might be watching) can see what 
+    hostname you are asking for. Even if your application then uses Tor to 
+    connect to the IP anonymously, it will be pretty obvious that the user 
+    making the anonymous connection is probably the same person who made 
+    the DNS request. 
+    </p>
+    <p>
+    <b>Where SOCKS comes in.</b> Your application uses the SOCKS protocol 
+    to connect to your local Tor client. There are 3 versions of SOCKS you 
+    are likely to run into: SOCKS 4 (which only uses IP addresses), SOCKS 5 
+    (which usually uses IP addresses in practice), and SOCKS 4a (which uses 
+    hostnames). 
+    </p>
+    <p>
+    When your application uses SOCKS 4 or SOCKS 5 to give Tor an IP address, 
+    Tor guesses that it 'probably' got the IP address non-anonymously from a 
+    DNS server. That's why it gives you a warning message: you probably aren't 
+    as anonymous as you think. 
+    </p>
+    <p>
+    <b>So what can I do?</b> We describe a few solutions below. 
+    </p>
+    <ul>
+    <li>If your application speaks SOCKS 4a, use it. </li>
+    <li>If you only need one or two hosts, or you are good at programming, 
+    you may be able to get a socks-based port-forwarder like socat to work 
+    for you; see <a 
+    href="https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO">the 
+    Torify HOWTO</a> for examples. </li>
+    <li>Tor ships with a program called tor-resolve that can use the Tor 
+    network to look up hostnames remotely; if you resolve hostnames to IPs 
+    with tor-resolve, then pass the IPs to your applications, you'll be fine. 
+    (Tor will still give the warning, but now you know what it means.) </li>
+<!-- I'm not sure if this project is still maintained or not
+
+<li>You can use TorDNS as a local DNS server to rectify the DNS leakage. See the Torify HOWTO for info on how to run particular applications anonymously. </li>
+!-->
+    </ul>
+    <p>If you think that you applied one of the solutions properly but still 
+    experience DNS leaks please verify there is no third-party application 
+    using DNS independently of Tor. Please see <a 
+    href="#AmITotallyAnonymous">the FAQ entry on whether you're really 
+    absolutely anonymous using Tor</a> for some examples. 
+    </p>
+
+    <hr>
+
     <a id="SocksAndDNS"></a>
     <h3><a class="anchor" href="#SocksAndDNS">How do I check if my application that uses 
     SOCKS is leaking DNS requests?</a></h3>
@@ -2643,7 +2674,7 @@ users
     connect from localhost. Connections from other computers are 
     refused. If you want to torify applications on different computers 
     than the Tor client, you should edit your torrc to define 
-    SocksListenAddress 0.0.0.0 g and then restart (or hup) Tor. If you 
+    SocksListenAddress 0.0.0.0 and then restart (or hup) Tor. If you 
     want to get more advanced, you can configure your Tor client on a 
     firewall to bind to your internal IP but not your external IP.  
     </p>
@@ -3989,7 +4020,7 @@ ZKS's Freedom network could) -- but maybe that's a good thing at this stage.
     <hr>
 
     <a id="VPN"></a>
-    <h3><a class="anchor" href="#VPN">What's safer, Tor or a VPN?</a></h3>
+    <h3><a class="anchor" href="#VPN">Is Tor like a VPN?</a></h3>
     
     <p>
     Some people use Virtual Private Networks (VPNs) as a privacy solution. 
