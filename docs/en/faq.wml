@@ -63,8 +63,12 @@ includes Tor?</a></li>
 
     <li><a href="#TBBFlash">Why can't I view videos on YouTube and other
     Flash-based sites?</a></li>
-    <li><a href="#Ubuntu">I'm using Ubuntu and I can't start Tor Browser
+    <li><a href="#Ubuntu">I'm using Ubuntu, and I can't start Tor Browser.
     </a></li>
+    <li><a href="#UbuntuBlackedOut">I'm using Ubuntu, and I can't type 
+    anything into my browser.</a></li>
+    <li><a href="#SophosOnMac">I'm using the Sophos anti-virus
+    software on my Mac, and Tor Browser won't start.</a></li>
     <li><a href="#TBBSocksPort">I want to
     run another application through the Tor launched by Tor Browser
     Bundle.</a></li>
@@ -1122,7 +1126,7 @@ find HTML5 videos.
 
 <a id="Ubuntu"></a>
 <h3><a class="anchor" href="#Ubuntu">
-I'm using Ubuntu and I can't start Tor Browser</a></h3>
+I'm using Ubuntu and I can't start Tor Browser.</a></h3>
 <p>
 Ubuntu prevents its users from executing shell scripts by clicking them, 
 even when the file permissions are set correctly. For now you need to 
@@ -1132,6 +1136,37 @@ start the Tor Browser from the command line by running </p>
 </pre>
 <p>
 from inside the Tor Browser directory.
+</p>
+
+<a id="UbuntuBlackedOut"></a>
+<h3><a class="anchor" href="#UbuntuBlackedOut">
+I'm using Ubuntu, and I can't type anything into my browser.</a></h3>
+<p>Another issue affecting Ubuntu users is that when Tor Browser opens, text
+fields, including the address bar, are blacked out and can not be used.
+This is not so great, and we hope to include a fix in a coming release. 
+In the mean time, this issue can be worked around by editing the 
+start-tor-browser script and adding the following line below line 1:</p>
+<pre>
+export GTK_IM_MODULE=xim
+</pre>
+<p>This issue is related to the version of IBUS that ships with Ubuntu. 
+Some users have also reported success by executing this command</p>
+<pre>
+ibus exit
+</pre>
+<p>To follow the progress of this issue, see this <a 
+href="https://trac.torproject.org/projects/tor/ticket/9353">bug ticket.</a>
+</p>
+
+<hr>
+
+<a id="SophosOnMac"></a>
+<h3><a class="anchor" href="#SophosOnMac">I'm using the Sophos anti-virus
+software on my Mac, and Tor Browser won't start.</a></h3>
+<p>
+You'll need to modify Sophos anti-virus so that Tor can connect to the 
+internet. Go to Preferences -> Web Protection -> General, and turn off 
+the protections for "Malicious websites" and "Malicious downloads".
 </p>
 
 <hr>
