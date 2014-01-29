@@ -36,6 +36,8 @@ proxies?</a></li>
     <li><a href="#IsItWorking">How can I tell if Tor is working, and that my 
     connections really are anonymized?</a></li>
     <li><a href="#FTP">How do I use my browser for ftp with Tor?</a></li>
+    <li><a href="#NoDataScrubbing">Does Tor remove personal information 
+    from the data my application sends?</a></li>
     <li><a href="#Metrics">How many people use Tor? How many relays or
     exit nodes are there?</a></li>
     <li><a href="#SSLcertfingerprint">What are your SSL certificate
@@ -246,6 +248,10 @@ packets,
     length.</a></li>
     <li><a href="#SplitEachConnection">You should split each connection over 
     many paths.</a></li>
+    <li><a href="#MigrateApplicationStreamsAcrossCircuits">You should migrate 
+    application streams across circuits.</a></li>
+    <li><a href="#LetTheNetworkPickThePath">You should let the network pick 
+    the path, not the client.</a></li>
     <li><a href="#UnallocatedNetBlocks">Your default exit policy should block 
     unallocated net blocks too.</a></li>
     <li><a href="#BlockWebsites">Exit policies should be able to block 
@@ -928,8 +934,24 @@ executive
     configure it to point to Tor as a "socks4a" proxy on "localhost" port 
     "9050". 
     </p>
+
     <hr>
     
+    <a id="NoDataScrubbing"></a>
+    <h3><a class="anchor" href="#NoDataScrubbing">Does Tor remove personal 
+    information from the data my application sends?</a></h3>
+
+    <p>No, it doesn't. You need to use a separate program that understands 
+    your application and protocol and knows how to clean or "scrub" the data 
+    it sends. The Tor Browser Bundle tries to keep application-level data, 
+    like the user-agent string, uniform for all users. The Tor Browser can't 
+    do anything about text that you type into forms, though. <a 
+    href="https://www.torproject.org/download/download-easy.html.en#warning">Be 
+    careful and be smart.</a>
+    </p>
+
+    <hr>
+
     <a id="Metrics"></a>
     <h3><a class="anchor" href="#Metrics">How many people use Tor? How
     many relays or exit nodes are there?</a></h3>
@@ -1091,13 +1113,9 @@ better vendor.
     Tar is a common archive utility for Unix and Linux systems. If your
     system has a mouse, you can usually open them by double clicking. 
     Otherwise open a command prompt and execute 
-    <pre>
-    tar xzf &lt;FILENAME&gt;.tar.gz
-    </pre>
+    <pre>tar xzf &lt;FILENAME&gt;.tar.gz</pre>
     or
-    <pre>
-    tar xJf &lt;FILENAME&gt;.tar.xz
-    </pre>
+    <pre>tar xJf &lt;FILENAME&gt;.tar.xz</pre>
     <p>
     as documented in tar's man page. 
     </p>
@@ -1152,9 +1170,7 @@ I'm using Ubuntu and I can't start Tor Browser.</a></h3>
 Ubuntu prevents its users from executing shell scripts by clicking them, 
 even when the file permissions are set correctly. For now you need to 
 start the Tor Browser from the command line by running </p>
-<pre>
-./start-tor-browser
-</pre>
+<pre>./start-tor-browser</pre>
 <p>
 from inside the Tor Browser directory.
 </p>
@@ -1169,14 +1185,10 @@ fields, including the address bar, are blacked out and can not be used.
 This is not so great, and we hope to include a fix in a coming release. 
 In the mean time, this issue can be worked around by editing the 
 start-tor-browser script and adding the following line below line 1:</p>
-<pre>
-export GTK_IM_MODULE=xim
-</pre>
+<pre>export GTK_IM_MODULE=xim</pre>
 <p>This issue is related to the version of IBUS that ships with Ubuntu. 
 Some users have also reported success by executing this command</p>
-<pre>
-ibus exit
-</pre>
+<pre>ibus exit</pre>
 <p>To follow the progress of this issue, see this <a 
 href="https://trac.torproject.org/projects/tor/ticket/9353">bug ticket.</a>
 </p>
@@ -1434,8 +1446,7 @@ of those names is "hl". If you set "hl" to "en" then Google will return
 search results in English regardless of what Google server you have been 
 sent to. On a query this looks like: 
 </p>
-<pre>https://encrypted.google.com/search?q=online%20anonymity&hl=en
-</pre>
+<pre>https://encrypted.google.com/search?q=online%20anonymity&hl=en</pre>
 <p>
 Another method is to simply use your country code for accessing Google. 
 This can be google.be, google.de, google.us and so on. 
@@ -1695,8 +1706,8 @@ Bridge obfs3 83.212.101.2:42782 2ADFE7AA8D272C520D1FBFBF4E413F3A1B26313D
 Bridge obfs3 83.212.101.2:443 2ADFE7AA8D272C520D1FBFBF4E413F3A1B26313D
 Bridge obfs3 169.229.59.74:31493 AF9F66B7B04F8FF6F32D455F05135250A16543C9
 Bridge obfs3 169.229.59.75:46328 AF9F66B7B04F8FF6F32D455F05135250A16543C9
-Bridge obfs3 209.141.36.236:45496
-Bridge obfs3 208.79.90.242:35658
+Bridge obfs3 209.141.36.236:45496 58D91C3A631F910F32E18A55441D5A0463BA66E2
+Bridge obfs3 208.79.90.242:35658 BA61757846841D64A83EA2514C766CB92F1FB41F
 Bridge obfs3 109.105.109.163:38980 9D7259A696F7DAB073043B28114112A46D36CFFD
 Bridge obfs3 109.105.109.163:47779 844B1F53FFD548C998F8D3B01B7E19FA07C3396E
 Bridge obfs2 83.212.100.216:47870 1F01A7BB60F49FC96E0850A6BAD6D076DFEFAF80
@@ -4462,6 +4473,56 @@ parameters, if any, could provide increased end-to-end security, our
 current strategy is to minimize the number of places that the adversary 
 could possibly see.
     </p>
+
+    <hr>
+
+    <a id="MigrateApplicationStreamsAcrossCircuits"></a>
+    <h3><a class="anchor" href="#MigrateApplicationStreamsAcrossCircuits">You 
+    should migrate application streams across circuits.</a></h3>
+    <p>This would be great for two reasons. First, if a circuit breaks, we 
+    would be able to shift its active streams onto a new circuit, so they 
+    don't have to break. Second, it is conceivable that we could get 
+    increased security against certain attacks by migrating streams 
+    periodically, since leaving a stream on a given circuit for many hours 
+    might make it more vulnerable to certain adversaries.</p>
+
+    <p>There are two problems though. First, Tor would need a much more 
+    bulky protocol. Right now each end of the Tor circuit just sends the 
+    cells, and lets TCP provide the in-order guaranteed delivery. If we 
+    can move streams across circuits, though, we would need to add queues 
+    at each end of the circuit, add sequence numbers so we can send and 
+    receive acknowledgements for cells, and so forth. These changes would 
+    increase the complexity of the Tor protocol considerably. Which leads 
+    to the second problem: if the exit node goes away, there's nothing we 
+    can do to save the TCP connection. Circuits are typically three hops 
+    long, so in about a third of the cases we just lose.</p>
+
+    <p>Thus our current answer is that since we can only improve things by 
+    at best 2/3, it's not worth the added code and complexity. If somebody 
+    writes a protocol specification for it and it turns out to be pretty 
+    simple, we'd love to add it.</p>
+
+    <p>But there are still some approaches we can take to improve the 
+    reliability of streams. The main approach we have now is to specify 
+    that streams using certain application ports prefer circuits to be 
+    made up of stable nodes. These ports are specified in the "LongLivedPorts" 
+    <a href="#torrc">torrc</a> option, and they default to
+    <pre>21,22,706,1863,5050,5190,5222,5223,6667,6697,8300</pre>. The 
+    definition of "stable" is an open research question, since we can only 
+    guess future stability based on past performance. Right now we judge 
+    that a node is stable if it advertises that it has been up for more 
+    than a day. Down the road we plan to refine this so it takes into 
+    account the average stability of the other nodes in the Tor network.</p>
+
+    <hr>
+
+    <a id="LetTheNetworkPickThePath"></a>
+    <h3><a class="anchor" href="#LetTheNetworkPickThePath">You should 
+    let the network pick the path, not the client</a></h3>
+
+    <p>No. You cannot trust the network to pick the path for relays could 
+    collude and route you through their colluding friends. This would give 
+    an adversary the ability to watch all of your traffic end to end.</p>
 
     <hr>
 
