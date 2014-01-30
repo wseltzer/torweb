@@ -1113,11 +1113,9 @@ better vendor.
     Tar is a common archive utility for Unix and Linux systems. If your
     system has a mouse, you can usually open them by double clicking. 
     Otherwise open a command prompt and execute 
-    <pre>tar xzf &lt;FILENAME&gt;.tar.gz</pre>
-    or
-    <pre>tar xJf &lt;FILENAME&gt;.tar.xz</pre>
+    <pre>tar xzf &lt;FILENAME&gt;.tar.gz</pre> or <pre>tar xJf &lt;FILENAME&gt;.tar.xz</pre>
     <p>
-    as documented in tar's man page. 
+    as documented on tar's man page. 
     </p>
 
     <hr>
@@ -2678,6 +2676,57 @@ too.
     200 KB: this way your relay will always be useful for at least half of 
     each day. 
     </p>
+
+    <hr>
+
+    <a id="RelayWritesMoreThanItReads"></a>
+    <h3>< class="anchor" href="#RelayWritesMoreThanItReads">Why does my relay 
+    write more bytes onto the network than it reads?</h3>
+
+    <p>You're right, for the most part a byte into your Tor relay means a 
+    byte out, and vice versa. But there are a few exceptions:</p>
+
+    <p>If you open your DirPort, then Tor clients will ask you for a copy of 
+    the directory. The request they make (an HTTP GET) is quite small, and the 
+    response is sometimes quite large. This probably accounts for most of the 
+    difference between your "write" byte count and your "read" byte count.</p>
+
+    <p>Another minor exception shows up when you operate as an exit node, and 
+    you read a few bytes from an exit connection (for example, an instant 
+    messaging or ssh connection) and wrap it up into an entire 512 byte cell 
+    for transport through the Tor network.</p>
+
+    <hr>
+
+    <a id="Hibernation"></a>
+    <h3><a class="anchor" href="#Hibernation">Why can I not browse anymore 
+    after limiting bandwidth on my Tor relay?</a>
+
+    <p>The parameters assigned in the <a 
+    href="#LimitTotalBandwidth">AccountingMax</a> and <a 
+    href="#BandwidthShaping">BandwidthRate</a> apply to both client and 
+    relay functions of the Tor process. Thus you may find that you are unable 
+    to browse as soon as your Tor goes into hibernation, signaled by this 
+    entry in the log:</p>
+
+    <pre>Bandwidth soft limit reached; commencing hibernation. No new 
+    connections will be accepted</pre>
+
+    <p>The solution is to run two Tor processes - one relay and one client, 
+    each with its own config. One way to do this (if you are starting from a 
+    working relay setup) is as follows:</p>
+
+    <ul>
+        <li>In the relay Tor torrc file, simply set the SocksPort to 0.</li>
+        <li>Create a new client torrc file from the torrc.sample and ensure 
+        it uses a different log file from the relay. One naming convention 
+        may be torrc.client and torrc.relay.</li>
+        <li>Modify the Tor client and relay startup scripts to include 
+        '-f /path/to/correct/torrc'.</li>
+        <li>In Linux/BSD/OSX, changing the startup scripts to Tor.client 
+        and Tor.relay may make separation of configs easier.</li>
+    </ul>
+
     <hr>
 
     <a id="ExitPolicies"></a>
@@ -4420,7 +4469,7 @@ their path length.</a></h3>
  href="https://svn.torproject.org/svn/tor/trunk/doc/design-paper/tor-design.html#subsec:threat-model">
  the best way to attack Tor is to attack the endpoints and ignore the middle 
  of the path
- </a>.
+</a>.
 </p>
 <p>
  And we don't want to encourage people to use paths of length 1 either. 
@@ -4506,12 +4555,12 @@ could possibly see.
     reliability of streams. The main approach we have now is to specify 
     that streams using certain application ports prefer circuits to be 
     made up of stable nodes. These ports are specified in the "LongLivedPorts" 
-    <a href="#torrc">torrc</a> option, and they default to
-    <pre>21,22,706,1863,5050,5190,5222,5223,6667,6697,8300</pre>. The 
-    definition of "stable" is an open research question, since we can only 
-    guess future stability based on past performance. Right now we judge 
-    that a node is stable if it advertises that it has been up for more 
-    than a day. Down the road we plan to refine this so it takes into 
+    <a href="#torrc">torrc</a> option, and they default to</p>
+    <pre>21,22,706,1863,5050,5190,5222,5223,6667,6697,8300</pre>
+    <p>The definition of "stable" is an open research question, since we 
+    can only guess future stability based on past performance. Right now 
+    we judge that a node is stable if it advertises that it has been up 
+    for more than a day. Down the road we plan to refine this so it takes into 
     account the average stability of the other nodes in the Tor network.</p>
 
     <hr>
