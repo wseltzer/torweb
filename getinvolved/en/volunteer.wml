@@ -240,7 +240,7 @@ meetings around the world.</li>
         <td>Client Add-on</td>
         <td>Python, JavaScript, Go</td>
         <td>Heavy</td>
-        <td>dcf, aallai, jct</td>
+        <td>dcf, infinity0, aallai, jct</td>
       </tr>
 
       <tr>
@@ -1070,25 +1070,66 @@ meetings around the world.</li>
     <br>
     Skill Level: <i>Medium</i>
     <br>
-    Likely Mentors: <i>Steven (sjmurdoch), George (asn)</i>
+    Likely Mentors: <i>Steven (sjmurdoch), Ximin (infinity0), George (asn)</i>
     <p>
-    For Tor users in censored countries, we currently offer <a
-    href="https://www.torproject.org/projects/obfsproxy.html.en">obfsproxy</a>
-    bridges, which disguise Tor traffic by making it look random. This works
-    for many users, but it has disadvantages: firstly it does not disguise
-    packet size and secondly it looks like no real protocol. These weaknesses
-    may result in obfsproxy being blocked.
+    For Tor users in censored countries, we have a <a
+    href="https://www.torproject.org/docs/pluggable-transports.html.en">
+    pluggable transports</a> framework that uses external programs to bypass
+    censorship in different ways. Each of these have their own strengths and
+    weaknesses.
     </p>
 
     <p>
-    The goal for this project will be to implement new pluggable transports,
-    which resolve these weaknesses and so can be deployed if/when obfsproxy is
-    blocked. Ideas for doing so include:
-      <ul>
-        <li>Impersonate a voice-over-IP protocol</li>
-        <li>Impersonate HTTP sufficiently well that traffic will go through a HTTP-only proxy</li>
-        <li>Implement <a href="http://cacr.uwaterloo.ca/techreports/2011/cacr2011-21.pdf">scanning resistance</a></a>
-      </ul>
+    We have deployed <a
+    href="https://www.torproject.org/projects/obfsproxy.html.en">obfsproxy</a>
+    and <a href="http://crypto.stanford.edu/flashproxy/">flashproxy</a> bridges
+    for a while, accessible using separately-installed pluggable transport
+    clients. Recently, we added this client support to the main Tor Browser
+    Bundle, and are adding more transports such as scramblesuit and fteproxy.
+    </p>
+
+    <p>
+    There are several possible directions for this project. Ideas include:
+      <ol>
+        <li>Address gaps or weaknesses in our existing pluggable transports
+          <ul>
+            <li>Flashproxy: Add WebRTC support to traverse NATs.</li>
+            <li>Flashproxy: Improve the facilitator's resistance against DoS
+            and poisoning attacks.</li>
+          </ul>
+        </li>
+        <li>Build our pluggable transport combiner, that chains several
+        transports together to take advantage of orthogonal types of blocking
+        resistance.</li>
+        <li>Improve the UX for selecting the appropriate pluggable transport in
+        the new Tor Browser Bundle, whilst maintaining user security.</li>
+        <li>Implement a new pluggable transport that resists blocking in a
+        novel way.
+        <ul>
+          <li>Impersonate a voice-over-IP protocol</li>
+          <li>Impersonate HTTP <a
+          href="http://www.cs.utexas.edu/~amir/papers/parrot.pdf">sufficiently
+          well</a> that traffic will go through a HTTP-only proxy</li>
+          <li>Implement <a
+          href="http://cacr.uwaterloo.ca/techreports/2011/cacr2011-21.pdf">scanning
+          resistance</a></li>
+        </ul>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+    Applicants should be familiar with asynchronous/reactive programming, in
+    particular the <a href="https://twistedmatrix.com/">Twisted framework</a>
+    or something related. Most of the existing code is written in Python, with
+    some parts in JavaScript and Go, so you should know at least one of these.
+    You are invited to talk to us and ask questions, via our mailing lists
+    or IRC. <b>As part of your application, please contribute a patch that
+    implements a small feature or fixes a bug related to this area, e.g. <a
+    href="https://trac.torproject.org/projects/tor/query?status=!closed&component=Pluggable+transport">1</a>,
+    <a href="https://trac.torproject.org/projects/tor/query?status=!closed&component=Obfsproxy">2</a>,
+    <a href="https://trac.torproject.org/projects/tor/query?status=!closed&component=Flashproxy">3</a>.
+    </b>
     </p>
 
     <a id="hsSearchEngine"></a>
