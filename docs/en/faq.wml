@@ -173,7 +173,12 @@ be?</a></li>
     limiting bandwidth on my Tor relay?</a></li>
     <li><a href="#ExitPolicies">I'd run a relay, but I don't want to deal
     with abuse issues.</a></li>
-    <li><a href="#DifferentComputer">I want to run my Tor client on a 
+    <li><a href="#WhatIsTheBadExitFlag">What is the BadExit flag?</a></li>
+    <li><a href="#IGotTheBadExitFlagWhyDidThatHappen">I got the BadExit flag. 
+    Why did that happen?</a></li>
+    <li><a href="#MyRelayRecentlyGotTheGuardFlagAndTrafficDroppedByHalf">My 
+    relay recently got the Guard flag and traffic dropped by half.</a></li>
+    <li><a href="#TorClientOnADifferentComputerThanMyApplications">I want to run my Tor client on a 
     different computer than my applications.</a></li>
     <li><a href="#ServerClient">Can I install Tor on a central server, and 
     have my clients connect to it?</a></li>
@@ -195,6 +200,8 @@ relay.</a></li>
     </a></li>
     <li><a href="#BetterAnonymity">Do I get better anonymity if I run a relay?
     </a></li>
+    <li><a href="#FacingLegalTrouble">I'm facing legal trouble. How do I 
+    prove that my server was a Tor relay at a given time?</a></li>
     <li><a href="#RelayDonations">Can I donate for a relay rather than
     run my own?</a></li>
     </ul>
@@ -242,11 +249,13 @@ uses.</a></li>
     </a></li>
     <li><a href="#RemotePhysicalDeviceFingerprinting">Does Tor resist 
     "remote physical device fingerprinting"?</a></li>
-    <li><a href="#VPN">Is Tor like a VPN?</a></li>
+    <li><a href="#IsTorLikeAVPN">Is Tor like a VPN?</a></li>
+    <li><a href="#ShouldIUseTorWithAVPN">Should I use Tor with a VPN?</a></li>
     <li><a href="#Proxychains">Aren't 10 proxies (proxychains) better than 
     Tor with only 3 hops?</a></li>
     <li><a href="#AttacksOnOnionRouting">What attacks remain against onion 
     routing?</a></li>
+    <li><a href="#LearnMoreAboutAnonymity">Where can I learn more about anonymity?</a></li>
     </ul>
 
     <p><a href="#AlternateDesigns">Alternate designs that we don't do (yet):</a></p>
@@ -2818,9 +2827,49 @@ users
 
     <hr>
 
-    <a id="DifferentComputer"></a>
-    <h3><a class="anchor" href="#DifferentComputer">I want to run my 
-    Tor client on a different computer than my applications.</a></h3>
+    <a id="WhatIsTheBadExitFlag"></a>
+    <h3><a class="anchor" href="#WhatIsTheBadExitFlag">What is the 
+    BadExit flag?</a></h3>
+
+    <p>When an exit is misconfigured or malicious it's assigned the BadExit 
+    flag. This tells Tor to avoid exiting through that relay. In effect, 
+    relays with this flag become non-exits.</p>
+
+    <hr>
+
+    <a id="IGotTheBadExitFlagWhyDidThatHappen"></a>
+    <h3><a class="anchor" href="#IGotTheBadExitFlagWhyDidThatHappen">I got
+    the BadExit flag why did that happen?</a></h3>
+
+    <p>If you got this flag then we either discovered a problem or suspicious 
+    activity coming from your exit and weren't able to contact you. The reason 
+    for most flaggings are documented on the <a 
+    href="https://trac.torproject.org/projects/tor/wiki/doc/badRelays">bad 
+    relays wiki</a>. Please <a 
+    href="https://torproject.org/about/contact.html.en">contact us</a> so 
+    we can sort out the issue.</p>
+
+    <hr>
+
+    <a id="MyRelayRecentlyGotTheGuardFlagAndTrafficDroppedByHalf"></a>
+    <h3><a class="anchor" href="#MyRelayRecentlyGotTheGuardFlagAndTrafficDroppedByHalf">My 
+    relay recently got the Guard flag and traffic dropped by half.</a></h3>
+    <p>
+    Since it's now a guard, clients are using it less in other positions, but 
+    not many clients have rotated their existing guards out to use it as a 
+    guard yet. Read more details in this <a 
+    href="https://blog.torproject.org/blog/lifecycle-of-a-new-relay">blog 
+    post</a> or in <a href="http://freehaven.net/anonbib/#wpes12-cogs">Changing 
+    of the Guards: A Framework for Understanding and Improving Entry Guard 
+    Selection in Tor</a>.
+    </p>
+    
+    <hr>
+
+    <a id="TorClientOnADifferentComputerThanMyApplications"></a>
+    <h3><a class="anchor" href="#TorClientOnADifferentComputerThanMyApplications">I 
+    want to run my Tor client on a different computer than my applications.
+    </a></h3>
     <p>
     By default, your Tor client only listens for applications that 
     connect from localhost. Connections from other computers are 
@@ -3379,6 +3428,19 @@ It is an open research question whether the benefits outweigh the risks.
 A lot of that depends on the attacks you are most worried about. For 
 most users, we think it's a smart move. 
     </p>
+
+    <hr>
+
+    <a id="FacingLegalTrouble"></a>
+    <h3><a class="anchor" href="#FacingLegalTrouble">I'm facing legal 
+    trouble. How do I prove that my server was a Tor relay at a given 
+    time?</a></h3>
+
+    <p><a href="https://exonerator.torproject.org/">
+    Exonerator</a> is a web service that can check if an IP address was a 
+    relay at a given time. We can also <a 
+    href="https://torproject.org/about/contact.html.en">provide a signed 
+    letter</a> if needed.</p>
 
     <hr>
 
@@ -4183,8 +4245,8 @@ ZKS's Freedom network could) -- but maybe that's a good thing at this stage.
 
     <hr>
 
-    <a id="VPN"></a>
-    <h3><a class="anchor" href="#VPN">Is Tor like a VPN?</a></h3>
+    <a id="IsTorLikeAVPN"></a>
+    <h3><a class="anchor" href="#IsTorLikeAVPN">Is Tor like a VPN?</a></h3>
     
     <p>
     Some people use Virtual Private Networks (VPNs) as a privacy solution. 
@@ -4221,7 +4283,21 @@ ZKS's Freedom network could) -- but maybe that's a good thing at this stage.
     href="https://www.torproject.org/about/overview.html.en#thesolution">encrypted 
     three-hop circuit</a> design.
     </p>
-    
+
+    <hr>
+
+    <a id="ShouldIUseTorWithAVPN"></a>
+    <h3><a class="anchor" href="#ShouldIUseTorWithAVPN">Should I use Tor 
+    with a VPN?</a></h3>
+
+    <p>
+    This <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorPlusVPN">wiki 
+    page</a> discusses costs and benefits. However, if you're looking 
+    for a trusted entry into the Tor network, <a 
+    href="https://www.torproject.org/docs/bridges#RunningABridge">setting up 
+    a private Tor server as a bridge</a> is a great option.
+    </p>
+
     <hr>
 
     <a id="Proxychains"></a>
@@ -4281,6 +4357,15 @@ Perhaps even run separate Tor clients for these applications.
 
     <hr>
 
+    <a id="LearnMoreAboutAnonymity"></a>
+    <h3><a class="anchor" href="#LearnMoreAboutAnonymity">Where can I 
+    learn more about anonymity?</a></h3>
+
+    <p>
+    <a href="http://freehaven.net/anonbib/topic.html#Anonymous_20communication">Read these papers</a> (especially the ones in boxes) to get up to speed on anonymous communication systems.
+    </p>
+
+    <hr>
 
     <a id="AlternateDesigns"></a>
     <h2><a class="anchor">Alternate designs:</a></h2>
