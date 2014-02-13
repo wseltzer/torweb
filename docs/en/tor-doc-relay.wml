@@ -31,21 +31,14 @@
     An easy way to get started is with Vidalia, a graphical interface for 
     Tor. Vidalia is not included in the standard Tor Browser Bundle, although it 
     <a href="https://www.torproject.org/docs/faq.html.en#WhereDidVidaliaGo">once 
-    was</a>. You can use Vidalia as part of the preconfigured bundles, or as a 
-    seperate program. 
+    was</a>. 
     <p>
 
     <p>The Vidalia Bridge Bundle, the Vidalia Relay Bundle 
-    and the Vidalia Exit Bundle can be found on the 
+    and the Vidalia Exit Bundle are available on the 
     <a href="https://www.torproject.org/download/download.html.en">download 
-    page</a>. These packages are already configured to run Tor as a bridge, a
-    non-exit relay, or an exit relay. These bundles are only available for 
-    Windows.
-    </p>
-
-    <p>
-    If you are not the using the Bridge Bundle, Relay Bundle or Exit Bundle, 
-    you will need to .
+    page</a>. These bundles are only available for Windows. They come 
+    preconfigured to run Tor as a bridge, a non-exit relay, or an exit relay. 
     </p>
 
     <p>
@@ -55,13 +48,9 @@
     href="https://torproject.org/projects/torbrowser.html.en">download 
     the Tor Browser Bundle</a> or the <a href="https://www.torproject.org/download/download.html.en">Tor Expert Bundle</a>. 
     Unpack the Vidalia package into your Tor Browser folder. This will allow 
-    Vidalia to control and configure the Tor Browser Bundle's Tor client. 
-    </p>
-
-    <p>
-    If you use the Expert Bundle, which contains Tor only and no browser, 
-    you'll need to inform Vidalia of your Tor's location. You can not run
-    Vidalia unless Tor is running.
+    Vidalia to control and configure the Tor Browser Bundle's Tor client. If 
+    you use the Expert Bundle, which contains Tor only and no browser, you'll 
+    need to inform Vidalia of your Tor's location.
     </p>
 
     <p>
@@ -71,30 +60,6 @@
     href="http://en.wikipedia.org/wiki/Network_Time_Protocol">time
     servers</a>.</p>
 
-<!--
-    <p>If you're comfortable editing text files, skip this page and
-    go to our dedicated <a href="<page docs/tor-relay-debian>">Relay
-    Configuration Instructions on Debian/Ubuntu</a> page. That page is
-    the best one for relay operators on BSD, Unix, etc as well.</p>
-
-
-    <hr>
-    <a id="zero"></a>
-    <a id="install"></a>
-    <h2><a class="anchor" href="#install">Step One: Download and Install Tor</a></h2>
-    <br>
-
-    <p>Before you start, you need to make sure that Tor is up and running.
-    </p>
-
-    <p>Visit our <a href="<page download/download>">download page</a> and
-    install the "Installation Bundle" for your OS.
-    </p>
-
-    <p>If it's convenient, you might also want to use it as a client for a
-    while to make sure it's actually working.</p>
--->
-
     <hr>
     <a id="setup"></a>
     <h2><a class="anchor" href="#setup">Configure Tor with the Vidalia Graphical Interface</a></h2>
@@ -102,10 +67,8 @@
     <ol type=1>
 
 
-    <li>
-    	Right click on the Vidalia icon in your task bar.  Choose Control Panel.
-    	<img alt="vidalia right click menu" src="$(IMGROOT)/screenshot-win32-vidalia.png" />
-    </li>
+<li>Right click on the Vidalia icon in your task bar.  Choose Control Panel.</li><br />
+    	<img alt="Vidalia right click menu" src="$(IMGROOT)/screenshot-win32-vidalia.png" />
 
     <li>Click "Setup Relaying".</li>
 
@@ -113,66 +76,51 @@
     Choose "Relay Traffic for the Tor network" if you
 want to be a public relay (recommended), or choose "Help
 censored users reach the Tor network" if you want to be a <a
-href="<page docs/faq>#RelayOrBridge">non-public bridge</a>.
-    <img alt="vidalia basic settings" src="$(IMGROOT)/screenshot-win32-configure-relay-1.png" />
-    </li>
+href="<page docs/faq>#RelayOrBridge">non-public bridge</a>.</li><br />
+    <img alt="Vidalia basic settings" src="$(IMGROOT)/screenshot-win32-configure-relay-1.png" />
 
     <li>Enter a nickname for your relay, and enter contact information in
     case we need to contact you about problems.</li>
 
-    <li>Leave "Attempt to automatically configure port forwarding" clicked.
-    Push the "Test" button to see if it works.  If it does work, great.
-    If not, see number 3 below.</li>
+    <li>Leave "Attempt to automatically configure port forwarding" ticked.
+    Push the "Test" button to see if it works. If it does work, great.
+    If not, see the section on reachability below.</li>
 
-    <li>Choose the "Bandwidth Limits" tab.  Select how much bandwidth you want to provide for Tor users like yourself.
-    <img alt="vidalia bandwidth limits" src="$(IMGROOT)/screenshot-win32-configure-relay-2.png" />
-    </li>
+    <li>Choose the "Bandwidth Limits" tab.  Select how much bandwidth you want to provide for Tor users like yourself.</li><br />
+    <img alt="Vidalia bandwidth limits" src="$(IMGROOT)/screenshot-win32-configure-relay-2.png" />
 
     <li>Select the "Exit Policies" tab.  If you want to allow others
     to use your relay for these services, don't change anything.  Un-check
     the services you don't want to allow people to <a href="<page
     docs/faq>#ExitPolicies">reach from your relay</a>.  If you want to
-    be a non-exit relay, un-check all services.
-    <img alt="vidalia exit policies" src="$(IMGROOT)/screenshot-win32-configure-relay-3.png" />
-    </li>
+    be a non-exit relay, un-check all services.</li><br />
+    <img alt="Vidalia exit policies" src="$(IMGROOT)/screenshot-win32-configure-relay-3.png" />
 
     <li>Click "Ok".</li>
-
-    <li>If you are using a firewall, open a hole in your firewall
-    so incoming connections can reach the ports you configured
-    (ORPort, plus DirPort if you enabled it). If you have a
-    hardware firewall (Linksys box, cable modem, etc) you might find <a
-    href="http://portforward.com/">portforward.com</a> useful. Also, make sure you
-    allow all <em>outgoing</em> connections too, so your relay can reach the
-    other Tor relays.
-    </li>
-
-    <li>Restart your relay. If it <a
-    href="<page docs/faq>#Logs">logs
-    any warnings</a>, address them.
-    </li>
 
     </ol>
 
     <hr>
     <a id="torrc"></a>
     <h2><a class="anchor" href="#torrc">Configuring Tor by editing the torrc file</a></h2>
+    <br />
 
     <p>
-    You can also set up a relay without Vidalia. Tor's configuration file is named 'torrc'.
-    In the Tor Browser folder, it's located at <pre>Data\Tor\torrc<pre>. 
-    Open the file with a text editor and add the following lines:
-    </p>
+    You can set up a relay without using Vidalia if you wish. Tor's 
+    configuration file is named 'torrc'. In the Tor Browser folder, it's 
+    located at</p>
+    <pre>Data\Tor\torrc</pre>
+    <p>Open the file with a text editor and add the following lines:</p>
 
     <pre>
     ORPort 443
     Exitpolicy reject *:*
-    Nickname mycleverrelayname
+    Nickname ididntedittheconfig
     ContactInfo human@...
     </pre>
 
-    <p>If you want to be a bridge, you can read how to set the BridgeRelay 
-    and ServerTransportPlugin values <a 
+    <p>If you want to be a bridge, read about the BridgeRelay and 
+    ServerTransportPlugin values <a 
     href="https://www.torproject.org/projects/obfsproxy-instructions.html.en#instructions">on
     this page</a>.</p>
 
@@ -183,12 +131,26 @@ href="<page docs/faq>#RelayOrBridge">non-public bridge</a>.
     <p>See the <a href="https://gitweb.torproject.org/tor.git/blob/HEAD:/src/config/torrc.sample.in">sample 
     torrc file</a> and the <a 
     href="https://www.torproject.org/docs/tor-manual.html.en">man
-    page</a> for other available Tor options.</p>
+    page</a> for other Tor options you may want to set.</p>
 
     <hr>
     <a id="check"></a>
-    <h2><a class="anchor" href="#check">Make sure your relay is working</a></h2>
+    <h2><a class="anchor" href="#check">Make sure your relay is reachable</a></h2>
     <br>
+
+    <p>If you are using a firewall, open a hole in your firewall
+    so incoming connections can reach the ports you configured
+    (ORPort, plus DirPort if you enabled it). If you have a
+    hardware firewall (Linksys box, cable modem, etc) you might find <a
+    href="http://portforward.com/">portforward.com</a> useful. Also, make sure you
+    allow all <em>outgoing</em> connections too, so your relay can reach the
+    other Tor relays.
+    </p>
+
+    <p>Restart your relay. If it <a
+    href="<page docs/faq>#Logs">logs
+    any warnings</a>, address them.
+    </p>
 
     <p>As soon as your relay manages to connect to the network, it will
     try to determine whether the ports you configured are reachable from
@@ -222,7 +184,7 @@ href="<page docs/faq>#RelayOrBridge">non-public bridge</a>.
     <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-relays">
     tor-relays mailing list</a>. You might find <a
     href="../docs/documentation.html.en#MailingLists">other higher-volume 
-    Tor lists</a> of interest as well.
+    Tor lists</a> of interest to you as well.
     </p>
 
     <p><a href="https://weather.torproject.org/">Tor Weather</a> provides
