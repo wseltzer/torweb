@@ -425,7 +425,13 @@ meetings around the world.</li>
     <p>
     <b>Project Ideas:</b><br />
     <i><a href="#torCleanup">Tor Codebase Cleanup</a></i><br />
-    <i><a href="#chutneyExpansion">Make Chutney Do More, More Reliably</a></i>
+    <i><a href="#chutneyExpansion">Make Chutney Do More, More Reliably</a></i><br />
+    <i><a href="#improveTorTestCoverage">Improve test coverage in Tor</a></i><br />
+    <i><a href="#useMoreCores">Have the Tor daemon use more cores</a></i><br />
+    <i><a href="#improveHiddenServices">Help improve Tor hidden services</a></i><br />
+    <i><a href="#consensusDiffs">Implement consensus diffs</a></i><br />
+    <i><a href="#improvedDnsSupport">Improved DNS support for Tor</a></i><br />
+    <i><a href="#torSandboxing">Help improve Tor sandboxing</a></i>
     </p>
 
     <a id="project-orchid"></a>
@@ -514,6 +520,12 @@ meetings around the world.</li>
     Provides Tor on the Android platform. The project is under active 
     development, updates to latest Tor releases, and working to stay up to 
     date with all changes in Android and mobile threats.
+    </p>
+
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#orbotVPN">Orbot Android VPN</a></i><br />
+    <i><a href="#orfox">Orfox - Firefox/Gecko-based Android Browser for Tor</a></i>
     </p>
 
     <a id="project-tails"></a>
@@ -1305,6 +1317,426 @@ href="https://trac.torproject.org/projects/tor/ticket/7416">For more
 information see ticket 7416.</a></b>
     </p>
     </li>
+
+    <a id="orbotVPN"></a>
+    <li>
+    <b>Orbot Android VPN</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>High</i>
+    <br>
+    Likely Mentors: <i>Nathan (n8fr8)</i>
+    <p>
+Android offers the ability for any application to establish a
+VPNService through which all traffic on the device is sent. We want to
+implement this type of service in order to route all traffic through
+the Tor network. This is a feature that will be implemented directly
+into Orbot: Tor for Android if successfully implemented.
+    </p>
+
+    <p>
+The deliverables for the project will be a working Android VPN
+implementation that routes traffic through Tor, and integration of VPN
+code into the Orbot app. There must also be time made for reporting on
+the project through blog posts, network auditing of tracking to ensure
+leakage is not occurring.
+    </p>
+
+    <p>
+Useful links and documentation to study:
+    </p>
+
+    <ul>
+      <li><a href="https://gitweb.torproject.org/orbot.git">Orbot</a></li>
+      <li><a href="http://developer.android.com/reference/android/net/VpnService.html">Android VPNService API</a></li>
+      <li><a href="https://github.com/guardianproject/OrbotVPN">Existing work on Orbot VPN</a></li>
+    </ul>
+
+    <p>
+Applicant should have the ability to build Orbot application from
+source using Android SDK and NDK tools. A solid understanding of IP
+routing, iptables, netfilter and VPN protocols would also be very
+helpful. The ability to use Wireshark or other network monitoring
+software to test and verify solution is something that can be taught,
+but if you already know how, bonus! Finally, understanding how the
+exiting Tor software can be used with various transparent proxying
+configurations is a good first step to understanding this problem.
+    </p>
+    </li>
+
+    <a id="orfox"></a>
+    <li>
+    <b>Orfox - Firefox/Gecko-based Android Browser for Tor</b>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nathan (n8fr8)</i>
+    <p>
+With almost 1 million downloads, our Orweb browser has been a popular
+solution for easily accessing the web via Tor or any other HTTP or
+SOCKS proxy, while also ensuring local data caches are cleared and
+cookies are properly managed. Orweb is based on WebView, which has its
+limitations unfortunately. We would like to move to a
+Firefox/Fennec/GeckoView based browser, and have created a prototype
+for it. Mozilla has begun releasing GeckoView as a standalone
+component, as well, but it needs more testing, debugging and work on
+integration into our streamlined browser app model. Our end goal is to
+have a mobile browser that matches Tor Browser in terms of privacy
+enhancing features and security.
+    </p>
+
+    <p>
+The deliverables for the project are expected to be the creation of a
+alpha quality release of Orfox, a GeckoView-based browser with feature
+parity of Orweb browser. A bonus goal is to implement additional
+features and capabilities based on Tor Browser patches for
+Fennec/Mozilla core. Finally, as always, a required activity is a
+network audit testing of implemented solution with write-ups, reports
+posted publicly.
+    </p>
+
+    <p>
+Useful links to review:
+    </p>
+
+    <ul>
+      <li><a href="https://github.com/guardianproject/orfox">Orfox (gecko prototype)</a></li>
+      <li><a href="https://github.com/guardianproject/orweb">Orweb (production browser on WebView)</a></li>
+      <li><a href="http://starkravingfinkle.org/blog/2013/10/geckoview-embedding-gecko-in-your-android-application/">GeckoView info</a></li>
+      <li><a href="https://www.torproject.org/projects/torbrowser.html.en">Tor Browser (desktop)</a></li>
+    </ul>
+
+    <p>
+Applicant should have the ability to build Fennec and GeckoView
+libraries from source using Android SDK and NDK. Some experince with
+browser security models and threats would be a useful background to
+have. Ability to do network audits to ensure browser proxying is not
+leaking DNS, media streams or other network traffic, as well as tests
+against common browser de-anonymizing attacks are necessary.
+    </p>
+    </li>
+
+    <a id="improveTorTestCoverage"></a>
+    <li>
+    <b>Improve test coverage in Tor</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+Right now, our unit test coverage with the tests we ship is around 30%
+-- only 30% of the executable lines in our source are reached by the
+unit tests.  Improving this test coverage could make Tor development
+much more reliable.
+    </p>
+
+    <p>
+So we need better unit tests, and we need better integration tests too.
+    </p>
+
+    <p>
+Improving unit tests would would involve refactoring functions to be more
+testable, and writing a bunch of unit tests.
+    </p>
+
+    <p>
+Improving integratino tests would involve refactoring and improving
+the "chutney" program that launches a test tor network, and writing a
+bunch of tests to see what works and what doesn't work on such a
+network.  It could also involve writing tests using the library "<a
+href="https://stem.torproject.org/">stem</a>" to script individual clients on a
+Chutney network.
+    </p>
+
+    <p>
+To get a feel for how testing works in Tor today, download Tor and
+Chutney, and make sure you can build Tor and use Chutney.  See how the
+unit tests work by skimming some of the test code in the src/test
+subdirectory.  Try computing test coverage (according to the
+instructions in the doc/HACKING file.
+    </p>
+
+    <p>
+Also, have a look at the one current integration test that works on
+chutney today: it is a shell script distributed with Tor as
+src/test/test-tor-network.sh .  We probably don't want to have all of
+our integration tests be written as shell scripts, but it's interesting
+to see how one works.
+    </p>
+
+    <p>
+If working on designs for an improved or refactored Chutney, watch out for <a
+href="http://www.joelonsoftware.com/articles/fog0000000018.html">"archicture
+astronautics"</a>: while it's important that we have a well-designed and
+maintainable Chutney architecture, it wouldn't be very useful if a good
+architecture were the <em>only</em> outcome here: we need tests too.
+    </p>
+
+    <p>
+As part of the application process, please contribute a patch that makes
+a non-trivial improvement to chutney, and/or include a new test for some
+interesting Tor function. (Please pick a function that isn't completely
+easy to test.)
+    </p>
+    </li>
+
+    <a id="useMoreCores"></a>
+    <li>
+    <b>Have the Tor daemon use more cores</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+Right now, if you run a busy Tor server on a multicore computer, most of
+the cores are mostly unused.  We have a "cpuworker" mechanism to move
+expensive computations into worker threads, but that mechanism is
+currently only used for a small fraction of our cryptography.  Moving
+more work into the worker threads could improve performance immensely.
+    </p>
+
+    <p>
+So it would be great to parallelize our cryptography more in order to
+better handle more cores.  See
+<a href="https://trac.torproject.org/projects/tor/wiki/org/projects/Tor/MultithreadedCrypto">MultithreadedCrypto</a>
+for some background info, and
+<a href="https://trac.torproject.org/projects/tor/ticket/7572">ticket 7572</a> for some subtickets
+on our tracker.
+    </p>
+
+    <p>
+(If you're reading through the code to see how it works today, you will
+also want to have a look at the new implementation for cpuworkers
+described in <a href="https://trac.torproject.org/projects/tor/ticket/9682">9682</a>.)
+    </p>
+
+    <p>
+Completing the implementation of ticket #7572 --which would move our
+circuit crypto onto separate threads-- could be a good summer project.
+Alternatively, moving all of the signature generation and verification
+code onto the cpuworkers could be fun.  In either case, you will have
+some important architectural decisions to make about how to minimize
+shared data between the main thread and the workers, how to avoid
+race conditions between them, and how to test it all to make sure it has
+no hidden failure cases.
+    </p>
+
+    <p>
+As part of the application process for this project, please contribute a
+nontrivial patch to Tor -- ideally, one that will affect some part of
+the codebase that you want to work on.
+    </p>
+    </li>
+
+    <a id="improveHiddenServices"></a>
+    <li>
+    <b>Help improve Tor hidden services</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+We're working on a revamp of the entire Tor hidden service design to
+improve the security and reliability of the hidden service system.
+    </p>
+
+    <p>
+This is a big project: see
+<a href="https://gitweb.torproject.org/torspec.git/blob_plain/refs/heads/master:/proposals/224-rend-spec-ng.txt">proposal
+224</a> for the latest design.  Are you interested in implementing some
+part of that?
+    </p>
+
+    <p>
+This is a very ambitious project, so we're deliberately not suggesting
+particular sub-topics.  If you're interested in participating, try to
+read and understand the <a
+href="https://gitweb.torproject.org/torspec.git/blob_plain/refs/heads/master:/rend-spec.txt">existing
+design</a> and the design proposal for the new design, and then talk to
+us about what part you want to work on.
+    </p>
+
+    <p>
+As part of the application process for this project, please contribute a
+nontrivial patch to Tor -- ideally, one that will affect some part of
+the codebase that you want to work on.
+    </p>
+    </li>
+
+    <a id="consensusDiffs"></a>
+    <li>
+    <b>Implement consensus diffs</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+Right now, every few hours, a Tor client downloads a new signed "consensus
+document" that describes the state of the network.  Even though these
+documents are compressed, thisstill takes almost half a megabyte.
+    </p>
+
+    <p>
+<a
+href="https://gitweb.torproject.org/torspec.git/blob_plain/refs/heads/master:/proposals/140-consensus-diffs.txt">Proposal
+140</a> describes a design to save a lot of bandwidth by transferring
+compressed <a href="http://en.wikipedia.org/wiki/Diff">diff</a>s instead
+of transferring the entire consensus document.
+    </p>
+
+    <p>
+That's an attractive idea, but it presents some programming challenges.
+We probably don't want to ship a 'diff' and 'patch' along with Tor.  Is
+there a free, <strong>safe</strong>, robust implementation of one of the
+good diff algorithms that we can use?
+    </p>
+
+    <p>
+Alternatively, can we take advantage of regularities in the descriptor
+format in order to generate diffs more simply?
+    </p>
+
+    <p>
+As part of the application process for this project, please contribute a
+nontrivial patch to Tor -- ideally, one that will affect some part of
+the codebase that you want to work on.  Make sure that your application
+describes which implementations of the diff and patch algorithms you
+intend to use, and that your coding samples show strong evidence that
+you can do secure string manipulation in C.
+    </p>
+    </li>
+
+    <a id="improvedDnsSupport"></a>
+    <li>
+    <b>Improved DNS support for Tor</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+Right now, you can only use Tor's DNS support to look up IPv4 and IPv6
+addresses, and to fetch PTR records.  But DNS can do so much more!
+    </p>
+
+    <p>
+<a
+href="https://gitweb.torproject.org/torspec.git/blob_plain/refs/heads/master:/proposals/219-expanded-dns.txt">Proposal
+219</a> describes some new cell types that Tor could use to support
+more types of DNS over Tor.
+    </p>
+
+    <p>
+To see how Tor implements its existing DNS lookups, start by tracing the
+the connection_exit_begin_resolve() function in src/or/connection_edge.c ,
+and see how we pass these requests downwards through src/or/dns.c to the
+underlying resolver.  It's not too complicated, but there are some
+tricky parts to understand.
+    </p>
+
+    <p>
+As part of the application process for this project, please contribute a
+nontrivial patch to Tor -- ideally, one that will affect some part of
+the codebase that you want to work on.
+    </p>
+    </li>
+
+    <a id="torSandboxing"></a>
+    <li>
+    <b>Help improve Tor sandboxing</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Nick (nickm)</i>
+    <p>
+The seccomp2 mechanism on Linux lets programs improve their robustness
+against unforseen bugs by running with restrictions on which system
+calls they can invoke and how they can call them.  This can help
+security a lot.
+    </p>
+
+    <p>
+Thanks to a GSOC student from last year, we now have seccomp2 support on
+Linux, which we use to restrict the capabilities of the entire Tor
+process.  (For implementation details, see src/commmon/sandbox.c in the
+Tor source.)
+    </p>
+
+    <p>
+But since the restrictions are done over the whole process, all pieces
+of the Tor code have permission to do things that only small parts of
+the Tor program need to do.  Also, since we use seccomp2, these
+restrictions only work on Linux.
+    </p>
+
+    <p>
+It would be great to instead divide the main Tor program into multiple
+processes with a robust IPC mechanism and assign each process its own
+minimal set of privileges; and to have this work (as best we can) on
+systems that don't have seccomp2 (eg Windows, Mac).
+    </p>
+
+    <p>
+Either of these could be a whole GSOC project.
+    </p>
+
+    <p>
+To get started, make sure you understand the existing sandboxing code.
+If you're interested in splitting Tor into multiple processes, think
+about the architecture, and think about how we could reach this
+architecture without completely rewriting the codebase.  (Remember that
+even if you're focusing on Linux, Tor still needs to work on other
+operating systems.)
+    </p>
+
+    <p>
+If you're interested in supporting more platforms, make sure you
+understand and can explain what sandboxing mechansisms you want to use,
+and what they're capable of.  (You might want to investigate the way
+that other open-source programs, like the Chrome web browser, do their
+sandboxing on different platforms.)
+    </p>
+
+    <p>
+As part of the application process for this project, please contribute a
+nontrivial patch to Tor -- ideally, one that will affect some part of
+the codebase that you want to work on.
+    </p>
+    </li>
+
+<!--
+    <a id=""></a>
+    <li>
+    <b></b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Damian (atagar)</i>
+    <p>
+
+    </p>
+
+    <p>
+
+    </p>
+    </li>
+-->
 
     <li>
     <b>Bring up new ideas!</b>
