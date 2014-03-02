@@ -785,6 +785,11 @@ meetings around the world.</li>
     relatively unchanged for quite a while.
     </p>
 
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#revamp_gettor">Revamp GetTor</a></i>
+    </p>
+
     <a id="project-torcheck"></a>
     <h3><a href="https://trac.torproject.org/projects/tor/wiki/org/roadmaps/TorCheck">TorCheck</a> (<a
     href="https://gitweb.torproject.org/check.git">code</a>, <a
@@ -1716,6 +1721,60 @@ think about adding more sophisticated tests or <a
 href="https://trac.torproject.org/projects/tor/ticket/6119#comment:1">supporting
 other browser vendors</a> that might want to test the uniformity amongst
 their userbase as well.
+    </p>
+    </li>
+
+    <a id="revamp_gettor"></a>
+    <li>
+    <b>Revamp GetTor</b>
+    <br>
+    Effort Level: <i>High</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Sukhbir Singh (sukhe), Nima Fatemi (mrphs)</i>
+    <p>
+GetTor is a program that serves Tor bundles and related components over SMTP.
+Users request the Tor Browser Bundle by sending an email to GetTor, which sends
+back the bundle as email attachments. For users in countries where the Tor
+Project website is blocked, GetTor is a convenient way for users to get access
+to the bundles.
+    </p>
+
+    <p>
+GetTor has been unmaintained for a while and needs a revamp. The main issue is
+that because the Tor Browser Bundle size exceeds 25 MB, sending it through
+GetTor no longer works as most email providers don't support attachments
+exceeding 25 MB. To alleviate this issue, bundles are now uploaded on
+cloud-based services such as Google Drive and Dropbox and links are sent
+out in the email body instead of attachments. This current setup is far from
+complete -- GetTor needs a lot of work to get it to a point where it can do
+smart things again and do them in the right way.
+    </p>
+
+    <p>
+As part of this project, you should:
+    </p>
+
+    <ul>
+      <li>Have some understanding of what GetTor does in general and the current state of its operation.</li>
+      <li>Come up with ideas on how to make it better.</li>
+      <li>Convince us if you would like to fix the existing code or want to rewrite GetTor from scratch.</li>
+    </ul>
+
+    <p>
+In addition to the above points, applications should be familiar with Python.
+As part of the application process, study the <a
+href="https://gitweb.torproject.org/gettor.git">GetTor code</a> and submit a
+patch for returning the SHA1 checksum of the package instead of the text in
+sendSorrySize() in response.py. (since you cannot test the patch, as long as it
+is clear that you had some idea of what you were doing, it should be fine)
+    </p>
+
+    <p>
+Note: Please do not submit an application without talking to the mentors:
+#sukhe and #mrphs on IRC. IRC is preferred but if for any reason you don't
+want/can't use it, please email the mentors.
     </p>
     </li>
 
