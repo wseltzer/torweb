@@ -774,6 +774,11 @@ meetings around the world.</li>
     in early 2011.
     </p>
 
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#rewriteWeather">Rewrite Tor Weather</a></i><br />
+    </p>
+
     <a id="project-gettor"></a>
     <h3><a href="https://trac.torproject.org/projects/tor/wiki/org/roadmaps/GetTor">GetTor</a> (<a
     href="https://gitweb.torproject.org/gettor.git">code</a>, <a
@@ -1773,6 +1778,107 @@ is clear that you had some idea of what you were doing, it should be fine)
 
     <p>
 Note: Please do not submit an application without talking to the mentors: #sukhe and #mrphs on IRC. IRC is preferred but if for any reason you don't want/can't use it, please email the mentors.
+    </p>
+    </li>
+
+    <a id="rewriteWeather"></a>
+    <li>
+    <b>Rewrite Tor Weather</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>Karsten (karsten)</i>
+    <p>
+<a href="https://weather.torproject.org/">Tor Weather</a> provides an
+email notification service to any users who want to monitor the status
+of a Tor node.  Its favorite feature is to notify relay operators when
+their relay has earned them a Tor t-shirt.  Tor Weather is written in
+Python/Django.
+    </p>
+
+    <p>
+The Tor Weather codebase is pretty much unmaintained these days.  The
+first part of this project would be to simplify the code by fetching Tor
+network status data from <a
+href="https://onionoo.torproject.org/">Onionoo</a> rather than running a
+local tor client and keeping an own relay history database.  See the
+related <a
+href="https://trac.torproject.org/projects/tor/wiki/doc/weather-in-2014">community
+effort to rewrite Weather</a> that started in January 2014.  After that,
+there's a <a
+href="https://trac.torproject.org/projects/tor/query?status=!closed&component=Tor+Weather">long
+list of open tickets</a> to be resolved.
+    </p>
+
+    <p>
+Ideally, the student would become the new Weather maintainer after the
+summer.  If that doesn't work out, the codebase should have become a lot
+smaller by end of summer, so that it becomes easier to find somebody
+else as new maintainer.
+    </p>
+    </li>
+
+    <a id="improveStegotorus"></a>
+    <li>
+    <b>Improve Stegotorus</b>
+    <br>
+    Effort Level: <i>Medium</i>
+    <br>
+    Skill Level: <i>Medium</i>
+    <br>
+    Likely Mentors: <i>vmon</i>
+    <p>
+Stegotorus is a fork of obfsproxy which helps developers to write more intelligent pluggable transports which can hide easier from deep packet inspector (DPI) system.
+    </p>
+
+    <p>
+For example, Stegotorus is equipped with a "chopper module" which takes care of following aspects:
+    </p>
+
+    <ol>
+      <li>It randomize the packet size so it is harder for the DPI system to detect the traffic base on the distribution of the packet size.</li>
+      <li>It makes sure that it only handle as much (or as less) information as the transport module can handle.</li>
+      <li>Chopper is equipped with it is own acknowledge/retransmit protocol. If the censor trying to disturb the connection by dropping or disturbing some of packets, it can recover the data by sending them many times.</li>
+    </ol>
+
+    <p>
+More importantly, Stegotorus is coming with its own HTTP transport module which obfuscates Tor or any other encrypted traffic in HTTP content such as Javascript code or images. HTTP transport module is also written in a way which new module developers can easily add new obfuscation modules for new contents or improve current obfuscation algorithms without the need of dealing with networking aspect of the problem.
+    </p>
+
+    <p>
+Stegotorus is written in C++. you can find the latest code <a href="https://github.com/zackw/stegotorus/tree/tor-improve">here</a>.
+    </p>
+
+    <p>
+In this regard, Stegotorus is offering one of the most complete and sophisticated platforms for writing stealthy pluggable transports.
+    </p>
+
+    <p>
+If you know C++ and interested in Stegotorus and excited about battling censorship, there are many ways that you can contribute to Stegotorus. Here are few important tasks. Your proposal might contain a good number of them:
+    </p>
+
+    <ol>
+      <li>Currently Stegotorus handshake is encrypted using the symmetric secret key of the Stegotorus bridge. However, we would like to implement a totally random handshake and considering that some transports suffer badly from "bandwidth shortage", our best choice currently is to implement <a href="http://elligator.cr.yp.to/">this algorithm</a>.</li>
+      <li>Stegotorus defense against active probing is to authenticate the header of the received packet. If the authentication fails Stegotorus turns into a transparent proxy. The capability of Stegotorus as a transparent proxy needs improvement and further testing.</li>
+      <li>Stegotorus has a new framework for writing Steg module. However some of the Steg modules (PDF, SWF and JS) are written in the old framework, we need to refactor their code in the new framework.</li>
+      <li>As writting new Steg modules in python is easier and safer, it is desirable to write an Steg module interface for Stegotorus which can accept and interact with Steg modules written in python/cython.</li>
+      <li>To make detection of anomalies in the traffic harder, Stegotorus hands a noise-to-signal ratio to each Steg modules. Steg modules' algorithms need to use more intelligent way of embedding to use this ratio.</li>
+      <li>Stegotorus has several parameters to tweak its behavior. Currently all these parameters are given in command line. We would like to have a config file to store these parameters as an alternative method.</li>
+      <li>The general security of the code needs to be reviewed and audited for buffer overflow, memory leak etc.</li>
+      <li>Steg modules for new file format for the HTTP transport are always welcome to reflect the actual traffic of the Internet.</li>
+      <li>Packaging Stegotorus for windows.</li>
+      <li>There is a parallel efforts to improve Stegotorus at SRI. We would like to merge the useful feature developed by SRI in our branch of Stegotorus.</li>
+      <li>Stegotorus needs to support SOCKS protocol to be able to receive the initial parameters from Tor through SOCKS handshake.</li>
+    </ol>
+
+    <p>
+You can find a list of open issues concerning Stegotorus <a href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_information&status=needs_review&status=needs_revision&status=new&status=reopened&component=Stegotorus&order=priority">here</a>.
+    </p>
+
+    <p>
+You also can think of lots of other awesome creative ways of improving Stegotorus and include those in your proposal.
     </p>
     </li>
 
