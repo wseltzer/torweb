@@ -184,6 +184,8 @@ be?</a></li>
     limiting bandwidth on my Tor relay?</a></li>
     <li><a href="#ExitPolicies">I'd run a relay, but I don't want to deal
     with abuse issues.</a></li>
+    <li><a href="#BestOSForRelay">Why doesn't my Windows (or other OS) Tor 
+    relay run well?</a></li>
     <li><a href="#WhatIsTheBadExitFlag">What is the BadExit flag?</a></li>
     <li><a href="#IGotTheBadExitFlagWhyDidThatHappen">I got the BadExit flag. 
     Why did that happen?</a></li>
@@ -2794,6 +2796,50 @@ users
 
     <hr>
 
+    <a id="BestOSForRelay"></a>
+    <h3><a class="anchor" href="#BestOSForRelay">Why doesn't my Windows (or other OS) Tor relay run well?</a>
+
+    <p>
+    Tor relays work best on Linux, FreeBSD 5.x+, OS X Tiger or
+    later, and Windows Server 2003 or later.
+    </p>
+
+    <p>You can probably get it working just fine on other operating
+    systems too, but note the following caveats:
+    </p>
+
+    <ul>
+    <li>
+    Versions of Windows without the word "server" in their name
+    sometimes have problems. This is especially the case for Win98,
+    but it also happens in some cases for XP, especially if you don't
+    have much memory. The problem is that we don't use the networking
+    system calls in a very Windows-like way, so we run out of space in
+    a fixed-size memory space known as the non-page pool, and then
+    everything goes bad. The symptom is an assert error with the
+    message "No buffer space available [WSAENOBUFS ] [10055]".  <a
+    href="https://trac.torproject.org/projects/tor/wiki/doc/WindowsBufferProblems">You
+    can read more here.</a>
+    </li>
+
+    <li>
+    Most developers who contribute to Tor work with Unix-like operating
+    systems. It would be great if more people with Windows experience help
+    out, so we can improve Tor's usability and stability in
+    Windows.
+    </li>
+
+    <li>
+    More esoteric or archaic operating systems, like SunOS 5.9 or
+    Irix64, may have problems with some libevent methods (devpoll,
+    etc), probably due to bugs in libevent. If you experience crashes,
+    try setting the EVENT_NODEVPOLL or equivalent environment
+    variable.
+    </li>
+    </ul>
+
+    <hr>
+
     <a id="WhatIsTheBadExitFlag"></a>
     <h3><a class="anchor" href="#WhatIsTheBadExitFlag">What is the 
     BadExit flag?</a></h3>
@@ -3865,7 +3911,7 @@ diversity,
     connection. If you run an Exit Enclave for your service, then the exit 
     from the Tor network happens on the machine that runs your service, 
     rather than on an untrusted random node. This works when Tor clients 
-    wishing to connect to this public service extend their their circuit 
+    wishing to connect to this public service extend their circuit 
     to exit from the Tor relay running on that same host. For example, if 
     the server at 1.2.3.4 runs a web server on port 80 and also acts as a 
     Tor relay configured for Exit Enclaving, then Tor clients wishing to 
