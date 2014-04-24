@@ -14,7 +14,7 @@ export STABLETAG=tor-0.2.4.21
 export DEVTAG=tor-0.2.5.3-alpha
 
 WMLBASE=.
-SUBDIRS=docs eff projects press about download getinvolved donate torbutton 
+SUBDIRS=docs eff projects press about download getinvolved donate 
 include $(WMLBASE)/Makefile.local
 
 include $(WMLBASE)/Makefile.common
@@ -36,8 +36,6 @@ getinvolved:
 	$(MAKE) -C "$@" WMLBASE=.. 
 donate:
 	$(MAKE) -C "$@" WMLBASE=..  
-torbutton:
-	$(MAKE) -C "$@" WMLBASE=..  
 mirrors:
 	./update-mirrors.pl
 translations:
@@ -49,4 +47,4 @@ qrcode:
 # XXX: this also depends on all subs' wmlfiles.  How to fix?
 #translation-status.html.en: $(LANGS) $(WMIFILES) $(WMLFILES)
 
-.PHONY: docs eff projects press about download getinvolved donate torbutton
+.PHONY: docs eff projects press about download getinvolved donate 
