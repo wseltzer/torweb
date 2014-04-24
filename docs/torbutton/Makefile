@@ -1,1 +1,1 @@
-include $(WMLBASE)/Makefile.common
+include Makefile.common
