@@ -118,7 +118,6 @@ unsafe?</a></li>
     <li><a href="#DisableJS">How do I disable JavaScript?</a></li>
     <li><a href="#VerifyDownload">How do I verify the download
     (sha256sums.txt)?</a></li>
-    <li><a href="#PluggableTransports">How do I use pluggable transports?</a></li>
     <li><a href="#NewIdentityClosingTabs">Why does "New Identity" close
     all my open tabs?</a></li>
     <li><a href="#ConfigureRelayOrBridge">How do I configure Tor as a relay
@@ -1653,56 +1652,7 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
     modify them yourself with the latest Tor Browser Bundle filename.</p>
 
     <hr>
-
-    <a id="PluggableTransports"></a>
-    <h3><a class="anchor" href="#PluggableTransports">How do I use pluggable transports?</a></h3>
-
-    <p>
-    For now, the Pluggable Transports-capable TBB is still a separate
-    unofficial package. Download them <a
-    href="https://people.torproject.org/~dcf/pt-bundle/3.5-pt20131217/">
-    here</a>. We hope to have combined packages available in a beta soon.
-    </p>
-
-    <p>
-    The separate Pluggable Transports-capable TBB is different from the
-    Pluggable Transports bundles that have been released in the past.
-    They include the programs necessary to use obfsproxy and flash proxy,
-    but the pluggable transports are not enabled by default. You must
-    enable them manually by adding Bridge lines to the torrc file.
-    (Please see ticket <a
-    href="https://trac.torproject.org/projects/tor/ticket/10418">#10418</a>
-    for how we hope to make it easier to do in the future.)
-    </p>
-
-    <p>
-    To enable <b>obfsproxy</b>, edit the file called Data/Tor/torrc inside the
-    bundle and add the lines:
-    </p>
-
-    <pre>
-Bridge obfs3 83.212.101.3:60475 A09D536DD1752D542E1FBB3C9CE4449D51298239
-Bridge obfs3 169.229.59.74:31493 AF9F66B7B04F8FF6F32D455F05135250A16543C9
-Bridge obfs3 169.229.59.75:46328 AF9F66B7B04F8FF6F32D455F05135250A16543C9
-Bridge obfs3 209.141.36.236:45496 58D91C3A631F910F32E18A55441D5A0463BA66E2
-Bridge obfs3 208.79.90.242:35658 BA61757846841D64A83EA2514C766CB92F1FB41F
-Bridge obfs3 109.105.109.163:38980 9D7259A696F7DAB073043B28114112A46D36CFFD
-Bridge obfs3 109.105.109.163:47779 844B1F53FFD548C998F8D3B01B7E19FA07C3396E
-Bridge obfs2 83.212.100.216:47870 1F01A7BB60F49FC96E0850A6BAD6D076DFEFAF80
-Bridge obfs2 83.212.96.182:46602 6F058CBEF888EB20D1DEB9886909F1E812245D41
-Bridge obfs2 70.182.182.109:54542 94C9E691688FAFDEC701A0788BD15BE8AD34ED35
-Bridge obfs2 128.31.0.34:1051 CA7434F14A898C7D3427B8295A7F83446BC7F496
-    </pre>
-    <p>
-    To enable <b>flash proxy</b>, edit the file called Data/Tor/torrc inside the
-    bundle and add the line:
-    </p>
-    <pre>
-Bridge flashproxy 0.0.1.0:1
-    </pre>
-
-    <hr>
-
+    
     <a id="NewIdentityClosingTabs"></a>
     <h3><a class="anchor" href="#NewIdentityClosingTabs">Why does "New
     Identity" close all my open tabs?</a></h3>
