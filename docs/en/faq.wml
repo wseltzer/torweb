@@ -1606,49 +1606,9 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
     <h3><a class="anchor" href="#VerifyDownload">How do I verify the download
     (sha256sums.txt)?</a></h3>
 
-    <p>You can still verify your Tor Browser download by downloading the
-    signature file (.asc) along with your package and <a
-    href="<page docs/verifying-signatures>">
-    checking the GPG signature</a> as before. We now have an additional
-    verification method that allows you to verify the build as well as
-    the download.</p>
-
-    <ul>
-      <li>Download the Tor Browser package, the sha256sums.txt file, and the
-      sha256sums signature files. They can all be found in the same directory
-      under <a href="https://www.torproject.org/dist/torbrowser/">
-      https://www.torproject.org/dist/torbrowser/</a>, for example in 3.5
-      for TBB 3.5.</li>
-      <li>Retrieve the signers' GPG keys. This can be done from the command
-      line by entering something like
-      <pre>gpg --keyserver keys.mozilla.org --recv-keys 0x29846B3C683686CC</pre>
-      (This will bring you developer Mike Perry's public key. Other
-      developers' key IDs can be found on
-      <a href="<page docs/signing-keys>">this
-      page</a>.)</li>
-      <li>Verify the sha256sums.txt file by executing this command:
-      <pre>gpg --verify &lt;NAME OF THE SIGNATURE FILE&gt;.asc sha256sums.txt</pre></li>
-      <li>You should see a message like "Good signature from &lt;DEVELOPER
-      NAME&gt;". If you don't, there is a problem. Try these steps again.</li>
-      <li>Now you can take the sha256sum of the Tor Browser package. On
-      Windows you can use the <a href="http://md5deep.sourceforge.net/">
-      hashdeep utility</a> and run
-      <pre>C:\location\where\you\saved\hashdeep -c sha256sum &lt;TOR BROWSER FILE NAME&gt;.exe</pre>
-      On Mac or Linux you can run <pre>sha256sum &lt;TOR BROWSER FILE NAME&gt;.zip</pre> or <pre>sha256sum &lt;TOR BROWSER FILE NAME&gt;.tar.gz</pre> without having to download a utility.</li>
-      <li>You will see a string of letters and numbers.</li>
-      <li>Open sha256sums.txt in a text editor.</li>
-      <li>Locate the name of the Tor Browser file you downloaded.</li>
-      <li>Compare the string of letters and numbers to the left of your
-      filename with the string of letters and numbers that appeared
-      on your command line. If they match, you've successfully verified the
-      build.</li>
-    </ul>
-
-    <p><a href="https://github.com/isislovecruft/scripts/blob/master/verify-gitian-builder-signatures">
-    Scripts</a> to <a
-    href="http://tor.stackexchange.com/questions/648/how-to-verify-tor-browser-bundle-tbb-3-x">automate
-    </a> these steps have been written, but to use them you will need to
-    modify them yourself with the latest Tor Browser Bundle filename.</p>
+    <p>Instructions are on the <a 
+    href="<page docs/verifying-signatures#BuildVerification>">verifying 
+    signatures</a> page.</p>
 
     <hr>
     
