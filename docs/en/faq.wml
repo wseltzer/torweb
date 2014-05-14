@@ -83,11 +83,6 @@ includes Tor?</a></li>
     </a></li>
     <li><a href="#SophosOnMac">I'm using the Sophos anti-virus
     software on my Mac, and Tor Browser won't start.</a></li>
-    <li><a href="#TBBSocksPort">I want to
-    run another application through the Tor launched by Tor Browser
-    Bundle.</a></li>
-    <li><a href="#TBBPolipo">I need an HTTP proxy. Where did Polipo
-    go?</a></li>
     <li><a href="#TBBOtherExtensions">Can I install other Firefox
     extensions? Which extensions should I avoid using?</a></li>
     <li><a href="#TBBJavaScriptEnabled">Why is NoScript configured to
@@ -95,10 +90,6 @@ allow JavaScript by default in the Tor Browser Bundle?  Isn't that
 unsafe?</a></li>
     <li><a href="#TBBOtherBrowser">I want to use Chrome/IE/Opera/etc
     with Tor.</a></li>
-    <li><a href="#TorbuttonOtherBrowser">Will Torbutton be available
-    for other browsers?</a></li>
-    <li><a href="#TBBCloseBrowser">I want to leave Tor Browser Bundle
-    running but close the browser.</a></li>
     <li><a href="#GoogleCAPTCHA">Google makes me solve a CAPTCHA or tells
     me I have spyware installed.</a></li>
     <li><a href="#ForeignLanguages">Why does Google show up in foreign
@@ -107,6 +98,8 @@ unsafe?</a></li>
     been compromised.</a></li>
     <li><a href="#NeedToUseAProxy">My internet connection requires an HTTP
     or SOCKS Proxy</a></li>
+    <li><a href="#TBBSocksPort">I want to
+    run another application through Tor.</a></li>
     <li><a href="#CantSetProxy">What should I do if I can't set a proxy
     with my application?</a></li>
     </ul>
@@ -1191,55 +1184,6 @@ the protections for "Malicious websites" and "Malicious downloads".
 
 <hr>
 
-<a id="TBBSocksPort"></a>
-<h3><a class="anchor" href="#TBBSocksPort">
-I want to run another application through the Tor launched by Tor
-Browser Bundle.</a></h3>
-
-<p>
-Typically Tor listens for Socks connections on port 9050. TBB listens
-on port 9150.
-The goal is to avoid conflicting with a "system" Tor install,
-so you can run a system Tor and TBB at the same time. We're <a
-href="https://trac.torproject.org/projects/tor/ticket/3948">working on
-a feature</a> where Tor will try the usual ports first and then back
-off to a random choice if they're already in use.
-</p>
-
-<hr>
-
-<a id="TBBPolipo"></a>
-<h3><a class="anchor" href="#TBBPolipo">I need an HTTP proxy. Where did
-Polipo go?</a></h3>
-
-<p>
-In the past, Tor bundles included an HTTP proxy like Privoxy or Polipo,
-solely to work around a bug in Firefox that was finally fixed in Firefox
-6. Now you don't need a separate HTTP proxy to use Tor, and in fact
-leaving it out makes you safer because Torbutton has better control over
-Firefox's interaction with websites.
-</p>
-
-<p>
-If you are trying to use some external application with Tor, step zero
-should be to <a href="<page download/download>#warning">reread the set
-of warnings</a> for ways you can screw up. Step one should be to try
-to use a Socks proxy rather than an http proxy &mdash; Tor runs a Socks
-proxy on port 9050 on Windows, or <a href="#TBBSocksPort">see above</a>
-for OSX and Linux.
-</p>
-
-<p>
-If that fails, feel free to install <a
-href="http://www.privoxy.org/">privoxy</a>.
-However, please realize that this approach is not recommended for novice
-users. Privoxy has an <a
-href="http://www.privoxy.org/faq/misc.html#TOR">example
-configuration</a> of Tor and Privoxy.
-</p>
-
-<hr>
-
 <a id="TBBOtherExtensions"></a>
 <h3><a class="anchor" href="#TBBOtherExtensions">Can I install other
 Firefox extensions?</a></h3>
@@ -1327,34 +1271,6 @@ We're working with the Chrome team to <a
 href="https://blog.torproject.org/blog/google-chrome-incognito-mode-tor-and-fingerprinting">fix some bugs and missing APIs in Chrome</a> so it
 will be possible to write a Torbutton for Chrome. No support for any
 other browser is on the horizon.
-</p>
-
-<hr>
-
-<a id="TorbuttonOtherBrowser"></a>
-<h3><a class="anchor" href="#TorbuttonOtherBrowser">
-Will Torbutton be available for other browsers?</a></h3>
-
-<p>
- We don't support IE, Opera or Safari and never plan to. There are
- too many ways that your privacy can go wrong with those browsers, and
- because of their closed design it is really hard for us to do anything
- to change these privacy problems.
-</p>
-<p>
-We are working with the Chrome people to modify Chrome's internals so that we can eventually support it. But for now, Firefox is the only safe choice.
-</p>
-
-<hr>
-
-<a id="TBBCloseBrowser"></a>
-<h3><a class="anchor" href="#TBBCloseBrowser">I want to leave Tor
-Browser
-Bundle running but close the browser.</a></h3>
-
-<p>
-We're working on a way to make this possible on all platforms. Please
-be patient.
 </p>
 
 <hr>
@@ -1501,6 +1417,36 @@ in the archives</a> useful.
 If your proxies only allow you to connect to certain ports, look at the
 entry on <a href="#FirewallPorts">Firewalled clients</a> for how
 to restrict what ports your Tor will try to access.
+</p>
+
+<hr>
+
+
+<a id="TBBSocksPort"></a>
+<h3><a class="anchor" href="#TBBSocksPort">
+I want to run another application through Tor.</a></h3>
+
+<p>
+If you are trying to use some external application with Tor, step zero
+should be to <a href="<page download/download>#warning">reread the set
+of warnings</a> for ways you can screw up. Step one should be to try
+to use a SOCKS proxy rather than an HTTP proxy.
+Typically Tor listens for SOCKS connections on port 9050. Tor Browser listens
+on port 9150.
+</p>
+
+<p>
+If your application doesn't support SOCKS proxies, feel free to install <a
+href="http://www.privoxy.org/">privoxy</a>.
+However, please realize that this approach is not recommended for novice
+users. Privoxy has an <a
+href="http://www.privoxy.org/faq/misc.html#TOR">example
+configuration</a> of Tor and Privoxy.
+</p>
+
+<p>
+If you're unable to use the application's native proxy settings, all hope is 
+not lost. See <a href="#CantSetProxy">below</a>.
 </p>
 
 <hr>
