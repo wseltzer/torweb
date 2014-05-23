@@ -887,28 +887,29 @@ executive
     <p>
     Tor may attempt to connect to any port that is advertised in the
     directory as an ORPort (for making Tor connections) or a DirPort (for
-    fetching updates to the directory). There are a variety of these ports,
-    but many of them are running on 80, 443, 9001, and 9030.
+    fetching updates to the directory). There are a variety of these ports:
+    many of them are running on 80, 443, 9001, and 9030, but many use other
+    ports too.
     </p>
     <p>
-    So as a client, you could probably get away with opening only those four
+    As a client: you could probably get away with opening only those four
     ports. Since Tor does all its connections in the background, it will retry
     ones that fail, and hopefully you'll never have to know that it failed, as
     long as it finds a working one often enough. However, to get the most
-    diversity in your entry nodes -- and thus the most security -- as well as
-    the most robustness in your connectivity, you'll want to let it connect
-    to all of them.
+    diversity in your entry nodes &mdash; and thus the most security
+    &mdash; as well as the most robustness in your connectivity, you'll
+    want to let it connect to all of them.
+    See the FAQ entry on <a href="#FirewallPorts">firewalled ports</a> if
+    you want to explicitly tell your Tor client which ports are reachable
+    for you.
     </p>
     <p>
-    If you really need to connect to only a small set of ports, see the FAQ
-    entry on <a href="#FirewallPorts">firewalled ports</a>.
-    </p>
-    <p>
-    Note that if you're running Tor as a relay, you must allow outgoing
-    connections to every other relay and to anywhere your exit policy
-    advertises that you allow. The cleanest way to do that is simply to allow
-    all outgoing connections at your firewall. If you don't, clients will try
-    to use these connections and things won't work.
+    As a relay: you must allow outgoing connections to every other relay
+    and to anywhere your exit policy advertises that you allow. The
+    cleanest way to do that is simply to allow all outgoing connections
+    at your firewall. If you don't, clients will ask you to extend to
+    those relays, and those connections will fail, leading to complex
+    anonymity implications for the clients which we'd like to avoid.
     </p>
  
     <hr>
