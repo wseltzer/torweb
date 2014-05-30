@@ -173,6 +173,8 @@ be?</a></li>
     with abuse issues.</a></li>
     <li><a href="#BestOSForRelay">Why doesn't my Windows (or other OS) Tor
     relay run well?</a></li>
+    <li><a href="#PackagedTor">Should I install Tor from my package manager, 
+    or build from source?</a></li>
     <li><a href="#WhatIsTheBadExitFlag">What is the BadExit flag?</a></li>
     <li><a href="#IGotTheBadExitFlagWhyDidThatHappen">I got the BadExit flag.
     Why did that happen?</a></li>
@@ -2592,6 +2594,38 @@ users
     try setting the EVENT_NODEVPOLL or equivalent environment
     variable.
     </li>
+    </ul>
+
+    <hr>
+
+    <a id="PackagedTor"></a>
+    <h3><a class="anchor" href="#PackagedTor">Should I install Tor from my 
+    package manager, or build from source?</a></h3>
+    <p>
+    If you're using Debian or Ubuntu especially, there are a number of benefits 
+    to installing Tor from the <a 
+    href="https://www.torproject.org/docs/debian.html.en">Tor Project's 
+    repository</a>. 
+    </p>
+    <ul>
+      <li>
+      You're ulimit -n gets set to 32768, high enough for Tor to keep open all 
+      the connections it needs. 
+      </li>
+      <li>
+      A user profile is created just for Tor, so Tor doesn't need to run as 
+      root.
+      </li>
+      <li>
+      An init script is included so that Tor runs at boot.
+      </li>
+      <li>
+      Tor runs with --verify-config, so that most problems with your 
+      config file get caught. 
+      </li>
+      <li>
+      Tor can bind to low level ports, then drop privileges.
+      </li>
     </ul>
 
     <hr>
