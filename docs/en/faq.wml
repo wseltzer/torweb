@@ -2404,7 +2404,7 @@ too.
     </p>
     <pre>
     AccountingStart week 3 10:00
-    AccountingMax N bytes KB MB GB TB
+    AccountingMax 500 GBytes
     </pre>
     <p>
     This specifies the maximum amount of data your relay will send during an
@@ -2413,12 +2413,12 @@ too.
     AccountingStart), then the counters for AccountingMax are reset to 0.
     </p>
     <p>
-    Example. Let's say you want to allow 1 GB of traffic every day in each
+    Example: Let's say you want to allow 50 GB of traffic every day in each
     direction and the accounting should reset at noon each day:
     </p>
     <pre>
     AccountingStart day 12:00
-    AccountingMax 1 GB
+    AccountingMax 50 GBytes
     </pre>
     <p>
     Note that your relay won't wake up exactly at the beginning of each
@@ -2433,9 +2433,10 @@ too.
     end up using your entire monthly quota in the first day. Just divide
     your monthly amount by 30. You might also consider rate limiting to
     spread your usefulness over more of the day: if you want to offer X GB
-    in each direction, you could set your BandwidthRate to 20*X. For example,
-    if you have 10 GB to offer each way, you might set your BandwidthRate to
-    200 KB: this way your relay will always be useful for at least half of
+    in each direction, you could set your BandwidthRate to 20*X KBytes.
+    For example,
+    if you have 50 GB to offer each way, you might set your BandwidthRate to
+    1000 KBytes: this way your relay will always be useful for at least half of
     each day.
     </p>
 
