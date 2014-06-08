@@ -74,12 +74,33 @@ transport API</a>, to make it easier to build interoperable programs.
     Status: <em>To be deployed</em>
     </li>
 
-    <li><b>Meek</b> is a transport that uses HTTP for carrying bytes
-    and TLS for obfuscation. Traffic is relayed through a third-party
-    server (​Google App Engine). It uses a trick to talk to the third
-    party so that it looks like it is talking to an unblocked server.
+    <li><a href="https://trac.torproject.org/projects/tor/wiki/doc/meek"><b>Meek</b></a>
+    is a transport that uses HTTP for carrying bytes and TLS for
+    obfuscation. Traffic is relayed through a third-party server
+    (​Google App Engine). It uses a trick to talk to the third party so
+    that it looks like it is talking to an unblocked server.
     Maintained by David Fifield. <br>
     Status: <e>Coming soon</em>
+    </li>
+
+    <li><a href="https://github.com/Yawning/obfs4/blob/master/doc/obfs4-spec.txt"><b>obfs4</b></a>
+    is a transport with the same features as <a href="http://www.cs.kau.se/philwint/scramblesuit/"><b>ScrambleSuit</b></a>
+    but utilizing Dan Bernstein's <a href="http://elligator.cr.yp.to/elligator-20130828.pdf">elligator2</b>
+    technique for public key obfuscation, and the
+    <a href="https://gitweb.torproject.org/torspec.git/blob/HEAD:/proposals/216-ntor-handshake.txt">ntor protocol</a>
+    for one-way authentication. This results in a faster protocol. Written in Go.
+    Maintained by Yawning Angel. <br>
+    Status: <e>Coming soon</em>
+    </li>
+
+    <li><a href="https://github.com/yawning/obfsclient"><b>obfsclient</b></a>
+    is a multi-transport pluggable transport proxy (like obfsproxy),
+    written in C++ that implements the client-side of <em>obfs2</em>,
+    <em>obfs3</em> and <em>scramblesuit</em>. It's used by
+    <a href="https://guardianproject.info/apps/orbot/">Orbot</a> on
+    Android because of the difficulties of using Python applications.
+    Maintained by Yawning Angel. <br>
+    Status: <a href="https://guardianproject.info/apps/orbot/">Deployed</a>
     </li>
 
     <li><b>StegoTorus</b> is an Obfsproxy fork that extends it to a)
