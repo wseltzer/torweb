@@ -2187,7 +2187,7 @@ from the source code release tor-0.2.4.16-rc is:
     run a relay?</a></h3>
     <p>
     We're looking for people with reasonably reliable Internet connections,
-    that have at least 20 kilobytes/second each way. If that's you, please
+    that have at least 100 kilobytes/second each way. If that's you, please
     consider <a href="https://www.torproject.org/docs/tor-relay-debian">helping
     out</a>.
     </p>
@@ -2342,10 +2342,10 @@ too.
     <ul>
     <li>
     BandwidthRate is the maximum long-term bandwidth allowed (bytes per
-    second). For example, you might want to choose "BandwidthRate 2 MB"
-    for 2 megabytes per second (a fast connection), or "BandwidthRate 50
-    KB" for 50 kilobytes per second (a medium-speed cable connection).
-    The minimum BandwidthRate is 20 kilobytes per second.
+    second). For example, you might want to choose "BandwidthRate 10 MBytes"
+    for 10 megabytes per second (a fast connection), or "BandwidthRate 500
+    KBytes" for 500 kilobytes per second (a pretty good cable connection).
+    The minimum BandwidthRate setting is 20 kilobytes per second.
     </li>
     <li>
     BandwidthBurst is a pool of bytes used to fulfill requests during
@@ -2353,9 +2353,9 @@ too.
     average over a long period to BandwidthRate. A low Rate but a high
     Burst enforces a long-term average while still allowing more traffic
     during peak times if the average hasn't been reached lately. For example,
-    if you choose "BandwidthBurst 50 KB" and also use that for your
-    BandwidthRate, then you will never use more than 50 kilobytes per second;
-    but if you choose a higher BandwidthBurst (like 1 MB), it will allow
+    if you choose "BandwidthBurst 500 KBytes" and also use that for your
+    BandwidthRate, then you will never use more than 500 kilobytes per second;
+    but if you choose a higher BandwidthBurst (like 5 MBytes), it will allow
     more bytes through until the pool is empty.
     </li>
     </ul>
@@ -2371,7 +2371,7 @@ too.
     Linux-based Tor nodes have another option at their disposal: they can
     prioritize Tor traffic below other traffic on their machine, so that
     their own personal traffic is not impacted by Tor load. A <a
-    href="https://gitweb.torproject.org/tor.git/blob/HEAD:/contrib/linux-tor-prio.sh">script
+    href="https://gitweb.torproject.org/tor.git/blob/HEAD:/contrib/operator-tools/linux-tor-prio.sh">script
     to do this</a> can be found in the Tor source distribution's contrib
     directory.
     </p>
@@ -2382,7 +2382,7 @@ too.
     href="#LimitTotalBandwidth">hibernation entry</a> below.
     </p>
     <p>
-    Note that BandwidthRate and BandwidthBurst are in <b>Bytes,</b>not Bits.
+    Note that BandwidthRate and BandwidthBurst are in <b>Bytes</b>, not Bits.
     </p>
 
     <hr>
@@ -2433,12 +2433,18 @@ too.
     end up using your entire monthly quota in the first day. Just divide
     your monthly amount by 30. You might also consider rate limiting to
     spread your usefulness over more of the day: if you want to offer X GB
-    in each direction, you could set your BandwidthRate to 20*X KBytes.
+    in each direction, you could set your RelayBandwidthRate to 20*X KBytes.
     For example,
-    if you have 50 GB to offer each way, you might set your BandwidthRate to
+    if you have 50 GB to offer each way, you might set your RelayBandwidthRate to
     1000 KBytes: this way your relay will always be useful for at least half of
     each day.
     </p>
+    <pre>
+    AccountingStart day 0:00
+    AccountingMax 50 GBytes
+    RelayBandwidthRate 1000 KBytes
+    RelayBandwidthBurst 5000 KBytes # allow higher bursts but maintain average
+    </pre>
 
     <hr>
 
