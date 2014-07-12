@@ -4232,21 +4232,24 @@ their path length.</a></h3>
  example if you're accessing a hidden service or a ".exit" address it could be 4.
 </p>
 <p>
- We don't want to encourage people to use paths longer than this -- it
+ We don't want to encourage people to use paths longer than this &mdash; it
  increases load on the network without (as far as we can tell) providing
- any more security. In fact, using paths longer than 3 could harm anonymity 
- ("Oh, there's that person who changed her path length again"). Remember that 
+ any more security. Remember that 
 <a href="https://svn.torproject.org/svn/tor/trunk/doc/design-paper/tor-design.html#subsec:threat-model">
  the best way to attack Tor is to attack the endpoints and ignore the middle
  of the path</a>.
+ Also, using paths longer than 3 could harm anonymity, first because
+ it makes <a href="http://freehaven.net/anonbib/#ccs07-doa">"denial of
+ security"</a> attacks easier, and second because it could act as an
+ identifier if only a few people do it ("Oh, there's that person who
+ changed her path length again").
 </p>
 <p>
  And we don't want to encourage people to use paths of length 1 either.
- Currently  there is no reason to suspect that investigating a single
- relay will yield  user-destination pairs, but if many people are using
+ Currently there is no reason to suspect that investigating a single
+ relay will yield user-destination pairs, but if many people are using
  only a single hop, we make it more likely that attackers will seize or
- break into relays in hopes
- of tracing users.
+ break into relays in hopes of tracing users.
 </p>
 <p>
  Now, there is a good argument for making the number of hops in a path
@@ -4255,8 +4258,10 @@ their path length.</a></h3>
  for sure which entry node you used. Choosing path length from, say,
  a geometric distribution will turn this into a statistical attack,
  which seems to be an improvement. On the other hand, a longer path
- length is bad for usability. We're not sure of the right trade-offs
- here. Please write a research paper that tells us what to do.
+ length is bad for usability, and without further protections it seems
+ likely that an adversary can estimate your path length anyway. We're
+ not sure of the right trade-offs here. Please write a research paper
+ that tells us what to do.
 </p>
 
     <hr>
