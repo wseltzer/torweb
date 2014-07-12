@@ -11,7 +11,7 @@
 # 5. ./publish
 
 export STABLETAG=tor-0.2.4.22
-export DEVTAG=tor-0.2.5.4-alpha
+export DEVTAG=tor-0.2.5.5-alpha
 
 WMLBASE=.
 SUBDIRS=docs eff projects press about download getinvolved donate docs/torbutton
