@@ -237,7 +237,6 @@ relay.</a></li>
     communications? Isn't that bad? </a></li>
     <li><a href="#AmITotallyAnonymous">So I'm totally anonymous if I use
     Tor?</a></li>
-    <li><a href="#ExitEnclaving">What is Exit Enclaving?</a></li>
     <li><a href="#KeyManagement">Tell me about all the keys Tor
 uses.</a></li>
     <li><a href="#EntryGuards">What are Entry Guards?</a></li>
@@ -3559,69 +3558,6 @@ diversity,
     Tor is a work in progress. There is still <a
     href="https://www.torproject.org/getinvolved/volunteer">plenty of work
     left to do</a> for a strong, secure, and complete solution.
-    </p>
-
-    <hr>
-
-    <a id="ExitEnclaving"></a>
-    <h3><a class="anchor" href="#ExitEnclaving">What is Exit Enclaving?</a>
-    </h3>
-
-    <p>
-    When a machine that runs a Tor relay also runs a public service, such as
-    a webserver, you can configure Tor to offer Exit Enclaving to that
-    service. Running an Exit Enclave for all of your services you wish to
-    be accessible via Tor provides your users the assurance that they will
-    exit through your server, rather than exiting from a randomly selected
-    exit node that could be watched. Normally, a tor circuit would end at
-    an exit node and then that node would make a connection to your service.
-    Anyone watching that exit node could see the connection to your service,
-    and be able to snoop on the contents if it were an unencrypted
-    connection. If you run an Exit Enclave for your service, then the exit
-    from the Tor network happens on the machine that runs your service,
-    rather than on an untrusted random node. This works when Tor clients
-    wishing to connect to this public service extend their circuit
-    to exit from the Tor relay running on that same host. For example, if
-    the server at 1.2.3.4 runs a web server on port 80 and also acts as a
-    Tor relay configured for Exit Enclaving, then Tor clients wishing to
-    connect to the webserver will extend their circuit a fourth hop to exit
-    to port 80 on the Tor relay running on 1.2.3.4.
-    </p>
-    <p>
-    Exit Enclaving is disabled by default to prevent attackers from
-    exploiting trust relationships with locally bound services. For
-    example, often 127.0.0.1 will run services that are not designed to
-    be shared with the entire world. Sometimes these services will also
-    be bound to the public IP address, but will only allow connections if
-    the source address is something trusted, such as 127.0.0.1.
-    </p>
-    <p>
-    As a result of possible trust issues, relay operators must configure
-    their exit policy to allow connections to themselves, but they should
-    do so only when they are certain that this is a feature that they would
-    like. Once certain, turning off the ExitPolicyRejectPrivate option will
-    enable Exit Enclaving. An example configuration would be as follows:
-    </p>
-    <pre>
-    ExitPolicy accept 1.2.3.4:80
-    ExitPolicy reject 127.0.0.1/8
-    ExitPolicyRejectPrivate 0
-    </pre>
-    <p>
-    This option should be used with care as it may expose internal network
-    blocks that are not meant to be accessible from the outside world or
-    the Tor network. Please tailor your ExitPolicy to reflect all netblocks
-    that you want to prohibit access.
-    </p>
-    <p>
-    This option should be used with care as it may expose internal network
-    blocks that are not meant to be accessible from the outside world or
-    the Tor network. Please tailor your ExitPolicy to reflect all netblocks
-    that you want to prohibit access.
-    </p>
-    <p>
-    While useful, this behavior may go away in the future because it is
-    imperfect. A great idea but not such a great implementation.
     </p>
 
     <hr>
