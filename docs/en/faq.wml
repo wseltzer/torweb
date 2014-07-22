@@ -198,6 +198,7 @@ relay.</a></li>
     account?</a></li>
     <li><a href="#WrongIP">My relay is picking the wrong IP address.</a></li>
     <li><a href="#BehindANAT">I'm behind a NAT/Firewall</a></li>
+    <li><a href="#OutgoingFirewall">How should I configure my outgoing filters?</a></li>
     <li><a href="#RelayMemory">Why is my Tor relay using so much memory?
     </a></li>
     <li><a href="#BetterAnonymity">Do I get better anonymity if I run a relay?
@@ -2329,6 +2330,28 @@ than
 too.
     </li>
     </ul>
+
+    <hr>
+
+    <a id="OutgoingFirewall"></a>
+    <h3><a class="anchor" href="#BandwidthShaping">How should I configure
+    my outgoing filters?</a></h3>
+
+    <p>
+    Tor design assumes that any relay can reach every other relays. So
+    all <em>outgoing</em> connections must be allowed.
+    </p>
+    <p>
+    Tor is promoting free network access without interference.
+    Exit nodes must not attempt to filter any traffic coming from the
+    Tor network. Selecting outgoing traffic is likely to forfeit the
+    protections usually given to <em>common carriers</em> in many
+    jurisdictions.
+    </p>
+    <p>
+    Exit nodes which filter traffic will get the <a
+    href="#WhatIsTheBadExitFlag">BadExit</a> flag once detected.
+    </p>
 
     <hr>
 
