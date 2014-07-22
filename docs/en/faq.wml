@@ -48,8 +48,8 @@ proxies?</a></li>
     <li><a href="#IsItWorking">How can I tell if Tor is working, and that my
     connections really are anonymized?</a></li>
     <li><a href="#Mobile">Can I use Tor on my phone or mobile device?</a></li>
-    <li><a href="#OutboundPorts">Do I have to open all these outbound ports
-    on my firewall?</a></li>
+    <li><a href="#OutboundPorts">Which outbound ports must be open when
+    using Tor as a client?</a></li>
     <li><a href="#FTP">How do I use my browser for ftp with Tor?</a></li>
     <li><a href="#NoDataScrubbing">Does Tor remove personal information
     from the data my application sends?</a></li>
@@ -882,10 +882,9 @@ executive
 
     <hr>
 
-     <a id="OutboundPorts"></a>
-    <h3><a class="anchor" href="#OutboundPorts">Do I have to open all these
-    outbound ports on my firewall?</a></h3>
-
+    <a id="OutboundPorts"></a>
+    <h3><a class="anchor" href="#OutboundPorts">Which outbound ports must be open when
+    using Tor as a client?</a></h3>
     <p>
     Tor may attempt to connect to any port that is advertised in the
     directory as an ORPort (for making Tor connections) or a DirPort (for
@@ -894,7 +893,7 @@ executive
     ports too.
     </p>
     <p>
-    As a client: you could probably get away with opening only those four
+    When using Tor as a client, you could probably get away with opening only those four
     ports. Since Tor does all its connections in the background, it will retry
     ones that fail, and hopefully you'll never have to know that it failed, as
     long as it finds a working one often enough. However, to get the most
@@ -904,14 +903,6 @@ executive
     See the FAQ entry on <a href="#FirewallPorts">firewalled ports</a> if
     you want to explicitly tell your Tor client which ports are reachable
     for you.
-    </p>
-    <p>
-    As a relay: you must allow outgoing connections to every other relay
-    and to anywhere your exit policy advertises that you allow. The
-    cleanest way to do that is simply to allow all outgoing connections
-    at your firewall. If you don't, clients will ask you to extend to
-    those relays, and those connections will fail, leading to complex
-    anonymity implications for the clients which we'd like to avoid.
     </p>
 
     <hr>
@@ -2334,7 +2325,7 @@ too.
     <hr>
 
     <a id="OutgoingFirewall"></a>
-    <h3><a class="anchor" href="#BandwidthShaping">How should I configure
+    <h3><a class="anchor" href="#OutgoingFirewall">How should I configure
     my outgoing filters?</a></h3>
 
     <p>
