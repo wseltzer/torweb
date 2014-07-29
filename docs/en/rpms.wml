@@ -27,22 +27,22 @@
     torproject.repo.  Edit this file with the following information:
     </p>
 
-    <h3>Fedora 19/20 and EL6 packages</h3>
+    <h3>Fedora 19/20 and EL6/7 packages</h3>
 
-    <p>For Fedora 19, Fedora 20, RHEL 6 (and clones), use following repo file - 
-    substitute DISTRIBUTION with one of the following: fc/19, fc/20 or el/6
-    according to your distribution.
+    <p>For Fedora 19, Fedora 20, RHEL 6, RHEL 7 (and clones), use following
+    repo file - substitute DISTRIBUTION with one of the following: fc/19, fc/20,
+    el/6, el/7 according to your distribution.
     </p>
     
 <pre>[tor]
-name=Tor experimental repo
+name=Tor repo
 enabled=1
 baseurl=http://deb.torproject.org/torproject.org/rpm/DISTRIBUTION/$basearch/
 gpgcheck=1
 gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org.asc
 
 [tor-source]
-name=Tor experimental source repo
+name=Tor source repo
 enabled=1
 autorefresh=0
 baseurl=http://deb.torproject.org/torproject.org/rpm/DISTRIBUTION/SRPMS
@@ -55,6 +55,19 @@ gpgkey=http://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org.a
     </p>
 <pre>3B9E EEB9 7B1E 827B CF0A  0D96 8AF5 653C 5AC0 01F1</pre>
 
+    <h3>Name clash warning</h3>
+
+    <p>There is identically named 'tor' package in the EPEL and Fedora
+    repositories. Due to this unfortunate name clash, the packages might
+    "update over one another", depending on patchversion.  Solution is to use
+    <tt>Exclude=tor</tt> line in the relevant <tt>/etc/yum.repos.d/</tt>
+    file.
+    </p> 
+    
+    <p>E.g. you may exclude EPEL's Tor package by putting the mentioned exclude
+    line under [epel] section in <tt>/etc/yum.repos.d/epel.repo</tt>.
+    </p>
+    
     <h3>Package installation and running</h3>
 
     <p>
