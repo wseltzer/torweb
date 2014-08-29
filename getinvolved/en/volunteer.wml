@@ -166,6 +166,14 @@ meetings around the world.</li>
       </tr>
 
       <tr>
+        <td><a href="#project-torlauncher">TorLauncher</a></td>
+        <td>Browser Add-on</td>
+        <td>Javascript, XUL</td>
+        <td>Heavy</td>
+        <td>Pearl Crescent</td>
+      </tr>
+
+      <tr>
         <td><a href="#project-httpseverywhere">HTTPS Everywhere</a></td>
         <td>Browser Add-on</td>
         <td>Javascript</td>
@@ -454,15 +462,16 @@ meetings around the world.</li>
     </p>
 
     <a id="project-torbrowser"></a>
-    <h3><a href="<page projects/torbrowser>">Tor Browser Bundle</a> (<a
+    <h3><a href="<page projects/torbrowser>">Tor Browser</a> (<a
     href="https://gitweb.torproject.org/torbrowser.git">code</a>, <a
     href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Tor+bundles/installation&order=priority">bug
     tracker</a>, <a href="https://www.torproject.org/projects/torbrowser/design/">design doc</a>)</h3>
 
     <p>
-    The Tor Browser Bundle is an easy-to-use portable package of Tor, Vidalia,
-    Torbutton, and a Firefox fork preconfigured to work together out of
-    the box. It contains a modified copy of Firefox that aims to resolve the
+    Tor Browser is an easy-to-use, portable package of Tor, HTTPS-Everywhere, 
+    NoScript, TorLauncher, Torbutton, and a Firefox fork, all  preconfigured 
+    to work together out of
+    the box. The modified copy of Firefox aims to resolve the
     privacy and security issues in mainline version.
     </p>
 
@@ -480,9 +489,21 @@ meetings around the world.</li>
     <p>
     Firefox addon that addresses many of the client-side threats to browsing
     the Internet anonymously. Mike has since continued to adapt it to new
-    threats, updated versions of Firefox, and possibly <a
-    href="https://blog.torproject.org/blog/google-chrome-incognito-mode-tor-and-fingerprinting">Chrome
-    as well</a>.
+    threats and updated versions of Firefox</a>.
+    </p>
+
+    <a id="project-torlauncher"></a>
+    <h3>TorLauncher (<a
+    href="https://gitweb.torproject.org/torlauncher.git">code</a>, <a
+    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_information&status=needs_review&status=needs_revision&status=new&status=reopened&component=Tor+Launcher&order=priority">bug
+    tracker</a>)</h3>
+
+    <p>
+    Firefox addon that interfaces between the browser components and Tor. It 
+    addresses many usability issues of Tor Browser by making certain common 
+    Tor configurations, like bridge use, easy to set. Kathy and Mark of Pearl 
+    Crescent continue to add improvements as Tor Browser's feature set 
+    increases. </a>.
     </p>
 
     <a id="project-httpseverywhere"></a>
@@ -1031,7 +1052,7 @@ meetings around the world.</li>
     <br>
     Likely Mentors: <i>Nick (nickm)</i>
     <p>
-    The Tor code is almost 10 years old in places, and we haven't always had
+    The Tor code is more than 10 years old in places, and we haven't always had
     enough time or wisdom to write things as well as we could have.  Our unit
     test coverage is shamefully low, and the dependency graph of our modules is
     shamefully convoluted . We could use refactoring and unit tests!  Please
@@ -1083,11 +1104,12 @@ meetings around the world.</li>
 
     <p>
     We have deployed <a
-    href="<page projects/obfsproxy>">obfsproxy</a>
-    and <a href="http://crypto.stanford.edu/flashproxy/">flashproxy</a> bridges
-    for a while, accessible using separately-installed pluggable transport
-    clients. Recently, we added this client support to the main Tor Browser
-    Bundle, and are adding more transports such as scramblesuit and fteproxy.
+    href="<page projects/obfsproxy>">obfsproxy</a>, 
+    <a href="http://crypto.stanford.edu/flashproxy/">flashproxy</a>, 
+    <a href="http://www.cs.kau.se/philwint/scramblesuit/">scramblesuit</a>, 
+    <a href="https://trac.torproject.org/projects/tor/wiki/doc/meek">meek</a>,
+    and <a href="https://fteproxy.org/about">FTE</a> bridges into the main 
+    Tor Browser.</a>
     </p>
 
     <p>
@@ -1104,7 +1126,7 @@ meetings around the world.</li>
         transports together to take advantage of orthogonal types of blocking
         resistance.</li>
         <li>Improve the UX for selecting the appropriate pluggable transport in
-        the new Tor Browser Bundle, whilst maintaining user security.</li>
+        the new Tor Browser, whilst maintaining user security.</li>
         <li>Implement a new pluggable transport that resists blocking in a
         novel way.
         <ul>
@@ -1789,17 +1811,17 @@ implementation.
     Likely Mentors: <i>Sukhbir Singh (sukhe), Nima Fatemi (mrphs)</i>
     <p>
 GetTor is a program that serves Tor bundles and related components over SMTP.
-Users request the Tor Browser Bundle by sending an email to GetTor, which sends
-back the bundle as email attachments. In countries where the Tor Project
-website is blocked, GetTor is a convenient way for users to get access to the
-bundles.
+Users request the Tor Browser by sending an email to GetTor, which sends
+back Tor Browser as email attachments. In countries where the Tor Project
+website is blocked, GetTor is a convenient way for users to get access to Tor
+Browser.
     </p>
 
     <p>
 GetTor has been unmaintained for a while and needs a revamp. The main issue is
-that because the Tor Browser Bundle size exceeds 25 MB, sending it through
+that because the Tor Browser size exceeds 25 MB, sending it through
 GetTor no longer works as most email providers don't support attachments
-exceeding 25 MB. To alleviate this issue, bundles are now uploaded on
+exceeding 25 MB. To alleviate this issue, Tor Browsers are now uploaded on
 cloud-based services such as Google Drive and Dropbox and links are sent
 out in the email body instead of attachments. This current setup is far from
 complete -- GetTor needs a lot of work to get it to a point where it can do
