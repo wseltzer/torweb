@@ -20,20 +20,15 @@ They're in include/versions.wmi
 too -- generally when you change the file name so drastically that just
 changing the versions.wmi tags isn't enough.)
 
-If you want to push your locally built website to the remote webserver,
-run the ./publish script in website/trunk/. It will rsync everything
-over, and then it will ask www-master.tp.o to run its trigger-mirrors
-script which causes www-master to rsync to all the servers in the www.tp.o
-rotation. To push the website, you'll need to be in the torwww ldap group
-(which is separate from whether you can commit to svn).
+Pushes to the master branch of the git repository will cause the
+website to get re-built and published.  pushing to the staging branch
+will update www-staging.torproject.org.
 
 Alas, https://www.torproject.org/dist/ isn't in version control. You
-write to it by ssh'ing to www-master.torproject.org and going to
-/srv/www-master.torproject.org/htdocs/dist/ and then sticking your stuff
-there. When you want it to go live, you run ./publish from your local
-website checkout, which will trigger the trigger-mirrors run. (It's
-possible that you can simply run /home/mirroradm/bin/trigger-mirrors on
-www-master too, but I've never tried.)
+write to it by ssh'ing to staticiforme.torproject.org and going to
+/srv/dist-master.torproject.org/htdocs/ and then sticking your stuff
+there. When you want it to go live, you run
+static-update-component dist.torproject.org on staticiforme.
 
 Weasel has hopes that somebody will write some scripts to make maintaining
 packages in dist/ less awful -- automatically check that they have
