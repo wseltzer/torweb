@@ -8,7 +8,11 @@
 # 2. Edit include/versions.wmi or others if you like
 # 3. Update STABLETAG and DEVTAG below if there is a new git tag
 # 4. make
-# 5. ./publish
+# 5. Do a git commit for your changes
+
+# Then either 6a) git push to staging or master, or 6b) push your git
+# branch to your personal webwml repository, open a trac ticket in the
+# website component, and set it to needs_review.
 
 export STABLETAG=tor-0.2.4.24
 export DEVTAG=tor-0.2.5.8-rc
