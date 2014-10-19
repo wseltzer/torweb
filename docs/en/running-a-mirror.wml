@@ -25,8 +25,10 @@
     everything a mirror should share with the world:
     <br> <br>
     <tt>
-    rsync -av --exclude 'dist'--delete rsync://rsync.torproject.org/website-mirror tor-mirror/
+    <pre>
+    rsync -av --exclude 'dist' --delete rsync://rsync.torproject.org/website-mirror tor-mirror/
     rsync -av --delete rsync://rsync.torproject.org/dist-mirror tor-mirror/dist/
+    </pre>
     </tt>
 
     <p>
@@ -92,7 +94,7 @@
   	root /var/www/mirrors/torproject.org;
 	index index.html.en;
 
-	location ^~ /dist/ {
+	location  / {
 	  autoindex on;
       }
     }
