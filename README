@@ -1,13 +1,13 @@
 Here are the instructions I sent David Fifield when he asked about
 editing the website. I hope they are useful for you too! --Roger
 
-See the Makefile.local file in your website/trunk/ directory. Uncomment
-TORGIT and point it to a tor git.
+Copy Makefile.local.sample to Makefile.local in your webwml/ directory.
+Point TORGIT to a tor git.
 
 Then apt-get install wml and (alas) probably a shocking number of other
 debs. Then you can type 'make' and it will build the website for you
 locally. It's probably a smart move to see whether 'make' works before
-you svn commit any changes to the wml file.
+you git commit any changes to the wml files.
 
 You can edit docs/en/pluggable-transports.wml (and that is
 the right source file to edit, not the html). But go take a
@@ -21,14 +21,14 @@ too -- generally when you change the file name so drastically that just
 changing the versions.wmi tags isn't enough.)
 
 Pushes to the master branch of the git repository will cause the
-website to get re-built and published.  pushing to the staging branch
+website to get re-built and published. Pushing to the staging branch
 will update www-staging.torproject.org.
 
 Alas, https://www.torproject.org/dist/ isn't in version control. You
-write to it by ssh'ing to staticiforme.torproject.org and going to
+write to it by ssh'ing to dist-master.torproject.org and going to
 /srv/dist-master.torproject.org/htdocs/ and then sticking your stuff
 there. When you want it to go live, you run
-static-update-component dist.torproject.org on staticiforme.
+"static-update-component dist.torproject.org" on dist-master.
 
 Weasel has hopes that somebody will write some scripts to make maintaining
 packages in dist/ less awful -- automatically check that they have
