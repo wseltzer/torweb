@@ -26,7 +26,7 @@
     </p>
     <tt>
 <pre>
-rsync -av --exclude 'dist' --delete rsync://rsync.torproject.org/website-mirror tor-mirror/
+rsync -av --exclude dist --delete rsync://rsync.torproject.org/website-mirror tor-mirror/
 rsync -av --delete rsync://rsync.torproject.org/dist-mirror tor-mirror/dist/
 </pre>
     </tt>
@@ -58,7 +58,7 @@ rsync -av --delete rsync://rsync.torproject.org/dist-mirror tor-mirror/dist/
     <tt>
 <pre>
 # m h  dom mon dow   command
-0 */6 * * * rsync -aq --exclude 'dist'  --delete rsync://rsync.torproject.org/website-mirror/ /var/www/mirrors/torproject.org
+0 */6 * * * rsync -aq --exclude dist --delete rsync://rsync.torproject.org/website-mirror/ /var/www/mirrors/torproject.org
 5 */6 * * * rsync -aq --delete rsync://rsync.torproject.org/dist-mirror/ /var/www/mirrors/torproject.org/dist
 </pre>
     </tt>
@@ -132,8 +132,8 @@ text/html                             en html htm shtml;
     file</a> to the mirrors list. Your mirror will then be added manually
     if it passes availability testing and your provided information is
     confirmed. Some general pointers on mirrors are:
-    <ol><li> Try not run your mirror behind a content delivery network
-    (such as Akamai, Cloudflare, Fastly, etc), as most of them block
+    <ol><li> Try not to run your mirror behind a content delivery network
+    (such as Akamai, Cloudflare, Fastly, etc) as most of them block
     access from countries where the mirror is needed the most.</li>
     <li> Try not to redirect http to https. Many places in the world
     cannot use https due to local or national firewalls.</li>
