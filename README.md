@@ -1,30 +1,32 @@
-To quickly get set up simply do the following...
+# Building website locally
 
-  1. Get the website's build dependencies.
+To quickly get set up simply do the following
 
-    % sudo apt-get install wml asciidoc
+ __Step 1:__ Get the website's build dependencies.
 
-  2. Configure where to find your tor git repository. It needs this to make the
+    sudo apt-get install wml asciidoc
+
+  __Step 2:__ Configure where to find your tor git repository. It needs this to make the
      manual page.
 
-    % git clone https://git.torproject.org/project/web/webwml.git
-    % cd webwml
-    % cp Makefile.local.sample Makefile.local
-    [ change the TORGIT in Makefile.local to point to your tor git repo ]
+    git clone https://git.torproject.org/project/web/webwml.git
+    cd webwml
+    cp Makefile.local.sample Makefile.local
+    
+Note: Change the `TORGIT` in Makefile.local to point to your tor git repo.
 
-  3. Make the website.
+  __Step 3:__ Make the website.
 
-    % make
+    make
 
 You should now be able to point your browser at the locally generated site...
 
-  file:///home/atagar/Desktop/tor/webwml/getinvolved/volunteer.html.en
+    file:///home/atagar/Desktop/tor/webwml/getinvolved/volunteer.html.en
 
---------------------------------------------------------------------------------
-Troubleshooting
---------------------------------------------------------------------------------
 
-* The build fails with "Invalid object name".
+### Troubleshooting the build
+
+The build fails with "Invalid object name".
 
   If you get an error like...
 
@@ -35,9 +37,10 @@ Troubleshooting
 
   This means your tor repository is out of date. Update your tor git repository.
 
---------------------------------------------------------------------------------
-More detailed instructions from Roger
---------------------------------------------------------------------------------
+
+### More detailed instructions from Roger
+
+_Note: This section was written when website repo was still on svn, and it wasn't built automatically._
 
 Here are the instructions I sent David Fifield when he asked about
 editing the website. I hope they are useful for you too! --Roger
