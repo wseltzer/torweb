@@ -1,6 +1,6 @@
-# Building website locally
-
-To quickly get set up simply do the following
+# Building website
+Torproject website is being built and published automatically.
+To quickly get set up and build website locally, simply follow these steps:
 
  __Step 1:__ Get the website's build dependencies.
 
