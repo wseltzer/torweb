@@ -1,13 +1,15 @@
 # How to contribute
 
-Thanks for being interested to work on the website, I tried to make a simple how-to for you to quickly get you setup:
+Thanks for being interested to work on the website, I tried to make a simple 
+how-to for you to quickly get you setup:
 
 __Step 1:__ Clone the git repo.
 
     git clone https://git.torproject.org/project/web/webwml.git
     cd webwml
 
-__Step 1b:__ Create a bare public repository (i.e on Github), where you'd push your commits to. Make sure you're in `webwml` directory, and run:
+__Step 1b:__ Create a bare public repository (i.e on Github), where you'd push 
+your commits to. Make sure you're in `webwml` directory, and run:
 
     git remote add pick-a-name your-git-url
 
@@ -16,17 +18,20 @@ _Example:_
 
 __Step 2:__ Create and switch to a new branch.
 
-_In the following example, I've named my branch "docs" as I'm planning to work on the documentations._
+_In the following example, I've named my branch "docs" as I'm planning to work 
+on the documentations._
 
     git checkout -b docs
 
-__Step 3:__ Now you can start working on website and make changes. Once you're done, commit and push it to your public repo.
+__Step 3:__ Now you can start working on website and make changes. Once you're 
+done, commit and push it to your public repo.
 
 _Example:_
 
     git push tpo-gh docs
 
-__Step 4:__ Open a new ticket on [trac](https://trac.torproject.org) with a link to your shiny new repo/branch.
+__Step 4:__ Open a new ticket on [trac](https://trac.torproject.org) with a 
+link to your shiny new repo/branch.
 
 # Building website
 Torproject website is being built and published automatically.
@@ -36,7 +41,8 @@ To quickly get set up and build website locally, simply follow these steps:
 
     sudo apt-get install wml asciidoc
 
-  __Step 2:__ Configure where to find your tor git repository. It needs this to make the
+  __Step 2:__ Configure where to find your tor git repository. It needs this 
+to make the
      manual page.
 
     git clone https://git.torproject.org/project/web/webwml.git
@@ -63,14 +69,17 @@ The build fails with "Invalid object name".
     ---- Contents of STDERR channel: ---------
     fatal: Invalid object name 'tor-0.2.6.1-alpha'.
     asciidoc: FAILED: manpage document title is mandatory
-    No manpage because of asciidoc error or file not available from git at /tmp/wml.zwcq0q/wml.30867.tmp1.wml line 415.
+    No manpage because of asciidoc error or file not available from git at 
+    /tmp/wml.zwcq0q/wml.30867.tmp1.wml line 415.
 
-  This means your tor repository is out of date. Update your tor git repository.
+  This means your tor repository is out of date. Update your tor git 
+repository.
 
 
 ### More detailed instructions from Roger
 
-_Note: This section was written when website repo was still on svn, and it wasn't built automatically._
+_Note: This section was written when website repo was still on svn, and it 
+wasn't built automatically._
 
 Here are the instructions I sent David Fifield when he asked about
 editing the website. I hope they are useful for you too! --Roger
@@ -109,4 +118,3 @@ packages in dist/ less awful -- automatically check that they have
 signatures and that the sigs match, that the items on the website are in
 fact in dist, only allow certain people to put files in certain places,
 etc. One day! :)
-
