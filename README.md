@@ -14,7 +14,7 @@ your commits to. Make sure you're in `webwml` directory, and run:
     git remote add pick-a-name your-git-url
 
 _Example:_
-    `git remote tpo-gh git@github.com:mrphs/tpo.git`
+    `git remote add tpo-gh git@github.com:mrphs/tpo.git`
 
 __Step 2:__ Create and switch to a new branch.
 
