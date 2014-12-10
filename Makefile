@@ -2,7 +2,7 @@
 #
 # 1. Clone the Tor git repository and make TORGIT point to it:
 #
-# 	git clone git://git.torproject.org/tor/ tor.git
+# 	git clone https://git.torproject.org/tor/ tor.git
 #
 #    Note that you will need to point to the actual .git directory.
 # 2. Edit include/versions.wmi or others if you like
