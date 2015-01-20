@@ -186,8 +186,8 @@
     <h3><a class="anchor" href="#BuildVerification">
     Verifying sha256sums (advanced)</a></h3>
     <hr>
-    <p>Build reproducibility is a <a 
-       href="https://blog.torproject.org/blog/deterministic-builds-part-one-cyberwar-and-global-compromise">security 
+    <p>Build reproducibility is a <a
+       href="https://blog.torproject.org/blog/deterministic-builds-part-one-cyberwar-and-global-compromise">security
        property</a> of Tor Browser 3.0 and later. Anyone can build
        Tor Browser on their own machine and produce a binary that is
        bit-for-bit identical to the binary we offer on the download page.
@@ -201,22 +201,22 @@
 
     <ul>
       <li>Download the Tor Browser package, the sha256sums.txt file, and the
-      sha256sums signature files. They can all be found in the same directory 
+      sha256sums signature files. They can all be found in the same directory
       under <a href="https://www.torproject.org/dist/torbrowser/">
-      https://www.torproject.org/dist/torbrowser/</a>, for example in '3.6.1' 
+      https://www.torproject.org/dist/torbrowser/</a>, for example in '3.6.1'
       for TBB 3.6.1.</li>
-      <li>Retrieve the signers' GPG keys. This can be done from the command 
-      line by entering something like 
+      <li>Retrieve the signers' GPG keys. This can be done from the command
+      line by entering something like
       <pre>gpg --keyserver keys.mozilla.org --recv-keys 0x29846B3C683686CC</pre>
-      (This will bring you developer Mike Perry's public key. Other 
+      (This will bring you developer Mike Perry's public key. Other
       developers' key IDs can be found on
-      <a href="<page docs/signing-keys>">this 
+      <a href="<page docs/signing-keys>">this
       page</a>.)</li>
       <li>Verify the sha256sums.txt file by executing this command:
       <pre>gpg --verify &lt;NAME OF THE SIGNATURE FILE&gt;.asc sha256sums.txt</pre></li>
-      <li>You should see a message like "Good signature from &lt;DEVELOPER 
+      <li>You should see a message like "Good signature from &lt;DEVELOPER
       NAME&gt;". If you don't, there is a problem. Try these steps again.</li>
-      <li>Now you can take the sha256sum of the Tor Browser package. On 
+      <li>Now you can take the sha256sum of the Tor Browser package. On
       Windows you can use the <a href="http://md5deep.sourceforge.net/">
       hashdeep utility</a> and run
       <pre>C:\location\where\you\saved\hashdeep -c sha256sum &lt;TOR BROWSER FILE NAME&gt;.exe</pre>
@@ -225,17 +225,39 @@
       <li>Open sha256sums.txt in a text editor.</li>
       <li>Locate the name of the Tor Browser file you downloaded.</li>
       <li>Compare the string of letters and numbers to the left of your
-      filename with the string of letters and numbers that appeared 
-      on your command line. If they match, you've successfully verified the 
-      build.</li> 
+      filename with the string of letters and numbers that appeared
+      on your command line. If they match, you've successfully verified the
+      build.</li>
     </ul>
-    
-    <p><a href="https://github.com/isislovecruft/scripts/blob/master/verify-gitian-builder-signatures">Scripts</a> 
-    to <a href="http://tor.stackexchange.com/questions/648/how-to-verify-tor-browser-bundle-tbb-3-x">automate</a> 
-    these steps have been written, but to use them you will need to modify 
+
+    <p><a href="https://github.com/isislovecruft/scripts/blob/master/verify-gitian-builder-signatures">Scripts</a>
+    to <a href="http://tor.stackexchange.com/questions/648/how-to-verify-tor-browser-bundle-tbb-3-x">automate</a>
+    these steps have been written, but to use them you will need to modify
     them yourself with the latest Tor Browser filename.</p>
-    
+
     <hr>
+
+    <a id="MARVerification"></a>
+    <h3><a class="anchor" href="#MARVerification">
+    Verifying MAR files we ship (advanced)</a></h3>
+    <hr>
+    <p>Starting with Tor Browser 4.5a4 we sign our MAR files which helps
+    securing our update process. The downside of this is the need for additional
+    instructions to verify that the MAR files we ship are indeed the ones we
+    produced with our Gitian setup.</p>
+
+    <p>Assuming the verification happens on a Linux computer one first needs the
+    <tt>mar-tools-linux*.zip</tt> out of the <tt>gitian-builder/inputs</tt>
+    directory to remove the embedded signature(s). The steps to get the unsigned
+    MAR file on a 64 bit Linux are</p>
+    <pre>
+    cd /path/to/MAR/file
+    unzip /path/to/gitian-builder/inputs/mar-tools-linux64.zip
+    mar-tools/signmar -r your-signed-mar-file.mar your-unsigned-mar-file.mar</pre>
+    <p>Now you can compare the SHA256 sum of <tt>your-unsigned-mar-file.mar</tt>
+    with the one provided in the <tt>sha265sums.txt</tt> or
+    <tt>sha256sums.incremental.txt</tt> as outlined in <a href="#BuildVerification">Verifying
+    sha256sums (advancded)</a> above.</p>
 
   </div>
   <!-- END MAINCOL -->
