@@ -109,8 +109,6 @@ unsafe?</a></li>
     <p>Tor Browser (3.x and later):</p>
 
     <ul>
-    <li><a href="#WhereDidVidaliaGo">Where did the world map (Vidalia)
-    go?</a></li>
     <li><a href="#DisableJS">How do I disable JavaScript?</a></li>
     <li><a href="#VerifyDownload">How do I verify the download
     (sha256sums.txt)?</a></li>
@@ -662,8 +660,7 @@ handle
     </li>
 
     <li>
-    <a href="<page projects/vidalia>">Help us make Tor more usable</a>.
-We
+    Help us make Tor more usable. We
     especially need people to help make it easier to configure your Tor
     as a relay. Also, we need help with clear simple documentation to
     walk people through setting it up.
@@ -795,11 +792,8 @@ of the
 configuration
     to interface with other applications, and generally automating all
 of
-    the difficult and confusing steps inside Tor. We've got a start on
-this
-    with the <a href="<page projects/vidalia>">Vidalia GUI</a>, but much
-more work
-    remains &mdash; usability for privacy software has never been easy.
+    the difficult and confusing steps inside Tor.
+    Usability for privacy software has never been easy.
     </li>
 
     <li>
@@ -1497,36 +1491,6 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
     href="https://trac.torproject.org/projects/tor/ticket/8641">working
     on providing it</a>. </p>
 
-    <p>In the meantime, we are providing standalone Vidalia packages for
-    people who still want the map. Windows and Linux versions are <a
-    href="https://people.torproject.org/~erinn/vidalia-standalone-bundles/">
-    available here</a>.</p>
-
-    <p>To use these packages, extract them, then run the startup script.
-    On Windows, this is "Start Vidalia.exe". On Linux, it is start-vidalia.
-    They can be placed in a different directory from TBB (and likely should
-    be). </p>
-
-    <p>This Vidalia package will only run properly if Tor Browser has already
-    been launched. You cannot start it before launching Tor Browser. </p>
-
-    <p>MacOS is still under development, but in the mean time you can modify
-    your TBB 2.x to be a standalone Vidalia (and then use it after starting
-    TBB 3.x) by opening your TBB 2.x vidalia.conf file in an editor and
-    replacing its contents with just these lines:</p>
-
-    <pre>
-    [General]
-    LanguageCode=en
-
-    [Tor]
-    ControlPort=9151
-    TorExecutable=.
-    Torrc=.
-    DataDirectory=.
-    AuthenticationMethod=cookie
-    </pre>
-
     <hr>
 
     <a id="DisableJS"></a>
@@ -1577,8 +1541,7 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
 
     <p>
     That's actually a feature, since it's discarding your application-level
-    browser data too. But it sure is a surprising feature, for people who
-    are used to Vidalia's "new identity" behavior.
+    browser data too.
     </p>
 
     <p>
@@ -1588,12 +1551,6 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
     ticket <a
     href="https://trac.torproject.org/projects/tor/ticket/10400">#10400</a>
     to follow progress there.
-    </p>
-
-    <p>
-    In the mean time, you can get Vidalia's old "newnym" functionality by
-    attaching a Vidalia to your TBB 3.x. See the instructions <a
-    href="#WhereDidVidaliaGo">above</a>.
     </p>
 
     <hr>
@@ -1612,15 +1569,9 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
     You can then use TBB independent of that.
     </p>
 
-    <p>
-    Second (simpler option), if you're on Windows, you can fetch the separate
-    "Vidalia relay bundle" or "Vidalia bridge bundle" from the download page
-    and then use that (again you can use TBB independent of it).
-    </p>
 
     <p>
-    Third (complex option), you can either hook your Vidalia up to TBB (as
-    described in the FAQ above) or edit your torrc file (in Data/Tor/torrc)
+    Second (complex option), you can edit your torrc file (in Data/Tor/torrc)
     directly to add the following lines:
     </p>
     <pre>
@@ -1719,14 +1670,7 @@ on Tor's configuration.
 logs?</a></h3>
 
 <p>
-If you installed a Tor bundle that includes Vidalia, then Vidalia has a
-window called "Message Log" that will show you Tor's log messages. Click
-on "Advanced" to see more details. You can click on "Settings" to change
-your log verbosity or save the messages to a file. You're all set.
-</p>
-
-<p>
-If you're not using Vidalia, you'll have to go find the log files by
+You'll have to go find the log files by
 hand. Here are some likely places for your logs to be:
 </p>
 
@@ -1823,14 +1767,9 @@ Once you've got Tor Browser up and running, the first question to
 ask is whether your Tor client is able to establish a circuit.
 </p>
 
-<p>If Tor can establish a circuit, the onion icon in
-Vidalia will turn green (and if you're running Tor Browser, it
-will
-automatically launch a browser for you). You can also check in the
-Vidalia
-Control Panel to make sure it says "Connected to the Tor
-network!" under Status. For those not using Vidalia, check your <a
-href="#Logs">Tor logs</a> for
+<p>If Tor can establish a circuit, Tor Browser will
+automatically launch the browser for you. You can also check in the
+<a href="#Logs">Tor logs</a> for
 a line saying that Tor "has successfully opened a circuit. Looks like
 client functionality is working."
 </p>
@@ -1840,8 +1779,6 @@ If Tor can't establish a circuit, here are some hints:
 </p>
 
 <ol>
-<li>Are you sure Tor is running? If you're using Vidalia, you may have
-to click on the onion and select "Start" to launch Tor.</li>
 <li>Check your system clock. If it's more than a few hours off, Tor will
 refuse to build circuits. For Microsoft Windows users, synchronize your
 clock under the clock -&gt; Internet time tab. In addition, correct the
@@ -2021,14 +1958,11 @@ few outgoing ports.</a></h3>
 
 <p>
 If your firewall works by blocking ports, then you can tell Tor to only
-use the ports that your firewall permits by adding "FascistFirewall 1"
+use the ports when you start your Tor Browser. Or you can add the ports
+that your firewall permits by adding "FascistFirewall 1"
 to
 your <a href="<page docs/faq>#torrc">torrc
-configuration file</a>, or by clicking "My firewall only lets me connect
-to certain ports" in Vidalia's Network Settings window.
-</p>
-
-<p>
+configuration file</a>.
 By default, when you set this Tor assumes that your firewall allows only
 port 80 and port 443 (HTTP and HTTPS respectively). You can select a
 different set of ports with the FirewallPorts torrc option.
@@ -2552,11 +2486,11 @@ href="#DefaultExitPorts">restricts</a>
     some due to abuse potential (e.g. mail) and some since
     the Tor network can't handle the load (e.g. default
     file-sharing ports). You can change your exit policy
-    using Vidalia's "Sharing" tab, or by manually editing your
+    by editing your
     <a href="<page docs/faq>#torrc">torrc</a>
     file. If you want to avoid most if not all abuse potential, set it
 to
-    "reject *:*" (or un-check all the boxes in Vidalia). This setting
+    "reject *:*". This setting
 means
     that your relay will be used for relaying traffic inside the Tor
 network,
@@ -2832,8 +2766,7 @@ service?</a></h3>
 
 <p>
  You can run Tor as a service on all versions of Windows except Windows
- 95/98/ME. This way you can run a Tor relay without needing to always have
- Vidalia running.
+ 95/98/ME.
 </p>
 <p>
 If you've already configured your Tor to be a relay, please note that when
@@ -3990,9 +3923,8 @@ we
 maintaining
     a relay. We've made a lot of progress with easy configuration in the
 past
-    few years: Vidalia has an easy relay configuration interface, and
-supports
-    uPnP too. Tor is good at automatically detecting whether it's
+    few years:
+    Tor is good at automatically detecting whether it's
 reachable and
     how much bandwidth it can offer.
     </p>
