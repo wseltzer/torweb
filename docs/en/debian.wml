@@ -11,7 +11,7 @@
 // the terms of the GNU GPLv2, http://www.gnu.org/licenses/gpl-2.0.html.
 var sources = {};
 var software = {
-'tor': { 'stable': { 'squeeze': [ 'squeeze' ],
+'tor': { '_stable': { 'squeeze': [ 'squeeze' ],
                      'wheezy':  [ 'wheezy' ],
                      'jessie':  [ 'jessie' ],
                      'sid':     [ 'sid' ],
@@ -30,7 +30,7 @@ var software = {
                      'trusty':  [ 'trusty'],
                      'utopic':  [ 'utopic'] },
        },
-'tor (from source)': { 'stable': { 'squeeze': [ 'squeeze' ],
+'tor (from source)': { '_stable': { 'squeeze': [ 'squeeze' ],
                      'wheezy':  [ 'wheezy' ],
                      'jessie':  [ 'jessie' ],
                      'sid':     [ 'sid' ],
@@ -89,16 +89,19 @@ function update() {
     if (package != pkg.prev) {
         while (ver.firstChild)
             ver.removeChild(ver.firstChild);
+        var selected;
         for (version in software[package]) {
             option = document.createElement('option');
             if (version[0] == '_') {
                 version = version.slice(1);
+                selected = version;
             }
             option.appendChild(document.createTextNode(version));
             option.value = version = version.replace(/ \(.*\)/,'');
 //alert(version);
             ver.appendChild(option);
         }
+        ver.value = version = selected || version;
         pkg.prev = package
     }
     try {
