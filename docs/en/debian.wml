@@ -122,13 +122,11 @@ function update() {
             txt += sources[keys[i]];
             target = keys[i];
         } else {
-            txt += "deb";
             if (package.slice(-7, -1) == 'source') {
-                txt += '-src';
                 package = package.split(' ')[0];
-                source_install = true
+                source_install = true;
             }
-            txt += " http://deb.torproject.org/torproject.org";
+            txt += "http://deb.torproject.org/torproject.org";
             txt += " ";
             if (version != 'stable') {
                 txt += package;
@@ -140,15 +138,14 @@ function update() {
             txt += " main";
             need_signed = true;
             target = keys[i];
+            txt = "deb " + txt + "\ndeb-src " + txt;
         }
         txt += "\n";
     }
     replaceText(src, txt);
-    //document.getElementById('signed').style.display = need_signed ? 'block' : 'none';
     document.getElementById('regular-install').style.display = source_install ? 'none' : 'block';
     document.getElementById('source-install').style.display = source_install ? 'block' : 'none';
     document.getElementById('source-install2').style.display = source_install ? 'block' : 'none';
-    //replaceText(document.getElementById('apt-target'), (keys && keys.length && target != distrib && target != distrib + '-security') ? ' -t ' + target : '');
     replaceText(document.getElementById('apt-package'), package);
     document.getElementById('apt-source').style.display = (keys && keys.length) ? 'block' : 'none';
     document.getElementById('apt-get').style.display = keys ? 'block' : 'none';
