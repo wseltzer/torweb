@@ -103,18 +103,20 @@
     to the developer. The best method is to meet the developer in person and
     exchange key fingerprints.
     </p>
-    <h3>Mac OS X</h3>
+    <h3>Mac OS X and Linux</h3>
     <hr>
 
     <p>You need to have GnuPG installed before you can verify
-    signatures. You can install it from <a
-    href="http://www.gpgtools.org/">http://www.gpgtools.org/</a>.
+    signatures. If you are using Mac OS X, you can install it from <a
+    href="http://www.gpgtools.org/">http://www.gpgtools.org/</a>. If you
+    are using Linux, then it's probably you already have GnuPG in your
+    system, as most Linux distributions come with it preinstalled.
     </p>
 
-    <p>Once it's installed, use GnuPG to import the key that signed
+    <p>The next step is to use GnuPG to import the key that signed
     your package. Erinn Clark signs the Tor Browsers. Import her
-    key (0x416F061063FEE659) by starting the terminal (under "Applications")
-    and typing:</p>
+    key (0x416F061063FEE659) by starting the terminal (under "Applications"
+    in Mac OS X) and typing:</p>
 
     <pre>gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x416F061063FEE659</pre>
 
@@ -135,9 +137,14 @@
 
     <p>To verify the signature of the package you downloaded, you will need
     to download the ".asc" file as well. Assuming you downloaded the
-    package and its signature to your Desktop, run:</p>
+    package and its signature to your Desktop, run (where <version> stands
+    for the version of Tor Browser you downloaded):</p>
 
-    <pre>gpg --verify ~/Desktop/TorBrowser-<version-torbrowserbundleosx32>-osx32_en-US.dmg{.asc*,}</pre>
+    <strong>For Mac OS X users</strong>:
+    <pre>gpg --verify ~/Desktop/TorBrowser-<version>-osx32_en-US.dmg{.asc*,}</pre>
+    
+    <strong>For Linux users</strong> (change 32 by 64 if you have the 64-bit package):
+    <pre>gpg --verify ~/Desktop/tor-browser-linux32-<version>_en-US.tar.xz{.asc*,}</pre>
 
     <p>The output should say "Good signature": </p>
 
@@ -158,29 +165,19 @@
     to the developer. The best method is to meet the developer in person and
     exchange key fingerprints.
     </p>
-
-    <h3>Linux</h3>
-    <hr>
-
-    <p>Most Linux distributions come with gpg preinstalled, so users
-    who want to verify the Tor Browser for Linux (or the source
-    tarball) can just follow along with the instructions above for
-    "Mac OS X". </p>
-
-    <p>If you're using the <b>Debian</b> Tor (not Tor Browser) packages, you 
-    should read the
-    instructions on <a href="<page docs/debian>#packages">importing
-    these keys to apt</a>.</p>
-
-    <p>If you're using the <b>RPMs</b> (for Tor, not Tor Browser), you can 
-    manually verify the
-    signatures on the RPM packages by <pre>rpm -K filename.rpm</pre></p>
+    
+    <p>
+    If you're a Linux user and you're using the <b>Debian</b> Tor (not Tor
+    Browser) packages, you should read the instructions on <a
+    href="<page docs/debian>#packages">importing these keys to apt</a>.
+    If you're using the <b>RPMs</b> (for Tor, not Tor Browser), you can
+    manually verify the signatures on the RPM packages by
+    <pre>rpm -K filename.rpm</pre>
+    </p>
 
     <p>See <a
     href="http://www.gnupg.org/documentation/">http://www.gnupg.org/documentation/</a>
     to learn more about GPG.</p>
-
-    <hr>
 
     <a id="BuildVerification"></a>
     <h3><a class="anchor" href="#BuildVerification">
