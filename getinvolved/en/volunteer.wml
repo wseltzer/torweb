@@ -405,8 +405,7 @@ meetings around the world.</li>
     <i><a href="#improveTorTestCoverage">Improve test coverage in Tor</a></i><br />
     <i><a href="#useMoreCores">Have the Tor daemon use more cores</a></i><br />
     <i><a href="#improveHiddenServices">Help improve Tor hidden services</a></i><br />
-    <i><a href="#improvedDnsSupport">Improved DNS support for Tor</a></i><br />
-    <i><a href="#torSandboxing">Help improve Tor sandboxing</a></i>
+    <i><a href="#improvedDnsSupport">Improved DNS support for Tor</a></i>
     </p>
 
     <a id="project-torbrowser"></a>
@@ -1424,71 +1423,6 @@ the connection_exit_begin_resolve() function in src/or/connection_edge.c ,
 and see how we pass these requests downwards through src/or/dns.c to the
 underlying resolver.  It's not too complicated, but there are some
 tricky parts to understand.
-    </p>
-
-    <p>
-As part of the application process for this project, please contribute a
-nontrivial patch to Tor -- ideally, one that will affect some part of
-the codebase that you want to work on.
-    </p>
-    </li>
-
-    <a id="torSandboxing"></a>
-    <li>
-    <b>Help improve Tor sandboxing</b>
-    <br>
-    Effort Level: <i>Medium</i>
-    <br>
-    Skill Level: <i>Medium</i>
-    <br>
-    Likely Mentors: <i>David (dgoulet)</i>
-    <p>
-The seccomp2 mechanism on Linux lets programs improve their robustness
-against unforseen bugs by running with restrictions on which system
-calls they can invoke and how they can call them.  This can help
-security a lot.
-    </p>
-
-    <p>
-Thanks to a GSOC student from last year, we now have seccomp2 support on
-Linux, which we use to restrict the capabilities of the entire Tor
-process.  (For implementation details, see src/commmon/sandbox.c in the
-Tor source.)
-    </p>
-
-    <p>
-But since the restrictions are done over the whole process, all pieces
-of the Tor code have permission to do things that only small parts of
-the Tor program need to do.  Also, since we use seccomp2, these
-restrictions only work on Linux.
-    </p>
-
-    <p>
-It would be great to instead divide the main Tor program into multiple
-processes with a robust IPC mechanism and assign each process its own
-minimal set of privileges; and to have this work (as best we can) on
-systems that don't have seccomp2 (eg Windows, Mac).
-    </p>
-
-    <p>
-Either of these could be a whole GSOC project.
-    </p>
-
-    <p>
-To get started, make sure you understand the existing sandboxing code.
-If you're interested in splitting Tor into multiple processes, think
-about the architecture, and think about how we could reach this
-architecture without completely rewriting the codebase.  (Remember that
-even if you're focusing on Linux, Tor still needs to work on other
-operating systems.)
-    </p>
-
-    <p>
-If you're interested in supporting more platforms, make sure you
-understand and can explain what sandboxing mechansisms you want to use,
-and what they're capable of.  (You might want to investigate the way
-that other open-source programs, like the Chrome web browser, do their
-sandboxing on different platforms.)
     </p>
 
     <p>
