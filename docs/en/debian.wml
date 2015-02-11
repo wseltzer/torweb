@@ -128,17 +128,22 @@ function update() {
             }
             txt += "http://deb.torproject.org/torproject.org";
             txt += " ";
-            if (version != 'stable') {
-                txt += package;
-                txt += "-";
-                txt += version;
-                txt += "-";
-            }
             txt += keys[i];
             txt += " main";
             need_signed = true;
             target = keys[i];
             txt = "deb " + txt + "\ndeb-src " + txt;
+            if (version != 'stable') {
+                txt2 = "http://deb.torproject.org/torproject.org";
+                txt2 += " ";
+                txt2 += package;
+                txt2 += "-";
+                txt2 += version;
+                txt2 += "-";
+                txt2 += keys[i];
+                txt2 += " main";
+                txt = txt + "\ndeb " + txt2 + "\ndeb-src " + txt2;
+            }
         }
         txt += "\n";
     }
