@@ -53,8 +53,8 @@
     package and the extension ".asc". These .asc files are GPG
     signatures. They allow you to verify the file you've downloaded
     is exactly the one that we intended you to get. For example,
-    tor-browser-2.3.25-13_en-US.exe is accompanied by
-    tor-browser-2.3.25-13_en-US.exe.asc. For a list
+    torbrowser-install-<version-torbrowserbundle>_en-US.exe is accompanied by
+    torbrowser-install-<version-torbrowserbundle>_en-US.exe.asc. For a list
     of which developer signs which package, see our <a href="<page docs/signing-keys>">signing keys</a> page.</p>
     <h3>Windows</h3>
     <hr>
@@ -67,20 +67,20 @@
     you will need to tell Windows the full path to the GnuPG program. If
     you installed GnuPG with the default values, the path should be
     something like this: <i>C:\Program Files\Gnu\GnuPg\gpg.exe</i>.</p>
-    <p>Erinn Clark signs the Tor Browsers. Import her key
-    (0x416F061063FEE659) by starting <i>cmd.exe</i> and typing:</p>
-    <pre>"C:\Program Files\Gnu\GnuPg\gpg.exe" --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x416F061063FEE659</pre>
+    <p>The Tor Browser team signs the Tor Browsers. Import its key
+    (0x4E2C6E8793298290) by starting <i>cmd.exe</i> and typing:</p>
+    <pre>"C:\Program Files\Gnu\GnuPg\gpg.exe" --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x4E2C6E8793298290</pre>
     <p>After importing the key, you can verify that the fingerprint
     is correct:</p>
-    <pre>"C:\Program Files\Gnu\GnuPg\gpg.exe" --fingerprint 0x416F061063FEE659</pre>
+    <pre>"C:\Program Files\Gnu\GnuPg\gpg.exe" --fingerprint 0x4E2C6E8793298290</pre>
     <p>You should see:</p>
     <pre>
-    pub   2048R/63FEE659 2003-10-16
-          Key fingerprint = 8738 A680 B84B 3031 A630  F2DB 416F 0610 63FE E659
-    uid                  Erinn Clark &lt;erinn@torproject.org&gt;
-    uid                  Erinn Clark &lt;erinn@debian.org&gt;
-    uid                  Erinn Clark &lt;erinn@double-helix.org&gt;
-    sub   2048R/EB399FD7 2003-10-16
+    pub   4096R/93298290 2014-12-15
+          Key fingerprint = EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290
+    uid                  Tor Browser Developers (signing key) <torbrowser@torproject.org>
+    sub   4096R/F65C2036 2014-12-15
+    sub   4096R/D40814E0 2014-12-15
+    sub   4096R/589839A3 2014-12-15
 </pre>
     <p>To verify the signature of the package you downloaded, you will need
     to download the ".asc" file as well. Assuming you downloaded the
@@ -88,13 +88,11 @@
     <pre>"C:\Program Files\Gnu\GnuPg\gpg.exe" --verify C:\Users\Alice\Desktop\torbrowser-install-<version-torbrowserbundle>_en-US.exe.asc C:\Users\Alice\Desktop\torbrowser-install-<version-torbrowserbundle>_en-US.exe</pre>
     <p>The output should say "Good signature": </p>
     <pre>
-    gpg: Signature made Wed 31 Aug 2011 06:37:01 PM EDT using RSA key ID 63FEE659
-    gpg: Good signature from "Erinn Clark &lt;erinn@torproject.org&gt;"
-    gpg:                 aka "Erinn Clark &lt;erinn@debian.org&gt;"
-    gpg:                 aka "Erinn Clark &lt;erinn@double-helix.org&gt;"
+    gpg: Signature made Tue 24 Jan 2015 09:29:09 AM CET using RSA key ID D40814E0
+    gpg: Good signature from "Tor Browser Developers (signing key) <torbrowser@torproject.org>"
     gpg: WARNING: This key is not certified with a trusted signature!
     gpg:          There is no indication that the signature belongs to the owner.
-    Primary key fingerprint: 8738 A680 B84B 3031 A630  F2DB 416F 0610 63FE E659
+    Primary key fingerprint: EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290
     </pre>
     <p>
     Notice that there is a warning because you haven't assigned a trust
@@ -118,21 +116,21 @@
     key (0x416F061063FEE659) by starting the terminal (under "Applications"
     in Mac OS X) and typing:</p>
 
-    <pre>gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x416F061063FEE659</pre>
+    <pre>gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x4E2C6E8793298290</pre>
 
     <p>After importing the key, you can verify that the fingerprint
     is correct:</p>
 
-    <pre>gpg --fingerprint 0x416F061063FEE659</pre>
+    <pre>gpg --fingerprint 0x4E2C6E8793298290</pre>
 
     <p>You should see:</p>
     <pre>
-    pub   2048R/63FEE659 2003-10-16
-          Key fingerprint = 8738 A680 B84B 3031 A630  F2DB 416F 0610 63FE E659
-    uid                  Erinn Clark &lt;erinn@torproject.org&gt;
-    uid                  Erinn Clark &lt;erinn@debian.org&gt;
-    uid                  Erinn Clark &lt;erinn@double-helix.org&gt;
-    sub   2048R/EB399FD7 2003-10-16
+    pub   4096R/93298290 2014-12-15
+          Key fingerprint = EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290
+    uid                  Tor Browser Developers (signing key) <torbrowser@torproject.org>
+    sub   4096R/F65C2036 2014-12-15
+    sub   4096R/D40814E0 2014-12-15
+    sub   4096R/589839A3 2014-12-15
     </pre>
 
     <p>To verify the signature of the package you downloaded, you will need
@@ -148,13 +146,11 @@
     <p>The output should say "Good signature": </p>
 
     <pre>
-    gpg: Signature made Wed 31 Aug 2011 06:37:01 PM EDT using RSA key ID 63FEE659
-    gpg: Good signature from "Erinn Clark &lt;erinn@torproject.org&gt;"
-    gpg:                 aka "Erinn Clark &lt;erinn@debian.org&gt;"
-    gpg:                 aka "Erinn Clark &lt;erinn@double-helix.org&gt;"
+    gpg: Signature made Tue 24 Jan 2015 09:29:09 AM CET using RSA key ID D40814E0
+    gpg: Good signature from "Tor Browser Developers (signing key) <torbrowser@torproject.org>"
     gpg: WARNING: This key is not certified with a trusted signature!
     gpg:          There is no indication that the signature belongs to the owner.
-    Primary key fingerprint: 8738 A680 B84B 3031 A630  F2DB 416F 0610 63FE E659
+    Primary key fingerprint: EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290
     </pre>
 
     <p>
