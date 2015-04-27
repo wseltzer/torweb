@@ -207,8 +207,9 @@
       for TBB 3.6.1.</li>
       <li>Retrieve the signers' GPG keys. This can be done from the command
       line by entering something like
-      <pre>gpg --keyserver keys.mozilla.org --recv-keys 0x29846B3C683686CC</pre>
-      (This will bring you developer Mike Perry's public key. Other
+      <pre>gpg --keyserver keys.mozilla.org --recv-keys 0x4E2C6E8793298290</pre>
+      (This will bring you the public part of the Tor Browser developers'
+       signing key. Other
       developers' key IDs can be found on
       <a href="<page docs/signing-keys>">this
       page</a>.)</li>
@@ -216,6 +217,13 @@
       <pre>gpg --verify &lt;NAME OF THE SIGNATURE FILE&gt;.asc sha256sums.txt</pre></li>
       <li>You should see a message like "Good signature from &lt;DEVELOPER
       NAME&gt;". If you don't, there is a problem. Try these steps again.</li>
+      <li>If you want to verify a Windows Tor Browser package you need to first
+      strip off the authenticode signature of it. One tool that can be used for
+      this purpose is <a
+      href="http:/osslsigncode.sourceforge.net">osslsigncode</a>. Assuming you
+      have built it on a Linux computer you can enter
+      <pre>/path/to/your/osslsigncode remove-signature &#92;
+        /path/to/your/&lt;TOR BROWSER FILE NAME&gt;.exe &lt;TOR BROWSER FILE NAME&gt;.exe</pre></li>
       <li>Now you can take the sha256sum of the Tor Browser package. On
       Windows you can use the <a href="http://md5deep.sourceforge.net/">
       hashdeep utility</a> and run
