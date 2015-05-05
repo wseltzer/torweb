@@ -741,10 +741,10 @@ with more funding?</a></h3>
 href="https://metrics.torproject.org/network.html#networksize">several
     thousand</a> relays push <a
     href="https://metrics.torproject.org/network.html#bandwidth">over
-    1GB per second on average</a>. We have <a
+    7.5GB per second on average</a>. We have <a
 
-href="https://metrics.torproject.org/users.html#direct-users">several
-    hundred thousand daily users</a>. But the Tor network is not yet
+href="https://metrics.torproject.org/users.html#direct-users">millions of
+    daily users</a>. But the Tor network is not yet
     self-sustaining.
     </p>
 
@@ -1050,7 +1050,7 @@ and send an email to '<tt>gettor@torproject.org</tt>' with one of the
 following words in the body of the message: <tt>windows</tt>,
 <tt>osx</tt> or <tt>linux</tt> (case insensitive).
 You will receive a reply with links from popular cloud services to
-download Tor Browser for Windows, Mac OSX or Linux, depending on the
+download Tor Browser for Windows, Mac OS X or Linux, depending on the
 option you chose. Currently, the only cloud service supported is
 Dropbox. If you send a blank message or anything different from the
 options mentioned, you will receive a help message with detailed
@@ -1587,11 +1587,6 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
     <pre>
     ServerTransportPlugin obfs3 exec /usr/bin/obfsproxy managed
     </pre>
-    <p>
-    This third option is pretty klunky right now; see e.g. <a
-    href="https://trac.torproject.org/projects/tor/ticket/10449">this bug</a>;
-    but we're hoping it will become an easy option in the future.
-    </p>
 
     <hr>
 
@@ -1639,7 +1634,8 @@ configuration should work fine for most Tor users.
 </p>
 <p>
 If you installed Tor Browser, look for
-<code>Data/Tor/torrc</code> inside your Tor Browser directory.
+<code>Browser/TorBrowser/Data/Tor/torrc</code> inside your Tor Browser
+directory.
 On OS X, you must right-click or command-click on the Tor Browser icon,
 and select "Show Package Contents" before the Tor Browser directories become
 visible.
@@ -2300,7 +2296,7 @@ too.
     BandwidthRate is the maximum long-term bandwidth allowed (bytes per
     second). For example, you might want to choose "BandwidthRate 10 MBytes"
     for 10 megabytes per second (a fast connection), or "BandwidthRate 500
-    KBytes" for 500 kilobytes per second (a pretty good cable connection).
+    KBytes" for 500 kilobytes per second (a decent cable connection).
     The minimum BandwidthRate setting is 20 kilobytes per second.
     </li>
     <li>
@@ -2448,7 +2444,7 @@ too.
         may be torrc.client and torrc.relay.</li>
         <li>Modify the Tor client and relay startup scripts to include
         '-f /path/to/correct/torrc'.</li>
-        <li>In Linux/BSD/OSX, changing the startup scripts to Tor.client
+        <li>In Linux/BSD/Mac OS X, changing the startup scripts to Tor.client
         and Tor.relay may make separation of configs easier.</li>
     </ul>
 
@@ -3626,7 +3622,7 @@ information on the two sides.
 So, what should we do? Suppose the attacker controls, or can observe,
 <i>C</i> relays. Suppose there are <i>N</i> relays total. If you select
 new entry and exit relays each time you use the network, the attacker
-will be able to correlate all traffic you send with probability
+will be able to correlate all traffic you send with probability around
 <i>(c/n)<sup>2</sup></i>. But profiling is, for most users, as bad
 as being traced all the time: they want to do something often without
 an attacker noticing, and the attacker noticing once is as bad as the

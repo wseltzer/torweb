@@ -3,6 +3,167 @@
 # Translation-Priority: 3-low
 
 #include "head.wmi" TITLE="Tor Project: Debian/Ubuntu Instructions" CHARSET="UTF-8"
+
+<script>
+<!--
+// This code is based on the http://mozilla.debian.net sources.list
+// generator as originally written by Mike Hommey. It is licensed under
+// the terms of the GNU GPLv2, http://www.gnu.org/licenses/gpl-2.0.html.
+var sources = {};
+var software = {
+'tor': { '_stable': { 'squeeze': [ 'squeeze' ],
+                     'wheezy':  [ 'wheezy' ],
+                     'jessie':  [ 'jessie' ],
+                     'sid':     [ 'sid' ],
+                     'lucid':   [ 'lucid'],
+                     'precise': [ 'precise'],
+                     'saucy':   [ 'saucy'],
+                     'trusty':  [ 'trusty'],
+                     'utopic':  [ 'utopic'] },
+         'experimental-0.2.6.x':    { 'squeeze': [ 'squeeze' ],
+                     'wheezy':  [ 'wheezy' ],
+                     'jessie':  [ 'jessie' ],
+                     'sid':     [ 'sid' ],
+                     'lucid':   [ 'lucid'],
+                     'precise': [ 'precise'],
+                     'saucy':   [ 'saucy'],
+                     'trusty':  [ 'trusty'],
+                     'utopic':  [ 'utopic'] },
+       },
+'tor (from source)': { '_stable': { 'squeeze': [ 'squeeze' ],
+                     'wheezy':  [ 'wheezy' ],
+                     'jessie':  [ 'jessie' ],
+                     'sid':     [ 'sid' ],
+                     'lucid':   [ 'lucid'],
+                     'precise': [ 'precise'],
+                     'saucy':   [ 'saucy'],
+                     'trusty':  [ 'trusty'],
+                     'utopic':  [ 'utopic'] },
+         'experimental-0.2.6.x':    { 'squeeze': [ 'squeeze' ],
+                     'wheezy':  [ 'wheezy' ],
+                     'jessie':  [ 'jessie' ],
+                     'sid':     [ 'sid' ],
+                     'lucid':   [ 'lucid'],
+                     'precise': [ 'precise'],
+                     'saucy':   [ 'saucy'],
+                     'trusty':  [ 'trusty'],
+                     'utopic':  [ 'utopic'] },
+       },
+};
+
+function init() {
+    pkg = document.getElementById('package');
+    for (soft in software) {
+        if (soft != pkg.value) {
+            option = document.createElement('option');
+            option.value = soft;
+            option.appendChild(document.createTextNode(soft.charAt(0).toUpperCase() + soft.slice(1)));
+            pkg.appendChild(option);
+        }
+    }
+
+    apt_get = document.getElementById('apt-get');
+    para = document.createElement('p');
+    para.id = 'sorry';
+    para.style.display = 'none';
+    apt_get.parentNode.insertBefore(para, apt_get);
+    para.appendChild(document.createTextNode("Sorry, this version is not available.\n"));
+
+    document.getElementById('selector').style.display = 'block';
+
+    update();
+}
+
+function replaceText(src, txt) {
+    while (src.firstChild)
+        src.removeChild(src.firstChild);
+    src.appendChild(document.createTextNode(txt));
+}
+
+function update() {
+    pkg = document.getElementById('package');
+    ver = document.getElementById('version');
+    package = pkg.value;
+    version = ver.value;
+    distrib = document.getElementById('distrib').value;
+    if (package != pkg.prev) {
+        while (ver.firstChild)
+            ver.removeChild(ver.firstChild);
+        var selected;
+        for (version in software[package]) {
+            option = document.createElement('option');
+            if (version[0] == '_') {
+                version = version.slice(1);
+                selected = version;
+            }
+            option.appendChild(document.createTextNode(version));
+            option.value = version = version.replace(/ \(.*\)/,'');
+//alert(version);
+            ver.appendChild(option);
+        }
+        ver.value = version = selected || version;
+        pkg.prev = package
+    }
+    try {
+        keys = software[package][version][distrib];
+    } catch (e) {
+        try {
+            keys = software[package]['_' + version][distrib];
+        } catch (e) { };
+    }
+    src = document.getElementById('sources');
+    txt = '';
+    need_signed = false;
+    source_install = false;
+    target = '';
+    for (i = 0; keys && (i < keys.length); i++) {
+//alert(keys[i]);
+        if (keys[i] in sources) {
+            txt += sources[keys[i]];
+            target = keys[i];
+        } else {
+            if (package.slice(-7, -1) == 'source') {
+                package = package.split(' ')[0];
+                source_install = true;
+            }
+            txt += "http://deb.torproject.org/torproject.org";
+            txt += " ";
+            txt += keys[i];
+            txt += " main";
+            need_signed = true;
+            target = keys[i];
+            txt = "deb " + txt + "\ndeb-src " + txt;
+            if (version != 'stable') {
+                txt2 = "http://deb.torproject.org/torproject.org";
+                txt2 += " ";
+                txt2 += package;
+                txt2 += "-";
+                txt2 += version;
+                txt2 += "-";
+                txt2 += keys[i];
+                txt2 += " main";
+                txt = txt + "\ndeb " + txt2 + "\ndeb-src " + txt2;
+            }
+        }
+        txt += "\n";
+    }
+    replaceText(src, txt);
+    document.getElementById('regular-install').style.display = source_install ? 'none' : 'block';
+    document.getElementById('source-install').style.display = source_install ? 'block' : 'none';
+    document.getElementById('source-install2').style.display = source_install ? 'block' : 'none';
+    replaceText(document.getElementById('apt-package'), package);
+    document.getElementById('apt-source').style.display = (keys && keys.length) ? 'block' : 'none';
+    document.getElementById('apt-get').style.display = keys ? 'block' : 'none';
+    document.getElementById('sorry').style.display = keys ? 'none' : 'block';
+}
+
+window.onload = init;
+
+-->
+</script>
+
+
+
 <div id="content" class="clearfix">
   <div id="breadcrumbs">
     <a href="<page index>">Home &raquo; </a>
@@ -16,8 +177,8 @@ Debian sid, or Debian testing</a></h2>
 <br />
 
 <p>
-If you're using Debian, just run<br />
-<tt>apt-get install tor</tt>
+If you're using Debian, just run
+</blockquote><pre>  apt-get install tor </pre></blockquote>
 as root.
 </p>
 
@@ -61,7 +222,73 @@ Tor. First, you need to figure out the name of your distribution. A
 quick command to run is <tt>lsb_release -c</tt> or <tt>cat /etc/debian_version</tt>.
 If in doubt about your Debian version, check <a href="http://www.debian.org/releases/">the Debian website</a>.
 For Ubuntu, ask <a href="https://en.wikipedia.org/wiki/List_of_Ubuntu_releases#Table_of_versions">Wikipedia</a>.
+</p>
 
+<div id="selector" style="display: none;">
+<blockquote>
+I run
+<select id="distrib" onchange="update()">
+<option value="squeeze">Debian oldstable (Squeeze)</option>
+<option value="wheezy" selected="selected">Debian stable (Wheezy)</option>
+<option value="jessie">Debian testing (Jessie)</option>
+<option value="sid">Debian unstable (sid)</option>
+<option value="lucid">Ubuntu Lucid Lynx</option>
+<option value="precise">Ubuntu Precise Pangolin</option>
+<option value="saucy">Ubuntu Saucy Salamander</option>
+<option value="trusty">Ubuntu Trusty Tahr</option>
+<option value="utopic">Ubuntu Utopic Unicorn</option>
+</select>
+and want
+<select id="package" onchange="update()"></select>
+version
+<select id="version" onchange="update()"></select>
+</blockquote>
+
+
+<div id="apt-source">
+<p>You need to add the following entry in <code>/etc/apt/sources.list</code> or a new file in <code>/etc/apt/sources.list.d/</code>:</p>
+
+<blockquote><pre id="sources">deb http://deb.torproject.org/torproject.org wheezy main
+</pre></blockquote>
+</div>
+
+<div id="sig">
+<p>Then add the gpg key used to sign the packages by running the following commands at your command prompt:</p>
+<blockquote><pre>
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+</pre></blockquote>
+</div>
+
+
+<div id="apt-get">
+<p>You can install it with the following commands:</p>
+<blockquote><pre>$ apt-get update
+<span id="regular-install">$ apt-get install <span id="apt-package">tor</span> deb.torproject.org-keyring</span>
+<span id="source-install">$ apt-get install build-essential fakeroot devscripts
+$ apt-get build-dep tor deb.torproject.org-keyring</span></pre></blockquote>
+
+<div id="source-install2">
+<p>
+Then you can build Tor in ~/debian-packages:
+</p>
+<blockquote><pre>
+$ mkdir ~/debian-packages; cd ~/debian-packages
+$ apt-get source tor
+$ cd tor-*
+$ debuild -rfakeroot -uc -us
+$ cd ..
+</pre></blockquote>
+<p>Now you can install the new package:</p>
+<blockquote><pre>
+$ sudo dpkg -i tor_*.deb
+</pre></blockquote>
+</div>
+</div>
+</div>
+
+<noscript>
+<p>
 Then add this line to your
 <tt>/etc/apt/sources.list</tt>
 file:<br />
@@ -103,12 +330,15 @@ apt-get install tor
 </pre>
 </p>
 
+</noscript>
+
 <p>
 Now Tor is installed and running. Move on to <a href="<page
 docs/tor-doc-unix>#using">step two</a> of the "Tor on Linux/Unix"
 instructions.
 </p>
 
+<noscript>
 <p style="font-size: small">
 The DNS name <code>deb.torproject.org</code> is actually a set of independent
 servers in a DNS round robin configuration.  If you for some reason cannot
@@ -200,11 +430,7 @@ Now Tor is installed and running. Move on to <a href="<page
 docs/tor-doc-unix>#using">step two</a> of the "Tor on Linux/Unix"
 instructions.
 </p>
-
-<hr />
-
-<p>If you have suggestions for improving this document, please <a
-href="<page about/contact>">send them to us</a>. Thanks!</p>
+</noscript>
 
 <!-- END MAIN COL -->
   </div>
