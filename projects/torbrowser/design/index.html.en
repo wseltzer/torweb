@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The Design and Implementation of the Tor Browser [DRAFT]</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /></head><body><div class="article"><div class="titlepage"><div><div><h2 class="title"><a id="design"></a>The Design and Implementation of the Tor Browser [DRAFT]</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Mike</span> <span class="surname">Perry</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:mikeperry#torproject org">mikeperry#torproject org</a>&gt;</code></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Erinn</span> <span class="surname">Clark</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:erinn#torproject org">erinn#torproject org</a>&gt;</code></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Steven</span> <span class="surname">Murdoch</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:sjmurdoch#torproject org">sjmurdoch#torproject org</a>&gt;</code></p></div></div></div></div><div><p class="pubdate">May 6th, 2015</p></div></div><hr /></div><div class="toc"><p><strong>Table of Contents</strong></p><dl class="toc"><dt><span class="sect1"><a href="#idp69131840">1. Introduction</a></span></dt><dd><dl><dt><span class="sect2"><a href="#components">1.1. Browser Component Overview</a></span></dt></dl></dd><dt><span class="sect1"><a href="#DesignRequirements">2. Design Requirements and Philosophy</a></span></dt><dd><dl><dt><span class="sect2"><a href="#security">2.1. Security Requirements</a></span></dt><dt><span class="sect2"><a href="#privacy">2.2. Privacy Requirements</a></span></dt><dt><span class="sect2"><a href="#philosophy">2.3. Philosophy</a></span></dt></dl></dd><dt><span class="sect1"><a href="#adversary">3. Adversary Model</a></span></dt><dd><dl><dt><span class="sect2"><a href="#adversary-goals">3.1. Adversary Goals</a></span></dt><dt><span class="sect2"><a href="#adversary-positioning">3.2. Adversary Capabilities - Positioning</a></span></dt><dt><span class="sect2"><a href="#attacks">3.3. Adversary Capabilities - Attacks</a></span></dt></dl></dd><dt><span class="sect1"><a href="#Implementation">4. Implementation</a></span></dt><dd><dl><dt><span class="sect2"><a href="#proxy-obedience">4.1. Proxy Obedience</a></span></dt><dt><span class="sect2"><a href="#state-separation">4.2. State Separation</a></span></dt><dt><span class="sect2"><a href="#disk-avoidance">4.3. Disk Avoidance</a></span></dt><dt><span class="sect2"><a href="#app-data-isolation">4.4. Application Data Isolation</a></span></dt><dt><span class="sect2"><a href="#identifier-linkability">4.5. Cross-Origin Identifier Unlinkability</a></span></dt><dt><span class="sect2"><a href="#fingerprinting-linkability">4.6. Cross-Origin Fingerprinting Unlinkability</a></span></dt><dt><span class="sect2"><a href="#new-identity">4.7. Long-Term Unlinkability via "New Identity" button</a></span></dt><dt><span class="sect2"><a href="#other-security">4.8. Other Security Measures</a></span></dt></dl></dd><dt><span class="sect1"><a href="#BuildSecurity">5. Build Security and Package Integrity</a></span></dt><dd><dl><dt><span class="sect2"><a href="#idp70162016">5.1. Achieving Binary Reproducibility</a></span></dt><dt><span class="sect2"><a href="#idp70184144">5.2. Package Signatures and Verification</a></span></dt><dt><span class="sect2"><a href="#idp70188672">5.3. Anonymous Verification</a></span></dt><dt><span class="sect2"><a href="#update-safety">5.4. Update Safety</a></span></dt></dl></dd><dt><span class="appendix"><a href="#Transparency">A. Towards Transparency in Navigation Tracking</a></span></dt><dd><dl><dt><span class="sect1"><a href="#deprecate">A.1. Deprecation Wishlist</a></span></dt><dt><span class="sect1"><a href="#idp70225312">A.2. Promising Standards</a></span></dt></dl></dd></dl></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp69131840"></a>1. Introduction</h2></div></div></div><p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The Design and Implementation of the Tor Browser [DRAFT]</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /></head><body><div class="article"><div class="titlepage"><div><div><h2 class="title"><a id="design"></a>The Design and Implementation of the Tor Browser [DRAFT]</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Mike</span> <span class="surname">Perry</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:mikeperry#torproject org">mikeperry#torproject org</a>&gt;</code></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Erinn</span> <span class="surname">Clark</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:erinn#torproject org">erinn#torproject org</a>&gt;</code></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Steven</span> <span class="surname">Murdoch</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:sjmurdoch#torproject org">sjmurdoch#torproject org</a>&gt;</code></p></div></div></div></div><div><p class="pubdate">May 6th, 2015</p></div></div><hr /></div><div class="toc"><p><strong>Table of Contents</strong></p><dl class="toc"><dt><span class="sect1"><a href="#idp53435264">1. Introduction</a></span></dt><dd><dl><dt><span class="sect2"><a href="#components">1.1. Browser Component Overview</a></span></dt></dl></dd><dt><span class="sect1"><a href="#DesignRequirements">2. Design Requirements and Philosophy</a></span></dt><dd><dl><dt><span class="sect2"><a href="#security">2.1. Security Requirements</a></span></dt><dt><span class="sect2"><a href="#privacy">2.2. Privacy Requirements</a></span></dt><dt><span class="sect2"><a href="#philosophy">2.3. Philosophy</a></span></dt></dl></dd><dt><span class="sect1"><a href="#adversary">3. Adversary Model</a></span></dt><dd><dl><dt><span class="sect2"><a href="#adversary-goals">3.1. Adversary Goals</a></span></dt><dt><span class="sect2"><a href="#adversary-positioning">3.2. Adversary Capabilities - Positioning</a></span></dt><dt><span class="sect2"><a href="#attacks">3.3. Adversary Capabilities - Attacks</a></span></dt></dl></dd><dt><span class="sect1"><a href="#Implementation">4. Implementation</a></span></dt><dd><dl><dt><span class="sect2"><a href="#proxy-obedience">4.1. Proxy Obedience</a></span></dt><dt><span class="sect2"><a href="#state-separation">4.2. State Separation</a></span></dt><dt><span class="sect2"><a href="#disk-avoidance">4.3. Disk Avoidance</a></span></dt><dt><span class="sect2"><a href="#app-data-isolation">4.4. Application Data Isolation</a></span></dt><dt><span class="sect2"><a href="#identifier-linkability">4.5. Cross-Origin Identifier Unlinkability</a></span></dt><dt><span class="sect2"><a href="#fingerprinting-linkability">4.6. Cross-Origin Fingerprinting Unlinkability</a></span></dt><dt><span class="sect2"><a href="#new-identity">4.7. Long-Term Unlinkability via "New Identity" button</a></span></dt><dt><span class="sect2"><a href="#other-security">4.8. Other Security Measures</a></span></dt></dl></dd><dt><span class="sect1"><a href="#BuildSecurity">5. Build Security and Package Integrity</a></span></dt><dd><dl><dt><span class="sect2"><a href="#idp55327360">5.1. Achieving Binary Reproducibility</a></span></dt><dt><span class="sect2"><a href="#idp55349120">5.2. Package Signatures and Verification</a></span></dt><dt><span class="sect2"><a href="#idp55353648">5.3. Anonymous Verification</a></span></dt><dt><span class="sect2"><a href="#update-safety">5.4. Update Safety</a></span></dt></dl></dd><dt><span class="appendix"><a href="#Transparency">A. Towards Transparency in Navigation Tracking</a></span></dt><dd><dl><dt><span class="sect1"><a href="#deprecate">A.1. Deprecation Wishlist</a></span></dt><dt><span class="sect1"><a href="#idp55389664">A.2. Promising Standards</a></span></dt></dl></dd></dl></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp53435264"></a>1. Introduction</h2></div></div></div><p>
 
 This document describes the <a class="link" href="#adversary" title="3. Adversary Model">adversary model</a>,
 <a class="link" href="#DesignRequirements" title="2. Design Requirements and Philosophy">design requirements</a>, and <a class="link" href="#Implementation" title="4. Implementation">implementation</a>  of the Tor Browser. It is current as of Tor Browser
@@ -655,13 +655,13 @@ system-wide extensions (through the use of
 disabled, which prevents Flash cookies from leaking from a pre-existing Flash
 directory.
 
-   </p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a id="disk-avoidance"></a>4.3. Disk Avoidance</h3></div></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp66184288"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
+   </p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a id="disk-avoidance"></a>4.3. Disk Avoidance</h3></div></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp55029872"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
 
 The User Agent MUST (at user option) prevent all disk records of browser activity.
 The user should be able to optionally enable URL history and other history
 features if they so desire. 
 
-    </blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp66185680"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
+    </blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp55031232"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
 
 We achieve this goal through several mechanisms. First, we set the Firefox
 Private Browsing preference
@@ -733,7 +733,7 @@ the URL bar origin for which browser state exists, possibly with a
 context-menu option to drill down into specific types of state or permissions.
 An example of this simplification can be seen in Figure 1.
 
-   </p><div class="figure"><a id="idp66208640"></a><p class="title"><strong>Figure 1. Improving the Privacy UI</strong></p><div class="figure-contents"><div class="mediaobject" align="center"><img src="NewCookieManager.png" align="middle" alt="Improving the Privacy UI" /></div><div class="caption"><p></p>
+   </p><div class="figure"><a id="idp55052928"></a><p class="title"><strong>Figure 1. Improving the Privacy UI</strong></p><div class="figure-contents"><div class="mediaobject" align="center"><img src="NewCookieManager.png" align="middle" alt="Improving the Privacy UI" /></div><div class="caption"><p></p>
 
 This example UI is a mock-up of how isolating identifiers to the URL bar
 origin can simplify the privacy UI for all data - not just cookies. Once
@@ -741,7 +741,7 @@ browser identifiers and site permissions operate on a URL bar basis, the same
 privacy window can represent browsing history, DOM Storage, HTTP Auth, search
 form history, login values, and so on within a context menu for each site.
 
-</div></div></div><br class="figure-break" /><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp69892352"></a>Identifier Unlinkability Defenses in the Tor Browser</h4></div></div></div><p>
+</div></div></div><br class="figure-break" /><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp55056352"></a>Identifier Unlinkability Defenses in the Tor Browser</h4></div></div></div><p>
 
 Unfortunately, many aspects of browser state can serve as identifier storage,
 and no other browser vendor or standards body has invested the effort to
@@ -1124,7 +1124,7 @@ narrow domain or use case, or when there are alternate ways of accomplishing
 the same task, these features and/or certain aspects of their functionality
 may be simply removed.
 
-   </p></li></ol></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp69985904"></a>Strategies for Defense: Randomization versus Uniformity</h4></div></div></div><p>
+   </p></li></ol></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp55149888"></a>Strategies for Defense: Randomization versus Uniformity</h4></div></div></div><p>
 
 When applying a form of defense to a specific fingerprinting vector or source,
 there are two general strategies available: either the implementation for all
@@ -1298,7 +1298,9 @@ these requests are still sent by Firefox to our SOCKS proxy (ie we set
 <span class="command"><strong>network.proxy.no_proxies_on</strong></span> to the empty string). The local
 Tor client then rejects them, since it is configured to proxy for internal IP
 addresses by default. Access to the local network is forbidden via the same
-mechanism.
+mechanism. We also disable the WebRTC API as mentioned previously, since even
+if it were usable over Tor, it still currently provides the local IP address
+and associated network information to websites.
 
      </p></li><li class="listitem"><span class="command"><strong>Invasive Authentication Mechanisms (NTLM and SPNEGO)</strong></span><p>
 
@@ -1311,15 +1313,23 @@ them to reveal machine information and still fail silently prior to the
 password prompt, these authentication mechanisms should either be disabled, or
 placed behind a site permission before their use. We simply disable them.
 
-     </p></li><li class="listitem"><span class="command"><strong>USB Device ID Enumeration</strong></span><p>
+     </p></li><li class="listitem"><span class="command"><strong>USB Device ID Enumeration via the GamePad API</strong></span><p>
 
 The <a class="ulink" href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/Gamepad" target="_top">GamePad
 API</a> provides web pages with the <a class="ulink" href="https://dvcs.w3.org/hg/gamepad/raw-file/default/gamepad.html#widl-Gamepad-id" target="_top">USB
 device id, product id, and driver name</a> of all connected game
-controllers, as well as detailed information about their capabilities. This API
-should be behind a site permission in Private Browsing Modes, or should present a generic 
-controller type (perhaps a two button controller that can be mapped to the keyboard) in all cases.
-We simply disable it via the pref <span class="command"><strong>dom.gamepad.enabled</strong></span>.
+controllers, as well as detailed information about their capabilities.
+    </p><p>
+
+It's our opinion that this API needs to be completely redesigned to provide an
+abstract notion of a game controller rather than offloading all of the
+complexity associated with handling specific game controller models to web
+content authors. For systems without a game controller, a standard controller
+can be virtualized through the keyboard, which will serve to both improve
+usability by normalizing user interaction with different games, as well as
+eliminate fingerprinting vectors. Barring that, this API should be behind a
+site permission in Private Browsing Modes. For now though, we simply disable
+it via the pref <span class="command"><strong>dom.gamepad.enabled</strong></span>.
 
      </p></li><li class="listitem"><span class="command"><strong>Fonts</strong></span><p>
 
@@ -1599,11 +1609,11 @@ In order to avoid long-term linkability, we provide a "New Identity" context
 menu option in Torbutton. This context menu option is active if Torbutton can
 read the environment variables $TOR_CONTROL_PASSWD and $TOR_CONTROL_PORT.
 
-   </p><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp70103376"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
+   </p><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp55268352"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote">
 
 All linkable identifiers and browser state MUST be cleared by this feature.
 
-    </blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp70104624"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote"><p>
+    </blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp55269600"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote"><p>
 
 First, Torbutton disables Javascript in all open tabs and windows by using
 both the <a class="ulink" href="https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/nsIDocShell#Attributes" target="_top">browser.docShell.allowJavascript</a>
@@ -1702,7 +1712,7 @@ images (<span class="command"><strong>svg.in-content.enabled</strong></span>).
 Fingerprinting</a> is a statistical attack to attempt to recognize specific
 encrypted website activity.
 
-     </p><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp70138960"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote"><p>
+     </p><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp55303936"></a>Design Goal:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote"><p>
 
 We want to deploy a mechanism that reduces the accuracy of <a class="ulink" href="https://en.wikipedia.org/wiki/Feature_selection" target="_top">useful features</a> available
 for classification. This mechanism would either impact the true and false
@@ -1724,7 +1734,7 @@ Congestion-Sensitive BUFLO</a>. It may be also possible to <a class="ulink" href
 defenses</a> such that they only use existing spare Guard bandwidth capacity in the Tor
 network, making them also effectively no-overhead.
 
-     </p></blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp70145856"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote"><p>
+     </p></blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a id="idp55310832"></a>Implementation Status:</h4></div></div></div><div class="blockquote"><blockquote class="blockquote"><p>
 Currently, we patch Firefox to <a class="ulink" href="https://gitweb.torproject.org/tor-browser.git/commit/?h=tor-browser-31.6.0esr-4.5-1&amp;id=20a59cec9886cf2575b1fd8e92b43e31ba053fbd" target="_top">randomize
 pipeline order and depth</a>. Unfortunately, pipelining is very fragile.
 Many sites do not support it, and even sites that advertise support for
@@ -1789,7 +1799,7 @@ contend with. For this reason, we have deployed a build system
 that allows anyone to use our source code to reproduce byte-for-byte identical
 binary packages to the ones that we distribute.
 
-  </p><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a id="idp70162016"></a>5.1. Achieving Binary Reproducibility</h3></div></div></div><p>
+  </p><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a id="idp55327360"></a>5.1. Achieving Binary Reproducibility</h3></div></div></div><p>
 
 The GNU toolchain has been working on providing reproducible builds for some
 time, however a large software project such as Firefox typically ends up
@@ -1900,7 +1910,7 @@ but differs under LXC. We are also investigating currently
 <a class="ulink" href="https://trac.torproject.org/projects/tor/ticket/12240" target="_top">oddities related to
 time-based dependency tracking</a> that only appear in LXC containers.
 
-   </p></li></ol></div></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a id="idp70184144"></a>5.2. Package Signatures and Verification</h3></div></div></div><p>
+   </p></li></ol></div></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a id="idp55349120"></a>5.2. Package Signatures and Verification</h3></div></div></div><p>
 
 The build process generates a single sha256sums.txt file that contains a sorted
 list of the SHA-256 hashes of every package produced for that build version. Each
@@ -1933,7 +1943,7 @@ In order to verify package integrity, the signature must be stripped off using
 the osslsigncode tool, as described on the <a class="ulink" href="https://www.torproject.org/docs/verifying-signatures.html.en#BuildVerification" target="_top">Signature
 Verification</a> page.
 
-    </p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a id="idp70188672"></a>5.3. Anonymous Verification</h3></div></div></div><p>
+    </p></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a id="idp55353648"></a>5.3. Anonymous Verification</h3></div></div></div><p>
 
 Due to the fact that bit-identical packages can be produced by anyone, the
 security of this build system extends beyond the security of the official
@@ -2062,7 +2072,7 @@ possible for us to <a class="ulink" href="https://trac.torproject.org/projects/t
 ourselves</a>, as they are comparatively rare and can be handled with site
 permissions.
 
-   </p></li></ol></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp70225312"></a>A.2. Promising Standards</h2></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><a class="ulink" href="http://web-send.org" target="_top">Web-Send Introducer</a><p>
+   </p></li></ol></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp55389664"></a>A.2. Promising Standards</h2></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><a class="ulink" href="http://web-send.org" target="_top">Web-Send Introducer</a><p>
 
 Web-Send is a browser-based link sharing and federated login widget that is
 designed to operate without relying on third-party tracking or abusing other
