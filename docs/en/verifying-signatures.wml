@@ -200,11 +200,12 @@
       <p>The steps below walk through this process:</p>
 
     <ul>
-      <li>Download the Tor Browser package, the sha256sums.txt file, and the
-      sha256sums signature files. They can all be found in the same directory
-      under <a href="https://www.torproject.org/dist/torbrowser/">
-      https://www.torproject.org/dist/torbrowser/</a>, for example in '3.6.1'
-      for TBB 3.6.1.</li>
+      <li>Download the Tor Browser package, the <tt>sha256sums-unsigned-build.txt</tt>
+      file, and the <tt>sha256sums-unsigned-build.txt.asc</tt> signature file.
+      They can all be found in the same directory under
+      <a href="https://www.torproject.org/dist/torbrowser/">
+      https://www.torproject.org/dist/torbrowser/</a>, for example in '4.5.1'
+      for Tor Browser 4.5.1.</li>
       <li>Retrieve the signers' GPG keys. This can be done from the command
       line by entering something like
       <pre>gpg --keyserver keys.mozilla.org --recv-keys 0x4E2C6E8793298290</pre>
@@ -213,8 +214,9 @@
       developers' key IDs can be found on
       <a href="<page docs/signing-keys>">this
       page</a>.)</li>
-      <li>Verify the sha256sums.txt file by executing this command:
-      <pre>gpg --verify &lt;NAME OF THE SIGNATURE FILE&gt;.asc sha256sums.txt</pre></li>
+      <li>Verify the sha256sums-unsigned-build.txt file by executing this
+      command:
+      <pre>gpg --verify sha256sums-unsigned-build.txt.asc sha256sums-unsigned-build.txt</pre></li>
       <li>You should see a message like "Good signature from &lt;DEVELOPER
       NAME&gt;". If you don't, there is a problem. Try these steps again.</li>
       <li>If you want to verify a Windows Tor Browser package you need to first
@@ -230,7 +232,7 @@
       <pre>C:\location\where\you\saved\hashdeep -c sha256sum &lt;TOR BROWSER FILE NAME&gt;.exe</pre>
       On Mac or Linux you can run <pre>sha256sum &lt;TOR BROWSER FILE NAME&gt;.dmg</pre> or <pre>sha256sum &lt;TOR BROWSER FILE NAME&gt;.tar.gz</pre> without having to download a utility.</li>
       <li>You will see a string of letters and numbers.</li>
-      <li>Open sha256sums.txt in a text editor.</li>
+      <li>Open <tt>sha256sums-unsigned-build.txt</tt> in a text editor.</li>
       <li>Locate the name of the Tor Browser file you downloaded.</li>
       <li>Compare the string of letters and numbers to the left of your
       filename with the string of letters and numbers that appeared
@@ -263,9 +265,9 @@
     unzip /path/to/gitian-builder/inputs/mar-tools-linux64.zip
     mar-tools/signmar -r your-signed-mar-file.mar your-unsigned-mar-file.mar</pre>
     <p>Now you can compare the SHA256 sum of <tt>your-unsigned-mar-file.mar</tt>
-    with the one provided in the <tt>sha265sums.txt</tt> or
-    <tt>sha256sums.incremental.txt</tt> as outlined in <a href="#BuildVerification">Verifying
-    sha256sums (advancded)</a> above.</p>
+    with the one provided in the <tt>sha265sums-unsigned-build.txt</tt> or
+    <tt>sha256sums-unsigned-build.incremental.txt</tt> as outlined in
+    <a href="#BuildVerification">Verifying sha256sums (advancded)</a> above.</p>
 
   </div>
   <!-- END MAINCOL -->
